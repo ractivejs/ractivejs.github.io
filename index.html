@@ -530,15 +530,15 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#getting-started">Getting Started</a></li>
+        <li class="first-level active"><a href="#ractivejs">Ractive.js</a></li>
+        
+            <li class="second-level"><a href="#philosophy">Philosophy</a></li>
+            
         
             <li class="second-level"><a href="#download">Download</a></li>
             
         
-            <li class="second-level"><a href="#basic-usage">Basic Usage</a></li>
-            
-        
-            <li class="second-level"><a href="#philosophy">Philosophy</a></li>
+            <li class="second-level"><a href="#usage">Usage</a></li>
             
         
     
@@ -546,8 +546,11 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="getting-started">Getting Started</h1>
+<h1 id="ractivejs">Ractive.js</h1>
 <p>Welcome! These pages aim tso provide all the information you need to master Ractive.</p>
+<h2 id="philosophy">Philosophy</h2>
+<p>Ractive takes care of your UI and your application state. But if you're building a complex app, you'll likely have other things in the mix. Routing, history management, server communication, data validation, realtime communication, user authentication, and all that fun stuff.</p>
+<p>Unlike other frameworks, Ractive doesn't have an opinion about these things. You are encouraged to build your app from small, loosely coupled modules. It means you're not locked-in writing code for a particular framework The Right Way™. Should you hate one of your modules for some reason, you can easily swap it out for another and move on with life.</p>
 <h2 id="download">Download</h2>
 <p>Ractive is available in several places:</p>
 <pre><code>// unpkg
@@ -557,13 +560,13 @@ https://unpkg.com/ractive
 https://cdnjs.com/libraries/ractive
 
 // npm
-$ npm install --save-dev ractive
+npm install --save-dev ractive
 
 // Bower
-$ bower install --save ractive
+bower install --save ractive
 </code></pre>
 
-<h2 id="basic-usage">Basic Usage</h2>
+<h2 id="usage">Usage</h2>
 <p>Using Ractive is very simple. Create a new instance using <code>new Ractive({...})</code> with the desired options.</p>
 <pre><code class="js">var ractive = new Ractive({
     el: 'body',
@@ -576,13 +579,9 @@ $ bower install --save ractive
 </code></pre>
 
 <p>While there are <em>no required options</em>, <code>el</code>, <code>template</code> and <code>data</code> are the most common. They specify <em>what element</em> to attach an instance with <em>this markup</em> having <em>this data</em>. Check out <a href="API/Initialization Options/">Initialization Options</a> to learn more about the available options.</p>
-<p>If you get stuck at any point, visit the <a href="Support.md">Get Support</a> page for places to find help.</p>
-<h2 id="philosophy">Philosophy</h2>
-<p>Ractive takes care of your UI and your application state. But if you're building a complex app, you'll likely have other things in the mix. Routing, history management, server communication, data validation, realtime communication, user authentication, and all that fun stuff.</p>
-<p>Unlike other frameworks, Ractive doesn't have an opinion about these things. You are encouraged to build your app from small, loosely coupled modules. It means you're not locked-in writing code for a particular framework The Right Way™. Should you hate one of your modules for some reason, you can easily swap it out for another and move on with life.</p>
+<p>If you get stuck at any point, visit the <a href="Get Started/Support/">Get Support</a> page for places to find help.</p>
 <hr />
-<p><small>This project is the brainchild of an Englishman and has contributors from all over the world. There is an ecclectic mix of primarily the Queen's English, a fair amount of 'Murican English, and a bit of others here and there. Things like <code>adaptor</code>, <code>behaviour</code>, and <code>dependant</code> may have more than one spelling but we try to stick to the Queen's English to the extent that we are able.</small></p>
-<p>:P</p></div>
+<p><small>This project is the brainchild of an Englishman and has contributors from all over the world. There is an ecclectic mix of primarily the Queen's English, a fair amount of 'Murican English, and a bit of others here and there. Things like <code>adaptor</code>, <code>behaviour</code>, and <code>dependant</code> may have more than one spelling but we try to stick to the Queen's English to the extent that we are able.</small></p></div>
         
     </div>
 
@@ -635,5 +634,5 @@ $ bower install --save ractive
 
 <!--
 MkDocs version : 0.16.1
-Build Date UTC : 2017-02-08 00:55:05
+Build Date UTC : 2017-02-08 01:39:24
 -->

@@ -530,82 +530,86 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#ractiveadaptors">Ractive.adaptors</a></li>
+        <li class="first-level active"><a href="#static-properties">Static Properties</a></li>
         
-    
-        <li class="first-level "><a href="#ractivecomponents">Ractive.components</a></li>
+            <li class="second-level"><a href="#ractiveadaptors">Ractive.adaptors</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivedebug">Ractive.DEBUG</a></li>
+            <li class="second-level"><a href="#ractivecomponents">Ractive.components</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivedebug_promises">Ractive.DEBUG_PROMISES</a></li>
+            <li class="second-level"><a href="#ractivedebug">Ractive.DEBUG</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivedecorators">Ractive.decorators</a></li>
+            <li class="second-level"><a href="#ractivedebug_promises">Ractive.DEBUG_PROMISES</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivedefaults">Ractive.defaults</a></li>
+            <li class="second-level"><a href="#ractivedecorators">Ractive.decorators</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveeasing">Ractive.easing</a></li>
+            <li class="second-level"><a href="#ractivedefaults">Ractive.defaults</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveevents">Ractive.events</a></li>
+            <li class="second-level"><a href="#ractiveeasing">Ractive.easing</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveinterpolators">Ractive.interpolators</a></li>
+            <li class="second-level"><a href="#ractiveevents">Ractive.events</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivelength">Ractive.length</a></li>
+            <li class="second-level"><a href="#ractiveinterpolators">Ractive.interpolators</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivemagic">Ractive.magic</a></li>
+            <li class="second-level"><a href="#ractivelength">Ractive.length</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivename">Ractive.name</a></li>
+            <li class="second-level"><a href="#ractivemagic">Ractive.magic</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivepartials">Ractive.partials</a></li>
+            <li class="second-level"><a href="#ractivename">Ractive.name</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivepromise">Ractive.Promise</a></li>
+            <li class="second-level"><a href="#ractivepartials">Ractive.partials</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivesvg">Ractive.svg</a></li>
+            <li class="second-level"><a href="#ractivepromise">Ractive.Promise</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivetransitions">Ractive.transitions</a></li>
+            <li class="second-level"><a href="#ractivesvg">Ractive.svg</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveversion">Ractive.VERSION</a></li>
+            <li class="second-level"><a href="#ractivetransitions">Ractive.transitions</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveversion">Ractive.VERSION</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="ractiveadaptors">Ractive.adaptors</h1>
+<h1 id="static-properties">Static Properties</h1>
+<h2 id="ractiveadaptors">Ractive.adaptors</h2>
 <p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
-<p>The registry of globally available <a href="../../Plugin Authoring/Adaptors/">adaptors</a>.</p>
+<p>The registry of globally available <a href="../Extend/Adaptors.md">adaptors</a>.</p>
 <hr />
-<h1 id="ractivecomponents">Ractive.components</h1>
+<h2 id="ractivecomponents">Ractive.components</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The registry of globally available <a href="../../Plugin Authoring/Components/">component definitions</a>.</p>
+<p>The registry of globally available <a href="../Extend/Components.md">component definitions</a>.</p>
 <hr />
-<h1 id="ractivedebug">Ractive.DEBUG</h1>
+<h2 id="ractivedebug">Ractive.DEBUG</h2>
 <p><em><code>(boolean)</code></em></p>
 <p>Tells Ractive if it's in debug mode or not. When set to <code>true</code>, non-fatal errors are logged. When set to <code>false</code>, non-fatal errors are suppressed. By default, this is set to <code>true</code>.</p>
 <hr />
-<h1 id="ractivedebug_promises">Ractive.DEBUG_PROMISES</h1>
+<h2 id="ractivedebug_promises">Ractive.DEBUG_PROMISES</h2>
 <p><em><code>(boolean)</code></em></p>
 <p>Tells Ractive to log errors thrown inside promises. When set to <code>true</code>, errors thrown in promises are logged. When set to <code>false</code>, errors inside promises are suppressed. By default, this is set to <code>true</code>.</p>
 <hr />
-<h1 id="ractivedecorators">Ractive.decorators</h1>
+<h2 id="ractivedecorators">Ractive.decorators</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The registry of globally available <a href="../../Plugin Authoring/Decorators/">decorators</a>.</p>
+<p>The registry of globally available <a href="../Extend/Decorators.md">decorators</a>.</p>
 <hr />
-<h1 id="ractivedefaults">Ractive.defaults</h1>
+<h2 id="ractivedefaults">Ractive.defaults</h2>
 <p><em><code>(Object&lt;string, any&gt;)</code></em></p>
 <p>The defaults for <a href="../Initialization Options/">initialisation options</a> with the exception of <a href="../../Integrations/Plugins/">plugin registries</a>.</p>
 <pre><code class="js">// Change the default mustache delimiters to [[ ]] globally
@@ -639,46 +643,46 @@ MyRactive.defaults.el = document.body;
 </code></pre>
 
 <hr />
-<h1 id="ractiveeasing">Ractive.easing</h1>
+<h2 id="ractiveeasing">Ractive.easing</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The global registry of <a href="../../Plugin Authoring/Easings/">easing functions</a>.</p>
-<p>The easing functions are used by the <a href="../Instance Methods/#ractive.animate"><code>ractive.animate</code></a> method and by <a href="../../Plugin Authoring/Transitions/">transitions</a>. Four are included by default: <code>linear</code>, <code>easeIn</code>, <code>easeOut</code> and <code>easeInOut</code>.</p>
+<p>The global registry of <a href="../Extend/Easings.md">easing functions</a>.</p>
+<p>The easing functions are used by the <a href="../Instance Methods/#ractive.animate"><code>ractive.animate</code></a> method and by <a href="../Extend/Transitions.md">transitions</a>. Four are included by default: <code>linear</code>, <code>easeIn</code>, <code>easeOut</code> and <code>easeInOut</code>.</p>
 <hr />
-<h1 id="ractiveevents">Ractive.events</h1>
+<h2 id="ractiveevents">Ractive.events</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The global registry of <a href="../../Plugin Authoring/Events/">events</a>.</p>
+<p>The global registry of <a href="../Extend/Events.md">events</a>.</p>
 <hr />
-<h1 id="ractiveinterpolators">Ractive.interpolators</h1>
+<h2 id="ractiveinterpolators">Ractive.interpolators</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
 <p>A key-value hash of interpolators use by <a href="../Instance Methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
 <hr />
-<h1 id="ractivelength">Ractive.length</h1>
+<h2 id="ractivelength">Ractive.length</h2>
 <p>TODO</p>
 <hr />
-<h1 id="ractivemagic">Ractive.magic</h1>
+<h2 id="ractivemagic">Ractive.magic</h2>
 <p>TODO</p>
 <hr />
-<h1 id="ractivename">Ractive.name</h1>
+<h2 id="ractivename">Ractive.name</h2>
 <p>TODO</p>
 <hr />
-<h1 id="ractivepartials">Ractive.partials</h1>
+<h2 id="ractivepartials">Ractive.partials</h2>
 <p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
-<p>The global registry of <a href="../../Plugin Authoring/Partials/">partial templates</a>.</p>
-<p>Like <a href="../Under The Hood/Templates/Templates.md">templates</a>, partials are <a href="../Under The Hood/Templates/Parsing.md">parsed</a> at the point of use. The parsed output is cached and utilized for future use.</p>
+<p>The global registry of <a href="../Extend/Partials.md">partial templates</a>.</p>
+<p>Like <a href="../../Concepts/Templates/Overview/">templates</a>, partials are <a href="../../Concepts/Templates/Parsing/">parsed</a> at the point of use. The parsed output is cached and utilized for future use.</p>
 <hr />
-<h1 id="ractivepromise">Ractive.Promise</h1>
+<h2 id="ractivepromise">Ractive.Promise</h2>
 <p><em><code>(Function)</code></em></p>
 <p>A spec-compliant Promise implementation.</p>
 <hr />
-<h1 id="ractivesvg">Ractive.svg</h1>
+<h2 id="ractivesvg">Ractive.svg</h2>
 <p><em><code>(boolean)</code></em></p>
 <p>Indicates if the browser supports SVG.</p>
 <hr />
-<h1 id="ractivetransitions">Ractive.transitions</h1>
+<h2 id="ractivetransitions">Ractive.transitions</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The global registry of <a href="../../Plugin Authoring/Transitions/">transition functions</a>.</p>
+<p>The global registry of <a href="../Extend/Transitions.md">transition functions</a>.</p>
 <hr />
-<h1 id="ractiveversion">Ractive.VERSION</h1>
+<h2 id="ractiveversion">Ractive.VERSION</h2>
 <p>The version of the currently loaded Ractive.</p></div>
         
     </div>

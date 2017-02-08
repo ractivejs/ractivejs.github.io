@@ -530,20 +530,24 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#getting-in-touch">Getting in touch</a></li>
+        <li class="first-level active"><a href="#support">Support</a></li>
         
-    
-        <li class="first-level "><a href="#legacy-browsers">Legacy browsers</a></li>
+            <li class="second-level"><a href="#getting-in-touch">Getting in touch</a></li>
+            
         
-    
-        <li class="first-level "><a href="#svgs">SVGs</a></li>
+            <li class="second-level"><a href="#legacy-browsers">Legacy browsers</a></li>
+            
+        
+            <li class="second-level"><a href="#svgs">SVGs</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="getting-in-touch">Getting in touch</h1>
+<h1 id="support">Support</h1>
+<h2 id="getting-in-touch">Getting in touch</h2>
 <p>There are a lot of places to find help if you get stuck with Ractive:</p>
 <ul>
 <li><a href="http://stackoverflow.com/questions/tagged/ractivejs">StackOverflow</a></li>
@@ -551,7 +555,7 @@
 <li><a href="https://github.com/ractivejs/ractive/issues">GitHub</a></li>
 <li><a href="http://twitter.com/RactiveJS">Twitter</a></li>
 </ul>
-<h1 id="legacy-browsers">Legacy browsers</h1>
+<h2 id="legacy-browsers">Legacy browsers</h2>
 <p>The core Ractive library requires the following APIs to be present:</p>
 <ul>
 <li><code>Array.isArray</code></li>
@@ -575,7 +579,7 @@
 <li><code>window.getComputedStyle</code></li>
 </ul>
 <p>Most <em>modern</em> browsers already support these APIs. Should you want to serve your app on older browsers, Ractive comes with an optional file containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive and pretend as if nothing happened.</p>
-<h1 id="svgs">SVGs</h1>
+<h2 id="svgs">SVGs</h2>
 <p>Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) <em>do</em> care.</p>
 <pre><code>This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information
 </code></pre>

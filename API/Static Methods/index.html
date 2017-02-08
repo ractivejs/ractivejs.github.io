@@ -530,36 +530,40 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#ractiveescapekey">Ractive.escapeKey()</a></li>
+        <li class="first-level active"><a href="#static-methods">Static Methods</a></li>
         
-    
-        <li class="first-level "><a href="#ractiveextend">Ractive.extend()</a></li>
+            <li class="second-level"><a href="#ractiveescapekey">Ractive.escapeKey()</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivegetcss">Ractive.getCSS()</a></li>
+            <li class="second-level"><a href="#ractiveextend">Ractive.extend()</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivegetnodeinfo">Ractive.getNodeInfo()</a></li>
+            <li class="second-level"><a href="#ractivegetcss">Ractive.getCSS()</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivejoinkeys">Ractive.joinKeys()</a></li>
+            <li class="second-level"><a href="#ractivegetnodeinfo">Ractive.getNodeInfo()</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveparse">Ractive.parse()</a></li>
+            <li class="second-level"><a href="#ractivejoinkeys">Ractive.joinKeys()</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivesplitkeypath">Ractive.splitKeypath()</a></li>
+            <li class="second-level"><a href="#ractiveparse">Ractive.parse()</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveunescapekey">Ractive.unescapeKey()</a></li>
+            <li class="second-level"><a href="#ractivesplitkeypath">Ractive.splitKeypath()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveunescapekey">Ractive.unescapeKey()</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="ractiveescapekey">Ractive.escapeKey()</h1>
-<p>Escapes the given key so that it can be concatenated with a <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> string.</p>
+<h1 id="static-methods">Static Methods</h1>
+<h2 id="ractiveescapekey">Ractive.escapeKey()</h2>
+<p>Escapes the given key so that it can be concatenated with a <a href="../../Concepts/Templates/Keypaths/">keypath</a> string.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>Ractive.escapeKey(key)</code></li>
@@ -577,8 +581,8 @@
 </code></pre>
 
 <hr />
-<h1 id="ractiveextend">Ractive.extend()</h1>
-<p>Creates a "subclass" of the Ractive constructor or a subclass constructor. See <a href="../../Plugin Authoring/Components/"><code>Components</code></a> for an in-depth discussion on the use of <code>Ractive.extend</code>.</p>
+<h2 id="ractiveextend">Ractive.extend()</h2>
+<p>Creates a "subclass" of the Ractive constructor or a subclass constructor. See <a href="../Extend/Components.md"><code>Components</code></a> for an in-depth discussion on the use of <code>Ractive.extend</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>Ractive.extend([options[, ...optionsN]])</code></li>
@@ -614,7 +618,7 @@ const instance2 = new SubClass({
 </code></pre>
 
 <hr />
-<h1 id="ractivegetcss">Ractive.getCSS()</h1>
+<h2 id="ractivegetcss">Ractive.getCSS()</h2>
 <p>Returns the scoped CSS from Ractive subclasses defined at the time of the call.</p>
 <p>If used without arguments, it will return the scoped CSS of all subclasses. If provided an array of scoping IDs, it will return the scoped CSS of all subclasses whose scoping ID is included in the array.</p>
 <p><strong>Syntax</strong></p>
@@ -653,8 +657,8 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 </code></pre>
 
 <hr />
-<h1 id="ractivegetnodeinfo">Ractive.getNodeInfo()</h1>
-<p>Accepts a node and returns an <a href="../Helper Objects/Node Info Object.md">Node Info</a> object containing details of the Ractive instance the node is associated to.</p>
+<h2 id="ractivegetnodeinfo">Ractive.getNodeInfo()</h2>
+<p>Accepts a node and returns an <a href="../Helper Objects/Node Info/">Node Info</a> object containing details of the Ractive instance the node is associated to.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>Ractive.getNodeInfo(node)</code></li>
@@ -665,7 +669,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(NodeInfo)</code>: An <a href="../Helper Objects/Node Info Object.md">NodeInfo</a> object.</li>
+<li><code>(NodeInfo)</code>: An <a href="../Helper Objects/Node Info/">NodeInfo</a> object.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">const info = Ractive.getNodeInfo(document.getElementById('some-node'));
@@ -674,8 +678,8 @@ const info = Ractive.getNodeInfo('#some-node');
 </code></pre>
 
 <hr />
-<h1 id="ractivejoinkeys">Ractive.joinKeys()</h1>
-<p>Joins the given keys into a properly escaped <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> e.g. `</p>
+<h2 id="ractivejoinkeys">Ractive.joinKeys()</h2>
+<p>Joins the given keys into a properly escaped <a href="../../Concepts/Templates/Keypaths/">keypath</a> e.g. `</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>Ractive.joinKeys(key1 [, ...keyN])</code></li>
@@ -693,7 +697,7 @@ const info = Ractive.getNodeInfo('#some-node');
 </code></pre>
 
 <hr />
-<h1 id="ractiveparse">Ractive.parse()</h1>
+<h2 id="ractiveparse">Ractive.parse()</h2>
 <p>Parses the template into an abstract syntax tree that Ractive can work on.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -756,15 +760,15 @@ const info = Ractive.getNodeInfo('#some-node');
 
 <p>TODO: <code>Ractive.parse</code> has more options. Document them.</p>
 <hr />
-<h1 id="ractivesplitkeypath">Ractive.splitKeypath()</h1>
-<p>Splits the given <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> into an array of unescaped keys.</p>
+<h2 id="ractivesplitkeypath">Ractive.splitKeypath()</h2>
+<p>Splits the given <a href="../../Concepts/Templates/Keypaths/">keypath</a> into an array of unescaped keys.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>Ractive.splitKeypath(keypath)</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>keypath (string)</code>: The <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> to split into keys.</li>
+<li><code>keypath (string)</code>: The <a href="../../Concepts/Templates/Keypaths/">keypath</a> to split into keys.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -775,7 +779,7 @@ const info = Ractive.getNodeInfo('#some-node');
 </code></pre>
 
 <hr />
-<h1 id="ractiveunescapekey">Ractive.unescapeKey()</h1>
+<h2 id="ractiveunescapekey">Ractive.unescapeKey()</h2>
 <p>Unescapes the given key e.g. <code>foo\.bar</code> =&gt; <code>foo.bar</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>

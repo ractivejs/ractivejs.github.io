@@ -530,61 +530,65 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#ractiveadaptors">ractive.adaptors</a></li>
+        <li class="first-level active"><a href="#instance-properties">Instance Properties</a></li>
         
-    
-        <li class="first-level "><a href="#ractivecomponents">ractive.components</a></li>
+            <li class="second-level"><a href="#ractiveadaptors">ractive.adaptors</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivecontainer">ractive.container</a></li>
+            <li class="second-level"><a href="#ractivecomponents">ractive.components</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivedecorators">ractive.decorators</a></li>
+            <li class="second-level"><a href="#ractivecontainer">ractive.container</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveeasing">ractive.easing</a></li>
+            <li class="second-level"><a href="#ractivedecorators">ractive.decorators</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveevents">ractive.events</a></li>
+            <li class="second-level"><a href="#ractiveeasing">ractive.easing</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivefragment">ractive.fragment</a></li>
+            <li class="second-level"><a href="#ractiveevents">ractive.events</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveinterpolators">ractive.interpolators</a></li>
+            <li class="second-level"><a href="#ractivefragment">ractive.fragment</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivenodes">ractive.nodes</a></li>
+            <li class="second-level"><a href="#ractiveinterpolators">ractive.interpolators</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveparent">ractive.parent</a></li>
+            <li class="second-level"><a href="#ractivenodes">ractive.nodes</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivepartials">ractive.partials</a></li>
+            <li class="second-level"><a href="#ractiveparent">ractive.parent</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveroot">ractive.root</a></li>
+            <li class="second-level"><a href="#ractivepartials">ractive.partials</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractivetransitions">ractive.transitions</a></li>
+            <li class="second-level"><a href="#ractiveroot">ractive.root</a></li>
+            
         
-    
-        <li class="first-level "><a href="#ractiveviewmodel">ractive.viewmodel</a></li>
+            <li class="second-level"><a href="#ractivetransitions">ractive.transitions</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveviewmodel">ractive.viewmodel</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="ractiveadaptors">ractive.adaptors</h1>
+<h1 id="instance-properties">Instance Properties</h1>
+<h2 id="ractiveadaptors">ractive.adaptors</h2>
 <p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
-<p>The instance-only registry of <a href="../../Plugin Authoring/Adaptors/">adaptors</a>.</p>
+<p>The instance-only registry of <a href="../Extend/Adaptors.md">adaptors</a>.</p>
 <hr />
-<h1 id="ractivecomponents">ractive.components</h1>
+<h2 id="ractivecomponents">ractive.components</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The instance-only registry of <a href="../../Plugin Authoring/Components/">components</a>.</p>
+<p>The instance-only registry of <a href="../Extend/Components.md">components</a>.</p>
 <hr />
-<h1 id="ractivecontainer">ractive.container</h1>
+<h2 id="ractivecontainer">ractive.container</h2>
 <p><em><code>(Ractive)</code></em></p>
 <p>Each component instance that is in a yielded fragment has a container instance that is accessible using <code>this.container</code>.</p>
 <pre><code class="html">&lt;foo&gt;
@@ -596,26 +600,26 @@
 
 <p>If <code>bar</code> <code>{{yield}}</code>s, then <code>baz</code>'s container will be the <code>foo</code> instance.</p>
 <hr />
-<h1 id="ractivedecorators">ractive.decorators</h1>
+<h2 id="ractivedecorators">ractive.decorators</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The instance-only registry of <a href="../../Plugin Authoring/Decorators/">decorators</a>.</p>
+<p>The instance-only registry of <a href="../Extend/Decorators.md">decorators</a>.</p>
 <hr />
-<h1 id="ractiveeasing">ractive.easing</h1>
+<h2 id="ractiveeasing">ractive.easing</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The instance-only registry of <a href="../../Plugin Authoring/Easings/">easing functions</a>.</p>
+<p>The instance-only registry of <a href="../Extend/Easings.md">easing functions</a>.</p>
 <hr />
-<h1 id="ractiveevents">ractive.events</h1>
+<h2 id="ractiveevents">ractive.events</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The instance-only registry of <a href="../../Plugin Authoring/Events/">events</a>.</p>
+<p>The instance-only registry of <a href="../Extend/Events.md">events</a>.</p>
 <hr />
-<h1 id="ractivefragment">ractive.fragment</h1>
+<h2 id="ractivefragment">ractive.fragment</h2>
 <p>TODO</p>
 <hr />
-<h1 id="ractiveinterpolators">ractive.interpolators</h1>
+<h2 id="ractiveinterpolators">ractive.interpolators</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
 <p>A key-value hash of interpolators use by <a href="../Instance Methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
 <hr />
-<h1 id="ractivenodes">ractive.nodes</h1>
+<h2 id="ractivenodes">ractive.nodes</h2>
 <p><em><code>(Object&lt;string, HTMLElement&gt;)</code></em></p>
 <p>An object containing all of the elements inside the instance that have an <code>id</code> attribute.</p>
 <pre><code class="js">const ractive = new Ractive({
@@ -644,7 +648,7 @@ ractive.nodes[ 'item_' + num ];
 </code></pre>
 
 <hr />
-<h1 id="ractiveparent">ractive.parent</h1>
+<h2 id="ractiveparent">ractive.parent</h2>
 <p><em><code>(Ractive)</code></em></p>
 <p>Each component instance can access its parent using <code>this.parent</code>.</p>
 <pre><code class="html">&lt;foo&gt;
@@ -656,11 +660,11 @@ ractive.nodes[ 'item_' + num ];
 
 <p><code>baz</code>'s parent is the <code>bar</code> instance, and <code>bar</code>'s parent is the <code>foo</code> instance.</p>
 <hr />
-<h1 id="ractivepartials">ractive.partials</h1>
+<h2 id="ractivepartials">ractive.partials</h2>
 <p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
-<p>The instance-only registry of <a href="../../Plugin Authoring/Partials/">partials</a>.</p>
+<p>The instance-only registry of <a href="../Extend/Partials.md">partials</a>.</p>
 <hr />
-<h1 id="ractiveroot">ractive.root</h1>
+<h2 id="ractiveroot">ractive.root</h2>
 <p><em><code>(Ractive)</code></em></p>
 <p>Each component instance can access its root Ractive instance using <code>this.root</code>.</p>
 <pre><code class="html">&lt;foo&gt;
@@ -672,11 +676,11 @@ ractive.nodes[ 'item_' + num ];
 
 <p><code>foo</code>, <code>bar</code>, and <code>baz</code> will all have the Ractive instance with this template as their <code>root</code>.</p>
 <hr />
-<h1 id="ractivetransitions">ractive.transitions</h1>
+<h2 id="ractivetransitions">ractive.transitions</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>The instance-only registry of <a href="../../Plugin Authoring/Transitions/">transitions</a>.</p>
+<p>The instance-only registry of <a href="../Extend/Transitions.md">transitions</a>.</p>
 <hr />
-<h1 id="ractiveviewmodel">ractive.viewmodel</h1>
+<h2 id="ractiveviewmodel">ractive.viewmodel</h2>
 <p>TODO</p></div>
         
     </div>

@@ -530,20 +530,24 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#pfromid">p.fromId()</a></li>
+        <li class="first-level active"><a href="#parse">Parse</a></li>
         
-    
-        <li class="first-level "><a href="#pisparsed">p.isParsed()</a></li>
+            <li class="second-level"><a href="#pfromid">p.fromId()</a></li>
+            
         
-    
-        <li class="first-level "><a href="#pparse">p.parse()</a></li>
+            <li class="second-level"><a href="#pisparsed">p.isParsed()</a></li>
+            
+        
+            <li class="second-level"><a href="#pparse">p.parse()</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>The parse object is an object you receive as the second argument in <a href="../API/Initialization Options.md#template">function templates</a>. This helper object provides you with essential functions to dissect markup before turning over the template for use.</p>
+<h1 id="parse">Parse</h1>
+<p>The parse object is an object you receive as the second argument in <a href="../../Initialization Options/#template">function templates</a>. This helper object provides you with essential functions to dissect markup before turning over the template for use.</p>
 <hr />
 <h2 id="pfromid">p.fromId()</h2>
 <p>Retrieves the template from the DOM <code>&lt;script&gt;</code> tag specified by <code>id</code>. Make sure to set <code>type='text/ractive'</code> on the <code>&lt;script&gt;</code> tag to prevent the browser from running the template as a script.</p>
@@ -584,7 +588,7 @@
 
 <hr />
 <h2 id="pparse">p.parse()</h2>
-<p>Parses the template using <a href="../API/Static Methods.md#Ractive.parse()">Ractive.parse()</a>. Full Ractive runtime must be loaded.</p>
+<p>Parses the template using <a href="../../Static Methods/#Ractive.parse()">Ractive.parse()</a>. Full Ractive runtime must be loaded.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>p.parse(template[, parseOptions])</code></li>
@@ -592,7 +596,7 @@
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>template (string|Object)</code>: The template in its string form or object form.</li>
-<li><code>[parseOptions] (Object)</code>: Template parser options. See <a href="../API/Static Methods.md#Ractive.parse()">Ractive.parse()</a> for all available options. If <code>parseOptions</code> is not specified, it defaults to those of the current instance.</li>
+<li><code>[parseOptions] (Object)</code>: Template parser options. See <a href="../../Static Methods/#Ractive.parse()">Ractive.parse()</a> for all available options. If <code>parseOptions</code> is not specified, it defaults to those of the current instance.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
