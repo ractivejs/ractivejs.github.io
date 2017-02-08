@@ -111,19 +111,19 @@ A key-value hash of interpolators use by [`ractive.animate()`](../API/Instance M
 
 ## Ractive.length
 
-TODO
+Since `Ractive` is a function, and functions have a `length` equal to their number of declared arguments, `Ractive` has a `length` of `1`.
 
 ---
 
 ## Ractive.magic
 
-TODO
+Indicates whether or not the current environment supports [magic mode](../Concepts/Data Binding/Magic Mode.md).
 
 ---
 
 ## Ractive.name
 
-TODO
+Like `length`, functions also have a `name`, and `Ractive`'s happens to be `"Ractive"`.
 
 ---
 
@@ -149,7 +149,7 @@ A spec-compliant Promise implementation.
 
 _`(boolean)`_
 
-Indicates if the browser supports SVG.
+Indicates whether or not the browser supports SVG.
 
 ---
 

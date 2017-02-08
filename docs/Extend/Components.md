@@ -39,14 +39,14 @@ const MyComponentSubclass = MyComponent.extend({
 
 Like other plugins, there's 3 ways you can register components:
 
-Globally, via the `Ractive.components` static property:
+### Globally, via the `Ractive.components` static property:
 
 ```js
 // Available to all instances of Ractive.
 Ractive.components.MyComponent = Ractive.extend({ ... });
 ```
 
-Per component, via the component's `components` initialization property.
+### Per component, via the component's `components` initialization property.
 
 ```js
 // Only available for instances of AnotherComponent.
@@ -57,7 +57,7 @@ const AnotherComponent = Ractive.extend({
 });
 ```
 
-Per instance, via the instance's `components` initialization property.
+### Per instance, via the instance's `components` initialization property.
 
 ```js
 // Only available to this specific instance.

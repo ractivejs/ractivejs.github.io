@@ -79,13 +79,13 @@ The [adaptor](../Extend/Adaptors.md) structure only provides you with the means 
 
 Like other plugins, there's 3 ways you can register adaptors:
 
-Globally, via the `Ractive.adaptors` static property.
+### Globally, via the `Ractive.adaptors` static property.
 
 ```js
 Ractive.adaptors.myAdaptor = myAdaptor;
 ```
 
-Per component, via the component's `adaptors` initialization property.
+### Per component, via the component's `adaptors` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
@@ -95,7 +95,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Per instance, via the instance's `adaptors` initialization property.
+### Per instance, via the instance's `adaptors` initialization property.
 
 ```js
 const ractive = new Ractive({

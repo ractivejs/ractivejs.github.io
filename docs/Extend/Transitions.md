@@ -25,13 +25,13 @@ Note that transitions control the element's arrival and departure to the page. T
 
 Like other plugins, there's 3 ways you can register transitions:
 
-Globally, via the `Ractive.transitions` static property.
+### Globally, via the `Ractive.transitions` static property.
 
 ```js
 Ractive.transitions.myTransition = myTransition;
 ```
 
-Per component, via the component's `transitions` initialization property.
+### Per component, via the component's `transitions` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
@@ -41,7 +41,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Per instance, via the instance's `transitions` initialization property.
+### Per instance, via the instance's `transitions` initialization property.
 
 ```js
 const ractive = new Ractive({

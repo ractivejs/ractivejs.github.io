@@ -1,6 +1,6 @@
 # Ractive.js
 
-Welcome! These pages aim tso provide all the information you need to master Ractive.
+Welcome! These pages aim to provide all the information you need to master Ractive.
 
 ## Philosophy
 
