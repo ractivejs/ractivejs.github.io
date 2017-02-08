@@ -1,0 +1,13 @@
+language: python
+python:
+- '2.7'
+install:
+- pip install -r requirements.txt
+script:
+  - ./scripts/publish.sh
+branches:
+  only:
+  - dev
+env:
+  global:
+  - secure: i3t9jMpZbUdMclnly66zezFCr/nB7fuqSs97tlGS/BatVZhpS5Enws4cOKIxgO5md4t1eV6wSBFGw8hhdeCIzr7zNwSNn/b14Hz1ftHB9p3O2inCpOOyufy8G7uvweXPo+4Or9G4875WzwT/B3NXxRiSxG+hTRlp0qXlQWQ4zNOFJ1WcBkkz3V2nxOQQ0DZElt+QQ1jtpwUxDuGuFTSYlO7YJRXjdrA0C9KDroM90TsKRd3t0q0dPO874FRxR2twRC4MwN9lPixFknGQJBYQhoHdQn45XH6PkSbHkDn2hEWJLVuobs25Mrmt1vv792W4Q3TZ7v7EzkTAX+rX5e1FRE2rkraLr2G/8dztIm0wKIh98r9p9Q/bE/yzI7CV2W3dt1hVrkC59oOITCoLi+2ugtCASmS9rPfa2aOTM5zINdfgYtIN37oQDhY3e29tzugP3ohgp5uWqj6vIqdkw7LKou1Vqjb9INjOX7WLs3p17FM8UOoOnnVlek7HgHcHiq3il8E5ARLlnrBl1CQz3CIuJeZ0FkG6wmmKKd6djUxRBzmZ3Dy6KEEY8z/xDT+S+l8Bt9Lxa/nIlgTQH69ds7GJcrim6NsgrNyfLppo7l8zvEWuiz4eGL6JFa45YX2yOOOzTG9G5zI1ZoAMqBfAmrfV8DCSb+1dW2T9Z92O6h/TFYA=
