@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/Extend/Events/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Adaptors - Ractive</title>
+    <title>Events - Ractive</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -70,7 +72,7 @@
                         
                             
 <li >
-    <a href="../..">Basic Usage</a>
+    <a href="../..">Introduction</a>
 </li>
 
                         
@@ -81,7 +83,55 @@
         
             
 <li >
+    <a href="../../Get Started/Examples/Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
     <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Infinite Scroll/">Infinite Scroll</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Backbone/">Backbone</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Ratings/">Ratings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Todos/">Todos</a>
 </li>
 
         
@@ -91,7 +141,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Debug/">Debug</a>
+    <a href="../../Get Started/Debugging/">Debugging</a>
 </li>
 
                         
@@ -103,7 +153,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Contribute/">Contribute</a>
+    <a href="../../Get Started/Contributing/">Contributing</a>
 </li>
 
                         
@@ -212,12 +262,12 @@
                 
                 
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
-<li class="active">
-    <a href="./">Adaptors</a>
+<li >
+    <a href="../Adaptors/">Adaptors</a>
 </li>
 
                         
@@ -240,8 +290,8 @@
 
                         
                             
-<li >
-    <a href="../Events/">Events</a>
+<li class="active">
+    <a href="./">Events</a>
 </li>
 
                         
@@ -509,16 +559,25 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../../Integrations/Libraries/">
+                        <a rel="next" href="../Easings/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../Components/">
+                        <a rel="prev" href="../Interpolators/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                 
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
                 
             </ul>
         </div>
@@ -530,208 +589,119 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#writing">Writing</a></li>
+        <li class="first-level active"><a href="#events">Events</a></li>
         
-            <li class="second-level"><a href="#adaptors-only-adapt-one-level">Adaptors only adapt one level</a></li>
+            <li class="second-level"><a href="#writing">Writing</a></li>
             
         
-            <li class="second-level"><a href="#no-built-in-infinite-loop-detection">No built-in infinite loop detection</a></li>
+            <li class="second-level"><a href="#registering">Registering</a></li>
             
         
-            <li class="second-level"><a href="#different-for-every-back-end">Different for every back-end</a></li>
+            <li class="second-level"><a href="#using">Using</a></li>
             
         
-    
-        <li class="first-level "><a href="#registering">Registering</a></li>
-        
-    
-        <li class="first-level "><a href="#using">Using</a></li>
-        
-    
-        <li class="first-level "><a href="#examples">Examples</a></li>
+            <li class="second-level"><a href="#examples">Examples</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. <a href="./">Adaptors</a> allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
-<h1 id="writing">Writing</h1>
-<pre><code class="js">Ractive.adaptors.myAdaptor = {
-  filter: function ( object, keypath, ractive ) {
-    // return `true` if a particular object is of the type we want to adapt.
-  },
-  wrap: function ( ractive, object, keypath, prefixer ) {
-    // Setup
-    return {
-      teardown: function(){
-        // Code executed on teardown.
-      },
-      get: function(){
-        // Returns POJO version of your data backend.
-      },
-      set: function(property, value){
-        // Data setter for POJO property keypaths.
-      },
-      reset: function(value){
-        // Data setter for POJO keypath.
-      }
+<h1 id="events">Events</h1>
+<p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">Ractive.events.MyEvent = function(node, fire){
+  // Setup code
+  return {
+    teardown: function(){
+      // Cleanup code
     }
-  }
-};
-</code></pre>
-
-<p>Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an <a href="./">adaptor</a> is as follows:</p>
-<ol>
-<li>Provides an POJO version of your data source to Ractive.</li>
-<li>Captures data changes on your data source and mirror them to the data in Ractive.</li>
-<li>Captures data changes on the data in Ractive and mirror them to the data source.</li>
-</ol>
-<p>Whether it's a third-party data modelling library, a RESTful service, a socket server, browser storage, or whatever, as long as all of the three can be done, it can be adapted.</p>
-<p><code>filter</code> is a function that gets called to check if <code>object</code> needs to use an adaptor.</p>
-<p><code>object</code> is the data source to adapt.</p>
-<p><code>keypath</code> is the <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> to <code>object</code>.</p>
-<p><code>ractive</code> is the ractive instance that is currently using the adaptor.</p>
-<p><code>wrap</code> is a function that gets called to set up the <a href="./">adaptor</a> on <code>object</code>.</p>
-<p><code>prefixer</code> is a helper function that accepts an object and automatically prefixes <code>keypath</code> to the object's keys.</p>
-<p><code>get</code> is a function that gets called when Ractive needs the adapted representation of the <code>object</code>.</p>
-<p><code>set</code> is a function that is called when <code>ractive.set()</code> updates a <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> to a property of the adapted data. This function allows you to update the same property on <code>object</code>.</p>
-<p><code>property</code> is the <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> to the property being updated, relative to <code>keypath</code>.</p>
-<p><code>value</code> is the value being passed into <code>ractive.set()</code>.</p>
-<p><code>reset</code> is a function that is called when <code>ractive.set()</code> updates a <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> to the adapted data. This function allows you to either update <code>object</code> or tear down the adaptor.</p>
-<p><code>teardown</code> is a function called when the <a href="./">adaptor</a> is being removed. This function allows you to do cleanup work on anything that was done during the <a href="./">adaptor</a> setup.</p>
-<h2 id="adaptors-only-adapt-one-level"><a href="./">Adaptors</a> only adapt one level</h2>
-<p>An <a href="./">adaptor</a> only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.</p>
-<h2 id="no-built-in-infinite-loop-detection">No built-in infinite loop detection</h2>
-<p>There is no built-in mechanism for avoiding infinite loops. If your <a href="./">adaptor</a> calls <code>ractive.set()</code> on adapted data, which in turn will call the adaptor's <code>set()</code> method, which may directly or indirectly trigger another <code>ractive.set()</code> on the same adapted data, a stack overflow error might occur.</p>
-<p>This isn't a problem with primitive values since Ractive doesn't bother calling <code>set()</code> if a value hasn't changed. But with objects and arrays, there's no easy and performant way to tell if the contents have changed. So <code>set()</code> gets called <em>in case something changed</em> rather than <em>because something changed</em>.</p>
-<h2 id="different-for-every-back-end">Different for every back-end</h2>
-<p>The <a href="./">adaptor</a> structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an <a href="./">adaptor</a> for a certain back-end. For instance, an <a href="./">adaptor</a> for a constructor-based object may be written differently from an <a href="./">adaptor</a> meant to interact with a socket server.</p>
-<h1 id="registering">Registering</h1>
-<p>Like other plugins, there's 3 ways you can register adaptors:</p>
-<p>Globally, via the <code>Ractive.adaptors</code> static property.</p>
-<pre><code class="js">Ractive.adaptors.myAdaptor = myAdaptor;
-</code></pre>
-
-<p>Per component, via the component's <code>adaptors</code> initialization property.</p>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  adaptors: {
-    myAdaptor: myAdaptor
-  }
-});
-</code></pre>
-
-<p>Per instance, via the instance's <code>adaptors</code> initialization property.</p>
-<pre><code class="js">const ractive = new Ractive({
-  adaptors: {
-    myAdaptor: myAdaptor
-  }
-});
-</code></pre>
-
-<h1 id="using">Using</h1>
-<p>In order to use an adaptor, you must tell the component or an instance to use it using the <code>adapt</code> <a href="../../API/Initialization Options/">initialization option</a>.</p>
-<pre><code class="js">const ractive = new Ractive({
-  adapt: [ 'myAdaptor', myAdaptor ]
-})
-</code></pre>
-
-<h1 id="examples">Examples</h1>
-<p>In the following example, we have a <code>Box</code> constructor that uses accessors to get and set its <code>width</code> and <code>height</code> properties. Since an instance of <code>Box</code> will have no publicly visible properties, Ractive cannot bind to them directly.</p>
-<pre><code class="js">function Box(width, height){
-  var _width = width;
-  var _height = height;
-
-  this.getWidth = function(){ return _width; };
-  this.setWidth = function(width){ _width = width; };
-  this.getHeight = function(){ return _height; };
-  this.setHeight = function(height){ _height = height };
+  };
 }
 </code></pre>
 
-<p>In order for Ractive to properly use a <code>Box</code> instance, we build an <a href="./">adaptor</a> for <code>Box</code>.</p>
-<pre><code class="js">Ractive.adaptors.boxAdaptor = {
-  filter: function ( object ) {
-    // Checks if the piece of data is an instance of Box.
-    return object instanceof Box;
-  },
-  wrap: function ( ractive, box, keypath, prefixer ) {
-
-    // We keep a reference to the original functions before monkey-patching.
-    const setWidth = box.setWidth;
-    const setHeight = box.setHeight;
-
-    // Use ractive.set on the the adapted data whenever the setters are used.
-    box.setWidth = function(width){
-      ractive.set(prefixer({
-        width: width
-      }));
-    };
-
-    box.setHeight = function(height){
-      ractive.set(prefixer({
-        height: height
-      }));
-    };
-
-    return {
-      // Return a POJO representation of an instance of Box.
-      get: function(){
-        return {
-          width: box.getWidth(),
-          height: box.getHeight();
-        };
-      },
-      // Update the adapted object's properties
-      set: function(property, value){
-        if(property === 'width') setWidth.call(box, value);
-        if(property === 'height') setHeight.call(box, value);
-      },
-      // Update the adapted object.
-      reset: function(data){
-        // We don't adapt non-objects. And if the new data is an instance of Box
-        // there's a high chance that its a new instance. In either case, we
-        // need to tear down this adapter and have Ractive set it up again if
-        // necessary.
-        if(typeof data !== 'object' || data instanceof Box) return false;
-
-        // Otherwise, we just parse through the data and update the existing box
-        // instance.
-        if(data.width !== undefined) setWidth.call(box, data.width);
-        if(data.height !== undefined) setHeight.call(box, data.height);
-      },
-      // Delete the monkey-patched methods.
-      teardown: function(){
-        delete box.setWidth;
-        delete box.setHeight;
-      }
-    };
-  }
-};
+<p>Events are simply functions that are called to set up the event on a DOM element. The event function accepts two arguments: <code>node</code> and <code>fire</code>, and returns an object containing a <code>teardown</code> property.</p>
+<p><code>node</code> is the element to which the event is being applied.</p>
+<p><code>fire</code> is the function that must be called when the event has taken place. <code>fire</code> takes a single argument, the event object received by handlers. The minimum requirement for the event object is a <code>node</code> property that references DOM node the event is attached to, and an <code>original</code> property which references the native DOM <code>event</code> object supplied by the native handler, if available.</p>
+<p>The event object will be augmented with <code>context</code>, <code>keypath</code> and <code>index</code> properties, whose values depend on the data context the node is in. <code>context</code> references the data context that surrounds the node, <code>keypath</code> is a string that leads to the current data context and <code>index</code> is a number that references the index number of the data, should the data context be in an array.</p>
+<p><code>teardown</code> is a function that gets called once the element is torn down. This allows the event to clean up after itself.</p>
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register events:</p>
+<p>Globally, via the <code>Ractive.events</code> static property.</p>
+<pre><code class="js">Ractive.events.myevent = MyEvent;
 </code></pre>
 
-<p>Then we use <code>boxAdaptor</code> on an instance. The data can now be treated like regular Ractive data. Updates done directly on <code>box</code> will reflect on Ractive. Any changes via Ractive will reflect on <code>box</code>.</p>
-<pre><code class="js">const ractive = new Ractive({
-  el: 'body',
-  // Tell the instance we'll be using boxAdaptor
-  adapt: [ 'boxAdaptor' ],
-  // We write Ractive like normal.
-  template: `
-    &lt;div&gt;Box is {{ box.width }}x{{ box.height }}&lt;/div&gt;,
-    &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.width }}&quot;&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.height }}&quot;&gt;&lt;/div&gt;
-  `
+<p>Per component, via the component's <code>events</code> initialization property.</p>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  events: {
+    myevent: MyEvent
+  }
 });
+</code></pre>
 
-const box = new Box(3, 4);
+<p>Per instance, via the instance's <code>events</code> initialization property.</p>
+<pre><code class="js">const ractive = new Ractive({
+  events: {
+    myevent: MyEvent
+  }
+});
+</code></pre>
 
-// Set the Box instance as if it were a POJO.
-ractive.set('box', box);
+<h2 id="using">Using</h2>
+<p>Events use the same <code>on-*</code> attribute syntax as component and DOM events. When Ractive encounters an <code>on-*</code> attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.</p>
+<pre><code class="html">// This will apply the &quot;myevent&quot; custom event if one is registered.
+// Otherwise, Ractive will think it's a DOM event. You have been warned!
+&lt;span on-myevent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
+</code></pre>
 
-// Both box instance and box object will have 7 width and 11 height and will
-// be rendered in the UI accordingly.
-box.setWidth(7);
-ractive.set('box.height', 11);
+<h2 id="examples">Examples</h2>
+<p>Here's an example of a "long press" event which fires when the mouse is clicked and held for 1 second.</p>
+<pre><code class="js">// Definition
+Ractive.events.longpress = function(node, fire){
+  let timer = null;
+
+  function clearTimer(){
+    if(timer) clearTimeout(timer);
+    timer = null;
+  }
+
+  function mouseDownHandler(event){
+    clearTimer();
+
+    timer = setTimeout(function(){
+      fire({
+        node: node,
+        original: event
+      });
+    }, 1000);
+  }
+
+  function mouseUpHandler(){
+    clearTimer();
+  }
+
+  node.addEventListener('mousedown', mouseDownHandler);
+  node.addEventListener('mouseup', mouseUpHandler);
+
+  return {
+    teardown: function(){
+      node.removeEventListener('mousedown', mouseDownHandler);
+      node.removeEventListener('mouseup', mouseUpHandler);
+    }
+  };
+};
+
+// Usage:
+new Ractive({
+  el: 'body',
+  template: `
+    &lt;button type=&quot;button&quot; on-longpress=&quot;@this.greetz()&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  greetz: function(){
+    console.log('Hello World!');
+  }
+});
 </code></pre></div>
         
     </div>
@@ -739,6 +709,8 @@ ractive.set('box.height', 11);
     <footer class="col-md-12 text-center">
         <hr>
         <p>
+        <small>© RactiveJS contributors<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 

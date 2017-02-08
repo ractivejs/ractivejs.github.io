@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/Extend/Decorators/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Transitions - Ractive</title>
+    <title>Decorators - Ractive</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -70,7 +72,7 @@
                         
                             
 <li >
-    <a href="../..">Basic Usage</a>
+    <a href="../..">Introduction</a>
 </li>
 
                         
@@ -81,7 +83,55 @@
         
             
 <li >
+    <a href="../../Get Started/Examples/Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
     <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Infinite Scroll/">Infinite Scroll</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Backbone/">Backbone</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Ratings/">Ratings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Todos/">Todos</a>
 </li>
 
         
@@ -91,7 +141,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Debug/">Debug</a>
+    <a href="../../Get Started/Debugging/">Debugging</a>
 </li>
 
                         
@@ -103,7 +153,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Contribute/">Contribute</a>
+    <a href="../../Get Started/Contributing/">Contributing</a>
 </li>
 
                         
@@ -212,7 +262,7 @@
                 
                 
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
@@ -228,8 +278,8 @@
 
                         
                             
-<li >
-    <a href="../Decorators/">Decorators</a>
+<li class="active">
+    <a href="./">Decorators</a>
 </li>
 
                         
@@ -258,8 +308,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Transitions</a>
+<li >
+    <a href="../Transitions/">Transitions</a>
 </li>
 
                         
@@ -509,16 +559,25 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../Partials/">
+                        <a rel="next" href="../Components/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../../Concepts/Architecture/Overview/">
+                        <a rel="prev" href="../Easings/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                 
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
                 
             </ul>
         </div>
@@ -530,107 +589,106 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#writing-transitions">Writing transitions</a></li>
+        <li class="first-level active"><a href="#decorators">Decorators</a></li>
         
-    
-        <li class="first-level "><a href="#registering-transitions">Registering transitions</a></li>
+            <li class="second-level"><a href="#writing">Writing</a></li>
+            
         
-    
-        <li class="first-level "><a href="#using-transitions">Using transitions</a></li>
+            <li class="second-level"><a href="#registering">Registering</a></li>
+            
         
-    
-        <li class="first-level "><a href="#examples">Examples</a></li>
+            <li class="second-level"><a href="#using">Using</a></li>
+            
+        
+            <li class="second-level"><a href="#examples">Examples</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
-<h1 id="writing-transitions">Writing transitions</h1>
-<pre><code class="js">Ractive.transitions.myTransition = function ( t, params ) {
-  // Manipulate the DOM.
-  // Call t.complete() when completed.
+<h1 id="decorators">Decorators</h1>
+<p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">function MyDecorator(node[, ...args]) {
+  // Setup code
+  return {
+    teardown: function(){
+      // Cleanup code
+    },
+    update: function([...args]){
+      // Update code
+    }
+  };
 };
 </code></pre>
 
-<p>Transitions are simply functions that get called to animate a specified element.</p>
-<p><code>t</code> is a helper object that aids in the implementation of the transition. See the Transition Object for details.</p>
-<p><code>params</code> is the parameters passed in via the transition directive.</p>
-<p>Transitions are expected to be asynchronous. In order to signal Ractive that a transition has completed, the transition must call the <code>t.complete()</code>.</p>
-<p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
-<h1 id="registering-transitions">Registering transitions</h1>
-<p>Like other plugins, there's 3 ways you can register transitions:</p>
-<p>Globally, via the <code>Ractive.transitions</code> static property.</p>
-<pre><code class="js">Ractive.transitions.myTransition = myTransition;
+<p>Decorators are simply functions that are called upon to setup the decorator once Ractive detects its use. It takes a <code>node</code> argument and returns an object with a <code>teardown</code> and <code>update</code> property.</p>
+<p><code>node</code> is the element to which the decorator is applied to.</p>
+<p><code>args</code> are optional arguments provided by the decorator directive.</p>
+<p><code>teardown</code> is a function that gets called when the decorator is torn down.</p>
+<p><code>update</code> is an optional function that gets called when the arguments update.</p>
+<p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register decorators:</p>
+<p>Globally, via the <code>Ractive.decorators</code> static property.</p>
+<pre><code class="js">Ractive.decorators.mydecorator = MyDecorator;
 </code></pre>
 
-<p>Per component, via the component's <code>transitions</code> initialization property.</p>
+<p>Per component, via the component's <code>decorators</code> initialization property.</p>
 <pre><code class="js">const MyComponent = Ractive.extend({
-  transitions: {
-    myTransition: myTransition
+  decorators: {
+    mydecorator: MyDecorator
   }
 });
 </code></pre>
 
-<p>Per instance, via the instance's <code>transitions</code> initialization property.</p>
+<p>Per instance, via the instance's <code>decorators</code> initialization property.</p>
 <pre><code class="js">const ractive = new Ractive({
   decorators: {
-    myTransition: myTransition
+    mydecorator: MyDecorator
   }
 });
 </code></pre>
 
-<h1 id="using-transitions">Using transitions</h1>
-<p>Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix <code>-in</code>, outro-only (upon removal) using the suffix <code>-out</code>, or both using the suffix <code>-in-out</code>.</p>
-<pre><code class="html">&lt;div myTransition-in&gt;Intro-only&lt;/div&gt;
-&lt;div myTransition-out&gt;Outro-only&lt;/div&gt;
-&lt;div myTransition-in-out&gt;Intro and outro&lt;/div&gt;
+<h2 id="using">Using</h2>
+<p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
+<pre><code class="html">&lt;!-- without arguments --&gt;
+&lt;div as-mydecorator&gt;...&lt;/div&gt;
+
+&lt;!-- with arguments --&gt;
+&lt;div as-mydecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
 </code></pre>
 
-<p>To pass arguments to the transition, simply provide an expression as the directive's value. This will be passed as the second argument of the transition function.</p>
-<pre><code class="html">&lt;div myTransition-in=&quot;{ /*params */ }&quot;&gt;Intro-only&lt;/div&gt;
-&lt;div myTransition-out=&quot;{ /*params */ }&quot;&gt;Outro-only&lt;/div&gt;
-&lt;div myTransition-in-out=&quot;{ /*params */ }&quot;&gt;Intro and outro&lt;/div&gt;
-</code></pre>
+<h2 id="examples">Examples</h2>
+<p>The following example builds a decorator that updates the time.</p>
+<pre><code class="js">Ractive.decorators.timer = function(node, time) {
+  node.innerHTML = 'Hello World!';
 
-<h1 id="examples">Examples</h1>
-<p>The following example demonstrates a "flash" transition which colors the element green upon attachment, and red prior to removal.</p>
-<pre><code class="js">Ractive.transitions.flash = function(t, params) {
-  // Process params and declaring defaults.
-  const options = t.processParams(params, {
-    color: t.isIntro ? '#0f0' : '#f00',
-    duration: 400
-  });
-
-  // The &quot;transition&quot;
-  t.setStyle('color', options.color);
-
-  // Signal Ractive that the transition is complete.
-  setTimeout(t.complete, options.duration);
+  return {
+    teardown: function() {
+      node.innerHTML = '';
+    },
+    update: function(time) {
+      node.innerHTML = time;
+    }
+  }
 };
 
-new Ractive({
+const ractive = new Ractive({
   el: 'body',
   template: `
-    &lt;button on-click='@this.insert()'&gt;Insert item&lt;/button&gt;
-    &lt;button on-click='@this.remove()'&gt;Remove item&lt;/button&gt;
-    &lt;ul&gt;
-      {{#items}}
-      &lt;li flash-in-out&gt;{{this}}&lt;/li&gt;
-      {{/items}}
-    &lt;/ul&gt;
+    &lt;span as-timer=&quot;time&quot;&gt;&lt;/span&gt;
   `,
   data: {
-    items: []
-  },
-  insert() {
-    this.push('items', Date.now());
-  },
-  remove() {
-    this.splice('items', 0, 1);
+    time: 0
   }
 });
+
+setInterval(function() {
+  ractive.set('time', Date.now())
+}, 1000);
 </code></pre></div>
         
     </div>
@@ -638,6 +696,8 @@ new Ractive({
     <footer class="col-md-12 text-center">
         <hr>
         <p>
+        <small>© RactiveJS contributors<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 

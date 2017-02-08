@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/Get Started/Debugging/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Events - Ractive</title>
+    <title>Debugging - Ractive</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -64,13 +66,13 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../..">Basic Usage</a>
+    <a href="../..">Introduction</a>
 </li>
 
                         
@@ -81,7 +83,55 @@
         
             
 <li >
-    <a href="../../Get Started/Examples/Clock/">Clock</a>
+    <a href="../Examples/Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Clock/">Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Infinite Scroll/">Infinite Scroll</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Backbone/">Backbone</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Ratings/">Ratings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Todos/">Todos</a>
 </li>
 
         
@@ -90,20 +140,20 @@
 
                         
                             
-<li >
-    <a href="../../Get Started/Debug/">Debug</a>
+<li class="active">
+    <a href="./">Debugging</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Get Started/Support/">Support</a>
+    <a href="../Support/">Support</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Get Started/Contribute/">Contribute</a>
+    <a href="../Contributing/">Contributing</a>
 </li>
 
                         
@@ -211,55 +261,55 @@
                 
                 
                 
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../Adaptors/">Adaptors</a>
+    <a href="../../Extend/Adaptors/">Adaptors</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Components/">Components</a>
+    <a href="../../Extend/Components/">Components</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Decorators/">Decorators</a>
+    <a href="../../Extend/Decorators/">Decorators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Easings/">Easings</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">Events</a>
+    <a href="../../Extend/Easings/">Easings</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Interpolators/">Interpolators</a>
+    <a href="../../Extend/Events/">Events</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Partials/">Partials</a>
+    <a href="../../Extend/Interpolators/">Interpolators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Transitions/">Transitions</a>
+    <a href="../../Extend/Partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Transitions/">Transitions</a>
 </li>
 
                         
@@ -509,16 +559,25 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../Easings/">
+                        <a rel="next" href="../Examples/Todos/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../Interpolators/">
+                        <a rel="prev" href="../Support/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                 
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
                 
             </ul>
         </div>
@@ -530,122 +589,31 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#writing-events">Writing events</a></li>
+        <li class="first-level active"><a href="#debugging">Debugging</a></li>
         
-    
-        <li class="first-level "><a href="#registering-events">Registering events</a></li>
+            <li class="second-level"><a href="#using-ractivegetnodeinfo-for-debugging">Using Ractive.getNodeInfo() for debugging</a></li>
+            
         
-    
-        <li class="first-level "><a href="#using-events">Using events</a></li>
-        
-    
-        <li class="first-level "><a href="#examples">Examples</a></li>
+            <li class="second-level"><a href="#adding-debugger-on-evaluated-code">Adding debugger on evaluated code</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
-<h1 id="writing-events">Writing events</h1>
-<pre><code class="js">Ractive.events.MyEvent = function(node, fire){
-  // Setup code
-  return {
-    teardown: function(){
-      // Cleanup code
-    }
-  };
-}
-</code></pre>
-
-<p>Events are simply functions that are called to set up the event on a DOM element. The event function accepts two arguments: <code>node</code> and <code>fire</code>, and returns an object containing a <code>teardown</code> property.</p>
-<p><code>node</code> is the element to which the event is being applied.</p>
-<p><code>fire</code> is the function that must be called when the event has taken place. <code>fire</code> takes a single argument, the event object received by handlers. The minimum requirement for the event object is a <code>node</code> property that references DOM node the event is attached to, and an <code>original</code> property which references the native DOM <code>event</code> object supplied by the native handler, if available.</p>
-<p>The event object will be augmented with <code>context</code>, <code>keypath</code> and <code>index</code> properties, whose values depend on the data context the node is in. <code>context</code> references the data context that surrounds the node, <code>keypath</code> is a string that leads to the current data context and <code>index</code> is a number that references the index number of the data, should the data context be in an array.</p>
-<p><code>teardown</code> is a function that gets called once the element is torn down. This allows the event to clean up after itself.</p>
-<h1 id="registering-events">Registering events</h1>
-<p>Like other plugins, there's 3 ways you can register events:</p>
-<p>Globally, via the <code>Ractive.events</code> static property.</p>
-<pre><code class="js">Ractive.events.myevent = MyEvent;
-</code></pre>
-
-<p>Per component, via the component's <code>events</code> initialization property.</p>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  events: {
-    myevent: MyEvent
-  }
-});
-</code></pre>
-
-<p>Per instance, via the instance's <code>events</code> initialization property.</p>
-<pre><code class="js">const ractive = new Ractive({
-  events: {
-    myevent: MyEvent
-  }
-});
-</code></pre>
-
-<h1 id="using-events">Using events</h1>
-<p>Events use the same <code>on-*</code> attribute syntax as component and DOM events. When Ractive encounters an <code>on-*</code> attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.</p>
-<pre><code class="html">// This will apply the &quot;myevent&quot; custom event if one is registered.
-// Otherwise, Ractive will think it's a DOM event. You have been warned!
-&lt;span on-myevent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
-</code></pre>
-
-<h1 id="examples">Examples</h1>
-<p>Here's an example of a "long press" event which fires when the mouse is clicked and held for 1 second.</p>
-<pre><code class="js">// Definition
-Ractive.events.longpress = function(node, fire){
-  let timer = null;
-
-  function clearTimer(){
-    if(timer) clearTimeout(timer);
-    timer = null;
-  }
-
-  function mouseDownHandler(event){
-    clearTimer();
-
-    timer = setTimeout(function(){
-      fire({
-        node: node,
-        original: event
-      });
-    }, 1000);
-  }
-
-  function mouseUpHandler(){
-    clearTimer();
-  }
-
-  node.addEventListener('mousedown', mouseDownHandler);
-  node.addEventListener('mouseup', mouseUpHandler);
-
-  return {
-    teardown: function(){
-      node.removeEventListener('mousedown', mouseDownHandler);
-      node.removeEventListener('mouseup', mouseUpHandler);
-    }
-  };
-};
-
-// Usage:
-new Ractive({
-  el: 'body',
-  template: `
-    &lt;button type=&quot;button&quot; on-longpress=&quot;@this.greetz()&quot;&gt;Click Me!&lt;/button&gt;
-  `,
-  greetz: function(){
-    console.log('Hello World!');
-  }
-});
-</code></pre></div>
+<h1 id="debugging">Debugging</h1>
+<h2 id="using-ractivegetnodeinfo-for-debugging">Using <code>Ractive.getNodeInfo()</code> for debugging</h2>
+<p>This is particularly useful for <a href="../../Extend/Decorators/">decorators</a> and debugging. Notably, in Chrome, if you inspect an element, that element will be added to the Chrome Developer Tools' node list and can be referenced in the console as <code>$0</code>. Try inspecting a Ractive-controlled element and using <code>Ractive.getNodeInfo($0)</code> in the console.</p>
+<h2 id="adding-debugger-on-evaluated-code">Adding debugger on evaluated code</h2></div>
         
     </div>
 
     <footer class="col-md-12 text-center">
         <hr>
         <p>
+        <small>© RactiveJS contributors<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 

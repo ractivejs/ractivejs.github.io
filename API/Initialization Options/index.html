@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/API/Initialization Options/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     <title>Initialization Options - Ractive</title>
@@ -70,7 +72,7 @@
                         
                             
 <li >
-    <a href="../..">Basic Usage</a>
+    <a href="../..">Introduction</a>
 </li>
 
                         
@@ -81,7 +83,55 @@
         
             
 <li >
+    <a href="../../Get Started/Examples/Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
     <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Infinite Scroll/">Infinite Scroll</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Backbone/">Backbone</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Ratings/">Ratings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Todos/">Todos</a>
 </li>
 
         
@@ -91,7 +141,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Debug/">Debug</a>
+    <a href="../../Get Started/Debugging/">Debugging</a>
 </li>
 
                         
@@ -103,7 +153,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Contribute/">Contribute</a>
+    <a href="../../Get Started/Contributing/">Contributing</a>
 </li>
 
                         
@@ -212,54 +262,54 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Adaptors/">Adaptors</a>
+    <a href="../../Extend/Adaptors/">Adaptors</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Components/">Components</a>
+    <a href="../../Extend/Components/">Components</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Decorators/">Decorators</a>
+    <a href="../../Extend/Decorators/">Decorators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Easings/">Easings</a>
+    <a href="../../Extend/Easings/">Easings</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Events/">Events</a>
+    <a href="../../Extend/Events/">Events</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Interpolators/">Interpolators</a>
+    <a href="../../Extend/Interpolators/">Interpolators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Partials/">Partials</a>
+    <a href="../../Extend/Partials/">Partials</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Transitions/">Transitions</a>
+    <a href="../../Extend/Transitions/">Transitions</a>
 </li>
 
                         
@@ -509,7 +559,7 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../../Get Started/Contribute/">
+                        <a rel="next" href="../../Get Started/Contributing/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -519,6 +569,15 @@
                         </a>
                     </li>
                 
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
                 
             </ul>
         </div>
@@ -681,8 +740,8 @@ ractive.myMethod(); // triggers the alert
 <hr />
 <h2 id="adapt">adapt</h2>
 <p><em><code>(Array&lt;string|Object&gt;)</code></em></p>
-<p>Custom wrappers to be used with all or part of the supplied data, see <a href="../Extend/Adaptors.md">Adaptors</a>. Unlike components or other registries where there is a template-level directive that informs Ractive that plugin is to be used, <a href="../Extend/Adaptors.md">adaptors</a> are a data-level construct and so you use the <code>adapt</code> option to tell Ractive which <a href="../Extend/Adaptors.md">adaptors</a> are to be used with that instance. If you define the <a href="../Extend/Adaptors.md">adaptors</a> directly on the instance or component, you do not need to specify them in the <code>adapt</code> option.</p>
-<p>Can either be the <a href="../Extend/Adaptors.md">adaptor</a> itself, or the name of an <a href="../Extend/Adaptors.md">adaptor</a> registred via <code>Ractive.adaptors</code>:</p>
+<p>Custom wrappers to be used with all or part of the supplied data, see <a href="../../Extend/Adaptors/">Adaptors</a>. Unlike components or other registries where there is a template-level directive that informs Ractive that plugin is to be used, <a href="../../Extend/Adaptors/">adaptors</a> are a data-level construct and so you use the <code>adapt</code> option to tell Ractive which <a href="../../Extend/Adaptors/">adaptors</a> are to be used with that instance. If you define the <a href="../../Extend/Adaptors/">adaptors</a> directly on the instance or component, you do not need to specify them in the <code>adapt</code> option.</p>
+<p>Can either be the <a href="../../Extend/Adaptors/">adaptor</a> itself, or the name of an <a href="../../Extend/Adaptors/">adaptor</a> registred via <code>Ractive.adaptors</code>:</p>
 <pre><code class="js">Ractive.adaptors.myAdaptor = MyAdaptor1;
 
 new Ractive({
@@ -693,8 +752,8 @@ new Ractive({
 <hr />
 <h2 id="adaptors">adaptors</h2>
 <p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
-<p>A key-value hash of <a href="../Extend/Adaptors.md">adaptors</a> that are specific to this instance. Usually the <code>adapt</code> property can directly specify which adaptors
-to use on this instance and the <code>adaptors</code> property is used to register an <a href="../Extend/Adaptors.md">adaptor</a> on components or <code>Ractive.adaptors</code>.</p>
+<p>A key-value hash of <a href="../../Extend/Adaptors/">adaptors</a> that are specific to this instance. Usually the <code>adapt</code> property can directly specify which adaptors
+to use on this instance and the <code>adaptors</code> property is used to register an <a href="../../Extend/Adaptors/">adaptor</a> on components or <code>Ractive.adaptors</code>.</p>
 <pre><code class="js">adaptors: {
   myAdaptor: MyAdaptor
 }
@@ -761,7 +820,7 @@ template: '&lt;p&gt;grey&lt;/p&gt;'
 <hr />
 <h2 id="components">components</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A map of <a href="../Extend/Components.md">components</a> where the <code>key</code> is the name of the component the <code>value</code> is either a component definition or a function that returns either a globally registered component name or a component definition.</p>
+<p>A map of <a href="../../Extend/Components/">components</a> where the <code>key</code> is the name of the component the <code>value</code> is either a component definition or a function that returns either a globally registered component name or a component definition.</p>
 <pre><code class="js">components: {
   'my-component': Ractive.extend({
     template: '#componentTemplate',
@@ -889,11 +948,11 @@ var r = new MyComponent({
 })
 </code></pre>
 
-<p>For more advanced data modelling and backends, use <a href="../Extend/Adaptors.md">Adaptors</a>.</p>
+<p>For more advanced data modelling and backends, use <a href="../../Extend/Adaptors/">Adaptors</a>.</p>
 <hr />
 <h2 id="decorators">decorators</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of decorators that are specific to this instance, where <code>key</code> is the name of the decorator (as referenced within templates as <code>&lt;div decorator="myDecorator"&gt;&lt;/div&gt;</code>), and <code>value</code> is a is a decorator functions.  See <a href="../Extend/Decorators.md">Decorators</a> for more info.</p>
+<p>A key-value hash of decorators that are specific to this instance, where <code>key</code> is the name of the decorator (as referenced within templates as <code>&lt;div decorator="myDecorator"&gt;&lt;/div&gt;</code>), and <code>value</code> is a is a decorator functions.  See <a href="../../Extend/Decorators/">Decorators</a> for more info.</p>
 <pre><code class="js">decorators: {
   'myDecorator': function( node, fire) {...}
 }
@@ -937,7 +996,7 @@ el: $('#container')
 <hr />
 <h2 id="events">events</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of <a href="../Extend/Events.md">event plugins</a> that are specific to this instance, where <code>key</code> is the name of the event (as referenced within templates as <code>&lt;button on-mycustomevent="fire"&gt;&lt;/button&gt;</code>), and <code>value</code> is the custom event plugin functions.  See <a href="../Extend/Events.md">Writing Events</a> for more info.</p>
+<p>A key-value hash of <a href="../../Extend/Events/">event plugins</a> that are specific to this instance, where <code>key</code> is the name of the event (as referenced within templates as <code>&lt;button on-mycustomevent="fire"&gt;&lt;/button&gt;</code>), and <code>value</code> is the custom event plugin functions.  See <a href="../../Extend/Events/">Writing Events</a> for more info.</p>
 <pre><code class="js">events: {
   'mycustomevent': function( node, fire ) {...}
 }
@@ -950,7 +1009,7 @@ el: $('#container')
 <hr />
 <h2 id="isolated">isolated</h2>
 <p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. This option is typically only relevant as an extension option for <a href="../Extend/Components.md">Components</a>. Controls whether the component will look outside itself for data and registry items.</p>
+<p>Defaults to <code>false</code>. This option is typically only relevant as an extension option for <a href="../../Extend/Components/">Components</a>. Controls whether the component will look outside itself for data and registry items.</p>
 <hr />
 <h2 id="lazy">lazy</h2>
 <p><em><code>(boolean)</code></em></p>
@@ -1062,7 +1121,7 @@ ractive.get('items').push( 'green' );
 <hr />
 <h2 id="partials">partials</h2>
 <p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
-<p>A map of <a href="../Extend/Partials.md">partials</a> where the key is the name of the partial, and the value is either a template string, an parsed template object or a function that returns any of the previous options.</p>
+<p>A map of <a href="../../Extend/Partials/">partials</a> where the key is the name of the partial, and the value is either a template string, an parsed template object or a function that returns any of the previous options.</p>
 <pre><code class="js">partials: {
   stringPartial: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
   parsedPartial: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
@@ -1183,7 +1242,7 @@ template: function(data, p){
 <hr />
 <h2 id="transitions">transitions</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of transitions that are specific to this instance. The <code>key</code> is referenced within templates using <code>intro</code> and <code>outro</code> attributes on elements, and <code>value</code> is a transition functions, see <a href="../Extend/Transitions.md">Transitions</a> for more info.</p>
+<p>A key-value hash of transitions that are specific to this instance. The <code>key</code> is referenced within templates using <code>intro</code> and <code>outro</code> attributes on elements, and <code>value</code> is a transition functions, see <a href="../../Extend/Transitions/">Transitions</a> for more info.</p>
 <pre><code class="js">template: '&lt;p intro=&quot;slide&quot; outro=&quot;slide&quot;&gt;hello world&lt;/p&gt;',
 transitions: {
   slide: function ( t, params ) {...}
@@ -1232,6 +1291,8 @@ ractive.set( 'foo', 'fizz' );
     <footer class="col-md-12 text-center">
         <hr>
         <p>
+        <small>© RactiveJS contributors<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 

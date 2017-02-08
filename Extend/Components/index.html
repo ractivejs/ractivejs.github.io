@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/Extend/Components/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     <title>Components - Ractive</title>
@@ -70,7 +72,7 @@
                         
                             
 <li >
-    <a href="../..">Basic Usage</a>
+    <a href="../..">Introduction</a>
 </li>
 
                         
@@ -81,7 +83,55 @@
         
             
 <li >
+    <a href="../../Get Started/Examples/Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
     <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Infinite Scroll/">Infinite Scroll</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Backbone/">Backbone</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Ratings/">Ratings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Todos/">Todos</a>
 </li>
 
         
@@ -91,7 +141,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Debug/">Debug</a>
+    <a href="../../Get Started/Debugging/">Debugging</a>
 </li>
 
                         
@@ -103,7 +153,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Contribute/">Contribute</a>
+    <a href="../../Get Started/Contributing/">Contributing</a>
 </li>
 
                         
@@ -212,7 +262,7 @@
                 
                 
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
@@ -520,6 +570,15 @@
                     </li>
                 
                 
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -530,39 +589,34 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#writing-components">Writing components</a></li>
+        <li class="first-level active"><a href="#components">Components</a></li>
         
-    
-        <li class="first-level "><a href="#registering-components">Registering components</a></li>
-        
-    
-        <li class="first-level "><a href="#using-components">Using components</a></li>
-        
-    
-        <li class="first-level "><a href="#isolation">Isolation</a></li>
-        
-    
-        <li class="first-level "><a href="#binding">Binding</a></li>
-        
-            <li class="second-level"><a href="#data-context">Data context</a></li>
+            <li class="second-level"><a href="#writing">Writing</a></li>
             
         
-    
-        <li class="first-level "><a href="#events">Events</a></li>
-        
-            <li class="second-level"><a href="#bubbling">Bubbling</a></li>
+            <li class="second-level"><a href="#registering">Registering</a></li>
             
         
-            <li class="second-level"><a href="#stopping-propagation">Stopping propagation</a></li>
+            <li class="second-level"><a href="#using">Using</a></li>
+            
+                <li class="third-level"><a href="#isolation">Isolation</a></li>
+            
+                <li class="third-level"><a href="#binding">Binding</a></li>
+            
+                <li class="third-level"><a href="#data-context">Data context</a></li>
+            
+                <li class="third-level"><a href="#events">Events</a></li>
+            
+                <li class="third-level"><a href="#bubbling">Bubbling</a></li>
+            
+                <li class="third-level"><a href="#stopping-propagation">Stopping propagation</a></li>
+            
+                <li class="third-level"><a href="#content">{{&gt;content}}</a></li>
+            
+                <li class="third-level"><a href="#yield">{{yield}}</a></li>
             
         
-    
-        <li class="first-level "><a href="#transclusion">Transclusion</a></li>
-        
-            <li class="second-level"><a href="#content">{{&gt;content}}</a></li>
-            
-        
-            <li class="second-level"><a href="#yield">{{yield}}</a></li>
+            <li class="second-level"><a href="#examples">Examples</a></li>
             
         
     
@@ -570,8 +624,9 @@
 </div></div>
         <div class="col-md-9" role="main">
 
+<h1 id="components">Components</h1>
 <p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications.</p>
-<h1 id="writing-components">Writing components</h1>
+<h2 id="writing">Writing</h2>
 <pre><code class="js">Ractive.components.MyComponent = Ractive.extend({ ... });
 </code></pre>
 
@@ -597,7 +652,7 @@ const MyComponentSubclass = MyComponent.extend({ ... });
 });
 </code></pre>
 
-<h1 id="registering-components">Registering components</h1>
+<h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register components:</p>
 <p>Globally, via the <code>Ractive.components</code> static property:</p>
 <pre><code class="js">// Available to all instances of Ractive.
@@ -622,7 +677,7 @@ const ractive = new Ractive({
 });
 </code></pre>
 
-<h1 id="using-components">Using components</h1>
+<h2 id="using">Using</h2>
 <p>Components are simply subclasses of Ractive, which means the are instatiable via the <code>new</code> keyword.</p>
 <pre><code class="js">const ractive = new MyComponent({ ... });
 </code></pre>
@@ -654,8 +709,8 @@ const AnotherComponent = Ractive.extend({
 });
 </code></pre>
 
-<h1 id="isolation">Isolation</h1>
-<p>A unique behavior in Ractive is <a href="../Under The Hood/Templates/References.md">the resolver's ability to "climb" up the data context</a> if a <a href="../Under The Hood/Templates/Keypaths.md">keypath</a> doesn't resolve in the current data context. It takes this behavior a step further and also climbs to the parent component's data context if it does not resolve on the child data context.</p>
+<h3 id="isolation">Isolation</h3>
+<p>A unique behavior in Ractive is <a href="../../Concepts/Templates/References/">the resolver's ability to "climb" up the data context</a> if a <a href="../../Concepts/Templates/Keypaths/">keypath</a> doesn't resolve in the current data context. It takes this behavior a step further and also climbs to the parent component's data context if it does not resolve on the child data context.</p>
 <p>In the following example, the instance of <code>ChildComponent</code> prints "Hello World!" even when the data is set on the outer-most instance. The resolver "climbed up" to the outer-most instance to resolve <code>message</code>.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
   template: `
@@ -704,7 +759,7 @@ const ractive = new Ractive({
 ractive.set('message', 'Hello World!');
 </code></pre>
 
-<h1 id="binding">Binding</h1>
+<h3 id="binding">Binding</h3>
 <p>Bindings connect a piece of data on the parent instance to data on the child instance. Changes on one side will reflect on the other. The syntax is similar to how one would write HTML element attributes.</p>
 <p>The following example binds <code>text</code> on the instance to <code>MyComponent</code>'s <code>message</code>. Updates on the value of <code>text</code> will update <code>message</code>. Typing on the <code>&lt;input&gt;</code> bound to <code>message</code> will update <code>text</code>.</p>
 <pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
@@ -721,7 +776,7 @@ const ractive = new Ractive({
 ractive.set('text', 'Hello World!');
 </code></pre>
 
-<h2 id="data-context">Data context</h2>
+<h3 id="data-context">Data context</h3>
 <p>Each component instance comes with its own data context so that parameters don't pollute the primary data. Bindings will still update across both contexts.</p>
 <p>In the following example, we have an instance that has <code>name</code> and <code>colors</code>. We bind bind <code>colors</code> and set an <code>option1</code> to <code>MyComponent</code>. Upon inspection, the data context is just as described. <code>name</code> doesn't cross over to <code>MyComponent</code> nor does <code>option1</code> cross over to the instance. However, since we bound <code>colors</code> to <code>shades</code>, updating one updates the other.</p>
 <pre><code class="js">Ractive.components.MyComponent = Ractive.extend({});
@@ -752,7 +807,7 @@ ractive.get(); // {&quot;colors&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;b
 widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;], &quot;option1&quot;:&quot;A&quot;}
 </code></pre>
 
-<h1 id="events">Events</h1>
+<h3 id="events">Events</h3>
 <p>Components can fire events like regular elements using <a href="../../API/Instance Methods/#ractive.fire()">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
 <p>The first is using the method call syntax which is similar to how you would write inline JavaScript.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -796,7 +851,7 @@ Ractive.components.ParentComponent = Ractive.extend({
 });
 </code></pre>
 
-<h2 id="bubbling">Bubbling</h2>
+<h3 id="bubbling">Bubbling</h3>
 <p>Events fired from within components will also "bubble" up the component hierarchy with their component name attached as a namespace. This can be used to avoid having to re-fire events at each level in a deeply nested component hierarchy.</p>
 <p>In the following example, the event from the <code>ChildComponent</code> instance can be listened to from the outer Ractive instance.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -895,7 +950,7 @@ ractive.on('ChildComponent2.sameevent', function(){
 });
 </code></pre>
 
-<h2 id="stopping-propagation">Stopping propagation</h2>
+<h3 id="stopping-propagation">Stopping propagation</h3>
 <p>In order to stop bubbling, simply return <code>false</code> from an event handler. Should the event come from a DOM event, it will call <code>stopPropagation()</code> and <code>preventDefault()</code> automatically.</p>
 <p>In the following example, <code>ParentComponent</code> listens to <code>childevent</code> and returns false to in its handler. This prevents the outer instance from receiving the event.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -982,9 +1037,7 @@ ractive.on('ChildComponent.childevent3', function() {
 });
 </code></pre>
 
-<h1 id="transclusion">Transclusion</h1>
-<p>The inner HTML of a component (the content between the opening and closing tags of the component) is exposed to the component template by two special mustaches: <code>{{&gt; content }}</code> and <code>{{ yield }}</code>. They're similar in a sense that they render the inner HTML of the component wherever they are positioned. However, that's where the similarities end.</p>
-<h2 id="content">{{&gt;content}}</h2>
+<h3 id="content">{{&gt;content}}</h3>
 <p><code>{{&gt;content}}</code> renders the inner HTML in the context of the component. Partials, components, and any other valid template items can be used as inner HTML. <code>{{&gt;content}}</code> can be thought of as a special partial.</p>
 <p>In the following example, the result will print "Lorem Ipsum" because the inner HTML's context is the component, whose <code>message</code> is set to "Lorem Ipsum".</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -1040,7 +1093,7 @@ const ractive = new Ractive({
 });
 </code></pre>
 
-<h2 id="yield">{{yield}}</h2>
+<h3 id="yield">{{yield}}</h3>
 <p><code>{{yield}}</code> renders the inner HTML in the context of the parent component. Partials, components, and any other valid template items can be used as inner HTML. A common use case of <code>{{yield}}</code> is to provide wrapper markup transparently.</p>
 <p>In the following example, the result will print "Hello World!" because the inner HTML's context is the parent component's, whose <code>message</code> is "Hello World!".</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -1091,13 +1144,18 @@ const ractive = new Ractive({
     &lt;/div&gt;
   `
 });
-</code></pre></div>
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<pre><code></code></pre></div>
         
     </div>
 
     <footer class="col-md-12 text-center">
         <hr>
         <p>
+        <small>© RactiveJS contributors<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 

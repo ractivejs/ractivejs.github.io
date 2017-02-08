@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/Get Started/Contributing/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Easings - Ractive</title>
+    <title>Contributing - Ractive</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -64,13 +66,13 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../..">Basic Usage</a>
+    <a href="../..">Introduction</a>
 </li>
 
                         
@@ -81,7 +83,55 @@
         
             
 <li >
-    <a href="../../Get Started/Examples/Clock/">Clock</a>
+    <a href="../Examples/Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Clock/">Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Infinite Scroll/">Infinite Scroll</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Backbone/">Backbone</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Ratings/">Ratings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Examples/Todos/">Todos</a>
 </li>
 
         
@@ -91,19 +141,19 @@
                         
                             
 <li >
-    <a href="../../Get Started/Debug/">Debug</a>
+    <a href="../Debugging/">Debugging</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Get Started/Support/">Support</a>
+    <a href="../Support/">Support</a>
 </li>
 
                         
                             
-<li >
-    <a href="../../Get Started/Contribute/">Contribute</a>
+<li class="active">
+    <a href="./">Contributing</a>
 </li>
 
                         
@@ -211,55 +261,55 @@
                 
                 
                 
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../Adaptors/">Adaptors</a>
+    <a href="../../Extend/Adaptors/">Adaptors</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Components/">Components</a>
+    <a href="../../Extend/Components/">Components</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Decorators/">Decorators</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">Easings</a>
+    <a href="../../Extend/Decorators/">Decorators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Events/">Events</a>
+    <a href="../../Extend/Easings/">Easings</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Interpolators/">Interpolators</a>
+    <a href="../../Extend/Events/">Events</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Partials/">Partials</a>
+    <a href="../../Extend/Interpolators/">Interpolators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../Transitions/">Transitions</a>
+    <a href="../../Extend/Partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Transitions/">Transitions</a>
 </li>
 
                         
@@ -509,16 +559,25 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../Decorators/">
+                        <a rel="next" href="../Support/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../Events/">
+                        <a rel="prev" href="../../API/Initialization Options/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                 
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
                 
             </ul>
         </div>
@@ -530,72 +589,54 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#writing-easing-functions">Writing easing functions</a></li>
+        <li class="first-level active"><a href="#contributing">Contributing</a></li>
         
-    
-        <li class="first-level "><a href="#registering-easing-functions">Registering easing functions</a></li>
+            <li class="second-level"><a href="#contribute-code">Contribute code</a></li>
+            
         
-    
-        <li class="first-level "><a href="#using-easing-functions">Using easing functions</a></li>
+            <li class="second-level"><a href="#write-documentation">Write documentation</a></li>
+            
         
-    
-        <li class="first-level "><a href="#examples">Examples</a></li>
+            <li class="second-level"><a href="#write-plugins">Write plugins</a></li>
+            
+        
+            <li class="second-level"><a href="#help-other-developers">Help other developers</a></li>
+            
+        
+            <li class="second-level"><a href="#spread-the-word">Spread the word</a></li>
+            
+        
+            <li class="second-level"><a href="#build-stuff">Build stuff</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>Easing functions are used by <code>ractive.animate</code> and some transitions. They describe the animation's progression from start to finish.</p>
-<h1 id="writing-easing-functions">Writing easing functions</h1>
-<pre><code class="js">Ractive.easing.MyEasingFunction = function ( x ) {
-  // Calculation
-  return y;
-};
-</code></pre>
-
-<p>Easing functions are simply functions that accept one argument, a numeric value <code>x</code> between 0 and 1 representing progress along a timeline. The function must return a numeric <code>y</code> value to represent its progression.</p>
-<h1 id="registering-easing-functions">Registering easing functions</h1>
-<p>Like other plugins, there's 3 ways you can register an easing function:</p>
-<p>Globally via the <code>Ractive.easing</code> static property.</p>
-<pre><code class="js">Ractive.easing.MyEasingFunction = function(){ ... };
-</code></pre>
-
-<p>Per component via the component's <code>easing</code> initialization property.</p>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  easing: {
-    MyEasingFunction: function(){ ... }
-  }
-});
-</code></pre>
-
-<p>Per instance, via the instance's <code>easing</code> initialization property.</p>
-<pre><code class="js">const ractive = new Ractive({
-  easing: {
-    MyEasingFunction: function(){ ... }
-  }
-});
-</code></pre>
-
-<h1 id="using-easing-functions">Using easing functions</h1>
-<p>Easing functions don't work alone. They are utilized by <a href="../../API/Instance Methods/#ractive.animate()">ractive.animate()</a> and <a href="../Transitions/">Transitions</a> to dictate animations.</p>
-<pre><code class="js">ractive.animate('foo.bar', 1, {
-  easing: 'MyEasingFunction'
-});
-</code></pre>
-
-<h1 id="examples">Examples</h1>
-<p>Here's an <code>elastic</code> easing function taken from <a href="https://github.com/danro">danro</a>'s excellent <a href="https://github.com/danro/easing-js/blob/master/easing.js">easing.js</a> library.</p>
-<pre><code class="js">Ractive.easing.elastic = function ( x ) {
-  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1;
-};
-</code></pre></div>
+<h1 id="contributing">Contributing</h1>
+<p>Ractive is a community-driven project. Most of its best features were <a href="https://github.com/ractivejs/ractive/issues?q=is%3Aissue%20label%3Aenhancement%20">suggested by users like you</a>. There are a lot of ways you can contribute to the project. Here are a few examples:</p>
+<h2 id="contribute-code">Contribute code</h2>
+<p>An open pull request is better than one that's never submitted. <a href="https://github.com/ractivejs/ractive/pulls">Pull requests</a> are always welcome.</p>
+<h2 id="write-documentation">Write documentation</h2>
+<p>Each page in the documentation is just a file written in markdown. Again, <a href="https://github.com/ractivejs/ractive/pulls">pull requests</a> are always welcome.</p>
+<h2 id="write-plugins">Write plugins</h2>
+<p>Extend Ractive in ways you've never seen before. Interface with other libraries, create effects, widgets, interactions, custom elements, and so much more with Ractive's very extensible core.</p>
+<p>Refer to <a href="../../Integrations/Plugins/">Plugins</a> for details on how to start writing Ractive plugins.</p>
+<h2 id="help-other-developers">Help other developers</h2>
+<p>Subscribe to <a href="http://stackoverflow.com/questions/tagged/ractivejs">Stack Overflow questions tagged with <code>ractivejs</code></a>, and you'll get alerts when someone asks a question that you might be able to answer.</p>
+<h2 id="spread-the-word">Spread the word</h2>
+<p>Tweet, write blog posts, recommend it to your friends, submit talks (here are some <a href="http://speaking.io/">tips on speaking at tech meetups</a>). These are just a few ways to spread the word about Ractive. The larger the community, the better it becomes.</p>
+<h2 id="build-stuff">Build stuff</h2>
+<p>But above all, build stuff! If you make something with Ractive, we'd love to hear about it.</p></div>
         
     </div>
 
     <footer class="col-md-12 text-center">
         <hr>
         <p>
+        <small>© RactiveJS contributors<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 

@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/API/Instance Methods/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
     <title>Instance Methods - Ractive</title>
@@ -70,7 +72,7 @@
                         
                             
 <li >
-    <a href="../..">Basic Usage</a>
+    <a href="../..">Introduction</a>
 </li>
 
                         
@@ -81,7 +83,55 @@
         
             
 <li >
+    <a href="../../Get Started/Examples/Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
     <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Infinite Scroll/">Infinite Scroll</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Backbone/">Backbone</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Ratings/">Ratings</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Todos/">Todos</a>
 </li>
 
         
@@ -91,7 +141,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Debug/">Debug</a>
+    <a href="../../Get Started/Debugging/">Debugging</a>
 </li>
 
                         
@@ -103,7 +153,7 @@
                         
                             
 <li >
-    <a href="../../Get Started/Contribute/">Contribute</a>
+    <a href="../../Get Started/Contributing/">Contributing</a>
 </li>
 
                         
@@ -212,54 +262,54 @@
                 
                 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Adaptors/">Adaptors</a>
+    <a href="../../Extend/Adaptors/">Adaptors</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Components/">Components</a>
+    <a href="../../Extend/Components/">Components</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Decorators/">Decorators</a>
+    <a href="../../Extend/Decorators/">Decorators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Easings/">Easings</a>
+    <a href="../../Extend/Easings/">Easings</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Events/">Events</a>
+    <a href="../../Extend/Events/">Events</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Interpolators/">Interpolators</a>
+    <a href="../../Extend/Interpolators/">Interpolators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Partials/">Partials</a>
+    <a href="../../Extend/Partials/">Partials</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../Plugin Authoring/Transitions/">Transitions</a>
+    <a href="../../Extend/Transitions/">Transitions</a>
 </li>
 
                         
@@ -519,6 +569,15 @@
                         </a>
                     </li>
                 
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
                 
             </ul>
         </div>
@@ -1002,7 +1061,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <hr />
 <h2 id="ractivemerge">ractive.merge()</h2>
 <p>Sets the indicated <a href="../../Concepts/Templates/Keypaths/">keypath</a> to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.</p>
-<p>This is an efficient way to (for example) handle data from a server. It also helps to control <code>intro</code> and <code>outro</code> <a href="../Extend/Transitions.md">transitions</a> which might not otherwise happen with a basic <a href="./#ractive.set()"><code>ractive.set()</code></a> operation.</p>
+<p>This is an efficient way to (for example) handle data from a server. It also helps to control <code>intro</code> and <code>outro</code> <a href="../../Extend/Transitions/">transitions</a> which might not otherwise happen with a basic <a href="./#ractive.set()"><code>ractive.set()</code></a> operation.</p>
 <p>To determine whether the first item of <code>['foo', 'bar', 'baz']</code> is the same as the last item of <code>['bar', 'baz', 'foo']</code>, by default we do a strict equality (<code>===</code>) check.</p>
 <p>In some situations that won't work, because the arrays contain objects, which may <em>look</em> the same but not be identical. To deal with these, we use the <code>compare</code> option detailed below.</p>
 <p>Merge can also be used to created a context block that uses transitions when the context changes.</p>
@@ -1154,7 +1213,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 
 <hr />
 <h2 id="ractiveon">ractive.on()</h2>
-<p>Subscribe to <a href="../Extend/Events.md">events</a>.</p>
+<p>Subscribe to <a href="../../Extend/Events/">events</a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.on(eventName, handler)</code></li>
@@ -1163,7 +1222,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>eventName (String)</code>: The name of the event to subscribe to</li>
-<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../Extend/Events.md">event bubbling</a>.</li>
+<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../Extend/Events/">event bubbling</a>.</li>
 <li><code>obj (Object)</code>: An object with keys named for each event to subscribe to. The value at each key is the handler function for that event.</li>
 </ul>
 <p><strong>Returns</strong></p>
@@ -1205,7 +1264,7 @@ ractive.on({
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>eventName (string)</code>: The name of the event to subscribe to.</li>
-<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../Extend/Events.md">event bubbling</a>.</li>
+<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../Extend/Events/">event bubbling</a>.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -1357,9 +1416,9 @@ ractive.resetPartial('foo', 'bar');
 <hr />
 <h2 id="ractiveset">ractive.set()</h2>
 <p>Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any <a href="../../Concepts/Events/Publish-Subscribe/">observers</a> of affected <a href="../../Concepts/Templates/Keypaths/">keypaths</a> will be notified.</p>
-<p>A <code>change</code> <a href="../Extend/Events.md">event</a> will be fired with <code>keypath</code> and <code>value</code> as arguments
+<p>A <code>change</code> <a href="../../Extend/Events/">event</a> will be fired with <code>keypath</code> and <code>value</code> as arguments
 (or <code>map</code>, if you set multiple options at once).</p>
-<p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../Extend/Transitions.md">transitions</a>. See <a href="./#ractive.merge()"><code>ractive.merge()</code></a> for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
+<p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../../Extend/Transitions/">transitions</a>. See <a href="./#ractive.merge()"><code>ractive.merge()</code></a> for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.set(keypath, value)</code></li>
@@ -1471,7 +1530,7 @@ ractive.resetPartial('foo', 'bar');
 <hr />
 <h2 id="ractiveteardown">ractive.teardown()</h2>
 <p>Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.</p>
-<p>Calling <code>ractive.teardown()</code> causes a <code>teardown</code> <a href="../Extend/Events.md">event</a> to be fired - this is most useful with <a href="../Static Methods/#Ractive.extend()"><code>Ractive.extend()</code></a> as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.</p>
+<p>Calling <code>ractive.teardown()</code> causes a <code>teardown</code> <a href="../../Extend/Events/">event</a> to be fired - this is most useful with <a href="../Static Methods/#Ractive.extend()"><code>Ractive.extend()</code></a> as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.teardown()</code></li>
@@ -1696,6 +1755,8 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
     <footer class="col-md-12 text-center">
         <hr>
         <p>
+        <small>© RactiveJS contributors<br></small>
+        
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 
