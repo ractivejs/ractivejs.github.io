@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/Extend/Events/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Events - Ractive</title>
+    <title>Events - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../css/base.css" rel="stylesheet">
     <link href="../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Ractive</a>
+            <a class="navbar-brand" href="../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -596,6 +599,12 @@
         
             <li class="second-level"><a href="#registering">Registering</a></li>
             
+                <li class="third-level"><a href="#globally-via-the-ractiveevents-static-property">Globally, via the Ractive.events static property.</a></li>
+            
+                <li class="third-level"><a href="#per-component-via-the-components-events-initialization-property">Per component, via the component's events initialization property.</a></li>
+            
+                <li class="third-level"><a href="#per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's events initialization property.</a></li>
+            
         
             <li class="second-level"><a href="#using">Using</a></li>
             
@@ -628,11 +637,11 @@
 <p><code>teardown</code> is a function that gets called once the element is torn down. This allows the event to clean up after itself.</p>
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register events:</p>
-<p>Globally, via the <code>Ractive.events</code> static property.</p>
+<h3 id="globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</h3>
 <pre><code class="js">Ractive.events.myevent = MyEvent;
 </code></pre>
 
-<p>Per component, via the component's <code>events</code> initialization property.</p>
+<h3 id="per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   events: {
     myevent: MyEvent
@@ -640,7 +649,7 @@
 });
 </code></pre>
 
-<p>Per instance, via the instance's <code>events</code> initialization property.</p>
+<h3 id="per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
   events: {
     myevent: MyEvent

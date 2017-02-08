@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Ractive.js\n\n\nWelcome! These pages aim tso provide all the information you need to master Ractive.\n\n\nPhilosophy\n\n\nRactive takes care of your UI and your application state. But if you're building a complex app, you'll likely have other things in the mix. Routing, history management, server communication, data validation, realtime communication, user authentication, and all that fun stuff.\n\n\nUnlike other frameworks, Ractive doesn't have an opinion about these things. You are encouraged to build your app from small, loosely coupled modules. It means you're not locked-in writing code for a particular framework The Right Way\u2122. Should you hate one of your modules for some reason, you can easily swap it out for another and move on with life.\n\n\nDownload\n\n\nRactive is available in several places:\n\n\n// unpkg\nhttps://unpkg.com/ractive\n\n// CDNjs\nhttps://cdnjs.com/libraries/ractive\n\n// npm\nnpm install --save-dev ractive\n\n// Bower\nbower install --save ractive\n\n\n\n\nUsage\n\n\nUsing Ractive is very simple. Create a new instance using \nnew Ractive({...})\n with the desired options.\n\n\nvar ractive = new Ractive({\n    el: 'body',\n    template: '\np\n{{greeting}}, {{recipient}}\n/p\n',\n    data: {\n        greeting: 'Hello',\n        recipient: 'World!'\n    }\n});\n\n\n\n\nWhile there are \nno required options\n, \nel\n, \ntemplate\n and \ndata\n are the most common. They specify \nwhat element\n to attach an instance with \nthis markup\n having \nthis data\n. Check out \nInitialization Options\n to learn more about the available options.\n\n\nIf you get stuck at any point, visit the \nGet Support\n page for places to find help.\n\n\n\n\nThis project is the brainchild of an Englishman and has contributors from all over the world. There is an ecclectic mix of primarily the Queen's English, a fair amount of 'Murican English, and a bit of others here and there. Things like \nadaptor\n, \nbehaviour\n, and \ndependant\n may have more than one spelling but we try to stick to the Queen's English to the extent that we are able.", 
+            "text": "Ractive.js\n\n\nWelcome! These pages aim to provide all the information you need to master Ractive.\n\n\nPhilosophy\n\n\nRactive takes care of your UI and your application state. But if you're building a complex app, you'll likely have other things in the mix. Routing, history management, server communication, data validation, realtime communication, user authentication, and all that fun stuff.\n\n\nUnlike other frameworks, Ractive doesn't have an opinion about these things. You are encouraged to build your app from small, loosely coupled modules. It means you're not locked-in writing code for a particular framework The Right Way\u2122. Should you hate one of your modules for some reason, you can easily swap it out for another and move on with life.\n\n\nDownload\n\n\nRactive is available in several places:\n\n\n// unpkg\nhttps://unpkg.com/ractive\n\n// CDNjs\nhttps://cdnjs.com/libraries/ractive\n\n// npm\nnpm install --save-dev ractive\n\n// Bower\nbower install --save ractive\n\n\n\n\nUsage\n\n\nUsing Ractive is very simple. Create a new instance using \nnew Ractive({...})\n with the desired options.\n\n\nvar ractive = new Ractive({\n    el: 'body',\n    template: '\np\n{{greeting}}, {{recipient}}\n/p\n',\n    data: {\n        greeting: 'Hello',\n        recipient: 'World!'\n    }\n});\n\n\n\n\nWhile there are \nno required options\n, \nel\n, \ntemplate\n and \ndata\n are the most common. They specify \nwhat element\n to attach an instance with \nthis markup\n having \nthis data\n. Check out \nInitialization Options\n to learn more about the available options.\n\n\nIf you get stuck at any point, visit the \nGet Support\n page for places to find help.\n\n\n\n\nThis project is the brainchild of an Englishman and has contributors from all over the world. There is an ecclectic mix of primarily the Queen's English, a fair amount of 'Murican English, and a bit of others here and there. Things like \nadaptor\n, \nbehaviour\n, and \ndependant\n may have more than one spelling but we try to stick to the Queen's English to the extent that we are able.", 
             "title": "Introduction"
         }, 
         {
             "location": "/#ractivejs", 
-            "text": "Welcome! These pages aim tso provide all the information you need to master Ractive.", 
+            "text": "Welcome! These pages aim to provide all the information you need to master Ractive.", 
             "title": "Ractive.js"
         }, 
         {
@@ -427,7 +427,7 @@
         }, 
         {
             "location": "/API/Static Properties/", 
-            "text": "Static Properties\n\n\nRactive.adaptors\n\n\n(Object\nstring, Object\n)\n\n\nThe registry of globally available \nadaptors\n.\n\n\n\n\nRactive.components\n\n\n(Object\nstring, Function\n)\n\n\nThe registry of globally available \ncomponent definitions\n.\n\n\n\n\nRactive.DEBUG\n\n\n(boolean)\n\n\nTells Ractive if it's in debug mode or not. When set to \ntrue\n, non-fatal errors are logged. When set to \nfalse\n, non-fatal errors are suppressed. By default, this is set to \ntrue\n.\n\n\n\n\nRactive.DEBUG_PROMISES\n\n\n(boolean)\n\n\nTells Ractive to log errors thrown inside promises. When set to \ntrue\n, errors thrown in promises are logged. When set to \nfalse\n, errors inside promises are suppressed. By default, this is set to \ntrue\n.\n\n\n\n\nRactive.decorators\n\n\n(Object\nstring, Function\n)\n\n\nThe registry of globally available \ndecorators\n.\n\n\n\n\nRactive.defaults\n\n\n(Object\nstring, any\n)\n\n\nThe defaults for \ninitialisation options\n with the exception of \nplugin registries\n.\n\n\n// Change the default mustache delimiters to [[ ]] globally\nRactive.defaults.delimiters = [ '[[', ']]' ];\n\n// Future instances now use [[ ]]\nractive1 = new Ractive({\n    template: 'hello [[world]]'\n});\n\n\n\n\nConfigurations set on the instance override the ones present in \nRactive.defaults\n.\n\n\nRactive.defaults.delimiters = [ '[[', ']]' ];\n\n// Uses the delimiters specified above\nnew Ractive({\n    template: 'hello [[world]]'\n});\n\n// Uses the delimiters specified in the init options\nnew Ractive({\n    template: 'hello //world\\\\',\n    delimiters: [ '//', '\\\\' ]\n});\n\n\n\n\nDefaults can also be specified a subclass of Ractive.\n\n\nvar MyRactive = Ractive.extend();\n\nMyRactive.defaults.el = document.body;\n\n\n\n\n\n\nRactive.easing\n\n\n(Object\nstring, Function\n)\n\n\nThe global registry of \neasing functions\n.\n\n\nThe easing functions are used by the \nractive.animate\n method and by \ntransitions\n. Four are included by default: \nlinear\n, \neaseIn\n, \neaseOut\n and \neaseInOut\n.\n\n\n\n\nRactive.events\n\n\n(Object\nstring, Function\n)\n\n\nThe global registry of \nevents\n.\n\n\n\n\nRactive.interpolators\n\n\n(Object\nstring, Function\n)\n\n\nA key-value hash of interpolators use by \nractive.animate()\n.\n\n\n\n\nRactive.length\n\n\nTODO\n\n\n\n\nRactive.magic\n\n\nTODO\n\n\n\n\nRactive.name\n\n\nTODO\n\n\n\n\nRactive.partials\n\n\n(Object\nstring, string|Object|Function\n)\n\n\nThe global registry of \npartial templates\n.\n\n\nLike \ntemplates\n, partials are \nparsed\n at the point of use. The parsed output is cached and utilized for future use.\n\n\n\n\nRactive.Promise\n\n\n(Function)\n\n\nA spec-compliant Promise implementation.\n\n\n\n\nRactive.svg\n\n\n(boolean)\n\n\nIndicates if the browser supports SVG.\n\n\n\n\nRactive.transitions\n\n\n(Object\nstring, Function\n)\n\n\nThe global registry of \ntransition functions\n.\n\n\n\n\nRactive.VERSION\n\n\nThe version of the currently loaded Ractive.", 
+            "text": "Static Properties\n\n\nRactive.adaptors\n\n\n(Object\nstring, Object\n)\n\n\nThe registry of globally available \nadaptors\n.\n\n\n\n\nRactive.components\n\n\n(Object\nstring, Function\n)\n\n\nThe registry of globally available \ncomponent definitions\n.\n\n\n\n\nRactive.DEBUG\n\n\n(boolean)\n\n\nTells Ractive if it's in debug mode or not. When set to \ntrue\n, non-fatal errors are logged. When set to \nfalse\n, non-fatal errors are suppressed. By default, this is set to \ntrue\n.\n\n\n\n\nRactive.DEBUG_PROMISES\n\n\n(boolean)\n\n\nTells Ractive to log errors thrown inside promises. When set to \ntrue\n, errors thrown in promises are logged. When set to \nfalse\n, errors inside promises are suppressed. By default, this is set to \ntrue\n.\n\n\n\n\nRactive.decorators\n\n\n(Object\nstring, Function\n)\n\n\nThe registry of globally available \ndecorators\n.\n\n\n\n\nRactive.defaults\n\n\n(Object\nstring, any\n)\n\n\nThe defaults for \ninitialisation options\n with the exception of \nplugin registries\n.\n\n\n// Change the default mustache delimiters to [[ ]] globally\nRactive.defaults.delimiters = [ '[[', ']]' ];\n\n// Future instances now use [[ ]]\nractive1 = new Ractive({\n    template: 'hello [[world]]'\n});\n\n\n\n\nConfigurations set on the instance override the ones present in \nRactive.defaults\n.\n\n\nRactive.defaults.delimiters = [ '[[', ']]' ];\n\n// Uses the delimiters specified above\nnew Ractive({\n    template: 'hello [[world]]'\n});\n\n// Uses the delimiters specified in the init options\nnew Ractive({\n    template: 'hello //world\\\\',\n    delimiters: [ '//', '\\\\' ]\n});\n\n\n\n\nDefaults can also be specified a subclass of Ractive.\n\n\nvar MyRactive = Ractive.extend();\n\nMyRactive.defaults.el = document.body;\n\n\n\n\n\n\nRactive.easing\n\n\n(Object\nstring, Function\n)\n\n\nThe global registry of \neasing functions\n.\n\n\nThe easing functions are used by the \nractive.animate\n method and by \ntransitions\n. Four are included by default: \nlinear\n, \neaseIn\n, \neaseOut\n and \neaseInOut\n.\n\n\n\n\nRactive.events\n\n\n(Object\nstring, Function\n)\n\n\nThe global registry of \nevents\n.\n\n\n\n\nRactive.interpolators\n\n\n(Object\nstring, Function\n)\n\n\nA key-value hash of interpolators use by \nractive.animate()\n.\n\n\n\n\nRactive.length\n\n\nSince \nRactive\n is a function, and functions have a \nlength\n equal to their number of declared arguments, \nRactive\n has a \nlength\n of \n1\n.\n\n\n\n\nRactive.magic\n\n\nIndicates whether or not the current environment supports \nmagic mode\n.\n\n\n\n\nRactive.name\n\n\nLike \nlength\n, functions also have a \nname\n, and \nRactive\n's happens to be \n\"Ractive\"\n.\n\n\n\n\nRactive.partials\n\n\n(Object\nstring, string|Object|Function\n)\n\n\nThe global registry of \npartial templates\n.\n\n\nLike \ntemplates\n, partials are \nparsed\n at the point of use. The parsed output is cached and utilized for future use.\n\n\n\n\nRactive.Promise\n\n\n(Function)\n\n\nA spec-compliant Promise implementation.\n\n\n\n\nRactive.svg\n\n\n(boolean)\n\n\nIndicates whether or not the browser supports SVG.\n\n\n\n\nRactive.transitions\n\n\n(Object\nstring, Function\n)\n\n\nThe global registry of \ntransition functions\n.\n\n\n\n\nRactive.VERSION\n\n\nThe version of the currently loaded Ractive.", 
             "title": "Static Properties"
         }, 
         {
@@ -482,17 +482,17 @@
         }, 
         {
             "location": "/API/Static Properties/#ractivelength", 
-            "text": "TODO", 
+            "text": "Since  Ractive  is a function, and functions have a  length  equal to their number of declared arguments,  Ractive  has a  length  of  1 .", 
             "title": "Ractive.length"
         }, 
         {
             "location": "/API/Static Properties/#ractivemagic", 
-            "text": "TODO", 
+            "text": "Indicates whether or not the current environment supports  magic mode .", 
             "title": "Ractive.magic"
         }, 
         {
             "location": "/API/Static Properties/#ractivename", 
-            "text": "TODO", 
+            "text": "Like  length , functions also have a  name , and  Ractive 's happens to be  \"Ractive\" .", 
             "title": "Ractive.name"
         }, 
         {
@@ -507,7 +507,7 @@
         }, 
         {
             "location": "/API/Static Properties/#ractivesvg", 
-            "text": "(boolean)  Indicates if the browser supports SVG.", 
+            "text": "(boolean)  Indicates whether or not the browser supports SVG.", 
             "title": "Ractive.svg"
         }, 
         {
@@ -572,7 +572,7 @@
         }, 
         {
             "location": "/API/Instance Properties/", 
-            "text": "Instance Properties\n\n\nractive.adaptors\n\n\n(Object\nstring, Object\n)\n\n\nThe instance-only registry of \nadaptors\n.\n\n\n\n\nractive.components\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \ncomponents\n.\n\n\n\n\nractive.container\n\n\n(Ractive)\n\n\nEach component instance that is in a yielded fragment has a container instance that is accessible using \nthis.container\n.\n\n\nfoo\n\n  \nbar\n\n    \nbaz /\n\n  \n/bar\n\n\n/foo\n\n\n\n\n\nIf \nbar\n \n{{yield}}\ns, then \nbaz\n's container will be the \nfoo\n instance.\n\n\n\n\nractive.decorators\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \ndecorators\n.\n\n\n\n\nractive.easing\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \neasing functions\n.\n\n\n\n\nractive.events\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \nevents\n.\n\n\n\n\nractive.fragment\n\n\nTODO\n\n\n\n\nractive.interpolators\n\n\n(Object\nstring, Function\n)\n\n\nA key-value hash of interpolators use by \nractive.animate()\n.\n\n\n\n\nractive.nodes\n\n\n(Object\nstring, HTMLElement\n)\n\n\nAn object containing all of the elements inside the instance that have an \nid\n attribute.\n\n\nconst ractive = new Ractive({\n  el: body,\n  template: '\ndiv id=\nmyDiv\nAn unimaginatively named div.\n/div\n'\n});\n\nractive.nodes.myDiv === document.getElementById( 'myDiv' ); // true\n\n\n\n\nThis will also reference dynamically created elements.\n\n\nconst ractive = new Ractive({\n  el: myContainer,\n  template: `\n    \nul\n\n        {{#items:i}}\n            \nli id='item_{{i}}'\n{{content}}\n/li\n\n        {{/items}}\n    \n/ul\n\n  `,\n  data: { items: myListOfItems }\n});\n\n// Get a reference to an arbitrary li element.\nractive.nodes[ 'item_' + num ];\n\n\n\n\n\n\nractive.parent\n\n\n(Ractive)\n\n\nEach component instance can access its parent using \nthis.parent\n.\n\n\nfoo\n\n  \nbar\n\n    \nbaz /\n\n  \n/bar\n\n\n/foo\n\n\n\n\n\nbaz\n's parent is the \nbar\n instance, and \nbar\n's parent is the \nfoo\n instance.\n\n\n\n\nractive.partials\n\n\n(Object\nstring, string|Object|Function\n)\n\n\nThe instance-only registry of \npartials\n.\n\n\n\n\nractive.root\n\n\n(Ractive)\n\n\nEach component instance can access its root Ractive instance using \nthis.root\n.\n\n\nfoo\n\n  \nbar\n\n    \nbaz /\n\n  \n/bar\n\n\n/foo\n\n\n\n\n\nfoo\n, \nbar\n, and \nbaz\n will all have the Ractive instance with this template as their \nroot\n.\n\n\n\n\nractive.transitions\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \ntransitions\n.\n\n\n\n\nractive.viewmodel\n\n\nTODO", 
+            "text": "Instance Properties\n\n\nractive.adaptors\n\n\n(Object\nstring, Object\n)\n\n\nThe instance-only registry of \nadaptors\n.\n\n\n\n\nractive.components\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \ncomponents\n.\n\n\n\n\nractive.container\n\n\n(Ractive)\n\n\nEach component instance that is in a yielded fragment has a container instance that is accessible using \nthis.container\n.\n\n\nfoo\n\n  \nbar\n\n    \nbaz /\n\n  \n/bar\n\n\n/foo\n\n\n\n\n\nIf \nbar\n \n{{yield}}\ns, then \nbaz\n's container will be the \nfoo\n instance.\n\n\n\n\nractive.decorators\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \ndecorators\n.\n\n\n\n\nractive.easing\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \neasing functions\n.\n\n\n\n\nractive.events\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \nevents\n.\n\n\n\n\nractive.interpolators\n\n\n(Object\nstring, Function\n)\n\n\nA key-value hash of interpolators use by \nractive.animate()\n.\n\n\n\n\nractive.nodes\n\n\n(Object\nstring, HTMLElement\n)\n\n\nAn object containing all of the elements inside the instance that have an \nid\n attribute.\n\n\nconst ractive = new Ractive({\n  el: body,\n  template: '\ndiv id=\nmyDiv\nAn unimaginatively named div.\n/div\n'\n});\n\nractive.nodes.myDiv === document.getElementById( 'myDiv' ); // true\n\n\n\n\nThis will also reference dynamically created elements.\n\n\nconst ractive = new Ractive({\n  el: myContainer,\n  template: `\n    \nul\n\n        {{#items:i}}\n            \nli id='item_{{i}}'\n{{content}}\n/li\n\n        {{/items}}\n    \n/ul\n\n  `,\n  data: { items: myListOfItems }\n});\n\n// Get a reference to an arbitrary li element.\nractive.nodes[ 'item_' + num ];\n\n\n\n\n\n\nractive.parent\n\n\n(Ractive)\n\n\nEach component instance can access its parent using \nthis.parent\n.\n\n\nfoo\n\n  \nbar\n\n    \nbaz /\n\n  \n/bar\n\n\n/foo\n\n\n\n\n\nbaz\n's parent is the \nbar\n instance, and \nbar\n's parent is the \nfoo\n instance.\n\n\n\n\nractive.partials\n\n\n(Object\nstring, string|Object|Function\n)\n\n\nThe instance-only registry of \npartials\n.\n\n\n\n\nractive.root\n\n\n(Ractive)\n\n\nEach component instance can access its root Ractive instance using \nthis.root\n.\n\n\nfoo\n\n  \nbar\n\n    \nbaz /\n\n  \n/bar\n\n\n/foo\n\n\n\n\n\nfoo\n, \nbar\n, and \nbaz\n will all have the Ractive instance with this template as their \nroot\n.\n\n\n\n\nractive.transitions\n\n\n(Object\nstring, Function\n)\n\n\nThe instance-only registry of \ntransitions\n.", 
             "title": "Instance Properties"
         }, 
         {
@@ -611,11 +611,6 @@
             "title": "ractive.events"
         }, 
         {
-            "location": "/API/Instance Properties/#ractivefragment", 
-            "text": "TODO", 
-            "title": "ractive.fragment"
-        }, 
-        {
             "location": "/API/Instance Properties/#ractiveinterpolators", 
             "text": "(Object string, Function )  A key-value hash of interpolators use by  ractive.animate() .", 
             "title": "ractive.interpolators"
@@ -644,11 +639,6 @@
             "location": "/API/Instance Properties/#ractivetransitions", 
             "text": "(Object string, Function )  The instance-only registry of  transitions .", 
             "title": "ractive.transitions"
-        }, 
-        {
-            "location": "/API/Instance Properties/#ractiveviewmodel", 
-            "text": "TODO", 
-            "title": "ractive.viewmodel"
         }, 
         {
             "location": "/API/Instance Methods/", 
@@ -1272,8 +1262,23 @@
         }, 
         {
             "location": "/Extend/Adaptors/#registering", 
-            "text": "Like other plugins, there's 3 ways you can register adaptors:  Globally, via the  Ractive.adaptors  static property.  Ractive.adaptors.myAdaptor = myAdaptor;  Per component, via the component's  adaptors  initialization property.  const MyComponent = Ractive.extend({\n  adaptors: {\n    myAdaptor: myAdaptor\n  }\n});  Per instance, via the instance's  adaptors  initialization property.  const ractive = new Ractive({\n  adaptors: {\n    myAdaptor: myAdaptor\n  }\n});", 
+            "text": "Like other plugins, there's 3 ways you can register adaptors:", 
             "title": "Registering"
+        }, 
+        {
+            "location": "/Extend/Adaptors/#globally-via-the-ractiveadaptors-static-property", 
+            "text": "Ractive.adaptors.myAdaptor = myAdaptor;", 
+            "title": "Globally, via the Ractive.adaptors static property."
+        }, 
+        {
+            "location": "/Extend/Adaptors/#per-component-via-the-components-adaptors-initialization-property", 
+            "text": "const MyComponent = Ractive.extend({\n  adaptors: {\n    myAdaptor: myAdaptor\n  }\n});", 
+            "title": "Per component, via the component's adaptors initialization property."
+        }, 
+        {
+            "location": "/Extend/Adaptors/#per-instance-via-the-instances-adaptors-initialization-property", 
+            "text": "const ractive = new Ractive({\n  adaptors: {\n    myAdaptor: myAdaptor\n  }\n});", 
+            "title": "Per instance, via the instance's adaptors initialization property."
         }, 
         {
             "location": "/Extend/Adaptors/#using", 
@@ -1302,8 +1307,23 @@
         }, 
         {
             "location": "/Extend/Components/#registering", 
-            "text": "Like other plugins, there's 3 ways you can register components:  Globally, via the  Ractive.components  static property:  // Available to all instances of Ractive.\nRactive.components.MyComponent = Ractive.extend({ ... });  Per component, via the component's  components  initialization property.  // Only available for instances of AnotherComponent.\nconst AnotherComponent = Ractive.extend({\n  components: {\n    MyComponent\n  }\n});  Per instance, via the instance's  components  initialization property.  // Only available to this specific instance.\nconst ractive = new Ractive({\n  components: {\n    MyComponent\n  }\n});", 
+            "text": "Like other plugins, there's 3 ways you can register components:", 
             "title": "Registering"
+        }, 
+        {
+            "location": "/Extend/Components/#globally-via-the-ractivecomponents-static-property", 
+            "text": "// Available to all instances of Ractive.\nRactive.components.MyComponent = Ractive.extend({ ... });", 
+            "title": "Globally, via the Ractive.components static property:"
+        }, 
+        {
+            "location": "/Extend/Components/#per-component-via-the-components-components-initialization-property", 
+            "text": "// Only available for instances of AnotherComponent.\nconst AnotherComponent = Ractive.extend({\n  components: {\n    MyComponent\n  }\n});", 
+            "title": "Per component, via the component's components initialization property."
+        }, 
+        {
+            "location": "/Extend/Components/#per-instance-via-the-instances-components-initialization-property", 
+            "text": "// Only available to this specific instance.\nconst ractive = new Ractive({\n  components: {\n    MyComponent\n  }\n});", 
+            "title": "Per instance, via the instance's components initialization property."
         }, 
         {
             "location": "/Extend/Components/#using", 
@@ -1372,8 +1392,23 @@
         }, 
         {
             "location": "/Extend/Decorators/#registering", 
-            "text": "Like other plugins, there's 3 ways you can register decorators:  Globally, via the  Ractive.decorators  static property.  Ractive.decorators.mydecorator = MyDecorator;  Per component, via the component's  decorators  initialization property.  const MyComponent = Ractive.extend({\n  decorators: {\n    mydecorator: MyDecorator\n  }\n});  Per instance, via the instance's  decorators  initialization property.  const ractive = new Ractive({\n  decorators: {\n    mydecorator: MyDecorator\n  }\n});", 
+            "text": "Like other plugins, there's 3 ways you can register decorators:", 
             "title": "Registering"
+        }, 
+        {
+            "location": "/Extend/Decorators/#globally-via-the-ractivedecorators-static-property", 
+            "text": "Ractive.decorators.mydecorator = MyDecorator;", 
+            "title": "Globally, via the Ractive.decorators static property."
+        }, 
+        {
+            "location": "/Extend/Decorators/#per-component-via-the-components-decorators-initialization-property", 
+            "text": "const MyComponent = Ractive.extend({\n  decorators: {\n    mydecorator: MyDecorator\n  }\n});", 
+            "title": "Per component, via the component's decorators initialization property."
+        }, 
+        {
+            "location": "/Extend/Decorators/#per-instance-via-the-instances-decorators-initialization-property", 
+            "text": "const ractive = new Ractive({\n  decorators: {\n    mydecorator: MyDecorator\n  }\n});", 
+            "title": "Per instance, via the instance's decorators initialization property."
         }, 
         {
             "location": "/Extend/Decorators/#using", 
@@ -1402,8 +1437,23 @@
         }, 
         {
             "location": "/Extend/Easings/#registering", 
-            "text": "Like other plugins, there's 3 ways you can register an easing function:  Globally via the  Ractive.easing  static property.  Ractive.easing.MyEasingFunction = function(){ ... };  Per component via the component's  easing  initialization property.  const MyComponent = Ractive.extend({\n  easing: {\n    MyEasingFunction: function(){ ... }\n  }\n});  Per instance, via the instance's  easing  initialization property.  const ractive = new Ractive({\n  easing: {\n    MyEasingFunction: function(){ ... }\n  }\n});", 
+            "text": "Like other plugins, there's 3 ways you can register an easing function:", 
             "title": "Registering"
+        }, 
+        {
+            "location": "/Extend/Easings/#globally-via-the-ractiveeasing-static-property", 
+            "text": "Ractive.easing.MyEasingFunction = function(){ ... };", 
+            "title": "Globally via the Ractive.easing static property."
+        }, 
+        {
+            "location": "/Extend/Easings/#per-component-via-the-components-easing-initialization-property", 
+            "text": "const MyComponent = Ractive.extend({\n  easing: {\n    MyEasingFunction: function(){ ... }\n  }\n});", 
+            "title": "Per component via the component's easing initialization property."
+        }, 
+        {
+            "location": "/Extend/Easings/#per-instance-via-the-instances-easing-initialization-property", 
+            "text": "const ractive = new Ractive({\n  easing: {\n    MyEasingFunction: function(){ ... }\n  }\n});", 
+            "title": "Per instance, via the instance's easing initialization property."
         }, 
         {
             "location": "/Extend/Easings/#using", 
@@ -1432,8 +1482,23 @@
         }, 
         {
             "location": "/Extend/Events/#registering", 
-            "text": "Like other plugins, there's 3 ways you can register events:  Globally, via the  Ractive.events  static property.  Ractive.events.myevent = MyEvent;  Per component, via the component's  events  initialization property.  const MyComponent = Ractive.extend({\n  events: {\n    myevent: MyEvent\n  }\n});  Per instance, via the instance's  events  initialization property.  const ractive = new Ractive({\n  events: {\n    myevent: MyEvent\n  }\n});", 
+            "text": "Like other plugins, there's 3 ways you can register events:", 
             "title": "Registering"
+        }, 
+        {
+            "location": "/Extend/Events/#globally-via-the-ractiveevents-static-property", 
+            "text": "Ractive.events.myevent = MyEvent;", 
+            "title": "Globally, via the Ractive.events static property."
+        }, 
+        {
+            "location": "/Extend/Events/#per-component-via-the-components-events-initialization-property", 
+            "text": "const MyComponent = Ractive.extend({\n  events: {\n    myevent: MyEvent\n  }\n});", 
+            "title": "Per component, via the component's events initialization property."
+        }, 
+        {
+            "location": "/Extend/Events/#per-instance-via-the-instances-events-initialization-property", 
+            "text": "const ractive = new Ractive({\n  events: {\n    myevent: MyEvent\n  }\n});", 
+            "title": "Per instance, via the instance's events initialization property."
         }, 
         {
             "location": "/Extend/Events/#using", 
@@ -1477,7 +1542,7 @@
         }, 
         {
             "location": "/Extend/Partials/", 
-            "text": "Partials\n\n\nA partial is a template snippet which can be reused in templates or in other partials. They help to keep templates uncluttered, non-repetetive and easy to read.\n\n\nWriting\n\n\nRactive.partials.myPartial = '\n!-- template --\n';\n\n\n\n\nPartials are simply Ractive templates.\n\n\nRegistering\n\n\nUnlike other plugins, partials have more than 3 registration options.\n\n\nGlobally via the \nRactive.partials\n static property.\n\n\nRactive.partials.myPartial = MyPartial;\n\n\n\n\nGlobally, via a non-executing script tag on the current page.\n\n\nscript type=\nractive/template\n id=\nmyPartial\n\n  ...\n\n/script\n\n\n\n\n\nPer component, via the component's \npartials\n initialization property.\n\n\nconst MyComponent = Ractive.extend({\n  events: {\n    myPartial: myPartial\n  }\n});\n\n\n\n\nPer instance, via the instance's \npartials\n initialization property.\n\n\nconst ractive = new Ractive({\n  events: {\n    myPartial: myPartial\n  }\n});\n\n\n\n\nAn inline partial, using the \n{{#partial}}\n mustache. Availability depends on whoever uses the template containing the inline partial, whether its a component, an instance or another partial.\n\n\n{{#partial myPartial}}\n  ...\n{{/}}\n\n\n\n\nUsing\n\n\nPartials can be used using the \n{{\npartialName}}\n syntax. Partials work where any template would work. It works as if the partial template is manually put into where the partial mustache is positioned.\n\n\n{{#partial myPartial}}\n  \ndiv class=\nmessage\n{{message}}\n/div\n\n{{/}}\n\n\ndiv class=\napp\n\n  {{\nmyPartial}}\n\n/div\n\n\n\n\n\nValid names\n\n\nPartials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.\n\n\nPartial names may also contain \n-\n characters as long as they are surrounded by other valid characters e.g. \nsome-partial-template\n.\n\n\nPartial context\n\n\nBy default, a partial's context is the context of wherever it is positioned.\n\n\nIn the following example, the context of the partial is the current item in the list.\n\n\n{{#partial myPartial}}\n  {{this}}\n{{/}}\n\n{{# list }}\n  {{\nmyPartial}}\n{{/}}\n\n\n\n\n\nHowever, partials may be given explicit context using the \n{{\n[name expression] [context expression]}}\n syntax. It's similar to wrapping the partial with a \n{{#with}}\n mustache. Ancestor references, members, object literals, and any other expressions that resolve to an object may be used as a context expression.\n\n\nIn the following example, context of the partial is the current item's \nfoo.bar\n value.\n\n\n{{#partial myPartial}}\n  {{this}}\n{{/}}\n\n{{# list }}\n  {{\nmyPartial .foo.bar}}\n{{/}}\n\n\n\n\nExplicit contexts can also be aliased. In the case of plain refereces, it can be used for two-way binding.\n\n\nIn the following example, the current item's \nfoo.bar\n path is aliased with \nitem\n. In the partial, \n.label\n refers to the current item's \nlabel\n property. However, \nitem\n is essentially the current item's \n{{.foo.bar.item}}\n. The \nitem\n binds two-way and updates the current item's \n.foo.bar\n.\n\n\n{{#partial myPartial}}\n  \nlabel\n{{.label}}\n/label\n\n  \ninput type=\ntext\n value=\n{{item}}\n\n{{/}}\n\n{{# list }}\n  {{\nmyPartial .foo.bar as item}}\n{{/}}\n\n\n\n\nRecursive partials\n\n\nPartials can be used recursively. A common use case for this is when reusing partials on a tree-like structure, like a directory listing.\n\n\ndiv class='fileSystem'\n\n  {{#root}}\n    {{\nfolder}}\n  {{/root}}\n\n/div\n\n\n{{#partial folder}}\n\nul class='folder'\n\n  {{#files}}\n    {{\nfile}}\n  {{/files}}\n\n/ul\n\n{{/partial}}\n\n{{#partial file}}\n\nli class='file'\n\n  \nimg class='icon-{{type}}'\n\n  \nspan\n{{filename}}\n/span\n\n\n  \n!-- if this is actually a folder, embed the folder partial --\n\n  {{# type === 'folder' }}\n    {{\nfolder}}\n  {{/ type === 'folder' }}\n\n/li\n\n{{/partial}}\n\n\n\n\nrv = new Ractive({\n  el: 'container',\n  template: '#myTemplate',\n  data: {\n    root: {\n      files: [\n        { type: 'jpg', filename: 'hello.jpg' },\n        { type: 'mp3', filename: 'NeverGonna.mp3' },\n        { type: 'folder', filename: 'subfolder', files: [\n          { type: 'txt', filename: 'README.txt' },\n          { type: 'folder', filename: 'rabbithole', files: [\n            { type: 'txt', filename: 'Inception.txt' }\n          ]}\n        ]}\n      ]\n    }\n  }\n});\n\n\n\n\nIn the example above, subfolders use the \n{{\nfolder}}\n partial, which uses the \n{{\nfile}}\n partial for each file, and if any of those files are folders, the \n{{\nfolder}}\n partial will be invoked again, and so on until there are no more files.\n\n\nBeware of cyclical data structures! Ractive makes no attempt to detect cyclicality, and will happily continue rendering partials until the \nBig Crunch\n (or your browser exceeds its maximum call stack size. Whichever is sooner).\n\n\nInjecting partials\n\n\nOne good use of partials is to vary the shape of a template according to some condition, the same way you might use \ndependency injection\n elsewhere in your code.\n\n\nFor example, you might offer a different view to mobile users:\n\n\ndiv class='main'\n\n  \ndiv class='content'\n\n    {{\ncontent}}\n  \n/div\n\n\n  \ndiv class='sidebar'\n\n    {{\nsidebar}}\n  \n/div\n\n\n/div\n\n\n\n\n\nisMobile = /mobile/i.test( navigator.userAgent ); // please don't do this in real life!\n\nractive = new Ractive({\n  el: myContainer,\n  template: myTemplate,\n  partials: {\n    content: isMobile ? mobileContentPartial : desktopContentPartial,\n    sidebar: isMobile ? mobileSidebarPartial : desktopSidebarPartial\n  }\n});\n\n\n\n\nOr you might make it possible to \nextend\n a subclass without overriding its template:\n\n\ndiv class='modal-background'\n\n  \ndiv class='modal'\n\n    {{\nmodalContent}}\n  \n/div\n\n\n/div\n\n\n\n\n\n// Create a Modal subclass\nModal = Ractive.extend({\n  template: modalTemplate,\n  init: function () {\n    var self = this, resizeHandler;\n\n    resizeHandler = function () {\n      self.center();\n    };\n\n    // when the window resizes, keep the modal horizontally and vertically centred\n    window.addEventListener( 'resize', resizeHandler );\n\n    // clean up after ourselves later\n    this.on( 'teardown', function () {\n      window.removeEventListener( 'resize', resizeHandler );\n    });\n\n    // manually call this.center() the first time\n    this.center();\n  },\n  center: function () {\n    // centering logic goes here\n  }\n});\n\nhelloModal = new Modal({\n  el: document.body,\n  partials: {\n    modalContent: '\np\nHello!\n/p\na class=\nmodal-button\n proxy-tap=\nclose\nClose\n/a\n'\n  }\n});\n\nhelloModal.on( 'close', function () {\n  this.teardown();\n});\n\n\n\n\nPartial expressions\n\n\nExpressions can also be used to reference a partial instead of fixed partial names. Ractive will evaluate the expression and use its return value to select a partial. This is useful when you want the data to indicate what type of partial it should render with.\n\n\nIn the following example, \norganisms\n contains a list of organisms whose \ntype\n can either be \nperson\n or \nanimal\n. Partials for each type is defined and the list uses the \ntype\n of each item to determine which partial to use.\n\n\n{{#partial person}}Hi! I am {{.name}} and I have {{.fingerCount}} fingers!{{/}}\n\n{{#partial animal}}Hi! I am a {{.name}} and I have {{.legCount}} legs!{{/}}\n\n\nul\n\n  {{# organisms }}\n    \nli\n{{\n type }}\n/li\n\n  {{/}}\n\n/ul\n\n\n\n\n\nIn the case where there's a collision between the expression and a partial of the same name, Ractive will not evaluate the expression and instead, will immediately resolve to that partial.\n\n\nIn the following example, a partial named \ntype\n is defined. Instead of evaluating \ntype\n's value, it will resolve to the partial named \ntype\n.\n\n\n{{#partial person}}Hi! I am {{.name}} and I have {{.fingerCount}} fingers!{{/}}\n\n{{#partial animal}}Hi! I am a {{.name}} and I have {{.legCount}} legs!{{/}}\n\n{{#partial type}}Hi! I am {{.name}}{{/}}\n\n\nul\n\n  {{# organisms }}\n    \nli\n{{\n type }}\n/li\n\n  {{/}}\n\n/ul\n\n\n\n\n\nPartials can also be registered on-the-fly as well as have functions determine the partial to use.\n\n\nIn the following example, \nmakePartial\n registers a partial on the fly using \ntemplate\n and \nid\n, and returns the partial name for use in the template.\n\n\nnew Ractive({\n  el: 'main',\n  template: `\n    \nspan\nAdd a partial:\n/span\n\n    \ntextarea value=\n{{tpl}}\n /\n/div\n\n    \nbutton on-click=\n@this.add()\nAdd\n/button\nbr/\n\n\n    {{#list}}\n      {{\n @this.makePartial(.id, .template) }}\n    {{/}}\n  `,\n  data: {\n    list: [],\n    tpl: '',\n\n  },\n  add: function() {\n    this.push('list', {\n      id: Math.random(),\n      template: this.get('tpl')\n    });\n    this.set('tpl', '');\n  },\n  makePartial: function(id, template) {\n    const name = 'partial-' + id;\n    this.partials[name] = this.partials[name] || template;\n    return name;\n  }\n});\n\n\n\n\nUpdating Partials\n\n\nPartials may be reset after they are rendered using \nractive.resetPartial()\n. A reset partial will update everywhere it is referenced, so if it is used multiple times or inherited by a component, those instances will be updated as well. If a component has a partial with the same name as a parent partial, partial resets will not affect it since it is a different partial.\n\n\nIt should be noted that partials evaluate lazily, so it is possible to cause a single partial to update by wrapping it in a conditional section and causing the section to be hidden and re-shown.\n\n\n{{^toggle}}{{\nrickroll}}{{/}}\n\n\n\n\nractive.partials.rickroll = 'I wouldn\\'t do that to you, chum.';\nractive.set('toggle', true);\nractive.set('toggle', false);\n\n\n\n\nExamples\n\n\nHere's an example of a gallery using a partial for its thumbnail information:\n\n\n!-- The partial called \nthumbnail\n --\n\n\nfigure class='thumbnail'\n\n  \nimg src='assets/thumbnails/{{id}}.jpg'\n\n  \nfigcaption\n{{description}}\n/figcaption\n\n\n/figure\n\n\n\n!-- The template that uses the partial --\n\n\ndiv class='gallery'\n\n  {{#items}}\n    {{\nthumbnail}}\n  {{/items}}\n\n/div", 
+            "text": "Partials\n\n\nA partial is a template snippet which can be reused in templates or in other partials. They help to keep templates uncluttered, non-repetetive and easy to read.\n\n\nWriting\n\n\nRactive.partials.myPartial = '\n!-- template --\n';\n\n\n\n\nPartials are simply Ractive templates.\n\n\nRegistering\n\n\nUnlike other plugins, partials have more than 3 registration options.\n\n\nGlobally via the \nRactive.partials\n static property.\n\n\nRactive.partials.myPartial = MyPartial;\n\n\n\n\nGlobally, via a non-executing script tag on the current page.\n\n\nscript type=\nractive/template\n id=\nmyPartial\n\n  ...\n\n/script\n\n\n\n\n\ntext/html\n is another good choice for \ntype\n because many editors will highlight the content of the tag as HTML. Anything other than \ntext/javascript\n, \napplication/javascript\n, or no \ntype\n at all will do.\n\n\nPer component, via the component's \npartials\n initialization property.\n\n\nconst MyComponent = Ractive.extend({\n  events: {\n    myPartial: myPartial\n  }\n});\n\n\n\n\nPer instance, via the instance's \npartials\n initialization property.\n\n\nconst ractive = new Ractive({\n  events: {\n    myPartial: myPartial\n  }\n});\n\n\n\n\nInline, using the \n{{#partial}}\n mustache.\n\n\nAvailability depends on whoever uses the template containing the inline partial, whether it's a component, an instance or another partial. Inline partials are scoped to the nearest tag, be it component or element, and are available to any child of that element.\n\n\n{{#partial myPartial}}\n  ...\n{{/}}\n\n\n\n\nUsing\n\n\nPartials can be used using the \n{{\npartialName}}\n syntax. Partials work where any template would work. It works as if the partial template is manually put into where the partial mustache is positioned.\n\n\n{{#partial myPartial}}\n  \ndiv class=\nmessage\n{{message}}\n/div\n\n{{/}}\n\n\ndiv class=\napp\n\n  {{\nmyPartial}}\n\n/div\n\n\n\n\n\nValid names\n\n\nPartials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.\n\n\nPartial names may also contain \n-\n and \n/\n characters as long as they are surrounded by other valid characters e.g. \ntemplates/some-partial-template\n.\n\n\nPartial context\n\n\nBy default, a partial's context is the context of wherever it is positioned.\n\n\nIn the following example, the context of the partial is the current item in the list.\n\n\n{{#partial myPartial}}\n  {{this}}\n{{/}}\n\n{{# list }}\n  {{\nmyPartial}}\n{{/}}\n\n\n\n\n\nHowever, partials may be given explicit context using the \n{{\n[name expression] [context expression]}}\n syntax. It's similar to wrapping the partial with a \n{{#with}}\n mustache. Ancestor references, members, object literals, and any other expressions that resolve to an object may be used as a context expression.\n\n\nIn the following example, context of the partial is the current item's \nfoo.bar\n value.\n\n\n{{#partial myPartial}}\n  {{this}}\n{{/}}\n\n{{# list }}\n  {{\nmyPartial .foo.bar}}\n{{/}}\n\n\n\n\nExplicit contexts can also be aliased. In the case of plain refereces, it can be used for two-way binding.\n\n\nIn the following example, the current item's \nfoo.bar\n path is aliased with \nitem\n. In the partial, \n.label\n refers to the current item's \nlabel\n property. However, \nitem\n is essentially the current item's \n{{.foo.bar.item}}\n. The \nitem\n binds two-way and updates the current item's \n.foo.bar\n.\n\n\n{{#partial myPartial}}\n  \nlabel\n{{.label}}\n/label\n\n  \ninput type=\ntext\n value=\n{{item}}\n\n{{/}}\n\n{{# list }}\n  {{\nmyPartial .foo.bar as item}}\n{{/}}\n\n\n\n\nRecursive partials\n\n\nPartials can be used recursively. A common use case for this is when reusing partials on a tree-like structure, like a directory listing.\n\n\ndiv class='fileSystem'\n\n  {{#root}}\n    {{\nfolder}}\n  {{/root}}\n\n/div\n\n\n{{#partial folder}}\n\nul class='folder'\n\n  {{#files}}\n    {{\nfile}}\n  {{/files}}\n\n/ul\n\n{{/partial}}\n\n{{#partial file}}\n\nli class='file'\n\n  \nimg class='icon-{{type}}'\n\n  \nspan\n{{filename}}\n/span\n\n\n  \n!-- if this is actually a folder, embed the folder partial --\n\n  {{# type === 'folder' }}\n    {{\nfolder}}\n  {{/ type === 'folder' }}\n\n/li\n\n{{/partial}}\n\n\n\n\nrv = new Ractive({\n  el: 'container',\n  template: '#myTemplate',\n  data: {\n    root: {\n      files: [\n        { type: 'jpg', filename: 'hello.jpg' },\n        { type: 'mp3', filename: 'NeverGonna.mp3' },\n        { type: 'folder', filename: 'subfolder', files: [\n          { type: 'txt', filename: 'README.txt' },\n          { type: 'folder', filename: 'rabbithole', files: [\n            { type: 'txt', filename: 'Inception.txt' }\n          ]}\n        ]}\n      ]\n    }\n  }\n});\n\n\n\n\nIn the example above, subfolders use the \n{{\nfolder}}\n partial, which uses the \n{{\nfile}}\n partial for each file, and if any of those files are folders, the \n{{\nfolder}}\n partial will be invoked again, and so on until there are no more files.\n\n\nBeware of cyclical data structures! Ractive makes no attempt to detect cyclicality, and will happily continue rendering partials until the \nBig Crunch\n (or your browser exceeds its maximum call stack size. Whichever is sooner).\n\n\nInjecting partials\n\n\nOne good use of partials is to vary the shape of a template according to some condition, the same way you might use \ndependency injection\n elsewhere in your code.\n\n\nFor example, you might offer a different view to mobile users:\n\n\ndiv class='main'\n\n  \ndiv class='content'\n\n    {{\ncontent}}\n  \n/div\n\n\n  \ndiv class='sidebar'\n\n    {{\nsidebar}}\n  \n/div\n\n\n/div\n\n\n\n\n\nisMobile = /mobile/i.test( navigator.userAgent ); // please don't do this in real life!\n\nractive = new Ractive({\n  el: myContainer,\n  template: myTemplate,\n  partials: {\n    content: isMobile ? mobileContentPartial : desktopContentPartial,\n    sidebar: isMobile ? mobileSidebarPartial : desktopSidebarPartial\n  }\n});\n\n\n\n\nOr you might make it possible to \nextend\n a subclass without overriding its template:\n\n\ndiv class='modal-background'\n\n  \ndiv class='modal'\n\n    {{\nmodalContent}}\n  \n/div\n\n\n/div\n\n\n\n\n\n// Create a Modal subclass\nModal = Ractive.extend({\n  template: modalTemplate,\n  init: function () {\n    var self = this, resizeHandler;\n\n    resizeHandler = function () {\n      self.center();\n    };\n\n    // when the window resizes, keep the modal horizontally and vertically centred\n    window.addEventListener( 'resize', resizeHandler );\n\n    // clean up after ourselves later\n    this.on( 'teardown', function () {\n      window.removeEventListener( 'resize', resizeHandler );\n    });\n\n    // manually call this.center() the first time\n    this.center();\n  },\n  center: function () {\n    // centering logic goes here\n  }\n});\n\nhelloModal = new Modal({\n  el: document.body,\n  partials: {\n    modalContent: '\np\nHello!\n/p\na class=\nmodal-button\n proxy-tap=\nclose\nClose\n/a\n'\n  }\n});\n\nhelloModal.on( 'close', function () {\n  this.teardown();\n});\n\n\n\n\nPartial expressions\n\n\nExpressions can also be used to reference a partial instead of fixed partial names. Ractive will evaluate the expression and use its return value to select a partial. This is useful when you want the data to indicate what type of partial it should render with.\n\n\nIn the following example, \norganisms\n contains a list of organisms whose \ntype\n can either be \nperson\n or \nanimal\n. Partials for each type is defined and the list uses the \ntype\n of each item to determine which partial to use.\n\n\n{{#partial person}}Hi! I am {{.name}} and I have {{.fingerCount}} fingers!{{/}}\n\n{{#partial animal}}Hi! I am a {{.name}} and I have {{.legCount}} legs!{{/}}\n\n\nul\n\n  {{# organisms }}\n    \nli\n{{\n type }}\n/li\n\n  {{/}}\n\n/ul\n\n\n\n\n\nIn the case where there's a collision between the expression and a partial of the same name, Ractive will not evaluate the expression and instead, will immediately resolve to that partial.\n\n\nIn the following example, a partial named \ntype\n is defined. Instead of evaluating \ntype\n's value, it will resolve to the partial named \ntype\n.\n\n\n{{#partial person}}Hi! I am {{.name}} and I have {{.fingerCount}} fingers!{{/}}\n\n{{#partial animal}}Hi! I am a {{.name}} and I have {{.legCount}} legs!{{/}}\n\n{{#partial type}}Hi! I am {{.name}}{{/}}\n\n\nul\n\n  {{# organisms }}\n    \nli\n{{\n type }}\n/li\n\n  {{/}}\n\n/ul\n\n\n\n\n\nPartials can also be registered on-the-fly as well as have functions determine the partial to use.\n\n\nIn the following example, \nmakePartial\n registers a partial on the fly using \ntemplate\n and \nid\n, and returns the partial name for use in the template.\n\n\nnew Ractive({\n  el: 'main',\n  template: `\n    \nspan\nAdd a partial:\n/span\n\n    \ntextarea value=\n{{tpl}}\n /\n/div\n\n    \nbutton on-click=\n@this.add()\nAdd\n/button\nbr/\n\n\n    {{#list}}\n      {{\n @this.makePartial(.id, .template) }}\n    {{/}}\n  `,\n  data: {\n    list: [],\n    tpl: '',\n\n  },\n  add: function() {\n    this.push('list', {\n      id: Math.random(),\n      template: this.get('tpl')\n    });\n    this.set('tpl', '');\n  },\n  makePartial: function(id, template) {\n    const name = 'partial-' + id;\n    this.partials[name] = this.partials[name] || template;\n    return name;\n  }\n});\n\n\n\n\nUpdating Partials\n\n\nPartials may be reset after they are rendered using \nractive.resetPartial()\n. A reset partial will update everywhere it is referenced, so if it is used multiple times or inherited by a component, those instances will be updated as well. If a component has a partial with the same name as a parent partial, partial resets will not affect it since it is a different partial.\n\n\nIt should be noted that partials evaluate lazily, so it is possible to cause a single partial to update by wrapping it in a conditional section and causing the section to be hidden and re-shown.\n\n\n{{^toggle}}{{\nrickroll}}{{/}}\n\n\n\n\nractive.partials.rickroll = 'I wouldn\\'t do that to you, chum.';\nractive.set('toggle', true);\nractive.set('toggle', false);\n\n\n\n\nExamples\n\n\nHere's an example of a gallery using a partial for its thumbnail information:\n\n\n!-- The partial called \nthumbnail\n --\n\n\nfigure class='thumbnail'\n\n  \nimg src='assets/thumbnails/{{id}}.jpg'\n\n  \nfigcaption\n{{description}}\n/figcaption\n\n\n/figure\n\n\n\n!-- The template that uses the partial --\n\n\ndiv class='gallery'\n\n  {{#items}}\n    {{\nthumbnail}}\n  {{/items}}\n\n/div", 
             "title": "Partials"
         }, 
         {
@@ -1492,8 +1557,33 @@
         }, 
         {
             "location": "/Extend/Partials/#registering", 
-            "text": "Unlike other plugins, partials have more than 3 registration options.  Globally via the  Ractive.partials  static property.  Ractive.partials.myPartial = MyPartial;  Globally, via a non-executing script tag on the current page.  script type= ractive/template  id= myPartial \n  ... /script   Per component, via the component's  partials  initialization property.  const MyComponent = Ractive.extend({\n  events: {\n    myPartial: myPartial\n  }\n});  Per instance, via the instance's  partials  initialization property.  const ractive = new Ractive({\n  events: {\n    myPartial: myPartial\n  }\n});  An inline partial, using the  {{#partial}}  mustache. Availability depends on whoever uses the template containing the inline partial, whether its a component, an instance or another partial.  {{#partial myPartial}}\n  ...\n{{/}}", 
+            "text": "Unlike other plugins, partials have more than 3 registration options.", 
             "title": "Registering"
+        }, 
+        {
+            "location": "/Extend/Partials/#globally-via-the-ractivepartials-static-property", 
+            "text": "Ractive.partials.myPartial = MyPartial;", 
+            "title": "Globally via the Ractive.partials static property."
+        }, 
+        {
+            "location": "/Extend/Partials/#globally-via-a-non-executing-script-tag-on-the-current-page", 
+            "text": "script type= ractive/template  id= myPartial \n  ... /script   text/html  is another good choice for  type  because many editors will highlight the content of the tag as HTML. Anything other than  text/javascript ,  application/javascript , or no  type  at all will do.", 
+            "title": "Globally, via a non-executing script tag on the current page."
+        }, 
+        {
+            "location": "/Extend/Partials/#per-component-via-the-components-partials-initialization-property", 
+            "text": "const MyComponent = Ractive.extend({\n  events: {\n    myPartial: myPartial\n  }\n});", 
+            "title": "Per component, via the component's partials initialization property."
+        }, 
+        {
+            "location": "/Extend/Partials/#per-instance-via-the-instances-partials-initialization-property", 
+            "text": "const ractive = new Ractive({\n  events: {\n    myPartial: myPartial\n  }\n});", 
+            "title": "Per instance, via the instance's partials initialization property."
+        }, 
+        {
+            "location": "/Extend/Partials/#inline-using-the-partial-mustache", 
+            "text": "Availability depends on whoever uses the template containing the inline partial, whether it's a component, an instance or another partial. Inline partials are scoped to the nearest tag, be it component or element, and are available to any child of that element.  {{#partial myPartial}}\n  ...\n{{/}}", 
+            "title": "Inline, using the {{#partial}} mustache."
         }, 
         {
             "location": "/Extend/Partials/#using", 
@@ -1502,7 +1592,7 @@
         }, 
         {
             "location": "/Extend/Partials/#valid-names", 
-            "text": "Partials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.  Partial names may also contain  -  characters as long as they are surrounded by other valid characters e.g.  some-partial-template .", 
+            "text": "Partials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.  Partial names may also contain  -  and  /  characters as long as they are surrounded by other valid characters e.g.  templates/some-partial-template .", 
             "title": "Valid names"
         }, 
         {
@@ -1552,8 +1642,23 @@
         }, 
         {
             "location": "/Extend/Transitions/#registering", 
-            "text": "Like other plugins, there's 3 ways you can register transitions:  Globally, via the  Ractive.transitions  static property.  Ractive.transitions.myTransition = myTransition;  Per component, via the component's  transitions  initialization property.  const MyComponent = Ractive.extend({\n  transitions: {\n    myTransition: myTransition\n  }\n});  Per instance, via the instance's  transitions  initialization property.  const ractive = new Ractive({\n  decorators: {\n    myTransition: myTransition\n  }\n});", 
+            "text": "Like other plugins, there's 3 ways you can register transitions:", 
             "title": "Registering"
+        }, 
+        {
+            "location": "/Extend/Transitions/#globally-via-the-ractivetransitions-static-property", 
+            "text": "Ractive.transitions.myTransition = myTransition;", 
+            "title": "Globally, via the Ractive.transitions static property."
+        }, 
+        {
+            "location": "/Extend/Transitions/#per-component-via-the-components-transitions-initialization-property", 
+            "text": "const MyComponent = Ractive.extend({\n  transitions: {\n    myTransition: myTransition\n  }\n});", 
+            "title": "Per component, via the component's transitions initialization property."
+        }, 
+        {
+            "location": "/Extend/Transitions/#per-instance-via-the-instances-transitions-initialization-property", 
+            "text": "const ractive = new Ractive({\n  decorators: {\n    myTransition: myTransition\n  }\n});", 
+            "title": "Per instance, via the instance's transitions initialization property."
         }, 
         {
             "location": "/Extend/Transitions/#using", 

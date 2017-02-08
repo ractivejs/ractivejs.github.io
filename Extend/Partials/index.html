@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/Extend/Partials/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Partials - Ractive</title>
+    <title>Partials - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../css/base.css" rel="stylesheet">
     <link href="../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Ractive</a>
+            <a class="navbar-brand" href="../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -596,6 +599,16 @@
         
             <li class="second-level"><a href="#registering">Registering</a></li>
             
+                <li class="third-level"><a href="#globally-via-the-ractivepartials-static-property">Globally via the Ractive.partials static property.</a></li>
+            
+                <li class="third-level"><a href="#globally-via-a-non-executing-script-tag-on-the-current-page">Globally, via a non-executing script tag on the current page.</a></li>
+            
+                <li class="third-level"><a href="#per-component-via-the-components-partials-initialization-property">Per component, via the component's partials initialization property.</a></li>
+            
+                <li class="third-level"><a href="#per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's partials initialization property.</a></li>
+            
+                <li class="third-level"><a href="#inline-using-the-partial-mustache">Inline, using the {{#partial}} mustache.</a></li>
+            
         
             <li class="second-level"><a href="#using">Using</a></li>
             
@@ -629,17 +642,18 @@
 <p>Partials are simply Ractive templates.</p>
 <h2 id="registering">Registering</h2>
 <p>Unlike other plugins, partials have more than 3 registration options.</p>
-<p>Globally via the <code>Ractive.partials</code> static property.</p>
+<h3 id="globally-via-the-ractivepartials-static-property">Globally via the <code>Ractive.partials</code> static property.</h3>
 <pre><code class="js">Ractive.partials.myPartial = MyPartial;
 </code></pre>
 
-<p>Globally, via a non-executing script tag on the current page.</p>
+<h3 id="globally-via-a-non-executing-script-tag-on-the-current-page">Globally, via a non-executing script tag on the current page.</h3>
 <pre><code class="html">&lt;script type=&quot;ractive/template&quot; id=&quot;myPartial&quot;&gt;
   ...
 &lt;/script&gt;
 </code></pre>
 
-<p>Per component, via the component's <code>partials</code> initialization property.</p>
+<p><code>text/html</code> is another good choice for <code>type</code> because many editors will highlight the content of the tag as HTML. Anything other than <code>text/javascript</code>, <code>application/javascript</code>, or no <code>type</code> at all will do.</p>
+<h3 id="per-component-via-the-components-partials-initialization-property">Per component, via the component's <code>partials</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   events: {
     myPartial: myPartial
@@ -647,7 +661,7 @@
 });
 </code></pre>
 
-<p>Per instance, via the instance's <code>partials</code> initialization property.</p>
+<h3 id="per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's <code>partials</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
   events: {
     myPartial: myPartial
@@ -655,7 +669,8 @@
 });
 </code></pre>
 
-<p>An inline partial, using the <code>{{#partial}}</code> mustache. Availability depends on whoever uses the template containing the inline partial, whether its a component, an instance or another partial.</p>
+<h3 id="inline-using-the-partial-mustache">Inline, using the <code>{{#partial}}</code> mustache.</h3>
+<p>Availability depends on whoever uses the template containing the inline partial, whether it's a component, an instance or another partial. Inline partials are scoped to the nearest tag, be it component or element, and are available to any child of that element.</p>
 <pre><code>{{#partial myPartial}}
   ...
 {{/}}
@@ -674,7 +689,7 @@
 
 <h3 id="valid-names">Valid names</h3>
 <p>Partials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.</p>
-<p>Partial names may also contain <code>-</code> characters as long as they are surrounded by other valid characters e.g. <code>some-partial-template</code>.</p>
+<p>Partial names may also contain <code>-</code> and <code>/</code> characters as long as they are surrounded by other valid characters e.g. <code>templates/some-partial-template</code>.</p>
 <h3 id="partial-context">Partial context</h3>
 <p>By default, a partial's context is the context of wherever it is positioned.</p>
 <p>In the following example, the context of the partial is the current item in the list.</p>

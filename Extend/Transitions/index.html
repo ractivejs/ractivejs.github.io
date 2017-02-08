@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/Extend/Transitions/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Transitions - Ractive</title>
+    <title>Transitions - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../css/base.css" rel="stylesheet">
     <link href="../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Ractive</a>
+            <a class="navbar-brand" href="../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -596,6 +599,12 @@
         
             <li class="second-level"><a href="#registering">Registering</a></li>
             
+                <li class="third-level"><a href="#globally-via-the-ractivetransitions-static-property">Globally, via the Ractive.transitions static property.</a></li>
+            
+                <li class="third-level"><a href="#per-component-via-the-components-transitions-initialization-property">Per component, via the component's transitions initialization property.</a></li>
+            
+                <li class="third-level"><a href="#per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's transitions initialization property.</a></li>
+            
         
             <li class="second-level"><a href="#using">Using</a></li>
             
@@ -624,11 +633,11 @@
 <p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register transitions:</p>
-<p>Globally, via the <code>Ractive.transitions</code> static property.</p>
+<h3 id="globally-via-the-ractivetransitions-static-property">Globally, via the <code>Ractive.transitions</code> static property.</h3>
 <pre><code class="js">Ractive.transitions.myTransition = myTransition;
 </code></pre>
 
-<p>Per component, via the component's <code>transitions</code> initialization property.</p>
+<h3 id="per-component-via-the-components-transitions-initialization-property">Per component, via the component's <code>transitions</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   transitions: {
     myTransition: myTransition
@@ -636,7 +645,7 @@
 });
 </code></pre>
 
-<p>Per instance, via the instance's <code>transitions</code> initialization property.</p>
+<h3 id="per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
   decorators: {
     myTransition: myTransition

@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/Concepts/Events/Method Calls/"> 
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Method Calls - Ractive</title>
+    <title>Method Calls - Ractive.js</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../../css/base.css" rel="stylesheet">
     <link href="../../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../css/highlight.css">
+
+
+    <link href="../../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">Ractive</a>
+            <a class="navbar-brand" href="../../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -596,9 +599,9 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><em>See also: <a href="">proxy events</a></em></p>
+<p><em>See also: <a href="../Proxy Events/">proxy events</a></em></p>
 <p><strong>Note:</strong> Unqualified event method calls are deprecated and have been replaced with event expressions that resolve the same way as every other expression in a Ractive template. This means that to call, for instance, <code>set('foo', 'bar')</code> in an event, you would now use <code>@this.set('foo', 'bar')</code>. Unfortunately, this adds a bit of boilerplate to common method calls, but it is also resolves the disparity between event directives and other template references, allows calling data methods from events, and allows executing multiple, possibly more complex, expressions when an event fires.</p>
-<p>As an alternative to <a href="">event directive</a>, right from your template:</p>
+<p>As an alternative to <a href="../Directives/">event directive</a>, right from your template:</p>
 <pre><code class="html">&lt;p&gt;foo is {{foo}}&lt;/p&gt;
 &lt;button on-click='@this.toggle(&quot;foo&quot;)'&gt;toggle foo&lt;/button&gt;
 </code></pre>
@@ -641,7 +644,7 @@
 </code></pre>
 
 <p>The <code>event</code> object is also available within body of the method call function as <code>this.event</code>. Note that methods on your Ractive instance that may handle your events are effectively part of your public API, and <code>this.event</code> will only be available during invocations triggered by an event.</p>
-<p>The <code>event</code> argument is also extended with contextual helper methods. See <a href="">helpers</a>.</p>
+<p>The <code>event</code> argument is also extended with contextual helper methods. See <a href="../../../API/Helper Objects/Node Info/">helpers</a>.</p>
 <p>If you need to evaluate multiple expressions from an event directive, simply separate them with a <code>,</code>. For instance:</p>
 <pre><code class="html">{{#each someList as item}}
 &lt;div&gt;

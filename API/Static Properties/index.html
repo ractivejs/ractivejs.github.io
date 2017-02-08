@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/API/Static Properties/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Static Properties - Ractive</title>
+    <title>Static Properties - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../css/base.css" rel="stylesheet">
     <link href="../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Ractive</a>
+            <a class="navbar-brand" href="../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -716,13 +719,13 @@ MyRactive.defaults.el = document.body;
 <p>A key-value hash of interpolators use by <a href="../Instance Methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
 <hr />
 <h2 id="ractivelength">Ractive.length</h2>
-<p>TODO</p>
+<p>Since <code>Ractive</code> is a function, and functions have a <code>length</code> equal to their number of declared arguments, <code>Ractive</code> has a <code>length</code> of <code>1</code>.</p>
 <hr />
 <h2 id="ractivemagic">Ractive.magic</h2>
-<p>TODO</p>
+<p>Indicates whether or not the current environment supports <a href="../../Concepts/Data Binding/Magic Mode/">magic mode</a>.</p>
 <hr />
 <h2 id="ractivename">Ractive.name</h2>
-<p>TODO</p>
+<p>Like <code>length</code>, functions also have a <code>name</code>, and <code>Ractive</code>'s happens to be <code>"Ractive"</code>.</p>
 <hr />
 <h2 id="ractivepartials">Ractive.partials</h2>
 <p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
@@ -735,7 +738,7 @@ MyRactive.defaults.el = document.body;
 <hr />
 <h2 id="ractivesvg">Ractive.svg</h2>
 <p><em><code>(boolean)</code></em></p>
-<p>Indicates if the browser supports SVG.</p>
+<p>Indicates whether or not the browser supports SVG.</p>
 <hr />
 <h2 id="ractivetransitions">Ractive.transitions</h2>
 <p><em><code>(Object&lt;string, Function&gt;)</code></em></p>

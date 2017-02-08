@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/Extend/Decorators/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Decorators - Ractive</title>
+    <title>Decorators - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../css/base.css" rel="stylesheet">
     <link href="../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Ractive</a>
+            <a class="navbar-brand" href="../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -596,6 +599,12 @@
         
             <li class="second-level"><a href="#registering">Registering</a></li>
             
+                <li class="third-level"><a href="#globally-via-the-ractivedecorators-static-property">Globally, via the Ractive.decorators static property.</a></li>
+            
+                <li class="third-level"><a href="#per-component-via-the-components-decorators-initialization-property">Per component, via the component's decorators initialization property.</a></li>
+            
+                <li class="third-level"><a href="#per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's decorators initialization property.</a></li>
+            
         
             <li class="second-level"><a href="#using">Using</a></li>
             
@@ -632,11 +641,11 @@
 <p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register decorators:</p>
-<p>Globally, via the <code>Ractive.decorators</code> static property.</p>
+<h3 id="globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</h3>
 <pre><code class="js">Ractive.decorators.mydecorator = MyDecorator;
 </code></pre>
 
-<p>Per component, via the component's <code>decorators</code> initialization property.</p>
+<h3 id="per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   decorators: {
     mydecorator: MyDecorator
@@ -644,7 +653,7 @@
 });
 </code></pre>
 
-<p>Per instance, via the instance's <code>decorators</code> initialization property.</p>
+<h3 id="per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
   decorators: {
     mydecorator: MyDecorator

@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/Concepts/Events/Proxy Events/"> 
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Proxy Events - Ractive</title>
+    <title>Proxy Events - Ractive.js</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../../css/base.css" rel="stylesheet">
     <link href="../../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../css/highlight.css">
+
+
+    <link href="../../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../..">Ractive</a>
+            <a class="navbar-brand" href="../../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -611,9 +614,9 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p><em>See also: <a href="">method calls from templates</a></em></p>
-<p>Ractive has a concept of <em>proxy events</em>, which translate a user <em>action</em> (e.g. a mouseclick) defined via an <a href="">event directive</a> into an <em>intention</em> (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).</p>
-<p>As with all events in Ractive, you subscribe with <a href="../../../API/Instance Properties#ractive.on()"><code>ractive.on()</code></a> (also see <a href="">publish-subscribe</a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
+<p><em>See also: <a href="../Method Calls/">method calls from templates</a></em></p>
+<p>Ractive has a concept of <em>proxy events</em>, which translate a user <em>action</em> (e.g. a mouseclick) defined via an <a href="../Directives/">event directive</a> into an <em>intention</em> (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).</p>
+<p>As with all events in Ractive, you subscribe with <a href="../../../API/Instance Properties#ractive.on()"><code>ractive.on()</code></a> (also see <a href="./Publish Subscribe.md">publish-subscribe</a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
 <pre><code class="js">ractive = new Ractive({
   el: 'body',
   template: '&lt;button on-click=&quot;activate&quot;&gt;click me!&lt;/button&gt;'
@@ -631,14 +634,14 @@ ractive.on( 'activate', function ( event ) {
 <ul>
 <li><code>event.name</code> - the name of the event, in this case 'activate'</li>
 <li><code>event.node</code> - the DOM node in question</li>
-<li><code>event.keypath</code> - the <a href="">keypath</a> of the current context</li>
+<li><code>event.keypath</code> - the <a href="../../Templates/Keypaths/">keypath</a> of the current context</li>
 <li><code>event.context</code> - the value of <code>this.get(event.keypath)</code></li>
 <li><code>event.index</code> - a map of index references</li>
-<li><code>event.component</code> - the component that raised the event, only present on <a href="">bubbled events</a></li>
+<li><code>event.component</code> - the component that raised the event, only present on <a href="../Bubbling">bubbled events</a></li>
 <li><code>event.original</code> - the original DOM event, if available</li>
 </ul>
 <p>In the example above, <code>event.keypath</code> might be <code>items.0</code> for the first item in the list, <code>items.1</code> for the second, and so on. The <code>event.index</code> map would have a property <code>i</code>, which would correspond to those indices.</p>
-<p>The event object is also available in event handlers using <code>this.event</code>, see <a href="">publish-subscribe</a> for more details.</p>
+<p>The event object is also available in event handlers using <code>this.event</code>, see <a href="./Publish Subscribe.md">publish-subscribe</a> for more details.</p>
 <h2 id="custom-arguments">Custom arguments</h2>
 <p><strong>NOTE:</strong> Arguments to proxy events have been deprecated because they are too easy to break. If you need to pass arguments with your event, you can use <code>@this.fire('myEvent', event, arg1, arg2, etc)</code>.</p>
 <p>We might want to pass arguments to our handler in addition to the <code>event</code> object. We can do that by listing them, comma-separated, after the event name:</p>
@@ -663,12 +666,12 @@ ractive.on( 'activate', function ( event ) {
 
 <h2 id="cancelling-dom-events">Cancelling DOM events</h2>
 <p>If you return <code>false</code> from a proxy event handler, ractive will automatically call both <code>preventDefault()</code> and <code>stopPropagation()</code> on the original DOM event.</p>
-<p>Note that returning <code>false</code> has a dual purpose of both cancelling further bubbling up the view hierarchy <a href="">event bubbling</a> <strong>as well as</strong> cancelling the DOM Event if the event was DOM-based.</p>
+<p>Note that returning <code>false</code> has a dual purpose of both cancelling further bubbling up the view hierarchy <a href="../Bubbling/">event bubbling</a> <strong>as well as</strong> cancelling the DOM Event if the event was DOM-based.</p>
 <p>If you only want to cancel the DOM event, you can call the appropriate methods directly on <code>event.original</code> or <code>this.event.original</code>, which are both references to the current DOM event object.</p>
 <h1 id="reserved-event-names">Reserved event names</h1>
 <p>Note: the built-in <a href="">lifecycle events</a> are <strong>reserved</strong>, which means you can't use their names as proxy events.</p>
 <h1 id="dynamic-proxy-event-names">Dynamic proxy event names</h1>
-<p><a href="">Mustache references</a> can be used as proxy event names:</p>
+<p><a href="../../Templates/Mustaches">Mustache references</a> can be used as proxy event names:</p>
 <pre><code class="html">&lt;button on-click=&quot;{{handler}}&quot;&gt;click me!&lt;/button&gt;
 </code></pre>
 

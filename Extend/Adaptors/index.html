@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/Extend/Adaptors/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Adaptors - Ractive</title>
+    <title>Adaptors - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,6 +19,9 @@
     <link href="../../css/base.css" rel="stylesheet">
     <link href="../../css/cinder.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +59,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Ractive</a>
+            <a class="navbar-brand" href="../..">Ractive.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -602,6 +605,12 @@
         
             <li class="second-level"><a href="#registering">Registering</a></li>
             
+                <li class="third-level"><a href="#globally-via-the-ractiveadaptors-static-property">Globally, via the Ractive.adaptors static property.</a></li>
+            
+                <li class="third-level"><a href="#per-component-via-the-components-adaptors-initialization-property">Per component, via the component's adaptors initialization property.</a></li>
+            
+                <li class="third-level"><a href="#per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's adaptors initialization property.</a></li>
+            
         
             <li class="second-level"><a href="#using">Using</a></li>
             
@@ -669,11 +678,11 @@
 <p>The <a href="./">adaptor</a> structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an <a href="./">adaptor</a> for a certain back-end. For instance, an <a href="./">adaptor</a> for a constructor-based object may be written differently from an <a href="./">adaptor</a> meant to interact with a socket server.</p>
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register adaptors:</p>
-<p>Globally, via the <code>Ractive.adaptors</code> static property.</p>
+<h3 id="globally-via-the-ractiveadaptors-static-property">Globally, via the <code>Ractive.adaptors</code> static property.</h3>
 <pre><code class="js">Ractive.adaptors.myAdaptor = myAdaptor;
 </code></pre>
 
-<p>Per component, via the component's <code>adaptors</code> initialization property.</p>
+<h3 id="per-component-via-the-components-adaptors-initialization-property">Per component, via the component's <code>adaptors</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   adaptors: {
     myAdaptor: myAdaptor
@@ -681,7 +690,7 @@
 });
 </code></pre>
 
-<p>Per instance, via the instance's <code>adaptors</code> initialization property.</p>
+<h3 id="per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
   adaptors: {
     myAdaptor: myAdaptor
