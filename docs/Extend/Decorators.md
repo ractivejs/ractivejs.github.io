@@ -34,13 +34,13 @@ Any updates to the arguments will call the decorator's `teardown` and run the de
 
 Like other plugins, there's 3 ways you can register decorators:
 
-Globally, via the `Ractive.decorators` static property.
+### Globally, via the `Ractive.decorators` static property.
 
 ```js
 Ractive.decorators.mydecorator = MyDecorator;
 ```
 
-Per component, via the component's `decorators` initialization property.
+### Per component, via the component's `decorators` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
@@ -50,7 +50,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Per instance, via the instance's `decorators` initialization property.
+### Per instance, via the instance's `decorators` initialization property.
 
 ```js
 const ractive = new Ractive({

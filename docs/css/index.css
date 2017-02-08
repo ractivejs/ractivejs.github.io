@@ -1,0 +1,36 @@
+/* colors */
+.navbar-default {
+  background-color: #557526;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  background-color: #384e19;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+  background-color: #384e19;
+}
+
+.navbar-default .dropdown-menu {
+  background-color: #517125;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+  background-color: #476320;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+  background-color: #384e19;
+}
+
+.navbar-default .dropdown-menu>li>a:hover, .navbar-default .dropdown-menu>.active>a, .navbar-default .dropdown-menu>.active>a:hover {
+  background-color: #384e19;
+}
+
+/* functionality fixes */
+@media (min-width: 992px) {
+  .bs-sidebar.affix {
+    max-height: calc(100% - 100px);
+    overflow-y: auto;
+  }
+}

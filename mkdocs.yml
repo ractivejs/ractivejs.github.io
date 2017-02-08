@@ -1,10 +1,17 @@
-site_name: Ractive
+site_name: Ractive.js
+
 site_url: https://ractive.js.org
 repo_url: https://github.com/ractivejs/ractive
+
 site_description: Next-generation DOM manipulation
+
 site_author: RactiveJS contributors
 copyright: © RactiveJS contributors
+
 theme: cinder
+extra_css:
+    - css/index.css
+
 pages:
   - Get Started:
     - Introduction: index.md

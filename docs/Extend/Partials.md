@@ -14,13 +14,13 @@ Partials are simply Ractive templates.
 
 Unlike other plugins, partials have more than 3 registration options.
 
-Globally via the `Ractive.partials` static property.
+### Globally via the `Ractive.partials` static property.
 
 ```js
 Ractive.partials.myPartial = MyPartial;
 ```
 
-Globally, via a non-executing script tag on the current page.
+### Globally, via a non-executing script tag on the current page.
 
 ```html
 <script type="ractive/template" id="myPartial">
@@ -28,7 +28,9 @@ Globally, via a non-executing script tag on the current page.
 </script>
 ```
 
-Per component, via the component's `partials` initialization property.
+`text/html` is another good choice for `type` because many editors will highlight the content of the tag as HTML. Anything other than `text/javascript`, `application/javascript`, or no `type` at all will do.
+
+### Per component, via the component's `partials` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
@@ -38,7 +40,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Per instance, via the instance's `partials` initialization property.
+### Per instance, via the instance's `partials` initialization property.
 
 ```js
 const ractive = new Ractive({
@@ -48,7 +50,10 @@ const ractive = new Ractive({
 });
 ```
 
-An inline partial, using the `{{#partial}}` mustache. Availability depends on whoever uses the template containing the inline partial, whether its a component, an instance or another partial.
+### Inline, using the `{{#partial}}` mustache.
+
+Availability depends on whoever uses the template containing the inline partial, whether it's a component, an instance or another partial. Inline partials are scoped to the nearest tag, be it component or element, and are available to any child of that element.
+
 
 ```
 {{#partial myPartial}}
@@ -74,7 +79,7 @@ Partials can be used using the `{{>partialName}}` syntax. Partials work where an
 
 Partials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.
 
-Partial names may also contain `-` characters as long as they are surrounded by other valid characters e.g. `some-partial-template`.
+Partial names may also contain `-` and `/` characters as long as they are surrounded by other valid characters e.g. `templates/some-partial-template`.
 
 ### Partial context
 

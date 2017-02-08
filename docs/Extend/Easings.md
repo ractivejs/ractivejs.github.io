@@ -17,13 +17,13 @@ Easing functions are simply functions that accept one argument, a numeric value 
 
 Like other plugins, there's 3 ways you can register an easing function:
 
-Globally via the `Ractive.easing` static property.
+### Globally via the `Ractive.easing` static property.
 
 ```js
 Ractive.easing.MyEasingFunction = function(){ ... };
 ```
 
-Per component via the component's `easing` initialization property.
+### Per component via the component's `easing` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
@@ -33,7 +33,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Per instance, via the instance's `easing` initialization property.
+### Per instance, via the instance's `easing` initialization property.
 
 ```js
 const ractive = new Ractive({

@@ -29,13 +29,13 @@ The event object will be augmented with `context`, `keypath` and `index` propert
 
 Like other plugins, there's 3 ways you can register events:
 
-Globally, via the `Ractive.events` static property.
+### Globally, via the `Ractive.events` static property.
 
 ```js
 Ractive.events.myevent = MyEvent;
 ```
 
-Per component, via the component's `events` initialization property.
+### Per component, via the component's `events` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
@@ -45,7 +45,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Per instance, via the instance's `events` initialization property.
+### Per instance, via the instance's `events` initialization property.
 
 ```js
 const ractive = new Ractive({

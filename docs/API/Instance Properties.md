@@ -58,12 +58,6 @@ The instance-only registry of [events](../Extend/Events.md).
 
 ---
 
-## ractive.fragment
-
-TODO
-
----
-
 ## ractive.interpolators
 
 _`(Object<string, Function>)`_
@@ -158,8 +152,3 @@ _`(Object<string, Function>)`_
 
 The instance-only registry of [transitions](../Extend/Transitions.md).
 
----
-
-## ractive.viewmodel
-
-TODO
