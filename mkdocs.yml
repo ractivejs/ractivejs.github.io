@@ -1,0 +1,84 @@
+site_name: Ractive
+site_url: https://ractive.js.org
+repo_url: https://github.com/ractivejs/ractive
+site_description: Next-generation DOM manipulation
+site_author: RactiveJS contributors
+copyright: © RactiveJS contributors
+theme: cinder
+pages:
+  - Get Started:
+    - Introduction: index.md
+    - Examples:
+      - Animated Chart: Get Started/Examples/Chart.md
+      - Clock: Get Started/Examples/Clock.md
+      - Comments: Get Started/Examples/Comments.md
+      - Components: Get Started/Examples/Components.md
+      - Illustration: Get Started/Examples/Illustration.md
+      - Infinite Scroll: Get Started/Examples/Infinite Scroll.md
+      - Backbone: Get Started/Examples/Backbone.md
+      - Ratings: Get Started/Examples/Ratings.md
+      - Todos: Get Started/Examples/Todos.md
+    - Debugging: Get Started/Debugging.md
+    - Support: Get Started/Support.md
+    - Contributing: Get Started/Contributing.md
+  - API:
+    - Initialization Options: API/Initialization Options.md
+    - Static Properties: API/Static Properties.md
+    - Static Methods: API/Static Methods.md
+    - Instance Properties: API/Instance Properties.md
+    - Instance Methods: API/Instance Methods.md
+    - Helper Objects:
+      - Node Info: API/Helper Objects/Node Info.md
+      - Parse: API/Helper Objects/Parse.md
+      - Transition: API/Helper Objects/Transition.md
+    - Errors: API/Errors.md
+  - Integrations:
+    - Plugins: Integrations/Plugins.md
+    - Tools: Integrations/Tools.md
+    - Libraries: Integrations/Libraries.md
+  - Extend:
+    - Adaptors: Extend/Adaptors.md
+    - Components: Extend/Components.md
+    - Decorators: Extend/Decorators.md
+    - Easings: Extend/Easings.md
+    - Events: Extend/Events.md
+    - Interpolators: Extend/Interpolators.md
+    - Partials: Extend/Partials.md
+    - Transitions: Extend/Transitions.md
+  - Concepts:
+    - Architecture:
+      - Overview: Concepts/Architecture/Overview.md
+      - Parser: Concepts/Architecture/Parser.md
+      - Model: Concepts/Architecture/Model.md
+      - View: Concepts/Architecture/View.md
+    - Data Binding:
+      - Array Modification: Concepts/Data Binding/Array Modification.md
+      - Computed Properties: Concepts/Data Binding/Computed Properties.md
+      - Dependents: Concepts/Data Binding/Dependents.md
+      - Magic Mode: Concepts/Data Binding/Magic Mode.md
+      - Observers: Concepts/Data Binding/Observers.md
+      - Parallel DOM: Concepts/Data Binding/Parallel DOM.md
+      - Two-Way Binding: Concepts/Data Binding/Two-Way Binding.md
+    - Events:
+      - Overview: Concepts/Events/Overview.md
+      - Bubbling: Concepts/Events/Bubbling.md
+      - Directives: Concepts/Events/Directives.md
+      - Method Calls: Concepts/Events/Method Calls.md
+      - Proxy Events: Concepts/Events/Proxy Events.md
+      - Publish-Subscribe: Concepts/Events/Publish-Subscribe.md
+    - Rendering:
+      - Progressive Enhancement: Concepts/Rendering/Progressive Enhancement.md
+      - Server-Side Rendering: Concepts/Rendering/Server-Side Rendering.md
+    - Security:
+      - CSP: Concepts/Security/CSP.md
+    - Templates:
+      - Overview: Concepts/Templates/Overview.md
+      - Elements: Concepts/Templates/Elements.md
+      - Expressions: Concepts/Templates/Expressions.md
+      - Keypaths: Concepts/Templates/Keypaths.md
+      - Mustaches: Concepts/Templates/Mustaches.md
+      - Parsing: Concepts/Templates/Parsing.md
+      - Pre-Parsing: Concepts/Templates/Pre-Parsing.md
+      - References: Concepts/Templates/References.md
+
+

@@ -1,0 +1,16 @@
+appdirs==1.4.0
+backports-abc==0.5
+certifi==2017.1.23
+click==6.7
+Jinja2==2.9.5
+livereload==2.5.1
+Markdown==2.6.8
+MarkupSafe==0.23
+mkdocs==0.16.1
+mkdocs-cinder==0.9.4
+packaging==16.8
+pyparsing==2.1.10
+PyYAML==3.12
+singledispatch==3.4.0.3
+six==1.10.0
+tornado==4.4.2
