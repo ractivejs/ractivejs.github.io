@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Initialization Options - Ractive</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Basic Usage</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Debug/">Debug</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Contribute/">Contribute</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Static Properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Static Methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Instance Properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Instance Methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../Helper Objects/Node Info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Helper Objects/Parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Helper Objects/Transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../Errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Integrations/Plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/View/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Array Modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Computed Properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Magic Mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Parallel DOM/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Two-Way Binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Events/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Method Calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Proxy Events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Publish-Subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Progressive Enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Server-Side Rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Security/CSP/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Pre-Parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/References/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../../Get Started/Contribute/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Static Properties/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#adapt">adapt</a></li>
+        
+    
+        <li class="first-level "><a href="#adaptors">adaptors</a></li>
+        
+    
+        <li class="first-level "><a href="#append">append</a></li>
+        
+    
+        <li class="first-level "><a href="#components">components</a></li>
+        
+    
+        <li class="first-level "><a href="#computed">computed</a></li>
+        
+    
+        <li class="first-level "><a href="#csp">csp</a></li>
+        
+    
+        <li class="first-level "><a href="#css">css</a></li>
+        
+    
+        <li class="first-level "><a href="#data">data</a></li>
+        
+    
+        <li class="first-level "><a href="#decorators">decorators</a></li>
+        
+    
+        <li class="first-level "><a href="#delimiters">delimiters</a></li>
+        
+    
+        <li class="first-level "><a href="#easing">easing</a></li>
+        
+    
+        <li class="first-level "><a href="#el">el</a></li>
+        
+    
+        <li class="first-level "><a href="#enhance">enhance</a></li>
+        
+    
+        <li class="first-level "><a href="#events">events</a></li>
+        
+    
+        <li class="first-level "><a href="#interpolators">interpolators</a></li>
+        
+    
+        <li class="first-level "><a href="#isolated">isolated</a></li>
+        
+    
+        <li class="first-level "><a href="#lazy">lazy</a></li>
+        
+    
+        <li class="first-level "><a href="#magic">magic</a></li>
+        
+    
+        <li class="first-level "><a href="#modifyarrays">modifyArrays</a></li>
+        
+    
+        <li class="first-level "><a href="#nocsstransform">noCSSTransform</a></li>
+        
+    
+        <li class="first-level "><a href="#nointro">noIntro</a></li>
+        
+    
+        <li class="first-level "><a href="#onchange">onchange</a></li>
+        
+    
+        <li class="first-level "><a href="#oncomplete">oncomplete</a></li>
+        
+    
+        <li class="first-level "><a href="#onconfig">onconfig</a></li>
+        
+    
+        <li class="first-level "><a href="#onconstruct">onconstruct</a></li>
+        
+    
+        <li class="first-level "><a href="#ondetach">ondetach</a></li>
+        
+    
+        <li class="first-level "><a href="#oninit">oninit</a></li>
+        
+    
+        <li class="first-level "><a href="#oninsert">oninsert</a></li>
+        
+    
+        <li class="first-level "><a href="#onrender">onrender</a></li>
+        
+    
+        <li class="first-level "><a href="#onteardown">onteardown</a></li>
+        
+    
+        <li class="first-level "><a href="#onunrender">onunrender</a></li>
+        
+    
+        <li class="first-level "><a href="#onupdate">onupdate</a></li>
+        
+    
+        <li class="first-level "><a href="#partials">partials</a></li>
+        
+    
+        <li class="first-level "><a href="#preservewhitespace">preserveWhitespace</a></li>
+        
+    
+        <li class="first-level "><a href="#sanitize">sanitize</a></li>
+        
+    
+        <li class="first-level "><a href="#staticdelimiters">staticDelimiters</a></li>
+        
+    
+        <li class="first-level "><a href="#statictripledelimiters">staticTripleDelimiters</a></li>
+        
+    
+        <li class="first-level "><a href="#stripcomments">stripComments</a></li>
+        
+    
+        <li class="first-level "><a href="#template">template</a></li>
+        
+    
+        <li class="first-level "><a href="#transitions">transitions</a></li>
+        
+    
+        <li class="first-level "><a href="#transitionsenabled">transitionsEnabled</a></li>
+        
+    
+        <li class="first-level "><a href="#tripledelimiters">tripleDelimiters</a></li>
+        
+    
+        <li class="first-level "><a href="#twoway">twoway</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>The following is an exhaustive list of initialisation options that you can pass to <code>new Ractive(options)</code> and <code>Ractive.extend(options)</code>, with full descriptions grouped below by category.</p>
+<p>Note that any additional options set that's not part of the<a href="./">initialization options</a>will be added as properties of the instance.</p>
+<pre><code class="js">var ractive = new Ractive({
+  myMethod: function () {
+    alert( 'my method was called' );
+  }
+});
+
+ractive.myMethod(); // triggers the alert
+</code></pre>
+
+<hr />
+<h1 id="adapt">adapt</h1>
+<p><em><code>(Array&lt;string|Object&gt;)</code></em></p>
+<p>Custom wrappers to be used with all or part of the supplied data, see <a href="../../Plugin Authoring/Adaptors/">Adaptors</a>. Unlike components or other registries where there is a template-level directive that informs Ractive that plugin is to be used, <a href="../../Plugin Authoring/Adaptors/">adaptors</a> are a data-level construct and so you use the <code>adapt</code> option to tell Ractive which <a href="../../Plugin Authoring/Adaptors/">adaptors</a> are to be used with that instance. If you define the <a href="../../Plugin Authoring/Adaptors/">adaptors</a> directly on the instance or component, you do not need to specify them in the <code>adapt</code> option.</p>
+<p>Can either be the <a href="../../Plugin Authoring/Adaptors/">adaptor</a> itself, or the name of an <a href="../../Plugin Authoring/Adaptors/">adaptor</a> registred via <code>Ractive.adaptors</code>:</p>
+<pre><code class="js">Ractive.adaptors.myAdaptor = MyAdaptor1;
+
+new Ractive({
+  adapt: [ 'myAdaptor', MyAdaptor2 ]
+})
+</code></pre>
+
+<hr />
+<h1 id="adaptors">adaptors</h1>
+<p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
+<p>A key-value hash of <a href="../../Plugin Authoring/Adaptors/">adaptors</a> that are specific to this instance. Usually the <code>adapt</code> property can directly specify which adaptors
+to use on this instance and the <code>adaptors</code> property is used to register an <a href="../../Plugin Authoring/Adaptors/">adaptor</a> on components or <code>Ractive.adaptors</code>.</p>
+<pre><code class="js">adaptors: {
+  myAdaptor: MyAdaptor
+}
+</code></pre>
+
+<hr />
+<h1 id="append">append</h1>
+<p><em><code>(boolean|string|HTMLElement|array-like)</code></em></p>
+<p>Controls how the instance is attached to <code>el</code>. Defaults to <code>false</code>.</p>
+<p><code>false</code> replaces the contents of <code>el</code>.</p>
+<pre><code class="html">&lt;div id='container'&gt;
+  &lt;p&gt;existing content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="js">el: '#container',
+append: false,
+template: '&lt;p&gt;new content&lt;/p&gt;'
+</code></pre>
+
+<pre><code class="html">&lt;div id='container'&gt;
+  &lt;p&gt;new content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><code>true</code> appends the instance to <code>el</code>.</p>
+<pre><code class="html">&lt;div id='container'&gt;
+  &lt;p&gt;existing content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="jss">el: '#container',
+append: true,
+template: '&lt;p&gt;new content&lt;/p&gt;'
+</code></pre>
+
+<pre><code class="html">&lt;div id='container'&gt;
+  &lt;p&gt;existing content&lt;/p&gt;
+  &lt;p&gt;new content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>An element id, CSS selector referencing an element, HTML element reference or an array-like object containing an HTML element reference as first item that is a child of <code>el</code> will render the instance before that element.</p>
+<pre><code class="html">&lt;div id='container'&gt;
+  &lt;p&gt;red&lt;/p&gt;
+  &lt;p&gt;orange&lt;/p&gt;
+  &lt;p&gt;yellow&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="js">el: '#container',
+append: document.querySelector('p:nth-child(2)'),
+template: '&lt;p&gt;grey&lt;/p&gt;'
+</code></pre>
+
+<pre><code class="html">&lt;div id='container'&gt;
+  &lt;p&gt;red&lt;/p&gt;
+  &lt;p&gt;grey&lt;/p&gt;
+  &lt;p&gt;orange&lt;/p&gt;
+  &lt;p&gt;yellow&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<hr />
+<h1 id="components">components</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>A map of <a href="../../Plugin Authoring/Components/">components</a> where the <code>key</code> is the name of the component the <code>value</code> is either a component definition or a function that returns either a globally registered component name or a component definition.</p>
+<pre><code class="js">components: {
+  'my-component': Ractive.extend({
+    template: '#componentTemplate',
+    init: function () {...}
+  }),
+  dynamicComponent: function(data){
+    return data.foo ? 'globallyRegisteredComponent' : componentDefinition;
+  }
+}
+</code></pre>
+
+<p>If you need to do additional post-processing on the components, the function option receives post-processed data.</p>
+<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, function component options will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<hr />
+<h1 id="computed">computed</h1>
+<p><em><code>(Object&lt;string, function|Object&gt;)</code></em></p>
+<p>An object that maps to a set of computed values.</p>
+<pre><code class="js">computed: {
+  area: '${width} - ${height}'
+}
+</code></pre>
+
+<p>See <a href="../Under The Hood/Data Binding/Computed Properties.md">Computed Properties</a> for more information and examples .</p>
+<hr />
+<h1 id="csp">csp</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. Whether or not to add inline functions for expressions after parsing. This can effectively eliminate <code>eval</code> caused by expressions in templates. It also makes the resulting template no longer JSON compatible, so the template will have to be served via <code>script</code> tag.</p>
+<hr />
+<h1 id="css">css</h1>
+<p><em><code>(string)</code></em></p>
+<p>Used on components to specify <code>css</code> styles to be inserted into the document.</p>
+<hr />
+<h1 id="data">data</h1>
+<p><em><code>(Object&lt;string, any&gt;|Function)</code></em></p>
+<p>The data with which to initialise.</p>
+<pre><code class="js">data: { foo: 'bar' }
+
+data: function() {
+  return { foo: 'bar' };
+}
+</code></pre>
+
+<p>When using a data object on components, the data is attached to the component's prototype. Standard prototype rules apply, which means modifying non-primitive data will modify the value on the prototype.</p>
+<pre><code class="js">const Component = Ractive.extend({
+    data: {
+        foo: { bar: 42 }
+    }
+});
+
+var component1 = new Component();
+var component2 = new Component();
+component1.set( 'foo.bar', 12 );
+component2.get( 'foo.bar' ); // returns 12
+</code></pre>
+
+<p>When using a data function, the function is run to generate the data and the data is attached to each instance rather than to the prototype.</p>
+<pre><code class="js">const Component = Ractive.extend({
+    data: function () {
+        return {
+            foo: { bar: 42 }
+        };
+    }
+});
+
+var component1 = new Component();
+var component2 = new Component();
+component1.set( 'foo.bar', 12 );
+component2.get( 'foo.bar' ); // returns 12
+</code></pre>
+
+<p><code>this._super</code> can be used when using a data function option to merge the parent component data into the extending component. Ractive handles the differences between usage of a data object and data function.</p>
+<pre><code class="js">var Component1 = Ractive.extend({
+  data: {
+    formatTitle: function (title) {
+      return '&quot;' + title.toUpperCase() + '&quot;';
+    }
+  }
+});
+
+var Component2 = Component1.extend({
+  data: function( data ) {
+    this._super( data );
+    data.scale = 5;
+  }
+});
+
+var ractive = new Component2({
+    data: { foo: 'bar' }
+});
+
+// r.data: { foo: &quot;bar&quot;, formatTitle: function, scale: 5 }
+</code></pre>
+
+<p>Data may also be set asynchronously when using data function options.</p>
+<pre><code class="js">data: function () {
+
+    $.get( 'somedata.url', function( data ) {
+        this.set( '', data );
+    }.bind(this) );
+
+    return {
+        foo: 'default'
+    };
+}
+</code></pre>
+
+<p>Models can also be used to supply data as long as they return plain objects whose properties are public.</p>
+<pre><code class="js">data: function ( data ) {
+    return new Model( data );
+}
+</code></pre>
+
+<p>If you use a constructor guard clause, you can simply provide the reference to the model directly instead using a data function.</p>
+<pre><code class="js">function Model ( data ) {
+    if ( !( this instanceof Model) ) { return new Model( data ); }
+    // model setup
+}
+
+var MyComponent = Ractive.extend({
+    data: Model
+});
+
+var r = new MyComponent({
+    data: { foo: 'bar' }
+})
+</code></pre>
+
+<p>For more advanced data modelling and backends, use <a href="../../Plugin Authoring/Adaptors/">Adaptors</a>.</p>
+<hr />
+<h1 id="decorators">decorators</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>A key-value hash of decorators that are specific to this instance, where <code>key</code> is the name of the decorator (as referenced within templates as <code>&lt;div decorator="myDecorator"&gt;&lt;/div&gt;</code>), and <code>value</code> is a is a decorator functions.  See <a href="../../Plugin Authoring/Decorators/">Decorators</a> for more info.</p>
+<pre><code class="js">decorators: {
+  'myDecorator': function( node, fire) {...}
+}
+</code></pre>
+
+<hr />
+<h1 id="delimiters">delimiters</h1>
+<p><em><code>(Array[string])</code></em></p>
+<p>Defaults to <code>[ '{{', '}}' ]</code>. Used to set what delimiters to use when parsing templates.</p>
+<pre><code class="js">template: 'hello &lt;%= world %&gt;',
+delimiters: [ '&lt;%=', '%&gt;' ],
+data: { world: 'earth' }
+
+// result:
+hello earth
+</code></pre>
+
+<hr />
+<h1 id="easing">easing</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>A key-value hash of easing function. See [<code>Ractive.easing()</code>](../API/Static Methods.md#Ractive.easing())</p>
+<hr />
+<h1 id="el">el</h1>
+<p><em><code>(string|HTMLElement|array-like)</code></em></p>
+<p>Directives for the element to render to. Use <code>append</code> option (see below) to control whether existing content is replaced.</p>
+<p>Can either be an element id, CSS selector referencing an element, a reference to an HTML element, or an array-like object containing an HTML element reference as first item.</p>
+<pre><code class="js">el: 'container'
+el: '#container'
+el: document.getElementById('container')
+el: $('#container')
+</code></pre>
+
+<hr />
+<h1 id="enhance">enhance</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. Whether or not to try to reuse the existing DOM in the target element when rendering a.k.a. progressive enhancement. This allows you to serve the fully rendered page and then render the Ractive template at load over the pre-rendered page without completely wiping out the existing content. There are a few limitations surrounding text nodes, but all matching elements will be reused.</p>
+<p>This option cannot be used with <code>append</code>.</p>
+<p>To expand on the limitations with text nodes, since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like <code>outer text {{#if foo}}inner text{{/if}}</code>. The <code>'outer text '</code> text node is always present, and if <code>foo</code> becomes truthy, an additional text node will be inserted next to the <code>'outer text '</code> node containing <code>'inner text'</code>. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. <code>outer text {{#if foo}}&lt;span&gt;hello&lt;/span&gt;{{/if}} the other side</code>. In that case, if <code>foo</code> is initially falsey, the <code>'outer text '</code> and <code>' the other side'</code> nodes could be merged into a single node. However, if <code>foo</code> became truthy, that node would have to be split into two to place on either side of the <code>&lt;span&gt;</code>.</p>
+<p>Additionally, unescaped HTML mustaches (triples) don't play nicely with enhance because there's no easy way to match up the string content to the target DOM nodes. This may be remedied at some point in the future.</p>
+<p>TODO: Simplify/restructure</p>
+<hr />
+<h1 id="events">events</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>A key-value hash of <a href="../../Plugin Authoring/Events/">event plugins</a> that are specific to this instance, where <code>key</code> is the name of the event (as referenced within templates as <code>&lt;button on-mycustomevent="fire"&gt;&lt;/button&gt;</code>), and <code>value</code> is the custom event plugin functions.  See <a href="../../Plugin Authoring/Events/">Writing Events</a> for more info.</p>
+<pre><code class="js">events: {
+  'mycustomevent': function( node, fire ) {...}
+}
+</code></pre>
+
+<hr />
+<h1 id="interpolators">interpolators</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>A key-value hash of interpolators use by <a href="../Instance Methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
+<hr />
+<h1 id="isolated">isolated</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. This option is typically only relevant as an extension option for <a href="../../Plugin Authoring/Components/">Components</a>. Controls whether the component will look outside itself for data and registry items.</p>
+<hr />
+<h1 id="lazy">lazy</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. If two-way data binding is enabled, whether to only update data based on text inputs on <code>change</code> and <code>blur</code> events, rather than any event (such as key events) that may result in new data.</p>
+<pre><code class="js">var ractive = new Ractive({
+  template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
+  data: { foo: 'bar' },
+  lazy: true
+});
+
+// will not fire as user is typing
+ractive.on('change', function(){
+  // only happens on exiting &lt;inputor return if submit
+  console.log('changed!')
+})
+</code></pre>
+
+<hr />
+<h1 id="magic">magic</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. Whether or not to wrap data in ES5 accessors for automatic binding (see <a href="../Under The Hood/Data Binding/Magic Mode.md">Magic Mode</a>).</p>
+<pre><code class="js">var data = { foo: 'bar' };
+new Ractive({ data: data } );
+// will update automagically:
+data.foo = 'fizz'
+</code></pre>
+
+<hr />
+<h1 id="modifyarrays">modifyArrays</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see <a href="../Under The Hood/Data Binding/Array Modification.md">Array Modification</a>).</p>
+<pre><code class="js">var items = [ 'red', 'blue' ];
+new Ractive({
+  data: data,
+  modifyArrays: true //default
+});
+
+// will update automagically:
+items.push( 'green' );
+</code></pre>
+
+<hr />
+<h1 id="nocsstransform">noCSSTransform</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. Prevents component css from being transformed with scoping guids.</p>
+<hr />
+<h1 id="nointro">noIntro</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. Whether or not to skip intro transitions on render.</p>
+<pre><code class="js">var ractive = new Ractive({
+  template: '&lt;ul&gt;{{#items}}&lt;li intro=&quot;fade&quot;&gt;{{.}}&lt;/li&gt;{{/items}}&lt;/ul&gt;',
+  data: { items: [ 'red', 'blue' ] },
+  transitions: { fade: function ( t, params ) {...} },
+  noIntro: true
+});
+// 'red' and 'blue' list items do not fade in on intro
+
+ractive.get('items').push( 'green' );
+// 'green' list item will fade in
+</code></pre>
+
+<hr />
+<h1 id="onchange">onchange</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when data owned by the instance changes.</p>
+<p>Accepts an map whose keys are the <a href="../Under The Hood/Templates/Keypaths.md">keypaths</a> that changed and whose values are the new values for that keypath.</p>
+<hr />
+<h1 id="oncomplete">oncomplete</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when the instance is rendered <em>and</em> all the transitions have completed.</p>
+<hr />
+<h1 id="onconfig">onconfig</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when an instance is constructed and all configuration options have been processed.</p>
+<hr />
+<h1 id="onconstruct">onconstruct</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when an instance is constructed but before any configuration has been processed.</p>
+<p>Accepts the<a href="./">initialization options</a>as arguments.</p>
+<hr />
+<h1 id="ondetach">ondetach</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called whenever <code>ractive.detach()</code> is called.</p>
+<p>Note that <code>ractive.insert()</code> implicitly calls <code>ractive.detach()</code> if needed.</p>
+<hr />
+<h1 id="oninit">oninit</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when an instance is constructed and is ready to be rendered.</p>
+<hr />
+<h1 id="oninsert">oninsert</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when <code>ractive.insert()</code> is called.</p>
+<hr />
+<h1 id="onrender">onrender</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when the instance is rendered and <em>before</em> transitions are started.</p>
+<hr />
+<h1 id="onteardown">onteardown</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when the instance is being torn down.</p>
+<hr />
+<h1 id="onunrender">onunrender</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when the instance is being undrendered.</p>
+<hr />
+<h1 id="onupdate">onupdate</h1>
+<p><em><code>(Function)</code></em></p>
+<p>A lifecycle event that is called when <code>ractive.update()</code> is called.</p>
+<hr />
+<h1 id="partials">partials</h1>
+<p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
+<p>A map of <a href="../../Plugin Authoring/Partials/">partials</a> where the key is the name of the partial, and the value is either a template string, an parsed template object or a function that returns any of the previous options.</p>
+<pre><code class="js">partials: {
+  stringPartial: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
+  parsedPartial: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
+  functionPartial: function(data, p){
+    return data.condition ? '&lt;p&gt;hello world&lt;/p&gt;' : '&lt;div&gt;yes, we have no foo&lt;/div&gt;';
+  }
+}
+</code></pre>
+
+<p>If you need to do additional post-processing on the partials, the function option receives post-processed data and a <a href="../Helper Objects/Parse Object.md">Parse Object</a> that provides helper methods for template manipulation.</p>
+<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, function partials will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<hr />
+<h1 id="preservewhitespace">preserveWhitespace</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>false</code>. Whether or not to preserve whitespace in templates when parsing. (Whitespace in <code>&lt;pre&gt;</code> elements is always preserved.)</p>
+<pre><code class="js">var ractive = new Ractive({
+  template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
+  preserveWhitespace: false //default
+});
+console.log( ractive.toHTML() );
+// &quot;&lt;p&gt;hello world&lt;/p&gt;&quot;
+
+var ractive = new Ractive({
+  template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
+  preserveWhitespace: true
+});
+console.log( ractive.toHTML() );
+//&quot;&lt;p&gt;hello
+//
+//  world   &lt;/p&gt;&quot;
+</code></pre>
+
+<p>Please note that the browser will still deal with whitespace in the normal fashion.</p>
+<hr />
+<h1 id="sanitize">sanitize</h1>
+<p><em><code>(boolean|Object)</code></em></p>
+<p>Defaults to <code>false</code>. If <code>true</code>, certain elements will be stripped from templates at parse time - <code>&lt;applet&gt;</code>, <code>&lt;base&gt;</code>, <code>&lt;basefont&gt;</code>, <code>&lt;body&gt;</code>, <code>&lt;frame&gt;</code>, <code>&lt;frameset&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;isindex&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;meta&gt;</code>, <code>&lt;noframes&gt;</code>, <code>&lt;noscript&gt;</code>, <code>&lt;Object&gt;</code>, <code>&lt;param&gt;</code>, <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> and <code>&lt;title&gt;</code> - as will event attributes (e.g. <code>onclick</code>).</p>
+<pre><code class="js">template: '&lt;p&gt;some content&lt;/p&gt;&lt;frame&gt;Am I a bad element or just misunderstood?&lt;/frame&gt;',
+sanitize: true
+
+// result:
+&lt;p&gt;some content&lt;/p&gt;
+</code></pre>
+
+<p>Alternatively, pass in an object with an <code>elements</code> property containing an array of blacklisted elements, and an optional <code>eventAttributes</code> boolean (<code>true</code> means 'disallow event attributes').</p>
+<pre><code class="js">template: '&lt;p&gt;some content&lt;/p&gt;&lt;div onclick=&quot;doEvil()&quot;&gt;the good stuff&lt;/div&gt;',
+sanitize: {
+  elements: [ 'p' ],
+  eventAttributes: true
+}
+
+// result:
+&lt;div&gt;the good stuff&lt;/div&gt;
+</code></pre>
+
+<hr />
+<h1 id="staticdelimiters">staticDelimiters</h1>
+<p><em><code>(Array[string])</code></em></p>
+<p>Defaults to <code>[ '[[', ']]' ]</code>. Used to set what static (one-time binding) delimiters to use when parsing templates.</p>
+<pre><code class="js">var ractive = new Ractive({
+  template: 'hello [[foo]]',
+  staticDelimiters: [ '[[', ']]' ], //default
+  data: { foo: 'world' }
+});
+// result: &quot;hello world&quot;
+
+ractive.set( 'foo', 'mars' );
+// still is: &quot;hello world&quot;
+</code></pre>
+
+<hr />
+<h1 id="statictripledelimiters">staticTripleDelimiters</h1>
+<p><em><code>(Array&lt;string&gt;)</code></em></p>
+<p>Defaults to <code>[ '[[[', ']]]' ]</code>. Used to set what static (one-time binding) triple delimiters to use when parsing templates.</p>
+<pre><code class="js">var ractive = new Ractive({
+  template: 'hello [[[html]]]',
+  staticTripleDelimiters: [ '[[[', ']]]' ], //default
+  data: { html: '&lt;span&gt;world&lt;/span&gt;' }
+});
+// result: &quot;hello &lt;span&gt;world&lt;/span&gt;&quot;
+
+ractive.set( 'html', '&lt;span&gt;mars&lt;/span&gt;' );
+// still is: &quot;hello world&quot;
+</code></pre>
+
+<hr />
+<h1 id="stripcomments">stripComments</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>true</code>. Whether or not to remove comments in templates when parsing.</p>
+<pre><code class="js">template: '&lt;!-- html comment --&gt;hello world',
+stripComments: false
+
+// result:
+&lt;!-- html comment --&gt;hello world
+</code></pre>
+
+<hr />
+<h1 id="template">template</h1>
+<p><em><code>(string|array|object|function)</code></em></p>
+<p>The <a href="../Under The Hood/Templates/Templates.md">template</a> to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [<code>Ractive.parse()</code>](../API/Static Methods.md#Ractive.parse()) or a function that returns any of the previous options.</p>
+<pre><code class="js">// Selector
+template: '#my-template',
+
+// HTML
+template: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
+
+// Template AST
+template: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
+
+// Function
+template: function(data, p){
+  return '&lt;p&gt;{{greeting}} world!&lt;/p&gt;';
+},
+</code></pre>
+
+<p>If you need to do additional post-processing on templates, the function option receives the post-processed data and a <a href="../Helper Objects/Parse Object.md">Parse Object</a> that provides helper methods for template manipulation.</p>
+<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, function templates will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<hr />
+<h1 id="transitions">transitions</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>A key-value hash of transitions that are specific to this instance. The <code>key</code> is referenced within templates using <code>intro</code> and <code>outro</code> attributes on elements, and <code>value</code> is a transition functions, see <a href="../../Plugin Authoring/Transitions/">Transitions</a> for more info.</p>
+<pre><code class="js">template: '&lt;p intro=&quot;slide&quot; outro=&quot;slide&quot;&gt;hello world&lt;/p&gt;',
+transitions: {
+  slide: function ( t, params ) {...}
+}
+</code></pre>
+
+<hr />
+<h1 id="transitionsenabled">transitionsEnabled</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>true</code>. Whether or not transitions are enabled for this instance.</p>
+<hr />
+<h1 id="tripledelimiters">tripleDelimiters</h1>
+<p><em><code>(Array[string])</code></em></p>
+<p>Defaults to <code>[ '{{{', '}}}' ]</code>. Used to set what triple delimiters to use when parsing templates.</p>
+<pre><code class="js">template: 'hello @html@',
+tripleDelimiters: [ '@', '@' ],
+data: { html: '&lt;span&gt;world&lt;/span&gt;' }
+
+// result:
+hello &lt;span&gt;world&lt;/span&gt;
+</code></pre>
+
+<hr />
+<h1 id="twoway">twoway</h1>
+<p><em><code>(boolean)</code></em></p>
+<p>Defaults to <code>true</code>. Whether or not two-way data binding is enabled (see <a href="../Under The Hood/Data Binding/Two-Way Binding.md">Two-Way Binding</a>).</p>
+<pre><code class="js">var ractive = new Ractive({
+  template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
+  data: { foo: 'bar' },
+  twoway: false
+});
+
+// user types &quot;fizz&quot; into &lt;input&gt;, but data value is not changed:
+console.log( ractive.get( 'foo' ) ); //logs &quot;bar&quot;
+
+// updates from the model are still pushed to the view
+ractive.set( 'foo', 'fizz' );
+
+// input now displays &quot;fizz&quot;
+</code></pre>
+
+<p>Also see <a href="#staticDelimiters">static delimiters</a> for one-time binding</p></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Instance Properties - Ractive</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Basic Usage</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Debug/">Debug</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Contribute/">Contribute</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../Initialization Options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Static Properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Static Methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Instance Methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../Helper Objects/Node Info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Helper Objects/Parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Helper Objects/Transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../Errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Integrations/Plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/View/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Array Modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Computed Properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Magic Mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Parallel DOM/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Two-Way Binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Events/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Method Calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Proxy Events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Publish-Subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Progressive Enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Server-Side Rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Security/CSP/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Pre-Parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/References/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../Static Methods/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Instance Methods/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#ractiveadaptors">ractive.adaptors</a></li>
+        
+    
+        <li class="first-level "><a href="#ractivecomponents">ractive.components</a></li>
+        
+    
+        <li class="first-level "><a href="#ractivecontainer">ractive.container</a></li>
+        
+    
+        <li class="first-level "><a href="#ractivedecorators">ractive.decorators</a></li>
+        
+    
+        <li class="first-level "><a href="#ractiveeasing">ractive.easing</a></li>
+        
+    
+        <li class="first-level "><a href="#ractiveevents">ractive.events</a></li>
+        
+    
+        <li class="first-level "><a href="#ractivefragment">ractive.fragment</a></li>
+        
+    
+        <li class="first-level "><a href="#ractiveinterpolators">ractive.interpolators</a></li>
+        
+    
+        <li class="first-level "><a href="#ractivenodes">ractive.nodes</a></li>
+        
+    
+        <li class="first-level "><a href="#ractiveparent">ractive.parent</a></li>
+        
+    
+        <li class="first-level "><a href="#ractivepartials">ractive.partials</a></li>
+        
+    
+        <li class="first-level "><a href="#ractiveroot">ractive.root</a></li>
+        
+    
+        <li class="first-level "><a href="#ractivetransitions">ractive.transitions</a></li>
+        
+    
+        <li class="first-level "><a href="#ractiveviewmodel">ractive.viewmodel</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="ractiveadaptors">ractive.adaptors</h1>
+<p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
+<p>The instance-only registry of <a href="../../Plugin Authoring/Adaptors/">adaptors</a>.</p>
+<hr />
+<h1 id="ractivecomponents">ractive.components</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>The instance-only registry of <a href="../../Plugin Authoring/Components/">components</a>.</p>
+<hr />
+<h1 id="ractivecontainer">ractive.container</h1>
+<p><em><code>(Ractive)</code></em></p>
+<p>Each component instance that is in a yielded fragment has a container instance that is accessible using <code>this.container</code>.</p>
+<pre><code class="html">&lt;foo&gt;
+  &lt;bar&gt;
+    &lt;baz /&gt;
+  &lt;/bar&gt;
+&lt;/foo&gt;
+</code></pre>
+
+<p>If <code>bar</code> <code>{{yield}}</code>s, then <code>baz</code>'s container will be the <code>foo</code> instance.</p>
+<hr />
+<h1 id="ractivedecorators">ractive.decorators</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>The instance-only registry of <a href="../../Plugin Authoring/Decorators/">decorators</a>.</p>
+<hr />
+<h1 id="ractiveeasing">ractive.easing</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>The instance-only registry of <a href="../../Plugin Authoring/Easings/">easing functions</a>.</p>
+<hr />
+<h1 id="ractiveevents">ractive.events</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>The instance-only registry of <a href="../../Plugin Authoring/Events/">events</a>.</p>
+<hr />
+<h1 id="ractivefragment">ractive.fragment</h1>
+<p>TODO</p>
+<hr />
+<h1 id="ractiveinterpolators">ractive.interpolators</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>A key-value hash of interpolators use by <a href="../Instance Methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
+<hr />
+<h1 id="ractivenodes">ractive.nodes</h1>
+<p><em><code>(Object&lt;string, HTMLElement&gt;)</code></em></p>
+<p>An object containing all of the elements inside the instance that have an <code>id</code> attribute.</p>
+<pre><code class="js">const ractive = new Ractive({
+  el: body,
+  template: '&lt;div id=&quot;myDiv&quot;&gt;An unimaginatively named div.&lt;/div&gt;'
+});
+
+ractive.nodes.myDiv === document.getElementById( 'myDiv' ); // true
+</code></pre>
+
+<p>This will also reference dynamically created elements.</p>
+<pre><code class="js">const ractive = new Ractive({
+  el: myContainer,
+  template: `
+    &lt;ul&gt;
+        {{#items:i}}
+            &lt;li id='item_{{i}}'&gt;{{content}}&lt;/li&gt;
+        {{/items}}
+    &lt;/ul&gt;
+  `,
+  data: { items: myListOfItems }
+});
+
+// Get a reference to an arbitrary li element.
+ractive.nodes[ 'item_' + num ];
+</code></pre>
+
+<hr />
+<h1 id="ractiveparent">ractive.parent</h1>
+<p><em><code>(Ractive)</code></em></p>
+<p>Each component instance can access its parent using <code>this.parent</code>.</p>
+<pre><code class="html">&lt;foo&gt;
+  &lt;bar&gt;
+    &lt;baz /&gt;
+  &lt;/bar&gt;
+&lt;/foo&gt;
+</code></pre>
+
+<p><code>baz</code>'s parent is the <code>bar</code> instance, and <code>bar</code>'s parent is the <code>foo</code> instance.</p>
+<hr />
+<h1 id="ractivepartials">ractive.partials</h1>
+<p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
+<p>The instance-only registry of <a href="../../Plugin Authoring/Partials/">partials</a>.</p>
+<hr />
+<h1 id="ractiveroot">ractive.root</h1>
+<p><em><code>(Ractive)</code></em></p>
+<p>Each component instance can access its root Ractive instance using <code>this.root</code>.</p>
+<pre><code class="html">&lt;foo&gt;
+  &lt;bar&gt;
+    &lt;baz /&gt;
+  &lt;/bar&gt;
+&lt;/foo&gt;
+</code></pre>
+
+<p><code>foo</code>, <code>bar</code>, and <code>baz</code> will all have the Ractive instance with this template as their <code>root</code>.</p>
+<hr />
+<h1 id="ractivetransitions">ractive.transitions</h1>
+<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p>The instance-only registry of <a href="../../Plugin Authoring/Transitions/">transitions</a>.</p>
+<hr />
+<h1 id="ractiveviewmodel">ractive.viewmodel</h1>
+<p>TODO</p></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

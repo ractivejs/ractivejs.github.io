@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Transitions - Ractive</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Basic Usage</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Debug/">Debug</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Contribute/">Contribute</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../API/Initialization Options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Static Properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Static Methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Instance Properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Instance Methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Node Info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../API/Errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Integrations/Plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../Adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Partials/">Partials</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/View/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Array Modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Computed Properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Magic Mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Parallel DOM/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Two-Way Binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Events/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Method Calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Proxy Events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Publish-Subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Progressive Enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Server-Side Rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Security/CSP/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Pre-Parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/References/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../Partials/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../Concepts/Architecture/Overview/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#writing-transitions">Writing transitions</a></li>
+        
+    
+        <li class="first-level "><a href="#registering-transitions">Registering transitions</a></li>
+        
+    
+        <li class="first-level "><a href="#using-transitions">Using transitions</a></li>
+        
+    
+        <li class="first-level "><a href="#examples">Examples</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
+<h1 id="writing-transitions">Writing transitions</h1>
+<pre><code class="js">Ractive.transitions.myTransition = function ( t, params ) {
+  // Manipulate the DOM.
+  // Call t.complete() when completed.
+};
+</code></pre>
+
+<p>Transitions are simply functions that get called to animate a specified element.</p>
+<p><code>t</code> is a helper object that aids in the implementation of the transition. See the Transition Object for details.</p>
+<p><code>params</code> is the parameters passed in via the transition directive.</p>
+<p>Transitions are expected to be asynchronous. In order to signal Ractive that a transition has completed, the transition must call the <code>t.complete()</code>.</p>
+<p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
+<h1 id="registering-transitions">Registering transitions</h1>
+<p>Like other plugins, there's 3 ways you can register transitions:</p>
+<p>Globally, via the <code>Ractive.transitions</code> static property.</p>
+<pre><code class="js">Ractive.transitions.myTransition = myTransition;
+</code></pre>
+
+<p>Per component, via the component's <code>transitions</code> initialization property.</p>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  transitions: {
+    myTransition: myTransition
+  }
+});
+</code></pre>
+
+<p>Per instance, via the instance's <code>transitions</code> initialization property.</p>
+<pre><code class="js">const ractive = new Ractive({
+  decorators: {
+    myTransition: myTransition
+  }
+});
+</code></pre>
+
+<h1 id="using-transitions">Using transitions</h1>
+<p>Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix <code>-in</code>, outro-only (upon removal) using the suffix <code>-out</code>, or both using the suffix <code>-in-out</code>.</p>
+<pre><code class="html">&lt;div myTransition-in&gt;Intro-only&lt;/div&gt;
+&lt;div myTransition-out&gt;Outro-only&lt;/div&gt;
+&lt;div myTransition-in-out&gt;Intro and outro&lt;/div&gt;
+</code></pre>
+
+<p>To pass arguments to the transition, simply provide an expression as the directive's value. This will be passed as the second argument of the transition function.</p>
+<pre><code class="html">&lt;div myTransition-in=&quot;{ /*params */ }&quot;&gt;Intro-only&lt;/div&gt;
+&lt;div myTransition-out=&quot;{ /*params */ }&quot;&gt;Outro-only&lt;/div&gt;
+&lt;div myTransition-in-out=&quot;{ /*params */ }&quot;&gt;Intro and outro&lt;/div&gt;
+</code></pre>
+
+<h1 id="examples">Examples</h1>
+<p>The following example demonstrates a "flash" transition which colors the element green upon attachment, and red prior to removal.</p>
+<pre><code class="js">Ractive.transitions.flash = function(t, params) {
+  // Process params and declaring defaults.
+  const options = t.processParams(params, {
+    color: t.isIntro ? '#0f0' : '#f00',
+    duration: 400
+  });
+
+  // The &quot;transition&quot;
+  t.setStyle('color', options.color);
+
+  // Signal Ractive that the transition is complete.
+  setTimeout(t.complete, options.duration);
+};
+
+new Ractive({
+  el: 'body',
+  template: `
+    &lt;button on-click='@this.insert()'&gt;Insert item&lt;/button&gt;
+    &lt;button on-click='@this.remove()'&gt;Remove item&lt;/button&gt;
+    &lt;ul&gt;
+      {{#items}}
+      &lt;li flash-in-out&gt;{{this}}&lt;/li&gt;
+      {{/items}}
+    &lt;/ul&gt;
+  `,
+  data: {
+    items: []
+  },
+  insert() {
+    this.push('items', Date.now());
+  },
+  remove() {
+    this.splice('items', 0, 1);
+  }
+});
+</code></pre></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

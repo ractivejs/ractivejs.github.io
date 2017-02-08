@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Tools - Ractive</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Basic Usage</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Clock/">Clock</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Debug/">Debug</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Contribute/">Contribute</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../API/Initialization Options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Static Properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Static Methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Instance Properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Instance Methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Node Info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../API/Errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../Plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plugin Authoring <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Plugin Authoring/Transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/View/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Array Modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Computed Properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Magic Mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Parallel DOM/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Two-Way Binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Events/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Method Calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Proxy Events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Publish-Subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Progressive Enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Server-Side Rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Security/CSP/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Pre-Parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/References/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../Plugins/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Libraries/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#browserify">Browserify</a></li>
+        
+            <li class="second-level"><a href="#using-plugins-with-ractive-and-browserify">Using plugins with Ractive and Browserify</a></li>
+            
+        
+    
+        <li class="first-level "><a href="#requirejs">RequireJS</a></li>
+        
+            <li class="second-level"><a href="#loading-templates-without-ajax">Loading templates without AJAX</a></li>
+            
+        
+            <li class="second-level"><a href="#using-the-requirejs-optimiser">Using the RequireJS optimiser</a></li>
+            
+        
+    
+        <li class="first-level "><a href="#yeoman">Yeoman</a></li>
+        
+    
+        <li class="first-level "><a href="#rollup">Rollup</a></li>
+        
+    
+        <li class="first-level "><a href="#babel">Babel</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="browserify">Browserify</h1>
+<p><a href="http://browserify.org/">Browserify</a> is a way of using <a href="http://nodejs.org/">node-style</a> requires in the browser, bundling your scripts into a single file for efficient deployment.</p>
+<p>There are three Browserify transforms available that you can use for Ractive.js:</p>
+<ul>
+<li><a href="https://www.npmjs.org/package/ractivate">Ractivate</a>, a transform that will pre-parse templates. Contributed by <a href="https://github.com/jrajav">jrajav</a>. <a href="https://github.com/jrajav/ractivate">(Github repository)</a></li>
+<li><a href="https://npmjs.org/package/ractify">Ractify</a>, a transform that will pre-compile components. Contributed by <a href="https://github.com/marcello3d">marcello3d</a>. <a href="https://github.com/marcello3d/node-ractify">(Github repository)</a></li>
+<li><a href="https://npmjs.org/package/ractiveify">Ractiveify</a>, a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by <a href="https://github.com/norcalli">norcalli</a>. <a href="https://github.com/norcalli/ractiveify">(Github repository)</a></li>
+</ul>
+<p>A <a href="https://github.com/alienscience/gulp-ractive-starter">starter project</a> is available for using Ractivate with <a href="http://gulpjs.com/">gulp.js</a> build system.</p>
+<h2 id="using-plugins-with-ractive-and-browserify">Using plugins with Ractive and Browserify</h2>
+<p><a href="../Plugins/">Plugins</a> typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls <code>require('ractive')</code>. If you want to be explicit about <em>which</em> version of Ractive gets loaded, you can do it when you configure browserify like so:</p>
+<pre><code class="js">browserify.require('./my-copy-of-ractive.js', { expose: 'ractive' });
+</code></pre>
+
+<h1 id="requirejs">RequireJS</h1>
+<p><em>Psst! Looking for the <a href="https://github.com/RactiveJS/requirejs-ractive/tree/master/sample">Ractive + RequireJS sample application</a>?</em></p>
+<p>If Ractive detects that you're using an <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a> module loader (in other words, if <code>typeof define !== 'undefined' &amp;&amp; define.amd</code>) such as <a href="http://requirejs.org/">RequireJS</a>, it will register itself as an AMD module rather than as a browser global.</p>
+<p>You'd then use Ractive the same as you'd use any other module, such as in this (contrived, oversimple) example:</p>
+<pre><code class="js">// define our main application, with an 'init' method to call when
+// the DOM is ready etc
+define([ 'jquery', 'Ractive' ], function ( $, Ractive ) {
+
+  'use strict';
+
+  var app = {
+    init: function () {
+
+      // load our template with jQuery AJAX
+      $.ajax( 'templates/main.html' ).then( function ( mainTemplate ) {
+
+        // render our main view
+        this.mainView = new Ractive({
+          el: 'container',
+          template: mainTemplate
+        });
+      });
+    }
+  };
+
+  return app;
+
+});
+</code></pre>
+
+<h2 id="loading-templates-without-ajax">Loading templates without AJAX</h2>
+<p>We can do one better than that. Rather than stuffing our code full of asynchronous logic, we can use AMD to do the donkey work for us.</p>
+<p>Include the <a href="https://github.com/requirejs/text">RequireJS text loader plugin</a> in the root of your project (or whatever you've specified as the RequireJS <code>baseUrl</code>) - you can now do this (note we no longer require jQuery):</p>
+<pre><code class="js">// define our main application, with an 'init' method to call when
+// the DOM is ready etc
+define([ 'Ractive', 'text!templates/main.html' ], function ( Ractive, mainTemplate ) {
+
+  'use strict';
+
+  var app = {
+    init: function () {
+
+      // render our main view
+      this.mainView = new Ractive({
+        el: 'container',
+        template: mainTemplate
+      });
+    }
+  };
+
+  return app;
+
+});
+</code></pre>
+
+<p>But we can do even better. If you use the <a href="https://github.com/RactiveJS/require-ractive-plugin">Ractive RequireJS loader plugin</a>, it will pre-parse the template for us. We'll see in a moment why that's useful.</p>
+<p>Put the plugin in the same folder as the text loader plugin (which the Ractive plugin depends on). Note that we can omit the <code>'.html'</code> file extension:</p>
+<pre><code class="js">// define our main application, with an 'init' method to call when
+// the DOM is ready etc
+define([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {
+
+  'use strict';
+
+  var app = {
+    init: function () {
+
+      // render our main view
+      this.mainView = new Ractive({
+        el: 'container',
+        template: mainTemplate
+      });
+    }
+  };
+
+  return app;
+
+});
+</code></pre>
+
+<h2 id="using-the-requirejs-optimiser">Using the RequireJS optimiser</h2>
+<p>You might wonder why the third example is better than the second - after all, we've basically just added another middleman, right?</p>
+<p>The answer is that you can now use the <a href="http://requirejs.org/docs/optimization.html">RequireJS optimiser</a> to parse your template as part of your build process. The optimiser converts your project into a single minified file, which in most cases makes your app much quicker to load for the end user (because the browser only needs to make one HTTP request, and the total file size is reduced).</p>
+<p>By pre-parsing templates, we save browsers having to do it, which shaves a few milliseconds off at render time.</p>
+<p>So you get the best of both worlds - your templates stay neatly organised in their own files, where you can easily edit them, and the user gets the best possible experience.</p>
+<p>If you're <em>really</em> anal about performance, you can tweak things further still. We don't need the loader plugins any more (because everything has been inlined), but they're still there in our optimised file. We can instruct the optimiser to 'stub them out', saving ourselves a few precious bytes. In your optimiser config, add the following option:</p>
+<pre><code class="js">({
+    stubModules: [ 'rv', 'text' ]
+})
+</code></pre>
+
+<p>(This assumes you're using a <code>build.js</code> file, or a build system like Grunt. If you're using the optimiser on the command line it will be different - consult the <a href="http://requirejs.org/docs/optimization.html">documentation</a> for more info.)</p>
+<p>Getting to grips with AMD and RequireJS can be tricky at first, but it's worth the effort. Good luck!</p>
+<h1 id="yeoman">Yeoman</h1>
+<p><a href="http://yeoman.io/">Yeoman</a> is a tool for scaffolding webapps. <a href="http://colindres.me/">Jorge Colindres</a> has created <a href="https://github.com/colindresj/generator-ractive">generator-ractive</a>, a Yeoman generator to quickly set up a Ractive application.</p>
+<h1 id="rollup">Rollup</h1>
+<p>TODO</p>
+<h1 id="babel">Babel</h1>
+<p>TODO</p></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
