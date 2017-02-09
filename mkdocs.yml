@@ -6,7 +6,7 @@ repo_url: https://github.com/ractivejs/ractive
 site_description: Next-generation DOM manipulation
 
 site_author: RactiveJS contributors
-copyright: © RactiveJS contributors
+copyright: © RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.
 
 theme: cinder
 extra_css:
