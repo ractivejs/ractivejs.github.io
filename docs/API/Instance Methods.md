@@ -99,6 +99,48 @@ If an animation is started on a [keypath](../Concepts/Templates/Keypaths.md) whi
 
 ---
 
+## ractive.attachChild()
+
+Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [extend](#extend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
+
+**Syntax**
+```js
+ractive.attachChild( child );
+ractive.attachChild( child, options );
+```
+
+**Arguments**
+
+- `child (Ractive instance)`: The child instance to attach.
+- `options (Object)`: Options to use when attaching the child:
+> > * **target** *`string`* - an anchor name at which to render the instance. See [`Components`](../Extend/Components.md). If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.
+> > * **append** *`boolean`* - default *true* - add the instance to the end of the list for the targeted anchor.
+> > * **prepend** *`boolean`* - add the instance to the beginning of the list for the targeted anchor.
+> > * **insertAt** *`number`* - index at which to add the instance in the list for the targeted anchor.
+When a child is attached to a parent, the child's `parent` property is updated in an observable way, so any references to `@this.parent` in the child will be notified of the change.
+
+A child may be targeted to a [`Components`](../Extend/Components.md) when it is attached. If a child has no specified target, then it is responsible for managing its own render cycle. If a child does have a specified target, then the parent will manage rendering and unrendering the child as appropriate in the same way that a regular component has a managed render cycle.
+
+When a child is attached targeting an anchor, only anchors that belong directly to the parent are considered as hosts. However, any element or component queries on the parent instance, including live queries, will consider the child when trying to match both elements and components. There is also an option on the query methods that allows querying remote, unmanaged instances, so that non-anchored children can also be queried for elements and components.
+
+**Arguments**
+
+- `child (Ractive instance)`: The child instance to attach.
+
+**Returns**
+
+- `(Promise)`: A `Promise` that resolves with the child instance when any transitions are complete.
+
+Children can be detached using [detatchChild](#detachChild).
+
+**Examples**
+
+```js
+// TODO
+```
+
+---
+
 ## ractive.detach()
 
 Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with [`ractive.insert()`](../API/Instance Methods.md#ractive.insert()) (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).
@@ -114,6 +156,28 @@ Detaches the instance from the DOM, returning a document fragment. You can reins
 **Returns**
 
 - `(DocumentFragment)`: A document fragment.
+
+**Examples**
+
+```js
+// TODO
+```
+
+---
+
+## ractive.detachChild()
+
+Detaches a child from an instance when it was previously attached with [attachChild](#attachChild).
+
+When a child instance that was attached targeting an anchor is detached, its instance is spliced out of the `@this.children.byName.anchorName` array so that subsequent children move forward to fill the void.
+
+**Syntax**
+
+- `ractive.detachChild( child )`
+
+**Returns**
+
+- `(Promise)`: A `Promise` that resolves with the child instance when any transitions are complete.
 
 **Examples**
 
@@ -410,7 +474,7 @@ This can be used to great effect with method events and the [`@keypath`](../Conc
 Name: <input value="{{~/current.name}}" />
 ```
 
-Links can be removed using [`ractive.unlink()`](../API/Instance Methods.md#ractive.unlink()).
+Links can be removed using [`ractive.unlink()`](#unlink).
 
 ---
 
@@ -484,12 +548,16 @@ Observes the data at a particular [keypath](../Concepts/Templates/Keypaths.md). 
 
 **Arguments**
 
-- `keypath (String)`: The [keypath](../Concepts/Templates/Keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `*` character, which is treated as a wildcard.
+- `keypath (String)`: The [keypath](../Concepts/Templates/Keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `*` character, which is treated as a wildcard. A doubled `**` wildcard means `recursive`.  
+
+    The difference between `*` and `**` is that `**` provides your callback function `value` and `keypath` arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
 - `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../Concepts/Events/Publish-Subscribe.md) for more nuance regarding these arguments), whenever the observed [keypath](../Concepts/Templates/Keypaths.md) changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the [keypath](../Concepts/Templates/Keypaths.md) will have their matches passed to the callback at the end of the arguments list as well.
 - `map (Object)`: A map of keypath-observer pairs.
 - `[options] (Object)`:
     - `[init] (boolean)`: Defaults to `true`. Whether or not to initialise the observer, i.e. call the function with the current value of `keypath` as the first argument and `undefined` as the second.
     - `[defer] (boolean)`: Defaults to `false`, in which case [observers](../Concepts/Events/Publish-Subscribe.md) will fire before any DOM changes take place. If `true`, the [observer](../Concepts/Events/Publish-Subscribe.md) will fire once the DOM has been updated.
+    - `[links] (boolean)`: Defaults to `false`.  Whether or not the observer should "follow through" any links created with [ractive.link()](#link).
+    - `[strict] (boolean)`: Defaults to `false`. {{{TODO need explanation of this option}}}
     - `[context] (any)`: Defaults to `ractive`. The context the [observer](../Concepts/Events/Publish-Subscribe.md) is called in (i.e. the value of `this`)
 
 **Returns**
@@ -849,9 +917,6 @@ If the given [keypath](../Concepts/Templates/Keypaths.md) does not resolve to an
 ## ractive.set()
 
 Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any [observers](../Concepts/Events/Publish-Subscribe.md) of affected [keypaths](../Concepts/Templates/Keypaths.md) will be notified.
-
-A `change` [event](../Extend/Events.md) will be fired with `keypath` and `value` as arguments
-(or `map`, if you set multiple options at once).
 
 When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with [transitions](../Extend/Transitions.md). See [`ractive.merge()`](../API/Instance Methods.md#ractive.merge()) for setting a new array value while retaining existing nodes corresponding to individual array item values.
 
