@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="RactiveJS contributors"> 
-    <link rel="canonical" href="https://ractive.js.org/Get Started/Examples/Clock/"> 
+    <link rel="canonical" href="https://ractive.js.org/Get Started/Examples/Rating Stars/"> 
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Clock - Ractive.js</title>
+    <title>Rating Stars - Ractive.js</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -86,13 +86,13 @@
         
             
 <li >
-    <a href="../Chart/">Animated Chart</a>
+    <a href="../Analog Clock/">Analog Clock</a>
 </li>
 
         
             
-<li class="active">
-    <a href="./">Clock</a>
+<li >
+    <a href="../Animated Chart/">Animated Chart</a>
 </li>
 
         
@@ -104,7 +104,7 @@
         
             
 <li >
-    <a href="../Components/">Components</a>
+    <a href="../Donut Chart/">Donut Chart</a>
 </li>
 
         
@@ -115,26 +115,14 @@
 
         
             
-<li >
-    <a href="../Infinite Scroll/">Infinite Scroll</a>
+<li class="active">
+    <a href="./">Rating Stars</a>
 </li>
 
         
             
 <li >
-    <a href="../Backbone/">Backbone</a>
-</li>
-
-        
-            
-<li >
-    <a href="../Ratings/">Ratings</a>
-</li>
-
-        
-            
-<li >
-    <a href="../Todos/">Todos</a>
+    <a href="../Todo List/">Todo List</a>
 </li>
 
         
@@ -562,12 +550,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../Chart/">
+                        <a rel="next" href="../Illustration/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../Comments/">
+                        <a rel="prev" href="../Todo List/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -592,14 +580,154 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#clock">Clock</a></li>
+        <li class="first-level active"><a href="#rating-stars">Rating Stars</a></li>
+        
+            <li class="second-level"><a href="#mainjs">main.js</a></li>
+            
+        
+            <li class="second-level"><a href="#baseviewhtml">BaseView.html</a></li>
+            
+        
+            <li class="second-level"><a href="#ratinghtml">Rating.html</a></li>
+            
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="clock">Clock</h1></div>
+<h1 id="rating-stars">Rating Stars</h1>
+<pre><code>Embed demo here
+</code></pre>
+
+<p>Creating a simple star rating widget is the kind of thing that quickly turns to spaghetti if you try and build it by hand, or even with jQuery – lots of manually adding and removing classes, probably using tricks like <code>$.index()</code> or <code>this.getAttribute('data-index')</code> and other such horrors.</p>
+<p>Because Ractive.js uses dependency tracking to keep the view in sync - with the minimum DOM manipulation possible - there are no such headaches.</p>
+<h2 id="mainjs">main.js</h2>
+<pre><code class="html">var ractive = new BaseView({
+  el: demo,
+  data: {
+    rating: 5
+  }
+});
+
+// if you wanted to save the rating...
+ractive.observe( 'rating', function ( rating ) {
+  console.log( 'saving to server: ', rating );
+}, { init: false }); // init: false so it doesn't save until it changes
+</code></pre>
+
+<h2 id="baseviewhtml">BaseView.html</h2>
+<pre><code class="html">&lt;link rel='ractive' href='Rating.html'&gt;
+
+&lt;p class='current-rating'&gt;current rating: &lt;strong&gt;{{rating}}&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class='ratings'&gt;
+  &lt;h3&gt;Clickable Rating&lt;/h3&gt;
+  &lt;Rating max='10' rating='{{rating}}'/&gt;
+
+  &lt;h3&gt;Readonly rating&lt;/h3&gt;
+  &lt;Rating max='10' rating='{{rating}}' readonly/&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  h3 {
+    font-family: 'Voltaire';
+  }
+
+  .current-rating {
+    float: left;
+    margin-right: 2em;
+    padding-top: 2em;
+    text-align: center;
+  }
+
+  .current-rating strong {
+    display: block;
+    clear: both;
+    font-size: 6em;
+    font-family: 'Voltaire';
+  }
+
+  .ratings {
+    float: left;
+    border-left: 1px solid #eee;
+    padding-left: 1em;
+  }
+&lt;/style&gt;
+</code></pre>
+
+<h2 id="ratinghtml">Rating.html</h2>
+<pre><code class="html">&lt;div class='rating {{readonly ? &quot;readonly&quot; : &quot;&quot;}}' on-mouseout='highlight(0)'&gt;
+  {{#each stars:i}}
+    &lt;span class='star {{ rating &gt; i ? &quot;selected&quot; : &quot;&quot; }} {{ highlighted &gt; i ? &quot;highlighted&quot; : &quot;&quot; }}'
+          on-tap='select(i+1)'
+          on-mouseover='highlight(i+1)'
+    &gt;&amp;#9733;&lt;/span&gt;
+  {{/each}}
+&lt;/div&gt;
+
+&lt;script&gt;
+  component.exports = {
+    computed: {
+      // we generate an array of length `max`, so that
+      // we can iterate over it in the template
+      stars: function () {
+        var max = this.get( 'max' );
+        return new Array( max );
+      }
+    },
+
+    select: function ( rating ) {
+      if ( !this.get( 'readonly' ) ) {
+        this.set( 'rating', rating );
+      }
+    },
+
+    highlight: function ( rating ) {
+      if ( !this.get( 'readonly' ) ) {
+        this.set( 'highlighted', rating );
+      }
+    },
+
+    events: {
+      // use the mobile-friendly tap plugin
+      tap: require( 'ractive-events-tap' )
+    }
+  }
+&lt;/script&gt;
+
+&lt;style&gt;
+  .rating {
+    margin: 0 0 1em 0;
+  }
+
+  .rating:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  .star {
+    font-size: 2em;
+    color: #eee;
+    cursor: pointer;
+    display: block;
+    float: left;
+  }
+
+  .readonly .star {
+    cursor: default;
+  }
+
+  .highlighted {
+    color: #ccc;
+  }
+
+  .selected {
+    color: #729d34;
+  }
+&lt;/style&gt;
+</code></pre></div>
         
     </div>
 
