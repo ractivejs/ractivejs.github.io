@@ -56,3 +56,5 @@ Ractive was originally created at [The Guardian (theguardian.com)](https://www.t
 Unlike other frameworks, *Ractive works for you*, not the other way around. It doesn't have an opinion about the other tools you want to use with it. It also adapts to the approach you want to take. This means you're not locked-in to a framework-specific way of thinking. Should you hate one of your tools for some reason, you can easily swap it out for another and move on with life.
 
 This project is the brainchild of an Englishman and has contributors from all over the world. There is an ecclectic mix of primarily the Queen's English, a fair amount of 'Murican English, and a bit of others here and there. Things like `adaptor`, `behaviour`, and `dependant` may have more than one spelling but we try to stick to the Queen's English to the extent that we are able.
+
+<small>Fun fact: Fun fact: The name is a reference to Neal Stephenson's [The Diamond Age: Or, A Young Lady's Illustrated Primer](http://en.wikipedia.org/wiki/The_Diamond_Age) – a book about (among other things) the future of storytelling.</small>
