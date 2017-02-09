@@ -16,15 +16,13 @@ pages:
   - Get Started:
     - Introduction: index.md
     - Examples:
-      - Animated Chart: Get Started/Examples/Chart.md
-      - Clock: Get Started/Examples/Clock.md
+      - Analog Clock: Get Started/Examples/Analog Clock.md
+      - Animated Chart: Get Started/Examples/Animated Chart.md
       - Comments: Get Started/Examples/Comments.md
-      - Components: Get Started/Examples/Components.md
+      - Donut Chart: Get Started/Examples/Donut Chart.md
       - Illustration: Get Started/Examples/Illustration.md
-      - Infinite Scroll: Get Started/Examples/Infinite Scroll.md
-      - Backbone: Get Started/Examples/Backbone.md
-      - Ratings: Get Started/Examples/Ratings.md
-      - Todos: Get Started/Examples/Todos.md
+      - Rating Stars: Get Started/Examples/Rating Stars.md
+      - Todo List: Get Started/Examples/Todo List.md
     - Debugging: Get Started/Debugging.md
     - Support: Get Started/Support.md
     - Contributing: Get Started/Contributing.md
