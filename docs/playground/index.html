@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#729d34" />
+    <title>Ractive.js Playground</title>
+    <script src="./lib/ractive.min.js"></script>
+    <script src="./lib/Tabs.js"></script>
+    <script src="./lib/Sheet.js"></script>
+    <script src="./lib/ace.min.js" data-ace-base="./lib"></script>
+    <script src="./lib/lz-string.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+  </head>
+  <body>
+    <script type="text/html" id="tpl">
+      <div class="panel" class-primary="{{!sheetPopped}}" class-shared="{{sheetPopped === 1}}" class-min="{{sheetPopped === 2}}">
+        <Tabs>
+          <Tab title="HTML">
+            <div as-ace-editor={ syntax: "handlebars", bind: "~/unit.t", keymode: settings.editor.keymod, theme: settings.editor.theme } class="ace-editor" />
+          </Tab>
+          <Tab title="Script">
+            <div as-ace-editor={ syntax: "javascript", bind: "~/unit.s", keymode: settings.editor.keymod, theme: settings.editor.theme } class="ace-editor" />
+          </Tab>
+          <Tab title="CSS">
+            <div as-ace-editor={ syntax: "css", bind: "~/unit.c", keymode: settings.editor.keymode, theme: settings.editor.theme } class="ace-editor" />
+          </Tab>
+          <Tab title="&#9881;">
+            <div class="card">
+              <h3>Editor Settings</h3>
+              <div class="content">
+                <label><span style="display: inline-block; width: 10em;">Key bindings</span><select value="{{settings.editor.keymode}}">
+                  <option value="{{null}}">&lt;Default&gt;</option>
+                  <option value="ace/keyboard/vim">VIM</option>
+                  <option value="ace/keyboard/emacs">EMACS (RSI)</option>
+                </select></label><br/>
+                <label><span style="display: inline-block; width: 10em;">Theme</span><select value="{{settings.editor.theme}}">
+                  <option value="{{null}}">&lt;Default&gt;</option>
+                  <option value="chrome">Chrome</option>
+                  <option value="github">GitHub</option>
+                  <option value="monokai">Monokai</option>
+                  <option value="solarize_dark">Solarized: Dark</option>
+                  <option value="solarize_light">Solarized: Light</option>
+                  <option value="terminal">Terminal</option>
+                  <option value="xcode">Xcode</option>
+                </select></label>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>External Scripts</h3>
+              <div class="content">
+                <button on-click="@.push('unit.h.s', '')">&#10753; Add Script</button>
+                <div>
+                  {{#each unit.h.s}}
+                    <div>
+                      <button class="circle" on-click="@.splice('unit.h.s', @index, 1, @.splice('unit.h.s', @index - 1, 1).result[0])" {{#if @index === 0}}disabled{{/if}}>&#11014;</button>
+                      <button class="circle" on-click="@.splice('unit.h.s', @index + 1, 1, @.splice('unit.h.s', @index, 1).result[0])" {{#if @index + 1 === ../length}}disabled{{/if}}>&#11015;</button>
+                      <input class="extra-script" value="{{.}}" />
+                      <button class="circle" on-click="@.splice('unit.h.s', @index, 1)">&#10005;</button>
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </Tab>
+          <Action title="&#9654;" on-click="play" />
+        </Tabs>
+      </div>
+      <div class="panel" class-primary="{{sheetPopped === 2}}" class-shared="{{sheetPopped === 1}}">
+        <Sheet unit="{{compiled}}" popped="{{sheetPopped}}" />
+      </div>
+    </script>
+    <div id="main"></div>
+    <script src="./index.js"></script>
+  </body>
+</html>

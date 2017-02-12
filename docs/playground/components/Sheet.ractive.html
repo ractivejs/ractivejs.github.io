@@ -1,0 +1,174 @@
+<style>
+  .ractive-sheet {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .ractive-sheet .rs-tabs {
+    height: 3em;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+  }
+  .ractive-sheet .rs-button,
+  .ractive-sheet .rs-tab {
+    display: inline-block;
+    padding: 0.75em 1.25em;
+    font-size: 1.2em;
+    height: 100%;
+    box-sizing: border-box;
+    color: rgba(114, 157, 42, 0.8);
+    cursor: pointer;
+    width: calc(50% - 4em);
+    text-align: center;
+    line-height: 1em;
+  }
+  .ractive-sheet .rs-tab-active {
+    border-bottom: 2px solid #008000;
+    color: #008000;
+  }
+  .ractive-sheet .rs-button {
+    width: 2.3em;
+    padding: 0.75em 0.75em;
+  }
+  .ractive-sheet .rs-button.rs-disabled {
+    color: #ccc;
+  }
+
+  .ractive-sheet .rs-contents {
+    position: absolute;
+    display: none;
+  }
+  .ractive-sheet.rs-popped .rs-contents {
+    display: block;
+    top: 3.2em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .ractive-sheet .rs-content {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    margin: 0;
+  }
+  .ractive-sheet .rs-content-active {
+    display: block;
+  }
+
+  .ractive-sheet iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-sizing: border-box;
+  }
+
+  .ractive-sheet li.rs-message {
+    padding: 0.25em 0.5em;
+    border-bottom: 1px solid #ccc;
+  }
+  .ractive-sheet li.rs-message-warn {
+    background-color: yellow;
+  }
+  .ractive-sheet li.rs-message-error {
+    background-color: pink;
+  }
+  .ractive-sheet li.rs-message pre {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
+</style>
+
+<script>
+  Ractive.components.Sheet = Ractive.extend({
+    template: $TEMPLATE,
+    css: $CSS,
+    cssId: 'ractive-sheet',
+    on: {
+      init: function() {
+        var self = this;
+        this.messageListener = window.addEventListener('message', function(event) {
+          if (event.isTrusted && event.data.log) {
+            var csl = self.find('.rs-console');
+            var scroll = csl.scrollTop + csl.clientHeight >= csl.scrollHeight - 5;
+            self.push('messages', { type: event.data.type, message: event.data.log.join('\n') });
+            if (scroll) {
+              csl.scrollTop = csl.scrollHeight - csl.clientHeight;
+            }
+          }
+        }, false);
+      },
+      select: function(ctx, which) {
+        var popped = this.get('popped');
+        if (!popped) popped = 1;
+        this.set({
+          popped: popped,
+          selected: which
+        });
+      },
+      teardown: function() {
+        window.removeEventListener(this.messageListener);
+      }
+    },
+    observe: {
+      unit: {
+        handler: function(unit) {
+          var scripts = ((unit.h || {}).s || []).map(function(s) { return '\n\t\t<' + 'script src="' + s + '"><' + '/script>'; }).join('');
+          var html = '<!DOCTYPE html>\n\t<head>\n\t\t<title>Ractive Play Output</title>\n\t\t<style>\n\t\t\t' + (unit.c || '').replace(/\n/g, '\n\t\t\t') + '</style>' + scripts + '\n\t\t<' + 'script>\n\t\t\t(function() {\n\t\t\t\tvar csl = console.log, csw = console.warn; cse = console.error;\n\t\t\t\tfunction proxy(fn, type) {\n\t\t\t\t\treturn function() {\n\t\t\t\t\t\tvar args = Array.prototype.slice.call(arguments);\n\t\t\t\t\t\twindow.parent.postMessage({ log: args, type: type }, \'*\');\n\t\t\t\t\t\tfn.apply(console, args);\n\t\t\t\t\t};\n\t\t\t\t}\n\t\t\t\tconsole.log = proxy(csl, \'log\');\n\t\t\t\tconsole.warn = proxy(csw, \'warn\');\n\t\t\t\tconsole.error = proxy(cse, \'error\');\n\t\t\t})();\n\t\t</' + 'script>\n\t</head>\n\t<body>\n\t\t' + (unit.t || '').replace(/\n/g, '\n\t\t') + '\n\t\t<' + 'script>\n\t\t\t' + (unit.s || '').replace(/\n/g, '\n\t\t\t') + '\n\t\t<' + '/script>\n\t</body>\n</html>';
+          this.find('iframe').setAttribute('srcdoc', html);
+          if (!this.get('selected')) this.set('selected', 'output');
+        },
+        init: false
+      }
+    }
+  });
+</script>
+
+<div class="ractive-sheet" class-rs-popped="{{!!popped}}">
+  <ul class="rs-tabs">
+    <li class="rs-tab" on-click=['select', 'output'] class-rs-tab-active="{{~/selected === 'output'}}">Output</li>
+    <li class="rs-tab" on-click=['select', 'console'] class-rs-tab-active="{{~/selected === 'console'}}">Console</li>
+    {{#if popped}}
+      <li class="rs-button" on-click="@.set('popped', popped === 2 ? 1 : 0)">&#11015;</li>
+      <li class="rs-button" on-click="@.set('popped', 2)" class-rs-disabled="{{popped === 2}}">&#11014;</li>
+      {{#if selected === 'console'}}<li class="rs-button" on-click="@.set('messages', [])">&#10680;</li>{{/if}}
+    {{/if}}
+  </ul>
+  <ul class="rs-contents">
+    <li class="rs-content rs-output" class-rs-content-active="{{~/selected === 'output'}}">
+      <iframe sandbox="allow-scripts allow-forms allow-same-origin allow-modals" />
+    </li>
+    <li class="rs-content rs-console" class-rs-content-active="{{~/selected === 'console'}}">
+      <ul>
+      {{#each messages}}
+      <li class="rs-message {{.type ? `rs-message-${.type}` : ''}}"><pre><code>{{.message}}</code></pre></li>
+      {{/each}}
+      </ul>
+    </li>
+  </ul>
+</div>
