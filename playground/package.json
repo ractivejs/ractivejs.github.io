@@ -1,0 +1,13 @@
+{
+  "name": "ractive-playground",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "ractive": "edge",
+    "http-server": "^0.9"
+  },
+  "scripts": {
+    "components": "ls components | grep ractive.html | while read cmp; do ractive component ./components/$cmp > lib/$(basename $cmp | sed -re 's/\\.ractive\\.html/.js/'); done;",
+    "start": "http-server"
+  }
+}
