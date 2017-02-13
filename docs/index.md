@@ -47,6 +47,8 @@ While there are _no required options_, `el`, `template` and `data` are the most 
 
 If you get stuck at any point, visit the [Get Support](Get Started/Support.md) page for places to find help.
 
+You can also try play around with this example on the [playground](/playground/#N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvADxICWAbgATVIC8AOiALYCG1AduwD4KAehq0BmHPBj1m9XggDu9AEpcAxqToIAFMFb9SpLjDSlI9AOQBibn0sYDrIwg4AHADZdSCC5YpuAsDAKDAICFq8KEQk9MFh6tRu1Ai8pDEigQ5OpEjeXBb6hs6h4ZEofgASCB4eAPbZxaQJSSlpfgDqdTAeSACEljlEBkQAlADckurwIERAA).
+
 ---
 
 ## About Ractive.js
