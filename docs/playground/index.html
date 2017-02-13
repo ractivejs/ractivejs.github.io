@@ -14,26 +14,26 @@
   <body>
     <script type="text/html" id="tpl">
       <div class="panel" class-primary="{{!sheetPopped}}" class-shared="{{sheetPopped === 1}}" class-min="{{sheetPopped === 2}}">
-        <Tabs>
+        <Tabs on-selected="sheetPopped === 2 ? @.set('sheetPopped', 1) : null">
           <Tab title="HTML">
-            <div as-ace-editor={ syntax: "handlebars", bind: "~/unit.t", keymode: settings.editor.keymod, theme: settings.editor.theme } class="ace-editor" />
+            <div as-ace-editor={ syntax: "handlebars", bind: "~/unit.t", ...settings.editor } class="ace-editor" />
           </Tab>
           <Tab title="Script">
-            <div as-ace-editor={ syntax: "javascript", bind: "~/unit.s", keymode: settings.editor.keymod, theme: settings.editor.theme } class="ace-editor" />
+            <div as-ace-editor={ syntax: "javascript", bind: "~/unit.s", ...settings.editor } class="ace-editor" />
           </Tab>
           <Tab title="CSS">
-            <div as-ace-editor={ syntax: "css", bind: "~/unit.c", keymode: settings.editor.keymode, theme: settings.editor.theme } class="ace-editor" />
+            <div as-ace-editor={ syntax: "css", bind: "~/unit.c", ...settings.editor } class="ace-editor" />
           </Tab>
           <Tab title="&#9881;">
             <div class="card">
               <h3>Editor Settings</h3>
               <div class="content">
-                <label><span style="display: inline-block; width: 10em;">Key bindings</span><select value="{{settings.editor.keymode}}">
+                <label><span>Key bindings</span><select value="{{settings.editor.keymode}}">
                   <option value="{{null}}">&lt;Default&gt;</option>
                   <option value="ace/keyboard/vim">VIM</option>
                   <option value="ace/keyboard/emacs">EMACS (RSI)</option>
-                </select></label><br/>
-                <label><span style="display: inline-block; width: 10em;">Theme</span><select value="{{settings.editor.theme}}">
+                </select></label>
+                <label><span>Theme</span><select value="{{settings.editor.theme}}">
                   <option value="{{null}}">&lt;Default&gt;</option>
                   <option value="chrome">Chrome</option>
                   <option value="github">GitHub</option>
@@ -43,12 +43,27 @@
                   <option value="terminal">Terminal</option>
                   <option value="xcode">Xcode</option>
                 </select></label>
+                <label class="check"><input type="checkbox" checked="{{settings.editor.wrap}}" /><span>Soft wrap</label>
+                <label class="check"><input type="checkbox" checked="{{settings.editor.highlightActive}}" /><span>Highlight active line</label>
+                <label class="check"><input type="checkbox" checked="{{settings.editor.margin}}" /><span>Show print margin</label>
+                <br/>
+                <label><span>Tab size</span><input type="number" value="{{settings.editor.tabSize}}" /></label>
               </div>
             </div>
 
             <div class="card">
               <h3>External Scripts</h3>
               <div class="content">
+                <div>
+                  <label><span>Ractive.js</span><select value="{{unit.h.r}}">
+                    <option value="{{null}}">&lt;None&gt;</option>
+                    <option value="latest">Latest</option>
+                    <option value="edge">Edge</option>
+                    <option value="0.8">0.8</option>
+                    <option value="0.7">0.7</option>
+                    <option value="0.6">0.6</option>
+                  </select></label>
+                </div>
                 <button on-click="@.push('unit.h.s', '')">&#10753; Add Script</button>
                 <div>
                   {{#each unit.h.s}}
@@ -60,6 +75,15 @@
                     </div>
                   {{/each}}
                 </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Info</h3>
+              <div class="content">
+                <label class="full">URL ({{url.length}})
+                  <textarea readonly>{{url}}</textarea>
+                </label>
               </div>
             </div>
           </Tab>

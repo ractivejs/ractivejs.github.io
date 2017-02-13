@@ -30,12 +30,12 @@
     font-size: 1.2em;
     height: 100%;
     box-sizing: border-box;
-    color: rgba(0, 128, 0, 0.8);
+    color: rgba(114, 157, 42, 0.8);
     cursor: pointer;
   }
   .ractive-tabs .rt-tab-active {
-    border-bottom: 2px solid #008000;
-    color: #008000;
+    border-bottom: 2px solid #729d34;
+    color: #729d34;
   }
   .ractive-tabs .rt-tab-disabled {
     color: #ccc;
@@ -89,6 +89,9 @@
             this.push('actions', tab);
           }
         });
+      },
+      selected: function(ctx, idx) {
+        this.set('selected', idx);
       }
     }
   });
@@ -103,7 +106,7 @@
     <li class="rt-tab" class-rt-tab-active="{{~/selected === @index}}"
       class-rt-tab-disabled="{{.disabled}}"
       class-rt-tab-right="{{.right}}"
-      {{#if !.disabled}}on-click="@.set('selected', @index)"{{/if}}>{{#if .title}}{{yield .title}}{{/if}}</li>
+      {{#if !.disabled}}on-click="['selected', @index]"{{/if}}>{{#if .title}}{{yield .title}}{{/if}}</li>
     {{/each}}
   </ul>
   <ul class="rt-contents">

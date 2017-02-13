@@ -43,7 +43,7 @@ div.card {
 }
 div.card > h3 {
   color: #fff;
-  background-color: #008000;
+  background-color: #729d34;
   padding: 0.75em;
   font-size: 1.5em;
   line-height: 1.5em;
@@ -53,10 +53,44 @@ div.card > .content {
   padding: 1em;
 }
 
+div.card label {
+  display: inline-block;
+}
+div.card label > span {
+  width: 10em;
+  text-align: right;
+  display: inline-block;
+}
+div.card label > input,
+div.card label > select {
+  width: 10em;
+}
+div.card label.full {
+  display: block;
+  width: 100%;
+}
+div.card label > textarea {
+  display: block;
+  height: 20em;
+  width: 100%;
+  box-sizing: border-box;
+}
+div.card label.check {
+  padding: 0.5em 0.25em;
+}
+div.card label.check input {
+  width: 1em;
+  height: 1em;
+  margin-left: 9em;
+}
+div.card label.check > span {
+  text-align: left;
+}
+
 button {
   vertical-align: middle;
   color: #fff;
-  background-color: #008000;
+  background-color: #729d34;
   text-align: center;
   border: none;
   line-height: 2em;
@@ -76,13 +110,14 @@ button.circle {
   height: 3em;
 }
 
-input, select {
-  line-height: 2em;
+input, select, textarea {
   font-size: 1em;
   border-radius: 2px;
   border: 1px solid #ddd;
   background-color: #fff;
   color: #222;
+}
+input, select {
   vertical-align: middle;
   margin: 0.5em;
   padding: 0.25em;
@@ -98,13 +133,11 @@ input.extra-script {
   }
 
   div.card {
-    padding: 0.6em;
-    margin: 0.6em;
+    margin: 1em 0;
   }
   div.card > h3 {
     font-size: 1.2em;
     padding: 0.5em;
-    margin: -0.6em;
   }
   div.card > .content {
     padding: 0.6em;
