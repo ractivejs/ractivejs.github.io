@@ -39,8 +39,8 @@
     line-height: 1em;
   }
   .ractive-sheet .rs-tab-active {
-    border-bottom: 2px solid #008000;
-    color: #008000;
+    border-bottom: 2px solid #729d34;
+    color: #729d34;
   }
   .ractive-sheet .rs-button {
     width: 2.3em;
@@ -139,6 +139,7 @@
       unit: {
         handler: function(unit) {
           var scripts = ((unit.h || {}).s || []).map(function(s) { return '\n\t\t<' + 'script src="' + s + '"><' + '/script>'; }).join('');
+          if (unit.h && unit.h.r) scripts = '\n\t\t<' + 'script src="//unpkg.com/ractive@' + unit.h.r + '"><' + '/script>' + scripts;
           var html = '<!DOCTYPE html>\n\t<head>\n\t\t<title>Ractive Play Output</title>\n\t\t<style>\n\t\t\t' + (unit.c || '').replace(/\n/g, '\n\t\t\t') + '</style>' + scripts + '\n\t\t<' + 'script>\n\t\t\t(function() {\n\t\t\t\tvar csl = console.log, csw = console.warn; cse = console.error;\n\t\t\t\tfunction proxy(fn, type) {\n\t\t\t\t\treturn function() {\n\t\t\t\t\t\tvar args = Array.prototype.slice.call(arguments);\n\t\t\t\t\t\twindow.parent.postMessage({ log: args, type: type }, \'*\');\n\t\t\t\t\t\tfn.apply(console, args);\n\t\t\t\t\t};\n\t\t\t\t}\n\t\t\t\tconsole.log = proxy(csl, \'log\');\n\t\t\t\tconsole.warn = proxy(csw, \'warn\');\n\t\t\t\tconsole.error = proxy(cse, \'error\');\n\t\t\t})();\n\t\t</' + 'script>\n\t</head>\n\t<body>\n\t\t' + (unit.t || '').replace(/\n/g, '\n\t\t') + '\n\t\t<' + 'script>\n\t\t\t' + (unit.s || '').replace(/\n/g, '\n\t\t\t') + '\n\t\t<' + '/script>\n\t</body>\n</html>';
           this.find('iframe').setAttribute('srcdoc', html);
           if (!this.get('selected')) this.set('selected', 'output');
@@ -156,7 +157,7 @@
     {{#if popped}}
       <li class="rs-button" on-click="@.set('popped', popped === 2 ? 1 : 0)">&#11015;</li>
       <li class="rs-button" on-click="@.set('popped', 2)" class-rs-disabled="{{popped === 2}}">&#11014;</li>
-      {{#if selected === 'console'}}<li class="rs-button" on-click="@.set('messages', [])">&#10680;</li>{{/if}}
+      {{#if selected === 'console'}}<li class="rs-button" on-click="@.set('messages', [])">&#8709;</li>{{/if}}
     {{/if}}
   </ul>
   <ul class="rs-contents">
