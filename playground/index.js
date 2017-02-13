@@ -23,7 +23,7 @@ Ractive.decorators['ace-editor'] = function(node, options) {
     if (lock) return;
     lock = true;
     var pos = editor.getCursorPosition();
-    editor.setValue(value, -1);
+    editor.setValue(value || '', -1);
     editor.clearSelection();
     editor.moveCursorTo(pos.row, pos.column, false);
     lock = false;
@@ -64,9 +64,14 @@ var r = window.r = new Ractive({
   target: '#main',
   template: '#tpl',
   on: {
-    play() {
+    play: function() {
       if (!this.get('sheetPopped')) this.set('sheetPopped', 1);
       this.set('compiled', this.get('unit'));
+    },
+    'pasted-content': function(ctx, content) {
+      if (content === this.get('compressed')) return;
+      var obj = JSON.parse(LZString.decompressFromEncodedURIComponent(content));
+      this.set('unit', obj);
     }
   },
   observe: {
@@ -113,9 +118,14 @@ r.observe('unit', debounce(function(value) {
   var str = JSON.stringify(value);
   var compressed = LZString.compressToEncodedURIComponent(str);
   this.set('compressed', compressed);
+
   var l = window.location;
   var url = l.protocol + '//' + l.host + l.pathname + '#' + compressed;
-  window.location.replace(url);
+
+  if (!this.get('settings.skipUrlUpdate')) {
+    window.location.replace(url);
+  }
+
   this.set('url', url);
 }, 3000, r), { init: false });
 

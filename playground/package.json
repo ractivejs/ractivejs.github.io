@@ -7,7 +7,7 @@
     "http-server": "^0.9"
   },
   "scripts": {
-    "components": "ls components | grep ractive.html | while read cmp; do ractive component ./components/$cmp > lib/$(basename $cmp | sed -re 's/\\.ractive\\.html/.js/'); done;",
+    "components": "ls components | grep ractive.html | while read cmp; do ractive component -u ./components/$cmp > lib/$(basename $cmp | sed -re 's/\\.ractive\\.html/.js/'); done;",
     "start": "http-server"
   }
 }

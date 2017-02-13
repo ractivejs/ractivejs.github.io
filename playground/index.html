@@ -64,7 +64,7 @@
                     <option value="0.6">0.6</option>
                   </select></label>
                 </div>
-                <button on-click="@.push('unit.h.s', '')">&#10753; Add Script</button>
+                <button on-click="@.push('unit.h.s', '')">+ Add Script</button>
                 <div>
                   {{#each unit.h.s}}
                     <div>
@@ -81,9 +81,16 @@
             <div class="card">
               <h3>Info</h3>
               <div class="content">
-                <label class="full">URL ({{url.length}})
-                  <textarea readonly>{{url}}</textarea>
+                <label class="full">Content{{#if compressed}} ({{compressed.length}}){{/if}}
+                  <textarea twoway="false" on-change=['pasted-content', @node.value]>{{compressed}}</textarea>
                 </label>
+                <label class="full">URL{{#if url}} ({{url.length}}){{/if}}
+                  <textarea readonly style-height="10em">{{url}}</textarea>
+                </label>
+                <label class="check"><input type="checkbox" title="Don't update the browser URL as changes are made. You can get an up-to-date URL from the box above when this option is enabled." checked="{{settings.skipUrlUpdate}}" /><span>Skip URL update</span></label>
+                <p>
+                  Made with <a href="http://ace.c9.io/">Ace Editor</a>, <a href="http://github.com/pieroxy/lz-string">lz-string</a>, and <a href="http://ractive.js.org/">Ractive.js</a>.
+                </p>
               </div>
             </div>
           </Tab>
