@@ -10,6 +10,7 @@
     <script src="./lib/ace.min.js" data-ace-base="./lib"></script>
     <script src="./lib/lz-string.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="shortcut icon" href="./assets/favicon.png" />
   </head>
   <body>
     <script type="text/html" id="tpl">
@@ -24,7 +25,7 @@
           <Tab title="CSS">
             <div as-ace-editor={ syntax: "css", bind: "~/unit.c", ...settings.editor } class="ace-editor" />
           </Tab>
-          <Tab title="&#9881;">
+          <Tab title="&#9881;" scroll>
             <div class="card">
               <h3>Editor Settings</h3>
               <div class="content">
