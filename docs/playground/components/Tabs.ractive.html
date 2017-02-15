@@ -33,6 +33,8 @@
     color: rgba(114, 157, 42, 0.8);
     cursor: pointer;
     vertical-align: top;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s ease-in-out, color 0.2s ease-in-out;
   }
   .ractive-tabs .rt-tab-active {
     border-bottom: 2px solid #729d34;
@@ -47,20 +49,31 @@
   }
 
   .ractive-tabs .rt-contents {
-    height: calc(100% - 3.2em);
     position: absolute;
     top: 3.2em;
+    bottom: 0;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .ractive-tabs .rt-content {
-    display: none;
-    margin: 0.5em;
-  }
-
-  .ractive-tabs .rt-content-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: block;
+    opacity: 0;
+    z-index: -1;
+    transition: z-index 0s linear 0.3s, opacity 0.3s ease-in-out;
+  }
+  .ractive-tabs .rt-content-active {
+    opacity: 1;
+    z-index: 1;
+    transition: z-index 0s linear 0s, opacity 0.3s ease-in-out;
+  }
+  .ractive-tabs .rt-content.rt-scroll {
+    overflow: auto;
   }
 </style>
 
@@ -75,8 +88,10 @@
         this.partials.content.forEach(n => {
           if (n.e === 'Tab') {
             var tab = {};
-            var title = (n.m || []).find(a => a.n === 'title');
-            if (title) tab.title = { t: Array.isArray(title.f) ? title.f : [title.f] };
+            var node = (n.m || []).find(a => a.n === 'title');
+            if (node) tab.title = { t: Array.isArray(node.f) ? node.f : [node.f] };
+            node = (n.m || []).find(a => a.n === 'scroll');
+            if (node) tab.scroll = true;
             tab.content = { t: n.f };
             this.push('tabs', tab);
           } else if (n.e === "Action") {
@@ -113,8 +128,8 @@
   <ul class="rt-contents">
     {{#each tabs}}
       {{#if .content}}
-      <li class="rt-content" class-rt-content-active="{{~/selected === @index}}">
-      {{yield .content}}
+        <li class="rt-content" class-rt-content-active="{{~/selected === @index}}" class-rt-scroll="{{.scroll}}">
+        {{yield .content}}
       </li>
       {{/if}}
     {{/each}}
