@@ -20,14 +20,23 @@ Calls the parent method from a child method of the same name.
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGbVOAWwAOPNNxTMAvMwBKSeigCWUtADo0AD3TcAJgApgAHW5OUPI9yMpIzAGYArtyGRjz2AJTMzq4obly8-OYInADm9gDkGAHKaHKe3unhLm44LjjhANzF3DJyAMoBAEYKKmoa2vJKqtzqKBbW6g7Rbh5ePv5BIWGRw7EobEYYZgD6WTkwEVUxcTx8AmbJaZlNzPkohVslZUWu3D0A7swNzV1tKJu4QA"></div>
+
 ```js
-const MyComponentSubclass = MyComponent.exten({
-  // Overrides the oninit of MyComponent
-  oninit: function(...args){
-    // Call MyComponent's oninit
-    this._super(...args);
-  }
+var Component = Ractive.extend({
+	oninit: function() {
+		console.log('super init')
+	}
 });
+
+var SubComponent = Component.extend({
+	oninit: function() {
+		this._super();
+		console.log('sub init');
+	}
+})
+
+new SubComponent();
 ```
 
 ---
@@ -51,8 +60,26 @@ Increments the selected keypath.
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiQmJkzC-r1CmarNeY0ENDOEDQBzTPOvxZud0GD0eEzw9AAjMNoaCVAtlqt1lpNjtlHsDkcTj1zpdrrdtAMYBVIcNYeoDhhXu9Pj8-gD8aZgZNQfh6AAmaGk6a4IA"></div>
+
 ```js
-// TODO
+var r = new Ractive({
+	el: '#main',
+	template: '#tpl',
+	data: {
+		counter: 0
+	}
+});
+
+setTimeout(function() {
+	r.add('counter');
+	console.log(r.get('counter'));
+}, 1000);
+
+setTimeout(function() {
+	r.add('counter', 10);
+	console.log(r.get('counter'));
+}, 2000);
 ```
 
 ---
@@ -93,8 +120,20 @@ If an animation is started on a [keypath](../Concepts/Templates/Keypaths.md) whi
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiRlVfrMwv69CvoAJmG8Q3omLRhUfeUDF+Gw3oU1mEzeAEZAcMZrggA"></div>
+
 ```js
-// TODO
+var r = new Ractive({
+	el: '#main',
+	template: '#tpl',
+	data: {
+		counter: 0
+	}
+});
+
+setTimeout(function() {
+	r.animate('counter', 20, { duration: 2000 });
+}, 1000);
 ```
 
 ---
@@ -117,8 +156,22 @@ Detaches the instance from the DOM, returning a document fragment. You can reins
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJgAjAvIB7AK7L0MSPWDA9h4zhwkp2lWqTKm9DLplpeYlCrsVqOiVVZRImKgA3RlYOGSQqVUU7cIiFEAIMeAikGHpclnplNAB3egAlJHIUSLQACmBHdARTAHIAYjiElrxG9BkuVDRWtpQubsamVCRTBtVfFEsjNBN6AAZGnBUcAEoAbkdlDDQUABUqTwMUWoAzQyqqXWVa7bNG7NyU+gKmXXJ9TyMADpKGhBgBRBBoAFXFopFp7CaRQFIGiCFwAYTAVAQTFqMEBTGOlTAzwRcz0h10kMBCF0AHNailAQkijAABInACyABkyfh6JpVkK9rggA"></div>
+
 ```js
-// TODO
+var r = new Ractive({
+	el: '#main',
+	template: '#tpl',
+	data: {
+		counter: 0
+	}
+});
+
+setTimeout(function() {
+	var div = document.createElement('div');
+	div.appendChild(r.detach());
+	console.log(div.innerHTML);
+}, 1000);
 ```
 
 ---
@@ -142,8 +195,18 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnsaPtdn4se0mLdXjQ-HFEslXrCguRCU0EGg-NUErdmej0DBTEiALLpTnKfD0ACMAAYVbDcEA"></div>
+
 ```js
-// TODO
+var r = new Ractive({
+	el: '#main',
+	template: '#tpl'
+});
+
+setTimeout(function() {
+	var p = r.find('p.target');
+	console.log(p.outerHTML);
+}, 1000);
 ```
 
 ---
@@ -168,8 +231,20 @@ This method is similar to [`ractive.find()`](../API/Instance Methods.md#ractive.
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnt8vtdn4se0mABBBAIW6vGivWFBfK0rIAUUuYGxuPxhNuNBJZNc5EJTQQaD81QSYr86PQMFMSIAsulOXpoZCSgBGAAMpthuCAA"></div>
+
 ```js
-// TODO
+var r = new Ractive({
+	el: '#main',
+	template: '#tpl'
+});
+
+setTimeout(function() {
+	var ps = r.findAll('p');
+	ps.forEach(function(p) {
+		console.log(p.outerHTML);
+	})
+}, 1000);
 ```
 
 ---
@@ -194,8 +269,27 @@ Returns all components inside a given Ractive instance with the given `name` (or
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NimDAAxGiTkw9ANoBGPPQBMpgMwBdHDhVq1JJlQBuCkgGEA9jJrflNGUGZQBXGQAjNBhhDQA6Ox4JDwkXdwd1YAkdPUTlEgkKajolVXy0xlYOGSQqVUUCtIUQAgx4VyQYeh8-AKCGFnoAJV0UNzQ4sXRlJgAKYAz0P2R0SHoAch7-QOD6DTDI6Lt1lRwASgBuB2UOrq7BwIB3YdHx+Yy0BDX1zRq69bwizQy1QaG+mhQXABGXIvm2-QwawWqhQai2fWCa3RO1RKPsynOVzKGDQKAAKlQZGhvKEULMAGahZTkMYBWZnPYZW70cgYeiDGBxel1JgAQQQCGxCNmmzhGJQ60uMIwQu8MAAorowAymSyqGzyBzkY4ULDlBhvAgJghvABzWbkOIobwACTJAFkADLspV4s6nUxGAAMIcuuCAAa"></div>
+
 ```js
-// TODO
+var Component = Ractive.extend({
+	template: 'Component {{number}}'
+});
+
+var r = new Ractive({
+	el: '#main',
+	template: '#tpl',
+	components: {
+		Component: Component
+	}
+});
+
+setTimeout(function() {
+	var cs = r.findAllComponents('Component');
+	cs.forEach(function(c) {
+		console.log(c.toHTML());
+	})
+}, 1000);
 ```
 
 ---
@@ -219,8 +313,25 @@ Returns the first component inside a given Ractive instance with the given `name
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NimDAAxGiTkw9ANoBGPPQBMpgMwBdHDhVq1JJlQBuCkgGEA9jJrflNGUGZQBXGQAjNBhhDQA6Ox4JDwkXdwd1YAkdPUTlEgkKajolVXy0xlYOGSQqVUUCtIUQAgx4VyQYeh8-AKCGFnoAJV0UNzQ4sXRlJgAKYAz0P2R0SHoAch7-QOD6DTDI6Lt1lRwASgBuB2UOrq7BwIB3YdHx+Yy0BDX1zRq69bwizQy1QaG+mhQXABGXIvm2-QwawWqhQai2fWCa3RO1RKPsynOVzKGDQKAAKlQZGhvKEULMAGahZTkMYBWZnPYZW70cj0QYwOL0upMbH9WabOEYlDrS4wgIYbwICYIbwAc1m5DiKG8AAkyQBZAAy7NlBNMRgADFbLrggA"></div>
+
 ```js
-// TODO
+var Component = Ractive.extend({
+	template: 'Component {{number}}'
+});
+
+var r = new Ractive({
+	el: '#main',
+	template: '#tpl',
+	components: {
+		Component: Component
+	}
+});
+
+setTimeout(function() {
+	var c = r.findComponent('Component');
+	console.log(c.toHTML());
+}, 1000);
 ```
 
 ---
@@ -292,8 +403,16 @@ Fires an event, which will be received by handlers that were bound using `ractiv
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAAoAlAG4AOt0swAdD0MByAGadODvMycBXbjt33jZmBLcxQuXn40GwROAHNHF05PXRg0ABMHM0scLKtuWycUo2dXTNNcIA"></div>
+
 ```js
-// TODO
+var r = new Ractive();
+
+r.on('foo', function() {
+  console.log('foo fired');
+});
+
+r.fire('foo');
 ```
 
 ---
@@ -316,8 +435,18 @@ Returns the value at `keypath`. If the [keypath](../Concepts/Templates/Keypaths.
 
 **Examples**
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAApgAHW4mUAE1RJIzU+ZQWAZp052HFrygBGsuwDazADkfgBewcwAumbeOLEo8dw4AJQA3LHcXLz8aAB0CJwA5oYweUVoKIbBrpx5fmUADMEp6bhAA"></div>
+
 ```js
-// TODO
+var r = new Ractive({
+	data: {
+		foo: {
+			bar: [ 'baz' ]
+		}
+	}
+});
+
+console.log(r.get('foo.bar.0'));
 ```
 
 ---

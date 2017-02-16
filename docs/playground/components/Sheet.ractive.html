@@ -123,7 +123,7 @@
       init: function() {
         var self = this;
         this.messageListener = window.addEventListener('message', function(event) {
-          if (event.isTrusted && event.data.log) {
+          if (event.data.log) { // aparently firefox doesn't isTrusted the same way chrome does
             var csl = self.find('.rs-console');
             var scroll = csl.scrollTop + csl.clientHeight >= csl.scrollHeight - 5;
             self.push('messages', { type: event.data.type, message: event.data.log.join('\n') });
@@ -165,8 +165,8 @@
     <li class="rs-tab" on-click=['select', 'output'] class-rs-tab-active="{{~/selected === 'output'}}">Output</li>
     <li class="rs-tab" on-click=['select', 'console'] class-rs-tab-active="{{~/selected === 'console'}}">Console</li>
     {{#if popped}}
-      <li class="rs-button" on-click="@.set('popped', popped === 2 ? 1 : 0)">&#11015;</li>
-      <li class="rs-button" on-click="@.set('popped', 2)" class-rs-disabled="{{popped === 2}}">&#11014;</li>
+      <li class="rs-button" on-click="@.set('popped', popped === 2 ? 1 : 0)">&#x25bc;</li>
+      <li class="rs-button" on-click="@.set('popped', 2)" class-rs-disabled="{{popped === 2}}">&#x25b2;</li>
       {{#if selected === 'console'}}<li class="rs-button" on-click="@.set('messages', [])">&#8709;</li>{{/if}}
     {{/if}}
   </ul>
