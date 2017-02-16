@@ -150,3 +150,9 @@ if (window.localStorage) {
 } else {
   r.set('settings.editor', { highlightActive: true, wrap: true, theme: 'chrome' });
 }
+
+window.addEventListener('message', function(event) {
+  if (event.data && typeof event.data.code === 'string') {
+    r.fire('pasted-content', event.data.code);
+  }
+});

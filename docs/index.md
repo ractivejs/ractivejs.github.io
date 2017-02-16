@@ -32,6 +32,8 @@ bower install --save ractive
 
 Using Ractive is very simple. Create a new instance using `new Ractive({...})` with the desired options.
 
+<div data-playground="N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvADxICWAbgATVIC8AOiALYCG1AduwD4KAehq0BmHPBj1m9XggDu9AEpcAxqToIAFMFb9SpLjDSlI9AOQBibn0sYDrIwg4AHADZdSCC5YpuAsDAKDAICFq8KEQk9MFh6tRu1Ai8pDEigQ5OpEjeXBb6hs6h4ZEofgASCB4eAPbZxaQJSSlpfgDqdTAeSACEljlEBkQAlADckurwIERAA"></div>
+
 ```js
 var ractive = new Ractive({
     el: 'body',
@@ -46,8 +48,6 @@ var ractive = new Ractive({
 While there are _no required options_, `el`, `template` and `data` are the most common. They specify _what element_ to attach an instance with _this markup_ having _this data_. Check out [Initialization Options](API/Initialization Options.md) to learn more about the available options.
 
 If you get stuck at any point, visit the [Get Support](Get Started/Support.md) page for places to find help.
-
-You can also try play around with this example on the [playground](/playground/#N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvADxICWAbgATVIC8AOiALYCG1AduwD4KAehq0BmHPBj1m9XggDu9AEpcAxqToIAFMFb9SpLjDSlI9AOQBibn0sYDrIwg4AHADZdSCC5YpuAsDAKDAICFq8KEQk9MFh6tRu1Ai8pDEigQ5OpEjeXBb6hs6h4ZEofgASCB4eAPbZxaQJSSlpfgDqdTAeSACEljlEBkQAlADckurwIERAA).
 
 ---
 
