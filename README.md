@@ -9,7 +9,7 @@
 # - virtualenv
 
 # Create a virtualenv and activate it
-virutalenv ractivejs.github.io
+virtualenv ractivejs.github.io
 cd ractivejs.github.io
 source ./bin/activate
 
