@@ -40,7 +40,7 @@ ractive.myMethod(); // triggers the alert
 | [noCssTransform](#noCssTransform)         		| [templating](#templating)       		| prevent transformation of component css |
 | [noIntro](#noIntro)                       		| [transitions](#transitions-animations)| do not apply transitions on render |
 | [onchange](#onchange)                             | [lifecycle events](#lifecycle-events) | event fired when data changes
-| [oncomplete](#oncomplete)                         | [lifecycle events](#lifecycle-events) | event fired once {{{createLink 'transitions'}}} have completed
+| [oncomplete](#oncomplete)                         | [lifecycle events](#lifecycle-events) | event fired once [transitions](transitions.md) have completed
 | [onconfig](#onconfig)                             | [lifecycle events](#lifecycle-events) | event fired once all configuration options have been processed
 | [onconstruct](#onconstruct)                       | [lifecycle events](#lifecycle-events) | event fired immediately after `new Ractive(...)`
 | [ondetach](#ondetach)                             | [lifecycle events](#lifecycle-events) | event fired each time `ractive.detach()` is called
@@ -67,13 +67,13 @@ ractive.myMethod(); // triggers the alert
 ## Templating
 
 > <a id="template"></a>
-> ### **template** *`String` or `Function` or (if {{{createLink 'preparsing'}}}) `Array` or `Object`*
+> ### **template** *`String` or `Function` or (if [preparsing](preparsing.md)) `Array` or `Object`*
 > The template to use. If this is a string, it must be valid (if meaningless, until rendered) HTML:
 > ```js
 > template: '<p>\{{greeting}} world!</p>',
 > ```
 
-> Otherwise this must be the output of {{{createLink 'Ractive.parse()'}}}, usually precompiled for use in the browser:
+> Otherwise this must be the output of [Ractive.parse()](Ractive.parse().md), usually precompiled for use in the browser:
 > ```js
 > template: parsedTemplates.foo,
 > ```
@@ -90,17 +90,17 @@ ractive.myMethod(); // triggers the alert
 
 > <a id="partials"></a>
 > ### partials *`Object`*
-> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of {{{createLink 'Ractive.parse()'}}}.
+> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of [Ractive.parse()](Ractive.parse().md).
 > ```js
 > partials: {
 >     myPartial: "<p>I'm a partial!<p>"
 > }
 > ```
-> The partial name used in the template can also be used to lookup the partial by ID.  See {{{createLink 'Partials'}}} for more info.
+> The partial name used in the template can also be used to lookup the partial by ID.  See [Partials](Partials.md) for more info.
 
 > <a id="components"></a>
 > ### components *`Object`*
-> A `key: value` hash of components that are specific to this instance, where `key` is the name of the component (as referenced within templates as `<my-component></my-component>`), and `value` is a valid component created by {{{createLink 'Ractive.extend()'}}}.
+> A `key: value` hash of components that are specific to this instance, where `key` is the name of the component (as referenced within templates as `<my-component></my-component>`), and `value` is a valid component created by [Ractive.extend()](Ractive.extend().md).
 > ```js
 > components: {
 >     'my-component': Ractive.extend({
@@ -109,11 +109,11 @@ ractive.myMethod(); // triggers the alert
 >     })
 > }
 > ```
-> See {{{createLink 'Components'}}} for more info.
+> See [Components](Components.md) for more info.
 
 > <a id="decorators"></a>
 > ### decorators *`Object`*
-> A `key: value` hash of decorators that are specific to this instance, where `key` is the name of the decorator (as referenced within templates as `<div decorator="myDecorator"></div>`), and `value` is a is a decorator functions.  See {{{createLink 'Decorators'}}} for more info.
+> A `key: value` hash of decorators that are specific to this instance, where `key` is the name of the decorator (as referenced within templates as `<div decorator="myDecorator"></div>`), and `value` is a is a decorator functions.  See [Decorators](Decorators.md) for more info.
 > ```js
 > decorators: {
 >     'myDecorator': function( node, fire) {...}
@@ -122,7 +122,7 @@ ractive.myMethod(); // triggers the alert
 
 > <a id="events"></a>
 > ### events *`Object`*
-> A `key: value` hash of {{{createLink 'Writing event plugins' 'event plugins'}}} that are specific to this instance, where `key` is the name of the event (as referenced within templates as `<button on-mycustomevent="fire"></button>`), and `value` is the custom event plugin functions.  See {{{createLink 'Writing event plugins'}}} for more info.
+> A `key: value` hash of [event plugins](Writing event plugins.md) that are specific to this instance, where `key` is the name of the event (as referenced within templates as `<button on-mycustomevent="fire"></button>`), and `value` is the custom event plugin functions.  See [Writing event plugins](Writing event plugins.md) for more info.
 > ```js
 > events: {
 >     'mycustomevent': function( node, fire) {...}
@@ -146,7 +146,7 @@ ractive.myMethod(); // triggers the alert
 
 > Directives for the element to render to. Use `append` option (see below) to control whether existing content is replaced.
 
-> * `string` id or selector, see {{{createLink 'valid selectors'}}}
+> * `string` id or selector, see [valid selectors](valid selectors.md)
 > ```js
 > el: '#container'
 > ```
@@ -154,7 +154,7 @@ ractive.myMethod(); // triggers the alert
 > ```js
 > el: document.body
 > ```
-> * any `obj` where `obj[0]` is an `HTMLElement`, see {{{createLink 'valid selectors' 'jquery collections' 'jquery-collections'}}}
+> * any `obj` where `obj[0]` is an `HTMLElement`, see [jquery collections](valid selectors.md#jquery-collections)
 > ```js
 > el: $('#container')
 > ```
@@ -194,7 +194,7 @@ ractive.myMethod(); // triggers the alert
 >     // result
 >     <div id='container'><p>existing content</p><p>new content</p></div>
 >     ```
-> * anchor is any valid option as specified in `el` that resolves to an `HTMLElement`. Rendered content is appended to `el` before anchor, see {{{createLink 'ractive.insert()'}}}
+> * anchor is any valid option as specified in `el` that resolves to an `HTMLElement`. Rendered content is appended to `el` before anchor, see [ractive.insert()](ractive.insert().md)
 >     ```html
 >     // dom
 >     <div id='container'><p>red</p><p>blue</p><p>yellow</p></div>
@@ -233,11 +233,11 @@ ractive.myMethod(); // triggers the alert
 >     area: '${width} * ${height}'
 > }
 > ```
-> See {{{createLink 'Computed Properties'}}} for more information and examples .
+> See [Computed Properties](Computed Properties.md) for more information and examples .
 
 > <a id="magic"></a>
 > ### magic *`Boolean`*
-> Defaults to `false`. Whether or not to wrap data in ES5 accessors for automatic binding (see {{{createLink 'magic mode'}}}).
+> Defaults to `false`. Whether or not to wrap data in ES5 accessors for automatic binding (see [magic mode](magic mode.md)).
 > ```js
 > var data = { foo: 'bar' };
 > new Ractive({ data: data } );
@@ -246,7 +246,7 @@ ractive.myMethod(); // triggers the alert
 > ```
 > <a id="adapt"></a>
 > ### adapt *`Array`*
-> Custom wrappers to be used with all or part of the supplied data, see {{{createLink 'Adaptors'}}}. Unlike components or other registries where there is a template-level directive that informs Ractive that plugin is to be used, adaptors are a data-level construct and so you use the `adapt` option to tell Ractive which adaptors are to be used with that instance. If you define the adaptors directly on the instance or component, you do not need to specify them in the `adapt` option.
+> Custom wrappers to be used with all or part of the supplied data, see [Adaptors](Adaptors.md). Unlike components or other registries where there is a template-level directive that informs Ractive that plugin is to be used, adaptors are a data-level construct and so you use the `adapt` option to tell Ractive which adaptors are to be used with that instance. If you define the adaptors directly on the instance or component, you do not need to specify them in the `adapt` option.
 
 > Can either be the adaptor itself, or the name of an adaptor registred via `Ractive.adaptors`:
 > ```js
@@ -258,7 +258,7 @@ ractive.myMethod(); // triggers the alert
 > ```
 > <a id="adaptors"></a>
 > ### adaptors *`Object`*
-> A `key: value` hash of {{{createLink 'Adaptors' 'adaptors'}}} that are specific to this instance. Usually the `adapt` property can directly specify which adaptors
+> A `key: value` hash of [adaptors](Adaptors.md) that are specific to this instance. Usually the `adapt` property can directly specify which adaptors
 > to use on this instance and the `adaptors` property is used to register an adaptor on components or `Ractive.adaptors`.
 > ```js
 > adaptors: {
@@ -267,7 +267,7 @@ ractive.myMethod(); // triggers the alert
 > ```
 > <a id="modifyArrays"></a>
 > ### modifyArrays *`Boolean`*
-> Defaults to `true`. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see {{{createLink 'array modification'}}}).
+> Defaults to `true`. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see [array modification](array modification.md)).
 > ```js
 > var items = [ 'red', 'blue' ];
 > new Ractive({
@@ -280,7 +280,7 @@ ractive.myMethod(); // triggers the alert
 
 > <a id="twoway"></a>
 > ### twoway *`Boolean`*
-> Defaults to `true`. Whether or not two-way data binding is enabled (see {{{createLink 'Two‐way binding'}}}).
+> Defaults to `true`. Whether or not two-way data binding is enabled (see [Two‐way binding](Two‐way binding.md)).
 > ```js
 > var ractive = new Ractive({
 >     template: '<input value="\{{foo}}">',
@@ -313,17 +313,17 @@ ractive.myMethod(); // triggers the alert
 > ```
 > <a id="isolated"></a>
 > ### isolated *`Boolean`*
-> Defaults to `false`. This option is typically only relevant as an extension option for {{{createLink 'Components'}}}. Controls whether the component will look outside itself for data and registry items.
+> Defaults to `false`. This option is typically only relevant as an extension option for [Components](Components.md). Controls whether the component will look outside itself for data and registry items.
 
 ## Lifecycle events
 
-See the {{{createLink 'lifecycle events' 'main entry for lifecycle events'}}}.
+See the [main entry for lifecycle events](lifecycle events.md).
 
 ## Transitions & Animations
 
 > <a id="transitions"></a>
 > ### transitions *`Object`*
-A `key: value` hash of transitions that are specific to this instance. The `key` is referenced within templates using `intro` and `outro` attributes on elements, and `value` is a transition functions, see {{{createLink 'Transitions'}}} for more info.
+A `key: value` hash of transitions that are specific to this instance. The `key` is referenced within templates using `intro` and `outro` attributes on elements, and `value` is a transition functions, see [Transitions](Transitions.md) for more info.
 > ```js
 > template: '<p intro="slide" outro="slide">hello world</p>',
 > transitions: {
@@ -364,11 +364,11 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 
 > <a id="easing"></a>
 > ### easing *`Object`*
-> A `key: value` hash of easing function. See {{{createLink 'Ractive.easing'}}}
+> A `key: value` hash of easing function. See [Ractive.easing](Ractive.easing.md)
 
 > <a id="interpolators"></a>
 > ### interpolators *`Object`*
-> A `key: value` hash of interpolators use by {{{createLink 'ractive.animate()'}}}
+> A `key: value` hash of interpolators use by [ractive.animate()](ractive.animate().md)
 
 ## Parsing
 

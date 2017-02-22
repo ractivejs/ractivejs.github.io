@@ -1,11 +1,11 @@
 # 'Proxy events'
 
 
-*See also: {{{createLink 'method calls' 'method calls from templates'}}}*
+*See also: [method calls from templates](method calls.md)*
 
-Ractive has a concept of *proxy events*, which translate a user *action* (e.g. a mouseclick) defined via an {{{createLink 'event directives' 'event directive'}}} into an *intention* (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).
+Ractive has a concept of *proxy events*, which translate a user *action* (e.g. a mouseclick) defined via an [event directive](event directives.md) into an *intention* (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).
 
-As with all events in Ractive, you subscribe with {{{createLink 'ractive.on()'}}} (also see {{{createLink 'publish-subscribe'}}}). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
+As with all events in Ractive, you subscribe with [ractive.on()](ractive.on().md) (also see [publish-subscribe](publish-subscribe.md)). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
 
 ```js
 ractive = new Ractive({
@@ -18,7 +18,7 @@ ractive.on( 'activate', function ( event ) {
 });
 ```
 
-In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via {{{createLink 'ractive.on()'}}}.
+In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via [ractive.on()](ractive.on().md).
 
 ## Event arguments
 
@@ -28,15 +28,15 @@ The first argument to a proxy event handler is always a Ractive `event` object. 
 
 * `event.name` - the name of the event, in this case 'activate'
 * `event.node` - the DOM node in question
-* `event.keypath` - the {{{createLink 'Keypaths' 'keypath'}}} of the current context
+* `event.keypath` - the [keypath](Keypaths.md) of the current context
 * `event.context` - the value of `this.get(event.keypath)`
 * `event.index` - a map of index references
-* `event.component` - the component that raised the event, only present on {{{createLink 'event bubbling' 'bubbled events'}}}
+* `event.component` - the component that raised the event, only present on [bubbled events](event bubbling.md)
 * `event.original` - the original DOM event, if available
 
 In the example above, `event.keypath` might be `items.0` for the first item in the list, `items.1` for the second, and so on. The `event.index` map would have a property `i`, which would correspond to those indices.
 
-The event object is also available in event handlers using `this.event`, see {{{createLink 'publish-subscribe' 'publish-subscribe' 'accessing-the-event-object'}}} for more details.
+The event object is also available in event handlers using `this.event`, see [publish-subscribe](publish-subscribe.md#accessing-the-event-object) for more details.
 
 ### Custom arguments
 
@@ -67,19 +67,19 @@ ractive.on( 'addToCart', function ( event, item, qty ) {
 
 If you return `false` from a proxy event handler, ractive will automatically call both `preventDefault()` and `stopPropagation()` on the original DOM event.
 
-Note that returning `false` has a dual purpose of both cancelling further bubbling up the view hierarchy {{{createLink 'Event bubbling' 'event bubbling'}}} __as well as__ cancelling the DOM Event if the event was DOM-based.
+Note that returning `false` has a dual purpose of both cancelling further bubbling up the view hierarchy [event bubbling](Event bubbling.md) __as well as__ cancelling the DOM Event if the event was DOM-based.
 
 If you only want to cancel the DOM event, you can call the appropriate methods directly on `event.original` or `this.event.original`, which are both references to the current DOM event object.
 
 
 ## Reserved event names
 
-Note: the built-in {{{createLink 'lifecycle events'}}} are **reserved**, which means you can't use their names as proxy events.
+Note: the built-in [lifecycle events](lifecycle events.md) are **reserved**, which means you can't use their names as proxy events.
 
 
 ## Dynamic proxy event names
 
-{{{createLink 'Mustaches' 'Mustache references'}}} can be used as proxy event names:
+[Mustache references](Mustaches.md) can be used as proxy event names:
 
 ```html
 <button on-click="\{{handler}}">click me!</button>

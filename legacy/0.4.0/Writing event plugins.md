@@ -1,4 +1,4 @@
 # Writing event plugins
 
 
-TODO... see {{{createLink 'Ractive.events'}}}
+TODO... see [Ractive.events](Ractive.events.md)

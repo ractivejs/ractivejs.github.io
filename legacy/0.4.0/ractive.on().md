@@ -1,6 +1,6 @@
 # ractive.on()
 
-Subscribe to {{{createLink 'events'}}}.
+Subscribe to [events](events.md).
 
 > ### ractive.on( eventName, handler )
 > Returns an `Object` with a `cancel` method, which removes the handler.

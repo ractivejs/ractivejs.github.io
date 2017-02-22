@@ -1,20 +1,20 @@
 # ractive.subtract()
 
-Decrements the value of the given {{{createLink 'keypaths' 'keypath'}}}.
+Decrements the value of the given [keypath](keypaths.md).
 
 > ### ractive.subtract( keypath[, number ])
-> Returns a `Promise` (see {{{createLink 'Promises'}}})
+> Returns a `Promise` (see [Promises](Promises.md))
 
 > > #### **keypath** *`String`*
-> > The {{{createLink 'keypaths' 'keypath'}}} of the number we're decrementing, e.g. `count`
+> > The [keypath](keypaths.md) of the number we're decrementing, e.g. `count`
 
 > > #### number
 > > Defaults to `1`. The number to decrement by
 
 ### Example
 
-This is useful for numeric counters. Instead of using {{{createLink 'ractive-get' 'ractive.get()'}}}
-and {{{createLink 'ractive-set' 'ractive.set()'}}} in succession, using *add()* and *subtract()* will
+This is useful for numeric counters. Instead of using [ractive.get()](ractive-get.md)
+and [ractive.set()](ractive-set.md) in succession, using *add()* and *subtract()* will
 simplify your code.
 
 ```js

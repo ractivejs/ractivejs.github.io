@@ -1,22 +1,22 @@
 # Promises
 
 
-Several methods in Ractive - those which trigger changes to the view, which may or may not involve {{{createLink 'transitions'}}} - return a 'promise'. Those methods are:
+Several methods in Ractive - those which trigger changes to the view, which may or may not involve [transitions](transitions.md) - return a 'promise'. Those methods are:
 
-* {{{createLink 'ractive.add()'}}}
-* {{{createLink 'ractive.animate()'}}}
-* {{{createLink 'ractive.merge()'}}}
-* {{{createLink 'ractive.pop()'}}}
-* {{{createLink 'ractive.push()'}}}
-* {{{createLink 'ractive.reset()'}}}
-* {{{createLink 'ractive.set()'}}}
-* {{{createLink 'ractive.shift()'}}}
-* {{{createLink 'ractive.splice()'}}}
-* {{{createLink 'ractive.subtract()'}}}
-* {{{createLink 'ractive.teardown()'}}}
-* {{{createLink 'ractive.toggle()'}}}
-* {{{createLink 'ractive.unshift()'}}}
-* {{{createLink 'ractive.update()'}}}
+* [ractive.add()](ractive.add().md)
+* [ractive.animate()](ractive.animate().md)
+* [ractive.merge()](ractive.merge().md)
+* [ractive.pop()](ractive.pop().md)
+* [ractive.push()](ractive.push().md)
+* [ractive.reset()](ractive.reset().md)
+* [ractive.set()](ractive.set().md)
+* [ractive.shift()](ractive.shift().md)
+* [ractive.splice()](ractive.splice().md)
+* [ractive.subtract()](ractive.subtract().md)
+* [ractive.teardown()](ractive.teardown().md)
+* [ractive.toggle()](ractive.toggle().md)
+* [ractive.unshift()](ractive.unshift().md)
+* [ractive.update()](ractive.update().md)
 
 The promise will fulfil *once there are no longer any active transitions resulting from the operation*.
 

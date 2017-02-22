@@ -6,9 +6,9 @@ Transitions allow you to control how elements are first rendered and how they ar
 <div intro='fade'>This element will fade in gradually when it renders</div>
 ```
 
-This works because (or rather, if) Ractive is able to find a `fade` function on either {{{createLink 'ractive-transitions-instance' 'ractive.transitions'}}} (i.e. instance-specific transitions) or {{{createLink 'ractive-transitions-global' 'Ractive.transitions'}}} (i.e. globally-available transitions).
+This works because (or rather, if) Ractive is able to find a `fade` function on either [ractive.transitions](ractive-transitions-instance.md) (i.e. instance-specific transitions) or [Ractive.transitions](ractive-transitions-global.md) (i.e. globally-available transitions).
 
-To start using transitions, download them from the {{{createLink 'Plugins'}}} page.
+To start using transitions, download them from the [Plugins](Plugins.md) page.
 
 
 ## Creating transitions
@@ -53,7 +53,7 @@ The `t` object has a few properties and methods designed to make creating transi
 > > Defaults to `false`. Generally, you won't need this. If `true`, `t.resetStyle()` (see below) is not called, even if this is an intro transition.
 
 > ### t.getStyle( prop )
-> A convenient way to get a particular style property for `t.node`. It uses `window.getComputedStyle()` (the {{{createLink 'legacy builds'}}} include a shim for old IE). Prefixes are applied automatically, so do `t.getStyle('transform')`, not `t.getStyle('-webkit-transform')` or whatever. You can use either camelcased or hyphenated styles ('backgroundColor' or 'background-color').
+> A convenient way to get a particular style property for `t.node`. It uses `window.getComputedStyle()` (the [legacy builds](legacy builds.md) include a shim for old IE). Prefixes are applied automatically, so do `t.getStyle('transform')`, not `t.getStyle('-webkit-transform')` or whatever. You can use either camelcased or hyphenated styles ('backgroundColor' or 'background-color').
 > > #### **prop** *`String`*
 > > The style property to get the value of, e.g. `'opacity'`
 

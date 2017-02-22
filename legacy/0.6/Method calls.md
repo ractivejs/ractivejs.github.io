@@ -1,16 +1,16 @@
 # 'Method calls'
 
 
-*See also: {{{createLink 'proxy events'}}}*
+*See also: [proxy events](proxy events.md)*
 
-As an alternative to {{{createLink 'proxy events'}}}, you can call any method of your Ractive instance, in response to an {{{createLink 'event directives' 'event directive'}}}, right from your template:
+As an alternative to [proxy events](proxy events.md), you can call any method of your Ractive instance, in response to an [event directive](event directives.md), right from your template:
 
 ```html
 <p>foo is \{{foo}}</p>
 <button on-click='toggle("foo")'>toggle foo</button>
 ```
 
-In this case, because {{{createLink 'ractive.toggle()'}}} is a built-in method, clicking the button will toggle the value of `foo` between `true` and `false` ([demo](http://jsfiddle.net/rich_harris/xxg93vw8/)).
+In this case, because [ractive.toggle()](ractive.toggle().md) is a built-in method, clicking the button will toggle the value of `foo` between `true` and `false` ([demo](http://jsfiddle.net/rich_harris/xxg93vw8/)).
 
 This also works with custom methods:
 

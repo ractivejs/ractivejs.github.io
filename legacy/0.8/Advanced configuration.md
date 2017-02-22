@@ -2,9 +2,9 @@
 
 In addition to supplying static values for configurations options, some of the Ractive options
 can be specified using a function that will resolve when the ractive instance is instantiated,
-and re-evaluated upon {{{createLink 'ractive.reset()'}}}.
+and re-evaluated upon [ractive.reset()](ractive.reset().md).
 
-An option function may be supplied to either {{{createLink 'Ractive.extend()'}}} or {{{createLink 'new Ractive()'}}}.
+An option function may be supplied to either [Ractive.extend()](Ractive.extend().md) or [new Ractive()](new Ractive().md).
 
 Option functions receive the post-configured `data` option as the first argument and `this` in
 the function refers to the ractive instance being instantiated.
@@ -38,10 +38,10 @@ with a helper parser object `p` that offers the following methods:
 > Test whether the supplied instance has already been parsed
 
 > ### p.parse( template [, parseOptions ] )
-> Parses the template via {{{createLink 'Ractive.parse()' }}}. If no `parseOptions` specified, defaults to those
+> Parses the template via [Ractive.parse()](Ractive.parse().md). If no `parseOptions` specified, defaults to those
 > of the current instance. Full Ractive runtime must be loaded.
 
-During a {{{createLink 'ractive.reset()' }}} operation, an option function for a template will be re-evaluated
+During a [ractive.reset()](ractive.reset().md) operation, an option function for a template will be re-evaluated
 and _if_ the return value changes the ractive instance will be re-rendered.
 
 ## Partials

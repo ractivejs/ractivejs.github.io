@@ -7,8 +7,8 @@ Where necessary, items are moved from their current location in the array (and, 
 to their new location.
 
 This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro`
-{{{createLink 'Transitions' 'transitions'}}} which might not otherwise happen with a basic
-{{{createLink 'ractive.set()' }}} operation.
+[transitions](Transitions.md) which might not otherwise happen with a basic
+[ractive.set()](ractive.set().md) operation.
 
 To determine whether the first item of `['foo', 'bar', 'baz']` is
 the same as the last item of `['bar', 'baz', 'foo']`, by default we do a strict equality (`===`) check.
@@ -45,7 +45,7 @@ var r = new Ractive({
 ```
 
 > ### ractive.merge( keypath, value[, options] )
-> Returns a `Promise` (see {{{createLink 'Promises'}}})
+> Returns a `Promise` (see [Promises](Promises.md))
 
 > > #### **keypath** *`String`*
 > > The [keypath](keypaths) of the array we're updating

@@ -46,12 +46,12 @@ ractive = new Ractive({
 });
 ```
 
-Here, `myThumbnailPartial` can be a {{{createLink 'templates' 'string template'}}} or a {{{createLink 'preparsing' 'parsed template'}}}.
+Here, `myThumbnailPartial` can be a [string template](templates.md) or a [parsed template](preparsing.md).
 
 
 ### As a globally available partial
 
-Equally, you can make partials globally available by adding them to {{{createLink 'ractive-partials-global' 'Ractive.partials'}}}:
+Equally, you can make partials globally available by adding them to [Ractive.partials](ractive-partials-global.md):
 
 ```js
 Ractive.partials.thumbnail = myThumbnailPartial;
@@ -75,7 +75,7 @@ This method is particularly convenient if you don't want to load templates via A
 
 The `type` attribute isn't important, as long as it exists and isn't `text/javascript`. All that matters is that it's a script tag whose `id` attribute matches the name of the partial. It's fairly common to see Ractive templates in script tags with `type="text/ractive"` to clearly indicate that they are meant to be handled by Ractive. It can be useful, though, to specify `type="text/html"` since many text editors support HTML templates in script tags for templating purposes.
 
-Internally, when a template requests the `\{{>thumbnail}}` partial, Ractive will look for it on {{{createLink 'ractive-partials-instance' 'ractive.partials'}}}, then [Ractive.partials](ractive-partials-global), and if both of those fail it will then look for an element with an `id` of `thumbnail`. If it exists, it will parse its content and store it on {{{createLink 'ractive-partials-global' 'Ractive.partials'}}}, to make subsequent lookups quicker.
+Internally, when a template requests the `\{{>thumbnail}}` partial, Ractive will look for it on [ractive.partials](ractive-partials-instance.md), then [Ractive.partials](ractive-partials-global), and if both of those fail it will then look for an element with an `id` of `thumbnail`. If it exists, it will parse its content and store it on [Ractive.partials](ractive-partials-global.md), to make subsequent lookups quicker.
 
 
 
@@ -104,7 +104,7 @@ In this case, the `thumbnail` partial won't be globally available - it will only
 <a name="expressions"></a>
 ## Partial expressions
 
-Partial references may be a name that already exists as a partial, or they may also be any expression that resolves to a partial name. This can be used to select an appropriate partial based on the current context and more. The full power of Ractive's {{{createLink 'expressions'}}} are available. If the value of the expression changes, the partial fragment will be re-rendered using the new partial.
+Partial references may be a name that already exists as a partial, or they may also be any expression that resolves to a partial name. This can be used to select an appropriate partial based on the current context and more. The full power of Ractive's [expressions](expressions.md) are available. If the value of the expression changes, the partial fragment will be re-rendered using the new partial.
 
 If a partial expression is a simple reference and a partial exists with the same name as the reference, the expression will not be evaluated. Instead, the partial with the same name as the reference will be used. For instance, if there are partials named `foo` and `bar`, a data member `foo: 'bar'`, and a partial section `\{{>foo}}`, the partial named `foo` will be used for the section because name-matching takes precedent over expression evaluation.
 
@@ -262,7 +262,7 @@ ractive = new Ractive({
 });
 ```
 
-Or you might make it possible to {{{createLink 'ractive-extend' 'extend'}}} a subclass without overriding its template:
+Or you might make it possible to [extend](ractive-extend.md) a subclass without overriding its template:
 
 ```html
 <div class='modal-background'>

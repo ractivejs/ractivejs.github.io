@@ -19,7 +19,7 @@ Inline partials are now scoped to their nearest element. If a partial reference 
 
 Components may now yield to multiple inline partials by supplying the partial name with yield e.g. `\{{yield some-name}}`. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. `\{{>partial}}`.
 
-Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new `resetPartial` {{{ createLink 'Ractive.resetPartial()' 'method' }}} on Ractive instances.
+Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new `resetPartial` [method](Ractive.resetPartial().md) on Ractive instances.
 
 `this.event` is now available to method-call event handlers.
 
@@ -56,7 +56,7 @@ The `init()` method also no longer recieves an `options` parameter as the ractiv
 
 `beforeInit()` and `complete()` can be replaced directly with `onconstruct()` and `oncomplete()` respectively.
 
-See the {{{createLink 'lifecycle events'}}} page for more detail.
+See the [lifecycle events](lifecycle events.md) page for more detail.
 
 ### Other Breaking changes
 
@@ -102,4 +102,4 @@ See the {{{createLink 'lifecycle events'}}} page for more detail.
 	* character escaping and whitespace handling in attribute directive arguments
 	* boolean and empty string attributes
 * Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `\{{page.area}}` but not `\{{#page}}\{{area}}\{{/page}}`
-* The element into which the ractive instance was rendered is no longer available as `ractive.el`. See {{{createLink 'ractive.render()'}}} and {{{createLink 'ractive.insert()'}}} for more information on moving ractive instances in the DOM.
+* The element into which the ractive instance was rendered is no longer available as `ractive.el`. See [ractive.render()](ractive.render().md) and [ractive.insert()](ractive.insert().md) for more information on moving ractive instances in the DOM.

@@ -3,8 +3,8 @@
 
 Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.
 
-Calling `ractive.teardown()` causes a `teardown` {{{createLink 'lifecycle-events' 'event'}}} to be fired - this is most useful with {{{createLink 'Ractive.extend()'}}} as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.
+Calling `ractive.teardown()` causes a `teardown` [event](lifecycle-events.md) to be fired - this is most useful with [Ractive.extend()](Ractive.extend().md) as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.
 
 
 > ### ractive.teardown()
-> Returns a `Promise` (see {{{createLink 'Promises'}}})
+> Returns a `Promise` (see [Promises](Promises.md))

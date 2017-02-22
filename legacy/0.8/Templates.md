@@ -1,6 +1,6 @@
 # Templates
 
-In Ractive, templates (until they get {{{createLink 'ractive-parse' 'parsed'}}}, at least) are just snippets of HTML, with a few differences. A template should be *well-formed* - Ractive's parser is not quite as forgiving as the HTML parsers found in browsers (though it does allow things like implicitly closed elements).
+In Ractive, templates (until they get [parsed](ractive-parse.md), at least) are just snippets of HTML, with a few differences. A template should be *well-formed* - Ractive's parser is not quite as forgiving as the HTML parsers found in browsers (though it does allow things like implicitly closed elements).
 
 Strictly speaking, a Ractive template is not valid HTML (for one thing, 'valid HTML' describes an entire document, and we're only dealing with snippets), but *it doesn't matter*, even if you're the kind of obsessive who can't stand a single error in the [W3C validator](http://validator.w3.org/), because it all comes out as lovely standards-compliant DOM.
 
@@ -8,11 +8,11 @@ For reference, however, the differences between Ractive templates and HTML are l
 
 ## Mustaches
 
-The most obvious difference is that Ractive templates contain {{{createLink 'mustaches'}}} to facilitate data binding.
+The most obvious difference is that Ractive templates contain [mustaches](mustaches.md) to facilitate data binding.
 
 ## Event directives
 
-Elements in a Ractive template can have {{{createLink 'method calls' 'events' }}}, which look like attributes but don't get rendered to the DOM as attributes (they are intercepted, and used as event binding instructions instead):
+Elements in a Ractive template can have [events](method calls.md), which look like attributes but don't get rendered to the DOM as attributes (they are intercepted, and used as event binding instructions instead):
 
 ```html
 <button on-click='@this.activate()'>Activate!</button>
@@ -20,7 +20,7 @@ Elements in a Ractive template can have {{{createLink 'method calls' 'events' }}
 
 ## Transitions
 
-Another item in the set of things-that-look-like-attributes-but-aren't, {{{createLink 'transitions'}}} allow you to specify how elements should behave when they first get introduced to the DOM and when they get removed from it later:
+Another item in the set of things-that-look-like-attributes-but-aren't, [transitions](transitions.md) allow you to specify how elements should behave when they first get introduced to the DOM and when they get removed from it later:
 
 ```html
 <div fade-in>This element will fade in gradually when it renders</div>
@@ -28,7 +28,7 @@ Another item in the set of things-that-look-like-attributes-but-aren't, {{{creat
 
 ## Decorators
 
-{{{createLink 'Decorators'}}} can decorate elements as they are rendered to the DOM. These also look like attributes, but they never get added to the DOM themselves.
+[Decorators](Decorators.md) can decorate elements as they are rendered to the DOM. These also look like attributes, but they never get added to the DOM themselves.
 
 ```html
 <div as-ace-editor>This element will be turned into an Ace Editor.</div>

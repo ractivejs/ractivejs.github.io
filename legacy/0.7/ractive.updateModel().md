@@ -1,6 +1,6 @@
 # ractive.updateModel()
 
-If you programmatically manipulate inputs and other elements that have {{{createLink 'two‐way binding'}}} set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
+If you programmatically manipulate inputs and other elements that have [two‐way binding](two‐way binding.md) set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
 
 ```js
 ractive = new Ractive({
@@ -17,7 +17,7 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
 ```
 
 > ### ractive.updateModel( keypath [, cascade ])
-> Returns a `Promise` (see {{{createLink 'Promises'}}})
+> Returns a `Promise` (see [Promises](Promises.md))
 
 > > #### **keypath** *`String`*
 > > The keypath to treat as 'dirty'. Any two-way bindings linked to this keypath will be checked to see if the model is out of date
@@ -26,4 +26,4 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
 
 
 > ### ractive.updateModel()
-> Returns a `Promise` (see {{{createLink 'Promises'}}}). If a `keypath` is not specified, all two-way bindings will be checked.
+> Returns a `Promise` (see [Promises](Promises.md)). If a `keypath` is not specified, all two-way bindings will be checked.

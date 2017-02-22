@@ -8,4 +8,4 @@ There are a few places to find help if you get stuck with Ractive, beyond these 
 * [GitHub issues](https://github.com/ractivejs/ractive/issues)
 * [@RactiveJS on Twitter](http://twitter.com/RactiveJS)
 
-You can also check out the {{{createLink 'troubleshooting'}}} page.
+You can also check out the [troubleshooting](troubleshooting.md) page.

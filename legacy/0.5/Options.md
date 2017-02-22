@@ -42,13 +42,13 @@ The following is a complete list of initialisation options, with full descriptio
 ## Templating
 
 > <a id="template"></a>
-> ### **template** *`String` or (if {{{createLink 'preparsing'}}}) `Array` or `Object`*
+> ### **template** *`String` or (if [preparsing](preparsing.md)) `Array` or `Object`*
 > The template to use. If this is a string, it must be valid (if meaningless, until rendered) HTML:
 > ```js
 > template: '<p>\{{greeting}} world!</p>',
 > ```
 
-> Otherwise this must be the output of {{{createLink 'Ractive.parse()'}}}, usually precompiled for use in the browser:
+> Otherwise this must be the output of [Ractive.parse()](Ractive.parse().md), usually precompiled for use in the browser:
 > ```js
 > template: parsedTemplates.foo,
 > ```
@@ -65,17 +65,17 @@ The following is a complete list of initialisation options, with full descriptio
 
 > <a id="partials"></a>
 > ### partials *`Object`*
-> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of {{{createLink 'Ractive.parse()'}}}.
+> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of [Ractive.parse()](Ractive.parse().md).
 > ```js
 > partials: {
 >     myPartial: "<p>I'm a partial!<p>"
 > }
 > ```
-> The partial name used in the template can also be used to lookup the partial by ID.  See {{{createLink 'Partials'}}} for more info.
+> The partial name used in the template can also be used to lookup the partial by ID.  See [Partials](Partials.md) for more info.
 
 > <a id="components"></a>
 > ### components *`Object`*
-> A `key: value` hash of components that are specific to this instance, where `key` is the name of the component (as referenced within templates as `<my-component></my-component>`), and `value` is a valid component created by {{{createLink 'Ractive.extend()'}}}.
+> A `key: value` hash of components that are specific to this instance, where `key` is the name of the component (as referenced within templates as `<my-component></my-component>`), and `value` is a valid component created by [Ractive.extend()](Ractive.extend().md).
 > ```js
 > components: {
 >     'my-component': Ractive.extend({
@@ -84,11 +84,11 @@ The following is a complete list of initialisation options, with full descriptio
 >     })
 > }
 > ```
-> See {{{createLink 'Components'}}} for more info.
+> See [Components](Components.md) for more info.
 
 > <a id="decorators"></a>
 > ### decorators *`Object`*
-> A `key: value` hash of decorators that are specific to this instance, where `key` is the name of the decorator (as referenced within templates as `<div decorator="myDecorator"/>`), and `value` is a is a decorator functions.  See {{{createLink 'Decorators'}}} for more info.
+> A `key: value` hash of decorators that are specific to this instance, where `key` is the name of the decorator (as referenced within templates as `<div decorator="myDecorator"/>`), and `value` is a is a decorator functions.  See [Decorators](Decorators.md) for more info.
 > ```js
 > decorators: {
 >     'myDomponent': function( node, fire) {...}
@@ -112,7 +112,7 @@ The following is a complete list of initialisation options, with full descriptio
 
 > Directives for the element to render to. Use `append` option (see below) to control whether existing content is replaced.
 
-> * `string` id or selector, see {{{createLink 'valid selectors'}}}
+> * `string` id or selector, see [valid selectors](valid selectors.md)
 > ```js
 > el: '#container'
 > ```
@@ -120,7 +120,7 @@ The following is a complete list of initialisation options, with full descriptio
 > ```js
 > el: document.body
 > ```
-> * any `obj` where `obj[0]` is an `HTMLElement`, see {{{createLink 'valid selectors' 'jquery collections' 'jquery-collections'}}}
+> * any `obj` where `obj[0]` is an `HTMLElement`, see [jquery collections](valid selectors.md#jquery-collections)
 > ```js
 > el: $('#container')
 > ```
@@ -160,7 +160,7 @@ The following is a complete list of initialisation options, with full descriptio
 >     // result
 >     <div id='container'><p>existing content</p><p>new content</p></div>
 >     ```
-> * anchor is any valid option as specified in `el` that resolves to an `HTMLElement`. Rendered content is appended to `el` before anchor, see {{{createLink 'ractive.insert()'}}}
+> * anchor is any valid option as specified in `el` that resolves to an `HTMLElement`. Rendered content is appended to `el` before anchor, see [ractive.insert()](ractive.insert().md)
 >     ```html
 >     // dom
 >     <div id='container'><p>red</p><p>blue</p><p>yellow</p></div>
@@ -200,11 +200,11 @@ The following is a complete list of initialisation options, with full descriptio
 >     area: '${width} * ${height}'
 > }
 > ```
-> See {{{createLink 'Computed Properties'}}} for more information and examples .
+> See [Computed Properties](Computed Properties.md) for more information and examples .
 
 > <a id="magic"></a>
 > ### magic *`Boolean`*
-> Defaults to `false`. Whether or not to wrap data in ES5 accessors for automatic binding (see {{{createLink 'magic mode'}}}).
+> Defaults to `false`. Whether or not to wrap data in ES5 accessors for automatic binding (see [magic mode](magic mode.md)).
 > ```js
 > var data = { foo: 'bar' };
 > new Ractive({ data: data } );
@@ -213,7 +213,7 @@ The following is a complete list of initialisation options, with full descriptio
 > ```
 > <a id="adapt"></a>
 > ### adapt *`Array`*
-> Custom wrappers to be used with all or part of the supplied data, see {{{createLink 'Adaptors'}}}.
+> Custom wrappers to be used with all or part of the supplied data, see [Adaptors](Adaptors.md).
 Can either be the adaptor itself, or the name of an adaptor registred via `Ractive.adaptors`:
 > ```js
 > Ractive.adaptors.myAdaptor = MyAdaptor1;
@@ -224,7 +224,7 @@ Can either be the adaptor itself, or the name of an adaptor registred via `Racti
 > ```
 > <a id="adaptors"></a>
 > ### adaptors *`Object`*
-> A `key: value` hash of {{{createLink 'Adaptors' 'adaptors'}}} that are specific to this instance. Usually the `adapt` property can directly specify which adaptors
+> A `key: value` hash of [adaptors](Adaptors.md) that are specific to this instance. Usually the `adapt` property can directly specify which adaptors
 > to use on this instance and the `adaptors` property is used to register an adaptor on components or `Ractive.adaptors`.
 > ```js
 > adaptors: {
@@ -233,7 +233,7 @@ Can either be the adaptor itself, or the name of an adaptor registred via `Racti
 > ```
 > <a id="modifyArrays"></a>
 > ### modifyArrays *`Boolean`*
-> Defaults to `true`. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see {{{createLink 'array modification'}}}).
+> Defaults to `true`. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see [array modification](array modification.md)).
 > ```js
 > var items = [ 'red', 'blue' ];
 > new Ractive({
@@ -246,7 +246,7 @@ Can either be the adaptor itself, or the name of an adaptor registred via `Racti
 
 > <a id="twoway"></a>
 > ### twoway *`Boolean`*
-> Defaults to `true`. Whether or not two-way data binding is enabled (see {{{createLink 'Two‐way binding'}}}).
+> Defaults to `true`. Whether or not two-way data binding is enabled (see [Two‐way binding](Two‐way binding.md)).
 > ```js
 > var ractive = new Ractive({
 >     template: '<input value="\{{foo}}">',
@@ -279,13 +279,13 @@ Can either be the adaptor itself, or the name of an adaptor registred via `Racti
 > ```
 > <a id="isolated"></a>
 > ### isolated *`Boolean`*
-> Defaults to `false`. This option is typically only relevant as an extension option for {{{createLink 'Components'}}}. Controls whether the component will look outside itself for data and registry items.
+> Defaults to `false`. This option is typically only relevant as an extension option for [Components](Components.md). Controls whether the component will look outside itself for data and registry items.
 
 ## Transitions & Animations
 
 > <a id="transitions"></a>
 > ### transitions *`Object`*
-A `key: value` hash of transitions that are specific to this instance. The `key` is referenced within templates using `intro` and `outro` attributes on elements, and `value` is a transition functions, see {{{createLink 'Transitions'}}} for more info.
+A `key: value` hash of transitions that are specific to this instance. The `key` is referenced within templates using `intro` and `outro` attributes on elements, and `value` is a transition functions, see [Transitions](Transitions.md) for more info.
 > ```js
 > template: '<p intro="slide" outro="slide">hello world</p>',
 > transitions: {
@@ -320,11 +320,11 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 > ```
 > <a id="easing"></a>
 > ### easing *`Object`*
-> A `key: value` hash of easing function. See {{{createLink 'Ractive.easing'}}}
+> A `key: value` hash of easing function. See [Ractive.easing](Ractive.easing.md)
 
 > <a id="interpolators"></a>
 > ### interpolators *`Object`*
-> A `key: value` hash of interpolators use by {{{createLink 'ractive.animate()'}}}
+> A `key: value` hash of interpolators use by [ractive.animate()](ractive.animate().md)
 
 ## Parsing
 

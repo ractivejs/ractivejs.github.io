@@ -18,7 +18,7 @@ model.set( 'myValue', 2 ); // alerts 'myValue changed to 2'
 
 This works because `Backbone.Model.prototype` inherits from `Backbone.Events`.
 
-Ractive implements pub/sub with {{{createLink 'ractive.on()'}}}, {{{createLink 'ractive.off()'}}} and {{{createLink 'ractive.fire()'}}} - see {{{createLink 'Events'}}} for more info.
+Ractive implements pub/sub with [ractive.on()](ractive.on().md), [ractive.off()](ractive.off().md) and [ractive.fire()](ractive.fire().md) - see [Events](Events.md) for more info.
 
 
 ## Observing models with nested properties
@@ -27,7 +27,7 @@ But the normal pub/sub mechanism won't work for monitoring data changes with Rac
 
 So instead, we introduce the concept of *observers*.
 
-An observer observes a particular {{{createLink 'keypaths' 'keypath'}}}, and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()`.
+An observer observes a particular [keypath](keypaths.md), and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()`.
 
 Here's an example:
 
@@ -58,7 +58,7 @@ observer.cancel();
 ractive.set( 'foo.bar', 4 ); // alerts nothing; the observer was cancelled
 ```
 
-Observers are most useful in the context of {{{createLink 'two‐way binding'}}}.
+Observers are most useful in the context of [two‐way binding](two‐way binding.md).
 
 ## Pattern Observers
 

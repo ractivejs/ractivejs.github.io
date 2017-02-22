@@ -1,7 +1,7 @@
 # Writing decorator plugins
 
 
-A {{{createLink 'decorators' 'decorator'}}} is a way to add behaviour to a node when it is rendered, or to augment it in some way.
+A [decorator](decorators.md) is a way to add behaviour to a node when it is rendered, or to augment it in some way.
 
 For this example we'll create a tooltip decorator. For the impatient, you can see the [finished result in this JSFiddle](http://jsfiddle.net/tomByrer/9g3pB/11/).
 

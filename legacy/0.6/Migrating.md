@@ -15,7 +15,7 @@ The `init()` method also no longer recieves an `options` parameter as the ractiv
 
 `beforeInit()` and `complete()` can be replaced directly with `onconstruct()` and `oncomplete()` respectively.
 
-See the {{{createLink 'lifecycle events'}}} page for more detail.
+See the [lifecycle events](lifecycle events.md) page for more detail.
 
 ### Other Breaking changes
 
@@ -61,4 +61,4 @@ See the {{{createLink 'lifecycle events'}}} page for more detail.
 	* character escaping and whitespace handling in attribute directive arguments
 	* boolean and empty string attributes
 * Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `\{{page.area}}` but not `\{{#page}}\{{area}}\{{/page}}`
-* The element into which the ractive instance was rendered is no longer available as `ractive.el`. See {{{createLink 'ractive.render()'}}} and {{{createLink 'ractive.insert()'}}} for more information on moving ractive instances in the DOM.
+* The element into which the ractive instance was rendered is no longer available as `ractive.el`. See [ractive.render()](ractive.render().md) and [ractive.insert()](ractive.insert().md) for more information on moving ractive instances in the DOM.

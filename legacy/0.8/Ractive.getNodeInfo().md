@@ -2,7 +2,7 @@
 
 Sometimes it is useful to know which Ractive instance a DOM node is attached to and the details of where it exists in the view. `Ractive.getNodeInfo()` is a static method that exposes this information and helper methods based on Ractive's internal tracking mechanisms.
 
-This is particularly useful for {{{createLink 'decorators'}}} and debugging. Notably, in Chrome, if you inspect an element, that element will be added to the Chrome Developer Tools' node list and can be referenced in the console as `$0`. Try inspecting a Ractive-controlled element and using `Ractive.getNodeInfo($0)` in the console.
+This is particularly useful for [decorators](decorators.md) and debugging. Notably, in Chrome, if you inspect an element, that element will be added to the Chrome Developer Tools' node list and can be referenced in the console as `$0`. Try inspecting a Ractive-controlled element and using `Ractive.getNodeInfo($0)` in the console.
 
 > ### Ractive.getNodeInfo( node )
 > Returns an object with helper methods to interact with the Ractive instance and context associated with the given node. See [Helpers](#helpers) below.
@@ -20,13 +20,13 @@ This is particularly useful for {{{createLink 'decorators'}}} and debugging. Not
 From this point on, `info` is an object that has context methods and may be an `event` object or the result of a `getNodeInfo` call.
 
 > ### info.add( [keypath][, number] )
-> Increments the given keypath by the given number, which defaults to `1`. See {{{createLink 'ractive.add()'}}}.
+> Increments the given keypath by the given number, which defaults to `1`. See [ractive.add()](ractive.add().md).
 
 > ### info.animate( keypath, value[, options] )
-> Animates the given keypath to the given value. See {{{createLink 'ractive.animate()'}}}.
+> Animates the given keypath to the given value. See [ractive.animate()](ractive.animate().md).
 
 > ### info.get( [keypath] )
-> Retrieves the value at given keypath, if provided, or the context for this info object. See {{{createLink 'ractive.get()'}}}.
+> Retrieves the value at given keypath, if provided, or the context for this info object. See [ractive.get()](ractive.get().md).
 > This can also be used to retrieve the value of index and key aliases, template aliases, and special reference.
 
 > ### info.getBinding()
@@ -42,16 +42,16 @@ From this point on, `info` is an object that has context methods and may be an `
 > If the node represented by this info object has a two-way binding, this will return true. Otherwise, it will return false.
 
 > ### info.link( source, destination )
-> Creates a link to the given souce at the given destination. See {{{createLink 'ractive.link()'}}}.
+> Creates a link to the given souce at the given destination. See [ractive.link()](ractive.link().md).
 
 > ### info.merge( keypath, array )
-> Merges the given array into the array at the given keypath. See {{{createLink 'ractive.merge()'}}}.
+> Merges the given array into the array at the given keypath. See [ractive.merge()](ractive.merge().md).
 
 > ### info.pop( [keypath] )
-> Pops a value from the array at the given keypath. See {{{createLink 'ractive.pop()'}}}.
+> Pops a value from the array at the given keypath. See [ractive.pop()](ractive.pop().md).
 
 > ### info.push( keypath, ...values )
-> Pushes the given values on to the array at the given keypath. See {{{createLink 'ractive.push()'}}}.
+> Pushes the given values on to the array at the given keypath. See [ractive.push()](ractive.push().md).
 
 > ### info.ractive
 > This property holds a reference to the Ractive instance that controls the node represented by this info object.
@@ -60,38 +60,38 @@ From this point on, `info` is an object that has context methods and may be an `
 > Resolves the given keypath to a full keypath. If a `ractive` instance is supplied, the resolved path will also account for any mappings defined for the instance. This is the method used to resolve relative keypaths for all of the other info methods.
 
 > ### info.reverse( keypath )
-> Reverses the array at the given keypath. See {{{createLink 'ractive.reverse()'}}}.
+> Reverses the array at the given keypath. See [ractive.reverse()](ractive.reverse().md).
 
 > ### info.set( keypath, value )
-> Sets the given keypath to the given value. See {{{createLink 'ractive.set()'}}}.
+> Sets the given keypath to the given value. See [ractive.set()](ractive.set().md).
 
 > ### info.setBinding( value )
 > If the node represented by this info object has a two-way binding, this sets the binding to the given value.
 
 > ### info.shift( [keypath] )
-> Shifts a value from the array at the given keypath. See {{{createLink 'ractive.shift()'}}}.
+> Shifts a value from the array at the given keypath. See [ractive.shift()](ractive.shift().md).
 
 > ### info.splice( keypath, index, drop, ...add )
-> Splices the array at the given keypath. See {{{createLink 'ractive.splice()'}}}.
+> Splices the array at the given keypath. See [ractive.splice()](ractive.splice().md).
 
 > ### info.sort( keypath )
-> Sorts the array at the given keypath. See {{{createLink 'ractive.sort()'}}}.
+> Sorts the array at the given keypath. See [ractive.sort()](ractive.sort().md).
 
 > ### info.subtract( [keypath][, number] )
-> Decrements the given keypath by the given value, which defaults to `1`. See {{{createLink 'ractive.subtract()'}}}.
+> Decrements the given keypath by the given value, which defaults to `1`. See [ractive.subtract()](ractive.subtract().md).
 
 > ### info.toggle( [keypath] )
-> Toggles the given keypath. See {{{createLink 'ractive.toggle()'}}}.
+> Toggles the given keypath. See [ractive.toggle()](ractive.toggle().md).
 
 > ### info.unlink( destination )
-> Removes the given link. See {{{createLink 'ractive.unlink()'}}}.
+> Removes the given link. See [ractive.unlink()](ractive.unlink().md).
 
 > ### info.unshift( keypath, ...values )
-> Unshifts the given values onto the array at the given keypath. See {{{createLink 'ractive.unshift()'}}}.
+> Unshifts the given values onto the array at the given keypath. See [ractive.unshift()](ractive.unshift().md).
 
 > ### info.update( [keypath] )
-> Triggers an update on the given keypath. See {{{createLink 'ractive.update()'}}}.
+> Triggers an update on the given keypath. See [ractive.update()](ractive.update().md).
 
 > ### info.updateModel( [keypath] )
-> Triggers an update on the given keypath from its bindings. See {{{createLink 'ractive.updateModel()'}}}.
+> Triggers an update on the given keypath from its bindings. See [ractive.updateModel()](ractive.updateModel().md).
 

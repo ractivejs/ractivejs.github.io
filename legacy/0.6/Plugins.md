@@ -3,7 +3,7 @@
 Plugins allow you to augment Ractive with extra functionality. You can create your own plugins - the individual
 plugin API pages under "Writing" and the [plugin template](https://github.com/RactiveJS/Plugin-template) to get started.
 
-## {{{createLink 'Adaptors'}}}
+## [Adaptors](Adaptors.md)
 
 * [Backbone](https://github.com/ractivejs/ractive-adaptors-backbone)
 * [Bacon.js](http://ractivejs.github.io/ractive-adaptors-bacon/)
@@ -16,7 +16,7 @@ plugin API pages under "Writing" and the [plugin template](https://github.com/Ra
 * TODO: Object.observe
 
 
-## {{{createLink 'Decorators'}}}
+## [Decorators](Decorators.md)
 
 * [Chosen](http://kalcifer.github.io/ractive-decorators-chosen/) - contributed by [@rahulcs](https://github.com/rahulcs) ([@kalcifer](https://github.com/kalcifer))
 * [minmaxwidth](https://github.com/cfenzo/Ractive-decorators-minmaxwidth) - contributed by [@cfenzo](https://github.com/cfenzo)
@@ -24,7 +24,7 @@ plugin API pages under "Writing" and the [plugin template](https://github.com/Ra
 * [Sortable](http://ractivejs.github.io/Ractive-decorators-sortable/)
 
 
-## {{{createLink 'Events'}}}
+## [Events](Events.md)
 
 * [Drag and Drop (HTML5)](https://github.com/Nijikokun/ractive.drag.drop.js) - contributed by [@Nijikokun](https://github.com/Nijikokun)
 * [Drag and Drop (non-HTML5)](https://github.com/smallhadroncollider/ractive.events.drag) - contributed by [@smallhadroncollider](https://github.com/smallhadroncollider)
@@ -40,7 +40,7 @@ plugin API pages under "Writing" and the [plugin template](https://github.com/Ra
 
 
 
-## {{{createLink 'Transitions'}}}
+## [Transitions](Transitions.md)
 
 * [Fade](http://ractivejs.github.io/ractive-transitions-fade)
 * [Fly](http://ractivejs.github.io/ractive-transitions-fly)

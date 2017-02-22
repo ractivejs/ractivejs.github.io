@@ -7,11 +7,11 @@ Transitions allow you to control how elements are first rendered and how they ar
 <div intro='fade'>This element will fade in gradually when it renders</div>
 ```
 
-This works because (or rather, if) Ractive is able to find a `fade` function on either {{{createLink 'ractive-transitions-instance' 'ractive.transitions'}}} (i.e. instance-specific transitions) or {{{createLink 'ractive-transitions-global' 'Ractive.transitions'}}} (i.e. globally-available transitions).
+This works because (or rather, if) Ractive is able to find a `fade` function on either [ractive.transitions](ractive-transitions-instance.md) (i.e. instance-specific transitions) or [Ractive.transitions](ractive-transitions-global.md) (i.e. globally-available transitions).
 
-To start using transitions, download them from the {{{createLink 'Plugins'}}} page.
+To start using transitions, download them from the [Plugins](Plugins.md) page.
 
 
 ## Creating transition plugins
 
-See {{{createLink 'Writing transition plugins'}}} to learn how to create your own transitions.
+See [Writing transition plugins](Writing transition plugins.md) to learn how to create your own transitions.

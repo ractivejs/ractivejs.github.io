@@ -43,7 +43,7 @@ The `t` object has a few properties and methods designed to make creating transi
 > > Defaults to `false`. Generally, you won't need this. If `true`, `t.resetStyle()` (see below) is not called, even if this is an intro transition.
 
 > ### t.getStyle( prop )
-> A convenient way to get a particular style property for `t.node`. It uses `window.getComputedStyle()` (the {{{createLink 'legacy builds'}}} include a shim for old IE). Prefixes are applied automatically, so do `t.getStyle('transform')`, not `t.getStyle('-webkit-transform')` or whatever. You can use either camelcased or hyphenated styles ('backgroundColor' or 'background-color').
+> A convenient way to get a particular style property for `t.node`. It uses `window.getComputedStyle()` (the [legacy builds](legacy builds.md) include a shim for old IE). Prefixes are applied automatically, so do `t.getStyle('transform')`, not `t.getStyle('-webkit-transform')` or whatever. You can use either camelcased or hyphenated styles ('backgroundColor' or 'background-color').
 > > #### **prop** *`String`*
 > > The style property to get the value of, e.g. `'opacity'`
 

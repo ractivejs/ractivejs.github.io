@@ -24,7 +24,7 @@ ractive = new Ractive({
 list.push( 'd' ); // adds a new list item - <li>d</li>
 ```
 
-You can disable this behaviour by passing in `modifyArrays: false` as an {{{createLink 'initialisation Options'}}}
+You can disable this behaviour by passing in `modifyArrays: false` as an [initialisation Options](initialisation Options.md)
 
 
 ## How it works
@@ -63,6 +63,6 @@ In the first example, Ractive will see that the content of the first list item h
 
 In the second example, Ractive will understand that all it needs to do is insert `<li>z</li>` at the start of the list, leaving everything else untouched.
 
-This is particularly important if you're using {{{createLink 'transitions'}}}, as it will be obvious to the user which elements are being added and removed.
+This is particularly important if you're using [transitions](transitions.md), as it will be obvious to the user which elements are being added and removed.
 
-Note that if `list.unshift('z')` isn't an option, you could use {{{createLink 'ractive.merge()'}}} to achieve the same effect.
+Note that if `list.unshift('z')` isn't an option, you could use [ractive.merge()](ractive.merge().md) to achieve the same effect.

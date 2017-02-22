@@ -1,6 +1,6 @@
 # ractive.fire()
 
-Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with {{{createLink 'Ractive.extend()'}}}, to allow applications to hook into your subclass.
+Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [Ractive.extend()](Ractive.extend().md), to allow applications to hook into your subclass.
 
 
 > ### ractive.fire( eventName[, arg1[, arg2[, ...argN]]])

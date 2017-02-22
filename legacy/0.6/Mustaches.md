@@ -28,11 +28,11 @@ If you've used [Handlebars](http://handlebarsjs.com) or [Angular](http://angular
 <a name="what"></a>
 ## What are mustaches?
 
-Within this documentation, and within Ractive's code, 'mustache' means two things - a snippet of a template which uses mustache delimiters, such as `\{{name}}`, and the object within our {{{createLink 'parallel DOM'}}} that is responsible for listening to data changes and updating the (real) DOM.
+Within this documentation, and within Ractive's code, 'mustache' means two things - a snippet of a template which uses mustache delimiters, such as `\{{name}}`, and the object within our [parallel DOM](parallel DOM.md) that is responsible for listening to data changes and updating the (real) DOM.
 
-We say that the `\{{name}}` mustache has a *[reference](references)* of `name`. When it gets rendered, and we create the object whose job it is to represent `name` in the DOM, we attempt to *resolve the reference according to the current context stack*. For example if we're in the `user` context, and `user` has a property of `name`, `name` will resolve to a {{{createLink 'keypaths' 'keypath'}}} of `user.name`.
+We say that the `\{{name}}` mustache has a *[reference](references)* of `name`. When it gets rendered, and we create the object whose job it is to represent `name` in the DOM, we attempt to *resolve the reference according to the current context stack*. For example if we're in the `user` context, and `user` has a property of `name`, `name` will resolve to a [keypath](keypaths.md) of `user.name`.
 
-As soon as the mustache knows what its keypath is (which may not be at render time, if data has not yet been set), it registers itself as a *{{{createLink 'dependants' 'dependant'}}}* of the keypath. Then, whenever data changes, Ractive scans the dependency graph to see which mustaches need to update, and notifies them accordingly.
+As soon as the mustache knows what its keypath is (which may not be at render time, if data has not yet been set), it registers itself as a *[dependant](dependants.md)* of the keypath. Then, whenever data changes, Ractive scans the dependency graph to see which mustaches need to update, and notifies them accordingly.
 
 <a name="basics"></a>
 ## Mustache basics
@@ -236,7 +236,7 @@ Will render as follows:
 <h1>Today.</h1>
 ```
 
-If you'd like the comments to show up, just use html comments and set {{{createLink 'options' 'stripComments' 'stripComments'}}} to `false`.
+If you'd like the comments to show up, just use html comments and set [stripComments](options.md#stripComments) to `false`.
 Comments may contain newlines.
 
 <a name="partials"></a>
@@ -287,7 +287,7 @@ Can be thought of as a single, expanded template:
 \{{/names}}
 ```
 
-Partials are a very useful construct, and you can find out more about them on the {{{createLink 'partials'}}} page.
+Partials are a very useful construct, and you can find out more about them on the [partials](partials.md) page.
 
 <a name="delimiters"></a>
 ### Custom delimiters
@@ -385,7 +385,7 @@ to create:
 </ul>
 ```
 
-In previous versions of Ractive it was required to close a section with the opening keypath. In the example above `\{{#users}}` is closed by `\{{/users}}`. This is no longer the case, you can now simply close an iterator with `\{{/}}`. Ractive will attempt to warn you in the event of a mismatch, `\{{#users}}` cannot be closed by `\{{/comments}}`. This will not effect {{{createLink 'Expressions'}}} as they have always been able to be closed by `\{{/}}`.
+In previous versions of Ractive it was required to close a section with the opening keypath. In the example above `\{{#users}}` is closed by `\{{/users}}`. This is no longer the case, you can now simply close an iterator with `\{{/}}`. Ractive will attempt to warn you in the event of a mismatch, `\{{#users}}` cannot be closed by `\{{/comments}}`. This will not effect [Expressions](Expressions.md) as they have always been able to be closed by `\{{/}}`.
 
 ```html
 <!--- valid markup -->
@@ -431,14 +431,14 @@ There are a few implicit variables that are available anywhere within a ractive 
 <a name="restricted-refs"></a>
 ### Restricted references
 
-Normally, references are resolved according to a specific algorithm, which involves *moving up the context stack* until a property matching the reference is found. In the vast majority of cases this is exactly what you want, but occasionally (for example when dealing with {{{createLink 'partials' 'recursive partials' 'recursive-partials'}}}) it is useful to be able to specify more specific directives about the context of a property being referenced.
+Normally, references are resolved according to a specific algorithm, which involves *moving up the context stack* until a property matching the reference is found. In the vast majority of cases this is exactly what you want, but occasionally (for example when dealing with [recursive partials](partials.md#recursive-partials)) it is useful to be able to specify more specific directives about the context of a property being referenced.
 
-See {{{createLink 'References' 'References' 'restricted-references'}}} for all available reference restrictions.
+See [References](References.md#restricted-references) for all available reference restrictions.
 
 <a name="expressions"></a>
 ### Expressions
 
-Expressions are a big topic, so they have a {{{createLink 'Expressions' 'page of their own'}}}. But this section is about explaining the difference between vanilla Mustache and Ractive Mustache, so they deserve a mention here.
+Expressions are a big topic, so they have a [page of their own](Expressions.md). But this section is about explaining the difference between vanilla Mustache and Ractive Mustache, so they deserve a mention here.
 
 Expressions look like any normal mustache. For example this expression converts `num` to a percentage:
 

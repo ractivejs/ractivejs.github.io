@@ -11,7 +11,7 @@ Ractive's data handling has been completely rewritten to use a full viewmodel hi
 
 Spread arguments (`...arguments`) and `arguments` access is now available for method event handlers. Individual arguments are available using array notation (`arguments[n]`), dot notation (`arguments.0`), or `1`-based dollar vars, like regular expression matches (`$1`, `$2`, etc).
 
-There is now support for linking data to extra keypaths in the model. This is particularly handy for master-detail scenarios where you have a complex list of objects and you want to focus on a single one at a time. A keypath like `'foo.bar.bazzes.0'` can be linked to `'baz'` so that the detail section doesn't have to worry about a non-bindable expressions or copying objects around. Both sides of the link are automatically kept in sync. See {{{createLink 'ractive.link()'}}}.
+There is now support for linking data to extra keypaths in the model. This is particularly handy for master-detail scenarios where you have a complex list of objects and you want to focus on a single one at a time. A keypath like `'foo.bar.bazzes.0'` can be linked to `'baz'` so that the detail section doesn't have to worry about a non-bindable expressions or copying objects around. Both sides of the link are automatically kept in sync. See [ractive.link()](ractive.link().md).
 
 You can now use ES2015 object literal shorthand in templates e.g. `{ foo }` is equivalent to `{ foo: foo }`.
 
@@ -19,7 +19,7 @@ If you have object keys with `.`s in them, you can now escape them with a `\`. S
 
 `<textarea>`s now handle HTML content as plain text to match what happens in browsers. They can now also set up two-way binding with a single interpolator as content instead of using the value attribute e.g. `<textarea>\{{someBinding}}</textarea>` is equivalent to `<textarea value="\{{someBinding}}"></textarea>`.
 
-Progressive enhancement is now supported with a few limitations (see {{{createLink 'options' 'enhance' 'enhance'}}}). If you pass `enhance: true` when creating your Ractive instance, it will not discard the contents of its target element and will instead try to reuse elements and nodes as it builds the virtual DOM from its template. This option is incompatible with the `append` option.
+Progressive enhancement is now supported with a few limitations (see [enhance](options.md#enhance)). If you pass `enhance: true` when creating your Ractive instance, it will not discard the contents of its target element and will instead try to reuse elements and nodes as it builds the virtual DOM from its template. This option is incompatible with the `append` option.
 
 The `Object`, `String`, and `Boolean` globals are now accessible from within templates.
 
@@ -45,7 +45,7 @@ Class and style attributes now get special treatment that keeps them from clobbe
 
 As `set` will create intermediate objects when setting an undefined keypath, array methods will now swap in an empty array instead of erroring when called with an undefined keypath. Trying to use an array method with a non-array value including `null` will still throw.
 
-Event objects created by event directives and the results of {{{createLink 'Ractive.getNodeInfo()'}}} are now enhanced with a number of contextual helper methods to make interacting with Ractive in template-relative contexts programmatically easier. The old node info object properties are now deprecated, and their functionality has been replaced by the `resolve` and `get` methods.
+Event objects created by event directives and the results of [Ractive.getNodeInfo()](Ractive.getNodeInfo().md) are now enhanced with a number of contextual helper methods to make interacting with Ractive in template-relative contexts programmatically easier. The old node info object properties are now deprecated, and their functionality has been replaced by the `resolve` and `get` methods.
 
 Transitioning elements will not longer keep unrelated elements from being removed. Transitions now have a safety check that forces them to complete within a short interval from their target duration, which keeps misbehaving transitions and browsers from causing elements to get stuck in the DOM.
 
@@ -71,9 +71,9 @@ Transitioning elements will not longer keep unrelated elements from being remove
 
 * `\{{#with obj}}` will no longer render if `obj` is falsey (https://github.com/ractivejs/ractive/issues/1856)
 
-* Method event calls and proxy events with arguments are now deprecated and being replaced with {{{createLink 'Method calls' 'event expressions' }}}.
+* Method event calls and proxy events with arguments are now deprecated and being replaced with [event expressions](Method calls.md).
 
-* {{{createLink 'events' 'Event objects' }}} now have fairly comprehensive contextual helpers installed on them. The old `keypath`, `key`, `index` properties are deprecated.
+* [Event objects](events.md) now have fairly comprehensive contextual helpers installed on them. The old `keypath`, `key`, `index` properties are deprecated.
 
 * Element directives are now supported inside of conditionals. Part of this change and that of event expressions has changed the template format, and this, compiled templates from previous versions of Ractive are no longer compatible. The template syntax, while evolved, is still compatible with previous versions. Some of the deprecated constructs will be removed in a future version.
 
@@ -101,7 +101,7 @@ Inline partials are now scoped to their nearest element. If a partial reference 
 
 Components may now yield to multiple inline partials by supplying the partial name with yield e.g. `\{{yield some-name}}`. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. `\{{>partial}}`.
 
-Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new `resetPartial` {{{ createLink 'Ractive.resetPartial()' 'method' }}} on Ractive instances.
+Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new `resetPartial` [method](Ractive.resetPartial().md) on Ractive instances.
 
 `this.event` is now available to method-call event handlers.
 
@@ -138,7 +138,7 @@ The `init()` method also no longer recieves an `options` parameter as the ractiv
 
 `beforeInit()` and `complete()` can be replaced directly with `onconstruct()` and `oncomplete()` respectively.
 
-See the {{{createLink 'lifecycle events'}}} page for more detail.
+See the [lifecycle events](lifecycle events.md) page for more detail.
 
 ### Other Breaking changes
 
@@ -184,4 +184,4 @@ See the {{{createLink 'lifecycle events'}}} page for more detail.
 	* character escaping and whitespace handling in attribute directive arguments
 	* boolean and empty string attributes
 * Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `\{{page.area}}` but not `\{{#page}}\{{area}}\{{/page}}`
-* The element into which the ractive instance was rendered is no longer available as `ractive.el`. See {{{createLink 'ractive.render()'}}} and {{{createLink 'ractive.insert()'}}} for more information on moving ractive instances in the DOM.
+* The element into which the ractive instance was rendered is no longer available as `ractive.el`. See [ractive.render()](ractive.render().md) and [ractive.insert()](ractive.insert().md) for more information on moving ractive instances in the DOM.

@@ -1,9 +1,9 @@
 # Plugins
 
-Plugins allow you to augment Ractive with extra functionality. You can create your own plugins - see the {{{createLink 'Plugin APIs'}}} page and the [plugin template](https://github.com/RactiveJS/Plugin-template) to get started.
+Plugins allow you to augment Ractive with extra functionality. You can create your own plugins - see the [Plugin APIs](Plugin APIs.md) page and the [plugin template](https://github.com/RactiveJS/Plugin-template) to get started.
 
 
-## {{{createLink 'Adaptors'}}}
+## [Adaptors](Adaptors.md)
 
 * [Backbone](http://ractivejs.org/examples/backbone)
 * [Promises](http://lluchs.github.io/Ractive-adaptors-Promise/) - contributed by [@lluchs](https://github.com/lluchs)
@@ -11,12 +11,12 @@ Plugins allow you to augment Ractive with extra functionality. You can create yo
 * TODO Object.observe
 
 
-## {{{createLink 'Decorators'}}}
+## [Decorators](Decorators.md)
 
 * [Sortable](http://ractivejs.github.io/Ractive-decorators-sortable/)
 
 
-## {{{createLink 'Events'}}}
+## [Events](Events.md)
 
 * [Tap](http://ractivejs.github.io/Ractive-events-tap)
 * [Hover](http://ractivejs.github.io/Ractive-events-hover)
@@ -26,7 +26,7 @@ Plugins allow you to augment Ractive with extra functionality. You can create yo
 * [Drag and Drop Sortable List](https://github.com/Nijikokun/ractive.sortable.js) - contributed by [@Nijikokun](https://github.com/Nijikokun)
 
 
-## {{{createLink 'Transitions'}}}
+## [Transitions](Transitions.md)
 
 * [Fade](http://ractivejs.github.io/Ractive-transitions-fade)
 * [Slide](http://ractivejs.github.io/Ractive-transitions-slide)

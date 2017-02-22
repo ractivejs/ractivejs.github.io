@@ -8,7 +8,7 @@ Where necessary, items are moved from their current location in the array (and, 
 In some situations that won't work, because the arrays contain objects, which may *look* the same but not be identical. To deal with these, we use the `compare` option detailed below.
 
 > ### ractive.merge( keypath, value[, options] )
-> Returns a `Promise` (see {{{createLink 'Promises'}}})
+> Returns a `Promise` (see [Promises](Promises.md))
 
 > > #### **keypath** *`String`*
 > > The [keypath](keypaths) of the array we're updating

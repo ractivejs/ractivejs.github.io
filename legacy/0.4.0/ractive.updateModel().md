@@ -1,6 +1,6 @@
 # ractive.updateModel()
 
-If you programmatically manipulate inputs and other elements that have {{{createLink 'two‐way binding'}}} set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
+If you programmatically manipulate inputs and other elements that have [two‐way binding](two‐way binding.md) set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
 
 ```js
 ractive = new Ractive({

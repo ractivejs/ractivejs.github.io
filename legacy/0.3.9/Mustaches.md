@@ -9,11 +9,11 @@ Other templating languages borrow liberally from Mustache. [Handlebars](http://h
 
 ## What are mustaches?
 
-Within this documentation, and within Ractive's code, 'mustache' means two things - a snippet of a template which uses mustache delimiters, such as `\{{name}}`, and the object within our {{{createLink 'parallel DOM'}}} that is responsible for listening to data changes and updating the (real) DOM.
+Within this documentation, and within Ractive's code, 'mustache' means two things - a snippet of a template which uses mustache delimiters, such as `\{{name}}`, and the object within our [parallel DOM](parallel DOM.md) that is responsible for listening to data changes and updating the (real) DOM.
 
-We say that the `\{{name}}` mustache has a *[reference](references)* of `name`. When it gets rendered, and we create the object whose job it is to represent `name` in the DOM, we attempt to *resolve the reference according to the current context stack*. For example if we're in the `user` context, and `user` has a property of `name`, `name` will resolve to a {{{createLink 'keypaths' 'keypath'}}} of `user.name`.
+We say that the `\{{name}}` mustache has a *[reference](references)* of `name`. When it gets rendered, and we create the object whose job it is to represent `name` in the DOM, we attempt to *resolve the reference according to the current context stack*. For example if we're in the `user` context, and `user` has a property of `name`, `name` will resolve to a [keypath](keypaths.md) of `user.name`.
 
-As soon as the mustache knows what its keypath is (which may not be at render time, if data has not yet been set), it registers itself as a *{{{createLink 'dependants' 'depedant'}}}* of the keypath. Then, whenever data changes, Ractive scans the dependency graph to see which mustaches need to update, and notifies them accordingly.
+As soon as the mustache knows what its keypath is (which may not be at render time, if data has not yet been set), it registers itself as a *[depedant](dependants.md)* of the keypath. Then, whenever data changes, Ractive scans the dependency graph to see which mustaches need to update, and notifies them accordingly.
 
 As well as simple *interpolators* like `\{{name}}`, the other mustaches types - sections, partials, and even delimiter changes - are supported. Consult the [tutorials](http://learn.ractivejs.org) to learn about these.
 
@@ -81,7 +81,7 @@ We can iterate over the users object with the following:
 
 ### Restricted references
 
-Normally, references are resolved according to a specific algorithm, which involves *moving up the context stack* until a property matching the reference is found. In the vast majority of cases this is exactly what you want, but occasionally (for example when dealing with {{{createLink 'parials' 'recursive partials' 'recursive-partials'}}}) it is useful to be able to specify that a property must exist *in the current context*.
+Normally, references are resolved according to a specific algorithm, which involves *moving up the context stack* until a property matching the reference is found. In the vast majority of cases this is exactly what you want, but occasionally (for example when dealing with [recursive partials](parials.md#recursive-partials)) it is useful to be able to specify that a property must exist *in the current context*.
 
 To restrict a reference to the current context, prefix it with a `.`, e.g. `\{{#.bar}}`:
 
@@ -141,7 +141,7 @@ By using `../../name` instead of `name`, we're saying 'go up one level (to `post
 
 ### Expressions
 
-Expressions are a big topic, so they have a {{{createLink 'Expressions' 'page of their own'}}}. But this section is about explaining the difference between vanilla Mustache and Ractive Mustache, so they deserve a mention here.
+Expressions are a big topic, so they have a [page of their own](Expressions.md). But this section is about explaining the difference between vanilla Mustache and Ractive Mustache, so they deserve a mention here.
 
 Expressions look like any normal mustache. For example this expression converts `num` to a percentage:
 

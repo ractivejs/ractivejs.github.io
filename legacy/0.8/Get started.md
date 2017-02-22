@@ -3,7 +3,7 @@
 
 Welcome! These pages aim to provide all the information you need to master Ractive.
 
-If you see something wrong, out of date, or missing from this documentation, please check out our {{{createLink 'Known issues, FAQs, and Tips' 'known issues and FAQs'}}}, [raise an issue on GitHub](https://github.com/ractivejs/docs.ractivejs.org/issues) or - even better - submit a pull request. Your fellow Ractive users will thank you!
+If you see something wrong, out of date, or missing from this documentation, please check out our [known issues and FAQs](Known issues, FAQs, and Tips.md), [raise an issue on GitHub](https://github.com/ractivejs/docs.ractivejs.org/issues) or - even better - submit a pull request. Your fellow Ractive users will thank you!
 
 ## Where to get Ractive
 
@@ -33,10 +33,10 @@ While there are no _required_ options, the three shown above - __target__, __tem
 
 A good way to get up and running is with the [60 second setup](http://ractivejs.org/60-second-setup). After that, working your way through the [interactive tutorials](http://learn.ractivejs.org) will familiarise you with the various ways you can use Ractive.
 
-Checkout the {{{createLink 'Options' 'Configuration Options'}}} to learn more about
+Checkout the [Configuration Options](Options.md) to learn more about
 all the available options.
 
-If you get stuck at any point, visit the {{{createLink 'Get support'}}} page to find help.
+If you get stuck at any point, visit the [Get support](Get support.md) page to find help.
 
 ## Documentation for other versions
 

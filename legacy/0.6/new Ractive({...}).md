@@ -18,18 +18,18 @@ var ractive = new Ractive({
 })
 ```
 
-The full list of initialisation options is {{{createLink 'Options' 'covered here'}}}.
+The full list of initialisation options is [covered here](Options.md).
 
 ## Initialising `Ractive.extend`
 
-Ractive offers an {{{createLink 'Ractive.extend()' 'extend'}}} method for standard javascript prototypical inheritance:
+Ractive offers an [extend](Ractive.extend().md) method for standard javascript prototypical inheritance:
 
 ```js
 var MyRactive = Ractive.extend({
 	template: '#mytemplate'
 })
 ```
-The same {{{createLink 'Options' 'initialisation options'}}} can be supplied to the extend method, plus some additional options.
+The same [initialisation options](Options.md) can be supplied to the extend method, plus some additional options.
 
 These are instantiated in exactly the same way as above, supplying any additional options:
 
@@ -40,4 +40,4 @@ var ractive = new MyRactive({
 })
 ```
 
-See {{{createLink 'Ractive.extend()' }}} for more details.
+See [Ractive.extend()](Ractive.extend().md) for more details.

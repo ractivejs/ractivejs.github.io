@@ -5,7 +5,7 @@
 
 ### Memory and crashing issues with Safari on iOS 9
 
-It seems that Apple has introduced some memory management _feature_ with Safari in iOS 9 that causes large templates to crash Safari during parsing. Fortunately, this can be worked around by splitting your templates into smaller partials or, more efficiently, by pre-parsing your templates and serving them as a JS object. You can use {{{createLink 'Ractive.parse()'}}} to create the JS object as a build step or when the page is being served.
+It seems that Apple has introduced some memory management _feature_ with Safari in iOS 9 that causes large templates to crash Safari during parsing. Fortunately, this can be worked around by splitting your templates into smaller partials or, more efficiently, by pre-parsing your templates and serving them as a JS object. You can use [Ractive.parse()](Ractive.parse().md) to create the JS object as a build step or when the page is being served.
 
 iOS 8 seems to remain unaffected.
 
@@ -17,12 +17,12 @@ __Coming Soon!&tmp;__
 
 ### Using Ractive with...
 
-* {{{createLink 'using-ractive-with-backbone' '...Backbone'}}}
-* {{{createLink 'using-ractive-with-requirejs' '...RequireJS'}}}
-* {{{createLink 'using-ractive-with-browserify' '...Browserify'}}}
-* {{{createLink 'using-ractive-with-yeoman' '...Yeoman'}}}
-* {{{createLink 'Promises' '...built-in Promise support'}}}
-* {{{createLink 'using-ractive-with-jquery-mobile' '...jQuery Mobile'}}}
+* [...Backbone](using-ractive-with-backbone.md)
+* [...RequireJS](using-ractive-with-requirejs.md)
+* [...Browserify](using-ractive-with-browserify.md)
+* [...Yeoman](using-ractive-with-yeoman.md)
+* [...built-in Promise support](Promises.md)
+* [...jQuery Mobile](using-ractive-with-jquery-mobile.md)
 <!-- TODO * [...Underscore (and other utility libraries)](using-ractive-with-underscore) -->
 
 ### Building an app with Ractive
@@ -33,4 +33,4 @@ Unlike mega-frameworks like Angular and Ember, Ractive doesn't have an opinion a
 
 This section is designed to help with that, by collecting tips and advice. If you think your experience can help other developers, please add it to the wiki!
 
-* {{{createLink 'Routing'}}}
+* [Routing](Routing.md)

@@ -3,11 +3,11 @@
 Using Ractive with...
 ---------------------
 
-* {{{createLink 'using-ractive-with-backbone' '...Backbone'}}}
-* {{{createLink 'using-ractive-with-requirejs' '...RequireJS'}}}
-* {{{createLink 'using-ractive-with-browserify' '...Browserify'}}}
-* {{{createLink 'using-ractive-with-promises-and-deferreds' '...promises and deferreds'}}}
-* {{{createLink 'using-ractive-with-jquery-mobile' '...jQuery Mobile'}}}
+* [...Backbone](using-ractive-with-backbone.md)
+* [...RequireJS](using-ractive-with-requirejs.md)
+* [...Browserify](using-ractive-with-browserify.md)
+* [...promises and deferreds](using-ractive-with-promises-and-deferreds.md)
+* [...jQuery Mobile](using-ractive-with-jquery-mobile.md)
 <!-- TODO * [...Underscore (and other utility libraries)](using-ractive-with-underscore) -->
 
 Building an app with Ractive
@@ -19,4 +19,4 @@ Unlike mega-frameworks like Angular and Ember, Ractive doesn't have an opinion a
 
 This section is designed to help with that, by collecting tips and advice. If you think your experience can help other developers, please add it to the wiki!
 
-* {{{createLink 'Routing'}}}
+* [Routing](Routing.md)

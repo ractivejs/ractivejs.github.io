@@ -1,7 +1,7 @@
 # Writing adaptor plugins
 
 
-An {{{createLink 'Adaptors' 'adaptor'}}} is an object with two methods - `filter` and `wrap`:
+An [adaptor](Adaptors.md) is an object with two methods - `filter` and `wrap`:
 
 ```js
 myAdaptor = {
@@ -181,7 +181,7 @@ boxAdaptor = {
 };
 ```
 
-You can see this adaptor in action [in a JSFiddle here](http://jsfiddle.net/ATAgH/33/). Notice that because our wrapper includes a `set` method, {{{createLink 'two-way binding'}}} works seamlessly.
+You can see this adaptor in action [in a JSFiddle here](http://jsfiddle.net/ATAgH/33/). Notice that because our wrapper includes a `set` method, [two-way binding](two-way binding.md) works seamlessly.
 
 
 Adding polish

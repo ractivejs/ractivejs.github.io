@@ -39,12 +39,12 @@ hello from node
 There is no two-way binding in node as there is no DOM.
 
 Data manipulation _can_ be done in node. Use methods like
-{{{createLink 'ractive.set()'}}} to modify data, and {{{createLink 'ractive.toHTML()'}}}
+[ractive.set()](ractive.set().md) to modify data, and [ractive.toHTML()](ractive.toHTML().md)
 to output the current template state as HTML.
 
 ### Precompiling templates with node
 
-Use {{{createLink 'ractive.parse()'}}} to precompile templates in node. Here is an
+Use [ractive.parse()](ractive.parse().md) to precompile templates in node. Here is an
 example grunt task:
 
 ```js

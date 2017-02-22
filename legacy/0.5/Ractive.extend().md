@@ -2,7 +2,7 @@
 
 Ractive is more than a library; it is a platform. It makes it easier to create reusable, but specialised, blocks of functionality such as to-do lists, slideshows, bar charts, text editors, and so on.
 
-Default options can also be provided using {{{ createLink 'Ractive.extend()' }}}. While the result
+Default options can also be provided using [Ractive.extend()](Ractive.extend().md). While the result
 is a fully instantiable on its own, the main value is that they can then be used as components
 within your templates:
 

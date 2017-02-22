@@ -1,17 +1,17 @@
 # Promises
 
 
-Several methods in Ractive - those which trigger changes to the view, which may or may not involve {{{createLink 'transitions'}}} - return a 'promise'. Those methods are:
+Several methods in Ractive - those which trigger changes to the view, which may or may not involve [transitions](transitions.md) - return a 'promise'. Those methods are:
 
-* {{{createLink 'ractive.add()'}}}
-* {{{createLink 'ractive.animate()'}}}
-* {{{createLink 'ractive.merge()'}}}
-* {{{createLink 'ractive.reset()'}}}
-* {{{createLink 'ractive.set()'}}}
-* {{{createLink 'ractive.subtract()'}}}
-* {{{createLink 'ractive.teardown()'}}}
-* {{{createLink 'ractive.toggle()'}}}
-* {{{createLink 'ractive.update()'}}}
+* [ractive.add()](ractive.add().md)
+* [ractive.animate()](ractive.animate().md)
+* [ractive.merge()](ractive.merge().md)
+* [ractive.reset()](ractive.reset().md)
+* [ractive.set()](ractive.set().md)
+* [ractive.subtract()](ractive.subtract().md)
+* [ractive.teardown()](ractive.teardown().md)
+* [ractive.toggle()](ractive.toggle().md)
+* [ractive.update()](ractive.update().md)
 
 The promise will fulfil *once there are no longer any active transitions resulting from the operation*.
 
@@ -80,6 +80,6 @@ It's often not obvious whether a callback will fire synchronously or asychronous
 
 You may have heard that promises are going to be part of ES6 (the next version of JavaScript). In fact, recent versions of some browsers (e.g. Chrome and Firefox) already support the `Promise` object natively.
 
-Future versions of Ractive will use native promises, with a polyfill included in the {{{createLink 'legacy builds'}}}. For now, because they're not sufficiently widely supported, Ractive uses its own implementation. It's functionally identical to the ES6 promise (as currently spec'd) except that `Promise.race` and `Promise.cast` are not currently implemented.
+Future versions of Ractive will use native promises, with a polyfill included in the [legacy builds](legacy builds.md). For now, because they're not sufficiently widely supported, Ractive uses its own implementation. It's functionally identical to the ES6 promise (as currently spec'd) except that `Promise.race` and `Promise.cast` are not currently implemented.
 
 

@@ -2,7 +2,7 @@
 
 Like many libraries, Ractive implements the [publish/subscribe](http://addyosmani.com/blog/understanding-the-publishsubscribe-pattern-for-greater-javascript-scalability/) mechanism to allow you to trigger behaviour at certain points.
 
-There are four types of events - [standard events](#standard), [proxy events](#proxy), [custom events](#custom), and [method events](#method). The first three use the same interface - {{{createLink 'ractive.on()'}}}:
+There are four types of events - [standard events](#standard), [proxy events](#proxy), [custom events](#custom), and [method events](#method). The first three use the same interface - [ractive.on()](ractive.on().md):
 
 ```js
 ractive = new Ractive({
@@ -23,11 +23,11 @@ Standard events are those emitted by all Ractive instances:
 
 ###change
 
-Fired whenever any data changes inside of a Ractive instance. To observe only on specific keypaths see {{{createLink 'Observers'}}}.
+Fired whenever any data changes inside of a Ractive instance. To observe only on specific keypaths see [Observers](Observers.md).
 
 ### teardown
 
-Fired whenever {{{createLink 'ractive.teardown()'}}} is called. No arguments.
+Fired whenever [ractive.teardown()](ractive.teardown().md) is called. No arguments.
 
 
 ## <a name="proxy"></a>Proxy events
@@ -97,7 +97,7 @@ Since there is an index reference, `i`, set in an iteration section, the `index`
 
 Because of the way proxy events work, they more or less eliminate the need for event delegation.
 
-Any standard DOM event that an element supports can be used (e.g. `on-mouseover='highlight'`, `on-touchstart='dragstart'`, `on-blur='submit'`, `on-error='loadFallbackImage'`, and so on), as can non-standard {{{createLink 'event plugins'}}} such as `on-tap`.
+Any standard DOM event that an element supports can be used (e.g. `on-mouseover='highlight'`, `on-touchstart='dragstart'`, `on-blur='submit'`, `on-error='loadFallbackImage'`, and so on), as can non-standard [event plugins](event plugins.md) such as `on-tap`.
 
 Multiple events may be proxied to the same Ractive event by nameing them individually or stacking them within an `on-` attribute.
 
@@ -149,7 +149,7 @@ You may listen for these names as you would with normal events however these eve
 
 ## <a name="custom"></a>Custom events
 
-You can easily create events of your own with {{{createLink 'ractive.fire()'}}}. This is most useful in the context of subclasses created with {{{createLink 'Ractive.extend()'}}}.
+You can easily create events of your own with [ractive.fire()](ractive.fire().md). This is most useful in the context of subclasses created with [Ractive.extend()](Ractive.extend().md).
 
 In this example, we respond to the user clicking on an item by firing a `selected` event with the item data as the first (and only) argument:
 
@@ -190,9 +190,9 @@ For example:
 <button on-click="subtract('counter', 1)">Subtract</button>
 ```
 
-Since Ractive instances already have {{{createLink 'ractive.add()'}}} and {{{createLink 'ractive.subtract()'}}} methods, they can be used in event attributes directly instead of setting up a proxy event and adding a handler with {{{createLink 'ractive.on()'}}}.
+Since Ractive instances already have [ractive.add()](ractive.add().md) and [ractive.subtract()](ractive.subtract().md) methods, they can be used in event attributes directly instead of setting up a proxy event and adding a handler with [ractive.on()](ractive.on().md).
 
-There is also an implicit `event` variable available that is the same as the event instance that is passed to plain proxy events. Using this, you can simulate a proxy event using {{{createLink 'ractive.fire()'}}}.
+There is also an implicit `event` variable available that is the same as the event instance that is passed to plain proxy events. Using this, you can simulate a proxy event using [ractive.fire()](ractive.fire().md).
 
 ```html
 <button on-click="fire(event, 'proxy-event-name', someContextRef)">Go!</button>

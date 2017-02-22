@@ -1,6 +1,6 @@
 # ractive.observe()
 
-Observes the data at a particular {{{createLink 'keypaths' 'keypath'}}}. Unless specified otherwise, the callback will be fired immediately, with `undefined` as `oldValue`. Thereafter it will be called whenever the *observed keypath* changes.
+Observes the data at a particular [keypath](keypaths.md). Unless specified otherwise, the callback will be fired immediately, with `undefined` as `oldValue`. Thereafter it will be called whenever the *observed keypath* changes.
 
 Note that you can observe keypath *patterns*...
 
@@ -19,7 +19,7 @@ ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
 });
 ```
 
-See {{{createLink 'Observers'}}} for more detail.
+See [Observers](Observers.md) for more detail.
 
 
 > ### ractive.observe( keypath, callback[, options ])
@@ -28,7 +28,7 @@ See {{{createLink 'Observers'}}} for more detail.
 > > #### **keypath** *`String`*
 > > The [keypath](keypaths) to observe, or a group of space-separated keypaths. Any of the keys can be a `*` character, which is treated as a wildcard.
 > > #### **callback** *`Function`*
-> > The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see {{{createLink 'Observers'}}} for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.
+> > The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](Observers.md) for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.
 > > #### options *`Object`*
 > > > #### init *`Boolean`*
 > > > Defaults to `true`. Whether or not to initialise the observer, i.e. call the function with the current value of `keypath` as the first argument and `undefined` as the second

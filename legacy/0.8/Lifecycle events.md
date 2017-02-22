@@ -1,7 +1,7 @@
 # 'Lifecycle events'
 
 
-Every Ractive instance has a *lifecycle* - it is created, then rendered, and eventually may be changed and 'torn down'. You can subscribe to these *lifecycle events* using {{{createLink 'ractive.on()'}}}:
+Every Ractive instance has a *lifecycle* - it is created, then rendered, and eventually may be changed and 'torn down'. You can subscribe to these *lifecycle events* using [ractive.on()](ractive.on().md):
 
 
 ```js
@@ -15,7 +15,7 @@ ractive.on( 'teardown', function () {
 });
 ```
 
-You can also add handlers as {{{createLink 'Options' 'initialisation options'}}}:
+You can also add handlers as [initialisation options](Options.md):
 
 ```js
 ractive = new Ractive({
@@ -35,7 +35,7 @@ The full list of lifecycle events is as follows:
 | `config`        | ...once all configuration options have been processed
 | `init`          | ...when the instance is ready to be rendered
 | `render`        | ...each time the instance is rendered (normally only once)
-| `complete`      | ...after `render`, once any intro {{{createLink 'transitions'}}} have completed
+| `complete`      | ...after `render`, once any intro [transitions](transitions.md) have completed
 | `change`        | ...when data changes
 | `update`        | ...after `ractive.update()` is called
 | `unrender`      | ...each time the instance is unrendered
@@ -51,5 +51,5 @@ Most of the events do not have arguments, except for:
 
 ## Reserved event names
 
-Note: the built-in lifecycle events are **reserved**, which means you can't use their names as {{{createLink 'proxy events'}}}.
+Note: the built-in lifecycle events are **reserved**, which means you can't use their names as [proxy events](proxy events.md).
 

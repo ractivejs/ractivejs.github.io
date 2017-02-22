@@ -17,7 +17,7 @@ console.log( ractive.data ); // { bar: 2 }
 ```
 
 > ### ractive.reset([ data ])
-> Returns a `Promise` (see {{{createLink 'Promises'}}})
+> Returns a `Promise` (see [Promises](Promises.md))
 
 > > #### data *`Object`*
 > > The data to reset with. Defaults to `{}`.

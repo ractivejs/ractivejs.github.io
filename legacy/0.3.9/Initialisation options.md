@@ -12,8 +12,8 @@ ractive = new Ractive({
 
 ## Required
 
-> ### **template** *`String` or (if {{{createLink 'preparsing'}}}) `Array` or `Object`*
-> The template to use. If this is a string, it must be valid (if meaningless, until rendered) HTML, otherwise this must be the output of {{{createLink 'Ractive.parse()'}}}.
+> ### **template** *`String` or (if [preparsing](preparsing.md)) `Array` or `Object`*
+> The template to use. If this is a string, it must be valid (if meaningless, until rendered) HTML, otherwise this must be the output of [Ractive.parse()](Ractive.parse().md).
 >
 > Alternatively, you can pass a string like `#myTemplate` - in this case, Ractive will use the contents of an element whose ID is `myTemplate`. See the [60 second setup](http://ractivejs.org/60-second-setup) for an example of this.
 
@@ -21,31 +21,31 @@ ractive = new Ractive({
 ## Optional
 
 > ### el *`HTMLElement` or `String` or jQuery-like collection*
-> The container element to render to, or a jQuery collection or string (see {{{createLink 'valid selectors'}}}).
+> The container element to render to, or a jQuery collection or string (see [valid selectors](valid selectors.md)).
 
 > ### data *`Object`*
 > the data to initialise with
 
 > ### partials *`Object`*
-> a `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of {{{createLink 'Ractive.parse()'}}}. See {{{createLink 'Partials'}}} for more info
+> a `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of [Ractive.parse()](Ractive.parse().md). See [Partials](Partials.md) for more info
 
 > ### transitions *`Object`*
-> a hash of transition functions specific to this instance, referenced within templates using `intro` and `outro` attributes on elements. See {{{createLink 'Transitions'}}} for more info
+> a hash of transition functions specific to this instance, referenced within templates using `intro` and `outro` attributes on elements. See [Transitions](Transitions.md) for more info
 
 > ### complete *`Function`*
 > a function that will be called when render is complete (i.e. all intro transitions have finished. If there are no intro transitions, this function will be called as soon as the instance is created)
 
 > ### adaptors *`Array`*
-> See {{{createLink 'Adaptors'}}}
+> See [Adaptors](Adaptors.md)
 
 > ### modifyArrays *`Boolean`*
-> Defaults to `true`. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see {{{createLink 'array modification'}}}).
+> Defaults to `true`. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see [array modification](array modification.md)).
 
 > ### magic *`Boolean`*
-> Defaults to `false`. Whether or not to wrap data in ES5 accessors (see {{{createLink 'magic mode'}}}).
+> Defaults to `false`. Whether or not to wrap data in ES5 accessors (see [magic mode](magic mode.md)).
 
 > ### twoway *`Boolean`*
-> Defaults to `true`. Whether or not two-way data binding is enabled (see {{{createLink 'Two‐way binding'}}}).
+> Defaults to `true`. Whether or not two-way data binding is enabled (see [Two‐way binding](Two‐way binding.md)).
 
 > ### lazy *`Boolean`*
 > Defaults to `false`. If two-way data binding is enabled, whether to only update data based on text inputs on `change` and `blur` events, rather than any event (such as key events) that may result in new data

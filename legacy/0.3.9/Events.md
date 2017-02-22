@@ -2,7 +2,7 @@
 
 Like many libraries, Ractive implements the [publish/subscribe](http://addyosmani.com/blog/understanding-the-publishsubscribe-pattern-for-greater-javascript-scalability/) mechanism to allow you to trigger behaviour at certain points.
 
-There are three types of events - standard events, proxy events, and custom events. They all use the same interface - {{{createLink 'ractive.on()'}}}:
+There are three types of events - standard events, proxy events, and custom events. They all use the same interface - [ractive.on()](ractive.on().md):
 
 ```js
 ractive = new Ractive({
@@ -23,15 +23,15 @@ Standard events are those emitted by all Ractive instances:
 
 ### set
 
-Fired whenever {{{createLink 'ractive.set()'}}} is called. The handler's arguments will be `(keypath, value)` or `(map)` depending on the arguments to {{{createLink 'ractive.set()'}}}.
+Fired whenever [ractive.set()](ractive.set().md) is called. The handler's arguments will be `(keypath, value)` or `(map)` depending on the arguments to [ractive.set()](ractive.set().md).
 
 ### update
 
-Fired whenever {{{createLink 'ractive.update()'}}} is called, with `(keypath)` as the sole argument (unless no keypath was specified, in which case there are no arguments).
+Fired whenever [ractive.update()](ractive.update().md) is called, with `(keypath)` as the sole argument (unless no keypath was specified, in which case there are no arguments).
 
 ### teardown
 
-Fired whenever {{{createLink 'ractive.teardown()'}}} is called. No arguments.
+Fired whenever [ractive.teardown()](ractive.teardown().md) is called. No arguments.
 
 
 ## Proxy events
@@ -73,13 +73,13 @@ Proxy event handlers receive an `event` argument. This isn't the same as the `ev
 
 Because of the way proxy events work, they more or less eliminate the need for event delegation.
 
-Any standard DOM event that an element supports can be used (e.g. `on-mouseover='highlight'`, `on-touchstart='dragstart'`, `on-blur='submit'`, `on-error='loadFallbackImage'`, and so on), as can non-standard events defined in {{{createLink 'Ractive.eventDefinitions'}}} such as `on-tap`.
+Any standard DOM event that an element supports can be used (e.g. `on-mouseover='highlight'`, `on-touchstart='dragstart'`, `on-blur='submit'`, `on-error='loadFallbackImage'`, and so on), as can non-standard events defined in [Ractive.eventDefinitions](Ractive.eventDefinitions.md) such as `on-tap`.
 
 *TODO - chained proxy events, additional arguments in custom event definitions*
 
 ## Custom events
 
-You can easily create events of your own with {{{createLink 'ractive.fire()'}}}. This is most useful in the context of subclasses created with {{{createLink 'Ractive.extend()'}}}.
+You can easily create events of your own with [ractive.fire()](ractive.fire().md). This is most useful in the context of subclasses created with [Ractive.extend()](Ractive.extend().md).
 
 In this example, we respond to the user clicking on an item by firing a `selected` event with the item data as the first (and only) argument:
 

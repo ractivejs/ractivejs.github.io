@@ -1,7 +1,7 @@
 # Elements
 
 
-Just about any useful template will contain at least one HTML element, and Ractive has a few directives and other constructs built into its element representation to make life easier. Some of these constructs have their own sections in the docs, such as {{{ createLink 'Events overview' 'Events' }}}, {{{ createLink 'Transitions' }}}, {{{ createLink 'Two-way binding' 'Bindings' }}}, {{{ createLink 'Decorators' }}}, and {{{ createLink 'Components' }}}.
+Just about any useful template will contain at least one HTML element, and Ractive has a few directives and other constructs built into its element representation to make life easier. Some of these constructs have their own sections in the docs, such as [Events](Events overview.md), [Transitions](Transitions.md), [Bindings](Two-way binding.md), [Decorators](Decorators.md), and [Components](Components.md).
 
 ## Conditional attributes
 
@@ -19,7 +19,7 @@ You can wrap one or more attributes inside an element tag in a conditional secti
 
 In this example, if the current `item` in the `list` iteration is also in the `selectedItems` array, then a class attribute will be added to the rendered li and set to `"selected"`.
 
-Any number of attributes can be used in a section, and other {{{ createLink 'Mustaches' 'Mustache' }}} constructs can be used to supply attributes.
+Any number of attributes can be used in a section, and other [Mustache](Mustaches.md) constructs can be used to supply attributes.
 
 ## Class and style attributes
 

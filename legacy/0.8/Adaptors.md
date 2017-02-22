@@ -48,4 +48,4 @@ ractive = new Ractive({
 
 ## Creating adaptor plugins
 
-See {{{createLink 'Writing adaptor plugins'}}} to learn how to create your own adaptors.
+See [Writing adaptor plugins](Writing adaptor plugins.md) to learn how to create your own adaptors.

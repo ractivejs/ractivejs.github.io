@@ -22,10 +22,10 @@ in the __html document__.
 
 A good way to get up and running is with the [60 second setup](http://ractivejs.org/60-second-setup). After that, working your way through the [interactive tutorials](http://learn.ractivejs.org) will familiarise you with the various ways you can use Ractive.
 
-Checkout the {{{createLink 'Options' 'Configuration Options'}}} to learn more about
+Checkout the [Configuration Options](Options.md) to learn more about
 all the available options.
 
-If you get stuck at any point, visit the {{{createLink 'Get support'}}} page to find help.
+If you get stuck at any point, visit the [Get support](Get support.md) page to find help.
 
 *Documentation for previous versions: [0.3.9](../0.3.9), [0.4.0](../0.4.0), [0.5.x](../0.5)*
 

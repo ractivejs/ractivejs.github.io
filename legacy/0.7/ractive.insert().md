@@ -1,11 +1,11 @@
 # ractive.insert()
 
 
-Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also {{{createLink 'ractive.detach()'}}}.
+Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also [ractive.detach()](ractive.detach().md).
 
 > ### ractive.insert( target[, anchor ])
 
-> > #### **target** *`Node`* or *`String`* or *`jQuery`* (see {{{createLink 'Valid selectors'}}})
+> > #### **target** *`Node`* or *`String`* or *`jQuery`* (see [Valid selectors](Valid selectors.md))
 > > The new parent element
 
 > > #### anchor *`Node`* or *`String`* or *`jQuery`*

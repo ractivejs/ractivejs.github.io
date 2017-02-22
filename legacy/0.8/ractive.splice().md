@@ -3,10 +3,10 @@
 The Ractive equivalent to ```Array.splice``` that can add new elements to the array while removing existing elements.
 
 > ### ractive.splice( keypath, index, removeCount, add... )
-> Returns a `Promise` (see {{{createLink 'Promises'}}}) that will resolve with the removed elements after the update is complete.
+> Returns a `Promise` (see [Promises](Promises.md)) that will resolve with the removed elements after the update is complete.
 
 > > #### **keypath** *`String`*
-> > The {{{createLink 'keypaths' 'keypath'}}} of the array to change, e.g. `list` or `order.items`.
+> > The [keypath](keypaths.md) of the array to change, e.g. `list` or `order.items`.
 
 > > #### **index** *`Number`*
 > > The index at which to start the operation.

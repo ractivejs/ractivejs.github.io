@@ -19,7 +19,7 @@ ractive.resetPartial('foo', 'bar');
 ```
 
 > ### ractive.resetPartial(name, partial)
-> Returns a `Promise` (see {{{createLink 'Promises'}}})
+> Returns a `Promise` (see [Promises](Promises.md))
 
 > > #### name *`String`*
 > > The partial to reset.

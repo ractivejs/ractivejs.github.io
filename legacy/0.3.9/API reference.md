@@ -9,26 +9,26 @@ Create a new Ractive instance. See <a href="{{relative absolute 'latest/initiali
 
 ## Instance properties
 
-* {{{createLink 'ractive.nodes'}}}
-* {{{createLink 'ractive.transitions'}}}
-* {{{createLink 'ractive-partials-instance' 'ractive.parials'}}}
+* [ractive.nodes](ractive.nodes.md)
+* [ractive.transitions](ractive.transitions.md)
+* [ractive.parials](ractive-partials-instance.md)
 
 
 ## Instance events
 
-See {{{createLink 'Events'}}}
+See [Events](Events.md)
 
 ## Static methods
 
-* {{{createLink 'Ractive.parse()'}}}
-* {{{createLink 'Ractive.extend()'}}}
+* [Ractive.parse()](Ractive.parse().md)
+* [Ractive.extend()](Ractive.extend().md)
 ...more to come...
 
 ## Plugins and shared properties
 
-* {{{createLink 'Adapators'}}}
-* {{{createLink 'events' 'Ractive.eventDefinitions'}}}
-* {{{createLink 'Ractive.easing'}}}
-* {{{createLink 'Partials'}}}
-* {{{createLink 'Transitions'}}}
+* [Adapators](Adapators.md)
+* [Ractive.eventDefinitions](events.md)
+* [Ractive.easing](Ractive.easing.md)
+* [Partials](Partials.md)
+* [Transitions](Transitions.md)
 ...more to come...

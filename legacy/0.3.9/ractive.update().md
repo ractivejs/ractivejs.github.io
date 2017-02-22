@@ -1,6 +1,6 @@
 # ractive.update()
 
-If data has been modified without using {{{createLink 'ractive.set()'}}}, {{{createLink 'ractive.animate()'}}}, or array mutator methods if {{{createLink 'array modification'}}} is enabled - in other words, you've done `foo.bar = 'baz'` instead of `ractive.set('foo.bar', 'baz')` - then `ractive.update()` causes any affected mustaches to re-render, and any affected {{{createLink 'observers'}}} to be notified.
+If data has been modified without using [ractive.set()](ractive.set().md), [ractive.animate()](ractive.animate().md), or array mutator methods if [array modification](array modification.md) is enabled - in other words, you've done `foo.bar = 'baz'` instead of `ractive.set('foo.bar', 'baz')` - then `ractive.update()` causes any affected mustaches to re-render, and any affected [observers](observers.md) to be notified.
 
 If no `keypath` is specified, all mustaches and observers will be checked.
 
@@ -9,9 +9,9 @@ If no `keypath` is specified, all mustaches and observers will be checked.
 > > #### **keypath** *`String`*
 > > The keypath to treat as 'dirty'. Any mustaches or observers that depend (directly or indirectly) on this keypath will be checked to see if they need to re-render
 > > #### complete *`Function`*
-> > A function that will be called, with `ractive` as `this`, when any {{{createLink 'transitions'}}} triggered by the update have completed
+> > A function that will be called, with `ractive` as `this`, when any [transitions](transitions.md) triggered by the update have completed
 
 
 > ### ractive.update([ complete ])
 > > #### complete *`Function`*
-> > A function that will be called, with `ractive` as `this`, when any {{{createLink 'transitions'}}} triggered by the update have completed
+> > A function that will be called, with `ractive` as `this`, when any [transitions](transitions.md) triggered by the update have completed

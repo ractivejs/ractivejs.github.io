@@ -2,7 +2,7 @@
 
 By default, a Ractive instance will update its internal model based on user input, if you have `<input>`, `<textarea>` or `<select>` elements.
 
-If that's unhelpful for your app, you can disable it by passing `twoway: false` as an {{{createLink 'initialisation-options' 'initialisation option'}}}.
+If that's unhelpful for your app, you can disable it by passing `twoway: false` as an [initialisation option](initialisation-options.md).
 
 
 ## `<input>` elements
@@ -102,19 +102,19 @@ ractive = new Ractive({
 });
 ```
 
-Ractive must decide, straight away, what {{{createLink 'keypaths' 'keypath'}}} to bind the input's `value` attribute to. It will first see if it can {{{createLink 'references' 'resolve the reference'}}} (`'bar'`) given the current context stack (which includes a single context - `'foo'`). It can't, so it is forced to make an assumption - that the `'bar'` reference should resolve to the `'bar'` keypath.
+Ractive must decide, straight away, what [keypath](keypaths.md) to bind the input's `value` attribute to. It will first see if it can [resolve the reference](references.md) (`'bar'`) given the current context stack (which includes a single context - `'foo'`). It can't, so it is forced to make an assumption - that the `'bar'` reference should resolve to the `'bar'` keypath.
 
 But this might not be what you want - maybe you *did* want it to resolve to `'foo.bar'`.
 
-You have two options - either use a {{{createLink 'mustaches' 'restricted reference' 'restricted-references'}}}, i.e. `<input value='\{{.bar}}'>`, or ensure that `foo` has a `bar` property (even if the initial value is `undefined`).
+You have two options - either use a [restricted reference](mustaches.md#restricted-references), i.e. `<input value='\{{.bar}}'>`, or ensure that `foo` has a `bar` property (even if the initial value is `undefined`).
 
 ## Lazy updates
 
-Under the hood, Ractive always binds to the `change` event (and the `click` event in IE, in the case of checkboxes, due to an IE bug). By default, it will also bind to the `input` event, which means the model is updated instantly when the user enters data (the `change` event fires when a change is ['committed by the user'](https://developer.mozilla.org/en-US/docs/Web/Reference/Events/change)). In some situations, that's not what you want - if you want to only bind to `change`, pass in `lazy: true` as an {{{createLink 'initialisation-options' 'initialisation option'}}}.
+Under the hood, Ractive always binds to the `change` event (and the `click` event in IE, in the case of checkboxes, due to an IE bug). By default, it will also bind to the `input` event, which means the model is updated instantly when the user enters data (the `change` event fires when a change is ['committed by the user'](https://developer.mozilla.org/en-US/docs/Web/Reference/Events/change)). In some situations, that's not what you want - if you want to only bind to `change`, pass in `lazy: true` as an [initialisation option](initialisation-options.md).
 
 ## Observing changes
 
-To use user input elsewhere in your app, you'll need to observe it using {{{createLink 'active.observe()'}}}:
+To use user input elsewhere in your app, you'll need to observe it using [active.observe()](active.observe().md):
 
 ```html
 <input placeholder='Type your name' value='\{{user.name}}'>

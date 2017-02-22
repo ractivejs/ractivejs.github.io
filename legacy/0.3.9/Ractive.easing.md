@@ -1,6 +1,6 @@
 # Ractive.easing
 
-This is a set of globally available easing functions, which are used with {{{createLink 'ractive.animate()'}}} and in some {{{createLink 'transitions'}}}.
+This is a set of globally available easing functions, which are used with [ractive.animate()](ractive.animate().md) and in some [transitions](transitions.md).
 
 Four are included by default - `linear`, `easeIn`, `easeOut` and `easeInOut`.
 

@@ -1,7 +1,7 @@
 # ractive.animate()
 
 
-Similar to {{{createLink 'ractive.set()'}}}, this will update the data and re-render any affected mustaches (and notify {{{createLink 'observers'}}}).
+Similar to [ractive.set()](ractive.set().md), this will update the data and re-render any affected mustaches (and notify [observers](observers.md)).
 
 All animations are handled by a global timer that is shared between Ractive instances (and which only runs if there are one or more animations still in progress), so you can trigger as many separate animations as you like without worrying about timer congestion. Where possible, `requestAnimationFrame` is used rather than `setTimeout`.
 
@@ -19,10 +19,10 @@ If an animation is started on a keypath which is *already* being animated, the f
 
 
 > ### ractive.animate( keypath, value[, options] )
-> Returns a `Promise` (see {{{createLink 'Promises'}}}) with an additional `stop` method, which cancels the animation.
+> Returns a `Promise` (see [Promises](Promises.md)) with an additional `stop` method, which cancels the animation.
 
 > > #### **keypath** *`String`*
-> > The {{{createLink 'keypaths' 'keypath'}}} to animate.
+> > The [keypath](keypaths.md) to animate.
 
 > > #### **value** *`Number` or `String` or `Object` or `Array`*
 > > The value to animate to.
@@ -32,7 +32,7 @@ If an animation is started on a keypath which is *already* being animated, the f
 > > > #### duration *`Number`*
 > > > Defaults to 400. How many milliseconds the animation should run for
 > > > #### easing *`String` or `Function`*
-> > > Defaults to `'linear'`. The name of an easing function on {{{createLink 'Ractive.easing'}}}, or the easing function itself
+> > > Defaults to `'linear'`. The name of an easing function on [Ractive.easing](Ractive.easing.md), or the easing function itself
 > > > #### step *`Function`*
 > > > A function to be called on each step of the animation. Receives `t` and `value` as arguments, where `t` is the animation progress (between 0 and 1, as determined by the easing function) and `value` is the intermediate value at `t`
 > > > #### complete *`Function`*
@@ -40,7 +40,7 @@ If an animation is started on a keypath which is *already* being animated, the f
 
 
 > ### ractive.animate( map[, options] )
-> Returns a `Promise` (see {{{createLink 'Promises'}}}) with an additional `stop` method, which cancels the animations.
+> Returns a `Promise` (see [Promises](Promises.md)) with an additional `stop` method, which cancels the animations.
 
 > > #### **map** *`Object`*
 > > A map of `keypath: value` pairs

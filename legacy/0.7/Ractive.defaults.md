@@ -1,7 +1,7 @@
 # Ractive.defaults
 
 
-Most of the {{{createLink 'options' 'initialisation options'}}} can be assigned
+Most of the [initialisation options](options.md) can be assigned
 to the `Ractive.defaults` property and will be used as a default option on any future created instances.
 If the same option is supplied during initialisation, it will override the default:
 
@@ -20,7 +20,7 @@ rative2 = new Ractive({
 });
 ```
 
-The exception is for {{{createLink 'Plugins' 'plugin registries'}}} which, for the sake of convenience, are
+The exception is for [plugin registries](Plugins.md) which, for the sake of convenience, are
 'registered' directly on `Ractive`. Also, when provided as initialisation or extend options, they do
 not replace, but rather combine with the default registry options:
 
@@ -43,7 +43,7 @@ than replace. <!--See {{{ createLink '' 'registries' }}} for more detials.-->
 
 ### Defaults and Registries on Extended Ractive
 
-Defaults can also be specified on any Component or View created via {{{createLink 'Ractive.extend()'}}}:
+Defaults can also be specified on any Component or View created via [Ractive.extend()](Ractive.extend().md):
 
 ```js
 var MyRactive = Ractive.extend();

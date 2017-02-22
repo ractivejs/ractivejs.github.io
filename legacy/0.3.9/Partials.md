@@ -35,12 +35,12 @@ ractive = new Ractive({
 });
 ```
 
-Here, `myThumbnailPartial` can be a {{{createLink 'templates' 'string template'}}} or a {{{createLink 'preparsing' 'parsed template'}}}.
+Here, `myThumbnailPartial` can be a [string template](templates.md) or a [parsed template](preparsing.md).
 
 
 ### As a globally available partial
 
-Equally, you can make partials globally available by adding them to {{{createLink 'ractive-partials-global' 'Ractive.partials'}}}:
+Equally, you can make partials globally available by adding them to [Ractive.partials](ractive-partials-global.md):
 
 ```js
 Ractive.partials.thumbnail = myThumbnailPartial;
@@ -64,7 +64,7 @@ This method is particularly convenient if you don't want to load templates via A
 
 The `type` attribute isn't important, as long as it exists and isn't `text/javascript`. All that matters is that it's a script tag whose `id` attribute matches the name of the partial.
 
-Internally, when a template requests the `\{{>thumbnail}}` partial, Ractive will look for it on {{{createLink 'ractive-partials-instance' 'ractive.partials'}}}, then [Ractive.partials](ractive-partials-global), and if both of those fail it will then look for an element with an `id` of `thumbnail`. If it exists, it will parse its content and store it on {{{createLink 'ractive-partials-global' 'Ractive.partials'}}}, to make subsequent lookups quicker.
+Internally, when a template requests the `\{{>thumbnail}}` partial, Ractive will look for it on [ractive.partials](ractive-partials-instance.md), then [Ractive.partials](ractive-partials-global), and if both of those fail it will then look for an element with an `id` of `thumbnail`. If it exists, it will parse its content and store it on [Ractive.partials](ractive-partials-global.md), to make subsequent lookups quicker.
 
 
 
@@ -179,7 +179,7 @@ ractive = new Ractive({
 });
 ```
 
-Or you might make it possible to {{{createLink 'ractive-extend' 'extend'}}} a subclass without overriding its template:
+Or you might make it possible to [extend](ractive-extend.md) a subclass without overriding its template:
 
 ```html
 <div class='modal-background'>

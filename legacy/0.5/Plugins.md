@@ -3,7 +3,7 @@
 Plugins allow you to augment Ractive with extra functionality. You can create your own plugins - the individual
 plugin API pages under "Writing" and the [plugin template](https://github.com/RactiveJS/Plugin-template) to get started.
 
-## {{{createLink 'Adaptors'}}}
+## [Adaptors](Adaptors.md)
 
 * [Backbone](https://github.com/ractivejs/ractive-adaptors-backbone)
 * [Promises](http://lluchs.github.io/Ractive-adaptors-Promise/) - contributed by [@lluchs](https://github.com/lluchs)
@@ -15,14 +15,14 @@ plugin API pages under "Writing" and the [plugin template](https://github.com/Ra
 * TODO Object.observe
 
 
-## {{{createLink 'Decorators'}}}
+## [Decorators](Decorators.md)
 
 * [Sortable](http://ractivejs.github.io/Ractive-decorators-sortable/)
 * [Select2](http://prezent.github.io/ractive-decorators-select2/) - contributed by [@sandermarechal](https://github.com/sandermarechal) ([@Prezent](https://github.com/Prezent))
 * [minmaxwidth](https://github.com/cfenzo/Ractive-decorators-minmaxwidth) - contributed by [@cfenzo](https://github.com/cfenzo)
 
 
-## {{{createLink 'Events'}}}
+## [Events](Events.md)
 
 * [Tap](http://ractivejs.github.io/ractive-events-tap)
 * [Hover](http://ractivejs.github.io/ractive-events-hover)
@@ -34,7 +34,7 @@ plugin API pages under "Writing" and the [plugin template](https://github.com/Ra
 * [Touch](https://github.com/rstacruz/ractive-touch) - contributed by [@rstacruz](https://github.com/rstacruz/)
 
 
-## {{{createLink 'Transitions'}}}
+## [Transitions](Transitions.md)
 
 * [Fade](http://ractivejs.github.io/ractive-transitions-fade)
 * [Slide](http://ractivejs.github.io/ractive-transitions-slide)

@@ -1,6 +1,6 @@
 # Notes
 
-* {{{createLink 'Valid selectors'}}}
-* {{{createLink 'Preparsing'}}}
+* [Valid selectors](Valid selectors.md)
+* [Preparsing](Preparsing.md)
 
 TODO...
