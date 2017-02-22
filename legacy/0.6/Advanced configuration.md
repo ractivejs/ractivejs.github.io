@@ -48,7 +48,7 @@ Used in a component, an option function can be used to dynamically control the t
 and self-update when the value changes:
 
 ```html
-<widget template='\{{template}}'/>
+<widget template='{{template}}'/>
 ```
 ```js
 var Widget = Ractive.extend({
@@ -70,7 +70,7 @@ The value for a named partial can also be specified using a function:
 
 ```js
 new Ractive({
-	template: '<div>\{{>dynamicPartial}}</div>',
+	template: '<div>{{>dynamicPartial}}</div>',
 	partials: {
 		dynamicPartial: function ( data ) {
 			return data.condition ? '<p>hello world</p>' : '<div>yes, we have no foo</div>';

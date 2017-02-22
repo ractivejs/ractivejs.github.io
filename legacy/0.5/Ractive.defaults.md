@@ -56,7 +56,7 @@ Likewise, registry options are available on the constructor:
 
 ```js
 var MyRactive = Ractive.extend({
-	template: '<p>\{{>foo}}</p>p>'
+	template: '<p>{{>foo}}</p>p>'
 });
 
 MyRactive.partials.foo = '{{foo}} is great';

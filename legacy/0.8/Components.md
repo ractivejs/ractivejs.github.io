@@ -7,8 +7,8 @@ First, you need to **create the component** with [Ractive.extend()](Ractive.exte
 * [Initialisation Options](#init)
 * [Binding](#binding)
 * [Events](#events)
-* [The \{{>content}} Directive](#content)
-* [The \{{yield}} Directive](#yield)
+* [The {{>content}} Directive](#content)
+* [The {{yield}} Directive](#yield)
 * [Parents and Containers](#parent)
 
 ## <a name="init"></a>Initialisation Options
@@ -74,7 +74,7 @@ var ractive = new Ractive({
 
 <script id="component" type="text/ractive">
 
-  \{{nonIsolatedSetting}}
+  {{nonIsolatedSetting}}
 
 </script>
 
@@ -113,7 +113,7 @@ init is called after the extended component has been initialised
 
 ```js
 var MyWidget = Ractive.extend({
-  template: '<div on-click="activate">\{{message}}</div>',
+  template: '<div on-click="activate">{{message}}</div>',
   init: function () {
     this.on( 'activate', function () {
       alert( 'Activating!' );
@@ -167,7 +167,7 @@ new MyWidget({
 Instead of passing a static message ('Click to activate!') through, we could have passed a dynamic one:
 
 ```html
-<widget message='\{{foo}}'/>
+<widget message='{{foo}}'/>
 ```
 
 In this case, the value of `message` within the component would be bound to the value of `foo` in the parent Ractive instance. When the value of parent-`foo` changes, the value of child-`message` also changes, and vice-versa.
@@ -183,7 +183,7 @@ var data = {
 }
 Ractive.components.widget = Ractive.extend({})
 var ractive = new Ractive({ 
-    template: '<widget items='\{{colors}}' option1='A' option2='\{{style}}'/>',
+    template: '<widget items='{{colors}}' option1='A' option2='{{style}}'/>',
     data: data 
 })
 
@@ -271,17 +271,17 @@ Here, `Bar.foo`, `Baz.`, and `*.bippy` events will not bubble beyond the `Foo` c
 Here, no internal component events will bubble above `Foo`.
 
 
-## <a name="content"></a>The `\{{>content}}` Directive 
+## <a name="content"></a>The `{{>content}}` Directive 
 
 Any content in the template calling the component:
 
 ```html
-<list items='\{{gunas}}''>
-    \{{name}} (\{{qualities}})
+<list items='{{gunas}}''>
+    {{name}} ({{qualities}})
 </list>
 
-<list items='\{{fates}}'>
-    "\{{.}}"
+<list items='{{fates}}'>
+    "{{.}}"
 </list>
 ``` 
 is exposed in the component as a partial named "content":
@@ -289,54 +289,54 @@ is exposed in the component as a partial named "content":
 ```html
 <!-- template for "list" component -->
 <ul>
-    \{{#items}}
-    <li>\{{>content}}</li>
-    \{{/}}
+    {{#items}}
+    <li>{{>content}}</li>
+    {{/}}
 </ul>
 ```
 
 Partials, components, and any other valid template items can be used as well:
 ```html
-<list items='\{{gunas}}'>
-    \{{>partialA}})
+<list items='{{gunas}}'>
+    {{>partialA}})
 </list>
 
-<list items='\{{fates}}'>
-    <widget value='\{{.}}'/> 
+<list items='{{fates}}'>
+    <widget value='{{.}}'/> 
 </list>
 ```
 
-Currently, the content markup resolves in the component's context. In the second example above the `value` parameter for `<widget>` is the individual list item of `\{{fates}}`. Components inherit their parents partials, so in the first case, `partiaA` could be a partiald defined inline within the component body, added to the component's `partials` property at creation or before use, defined in the parent Ractive instance, or defined globally (`Ractive.partials`).
+Currently, the content markup resolves in the component's context. In the second example above the `value` parameter for `<widget>` is the individual list item of `{{fates}}`. Components inherit their parents partials, so in the first case, `partiaA` could be a partiald defined inline within the component body, added to the component's `partials` property at creation or before use, defined in the parent Ractive instance, or defined globally (`Ractive.partials`).
 
 Partials defined inline in the component body can be used to override partials defined on the component. This can be useful for components to allow easy customization of each instance using partials:
 
 ```html
-<list items='\{{gunas}}'>
-    \{{#partial item}}
-        * \{{name}}
-    \{{/partial}}
+<list items='{{gunas}}'>
+    {{#partial item}}
+        * {{name}}
+    {{/partial}}
 </list>
 ```
 
-If the `list` component uses a partial named `item` to display the given `items`, it will be overridden for this instance with `* \{{name}}`.
+If the `list` component uses a partial named `item` to display the given `items`, it will be overridden for this instance with `* {{name}}`.
 
 
-## <a name="yield"></a>The `\{{yield}}` Directive
+## <a name="yield"></a>The `{{yield}}` Directive
 
-The `\{{>content}}` directive, as a special partial, renders everthing in the context of the component. The `\{{yield}}` directive renders everything in the context of the parent, which is typically what the component user expects to happen. Any event handlers or data references will be registered on or refer the parent context instead of the component context.
+The `{{>content}}` directive, as a special partial, renders everthing in the context of the component. The `{{yield}}` directive renders everything in the context of the parent, which is typically what the component user expects to happen. Any event handlers or data references will be registered on or refer the parent context instead of the component context.
 
 Any inline templates defined in the template passed to the component, however, will be rendered in the context of the component.
 
 ```html
 <Foo>
-  \{{ myData }}
+  {{ myData }}
   <button on-click="clicked">Click</button>
 </Foo>
 ```
 
 ```js
 var Foo = Ractive.extend({
-  template: '<div>\{{ yield }}</div>',
+  template: '<div>{{ yield }}</div>',
   data: { myData: 2 }
 });
 var ractive = new Ractive({
@@ -350,19 +350,19 @@ ractive.on('clicked', function(ev) {
 
 Here, `1` will be displayed next to the button, and the button, when clicked, will log a message to the console.
 
-Inline partials may also be yielded within a component by specifying a name with `yield` e.g. `\{{yield item}}`. Currently, only partials defined inside the component body may be yielded.
+Inline partials may also be yielded within a component by specifying a name with `yield` e.g. `{{yield item}}`. Currently, only partials defined inside the component body may be yielded.
 
 ```html
 <Foo>
   I will be in the name-less yield.
-  \{{#partial foo}}
+  {{#partial foo}}
     I will be in the foo yield.
-  \{{/partial}}
+  {{/partial}}
 </Foo>
 ```
 ```js
 var Foo = Ractive.extend({
-  template: '<div>Here is my content: \{{yield}}</div><div>Here is my foo: \{{yield foo}}</div>'
+  template: '<div>Here is my content: {{yield}}</div><div>Here is my foo: {{yield foo}}</div>'
 });
 ```
 

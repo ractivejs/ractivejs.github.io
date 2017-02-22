@@ -19,9 +19,9 @@ but not be identical. To deal with these, we use the `compare` option detailed b
 Merge can also be used to created a context block that uses transitions when the context changes:
 
 ```html
-\{{#user}}
-<div intro='fade'>\{{first}} \{{last}}</div>
-\{{/}}
+{{#user}}
+<div intro='fade'>{{first}} {{last}}</div>
+{{/}}
 ```
 
 ```js

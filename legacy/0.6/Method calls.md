@@ -6,7 +6,7 @@
 As an alternative to [proxy events](proxy events.md), you can call any method of your Ractive instance, in response to an [event directive](event directives.md), right from your template:
 
 ```html
-<p>foo is \{{foo}}</p>
+<p>foo is {{foo}}</p>
 <button on-click='toggle("foo")'>toggle foo</button>
 ```
 
@@ -28,12 +28,12 @@ var ractive = new Ractive({
 You can pass as many arguments to the method as you like, including data references:
 
 ```html
-\{{#each items :i}}
+{{#each items :i}}
   <button on-click='select(this,i)'>select this item</button>
-\{{/each}}
+{{/each}}
 ```
 
-Notice that mustaches are __not__ used with data reference in method calls, i.e. `\{{i}}` and will cause errors if they are. String literals need to be in quotes:
+Notice that mustaches are __not__ used with data reference in method calls, i.e. `{{i}}` and will cause errors if they are. String literals need to be in quotes:
 
 ```html
 <button on-click='set( "foo", true)'>make foo true</button>
@@ -52,6 +52,6 @@ You can also pass the `event` object, or properties thereof (`event.original` is
     y: "unknown"
   })'
 >
-  <p>current mouse position: \{{x}} x \{{y}}</p>
+  <p>current mouse position: {{x}} x {{y}}</p>
 </div>
 ```

@@ -45,15 +45,15 @@ We might want to pass arguments to our handler in addition to the `event` object
 ```html
 <h1>Let's shop!</h1>
 <ul>
-  \{{#each items: i}}
+  {{#each items: i}}
     <li>
-      <p>\{{i+1}}: \{{description}}</p>
-      <label><input value='\{{qty}}'> Quantity</label>
+      <p>{{i+1}}: {{description}}</p>
+      <label><input value='{{qty}}'> Quantity</label>
 
-      <!-- when the user clicks this button, add {\{qty}} of this item -->
-      <button on-click='addToCart:\{{this}},\{{qty}}'>Add to cart</button>
+      <!-- when the user clicks this button, add {{qty}} of this item -->
+      <button on-click='addToCart:{{this}},{{qty}}'>Add to cart</button>
     </li>
-  \{{/each}}
+  {{/each}}
 </ul>
 ```
 
@@ -82,12 +82,12 @@ Note: the built-in [lifecycle events](lifecycle events.md) are **reserved**, whi
 [Mustache references](Mustaches.md) can be used as proxy event names:
 
 ```html
-<button on-click="\{{handler}}">click me!</button>
+<button on-click="{{handler}}">click me!</button>
 ```
 
 In practice this is of limited value, but a more important side effect is that if no handler is specified (a falsey value) the DOM event is not subscribed and will unsubscribe or resubscribe as the handler value changes. Combined with a conditional section, this allows a proxy event to be conditionally subscribed _at the DOM level_:
 
 ```html
-<button on-click="\{{#active}}select\{{/}}">click me!</button>
+<button on-click="{{#active}}select{{/}}">click me!</button>
 ```
 In this example, the DOM `click` event is subscribed and unsubscribed as the value of `active` is truthy or falsey.

@@ -70,11 +70,11 @@ The first two properties are self-explanatory, but the last three can bear expla
 The `keypath` of the current `context` is useful if the event handler is being attached in an element that is nested within one or more sections. For instance:
 
 ```html
-\{{#user}}
-  \{{#contactPoints:i}}
-     \{{#phone}}<button on-click="call">Call</button>\{{/}}
-  \{{/}}
-\{{/}}
+{{#user}}
+  {{#contactPoints:i}}
+     {{#phone}}<button on-click="call">Call</button>{{/}}
+  {{/}}
+{{/}}
 ```
 
 ```js
@@ -111,18 +111,18 @@ is equivalent to
 
 #### Arguments
 
-You can pass additional arguments to event handlers using expressions. The general form for doing so is `eventName:\{{expression}},...`. Additional arguments are passed to event handler functions after the event object.
+You can pass additional arguments to event handlers using expressions. The general form for doing so is `eventName:{{expression}},...`. Additional arguments are passed to event handler functions after the event object.
 
 ```html
-\{{#buttons:i}}
-  <button on-click="test:\{{i}},\{{"foo"}}">Button \{{i}}</button>
-\{{/}}
+{{#buttons:i}}
+  <button on-click="test:{{i}},{{"foo"}}">Button {{i}}</button>
+{{/}}
 ```
 
 ```js
 ractive.on('test', function(event, i, foo) {
   // event is the event object
-  // i is whatever the value of \{{i}} is where the event is bound
+  // i is whatever the value of {{i}} is where the event is bound
   // foo is the string 'foo'
 });
 ```
@@ -155,11 +155,11 @@ In this example, we respond to the user clicking on an item by firing a `selecte
 
 ```html
 <div class='catalogue'>
-  \{{#items:i}}
-    <div on-tap='select' data-index='\{{i}}'>
-      \{{>content}}
+  {{#items:i}}
+    <div on-tap='select' data-index='{{i}}'>
+      {{>content}}
     </div>
-  \{{/items}}
+  {{/items}}
 </div>
 ```
 
@@ -185,7 +185,7 @@ In addition to naming a proxy event and passing arguments to it in a proxy event
 
 For example:
 ```html
-\{{ counter }}
+{{ counter }}
 <button on-click="add('counter', 1)">Add</button>
 <button on-click="subtract('counter', 1)">Subtract</button>
 ```

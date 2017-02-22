@@ -4,7 +4,7 @@ The idea is fairly simple: you can define computed properties that update reacti
 ```js
 ractive = new Ractive({
   el: 'body',
-  template: '\{{width}} * \{{height}} = \{{ area() }}', // note the function invocation
+  template: '{{width}} * {{height}} = {{ area() }}', // note the function invocation
   data: {
     width: 100,
     height: 100,
@@ -13,7 +13,7 @@ ractive = new Ractive({
 });
 ```
 
-That's nice and all - the `\{{ area() }}` mustache updates reactively as `width` and `height` change - but it's limited. To get the area value programmatically you'd have to do something like...
+That's nice and all - the `{{ area() }}` mustache updates reactively as `width` and `height` change - but it's limited. To get the area value programmatically you'd have to do something like...
 
 ```js
 area = ractive.get('area').call(ractive);
@@ -36,7 +36,7 @@ Now, you can do
 ```js
 ractive = new Ractive({
   el: 'body',
-  template: '\{{width}} * \{{height}} = \{{area}}', // `area` looks like a regular property
+  template: '{{width}} * {{height}} = {{area}}', // `area` looks like a regular property
   data: {
     width: 100,
     height: 100

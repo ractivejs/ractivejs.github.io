@@ -1,6 +1,6 @@
 # References
 
-Within this documentation, and within Ractive's code, a *reference* is a string that refers to a piece of data - in other words, within a `\{{name}}` [mustache](mustaches.md), `name` is the reference.
+Within this documentation, and within Ractive's code, a *reference* is a string that refers to a piece of data - in other words, within a `{{name}}` [mustache](mustaches.md), `name` is the reference.
 
 By themselves, references are useless - they must *resolve* to a *[keypath](keypaths.md)* before we can do anything with them (like render their value). If the reference exists with a section mustache, it may need to be resolved *in the context of that section*. In fact, because sections can be nested, we have to resolve each reference within its *context stack*.
 
@@ -21,14 +21,14 @@ The resolution algorithm looks like this:
 That's a little bit abstract. The following example may help explain:
 
 ```html
-\{{#user}}
-  <p>Welcome back, \{{name}}!
-    \{{#messages}}
-      You have \{{unread}} unread of \{{total}} total messages.
-      You last logged in on \{{lastLogin}}.
-    \{{/messages}}
+{{#user}}
+  <p>Welcome back, {{name}}!
+    {{#messages}}
+      You have {{unread}} unread of {{total}} total messages.
+      You last logged in on {{lastLogin}}.
+    {{/messages}}
   </p>
-\{{/user}}
+{{/user}}
 ```
 
 ```js
@@ -48,15 +48,15 @@ ractive = new Ractive({
 });
 ```
 
-We start with an empty context stack, so to resolve the `user` in `\{{#user}}` we skip ahead to step 6 of the algorithm. Is `user` a valid keypath - i.e. does `ractive.data` have a `user` property? Why yes, it does.
+We start with an empty context stack, so to resolve the `user` in `{{#user}}` we skip ahead to step 6 of the algorithm. Is `user` a valid keypath - i.e. does `ractive.data` have a `user` property? Why yes, it does.
 
-Within the `\{{#user}}` section, `user` is a context. So we now have a non-empty context stack - `['user']`. So when we come to resolve the `name` in `\{{name}}`, we go to step 2. The innermost (and only) context is `user`, so we test the keypath `user.name`. Is it valid? Why yes, it is. So the `name` resolves to `user.name`.
+Within the `{{#user}}` section, `user` is a context. So we now have a non-empty context stack - `['user']`. So when we come to resolve the `name` in `{{name}}`, we go to step 2. The innermost (and only) context is `user`, so we test the keypath `user.name`. Is it valid? Why yes, it is. So the `name` resolves to `user.name`.
 
-Next up, `\{{#messages}}`. The innermost context is still `user`, so we test `user.messages` - bingo. Because it's a section mustache, anything inside it now has a two-level context stack (`['user', 'user.messages']`).
+Next up, `{{#messages}}`. The innermost context is still `user`, so we test `user.messages` - bingo. Because it's a section mustache, anything inside it now has a two-level context stack (`['user', 'user.messages']`).
 
-We take `\{{unread}}` and `\{{total}}` and apply the same algorithm - sure enough, they resolve to `user.messages.unread` and `user.messages.total`.
+We take `{{unread}}` and `{{total}}` and apply the same algorithm - sure enough, they resolve to `user.messages.unread` and `user.messages.total`.
 
-What about `\{{lastLogin}}`? Again, we take the innermost context from the stack - `user.messages`. Is `user.messages.lastLogin` a valid keypath? No, it isn't. So we take the next innermost context - `user`. As it turns out, `user.lastLogin` is a valid keypath, so the reference resolves.
+What about `{{lastLogin}}`? Again, we take the innermost context from the stack - `user.messages`. Is `user.messages.lastLogin` a valid keypath? No, it isn't. So we take the next innermost context - `user`. As it turns out, `user.lastLogin` is a valid keypath, so the reference resolves.
 
 Most of the time you don't need to be aware that this is going on, especially if you're already familiar with [Mustache](mustaches.md), but it's useful to have a background understanding.
 
@@ -66,9 +66,9 @@ Most of the time you don't need to be aware that this is going on, especially if
 This is also how list sections work. Consider the following:
 
 ```html
-\{{#items}}
-  \{{content}}
-\{{/items}}
+{{#items}}
+  {{content}}
+{{/items}}
 ```
 
 ```js
@@ -81,20 +81,20 @@ ractive = new Ractive({
 });
 ```
 
-The contents of the `\{{#items}}` section are rendered once for each member of `items`. Each time round, the context changes - the first time it is `items.0`, then it is `items.1`, then it is `items.2`.
+The contents of the `{{#items}}` section are rendered once for each member of `items`. Each time round, the context changes - the first time it is `items.0`, then it is `items.1`, then it is `items.2`.
 
 With a context of `items.0`, the `content` reference resolves to `items.0.content`, and so on.
 
-## Current context - `\{{.}}` or `\{{this}}`
+## Current context - `{{.}}` or `{{this}}`
 
-Using `\{{.}}` or `\{{this}}` (they refer to the same thing) resolves to the current data context.
+Using `{{.}}` or `{{this}}` (they refer to the same thing) resolves to the current data context.
 
 For example, sometimes you will have lists of primitives (i.e. strings and numbers) rather than objects. To refer to the primitives, we must use the *implicit iterator*:
 
 ```html
-\{{#items}}
-  \{{.}}
-\{{/items}}
+{{#items}}
+  {{.}}
+{{/items}}
 ```
 
 ```js
@@ -107,23 +107,23 @@ ractive = new Ractive({
 });
 ```
 
-Whenever Ractive sees `\{{.}}`, it simply resolves it to the innermost context - `items.0`, `items.1`, `items.2`.
+Whenever Ractive sees `{{.}}`, it simply resolves it to the innermost context - `items.0`, `items.1`, `items.2`.
 
-In Ractive (but not Mustache), you can use `\{{this}}` in place of `\{{.}}`. This is because in expressions - `\{{this.toFixed(1)}}` looks much nicer than `\{{..toFixed(1)}}` (for example).
+In Ractive (but not Mustache), you can use `{{this}}` in place of `{{.}}`. This is because in expressions - `{{this.toFixed(1)}}` looks much nicer than `{{..toFixed(1)}}` (for example).
 
 ## Restricted references
 
 Sometimes you may want to reference a property within the current context regardless of whether that property currently exists. For those situations you can use what's called a *restricted reference* (note that this feature does not exist in vanilla Mustache):
 
 ```html
-\{{#options}}
-  <label><input type='checkbox' checked='\{{.selected}}'> \{{description}}</label>
-\{{/options}}
+{{#options}}
+  <label><input type='checkbox' checked='{{.selected}}'> {{description}}</label>
+{{/options}}
 ```
 
 This feature is particularly useful with [two-way binding](two-way binding.md) as these references have to be resolved immediately.
 
-You can also use the form `\{{./selected}}` if you prefer, or `\{{this.selected}}`, both of which are the same as `\{{.selected}}`.
+You can also use the form `{{./selected}}` if you prefer, or `{{this.selected}}`, both of which are the same as `{{.selected}}`.
 
 
 ### Ancestor references
@@ -131,12 +131,12 @@ You can also use the form `\{{./selected}}` if you prefer, or `\{{this.selected}
 Very occasionally, you might need to refer explicitly to a property higher up in the tree to avoid naming conflicts. You can do that by prefixing references with `../` (or `../../`, or `../../../`...):
 
 ```html
-<h1>Blog posts by \{{name}}</p>
+<h1>Blog posts by {{name}}</p>
 
 <ul class='blog-posts'>
-  \{{#posts}}
-    <li><a href='\{{ slugify(../../name) }}/\{{ slugify(name) }}'>\{{name}}</a></li>
-  \{{/posts}}
+  {{#posts}}
+    <li><a href='{{ slugify(../../name) }}/{{ slugify(name) }}'>{{name}}</a></li>
+  {{/posts}}
 </ul>
 ```
 
@@ -170,12 +170,12 @@ You can also navigate directly from the top of the data hierarchy with `~/`. Not
 The above example could also use a root reference:
 
 ```html
-<h1>Blog posts by \{{name}}</p>
+<h1>Blog posts by {{name}}</p>
 
 <ul class='blog-posts'>
-  \{{#posts}}
-    <li><a href='\{{ ~/name }}/\{{ name }}'>\{{name}}</a></li>
-  \{{/posts}}
+  {{#posts}}
+    <li><a href='{{ ~/name }}/{{ name }}'>{{name}}</a></li>
+  {{/posts}}
 </ul>
 ```
 
@@ -183,9 +183,9 @@ The above example could also use a root reference:
 
 There are a few things that can be useful to reference from the template that don't really exist in your data. For instance, the current iteration index of a repeated section. These special references can be used just like any other data reference, excepting two-way binding. Here's the list of specials and their resolutions:
 
-1. `@index` - the current iteration index of the containing repeated section e.g. `\{{#each list}}\{{@index}}\{{/each}}`
-2. `@key` - the current key name of the containing object iteration section e.g. `\{{#each someObj}}\{{@key}}\{{/each}}`
-3. `@keypath` - the keypath to the current context e.g. `foo.bar.baz` in `\{{#foo}}\{{#with bar.baz}}\{{@keypath}}\{{/with}}\{{/}}`. If the current context happens to be a mapping in a component, the keypath will be adjusted relative to the mapping.
+1. `@index` - the current iteration index of the containing repeated section e.g. `{{#each list}}{{@index}}{{/each}}`
+2. `@key` - the current key name of the containing object iteration section e.g. `{{#each someObj}}{{@key}}{{/each}}`
+3. `@keypath` - the keypath to the current context e.g. `foo.bar.baz` in `{{#foo}}{{#with bar.baz}}{{@keypath}}{{/with}}{{/}}`. If the current context happens to be a mapping in a component, the keypath will be adjusted relative to the mapping.
 3. `@rootpath` - the same as keypath, except not adjusted for components.
 4. `@global` - the current global object for this environment e.g. `window` in a browser or `global` in node. This reference can be used with two-way binding, but note that if something outside of Ractive changes a value, Ractive won't know unless you tell it to `update`.
 5. `@this` - the current Ractive instance e.g. the current component or the Ractive root. You can access any properties or methods available on a Ractive instance with this, and due to the way capture works, you can also use `@this.get('...')` in a binding and it will update with the target keypath.

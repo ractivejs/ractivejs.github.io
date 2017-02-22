@@ -71,7 +71,7 @@ ractive.myMethod(); // triggers the alert
 > ### **template** *`String` or (if [preparsing](preparsing.md)) `Array` or `Object`*
 > The template to use. If this is a string, it must be valid (if meaningless, until rendered) HTML:
 > ```js
-> template: '<p>\{{greeting}} world!</p>',
+> template: '<p>{{greeting}} world!</p>',
 > ```
 
 > Otherwise this must be the output of [Ractive.parse()](Ractive.parse().md), usually precompiled for use in the browser:
@@ -91,7 +91,7 @@ ractive.myMethod(); // triggers the alert
 
 > <a id="partials"></a>
 > ### partials *`Object`*
-> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of [Ractive.parse()](Ractive.parse().md).
+> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `{{>myPartial}}`), and `value` is either a valid template string or the output of [Ractive.parse()](Ractive.parse().md).
 > ```js
 > partials: {
 >     myPartial: "<p>I'm a partial!<p>"
@@ -166,7 +166,7 @@ ractive.myMethod(); // triggers the alert
 
 > This option cannot be used with `append`.
 
-> To expand on the limitations with text nodes, since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like `outer text \{{#if foo}}inner text\{{/if}}`. The `'outer text '` text node is always present, and if `foo` becomes truthy, an additional text node will be inserted next to the `'outer text '` node containing `'inner text'`. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. `outer text \{{#if foo}}<span>hello</span>\{{/if}} the other side`. In that case, if `foo` is initially falsey, the `'outer text '` and `' the other side'` nodes could be merged into a single node. However, if `foo` became truthy, that node would have to be split into two to place on either side of the `<span>`.
+> To expand on the limitations with text nodes, since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like `outer text {{#if foo}}inner text{{/if}}`. The `'outer text '` text node is always present, and if `foo` becomes truthy, an additional text node will be inserted next to the `'outer text '` node containing `'inner text'`. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. `outer text {{#if foo}}<span>hello</span>{{/if}} the other side`. In that case, if `foo` is initially falsey, the `'outer text '` and `' the other side'` nodes could be merged into a single node. However, if `foo` became truthy, that node would have to be split into two to place on either side of the `<span>`.
 
 > Additionally, unescaped HTML mustaches (triples) don't play nicely with enhance because there's no easy way to match up the string content to the target DOM nodes. This may be remedied at some point in the future.
 
@@ -294,7 +294,7 @@ ractive.myMethod(); // triggers the alert
 > Defaults to `true`. Whether or not two-way data binding is enabled (see [Two‐way binding](Two‐way binding.md)).
 > ```js
 > var ractive = new Ractive({
->     template: '<input value="\{{foo}}">',
+>     template: '<input value="{{foo}}">',
 >     data: { foo: 'bar' },
 >     twoway: false
 > });
@@ -311,7 +311,7 @@ ractive.myMethod(); // triggers the alert
 > Defaults to `false`. If two-way data binding is enabled, whether to only update data based on text inputs on `change` and `blur` events, rather than any event (such as key events) that may result in new data.
 > ```js
 > var ractive = new Ractive({
->     template: '<input value="\{{foo}}">',
+>     template: '<input value="{{foo}}">',
 >     data: { foo: 'bar' },
 >     lazy: true
 > });
@@ -351,7 +351,7 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 > Defaults to `false`. Whether or not to skip intro transitions on render.
 > ```js
 > var ractive = new Ractive({
->     template: '<ul>\{{#items}}<li intro="fade">\{{.}}</li>\{{/items}}</ul>',
+>     template: '<ul>{{#items}}<li intro="fade">{{.}}</li>{{/items}}</ul>',
 >	    data: { items: [ 'red', 'blue' ] },
 >     transitions: { fade: function ( t, params ) {...} },
 >     noIntro: true
@@ -389,7 +389,7 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 
 > <a id="delimiters"></a>
 > ### delimiters *`Array` where `[ open, close ]`*
-> Defaults to `[ '\{{', '}}' ]`. Used to set what delimiters to use when parsing templates.
+> Defaults to `[ '{{', '}}' ]`. Used to set what delimiters to use when parsing templates.
 
 > ```
 > template: 'hello <%= world %>',
@@ -402,7 +402,7 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 
 > <a id="tripleDelimiters"></a>
 > ### tripleDelimiters *`Array` where `[ open, close ]`*
-> Defaults to `[ '\{{{', '}}}' ]`. Used to set what triple delimiters to use when parsing templates.
+> Defaults to `[ '{{{', '}}}' ]`. Used to set what triple delimiters to use when parsing templates.
 
 > ```
 > template: 'hello @html@',

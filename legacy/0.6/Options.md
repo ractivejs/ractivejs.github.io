@@ -70,7 +70,7 @@ ractive.myMethod(); // triggers the alert
 > ### **template** *`String` or `Function` or (if [preparsing](preparsing.md)) `Array` or `Object`*
 > The template to use. If this is a string, it must be valid (if meaningless, until rendered) HTML:
 > ```js
-> template: '<p>\{{greeting}} world!</p>',
+> template: '<p>{{greeting}} world!</p>',
 > ```
 
 > Otherwise this must be the output of [Ractive.parse()](Ractive.parse().md), usually precompiled for use in the browser:
@@ -90,7 +90,7 @@ ractive.myMethod(); // triggers the alert
 
 > <a id="partials"></a>
 > ### partials *`Object`*
-> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `\{{>myPartial}}`), and `value` is either a valid template string or the output of [Ractive.parse()](Ractive.parse().md).
+> A `key: value` hash of partials that are specific to this instance, where `key` is the name of the partial (as referenced within templates as `{{>myPartial}}`), and `value` is either a valid template string or the output of [Ractive.parse()](Ractive.parse().md).
 > ```js
 > partials: {
 >     myPartial: "<p>I'm a partial!<p>"
@@ -283,7 +283,7 @@ ractive.myMethod(); // triggers the alert
 > Defaults to `true`. Whether or not two-way data binding is enabled (see [Two‐way binding](Two‐way binding.md)).
 > ```js
 > var ractive = new Ractive({
->     template: '<input value="\{{foo}}">',
+>     template: '<input value="{{foo}}">',
 >     data: { foo: 'bar' },
 >     twoway: false
 > });
@@ -300,7 +300,7 @@ ractive.myMethod(); // triggers the alert
 > Defaults to `false`. If two-way data binding is enabled, whether to only update data based on text inputs on `change` and `blur` events, rather than any event (such as key events) that may result in new data.
 > ```js
 > var ractive = new Ractive({
->     template: '<input value="\{{foo}}">',
+>     template: '<input value="{{foo}}">',
 >     data: { foo: 'bar' },
 >     lazy: true
 > });
@@ -340,7 +340,7 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 > Defaults to `false`. Whether or not to skip intro transitions on render.
 > ```js
 > var ractive = new Ractive({
->     template: '<ul>\{{#items}}<li intro="fade">\{{.}}</li>\{{/items}}</ul>',
+>     template: '<ul>{{#items}}<li intro="fade">{{.}}</li>{{/items}}</ul>',
 >	  data: { items: [ 'red', 'blue' ] },
 >     transitions: { fade: function ( t, params ) {...} },
 >     noIntro: true
@@ -374,7 +374,7 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 
 > <a id="delimiters"></a>
 > ### delimiters *`Array` where `[ open, close ]`*
-> Defaults to `[ '\{{', '}}' ]`. Used to set what delimiters to use when parsing templates.
+> Defaults to `[ '{{', '}}' ]`. Used to set what delimiters to use when parsing templates.
 
 > ```
 > template: 'hello <%= world %>',
@@ -387,7 +387,7 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 
 > <a id="tripleDelimiters"></a>
 > ### tripleDelimiters *`Array` where `[ open, close ]`*
-> Defaults to `[ '\{{{', '}}}' ]`. Used to set what triple delimiters to use when parsing templates.
+> Defaults to `[ '{{{', '}}}' ]`. Used to set what triple delimiters to use when parsing templates.
 
 > ```
 > template: 'hello @html@',
@@ -495,6 +495,6 @@ A `key: value` hash of transitions that are specific to this instance. The `key`
 > Generally will throw errors or print console messages when otherwise things would print a console messages or fail silently.
 > ```js
 > // throws when 'myPartial' not found:
-> template: '<p>\{{>myPartial}}</p>',
+> template: '<p>{{>myPartial}}</p>',
 > debug: true
 > ```

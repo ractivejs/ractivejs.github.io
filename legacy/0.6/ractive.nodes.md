@@ -22,9 +22,9 @@ You can, if you're so inclined, use dynamic attributes, like so:
 
 ```html
 <ul>
-  \{{#items:i}}
-    <li id='item_\{{i}}'>\{{content}}</li>
-  \{{/items}}
+  {{#items:i}}
+    <li id='item_{{i}}'>{{content}}</li>
+  {{/items}}
 </ul>
 ```
 

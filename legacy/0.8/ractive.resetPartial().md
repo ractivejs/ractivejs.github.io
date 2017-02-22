@@ -11,11 +11,11 @@ ractive = new Ractive({
   partials: { foo: 'foo' }
 });
 
-// \{{>foo}} will be replaced with 'foo'
+// {{>foo}} will be replaced with 'foo'
 
 ractive.resetPartial('foo', 'bar');
 
-// \{{>foo}} will be replaced with 'bar'
+// {{>foo}} will be replaced with 'bar'
 ```
 
 > ### ractive.resetPartial(name, partial)

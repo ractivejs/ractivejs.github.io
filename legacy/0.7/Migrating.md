@@ -13,11 +13,11 @@ Binding directives may be set on elements that support two-way binding. These di
 
 Single-fire versions of `ractive.on` and `ractive.observe` are now available as `ractive.once` and `ractive.observeOnce`.
 
-Inline partials can now be defined within a new section `\{{#partial partial-name}}...\{{/partial}}`. The old comment syntax is now deprecated and will be removed in a future release.
+Inline partials can now be defined within a new section `{{#partial partial-name}}...{{/partial}}`. The old comment syntax is now deprecated and will be removed in a future release.
 
 Inline partials are now scoped to their nearest element. If a partial reference sits in the template below an element with a matching inline partial, the inline partial will be used in the reference. This can be used as a sort of partial inheritance. If an inline partial is defined directly within a component tag or the root of the template, it will be added to the Ractive instance.
 
-Components may now yield to multiple inline partials by supplying the partial name with yield e.g. `\{{yield some-name}}`. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. `\{{>partial}}`.
+Components may now yield to multiple inline partials by supplying the partial name with yield e.g. `{{yield some-name}}`. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. `{{>partial}}`.
 
 Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new `resetPartial` [method](Ractive.resetPartial().md) on Ractive instances.
 
@@ -86,7 +86,7 @@ See the [lifecycle events](lifecycle events.md) page for more detail.
 * Options specified on component constructors will not be picked up as defaults. `debug` now on `defaults`, not constructor
 * Select bindings follow general browser rules for choosing options. Disabled options have no value.
 * Input values are not coerced to numbers, unless input type is `number` or `range`
-* `\{{this.foo}}` in templates now means same thing as `\{{.foo}}`
+* `{{this.foo}}` in templates now means same thing as `{{.foo}}`
 * Rendering to an element already render by Ractive causes that element to be torn down (unless appending).
 * Illegal javascript no longer allowed by parser in expressions and will throw
 * Parsed template format changed to specify template spec version.
@@ -95,11 +95,11 @@ See the [lifecycle events](lifecycle events.md) page for more detail.
 	* See https://github.com/ractivejs/template-spec for current spec.
 * Arrays being observed via `array.*` no longer send `item.length` event on mutation changes
 * Reserved event names in templates ('change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', 'update') will cause the parser to throw an error
-* `\{{else}}` support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference
+* `{{else}}` support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference
 * Child components are created in data order
 * Reference expressions resolve left to right and follow same logic as regular mustache references (bind to root, not context, if left-most part is unresolved).
 * Improved attribute parsing and handling:
 	* character escaping and whitespace handling in attribute directive arguments
 	* boolean and empty string attributes
-* Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `\{{page.area}}` but not `\{{#page}}\{{area}}\{{/page}}`
+* Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `{{page.area}}` but not `{{#page}}{{area}}{{/page}}`
 * The element into which the ractive instance was rendered is no longer available as `ractive.el`. See [ractive.render()](ractive.render().md) and [ractive.insert()](ractive.insert().md) for more information on moving ractive instances in the DOM.

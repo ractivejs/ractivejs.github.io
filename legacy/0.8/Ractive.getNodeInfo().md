@@ -30,10 +30,10 @@ From this point on, `info` is an object that has context methods and may be an `
 > This can also be used to retrieve the value of index and key aliases, template aliases, and special reference.
 
 > ### info.getBinding()
-> If the node represented by this info object has a two-way binding, this will retrieve the value of the binding. For instance, if the node template was `\{{#with foo.bar}}<input id="findMe" value="\{{.baz}}" />\{{/with}}`, then `Ractive.getNodeInfo('#findMe').getBinding()` would return the value of `'foo.bar.baz'`.
+> If the node represented by this info object has a two-way binding, this will retrieve the value of the binding. For instance, if the node template was `{{#with foo.bar}}<input id="findMe" value="{{.baz}}" />{{/with}}`, then `Ractive.getNodeInfo('#findMe').getBinding()` would return the value of `'foo.bar.baz'`.
 
 > ### info.getBindingPath( [ractive] )
-> If the node represented by this info object has a two-way binding, this will return the keypath of the binding. For instance, if the node template was `\{{#with foo.bar}}<input id="findMe" value="\{{.baz}}" />\{{/with}}`, then `Ractive.getNodeInfo('#findMe').getBindingPath()` would return the value of `'foo.bar.baz'`.
+> If the node represented by this info object has a two-way binding, this will return the keypath of the binding. For instance, if the node template was `{{#with foo.bar}}<input id="findMe" value="{{.baz}}" />{{/with}}`, then `Ractive.getNodeInfo('#findMe').getBindingPath()` would return the value of `'foo.bar.baz'`.
 
 > > #### **ractive** *`Ractive instance`*
 > > If supplied, the returned keypath will be relative to any mappings defined for the instance.

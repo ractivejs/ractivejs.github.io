@@ -10,16 +10,16 @@ ractive.set( 'current.name', 'Rich' ); // some.nested.0.list.25.item.name is als
 
 This can be used to great effect with method events and the `@keypath` special ref:
 ```html
-\{{#each some.nested}}
-  \{{#each list}}
-    \{{#with item}}
-      \{{.name}}
+{{#each some.nested}}
+  {{#each list}}
+    {{#with item}}
+      {{.name}}
       <button on-click="event.link('.', 'current')">Select</button>
-    \{{/with}}
-  \{{/each}}
-\{{/each}}
+    {{/with}}
+  {{/each}}
+{{/each}}
 
-Name: <input value="\{{~/current.name}}" />
+Name: <input value="{{~/current.name}}" />
 ```
 
 > ### ractive.link( source, destination )

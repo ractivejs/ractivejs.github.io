@@ -72,7 +72,7 @@ Here's a simple example - we'll create a `Modal` subclass which has a default te
 <div class='modal-background' on-tap='close' intro='fade' outro='fade'>
   <div class='modal-outer'>
     <div class='modal'>
-      \{{>modalContent}}
+      {{>modalContent}}
     </div>
   </div>
 </div>

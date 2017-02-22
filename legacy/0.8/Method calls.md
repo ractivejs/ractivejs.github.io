@@ -8,7 +8,7 @@ __Note:__ Unqualified event method calls are deprecated and have been replaced w
 As an alternative to [proxy events](proxy events.md), you can execute any expression(s) supported by Ractive in response to an [event directive](event directives.md), right from your template:
 
 ```html
-<p>foo is \{{foo}}</p>
+<p>foo is {{foo}}</p>
 <button on-click='@this.toggle("foo")'>toggle foo</button>
 ```
 
@@ -30,12 +30,12 @@ var ractive = new Ractive({
 You can pass as many arguments to the method as you like, including data references:
 
 ```html
-\{{#each items :i}}
+{{#each items :i}}
   <button on-click='@this.select(this,i)'>select this item</button>
-\{{/each}}
+{{/each}}
 ```
 
-Notice that mustaches are __not__ used with data reference in method calls, i.e. `\{{i}}` and will cause errors if they are. String literals need to be in quotes:
+Notice that mustaches are __not__ used with data reference in method calls, i.e. `{{i}}` and will cause errors if they are. String literals need to be in quotes:
 
 ```html
 <button on-click='@this.set("foo", true)'>make foo true</button>
@@ -54,7 +54,7 @@ You can also pass the `event` object, or properties thereof (`event.original` is
     y: "unknown"
   })'
 >
-  <p>current mouse position: \{{x}} x \{{y}}</p>
+  <p>current mouse position: {{x}} x {{y}}</p>
 </div>
 ```
 
@@ -65,14 +65,14 @@ The `event` argument is also extended with contextual helper methods. See [helpe
 If you need to evaluate multiple expressions from an event directive, simply separate them with a `,`. For instance:
 
 ```html
-\{{#each someList as item}}
+{{#each someList as item}}
 <div>
-  \{{item.display}}
+  {{item.display}}
   <a href="#" on-click="event.pop('../'), @this.notifyUser('item removed!'), false">
     Remove and Notify
   </a>
 </div>
-\{{/each}}
+{{/each}}
 ```
 
 Note that this is a list of independent expressions, and as long as one doesn't throw, they will all be evaluated.

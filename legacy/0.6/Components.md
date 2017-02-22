@@ -7,8 +7,8 @@ First, you need to **create the component** with [Ractive.extend()](Ractive.exte
 * [Initiliasation Options](#init)
 * [Binding](#binding)
 * [Events](#events)
-* [The \{{>content}} Directive](#content)
-* [The \{{yield}} Directive](#yield)
+* [The {{>content}} Directive](#content)
+* [The {{yield}} Directive](#yield)
 * [Pseudo-Dynamic Templating](#dynamism)
 
 ## <a name="init"></a>Initialisation Options
@@ -74,7 +74,7 @@ var ractive = new Ractive({
 
 <script id="component" type="text/ractive">
 
-  \{{nonIsolatedSetting}}
+  {{nonIsolatedSetting}}
 
 </script>
 
@@ -113,7 +113,7 @@ init is called after the extended component has been initialized
 
 ```js
 var MyWidget = Ractive.extend({
-  template: '<div on-click="activate">\{{message}}</div>',
+  template: '<div on-click="activate">{{message}}</div>',
   onrender: function () {
     this.on( 'activate', function () {
       alert( 'Activating!' );
@@ -167,7 +167,7 @@ new MyWidget({
 Instead of passing a static message ('Click to activate!') through, we could have passed a dynamic one:
 
 ```html
-<widget message='\{{foo}}'/>
+<widget message='{{foo}}'/>
 ```
 
 In this case, the value of `message` within the component would be bound to the value of `foo` in the parent Ractive instance. When the value of parent-`foo` changes, the value of child-`message` also changes, and vice-versa.
@@ -183,7 +183,7 @@ var data = {
 }
 Ractive.components.widget = Ractive.extend({})
 var ractive = new Ractive({ 
-    template: '<widget items='\{{colors}}' option1='A' option2='\{{style}}'/>',
+    template: '<widget items='{{colors}}' option1='A' option2='{{style}}'/>',
     data: data 
 })
 
@@ -271,17 +271,17 @@ Here, `Bar.foo`, `Baz.`, and `*.bippy` events will not bubble beyond the `Foo` c
 Here, no internal component events will bubble above `Foo`.
 
 
-## <a name="content"></a>The `\{{>content}}` Directive 
+## <a name="content"></a>The `{{>content}}` Directive 
 
 Any content in the template calling the component:
 
 ```html
-<list items='\{{gunas}}''>
-    \{{name}} (\{{qualities}})
+<list items='{{gunas}}''>
+    {{name}} ({{qualities}})
 </list>
 
-<list items='\{{fates}}'>
-    "\{{.}}"
+<list items='{{fates}}'>
+    "{{.}}"
 </list>
 ``` 
 is exposed in the component as a partial named "content":
@@ -289,55 +289,55 @@ is exposed in the component as a partial named "content":
 ```html
 <!-- template for "list" component -->
 <ul>
-    \{{#items}}
-    <li>\{{>content}}</li>
-    \{{/}}
+    {{#items}}
+    <li>{{>content}}</li>
+    {{/}}
 </ul>
 ```
 
 A partial, or component, can be used as well:
 ```html
-<list items='\{{gunas}}''>
-    \{{>partialA}})
+<list items='{{gunas}}''>
+    {{>partialA}})
 </list>
 
-<list items='\{{fates}}''>
-    <widget value='\{{.}}'/> 
+<list items='{{fates}}''>
+    <widget value='{{.}}'/> 
 </list>
 ```
 
-Currently, the content markup resolves in the component's context. In the second example above the `value` parameter for `<widget>` is the individual list item of `\{{fates}}`. And in the first case, the partial would need to be defined globally (`Ractive.partials`) or on the component, as it won't be found if it is defined, for example, inline in the outer context:
+Currently, the content markup resolves in the component's context. In the second example above the `value` parameter for `<widget>` is the individual list item of `{{fates}}`. And in the first case, the partial would need to be defined globally (`Ractive.partials`) or on the component, as it won't be found if it is defined, for example, inline in the outer context:
 
 ```html
-<list items="\{{fates}}">
-    \{{>partialB}}
+<list items="{{fates}}">
+    {{>partialB}}
 </list>
-<!-- \{{>partialB}} -->
+<!-- {{>partialB}} -->
     //won't be found by list component,
     //because this markup is handed off 
     //and rendered inside component
-<!-- \{{/partial}} -->
+<!-- {{/partial}} -->
 ```
 Be aware that the context scope for resolution may change or be expanded in a future release to control whether it resolves in the calling or component context. 
 
 
 
-## <a name="yield"></a>The `\{{yield}}` Directive
+## <a name="yield"></a>The `{{yield}}` Directive
 
-The `\{{>content}}` directive, as a special partial, renders everthing in the context of the component. The `\{{yield}}` directive renders everything in the context of the parent, which is typically what the component user expects to happen. Any event handlers or data references will be registered on or refer the parent context instead of the component context.
+The `{{>content}}` directive, as a special partial, renders everthing in the context of the component. The `{{yield}}` directive renders everything in the context of the parent, which is typically what the component user expects to happen. Any event handlers or data references will be registered on or refer the parent context instead of the component context.
 
 Any inline templates defined in the template passed to the component, however, will be rendered in the context of the component.
 
 ```html
 <Foo>
-  \{{ myData }}
+  {{ myData }}
   <button on-click="clicked">Click</button>
 </Foo>
 ```
 
 ```js
 var Foo = Ractive.extend({
-  template: '<div>\{{ yield }}</div>',
+  template: '<div>{{ yield }}</div>',
   data: { myData: 2 }
 });
 var ractive = new Ractive({
@@ -360,7 +360,7 @@ In some cases you want to render a different template depending on the data that
 ### Form Element Component
 ```js
 var formElement = Ractive.extend({
-  template: '\{{>element}}',
+  template: '{{>element}}',
   setTemplate: function(options) {
     options.partials.element = options.data.template;
   },
@@ -372,9 +372,9 @@ var formElement = Ractive.extend({
 
 ### Form Template
 ```html
-\{{#items}}
-<formElement value="\{{value}}" template="\{{template}}"/>
-\{{/items}}
+{{#items}}
+<formElement value="{{value}}" template="{{template}}"/>
+{{/items}}
 ```
 ### Ractive Form
 ```js
@@ -387,15 +387,15 @@ var ractive = new Ractive({
   data: {
     items: [
         {
-          template: '<h1>\{{value}}</h1>',
+          template: '<h1>{{value}}</h1>',
           value: 'This is a title'
         },
         {
-          template: '<input type="text" value="\{{value}}" style="display:block; clear: both;" />',
+          template: '<input type="text" value="{{value}}" style="display:block; clear: both;" />',
           value: 'Input Value'
         },
         {
-          template: '<textarea value="\{{value}}"></textarea>',
+          template: '<textarea value="{{value}}"></textarea>',
           value: 'Textarea Value'
         }
     ]

@@ -1,22 +1,22 @@
 # Partials
 
 
-A partial is a template snippet which can be inserted into templates, or indeed other partials. They help to keep templates uncluttered and easy to read. In this example, we're creating a `\{{>thumbnail}}` partial:
+A partial is a template snippet which can be inserted into templates, or indeed other partials. They help to keep templates uncluttered and easy to read. In this example, we're creating a `{{>thumbnail}}` partial:
 
 ```html
 <!-- the main template -->
 <div class='gallery'>
-  \{{#items}}
-    \{{>thumbnail}}
-  \{{/items}}
+  {{#items}}
+    {{>thumbnail}}
+  {{/items}}
 </div>
 ```
 
 ```html
 <!-- the partial -->
 <figure class='thumbnail'>
-  <img src='assets/thumbnails/\{{id}}.jpg'>
-  <figcaption>\{{description}}</figcaption>
+  <img src='assets/thumbnails/{{id}}.jpg'>
+  <figcaption>{{description}}</figcaption>
 </figure>
 ```
 
@@ -67,15 +67,15 @@ This method is particularly convenient if you don't want to load templates via A
 ```html
 <script id='thumbnail' type='text/ractive'>
   <figure class='thumbnail'>
-    <img src='assets/thumbnails/\{{id}}.jpg'>
-    <figcaption>\{{description}}</figcaption>
+    <img src='assets/thumbnails/{{id}}.jpg'>
+    <figcaption>{{description}}</figcaption>
   </figure>
 </script>
 ```
 
 The `type` attribute isn't important, as long as it exists and isn't `text/javascript`. All that matters is that it's a script tag whose `id` attribute matches the name of the partial. It's fairly common to see Ractive templates in script tags with `type="text/ractive"` to clearly indicate that they are meant to be handled by Ractive. It can be useful, though, to specify `type="text/html"` since many text editors support HTML templates in script tags for templating purposes.
 
-Internally, when a template requests the `\{{>thumbnail}}` partial, Ractive will look for it on [ractive.partials](ractive-partials-instance.md), then [Ractive.partials](ractive-partials-global), and if both of those fail it will then look for an element with an `id` of `thumbnail`. If it exists, it will parse its content and store it on [Ractive.partials](ractive-partials-global.md), to make subsequent lookups quicker.
+Internally, when a template requests the `{{>thumbnail}}` partial, Ractive will look for it on [ractive.partials](ractive-partials-instance.md), then [Ractive.partials](ractive-partials-global), and if both of those fail it will then look for an element with an `id` of `thumbnail`. If it exists, it will parse its content and store it on [Ractive.partials](ractive-partials-global.md), to make subsequent lookups quicker.
 
 
 
@@ -85,17 +85,17 @@ It is also possible to embed partials within templates. Suppose you have a singl
 
 ```html
 <div class='gallery'>
-  \{{#items}}
-    \{{>thumbnail}}
-  \{{/items}}
+  {{#items}}
+    {{>thumbnail}}
+  {{/items}}
 </div>
 
-<!-- \{{>thumbnail}} -->
+<!-- {{>thumbnail}} -->
 <figure class='thumbnail'>
-  <img src='assets/thumbnails/\{{id}}.jpg'>
-  <figcaption>\{{description}}</figcaption>
+  <img src='assets/thumbnails/{{id}}.jpg'>
+  <figcaption>{{description}}</figcaption>
 </figure>
-<!-- \{{/thumbnail}} -->
+<!-- {{/thumbnail}} -->
 ```
 
 In this case, the `thumbnail` partial won't be globally available - it will only be available to Ractive instances that use this template.
@@ -106,20 +106,20 @@ In this case, the `thumbnail` partial won't be globally available - it will only
 
 Partial references may be a name that already exists as a partial, or they may also be any expression that resolves to a partial name. This can be used to select an appropriate partial based on the current context and more. The full power of Ractive's [expressions](expressions.md) are available. If the value of the expression changes, the partial fragment will be re-rendered using the new partial.
 
-If a partial expression is a simple reference and a partial exists with the same name as the reference, the expression will not be evaluated. Instead, the partial with the same name as the reference will be used. For instance, if there are partials named `foo` and `bar`, a data member `foo: 'bar'`, and a partial section `\{{>foo}}`, the partial named `foo` will be used for the section because name-matching takes precedent over expression evaluation.
+If a partial expression is a simple reference and a partial exists with the same name as the reference, the expression will not be evaluated. Instead, the partial with the same name as the reference will be used. For instance, if there are partials named `foo` and `bar`, a data member `foo: 'bar'`, and a partial section `{{>foo}}`, the partial named `foo` will be used for the section because name-matching takes precedent over expression evaluation.
 
 #### Example: Item specialization
 
 ```html
-\{{#list}}\{{>.type}}\{{/}}
+{{#list}}{{>.type}}{{/}}
 
-<!-- \{{>person}} -->
-  \{{.name}} is a person. \{{.pronoun}} has \{{.fingerCount}} fingers.
-<!-- \{{/person}} -->
+<!-- {{>person}} -->
+  {{.name}} is a person. {{.pronoun}} has {{.fingerCount}} fingers.
+<!-- {{/person}} -->
 
-<!-- \{{>animal}} -->
-  \{{.name}} is a \{{.specie}}. \{{.pronoun}} has \{{.legCount}} legs.
-<!-- \{{/animal}} -->
+<!-- {{>animal}} -->
+  {{.name}} is a {{.specie}}. {{.pronoun}} has {{.legCount}} legs.
+<!-- {{/animal}} -->
 ```
 
 This example uses a combination of patial expressions and restricted references in the iteration of `list` to render a different template based on the `type` of item in the list. If there was an item `{ type: 'person', name: 'John', pronoun: 'He', fingerCount: 9 }` in the list, its output would be `John is a person. He has 9 fingers.`. `{ type: 'animal', name: 'Alfred', specie: 'starfish', pronoun: 'It', legCount: 5 }` would output `Alfred is a starfish. It has 5 legs.`.
@@ -128,8 +128,8 @@ This example uses a combination of patial expressions and restricted references 
 
 ```html
 <script id="template" type="text/ractive">
-  Add a partial: <textarea value="\{{tpl}}" /><button on-click="add()">Add</button><br/>
-  \{{#list}}\{{>makePartial(.id, .template)}}\{{/}}
+  Add a partial: <textarea value="{{tpl}}" /><button on-click="add()">Add</button><br/>
+  {{#list}}{{>makePartial(.id, .template)}}{{/}}
 </script>
 ```
 ```js
@@ -157,18 +157,18 @@ This example uses a function to generate a partial on-the-fly and return the new
 
 ### Invalid names
 
-Since the partial name may be an expression, JavaScript keywords cannot be used in partial expressions. This means that `\{{>delete}}` is not valid. Keywords and other otherwise-invalid names may be used with a string expression such as `\{{>'delete'}}` or `\{{>'invalid-name here'}}`.
+Since the partial name may be an expression, JavaScript keywords cannot be used in partial expressions. This means that `{{>delete}}` is not valid. Keywords and other otherwise-invalid names may be used with a string expression such as `{{>'delete'}}` or `{{>'invalid-name here'}}`.
 
 <a name="context"></a>
 ## Partial context
 
-Partial sections may be given explicit context by adding an expression after the name in the form of `\{{>[name expression] [context expression]}}`. The partial will then be executed with the given context instead of the context in which the partial section appears. This has the same effect as wrapping the partial section in a `#with` section.
+Partial sections may be given explicit context by adding an expression after the name in the form of `{{>[name expression] [context expression]}}`. The partial will then be executed with the given context instead of the context in which the partial section appears. This has the same effect as wrapping the partial section in a `#with` section.
 
 ```html
-\{{#list}}\{{>somePartial { item: ., magicNumber: 42 }}}\{{/}}
+{{#list}}{{>somePartial { item: ., magicNumber: 42 }}}{{/}}
 ```
 
-In this example, `\{{item}}` in `somePartial` will resolve to the current item in `list` and `magicNumber` will resolve to `42`. Ancestor references, members, object literals, and any other expressions that resolve to an object may be used as a context expression.
+In this example, `{{item}}` in `somePartial` will resolve to the current item in `list` and `magicNumber` will resolve to `42`. Ancestor references, members, object literals, and any other expressions that resolve to an object may be used as a context expression.
 
 
 <a name="recursion"></a>
@@ -178,30 +178,30 @@ Partials can be used *recursively*:
 
 ```html
 <div class='fileSystem'>
-  \{{#root}}
-    \{{>folder}}
-  \{{/root}}
+  {{#root}}
+    {{>folder}}
+  {{/root}}
 </div>
 
-<!-- \{{>folder}} -->
+<!-- {{>folder}} -->
 <ul class='folder'>
-  \{{#files}}
-    \{{>file}}
-  \{{/files}}
+  {{#files}}
+    {{>file}}
+  {{/files}}
 </ul>
-<!-- \{{/folder}} -->
+<!-- {{/folder}} -->
 
-<!-- \{{>file}} -->
+<!-- {{>file}} -->
 <li class='file'>
-  <img class='icon-\{{type}}'>
-  <span>\{{filename}}</span>
+  <img class='icon-{{type}}'>
+  <span>{{filename}}</span>
 
   <!-- if this is actually a folder, embed the folder partial -->
-  \{{# type === 'folder' }}
-    \{{>folder}}
-  \{{/ type === 'folder' }}
+  {{# type === 'folder' }}
+    {{>folder}}
+  {{/ type === 'folder' }}
 </li>
-<!-- \{{/file}} -->
+<!-- {{/file}} -->
 ```
 
 ```js
@@ -225,7 +225,7 @@ rv = new Ractive({
 });
 ```
 
-In the example above, subfolders use the `\{{>folder}}` partial, which uses the `\{{>file}}` partial for each file, and if any of those files are folders, the `\{{>folder}}` partial will be invoked again, and so on until there are no more files.
+In the example above, subfolders use the `{{>folder}}` partial, which uses the `{{>file}}` partial for each file, and if any of those files are folders, the `{{>folder}}` partial will be invoked again, and so on until there are no more files.
 
 Beware of cyclical data structures! Ractive makes no attempt to detect cyclicality, and will happily continue rendering partials until the [Big Crunch](http://en.wikipedia.org/wiki/Big_Crunch) (or your browser exceeds its maximum call stack size. Whichever is sooner).
 
@@ -240,11 +240,11 @@ For example, you might offer a different view to mobile users:
 ```html
 <div class='main'>
   <div class='content'>
-    \{{>content}}
+    {{>content}}
   </div>
 
   <div class='sidebar'>
-    \{{>sidebar}}
+    {{>sidebar}}
   </div>
 </div>
 ```
@@ -267,7 +267,7 @@ Or you might make it possible to [extend](ractive-extend.md) a subclass without 
 ```html
 <div class='modal-background'>
   <div class='modal'>
-    \{{>modalContent}}
+    {{>modalContent}}
   </div>
 </div>
 ```
@@ -318,7 +318,7 @@ helloModal.on( 'close', function () {
 Partials may be updated after they are rendered if they are held within a conditional section. They will be re-parsed each time they are re-rendered, if necessary, so string, pre-parsed, and function partials may be used.
 
 ```html
-\{{^toggle}}\{{>rickroll}}\{{/}}
+{{^toggle}}{{>rickroll}}{{/}}
 ```
 
 ```js

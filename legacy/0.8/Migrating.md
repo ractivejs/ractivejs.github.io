@@ -17,13 +17,13 @@ You can now use ES2015 object literal shorthand in templates e.g. `{ foo }` is e
 
 If you have object keys with `.`s in them, you can now escape them with a `\`. So if you have a `bar` object with a `foo.baz` property, it can be accessed with `bar.foo\.baz`. Keypaths in the template are given as escaped paths so that they can be used directly with Ractive methods. There are also a few new static methods on `Ractive` to deal with escaping, unescaping, splitting, and joining keypaths.
 
-`<textarea>`s now handle HTML content as plain text to match what happens in browsers. They can now also set up two-way binding with a single interpolator as content instead of using the value attribute e.g. `<textarea>\{{someBinding}}</textarea>` is equivalent to `<textarea value="\{{someBinding}}"></textarea>`.
+`<textarea>`s now handle HTML content as plain text to match what happens in browsers. They can now also set up two-way binding with a single interpolator as content instead of using the value attribute e.g. `<textarea>{{someBinding}}</textarea>` is equivalent to `<textarea value="{{someBinding}}"></textarea>`.
 
 Progressive enhancement is now supported with a few limitations (see [enhance](options.md#enhance)). If you pass `enhance: true` when creating your Ractive instance, it will not discard the contents of its target element and will instead try to reuse elements and nodes as it builds the virtual DOM from its template. This option is incompatible with the `append` option.
 
 The `Object`, `String`, and `Boolean` globals are now accessible from within templates.
 
-You can now set up aliases with context and iterative mustache sections that can be used to clarify templates and avoid issues with object-literal context sections and two-way binding. For context sections, use `\{{#with someExpressionOrRef as alias1, some.deeply.nested[reference].expression as alias2}}...\{{/with}}` to set up as many aliases as you need. For iterative sections, you can alias the context with the iteration (the current item) by using `\{{#each some.list as item}}...\{{/each}}`. Partial contexts also support aliasing, since partial context is just a shortcut for `\{{#with context}}\{{>partial}}\{{/with}}`, as `\{{>somePartial some.path as alias1, some.other[expression](arg1, arg2) as alias2}}`.
+You can now set up aliases with context and iterative mustache sections that can be used to clarify templates and avoid issues with object-literal context sections and two-way binding. For context sections, use `{{#with someExpressionOrRef as alias1, some.deeply.nested[reference].expression as alias2}}...{{/with}}` to set up as many aliases as you need. For iterative sections, you can alias the context with the iteration (the current item) by using `{{#each some.list as item}}...{{/each}}`. Partial contexts also support aliasing, since partial context is just a shortcut for `{{#with context}}{{>partial}}{{/with}}`, as `{{>somePartial some.path as alias1, some.other[expression](arg1, arg2) as alias2}}`.
 
 There is a new CSP-compatible parsing mode that collects all of the expressions in the template at the end of the parse and stores them as `function`s on the template root. At render-time, any expressions look for a corresponding pre-built function before using `new Function(...)` to create one. Templates parsed in this way are no longer JSON compatible. To enable this mode, pass `csp: true` when pre-parsing your template.
 
@@ -41,7 +41,7 @@ You can now retrieve the CSS for a Ractive instance with a new `toCSS` method. Y
 
 You can now trigger a transition with `ractive.transition( transition, node, options )`, and `node` can be supplied implicitly from an event handler. Transitions can now return a Promise and `complete` will automatically be called when the promise resolves.
 
-Class and style attributes now get special treatment that keeps them from clobbering external changes. There are also special attribute forms for targeting a single class or inline style at a time using e.g. `style-left="\{{x}}px"` and `class-someClass="\{{someCondition || someOtherCondition}}"`. For the special style form, additional hyphens in the attribute are turned into camel case. For the special class form, the truthiness of the value determines whether or not the class is added to the list.
+Class and style attributes now get special treatment that keeps them from clobbering external changes. There are also special attribute forms for targeting a single class or inline style at a time using e.g. `style-left="{{x}}px"` and `class-someClass="{{someCondition || someOtherCondition}}"`. For the special style form, additional hyphens in the attribute are turned into camel case. For the special class form, the truthiness of the value determines whether or not the class is added to the list.
 
 As `set` will create intermediate objects when setting an undefined keypath, array methods will now swap in an empty array instead of erroring when called with an undefined keypath. Trying to use an array method with a non-array value including `null` will still throw.
 
@@ -59,17 +59,17 @@ Transitioning elements will not longer keep unrelated elements from being remove
 
 * IE8 is no longer supported.
 
-* Two-way binding is no longer allowed in computed contexts e.g. `\{{#each filter(someList)}}<input value="\{{.prop}}" />\{{/each}}` because changes to the computed child (`filter(someList).0.prop` aren't kept in sync with their source (`someList.?.prop`) as Ractive doesn't know how to reverse the expression. There is an ongoing discussion about how to address this, including an open PR that would put this behavior behind a flag and attempt to keep the sources up to date as the computation children changed.
+* Two-way binding is no longer allowed in computed contexts e.g. `{{#each filter(someList)}}<input value="{{.prop}}" />{{/each}}` because changes to the computed child (`filter(someList).0.prop` aren't kept in sync with their source (`someList.?.prop`) as Ractive doesn't know how to reverse the expression. There is an ongoing discussion about how to address this, including an open PR that would put this behavior behind a flag and attempt to keep the sources up to date as the computation children changed.
 
-* Names in partial mustaches have been further relaxed to allow `/`s. They can also now handle relative contexts because partial name expressions no longer support spaces around the `.` delimiters in object paths. `\{{> foo.bar.baz .bat}}` before this change would have parsed as a single expression to get the partial name from `foo.bar.baz.bat`. It will now get the name from `foo.bar.baz` and have a context provided from `.bat`.
+* Names in partial mustaches have been further relaxed to allow `/`s. They can also now handle relative contexts because partial name expressions no longer support spaces around the `.` delimiters in object paths. `{{> foo.bar.baz .bat}}` before this change would have parsed as a single expression to get the partial name from `foo.bar.baz.bat`. It will now get the name from `foo.bar.baz` and have a context provided from `.bat`.
 
 * Other elements are no longer allowed within `<option>` elements.
 
-* Integer literals in interpolators are now considered to be integer literal expressions rather than references. They were considered references before so that you could access array members by index within a context. If you need to access an array member within a context section, you can still do so with `\{{this.0}}`.
+* Integer literals in interpolators are now considered to be integer literal expressions rather than references. They were considered references before so that you could access array members by index within a context. If you need to access an array member within a context section, you can still do so with `{{this.0}}`.
 
 * The private `_ractive` tracking data added to Ractive controlled DOM nodes has changed significantly. The format of `Ractive.getNodeInfo` objects is still compatible.
 
-* `\{{#with obj}}` will no longer render if `obj` is falsey (https://github.com/ractivejs/ractive/issues/1856)
+* `{{#with obj}}` will no longer render if `obj` is falsey (https://github.com/ractivejs/ractive/issues/1856)
 
 * Method event calls and proxy events with arguments are now deprecated and being replaced with [event expressions](Method calls.md).
 
@@ -81,7 +81,7 @@ Transitioning elements will not longer keep unrelated elements from being remove
 
 * The `decorator` directive has similarly deprecated and replaced by prefixed and named directives `as-${decorator}` e.g. `as-ace-editor`. Arguments passed to these directives should also no longer be wrapped in mustaches, as they are also parsed as an array. Multiple decorators are now supported by simply including multiple directives e.g. `as-registered="'some-id'" as-validated="{ maxLen: 10, match: /^foo/ }"`.
 
-* Accessing expression models via keypath is now deprecated and will be removed in a future version. Expression keypaths can overlap, which can cause unexpected things to happen for the overlapping paths. You can now use context methods on an event or node info object with relative keypaths to interact with expression contexts. For example: `\{{#with some.expression()}}<button on-click="@this.set(@keypath + '.foo', 42)">set .foo to 42</button>\{{/with}}` would become `\{{#with some.expression()}}<button on-click="event.set('.foo', 42)">set .foo to 42</button>\{{/with}}`.
+* Accessing expression models via keypath is now deprecated and will be removed in a future version. Expression keypaths can overlap, which can cause unexpected things to happen for the overlapping paths. You can now use context methods on an event or node info object with relative keypaths to interact with expression contexts. For example: `{{#with some.expression()}}<button on-click="@this.set(@keypath + '.foo', 42)">set .foo to 42</button>{{/with}}` would become `{{#with some.expression()}}<button on-click="event.set('.foo', 42)">set .foo to 42</button>{{/with}}`.
 
 * `modifyArrays` now defaults to `false`. If you modify arrays using splice operations directly, you will need to notify Ractive to sync with the changes afterwards.
 
@@ -95,11 +95,11 @@ Binding directives may be set on elements that support two-way binding. These di
 
 Single-fire versions of `ractive.on` and `ractive.observe` are now available as `ractive.once` and `ractive.observeOnce`.
 
-Inline partials can now be defined within a new section `\{{#partial partial-name}}...\{{/partial}}`. The old comment syntax is now deprecated and will be removed in a future release.
+Inline partials can now be defined within a new section `{{#partial partial-name}}...{{/partial}}`. The old comment syntax is now deprecated and will be removed in a future release.
 
 Inline partials are now scoped to their nearest element. If a partial reference sits in the template below an element with a matching inline partial, the inline partial will be used in the reference. This can be used as a sort of partial inheritance. If an inline partial is defined directly within a component tag or the root of the template, it will be added to the Ractive instance.
 
-Components may now yield to multiple inline partials by supplying the partial name with yield e.g. `\{{yield some-name}}`. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. `\{{>partial}}`.
+Components may now yield to multiple inline partials by supplying the partial name with yield e.g. `{{yield some-name}}`. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. `{{>partial}}`.
 
 Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new `resetPartial` [method](Ractive.resetPartial().md) on Ractive instances.
 
@@ -168,7 +168,7 @@ See the [lifecycle events](lifecycle events.md) page for more detail.
 * Options specified on component constructors will not be picked up as defaults. `debug` now on `defaults`, not constructor
 * Select bindings follow general browser rules for choosing options. Disabled options have no value.
 * Input values are not coerced to numbers, unless input type is `number` or `range`
-* `\{{this.foo}}` in templates now means same thing as `\{{.foo}}`
+* `{{this.foo}}` in templates now means same thing as `{{.foo}}`
 * Rendering to an element already render by Ractive causes that element to be torn down (unless appending).
 * Illegal javascript no longer allowed by parser in expressions and will throw
 * Parsed template format changed to specify template spec version.
@@ -177,11 +177,11 @@ See the [lifecycle events](lifecycle events.md) page for more detail.
 	* See https://github.com/ractivejs/template-spec for current spec.
 * Arrays being observed via `array.*` no longer send `item.length` event on mutation changes
 * Reserved event names in templates ('change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', 'update') will cause the parser to throw an error
-* `\{{else}}` support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference
+* `{{else}}` support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference
 * Child components are created in data order
 * Reference expressions resolve left to right and follow same logic as regular mustache references (bind to root, not context, if left-most part is unresolved).
 * Improved attribute parsing and handling:
 	* character escaping and whitespace handling in attribute directive arguments
 	* boolean and empty string attributes
-* Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `\{{page.area}}` but not `\{{#page}}\{{area}}\{{/page}}`
+* Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `{{page.area}}` but not `{{#page}}{{area}}{{/page}}`
 * The element into which the ractive instance was rendered is no longer available as `ractive.el`. See [ractive.render()](ractive.render().md) and [ractive.insert()](ractive.insert().md) for more information on moving ractive instances in the DOM.

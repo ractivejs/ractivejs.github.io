@@ -9,34 +9,34 @@ If you've used [Handlebars](http://handlebarsjs.com) or [Angular](http://angular
 
 ## What are mustaches?
 
-Within this documentation, and within Ractive's code, 'mustache' means two things - a snippet of a template which uses mustache delimiters, such as `\{{name}}`, and the object within our [parallel DOM](parallel DOM.md) that is responsible for listening to data changes and updating the (real) DOM.
+Within this documentation, and within Ractive's code, 'mustache' means two things - a snippet of a template which uses mustache delimiters, such as `{{name}}`, and the object within our [parallel DOM](parallel DOM.md) that is responsible for listening to data changes and updating the (real) DOM.
 
-We say that the `\{{name}}` mustache has a *[reference](references)* of `name`. When it gets rendered, and we create the object whose job it is to represent `name` in the DOM, we attempt to *resolve the reference according to the current context stack*. For example if we're in the `user` context, and `user` has a property of `name`, `name` will resolve to a [keypath](keypaths.md) of `user.name`.
+We say that the `{{name}}` mustache has a *[reference](references)* of `name`. When it gets rendered, and we create the object whose job it is to represent `name` in the DOM, we attempt to *resolve the reference according to the current context stack*. For example if we're in the `user` context, and `user` has a property of `name`, `name` will resolve to a [keypath](keypaths.md) of `user.name`.
 
 As soon as the mustache knows what its keypath is (which may not be at render time, if data has not yet been set), it registers itself as a *[dependant](dependants.md)* of the keypath. Then, whenever data changes, Ractive scans the dependency graph to see which mustaches need to update, and notifies them accordingly.
 
 ## Mustache basics
 
-If you already know Mustache, Ractive supports all the Mustache features - basic Mustache variables like `\{{name}}`, as well as sections, partials, and even delimiter changes. If you're already familiar with Mustache, skip to the Extensions section below.
+If you already know Mustache, Ractive supports all the Mustache features - basic Mustache variables like `{{name}}`, as well as sections, partials, and even delimiter changes. If you're already familiar with Mustache, skip to the Extensions section below.
 
 You can also check out the [tutorials](http://learn.ractivejs.org).
 
 ### Variables
 
-The most basic mustache type is the variable. A `\{{name}}` tag in a template will try to find the `name` key in the current context. If there is no `name` key in the current context, the parent contexts will be checked recursively. If the top context is reached and the name key is still not found, nothing will be rendered.
+The most basic mustache type is the variable. A `{{name}}` tag in a template will try to find the `name` key in the current context. If there is no `name` key in the current context, the parent contexts will be checked recursively. If the top context is reached and the name key is still not found, nothing will be rendered.
 
-All variables are HTML escaped by default. If you want to return unescaped HTML, use the triple mustache: `\{{{name}}}`.
+All variables are HTML escaped by default. If you want to return unescaped HTML, use the triple mustache: `{{{name}}}`.
 
-You can also use `&` to unescape a variable: `\{{& name}}`. This may be useful when changing delimiters (see "Set Delimiter" below).
+You can also use `&` to unescape a variable: `{{& name}}`. This may be useful when changing delimiters (see "Set Delimiter" below).
 
 
 Template:
 
 ```html
- * \{{name}}
- * \{{age}}
- * \{{company}}
- * \{{{company}}}
+ * {{name}}
+ * {{age}}
+ * {{company}}
+ * {{{company}}}
 ```
 
 With the following data:
@@ -60,7 +60,7 @@ Will generate the following output:
 ### Sections
 Sections render blocks of text one or more times, depending on the value of the key in the current context.
 
-A section begins with a pound and ends with a slash. That is, `\{{#person}}` begins a "person" section while `\{{/person}}` ends it.
+A section begins with a pound and ends with a slash. That is, `{{#person}}` begins a "person" section while `{{/person}}` ends it.
 
 The behavior of the section is determined by the value of the key.
 
@@ -72,9 +72,9 @@ Template:
 
 ```html
 Shown.
-\{{#person}}
+{{#person}}
   Never shown!
-\{{/person}}
+{{/person}}
 ```
 
 Data:
@@ -98,9 +98,9 @@ When the value is a non-empty list, the text in the block will be displayed once
 Template:
 
 ```html
-\{{#repo}}
-  <b>\{{name}}</b>
-\{{/repo}}
+{{#repo}}
+  <b>{{name}}</b>
+{{/repo}}
 ```
 
 Data:
@@ -130,9 +130,9 @@ When the value is non-false but not a list, it will be used as the context for a
 Template:
 
 ```html
-\{{#person?}}
-  Hi \{{name}}!
-\{{/person?}}
+{{#person?}}
+  Hi {{name}}!
+{{/person?}}
 ```
 
 Data:
@@ -151,29 +151,29 @@ Hi Jon!
 
 #### Inverted Sections
 
-An inverted section begins with a caret (hat) and ends with a slash. That is  `\{{^person}}` begins a "person" inverted section while `\{{/person}}` ends it.
+An inverted section begins with a caret (hat) and ends with a slash. That is  `{{^person}}` begins a "person" inverted section while `{{/person}}` ends it.
 
 While sections can be used to render text one or more times based on the value of the key, inverted sections may render text once based on the inverse value of the key. That is, they will be rendered if the key doesn't exist, is false, or is an empty list.
 
 Template:
 
 ```html
-\{{#repo}}
+{{#repo}}
   <b>{{name}}</b>
-\{{/repo}}
-\{{^repo}}
+{{/repo}}
+{{^repo}}
   No repos :(
-\{{/repo}}
+{{/repo}}
 ```
 
 Ractive borrows a trick from Handlebars here and lets you perform:
 
 ```html
-\{{#repo}}
+{{#repo}}
   <b>{{name}}</b>
-\{{else}}
+{{else}}
   No repos :(
-\{{/repo}}
+{{/repo}}
 ```
 
 Data:
@@ -194,7 +194,7 @@ No repos :(
 Comments begin with a bang and are ignored. The following template:
 
 ```html
-<h1>Today\{{! ignore me }}.</h1>
+<h1>Today{{! ignore me }}.</h1>
 ```
 
 Will render as follows:
@@ -211,7 +211,7 @@ Comments may contain newlines.
 Partials begin with a greater than sign:
 
 ```html
-\{{> box}}
+{{> box}}
 ```
 
 Recursive partials are possible. Just avoid infinite loops.
@@ -219,7 +219,7 @@ Recursive partials are possible. Just avoid infinite loops.
 They also inherit the calling context. For example:
 
 ```html
-\{{> next_more}}
+{{> next_more}}
 ```
 
 
@@ -233,33 +233,33 @@ base.mustache:
 
 ```html
 <h2>Names</h2>
-\{{#names}}
-  \{{> user}}
-\{{/names}}
+{{#names}}
+  {{> user}}
+{{/names}}
 ```
 
 With `user.mustache` containing:
 
 ```html
-<strong>\{{name}}</strong>
+<strong>{{name}}</strong>
 ```
 
 Can be thought of as a single, expanded template:
 
 ```html
 <h2>Names</h2>
-\{{#names}}
-  <strong>\{{name}}</strong>
-\{{/names}}
+{{#names}}
+  <strong>{{name}}</strong>
+{{/names}}
 ```
 
 ### Custom delimiters
 
-Custom delimiters are set with a 'Set delimiter' tag. Set delimiter tags start with an equal sign and change the tag delimiters from `\{{` and `}}` to custom strings.
+Custom delimiters are set with a 'Set delimiter' tag. Set delimiter tags start with an equal sign and change the tag delimiters from `{{` and `}}` to custom strings.
 
 ```html
-\{{foo}}
-  \{{=[[ ]]=}}
+{{foo}}
+  {{=[[ ]]=}}
 [[bar]]
 ```
 
@@ -291,10 +291,10 @@ Ractive is 99% backwards-compatible with Mustache, but adds eight additional fea
 Index references are a way of determining where we are within a list section. It's best explained with an example:
 
 ```html
-\{{#items:i}}
-  <!-- within here, \{{i}} refers to the current index -->
-  <p>Item \{{i}}: \{{content}}</p>
-\{{/items}}
+{{#items:i}}
+  <!-- within here, {{i}} refers to the current index -->
+  <p>Item {{i}}: {{content}}</p>
+{{/items}}
 ```
 
 If you then set `items` to `[{content: 'zero'}, {content: 'one'}, {content: 'two'}]`, the result would be
@@ -305,7 +305,7 @@ If you then set `items` to `[{content: 'zero'}, {content: 'one'}, {content: 'two
 <p>Item 2: two</p>
 ```
 
-This is particularly useful when you need to respond to user interaction. For example you could add a `data-index='\{{i}}'` attribute, then easily find which item a user clicked on.
+This is particularly useful when you need to respond to user interaction. For example you could add a `data-index='{{i}}'` attribute, then easily find which item a user clicked on.
 
 ### Object Iteration
 
@@ -329,9 +329,9 @@ We can iterate over the users object with the following:
 
 ```html
 <ul>
-  \{{#users:name}}
-    <li>\{{name}}: \{{email}}</li>
-  \{{/users}}
+  {{#users:name}}
+    <li>{{name}}: {{email}}</li>
+  {{/users}}
 </ul>
 ```
 
@@ -345,43 +345,43 @@ to create:
 </ul>
 ```
 
-In previous versions of Ractive it was required to close a section with the opening keypath. In the example above `\{{#users}}` is closed by `\{{/users}}`. This is no longer the case, you can now simply close an iterator with `\{{/}}`. Ractive will attempt to warn you in the event of a mismatch, `\{{#users}}` cannot be closed by `\{{/comments}}`. This will not effect [Expressions](Expressions.md) as they have always been able to be closed by `\{{/}}`.
+In previous versions of Ractive it was required to close a section with the opening keypath. In the example above `{{#users}}` is closed by `{{/users}}`. This is no longer the case, you can now simply close an iterator with `{{/}}`. Ractive will attempt to warn you in the event of a mismatch, `{{#users}}` cannot be closed by `{{/comments}}`. This will not effect [Expressions](Expressions.md) as they have always been able to be closed by `{{/}}`.
 
 ```html
 <!--- valid markup -->
-\{{#users}}
+{{#users}}
 
-\{{/users}}
+{{/users}}
 
-\{{#users:i}}
+{{#users:i}}
 
-\{{/users}}
+{{/users}}
 
-\{{#users}}
+{{#users}}
 
-\{{/}}
+{{/}}
 
-\{{#users.topUsers}}
+{{#users.topUsers}}
 <!-- still matches the first part of the keypath, thus a valid closing tag -->
-\{{/users}}
+{{/users}}
 
 <!-- invalid markup -->
-\{{#users}}
+{{#users}}
 
-\{{/comments}}
+{{/comments}}
 ```
 
 ### Restricted references
 
 Normally, references are resolved according to a specific algorithm, which involves *moving up the context stack* until a property matching the reference is found. In the vast majority of cases this is exactly what you want, but occasionally (for example when dealing with [recursive partials](parials.md#recursive-partials)) it is useful to be able to specify that a property must exist *in the current context*.
 
-To restrict a reference to the current context, prefix it with a `.`, e.g. `\{{#.bar}}`:
+To restrict a reference to the current context, prefix it with a `.`, e.g. `{{#.bar}}`:
 
 ```html
-\{{#foo}}
-  \{{#bar}}This section will render, because it will resolve to 'bar'\{{/bar}}
-  \{{#.bar}}This section will NOT render, because it resolves to 'foo.bar'\{{/.bar}}
-\{{/foo}}
+{{#foo}}
+  {{#bar}}This section will render, because it will resolve to 'bar'{{/bar}}
+  {{#.bar}}This section will NOT render, because it resolves to 'foo.bar'{{/.bar}}
+{{/foo}}
 ```
 
 ```js
@@ -398,12 +398,12 @@ ractive = new Ractive({
 Very occasionally, you might need to refer explicitly to a property higher up in the tree to avoid naming conflicts. You can do that by prefixing references with `../` (or `../../`, or `../../../`...):
 
 ```html
-<h1>Blog posts by \{{name}}</p>
+<h1>Blog posts by {{name}}</p>
 
 <ul class='blog-posts'>
-  \{{#posts}}
-    <li><a href='\{{ slugify(../../name) }}/\{{ slugify(name) }}'>\{{name}}</a></li>
-  \{{/posts}}
+  {{#posts}}
+    <li><a href='{{ slugify(../../name) }}/{{ slugify(name) }}'>{{name}}</a></li>
+  {{/posts}}
 </ul>
 ```
 
@@ -438,7 +438,7 @@ Expressions are a big topic, so they have a [page of their own](Expressions.md).
 Expressions look like any normal mustache. For example this expression converts `num` to a percentage:
 
 ```html
-<p>\{{ num * 100 }}%</p>
+<p>{{ num * 100 }}%</p>
 ```
 
 The neat part is that this expression will recognise it has a dependency on whatever keypath `num` resolves to, and will re-evaluate whenever the value of `num` changes.
@@ -448,19 +448,19 @@ Mustache fans may bristle at expressions - after all, the whole point is that mu
 
 ### Special Sections
 
-In addition to implicit conditional and iterative sections, Ractive adds ```if```, ```unless```, ```each```, and ```with``` to handle branching, iteration, and context control. For ```if``` and ```each```, ```\{{else}}``` may be used to provide an alternate branch for a false condition or an empty iterable.
+In addition to implicit conditional and iterative sections, Ractive adds ```if```, ```unless```, ```each```, and ```with``` to handle branching, iteration, and context control. For ```if``` and ```each```, ```{{else}}``` may be used to provide an alternate branch for a false condition or an empty iterable.
 
 ```html
 <button on-click="flip">Flip Coin</button>
-<p>Coin flip result: \{{#if heads}}heads\{{else}}tails\{{/if}}</p>
+<p>Coin flip result: {{#if heads}}heads{{else}}tails{{/if}}</p>
 <ul>
-  \{{#each result}}
-    <li>\{{.}}</li>
-  \{{else}}
+  {{#each result}}
+    <li>{{.}}</li>
+  {{else}}
     <li>No results yet...</li>
-  \{{/each}}
+  {{/each}}
 </ul>
-<p>Here is a \{{#with some.nested.value}}\{{.}}\{{/with}} value.</p>
+<p>Here is a {{#with some.nested.value}}{{.}}{{/with}} value.</p>
 ```
 
 ```js
@@ -489,9 +489,9 @@ In this example, clicking the button gets a "random" coin flip result, sets it i
 Since a section with a non-falsy value uses the value as its context, an object expression can be used to create an arbitrary context within a section. Any currently visible context keypaths can be referenced within the new context object, which allows you to keep keypaths available that would otherwise be unreachable.
 
 ```html
-\{{# { id: '10t' } }}
-  Error: \{{id}}
-\{{/}}
+{{# { id: '10t' } }}
+  Error: {{id}}
+{{/}}
 ```
 
 Output:
@@ -503,13 +503,13 @@ Using a section with an object expression to keep references accessible or conve
 
 ```html
 <ul>
-\{{#things:outerIndex}}
-  \{{# { thing: ., i: outerIndex } }}
-    \{{#colors:j}}
-      <li>\{{i}}-\{{j}} \{{.}} \{{thing}}</li>
-    \{{/}}
-  \{{/}}
-\{{/}}
+{{#things:outerIndex}}
+  {{# { thing: ., i: outerIndex } }}
+    {{#colors:j}}
+      <li>{{i}}-{{j}} {{.}} {{thing}}</li>
+    {{/}}
+  {{/}}
+{{/}}
 </ul>
 ```
 
@@ -544,10 +544,10 @@ Sometimes it is useful to have portions of a template render once and stay the s
 The default static mustache delimiters are `[[ ]]` for escaped values and `[[[ ]]]` for unescaped values.
 
 ```html
-[[ foo ]] \{{ foo }}
-\{{^flag}}
+[[ foo ]] {{ foo }}
+{{^flag}}
   [[ foo ]]
-\{{/}}
+{{/}}
 ```
 
 ```js

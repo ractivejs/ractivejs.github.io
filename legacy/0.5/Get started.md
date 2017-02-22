@@ -11,7 +11,7 @@ with the desired options:
 ```js
 var ractive = new Ractive({
   el: 'container',
-  template: '<p>\{{greeting}}, \{{recipient}}!</p>',
+  template: '<p>{{greeting}}, {{recipient}}!</p>',
   data: { greeting: 'Hello', recipient: 'world' }
 });
 ```

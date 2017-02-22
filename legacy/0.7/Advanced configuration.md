@@ -49,7 +49,7 @@ The value for a named partial can also be specified using a function:
 
 ```js
 new Ractive({
-  template: '<div>\{{>dynamicPartial}}</div>',
+  template: '<div>{{>dynamicPartial}}</div>',
   partials: {
     dynamicPartial: function () {
       return this.get( 'foo' ) ? '<p>hello world</p>' : '<div>yes, we have no foo</div>';

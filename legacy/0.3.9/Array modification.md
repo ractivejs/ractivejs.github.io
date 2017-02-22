@@ -6,9 +6,9 @@ Consider the following:
 
 ```html
 <ul>
-  \{{#list}}
+  {{#list}}
     <li>{{.}}</li>
-  \{{/list}}
+  {{/list}}
 </ul>
 ```
 
