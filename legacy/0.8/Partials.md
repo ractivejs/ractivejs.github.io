@@ -1,6 +1,5 @@
----
-title: Partials
----
+# Partials
+
 
 A partial is a template snippet which can be inserted into templates, or indeed other partials. They help to keep templates uncluttered and easy to read. In this example, we're creating a `\{{>thumbnail}}` partial:
 

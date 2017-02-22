@@ -1,6 +1,5 @@
----
-title: ractive.update()
----
+# ractive.update()
+
 
 Forces everything that depends on the specified {{{createLink 'keypath' 'keypaths'}}} (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. {{{createLink 'ractive.set()'}}}, {{{createLink 'ractive.animate()'}}}, or {{{createLink 'array mutators' 'array modification'}}}):
 

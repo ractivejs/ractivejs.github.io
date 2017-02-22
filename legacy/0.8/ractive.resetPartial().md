@@ -1,6 +1,5 @@
----
-title: ractive.resetPartial()
----
+# ractive.resetPartial()
+
 
 Resets a partial and re-renders all of its use-sites, including in any components that have inherited it. If a component has a partial with a same name that is its own, that partial will not be affected.
 

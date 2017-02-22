@@ -1,4 +1,3 @@
----
-title: Ractive.toHTML()
----
+# Ractive.toHTML()
+
 TODO...

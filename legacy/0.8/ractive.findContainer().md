@@ -1,6 +1,5 @@
----
-title: ractive.findContainer()
----
+# ractive.findContainer()
+
 Returns the first container of this component instance with the given `name`.
 
 

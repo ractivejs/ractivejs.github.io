@@ -1,6 +1,5 @@
----
-title: ractive.toggle()
----
+# ractive.toggle()
+
 Toggles the selected {{{createLink 'keypaths' 'keypath'}}}. In other words, if `foo` is [truthy](http://james.padolsey.com/javascript/truthy-falsey/), then `ractive.toggle('foo')` will make it `false`, and vice-versa.
 
 

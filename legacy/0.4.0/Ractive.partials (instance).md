@@ -1,6 +1,5 @@
----
-title: ractive.partials
----
+# ractive.partials
+
 Instance-specific {{{createLink 'partials'}}} exist as properties of `ractive.partials`.
 
 Ordinarily, these are declared as an {{{createLink 'initialisation options' 'initialisation option'}}}. However it is possible, should you need to, to add or replace these partials (obviously, doing so wouldn't affect partials that were already rendered):

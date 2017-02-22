@@ -1,6 +1,5 @@
----
-title: ractive.findParent()
----
+# ractive.findParent()
+
 Returns the first parent of this component instance with the given `name`.
 
 

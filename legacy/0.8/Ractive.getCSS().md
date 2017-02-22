@@ -1,6 +1,5 @@
----
-title: Ractive.getCSS()
----
+# Ractive.getCSS()
+
 Returns scoped CSS from Ractive subclasses defined at the time of the call.
 
 If used without arguments, it will return the scoped CSS of all subclasses.

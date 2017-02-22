@@ -1,6 +1,5 @@
----
-title: Elements
----
+# Elements
+
 
 Just about any useful template will contain at least one HTML element, and Ractive has a few directives and other constructs built into its element representation to make life easier. Some of these constructs have their own sections in the docs, such as {{{ createLink 'Events overview' 'Events' }}}, {{{ createLink 'Transitions' }}}, {{{ createLink 'Two-way binding' 'Bindings' }}}, {{{ createLink 'Decorators' }}}, and {{{ createLink 'Components' }}}.
 

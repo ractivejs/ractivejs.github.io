@@ -1,6 +1,5 @@
----
-title: ractive.splice()
----
+# ractive.splice()
+
 The Ractive equivalent to ```Array.splice``` that can add new elements to the array while removing existing elements.
 
 > ### ractive.splice( keypath, index, removeCount, add... )

@@ -1,6 +1,5 @@
----
-title: Publish/subscribe
----
+# Publish/subscribe
+
 
 Like many libraries, Ractive implements the [publish/subscribe](http://addyosmani.com/blog/understanding-the-publishsubscribe-pattern-for-greater-javascript-scalability/) mechanism to allow you to respond to, or trigger, particular events.
 

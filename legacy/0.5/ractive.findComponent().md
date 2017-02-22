@@ -1,6 +1,5 @@
----
-title: ractive.findComponent()
----
+# ractive.findComponent()
+
 Returns the first component inside a given Ractive instance with the given `name` (or the first component of any kind if no name is given).
 
 

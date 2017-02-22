@@ -1,6 +1,5 @@
----
-title: ractive.get()
----
+# ractive.get()
+
 > ### ractive.get( keypath )
 > Returns the value at `keypath` (see {{{createLink 'Keypaths'}}})
 

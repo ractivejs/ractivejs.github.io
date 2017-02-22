@@ -1,6 +1,5 @@
----
-title: 'Proxy events'
----
+# 'Proxy events'
+
 
 *See also: {{{createLink 'method calls' 'method calls from templates'}}}*
 

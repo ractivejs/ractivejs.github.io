@@ -1,6 +1,5 @@
----
-title: ractive.add()
----
+# ractive.add()
+
 Increments the selected {{{createLink 'keypaths' 'keypath'}}}.
 
 

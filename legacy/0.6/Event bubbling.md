@@ -1,6 +1,5 @@
----
-title: Event Bubbling
----
+# Event Bubbling
+
 
 Events that fire in components will bubble up the view hierarchy - [see this demonstration](http://jsfiddle.net/rich_harris/cdvehp1t/). Bubbling events are namespaced by the element name used for that component in the template:
 

@@ -1,6 +1,5 @@
----
-title: ractive.subtract()
----
+# ractive.subtract()
+
 Decrements the value of the given {{{createLink 'keypaths' 'keypath'}}}.
 
 > ### ractive.subtract( keypath[, number ])

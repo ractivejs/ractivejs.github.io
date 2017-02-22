@@ -1,8 +1,5 @@
----
-title: 60 Second Setup
+# 60 Second Setup
 
-section: Intro
----
 Create a folder with a blank `index.html` page:
 
 ```html

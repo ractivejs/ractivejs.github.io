@@ -1,6 +1,5 @@
----
-title: Transitions
----
+# Transitions
+
 
 Transitions allow you to control how elements are first rendered and how they are removed from the DOM. They are added with transition directives in the form of `${name}-in`, `${name}-out`, and `${name}-in-out`, where each suffix corresponds to when the element is rendered, unrendered, or both, respectively.
 

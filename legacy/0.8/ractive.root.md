@@ -1,6 +1,5 @@
----
-title: ractive.root
----
+# ractive.root
+
 Each component instance can access its root Ractive instance using `this.root`.
 
 ```html

@@ -1,6 +1,5 @@
----
-title: ractive.once()
----
+# ractive.once()
+
 Subscribe to an event for a single firing. This is a convenience function on top of {{{createLink 'ractive.on()'}}}.
 
 > ### ractive.once( eventName, handler )

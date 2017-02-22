@@ -1,6 +1,5 @@
----
-title: SVG and Older Browsers
----
+# SVG and Older Browsers
+
 Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) *do* care.
 
 If your template includes SVG, these browsers will throw an error along the following lines:

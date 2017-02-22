@@ -1,6 +1,5 @@
----
-title: Ractive.escapeKey()
----
+# Ractive.escapeKey()
+
 
 Escapes the given key so that it can be concatenated with a keypath string e.g. `foo.bar` => `foo\.bar`.
 

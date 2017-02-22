@@ -1,6 +1,5 @@
----
-title: Using Ractive with Promises and Deferreds
----
+# Using Ractive with Promises and Deferreds
+
 A few operations with Ractive can be asynchronous - the initial render, plus {{{createLink 'ractive.set()'}}}, {{{createLink 'ractive.animate()'}}}, {{{createLink 'ractive.update()'}}} and {{{createLink 'ractive.teardown()'}}}.
 
 They're asynchronous if they cause one or more {{{createLink 'transitions'}}} that are themselves asynchronous. In these cases, you often want to execute some code once the operation is complete.

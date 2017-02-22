@@ -1,7 +1,5 @@
----
-title: Ractive.defaults
-section: APIReference
----
+# Ractive.defaults
+
 
 Most of the {{{createLink 'options' 'initialisation options'}}} can be assigned
 to the `Ractive.defaults` property and will be used as a default option on any future created instances.

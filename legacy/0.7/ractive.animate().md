@@ -1,6 +1,5 @@
----
-title: ractive.animate()
----
+# ractive.animate()
+
 
 Similar to {{{createLink 'ractive.set()'}}}, this will update the data and re-render any affected mustaches (and notify {{{createLink 'observers'}}}).
 

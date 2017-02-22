@@ -1,6 +1,5 @@
----
-title: ractive.observe()
----
+# ractive.observe()
+
 Observes the data at a particular {{{createLink 'keypaths' 'keypath'}}}. Unless specified otherwise, the callback will be fired immediately, with `undefined` as `oldValue`. Thereafter it will be called whenever the *observed keypath* changes.
 
 Note that you can observe keypath *patterns*...

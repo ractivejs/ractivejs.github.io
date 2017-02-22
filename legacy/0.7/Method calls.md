@@ -1,6 +1,5 @@
----
-title: 'Method calls'
----
+# 'Method calls'
+
 
 *See also: {{{createLink 'proxy events'}}}*
 

@@ -1,7 +1,5 @@
----
-title: new Ractive({...})
-section: APIReference
----
+# new Ractive({...})
+
 ## Initialisation
 
 Ractive instances are created using standard javascript instantiation with the `new` keyword:

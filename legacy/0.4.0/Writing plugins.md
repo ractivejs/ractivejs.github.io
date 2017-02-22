@@ -1,7 +1,5 @@
----
-title: Writing plugins
-section: Plugins
----
+# Writing plugins
+
 You can create plugins for Ractive that add new features. The plugin APIs are documented on these pages:
 
 * {{{createLink 'Adaptors'}}}

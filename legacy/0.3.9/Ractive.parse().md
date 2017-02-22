@@ -1,6 +1,5 @@
----
-title: Ractive.parse()
----
+# Ractive.parse()
+
 Before templates can be used, they must be parsed. Parsing involves reading in a template string and converting it to a tree-like data structure, much like a browser's parser would.
 
 Ordinarily, parsing happens automatically. However you can use `Ractive.parse()` as a standalone function if, for example, you want to parse templates as part of your build process (it works in Node.js). See also {{{createLink 'Using Ractive with RequireJS'}}}.

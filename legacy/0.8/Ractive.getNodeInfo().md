@@ -1,6 +1,5 @@
----
-title: Ractive.getNodeInfo()
----
+# Ractive.getNodeInfo()
+
 Sometimes it is useful to know which Ractive instance a DOM node is attached to and the details of where it exists in the view. `Ractive.getNodeInfo()` is a static method that exposes this information and helper methods based on Ractive's internal tracking mechanisms.
 
 This is particularly useful for {{{createLink 'decorators'}}} and debugging. Notably, in Chrome, if you inspect an element, that element will be added to the Chrome Developer Tools' node list and can be referenced in the console as `$0`. Try inspecting a Ractive-controlled element and using `Ractive.getNodeInfo($0)` in the console.

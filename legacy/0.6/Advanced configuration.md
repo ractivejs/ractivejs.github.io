@@ -1,6 +1,5 @@
----
-title: Advanced Configuration
----
+# Advanced Configuration
+
 In addition to supplying static values for configurations options, some of the Ractive options
 can be specified using a function that will resolve when the ractive instance is instantiated,
 and re-evaluated upon {{{createLink 'ractive.reset()'}}}.

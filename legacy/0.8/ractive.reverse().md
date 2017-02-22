@@ -1,6 +1,5 @@
----
-title: ractive.reverse()
----
+# ractive.reverse()
+
 The Ractive equivalent to ```Array.reverse``` reverses the array at the given keypath and triggers an update event.
 
 > ### ractive.reverse( keypath )

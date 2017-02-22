@@ -1,7 +1,5 @@
----
-title: Initialisation Options
-section: APIReference
----
+# Initialisation Options
+
 
 The following is a complete list of initialisation options, with full descriptions below grouped by category.
 

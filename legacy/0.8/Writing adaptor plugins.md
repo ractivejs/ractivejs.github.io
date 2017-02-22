@@ -1,6 +1,5 @@
----
-title: Writing adaptor plugins
----
+# Writing adaptor plugins
+
 
 An {{{createLink 'Adaptors' 'adaptor'}}} is an object with two methods - `filter` and `wrap`:
 

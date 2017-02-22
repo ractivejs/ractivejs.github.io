@@ -1,6 +1,5 @@
----
-title: Ractive.partials
----
+# Ractive.partials
+
 {{{createLink 'Partials'}}} can be made globally available to Ractive instances by adding them to `Ractive.partials`:
 
 ```js

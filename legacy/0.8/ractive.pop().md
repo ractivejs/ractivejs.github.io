@@ -1,6 +1,5 @@
----
-title: ractive.pop()
----
+# ractive.pop()
+
 The Ractive equivalent to ```Array.pop``` that removes an element from the end of the array at the given keypath and triggers an update event.
 
 > ### ractive.pop( keypath )

@@ -1,6 +1,5 @@
----
-title: ractive.on()
----
+# ractive.on()
+
 Subscribe to {{{createLink 'events overview'}}}.
 
 > ### ractive.on( eventName, handler )

@@ -1,6 +1,5 @@
----
-title: Ractive.extend()
----
+# Ractive.extend()
+
 Ractive is more than a library; it is a platform. It makes it easier to create reusable, but specialised, blocks of functionality such as to-do lists, slideshows, bar charts, text editors, and so on.
 
 Though it's technically incorrect, we'll refer to these as *subclasses* of the Ractive *base class*. In order to create them, we use `Ractive.extend()`.

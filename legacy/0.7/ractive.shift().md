@@ -1,6 +1,5 @@
----
-title: ractive.shift()
----
+# ractive.shift()
+
 The Ractive equivalent to ```Array.shift``` that removes an element from the beginning of the array at the given keypath and triggers an update event.
 
 > ### ractive.shift( keypath )

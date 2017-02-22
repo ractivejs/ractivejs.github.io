@@ -1,6 +1,5 @@
----
-title: References
----
+# References
+
 Within this documentation, and within Ractive's code, a *reference* is a string that refers to a piece of data - in other words, within a `\{{name}}` {{{createLink 'mustaches' 'mustache'}}}, `name` is the reference.
 
 By themselves, references are useless - they must *resolve* to a *{{{createLink 'keypaths' 'keypath'}}}* before we can do anything with them (like render their value). If the reference exists with a section mustache, it may need to be resolved *in the context of that section*. In fact, because sections can be nested, we have to resolve each reference within its *context stack*.

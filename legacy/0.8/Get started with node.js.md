@@ -1,6 +1,5 @@
----
-title: Get started with node.js
----
+# Get started with node.js
+
 
 Using Ractive.js with node is straightforward once [node.js is installed](http://nodejs.org/):
 ```

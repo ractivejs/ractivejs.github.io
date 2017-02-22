@@ -1,6 +1,5 @@
----
-title: ractive.merge()
----
+# ractive.merge()
+
 
 Sets the indicated keypath to the new array value, but "merges" the existing rendered nodes
 representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary.

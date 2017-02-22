@@ -1,6 +1,5 @@
----
-title: Using Ractive with Browserify
----
+# Using Ractive with Browserify
+
 [Browserify](http://browserify.org/) is a way of using [node-style](http://nodejs.org/) requires in the browser, bundling your scripts into a single file for efficient deployment.
 
 There are two Browserify transforms available that you can use for Ractive.js:

@@ -1,6 +1,5 @@
----
-title: ractive.toCSS()
----
+# ractive.toCSS()
+
 Returns the scoped CSS of the current instance and its descendants.
 
 ```js

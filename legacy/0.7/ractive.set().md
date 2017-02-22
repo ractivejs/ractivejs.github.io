@@ -1,6 +1,5 @@
----
-title: ractive.set()
----
+# ractive.set()
+
 Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any {{{createLink 'observers'}}} of affected {{{createLink 'keypaths'}}} will be notified.
 
 A `change` {{{createLink 'events' 'event'}}} will be fired with `keypath` and `value` as arguments

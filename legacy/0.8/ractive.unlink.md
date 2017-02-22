@@ -1,6 +1,5 @@
----
-title: ractive.unlink()
----
+# ractive.unlink()
+
 
 Removes a link set up by {{{createLink 'ractive.link()'}}}.
 

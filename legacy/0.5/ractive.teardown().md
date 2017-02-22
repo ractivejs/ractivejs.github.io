@@ -1,6 +1,5 @@
----
-title: ractive.teardown()
----
+# ractive.teardown()
+
 
 Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.
 

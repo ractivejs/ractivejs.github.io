@@ -1,5 +1,4 @@
----
-title: Ractive.defaults
----
+# Ractive.defaults
+
 
 TODO...

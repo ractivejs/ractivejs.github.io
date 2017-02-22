@@ -1,6 +1,5 @@
----
-title: Known issues, FAQs, and Tips
----
+# Known issues, FAQs, and Tips
+
 
 ## Known Issues
 

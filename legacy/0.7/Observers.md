@@ -1,6 +1,5 @@
----
-title: Observers
----
+# Observers
+
 ## Like publish/subscribe, but different
 
 A common pattern in modern JavaScript is to make models *observable*, using the traditional [publish/subscribe](http://addyosmani.com/blog/understanding-the-publishsubscribe-pattern-for-greater-javascript-scalability/) mechanism.

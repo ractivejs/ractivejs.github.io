@@ -1,6 +1,5 @@
----
-title: Event directives
----
+# Event directives
+
 
 DOM events are handled with template directives that take the form of element attributes, similar to global native DOM handlers, but are prefixed with `on-` plus the name of the event:
 

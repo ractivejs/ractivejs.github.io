@@ -1,6 +1,5 @@
----
-title: Magic mode
----
+# Magic mode
+
 Normally, you would update data using {{{createLink 'ractive.set()'}}}, {{{createLink 'ractive.animate()'}}}, or the {{{createLink 'array-modification' 'array mutator methods'}}}.
 
 If you're fortunate enough to be developing for modern browsers only, however, you have another option: magic mode. Magic mode uses ES5 accessors to allow you to do this:

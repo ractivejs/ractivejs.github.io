@@ -1,6 +1,5 @@
----
-title: Mustaches
----
+# Mustaches
+
 
 ## What is Mustache?
 

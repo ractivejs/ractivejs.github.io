@@ -1,6 +1,5 @@
----
-title: ractive.unshift()
----
+# ractive.unshift()
+
 The Ractive equivalent to ```Array.unshift``` that prepends one or more elements to the array at the given keypath and triggers an update event.
 
 > ### ractive.unshift( keypath, value )

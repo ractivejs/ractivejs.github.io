@@ -1,6 +1,5 @@
----
-title: Ractive.joinKeys()
----
+# Ractive.joinKeys()
+
 
 Joins the given keys into a properly escaped keypath e.g. `Ractive.joinKeys( 'foo', 'bar.baz' )` => `'foo.bar\.baz'`.
 

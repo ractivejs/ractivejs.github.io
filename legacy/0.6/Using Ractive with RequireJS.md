@@ -1,6 +1,5 @@
----
-title: Using Ractive with RequireJS
----
+# Using Ractive with RequireJS
+
 *Psst! Looking for the [Ractive + RequireJS sample application](https://github.com/RactiveJS/requirejs-ractive/tree/master/sample)?*
 
 If Ractive detects that you're using an [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) module loader (in other words, if `typeof define !== 'undefined' && define.amd`) such as [RequireJS](http://requirejs.org/), it will register itself as an AMD module rather than as a browser global.

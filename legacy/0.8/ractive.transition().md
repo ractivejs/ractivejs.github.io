@@ -1,6 +1,5 @@
----
-title: ractive.transition()
----
+# ractive.transition()
+
 Triggers a transition on a node managed by this Ractive instance.
 
 > ### ractive.transition( transition, node, options )

@@ -1,6 +1,5 @@
----
-title: ractive.observe()
----
+# ractive.observe()
+
 Observes the data at a particular {{{createLink 'keypaths' 'keypath'}}}. Unless specified otherwise, the *observer* will be *initialised* once as soon as you create the observer, with `undefined` as `oldValue`. Thereafter it will be *notified* whenever the *observed keypath* changes.
 
 See {{{createLink 'Observers'}}} for more detail.

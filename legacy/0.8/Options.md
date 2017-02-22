@@ -1,7 +1,5 @@
----
-title: Initialisation Options
-section: APIReference
----
+# Initialisation Options
+
 
 The following is an exhaustive list of initialisation options that you can pass to `new Ractive(options)`, with full descriptions grouped below by category.
 

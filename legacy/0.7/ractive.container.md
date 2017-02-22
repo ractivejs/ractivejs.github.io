@@ -1,6 +1,5 @@
----
-title: ractive.container
----
+# ractive.container
+
 Each component instance that is in a yielded fragment has a container instance that is accessible using `this.container`.
 
 ```html

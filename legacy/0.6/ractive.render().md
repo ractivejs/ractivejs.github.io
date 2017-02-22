@@ -1,6 +1,5 @@
----
-title: ractive.render()
----
+# ractive.render()
+
 
 Renders the component into a DOM element.
 

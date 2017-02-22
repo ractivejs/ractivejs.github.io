@@ -1,6 +1,5 @@
----
-title: ractive.push()
----
+# ractive.push()
+
 The Ractive equivalent to ```Array.push``` that appends one or more elements to the array at the given keypath and triggers an update event.
 
 > ### ractive.push( keypath, value )

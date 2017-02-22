@@ -1,6 +1,5 @@
----
-title: Expressions
----
+# Expressions
+
 Expressions allow you to use logic within a template. At their simplest, that may just mean a basic arithmetic operation, such as converting to percentages, or making your {{{createLink 'mustaches' 'index references' 'index-references'}}} start at 1 rather than 0:
 
 ```html

@@ -1,6 +1,5 @@
----
-title: Contributing
----
+# Contributing
+
 
 Ractive.js is a community-driven project - most of its best features were suggested by users. If you think something is missing from the library, [come over to the mailing list](http://groups.google.com/forum/#!forum/ractive-js) to discuss it with other users.
 

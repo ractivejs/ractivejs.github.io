@@ -1,6 +1,5 @@
----
-title: Writing decorator plugins
----
+# Writing decorator plugins
+
 
 A {{{createLink 'decorators' 'decorator'}}} is a way to add behaviour to a node when it is rendered, or to augment it in some way.
 

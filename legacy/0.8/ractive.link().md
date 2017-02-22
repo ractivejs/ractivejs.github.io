@@ -1,6 +1,5 @@
----
-title: ractive.link()
----
+# ractive.link()
+
 
 Creates a link between two {{{createLink 'keypath' 'keypaths'}}} that keeps them in sync. Since Ractive can't always watch the contents of objects, copying an object to two different keypaths in your data usually leads to one or both of them getting out of sync. `link` creates a sort of symlink between the two paths so that Ractive knows they are actually the same object. This is particularly useful for master/detail scenarios where you have a complex list of data and you want to be able to select an item to edit in a detail form.
 

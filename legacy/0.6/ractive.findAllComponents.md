@@ -1,6 +1,5 @@
----
-title: ractive.findAllComponents()
----
+# ractive.findAllComponents()
+
 Returns all components inside a given Ractive instance with the given `name` (or all components of any kind if no name is given).
 
 

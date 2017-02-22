@@ -1,6 +1,5 @@
----
-title: ractive.merge()
----
+# ractive.merge()
+
 Merges data from one array into another, inserting and removing nodes from the DOM as necessary. This is an efficient way to (for example) handle data from a server.
 
 Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location. To determine whether the first item of `['foo', 'bar', 'baz']` is the same as the last item of `['bar', 'baz', 'foo']`, by default we do a strict equality (`===`) check.

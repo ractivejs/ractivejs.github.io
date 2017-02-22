@@ -1,6 +1,5 @@
----
-title: ractive.observeOnce()
----
+# ractive.observeOnce()
+
 Observes the data at a particular {{{createLink 'keypaths' 'keypath'}}} until the first change. After the handler has been called, it will be unsubscribed from any future changes.
 
 Note that you can observe keypath *patterns*...

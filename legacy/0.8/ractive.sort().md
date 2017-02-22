@@ -1,6 +1,5 @@
----
-title: ractive.sort()
----
+# ractive.sort()
+
 The Ractive equivalent to ```Array.sort``` sorts the array at the given keypath and triggers an update event.
 
 > ### ractive.sort( keypath )

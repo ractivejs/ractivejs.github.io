@@ -1,6 +1,5 @@
----
-title: Tips
----
+# Tips
+
 Using Ractive with...
 ---------------------
 

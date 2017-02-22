@@ -1,6 +1,5 @@
----
-title: Get support
----
+# Get support
+
 
 There are a few places to find help if you get stuck with Ractive, beyond these pages:
 

@@ -1,6 +1,5 @@
----
-title: Notes
----
+# Notes
+
 * {{{createLink 'Valid selectors'}}}
 * {{{createLink 'Preparsing'}}}
 

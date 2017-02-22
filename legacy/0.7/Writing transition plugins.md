@@ -1,6 +1,5 @@
----
-title: Writing transition plugins
----
+# Writing transition plugins
+
 
 ## Creating transitions
 

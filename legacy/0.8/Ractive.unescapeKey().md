@@ -1,6 +1,5 @@
----
-title: Ractive.unescapeKey()
----
+# Ractive.unescapeKey()
+
 
 Unescapes the given key e.g. `foo\.bar` => `foo.bar`.
 

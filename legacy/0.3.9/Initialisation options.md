@@ -1,7 +1,5 @@
----
-title: Initialisation Options
-section: APIReference
----
+# Initialisation Options
+
 Create a new Ractive instance using the specified options. For example:
 
 ```js

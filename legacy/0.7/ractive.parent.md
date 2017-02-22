@@ -1,6 +1,5 @@
----
-title: ractive.parent
----
+# ractive.parent
+
 Each component instance can access its parent using `this.parent`.
 
 ```html

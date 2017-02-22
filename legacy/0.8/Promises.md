@@ -1,6 +1,5 @@
----
-title: Promises
----
+# Promises
+
 
 Several methods in Ractive - those which trigger changes to the view, which may or may not involve {{{createLink 'transitions'}}} - return a 'promise'. Those methods are:
 

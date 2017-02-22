@@ -1,6 +1,5 @@
----
-title: Computed Properties
----
+# Computed Properties
+
 The idea is fairly simple: you can define computed properties that update reactively based on their dependencies. In previous versions you may have done something as follows.
 ```js
 ractive = new Ractive({

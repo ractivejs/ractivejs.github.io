@@ -1,6 +1,5 @@
----
-title: ractive.insert()
----
+# ractive.insert()
+
 
 Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also {{{createLink 'ractive.detach()'}}}.
 

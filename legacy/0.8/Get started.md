@@ -1,6 +1,5 @@
----
-title: Get started
----
+# Get started
+
 
 Welcome! These pages aim to provide all the information you need to master Ractive.
 

@@ -1,4 +1,3 @@
----
-title: Troubleshooting
----
+# Troubleshooting
+
 * {{{createLink 'SVG and older browsers'}}}

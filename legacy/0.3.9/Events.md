@@ -1,6 +1,5 @@
----
-title: Events
----
+# Events
+
 Like many libraries, Ractive implements the [publish/subscribe](http://addyosmani.com/blog/understanding-the-publishsubscribe-pattern-for-greater-javascript-scalability/) mechanism to allow you to trigger behaviour at certain points.
 
 There are three types of events - standard events, proxy events, and custom events. They all use the same interface - {{{createLink 'ractive.on()'}}}:

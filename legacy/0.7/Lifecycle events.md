@@ -1,6 +1,5 @@
----
-title: 'Lifecycle events'
----
+# 'Lifecycle events'
+
 
 Every Ractive instance has a *lifecycle* - it is created, then rendered, and eventually may be changed and 'torn down'. You can subscribe to these *lifecycle events* using {{{createLink 'ractive.on()'}}}:
 

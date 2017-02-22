@@ -1,6 +1,5 @@
----
-title: ractive.getNodeInfo()
----
+# ractive.getNodeInfo()
+
 This is an instance specific version of {{{createLink 'Ractive.getNodeInfo()'}}} that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.
 
 > ### ractive.getNodeInfo( node )

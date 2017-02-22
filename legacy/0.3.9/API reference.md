@@ -1,7 +1,5 @@
----
-title: API Reference
-section: APIReference
----
+# API Reference
+
 
 ### ractive = new Ractive( *options* )
 

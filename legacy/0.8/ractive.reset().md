@@ -1,6 +1,5 @@
----
-title: ractive.reset()
----
+# ractive.reset()
+
 
 Resets the entire `ractive.data` object and updates the DOM. This differs from `ractive.set()` in the following way:
 
