@@ -164,7 +164,7 @@ Detaches the instance from the DOM, returning a document fragment. You can reins
 
 ## ractive.detachChild()
 
-Detaches a child from an instance when it was previously attached with [`ractive.attachChild()`](#ractiveattachChild).
+Detaches a child from an instance when it was previously attached with [`ractive.attachChild()`](#ractiveattachchild).
 
 When a child instance that was attached targeting an anchor is detached, its instance is spliced out of the `@this.children.byName.anchorName` array so that subsequent children move forward to fill the void.
 
