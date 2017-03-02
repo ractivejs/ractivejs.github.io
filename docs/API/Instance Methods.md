@@ -101,7 +101,7 @@ If an animation is started on a [keypath](../Concepts/Templates/Keypaths.md) whi
 
 ## ractive.attachChild()
 
-Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [`ractive.extend()`](#ractiveextend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
+Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [`ractive.extend()`](../API/Static Methods.md#Ractive.extend()), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
 
 **Syntax**
 ```js
@@ -336,7 +336,7 @@ Returns the first parent of this component instance with the given `name`.
 
 ## ractive.fire()
 
-Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [`Ractive.extend()`](#ractiveextend), to allow applications to hook into your subclass.
+Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static Methods.md#Ractive.getNodeInfo()), to allow applications to hook into your subclass.
 
 **Syntax**
 
