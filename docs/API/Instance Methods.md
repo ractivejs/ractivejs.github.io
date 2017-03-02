@@ -140,7 +140,7 @@ Children can be detached using [detachChild](#detachChild).
 
 ## ractive.detach()
 
-Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with [`ractive.insert()`](#markdown-header-ractive.insert()) (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).
+Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with [`ractive.insert()`](#ractiveinsert) (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).
 
 **Syntax**
 
@@ -164,7 +164,7 @@ Detaches the instance from the DOM, returning a document fragment. You can reins
 
 ## ractive.detachChild()
 
-Detaches a child from an instance when it was previously attached with [attachChild](#attachChild).
+Detaches a child from an instance when it was previously attached with [`ractive.attachChild()`](#ractiveattachChild).
 
 When a child instance that was attached targeting an anchor is detached, its instance is spliced out of the `@this.children.byName.anchorName` array so that subsequent children move forward to fill the void.
 
