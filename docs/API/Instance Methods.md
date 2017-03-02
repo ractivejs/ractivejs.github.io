@@ -113,10 +113,10 @@ ractive.attachChild( child, options );
 
 - `child (Ractive instance)`: The child instance to attach.
 - `options (Object)`: Options to use when attaching the child:
-> > * **target** *`string`* - an anchor name at which to render the instance. See [`Components`](../Extend/Components.md). If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.
-> > * **append** *`boolean`* - default *true* - add the instance to the end of the list for the targeted anchor.
-> > * **prepend** *`boolean`* - add the instance to the beginning of the list for the targeted anchor.
-> > * **insertAt** *`number`* - index at which to add the instance in the list for the targeted anchor.
+    -`[target] (string)` - an anchor name at which to render the instance. See [`Components`](../Extend/Components.md). If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.
+    -`[append] (boolean)` - default `true` - add the instance to the end of the list for the targeted anchor.
+    -`[prepend] (boolean)` - add the instance to the beginning of the list for the targeted anchor.
+    -`[insertAt] (number)` - index at which to add the instance in the list for the targeted anchor.
 When a child is attached to a parent, the child's `parent` property is updated in an observable way, so any references to `@this.parent` in the child will be notified of the change.
 
 A child may be targeted to a [`Components`](../Extend/Components.md) when it is attached. If a child has no specified target, then it is responsible for managing its own render cycle. If a child does have a specified target, then the parent will manage rendering and unrendering the child as appropriate in the same way that a regular component has a managed render cycle.
@@ -548,9 +548,9 @@ Observes the data at a particular [keypath](../Concepts/Templates/Keypaths.md). 
 
 **Arguments**
 
-- `keypath (String)`: The [keypath](../Concepts/Templates/Keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `*` character, which is treated as a wildcard. A doubled `**` wildcard means `recursive`.  
+- `keypath (String)`: The [keypath](../Concepts/Templates/Keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `` character, which is treated as a wildcard. A doubled `*` wildcard means `recursive`.  
 
-    The difference between `*` and `**` is that `**` provides your callback function `value` and `keypath` arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
+    The difference between `` and `*` is that `*` provides your callback function `value` and `keypath` arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
 - `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../Concepts/Events/Publish-Subscribe.md) for more nuance regarding these arguments), whenever the observed [keypath](../Concepts/Templates/Keypaths.md) changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the [keypath](../Concepts/Templates/Keypaths.md) will have their matches passed to the callback at the end of the arguments list as well.
 - `map (Object)`: A map of keypath-observer pairs.
 - `[options] (Object)`:
@@ -601,7 +601,7 @@ Observes the data at a particular [keypath](../Concepts/Templates/Keypaths.md) u
 
 **Arguments**
 
-- `keypath (string)`: The [keypath](../Concepts/Templates/Keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `*` character, which is treated as a wildcard.
+- `keypath (string)`: The [keypath](../Concepts/Templates/Keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `` character, which is treated as a wildcard.
 - `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../Concepts/Events/Publish-Subscribe.md) for more nuance regarding these arguments), whenever the observed [keypath](../Concepts/Templates/Keypaths.md) changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the [keypath](../Concepts/Templates/Keypaths.md) will have their matches passed to the callback at the end of the arguments list as well.
 - `[options] (Object)`:
     - `[defer] (boolean)`: Defaults to `false`, in which case [observers](../Concepts/Events/Publish-Subscribe.md) will fire before any DOM changes take place. If `true`, the [observer](../Concepts/Events/Publish-Subscribe.md) will fire once the DOM has been updated.
@@ -1017,8 +1017,8 @@ If the given [keypath](../Concepts/Templates/Keypaths.md) does not exist (is `un
 
 - `keypath (string)`: The [keypath](../Concepts/Templates/Keypaths.md) of the array to change, e.g. `list` or `order.items`.
 - `index (number)`: The index at which to start the operation.
-- `[removeCount] (number)`: The number of elements to remove starting with the element at *`index`*. This may be 0 if you don't want to remove any elements.
-- `[add] (any)`: Any elements to insert into the array starting at *`index`*. There can be 0 or more elements passed to add to the array.
+- `[removeCount] (number)`: The number of elements to remove starting with the element at *`index`. This may be 0 if you don't want to remove any elements.
+- `[add] (any)`: Any elements to insert into the array starting at *`index`. There can be 0 or more elements passed to add to the array.
 
 **Returns**
 
