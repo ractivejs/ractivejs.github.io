@@ -336,7 +336,7 @@ Returns the first parent of this component instance with the given `name`.
 
 ## ractive.fire()
 
-Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static Methods.md#ractiveextend), to allow applications to hook into your subclass.
+Fires an event, which will be received by handlers that were bound using [`ractive.on`](#ractiveon). In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static Methods.md#ractiveextend), to allow applications to hook into your subclass.
 
 **Syntax**
 
@@ -1265,7 +1265,7 @@ If the given [keypath](../Concepts/Templates/Keypaths.md) does not exist (is `un
 
 ## ractive.update()
 
-Forces everything that depends on the specified [keypaths](../Concepts/Templates/Keypaths.md) (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. `ractive.set()`, `ractive.animate()`, or array modification):
+Forces everything that depends on the specified [keypaths](../Concepts/Templates/Keypaths.md) (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. [`ractive.set()`](#ractiveset), [`ractive.animate()`](#ractiveanimate), or array modification):
 
 If no `keypath` is specified, all mustaches and [observers](../Concepts/Events/Publish-Subscribe.md) will be checked.
 
