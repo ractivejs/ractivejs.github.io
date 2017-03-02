@@ -2,7 +2,7 @@
 
 The following is an exhaustive list of initialisation options that you can pass to `new Ractive(options)` and `Ractive.extend(options)`, with full descriptions grouped below by category.
 
-Note that any additional options set that's not part of the[initialization options](../API/Initialization Options.md)will be added as properties of the instance.
+Note that any additional options set that are not part of the [initialization options](../API/Initialization Options.md) will be added as properties or methods of the instance.
 
 ```js
 var ractive = new Ractive({
@@ -92,7 +92,7 @@ template: '<p>new content</p>'
 </div>
 ```
 
-An element id, CSS selector referencing an element, HTML element reference or an array-like object containing an HTML element reference as first item that is a child of `el` will render the instance before that element.
+An element id, CSS selector referencing an element, HTML element reference, or an array-like object containing an HTML element reference as its first item that is a child of `el` will render the instance before that element.
 
 ```html
 <div id='container'>
@@ -333,7 +333,7 @@ _`(string|HTMLElement|array-like)`_
 
 Directives for the element to render to. Use `append` option (see below) to control whether existing content is replaced.
 
-Can either be an element id, CSS selector referencing an element, a reference to an HTML element, or an array-like object containing an HTML element reference as first item.
+Can either be an element id, CSS selector referencing an element, a reference to an HTML element, or an array-like object containing an HTML element reference as its first item.
 
 ```js
 el: 'container'
@@ -348,11 +348,12 @@ el: $('#container')
 
 _`(boolean)`_
 
-Defaults to `false`. Whether or not to try to reuse the existing DOM in the target element when rendering a.k.a. progressive enhancement. This allows you to serve the fully rendered page and then render the Ractive template at load over the pre-rendered page without completely wiping out the existing content. There are a few limitations surrounding text nodes, but all matching elements will be reused.
+Defaults to `false`. Whether or not to try to reuse the existing DOM in the target element when rendering a.k.a. progressive enhancement. This allows you to serve the fully rendered page and then render the Ractive template at load over the pre-rendered page without completely wiping out the existing content. There are a few limitations surrounding text nodes<sup>[*](#text-limitations)</sup>, but all matching elements will be reused.
 
 This option cannot be used with `append`.
 
-To expand on the limitations with text nodes, since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like `outer text {{#if foo}}inner text{{/if}}`. The `'outer text '` text node is always present, and if `foo` becomes truthy, an additional text node will be inserted next to the `'outer text '` node containing `'inner text'`. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. `outer text {{#if foo}}<span>hello</span>{{/if}} the other side`. In that case, if `foo` is initially falsey, the `'outer text '` and `' the other side'` nodes could be merged into a single node. However, if `foo` became truthy, that node would have to be split into two to place on either side of the `<span>`.
+<a name="text-limitations">*</a>
+To expand on the limitations with text nodes: since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like `outer text {{#if foo}}inner text{{/if}}`. The `'outer text '` text node is always present, and if `foo` becomes truthy, an additional text node will be inserted next to the `'outer text '` node containing `'inner text'`. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. `outer text {{#if foo}}<span>hello</span>{{/if}} the other side`. In that case, if `foo` is initially falsey, the `'outer text '` and `' the other side'` nodes could be merged into a single node. However, if `foo` became truthy, that node would have to be split into two to place on either side of the `<span>`.
 
 Additionally, unescaped HTML mustaches (triples) don't play nicely with enhance because there's no easy way to match up the string content to the target DOM nodes. This may be remedied at some point in the future.
 
@@ -472,16 +473,6 @@ var ractive = new Ractive({
 ractive.get('items').push( 'green' );
 // 'green' list item will fade in
 ```
-
----
-
-## onchange
-
-_`(Function)`_
-
-A lifecycle event that is called when data owned by the instance changes.
-
-Accepts an map whose keys are the [keypaths](../Concepts/Templates/Keypaths.md) that changed and whose values are the new values for that keypath.
 
 ---
 
@@ -701,6 +692,11 @@ stripComments: false
 // result:
 <!-- html comment -->hello world
 ```
+
+---
+
+## target
+synonym for `el`
 
 ---
 
