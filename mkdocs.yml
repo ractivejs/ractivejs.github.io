@@ -10,7 +10,9 @@ copyright: © RactiveJS contributors. Ractive.js is a free and open source proje
 
 theme: cinder
 extra_css:
-    - css/index.css
+  - css/index.css
+extra_javascript:
+  - js/index.js
 
 pages:
   - Get Started:
