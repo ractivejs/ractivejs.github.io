@@ -59,7 +59,7 @@ Increments the selected keypath.
 
 ## ractive.animate()
 
-Similar to [`ractive.set()`](../API/Instance Methods.md#ractive.set()), this will update the data and re-render any affected mustaches and notify [observers](../Concepts/Events/Publish-Subscribe.md).
+Similar to [`ractive.set()`](#ractiveset), this will update the data and re-render any affected mustaches and notify [observers](../Concepts/Events/Publish-Subscribe.md).
 
 All animations are handled by a global timer that is shared between Ractive instances (and which only runs if there are one or more animations still in progress), so you can trigger as many separate animations as you like without worrying about timer congestion. Where possible, `requestAnimationFrame` is used rather than `setTimeout`.
 
@@ -101,7 +101,7 @@ If an animation is started on a [keypath](../Concepts/Templates/Keypaths.md) whi
 
 ## ractive.attachChild()
 
-Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [extend](#extend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
+Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [`ractive.extend()`](#ractiveextend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
 
 **Syntax**
 ```js
@@ -128,7 +128,7 @@ When a child is attached targeting an anchor, only anchors that belong directly 
 
 - `(Promise)`: A `Promise` that resolves with the child instance when any transitions are complete.
 
-Children can be detached using [detachChild](#detachChild).
+Children can be detached using [`ractive.detachChild()`](#ractivedetachchild).
 
 **Examples**
 
@@ -211,7 +211,7 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 
 ## ractive.findAll()
 
-This method is similar to [`ractive.find()`](#find), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a *live* list, which will stay in sync with the DOM as it continues to update.
+This method is similar to [`ractive.find()`]ractivefind), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a *live* list, which will stay in sync with the DOM as it continues to update.
 
 **Syntax**
 
@@ -336,7 +336,7 @@ Returns the first parent of this component instance with the given `name`.
 
 ## ractive.fire()
 
-Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static Methods.md#Ractive.extend()), to allow applications to hook into your subclass.
+Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [`Ractive.extend()`](#ractiveextend), to allow applications to hook into your subclass.
 
 **Syntax**
 
@@ -409,7 +409,7 @@ This is an instance specific version of [`Ractive.getNodeInfo()`](../API/Static 
 
 ## ractive.insert()
 
-Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also [`ractive.detach()`](#detach).
+Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also [`ractive.detach()`](#ractivedetach).
 
 **Syntax**
 
@@ -471,7 +471,7 @@ This can be used to great effect with method events and the [`@keypath`](../Conc
 Name: <input value="{{~/current.name}}" />
 ```
 
-Links can be removed using [`ractive.unlink()`](#unlink).
+Links can be removed using [`ractive.unlink()`](#ractiveunlink).
 
 ---
 
@@ -479,7 +479,7 @@ Links can be removed using [`ractive.unlink()`](#unlink).
 
 Sets the indicated [keypath](../Concepts/Templates/Keypaths.md) to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.
 
-This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro` [transitions](../Extend/Transitions.md) which might not otherwise happen with a basic [`ractive.set()`](#set) operation.
+This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro` [transitions](../Extend/Transitions.md) which might not otherwise happen with a basic [`ractive.set()`](#ractiveset) operation.
 
 To determine whether the first item of `['foo', 'bar', 'baz']` is the same as the last item of `['bar', 'baz', 'foo']`, by default we do a strict equality (`===`) check.
 
@@ -553,7 +553,7 @@ Observes the data at a particular [keypath](../Concepts/Templates/Keypaths.md). 
 - `[options] (Object)`:
     - `[init] (boolean)`: Defaults to `true`. Whether or not to initialise the observer, i.e. call the function with the current value of `keypath` as the first argument and `undefined` as the second.
     - `[defer] (boolean)`: Defaults to `false`, in which case [observers](../Concepts/Events/Publish-Subscribe.md) will fire before any DOM changes take place. If `true`, the [observer](../Concepts/Events/Publish-Subscribe.md) will fire once the DOM has been updated.
-    - `[links] (boolean)`: Defaults to `false`.  Whether or not the observer should "follow through" any links created with [ractive.link()](#link).
+    - `[links] (boolean)`: Defaults to `false`.  Whether or not the observer should "follow through" any links created with [`ractive.link()`](#ractivelink).
     - `[strict] (boolean)`: Defaults to `false`. `strict` uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with `{ data: { foo: { bar: 'baz' } } }`, `ractive.observe('foo', ..., { strict: true })` will not fire on `ractive.set('foo.bar', 'bat')` but will on `ractive.set('foo', { bar: 'bip' })`.
     - `[context] (any)`: Defaults to `ractive`. The context the [observer](../Concepts/Events/Publish-Subscribe.md) is called in (i.e. the value of `this`)
 
@@ -714,7 +714,7 @@ ractive.on({
 
 ## ractive.once()
 
-Subscribe to an event for a single firing. This is a convenience function on top of [`ractive.on()`](../API/Instance Methods.md#ractive.on()).
+Subscribe to an event for a single firing. This is a convenience function on top of [`ractive.on()`](#ractiveon).
 
 **Syntax**
 
@@ -915,7 +915,7 @@ If the given [keypath](../Concepts/Templates/Keypaths.md) does not resolve to an
 
 Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any [observers](../Concepts/Events/Publish-Subscribe.md) of affected [keypaths](../Concepts/Templates/Keypaths.md) will be notified.
 
-When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with [transitions](../Extend/Transitions.md). See [`ractive.merge()`](../API/Instance Methods.md#ractive.merge()) for setting a new array value while retaining existing nodes corresponding to individual array item values.
+When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with [transitions](../Extend/Transitions.md). See [`ractive.merge()`](#ractivemerge) for setting a new array value while retaining existing nodes corresponding to individual array item values.
 
 **Syntax**
 
@@ -1191,7 +1191,7 @@ Triggers a transition on a node managed by this Ractive instance.
 
 ## ractive.unlink()
 
-Removes a link set up by [`ractive.link()`](../API/Instance Methods.md#ractive.link()).
+Removes a link set up by [`ractive.link()`](#ractivelink).
 
 **Syntax**
 
@@ -1215,7 +1215,7 @@ Removes a link set up by [`ractive.link()`](../API/Instance Methods.md#ractive.l
 ## ractive.unrender()
 ---
 
-Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to [`ractive.render()`](../API/Instance Methods.md#ractive.render()). The rest of the ractive instance is left intact, unlike [`ractive.teardown()`](../API/Instance Methods.md#ractive.teardown()).
+Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to [`ractive.render()`](#ractiverender). The rest of the ractive instance is left intact, unlike [`ractive.teardown()`](#ractiveteardown).
 
 **Syntax**
 
