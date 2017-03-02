@@ -557,7 +557,7 @@ Observes the data at a particular [keypath](../Concepts/Templates/Keypaths.md). 
     - `[init] (boolean)`: Defaults to `true`. Whether or not to initialise the observer, i.e. call the function with the current value of `keypath` as the first argument and `undefined` as the second.
     - `[defer] (boolean)`: Defaults to `false`, in which case [observers](../Concepts/Events/Publish-Subscribe.md) will fire before any DOM changes take place. If `true`, the [observer](../Concepts/Events/Publish-Subscribe.md) will fire once the DOM has been updated.
     - `[links] (boolean)`: Defaults to `false`.  Whether or not the observer should "follow through" any links created with [ractive.link()](#link).
-    - `[strict] (boolean)`: Defaults to `false`. {{{TODO need explanation of this option}}}
+    - `[strict] (boolean)`: Defaults to `false`. `strict` uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with `{ data: { foo: { bar: 'baz' } } }`, `ractive.observe('foo', ..., { strict: true })` will not fire on `ractive.set('foo.bar', 'bat')` but will on `ractive.set('foo', { bar: 'bip' })`.
     - `[context] (any)`: Defaults to `ractive`. The context the [observer](../Concepts/Events/Publish-Subscribe.md) is called in (i.e. the value of `this`)
 
 **Returns**
