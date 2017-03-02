@@ -336,7 +336,7 @@ Returns the first parent of this component instance with the given `name`.
 
 ## ractive.fire()
 
-Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static Methods.md#ractiveextend, to allow applications to hook into your subclass.
+Fires an event, which will be received by handlers that were bound using `ractive.on`. In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static Methods.md#ractiveextend), to allow applications to hook into your subclass.
 
 **Syntax**
 
