@@ -112,26 +112,23 @@ ractive.attachChild( child, options );
 **Arguments**
 
 - `child (Ractive instance)`: The child instance to attach.
-- `options (Object)`: Options to use when attaching the child:
-    -`[target] (string)` - an anchor name at which to render the instance. See [`Components`](../Extend/Components.md). If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.
-    -`[append] (boolean)` - default `true` - add the instance to the end of the list for the targeted anchor.
-    -`[prepend] (boolean)` - add the instance to the beginning of the list for the targeted anchor.
-    -`[insertAt] (number)` - index at which to add the instance in the list for the targeted anchor.
+- `[options] (Object)`:
+    - `[target] (string)`: An anchor name at which to render the instance. See [`Components`](../Extend/Components.md). If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.
+    - `[append] (boolean)`: Default `true` - add the instance to the end of the list for the targeted anchor.
+    - `[prepend] (boolean)`: Add the instance to the beginning of the list for the targeted anchor.
+    - `[insertAt] (number)`: Index at which to add the instance in the list for the targeted anchor.
+
 When a child is attached to a parent, the child's `parent` property is updated in an observable way, so any references to `@this.parent` in the child will be notified of the change.
 
 A child may be targeted to a [`Components`](../Extend/Components.md) when it is attached. If a child has no specified target, then it is responsible for managing its own render cycle. If a child does have a specified target, then the parent will manage rendering and unrendering the child as appropriate in the same way that a regular component has a managed render cycle.
 
 When a child is attached targeting an anchor, only anchors that belong directly to the parent are considered as hosts. However, any element or component queries on the parent instance, including live queries, will consider the child when trying to match both elements and components. There is also an option on the query methods that allows querying remote, unmanaged instances, so that non-anchored children can also be queried for elements and components.
 
-**Arguments**
-
-- `child (Ractive instance)`: The child instance to attach.
-
 **Returns**
 
 - `(Promise)`: A `Promise` that resolves with the child instance when any transitions are complete.
 
-Children can be detached using [detatchChild](#detachChild).
+Children can be detached using [detachChild](#detachChild).
 
 **Examples**
 
@@ -214,7 +211,7 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 
 ## ractive.findAll()
 
-This method is similar to [`ractive.find()`](../API/Instance Methods.md#ractive.find()), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a *live* list, which will stay in sync with the DOM as it continues to update.
+This method is similar to [`ractive.find()`](#find), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a *live* list, which will stay in sync with the DOM as it continues to update.
 
 **Syntax**
 
@@ -412,7 +409,7 @@ This is an instance specific version of [`Ractive.getNodeInfo()`](../API/Static 
 
 ## ractive.insert()
 
-Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also [`ractive.detach()`](../API/Instance Methods.md#ractive.detach()).
+Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also [`ractive.detach()`](#detach).
 
 **Syntax**
 
@@ -482,7 +479,7 @@ Links can be removed using [`ractive.unlink()`](#unlink).
 
 Sets the indicated [keypath](../Concepts/Templates/Keypaths.md) to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.
 
-This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro` [transitions](../Extend/Transitions.md) which might not otherwise happen with a basic [`ractive.set()`](../API/Instance Methods.md#ractive.set()) operation.
+This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro` [transitions](../Extend/Transitions.md) which might not otherwise happen with a basic [`ractive.set()`](#set) operation.
 
 To determine whether the first item of `['foo', 'bar', 'baz']` is the same as the last item of `['bar', 'baz', 'foo']`, by default we do a strict equality (`===`) check.
 
