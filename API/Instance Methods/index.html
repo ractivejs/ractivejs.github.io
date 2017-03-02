@@ -591,7 +591,13 @@
             <li class="second-level"><a href="#ractiveanimate">ractive.animate()</a></li>
             
         
+            <li class="second-level"><a href="#ractiveattachchild">ractive.attachChild()</a></li>
+            
+        
             <li class="second-level"><a href="#ractivedetach">ractive.detach()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivedetachchild">ractive.detachChild()</a></li>
             
         
             <li class="second-level"><a href="#ractivefind">ractive.find()</a></li>
@@ -788,7 +794,7 @@ setTimeout(function() {
 
 <hr />
 <h2 id="ractiveanimate">ractive.animate()</h2>
-<p>Similar to <a href="./#ractive.set()"><code>ractive.set()</code></a>, this will update the data and re-render any affected mustaches and notify <a href="../../Concepts/Events/Publish-Subscribe/">observers</a>.</p>
+<p>Similar to <a href="#ractiveset"><code>ractive.set()</code></a>, this will update the data and re-render any affected mustaches and notify <a href="../../Concepts/Events/Publish-Subscribe/">observers</a>.</p>
 <p>All animations are handled by a global timer that is shared between Ractive instances (and which only runs if there are one or more animations still in progress), so you can trigger as many separate animations as you like without worrying about timer congestion. Where possible, <code>requestAnimationFrame</code> is used rather than <code>setTimeout</code>.</p>
 <p>Numeric values and strings that can be parsed as numeric values can be interpolated. Objects and arrays containing numeric values (or other objects and arrays which themselves contain numeric values, and so on recursively) are also interpolated.</p>
 <p>Note that there is currently no mechanism for detecting cyclical structures! Animating to a value that indirectly references itself will cause an infinite loop.</p>
@@ -833,8 +839,39 @@ setTimeout(function() {
 </code></pre>
 
 <hr />
+<h2 id="ractiveattachchild">ractive.attachChild()</h2>
+<p>Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by <a href="../Static Methods/#ractiveextend"><code>ractive.extend()</code></a>, but that is not a requirement, as children may be a plain Ractive instance created with <code>new Ractive()</code>.</p>
+<p><strong>Syntax</strong></p>
+<pre><code class="js">ractive.attachChild( child );
+ractive.attachChild( child, options );
+</code></pre>
+
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>child (Ractive instance)</code>: The child instance to attach.</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>[target] (string)</code>: An anchor name at which to render the instance. See <a href="../../Extend/Components/"><code>Components</code></a>. If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.</li>
+<li><code>[append] (boolean)</code>: Default <code>true</code> - add the instance to the end of the list for the targeted anchor.</li>
+<li><code>[prepend] (boolean)</code>: Add the instance to the beginning of the list for the targeted anchor.</li>
+<li><code>[insertAt] (number)</code>: Index at which to add the instance in the list for the targeted anchor.</li>
+</ul>
+</li>
+</ul>
+<p>When a child is attached to a parent, the child's <code>parent</code> property is updated in an observable way, so any references to <code>@this.parent</code> in the child will be notified of the change.</p>
+<p>A child may be targeted to a <a href="../../Extend/Components/"><code>Components</code></a> when it is attached. If a child has no specified target, then it is responsible for managing its own render cycle. If a child does have a specified target, then the parent will manage rendering and unrendering the child as appropriate in the same way that a regular component has a managed render cycle.</p>
+<p>When a child is attached targeting an anchor, only anchors that belong directly to the parent are considered as hosts. However, any element or component queries on the parent instance, including live queries, will consider the child when trying to match both elements and components. There is also an option on the query methods that allows querying remote, unmanaged instances, so that non-anchored children can also be queried for elements and components.</p>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A <code>Promise</code> that resolves with the child instance when any transitions are complete.</li>
+</ul>
+<p>Children can be detached using <a href="#ractivedetachchild"><code>ractive.detachChild()</code></a>.</p>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
 <h2 id="ractivedetach">ractive.detach()</h2>
-<p>Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with <a href="./#ractive.insert()"><code>ractive.insert()</code></a> (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).</p>
+<p>Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with <a href="#ractiveinsert"><code>ractive.insert()</code></a> (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.detach()</code></li>
@@ -863,6 +900,22 @@ setTimeout(function() {
     div.appendChild(r.detach());
     console.log(div.innerHTML);
 }, 1000);
+</code></pre>
+
+<hr />
+<h2 id="ractivedetachchild">ractive.detachChild()</h2>
+<p>Detaches a child from an instance when it was previously attached with <a href="#ractiveattachchild"><code>ractive.attachChild()</code></a>.</p>
+<p>When a child instance that was attached targeting an anchor is detached, its instance is spliced out of the <code>@this.children.byName.anchorName</code> array so that subsequent children move forward to fill the void.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.detachChild( child )</code></li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A <code>Promise</code> that resolves with the child instance when any transitions are complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
 <hr />
@@ -897,7 +950,7 @@ setTimeout(function() {
 
 <hr />
 <h2 id="ractivefindall">ractive.findAll()</h2>
-<p>This method is similar to <a href="./#ractive.find()"><code>ractive.find()</code></a>, with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a <em>live</em> list, which will stay in sync with the DOM as it continues to update.</p>
+<p>This method is similar to [<code>ractive.find()</code>]ractivefind), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a <em>live</em> list, which will stay in sync with the DOM as it continues to update.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.findAll(selector[, options])</code></li>
@@ -1049,7 +1102,7 @@ setTimeout(function() {
 
 <hr />
 <h2 id="ractivefire">ractive.fire()</h2>
-<p>Fires an event, which will be received by handlers that were bound using <code>ractive.on</code>. In practical terms, you would mostly likely use this with <a href="../Static Methods/#Ractive.extend()"><code>Ractive.extend()</code></a>, to allow applications to hook into your subclass.</p>
+<p>Fires an event, which will be received by handlers that were bound using <a href="#ractiveon"><code>ractive.on</code></a>. In practical terms, you would mostly likely use this with <a href="../Static Methods/#ractiveextend"><code>Ractive.extend()</code></a>, to allow applications to hook into your subclass.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.fire(eventName[, arg1[, ...argN])</code></li>
@@ -1106,7 +1159,7 @@ console.log(r.get('foo.bar.0'));
 
 <hr />
 <h2 id="ractivegetnodeinfo">ractive.getNodeInfo()</h2>
-<p>This is an instance specific version of <a href="../Static Methods/#Ractive.getNodeInfo()"><code>Ractive.getNodeInfo()</code></a> that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.</p>
+<p>This is an instance specific version of <a href="../Static Methods/#ractivegetnodeinfo"><code>Ractive.getNodeInfo()</code></a> that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.getNodeInfo(node)</code></li>
@@ -1125,7 +1178,7 @@ console.log(r.get('foo.bar.0'));
 
 <hr />
 <h2 id="ractiveinsert">ractive.insert()</h2>
-<p>Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also <a href="./#ractive.detach()"><code>ractive.detach()</code></a>.</p>
+<p>Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also <a href="#ractivedetach"><code>ractive.detach()</code></a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.insert(target[, anchor])</code></li>
@@ -1177,11 +1230,11 @@ ractive.set( 'current.name', 'Rich' ); // some.nested.0.list.25.item.name is als
 Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </code></pre>
 
-<p>Links can be removed using <a href="./#ractive.unlink()"><code>ractive.unlink()</code></a>.</p>
+<p>Links can be removed using <a href="#ractiveunlink"><code>ractive.unlink()</code></a>.</p>
 <hr />
 <h2 id="ractivemerge">ractive.merge()</h2>
 <p>Sets the indicated <a href="../../Concepts/Templates/Keypaths/">keypath</a> to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.</p>
-<p>This is an efficient way to (for example) handle data from a server. It also helps to control <code>intro</code> and <code>outro</code> <a href="../../Extend/Transitions/">transitions</a> which might not otherwise happen with a basic <a href="./#ractive.set()"><code>ractive.set()</code></a> operation.</p>
+<p>This is an efficient way to (for example) handle data from a server. It also helps to control <code>intro</code> and <code>outro</code> <a href="../../Extend/Transitions/">transitions</a> which might not otherwise happen with a basic <a href="#ractiveset"><code>ractive.set()</code></a> operation.</p>
 <p>To determine whether the first item of <code>['foo', 'bar', 'baz']</code> is the same as the last item of <code>['bar', 'baz', 'foo']</code>, by default we do a strict equality (<code>===</code>) check.</p>
 <p>In some situations that won't work, because the arrays contain objects, which may <em>look</em> the same but not be identical. To deal with these, we use the <code>compare</code> option detailed below.</p>
 <p>Merge can also be used to created a context block that uses transitions when the context changes.</p>
@@ -1238,14 +1291,17 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>keypath (String)</code>: The <a href="../../Concepts/Templates/Keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a <code>*</code> character, which is treated as a wildcard.</li>
-<li><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../../Concepts/Events/Publish-Subscribe/">Observers</a> for more nuance regarding these arguments), whenever the observed <a href="../../Concepts/Templates/Keypaths/">keypath</a> changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the <a href="../../Concepts/Templates/Keypaths/">keypath</a> will have their matches passed to the callback at the end of the arguments list as well.</li>
-<li><code>map (Object)</code>: A map of keypath-observer pairs.</li>
-<li><code>[options] (Object)</code>:<ul>
-<li><code>[init] (boolean)</code>: Defaults to <code>true</code>. Whether or not to initialise the observer, i.e. call the function with the current value of <code>keypath</code> as the first argument and <code>undefined</code> as the second.</li>
-<li><code>[defer] (boolean)</code>: Defaults to <code>false</code>, in which case <a href="../../Concepts/Events/Publish-Subscribe/">observers</a> will fire before any DOM changes take place. If <code>true</code>, the <a href="../../Concepts/Events/Publish-Subscribe/">observer</a> will fire once the DOM has been updated.</li>
-<li><code>[context] (any)</code>: Defaults to <code>ractive</code>. The context the <a href="../../Concepts/Events/Publish-Subscribe/">observer</a> is called in (i.e. the value of <code>this</code>)</li>
-</ul>
+<li>
+<p><code>keypath (String)</code>: The <a href="../../Concepts/Templates/Keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a <code>` character, which is treated as a wildcard. A doubled</code>*<code>wildcard means</code>recursive`.  </p>
+<p>The difference between <code>` and</code><em><code>is that</code></em><code>provides your callback function</code>value<code>and</code>keypath<code>arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
+-</code>callback (Function)<code>: The function that will be called, with</code>newValue<code>,</code>oldValue<code>and</code>keypath<code>as arguments (see [Observers](../Concepts/Events/Publish-Subscribe.md) for more nuance regarding these arguments), whenever the observed [keypath](../Concepts/Templates/Keypaths.md) changes value. By default the function will be called with</code>ractive<code>as</code>this<code>. Any wildcards in the [keypath](../Concepts/Templates/Keypaths.md) will have their matches passed to the callback at the end of the arguments list as well.
+-</code>map (Object)<code>: A map of keypath-observer pairs.
+-</code>[options] (Object)<code>:
+-</code>[init] (boolean)<code>: Defaults to</code>true<code>. Whether or not to initialise the observer, i.e. call the function with the current value of</code>keypath<code>as the first argument and</code>undefined<code>as the second.
+-</code>[defer] (boolean)<code>: Defaults to</code>false<code>, in which case [observers](../Concepts/Events/Publish-Subscribe.md) will fire before any DOM changes take place. If</code>true<code>, the [observer](../Concepts/Events/Publish-Subscribe.md) will fire once the DOM has been updated.
+-</code>[links] (boolean)<code>: Defaults to</code>false<code>.  Whether or not the observer should "follow through" any links created with [</code>ractive.link()<code>](#ractivelink).
+-</code>[strict] (boolean)<code>: Defaults to</code>false<code>.</code>strict<code>uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with</code>{ data: { foo: { bar: 'baz' } } }<code>,</code>ractive.observe('foo', ..., { strict: true })<code>will not fire on</code>ractive.set('foo.bar', 'bat')<code>but will on</code>ractive.set('foo', { bar: 'bip' })<code>.
+-</code>[context] (any)<code>: Defaults to</code>ractive<code>. The context the [observer](../Concepts/Events/Publish-Subscribe.md) is called in (i.e. the value of</code>this`)</p>
 </li>
 </ul>
 <p><strong>Returns</strong></p>
@@ -1279,7 +1335,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>keypath (string)</code>: The <a href="../../Concepts/Templates/Keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a <code>*</code> character, which is treated as a wildcard.</li>
+<li><code>keypath (string)</code>: The <a href="../../Concepts/Templates/Keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a `` character, which is treated as a wildcard.</li>
 <li><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../../Concepts/Events/Publish-Subscribe/">Observers</a> for more nuance regarding these arguments), whenever the observed <a href="../../Concepts/Templates/Keypaths/">keypath</a> changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the <a href="../../Concepts/Templates/Keypaths/">keypath</a> will have their matches passed to the callback at the end of the arguments list as well.</li>
 <li><code>[options] (Object)</code>:<ul>
 <li><code>[defer] (boolean)</code>: Defaults to <code>false</code>, in which case <a href="../../Concepts/Events/Publish-Subscribe/">observers</a> will fire before any DOM changes take place. If <code>true</code>, the <a href="../../Concepts/Events/Publish-Subscribe/">observer</a> will fire once the DOM has been updated.</li>
@@ -1376,7 +1432,7 @@ ractive.on({
 
 <hr />
 <h2 id="ractiveonce">ractive.once()</h2>
-<p>Subscribe to an event for a single firing. This is a convenience function on top of <a href="./#ractive.on()"><code>ractive.on()</code></a>.</p>
+<p>Subscribe to an event for a single firing. This is a convenience function on top of <a href="#ractiveon"><code>ractive.on()</code></a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.once(eventName, handler)</code></li>
@@ -1536,9 +1592,7 @@ ractive.resetPartial('foo', 'bar');
 <hr />
 <h2 id="ractiveset">ractive.set()</h2>
 <p>Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any <a href="../../Concepts/Events/Publish-Subscribe/">observers</a> of affected <a href="../../Concepts/Templates/Keypaths/">keypaths</a> will be notified.</p>
-<p>A <code>change</code> <a href="../../Extend/Events/">event</a> will be fired with <code>keypath</code> and <code>value</code> as arguments
-(or <code>map</code>, if you set multiple options at once).</p>
-<p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../../Extend/Transitions/">transitions</a>. See <a href="./#ractive.merge()"><code>ractive.merge()</code></a> for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
+<p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../../Extend/Transitions/">transitions</a>. See <a href="#ractivemerge"><code>ractive.merge()</code></a> for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.set(keypath, value)</code></li>
@@ -1616,8 +1670,8 @@ ractive.resetPartial('foo', 'bar');
 <ul>
 <li><code>keypath (string)</code>: The <a href="../../Concepts/Templates/Keypaths/">keypath</a> of the array to change, e.g. <code>list</code> or <code>order.items</code>.</li>
 <li><code>index (number)</code>: The index at which to start the operation.</li>
-<li><code>[removeCount] (number)</code>: The number of elements to remove starting with the element at <em><code>index</code></em>. This may be 0 if you don't want to remove any elements.</li>
-<li><code>[add] (any)</code>: Any elements to insert into the array starting at <em><code>index</code></em>. There can be 0 or more elements passed to add to the array.</li>
+<li><code>[removeCount] (number)</code>: The number of elements to remove starting with the element at *<code>index</code>. This may be 0 if you don't want to remove any elements.</li>
+<li><code>[add] (any)</code>: Any elements to insert into the array starting at *<code>index</code>. There can be 0 or more elements passed to add to the array.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -1650,7 +1704,7 @@ ractive.resetPartial('foo', 'bar');
 <hr />
 <h2 id="ractiveteardown">ractive.teardown()</h2>
 <p>Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.</p>
-<p>Calling <code>ractive.teardown()</code> causes a <code>teardown</code> <a href="../../Extend/Events/">event</a> to be fired - this is most useful with <a href="../Static Methods/#Ractive.extend()"><code>Ractive.extend()</code></a> as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.</p>
+<p>Calling <code>ractive.teardown()</code> causes a <code>teardown</code> <a href="../../Extend/Events/">event</a> to be fired - this is most useful with <a href="../Static Methods/#ractiveextend"><code>Ractive.extend()</code></a> as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.teardown()</code></li>
@@ -1757,7 +1811,7 @@ subclassInstance.toCSS();
 
 <hr />
 <h2 id="ractiveunlink">ractive.unlink()</h2>
-<p>Removes a link set up by <a href="./#ractive.link()"><code>ractive.link()</code></a>.</p>
+<p>Removes a link set up by <a href="#ractivelink"><code>ractive.link()</code></a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.unlink(destination)</code></li>
@@ -1777,7 +1831,7 @@ subclassInstance.toCSS();
 <hr />
 <h2 id="ractiveunrender">ractive.unrender()</h2>
 <hr />
-<p>Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to <a href="./#ractive.render()"><code>ractive.render()</code></a>. The rest of the ractive instance is left intact, unlike <a href="./#ractive.teardown()"><code>ractive.teardown()</code></a>.</p>
+<p>Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to <a href="#ractiverender"><code>ractive.render()</code></a>. The rest of the ractive instance is left intact, unlike <a href="#ractiveteardown"><code>ractive.teardown()</code></a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.unrender()</code></li>
@@ -1817,7 +1871,7 @@ subclassInstance.toCSS();
 
 <hr />
 <h2 id="ractiveupdate">ractive.update()</h2>
-<p>Forces everything that depends on the specified <a href="../../Concepts/Templates/Keypaths/">keypaths</a> (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. <code>ractive.set()</code>, <code>ractive.animate()</code>, or array modification):</p>
+<p>Forces everything that depends on the specified <a href="../../Concepts/Templates/Keypaths/">keypaths</a> (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. <a href="#ractiveset"><code>ractive.set()</code></a>, <a href="#ractiveanimate"><code>ractive.animate()</code></a>, or array modification):</p>
 <p>If no <code>keypath</code> is specified, all mustaches and <a href="../../Concepts/Events/Publish-Subscribe/">observers</a> will be checked.</p>
 <p><strong>Syntax</strong></p>
 <ul>

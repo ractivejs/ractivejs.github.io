@@ -645,9 +645,6 @@
             <li class="second-level"><a href="#nointro">noIntro</a></li>
             
         
-            <li class="second-level"><a href="#onchange">onchange</a></li>
-            
-        
             <li class="second-level"><a href="#oncomplete">oncomplete</a></li>
             
         
@@ -696,6 +693,9 @@
             <li class="second-level"><a href="#stripcomments">stripComments</a></li>
             
         
+            <li class="second-level"><a href="#target">target</a></li>
+            
+        
             <li class="second-level"><a href="#template">template</a></li>
             
         
@@ -718,7 +718,7 @@
 
 <h1 id="initialization-options">Initialization Options</h1>
 <p>The following is an exhaustive list of initialisation options that you can pass to <code>new Ractive(options)</code> and <code>Ractive.extend(options)</code>, with full descriptions grouped below by category.</p>
-<p>Note that any additional options set that's not part of the<a href="./">initialization options</a>will be added as properties of the instance.</p>
+<p>Note that any additional options set that are not part of the <a href="./">initialization options</a> will be added as properties or methods of the instance.</p>
 <pre><code class="js">var ractive = new Ractive({
   myMethod: function () {
     alert( 'my method was called' );
@@ -787,7 +787,7 @@ template: '&lt;p&gt;new content&lt;/p&gt;'
 &lt;/div&gt;
 </code></pre>
 
-<p>An element id, CSS selector referencing an element, HTML element reference or an array-like object containing an HTML element reference as first item that is a child of <code>el</code> will render the instance before that element.</p>
+<p>An element id, CSS selector referencing an element, HTML element reference, or an array-like object containing an HTML element reference as its first item that is a child of <code>el</code> will render the instance before that element.</p>
 <pre><code class="html">&lt;div id='container'&gt;
   &lt;p&gt;red&lt;/p&gt;
   &lt;p&gt;orange&lt;/p&gt;
@@ -969,7 +969,7 @@ hello earth
 <h2 id="el">el</h2>
 <p><em><code>(string|HTMLElement|array-like)</code></em></p>
 <p>Directives for the element to render to. Use <code>append</code> option (see below) to control whether existing content is replaced.</p>
-<p>Can either be an element id, CSS selector referencing an element, a reference to an HTML element, or an array-like object containing an HTML element reference as first item.</p>
+<p>Can either be an element id, CSS selector referencing an element, a reference to an HTML element, or an array-like object containing an HTML element reference as its first item.</p>
 <pre><code class="js">el: 'container'
 el: '#container'
 el: document.getElementById('container')
@@ -979,9 +979,10 @@ el: $('#container')
 <hr />
 <h2 id="enhance">enhance</h2>
 <p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Whether or not to try to reuse the existing DOM in the target element when rendering a.k.a. progressive enhancement. This allows you to serve the fully rendered page and then render the Ractive template at load over the pre-rendered page without completely wiping out the existing content. There are a few limitations surrounding text nodes, but all matching elements will be reused.</p>
+<p>Defaults to <code>false</code>. Whether or not to try to reuse the existing DOM in the target element when rendering a.k.a. progressive enhancement. This allows you to serve the fully rendered page and then render the Ractive template at load over the pre-rendered page without completely wiping out the existing content. There are a few limitations surrounding text nodes<sup><a href="#text-limitations">*</a></sup>, but all matching elements will be reused.</p>
 <p>This option cannot be used with <code>append</code>.</p>
-<p>To expand on the limitations with text nodes, since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like <code>outer text {{#if foo}}inner text{{/if}}</code>. The <code>'outer text '</code> text node is always present, and if <code>foo</code> becomes truthy, an additional text node will be inserted next to the <code>'outer text '</code> node containing <code>'inner text'</code>. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. <code>outer text {{#if foo}}&lt;span&gt;hello&lt;/span&gt;{{/if}} the other side</code>. In that case, if <code>foo</code> is initially falsey, the <code>'outer text '</code> and <code>' the other side'</code> nodes could be merged into a single node. However, if <code>foo</code> became truthy, that node would have to be split into two to place on either side of the <code>&lt;span&gt;</code>.</p>
+<p><a name="text-limitations">*</a>
+To expand on the limitations with text nodes: since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like <code>outer text {{#if foo}}inner text{{/if}}</code>. The <code>'outer text '</code> text node is always present, and if <code>foo</code> becomes truthy, an additional text node will be inserted next to the <code>'outer text '</code> node containing <code>'inner text'</code>. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. <code>outer text {{#if foo}}&lt;span&gt;hello&lt;/span&gt;{{/if}} the other side</code>. In that case, if <code>foo</code> is initially falsey, the <code>'outer text '</code> and <code>' the other side'</code> nodes could be merged into a single node. However, if <code>foo</code> became truthy, that node would have to be split into two to place on either side of the <code>&lt;span&gt;</code>.</p>
 <p>Additionally, unescaped HTML mustaches (triples) don't play nicely with enhance because there's no easy way to match up the string content to the target DOM nodes. This may be remedied at some point in the future.</p>
 <p>TODO: Simplify/restructure</p>
 <hr />
@@ -1062,11 +1063,6 @@ ractive.get('items').push( 'green' );
 // 'green' list item will fade in
 </code></pre>
 
-<hr />
-<h2 id="onchange">onchange</h2>
-<p><em><code>(Function)</code></em></p>
-<p>A lifecycle event that is called when data owned by the instance changes.</p>
-<p>Accepts an map whose keys are the <a href="../../Concepts/Templates/Keypaths/">keypaths</a> that changed and whose values are the new values for that keypath.</p>
 <hr />
 <h2 id="oncomplete">oncomplete</h2>
 <p><em><code>(Function)</code></em></p>
@@ -1209,6 +1205,9 @@ stripComments: false
 &lt;!-- html comment --&gt;hello world
 </code></pre>
 
+<hr />
+<h2 id="target">target</h2>
+<p>synonym for <code>el</code></p>
 <hr />
 <h2 id="template">template</h2>
 <p><em><code>(string|array|object|function)</code></em></p>
