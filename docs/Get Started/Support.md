@@ -52,4 +52,4 @@ new Ractive({
   el: 'container',
   template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent
 });
-````
+```
