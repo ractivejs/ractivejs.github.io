@@ -640,12 +640,11 @@
 <p>This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information</p>
 </blockquote>
 <p>If your template includes SVG and these browsers throw an error along those lines, <a href="http://xkcd.com/601/">the only winning move is not to play</a>. You will need to provide an alternate fallback when SVG isn't supported. Ractive provides <a href="../../API/Static Properties/#ractivesvg"><code>Ractive.svg</code></a> to indicate if the browser handles SVGs properly.</p>
-<p>```js
-new Ractive({
+<pre><code class="js">new Ractive({
   el: 'container',
   template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent
 });
-````</p></div>
+</code></pre></div>
         
     </div>
 
