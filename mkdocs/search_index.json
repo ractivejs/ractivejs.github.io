@@ -182,7 +182,7 @@
         }, 
         {
             "location": "/Get Started/Debugging/", 
-            "text": "Debugging\n\n\nUsing \nRactive.getNodeInfo()\n for debugging\n\n\nThis is particularly useful for \ndecorators\n and debugging. Notably, in Chrome, if you inspect an element, that element will be added to the Chrome Developer Tools' node list and can be referenced in the console as \n$0\n. Try inspecting a Ractive-controlled element and using \nRactive.getNodeInfo($0)\n in the console.\n\n\nAdding debugger on evaluated code", 
+            "text": "Debugging\n\n\nUsing \nRactive.getNodeInfo()\n for debugging\n\n\nRactive.getNodeInfo()\n is a function that allows you to grab the Ractive instance that holds a specific node. This is especially helpful together with Chrome Dev Tools' \n$0\n global which references the last selected element in the Element Inspector. You can simply select the element in the Element Inspector and call \nRactive.getNodeInfo($0)\n in the console to inspect the Ractive instance.\n\n\nUsing the \ndebugger\n statement\n\n\nSome loaders transform component files into Ractive components on the fly using \nnew Function\n. As such, you cannot simply look for the file and put breakpoints. In situations like this, you will have to use the \ndebugger\n statement to put breakpoints on dynamically generated code.", 
             "title": "Debugging"
         }, 
         {
@@ -192,17 +192,17 @@
         }, 
         {
             "location": "/Get Started/Debugging/#using-ractivegetnodeinfo-for-debugging", 
-            "text": "This is particularly useful for  decorators  and debugging. Notably, in Chrome, if you inspect an element, that element will be added to the Chrome Developer Tools' node list and can be referenced in the console as  $0 . Try inspecting a Ractive-controlled element and using  Ractive.getNodeInfo($0)  in the console.", 
+            "text": "Ractive.getNodeInfo()  is a function that allows you to grab the Ractive instance that holds a specific node. This is especially helpful together with Chrome Dev Tools'  $0  global which references the last selected element in the Element Inspector. You can simply select the element in the Element Inspector and call  Ractive.getNodeInfo($0)  in the console to inspect the Ractive instance.", 
             "title": "Using Ractive.getNodeInfo() for debugging"
         }, 
         {
-            "location": "/Get Started/Debugging/#adding-debugger-on-evaluated-code", 
-            "text": "", 
-            "title": "Adding debugger on evaluated code"
+            "location": "/Get Started/Debugging/#using-the-debugger-statement", 
+            "text": "Some loaders transform component files into Ractive components on the fly using  new Function . As such, you cannot simply look for the file and put breakpoints. In situations like this, you will have to use the  debugger  statement to put breakpoints on dynamically generated code.", 
+            "title": "Using the debugger statement"
         }, 
         {
             "location": "/Get Started/Support/", 
-            "text": "Support\n\n\nGetting in touch\n\n\nThere are a lot of places to find help if you get stuck with Ractive:\n\n\n\n\nStackOverflow\n\n\nGoogle Groups\n\n\nGitHub\n\n\nTwitter\n\n\n\n\nLegacy browsers\n\n\nThe core Ractive library requires the following APIs to be present:\n\n\n\n\nArray.isArray\n\n\nArray.prototype.every\n\n\nArray.prototype.filter\n\n\nArray.prototype.forEach\n\n\nArray.prototype.indexOf\n\n\nArray.prototype.map\n\n\nArray.prototype.reduce\n\n\nDate.now\n\n\nFunction.prototype.bind\n\n\nNode.prototype.contains\n\n\nObject.create\n\n\nObject.defineProperty\n\n\nObject.freeze\n\n\nObject.keys\n\n\nPromise\n\n\nrequestAnimationFrame\n\n\nString.prototype.trim\n\n\nwindow.addEventListener\n\n\nwindow.getComputedStyle\n\n\n\n\nMost \nmodern\n browsers already support these APIs. Should you want to serve your app on older browsers, Ractive comes with an optional file containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive and pretend as if nothing happened.\n\n\nSVGs\n\n\nRactive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) \ndo\n care.\n\n\nThis browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information\n\n\n\n\nIf your template includes SVG and these browsers throw an error along those lines, \nthe only winning move is not to play\n. You will need to provide an alternate fallback when SVG isn't supported.\n\n\nYou might do something along these lines:\n\n\nnew Ractive({\n  el: 'container',\n  template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent\n});", 
+            "text": "Support\n\n\nGetting in touch\n\n\nThere are a lot of places to find help if you get stuck with Ractive:\n\n\n\n\nStackOverflow\n\n\nGoogle Groups\n\n\nGitHub\n\n\nTwitter\n\n\n\n\nLegacy versions\n\n\nThe current site only documents the latest version of Ractive. Legacy versions are \ncurrently stored in Github\n.\n\n\nLegacy browsers\n\n\nThe core Ractive library requires the following APIs need to be present:\n\n\n\n\nArray.isArray\n\n\nArray.prototype.every\n\n\nArray.prototype.filter\n\n\nArray.prototype.forEach\n\n\nArray.prototype.indexOf\n\n\nArray.prototype.map\n\n\nArray.prototype.reduce\n\n\nDate.now\n\n\nFunction.prototype.bind\n\n\nNode.prototype.contains\n\n\nObject.create\n\n\nObject.defineProperty\n\n\nObject.freeze\n\n\nObject.keys\n\n\nPromise\n\n\nrequestAnimationFrame\n\n\nString.prototype.trim\n\n\nwindow.addEventListener\n\n\nwindow.getComputedStyle\n\n\n\n\nMost \nmodern\n browsers already support these APIs. Should you want to serve your app on older browsers, Ractive comes with an optional file called \npolyfills.js\n containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive.\n\n\nSVGs\n\n\nRactive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) \ndo\n care.\n\n\n\n\nThis browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information\n\n\n\n\nIf your template includes SVG and these browsers throw an error along those lines, \nthe only winning move is not to play\n. You will need to provide an alternate fallback when SVG isn't supported. Ractive provides \nRactive.svg\n to indicate if the browser handles SVGs properly.\n\n\n```js\nnew Ractive({\n  el: 'container',\n  template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent\n});\n````", 
             "title": "Support"
         }, 
         {
@@ -216,18 +216,23 @@
             "title": "Getting in touch"
         }, 
         {
+            "location": "/Get Started/Support/#legacy-versions", 
+            "text": "The current site only documents the latest version of Ractive. Legacy versions are  currently stored in Github .", 
+            "title": "Legacy versions"
+        }, 
+        {
             "location": "/Get Started/Support/#legacy-browsers", 
-            "text": "The core Ractive library requires the following APIs to be present:   Array.isArray  Array.prototype.every  Array.prototype.filter  Array.prototype.forEach  Array.prototype.indexOf  Array.prototype.map  Array.prototype.reduce  Date.now  Function.prototype.bind  Node.prototype.contains  Object.create  Object.defineProperty  Object.freeze  Object.keys  Promise  requestAnimationFrame  String.prototype.trim  window.addEventListener  window.getComputedStyle   Most  modern  browsers already support these APIs. Should you want to serve your app on older browsers, Ractive comes with an optional file containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive and pretend as if nothing happened.", 
+            "text": "The core Ractive library requires the following APIs need to be present:   Array.isArray  Array.prototype.every  Array.prototype.filter  Array.prototype.forEach  Array.prototype.indexOf  Array.prototype.map  Array.prototype.reduce  Date.now  Function.prototype.bind  Node.prototype.contains  Object.create  Object.defineProperty  Object.freeze  Object.keys  Promise  requestAnimationFrame  String.prototype.trim  window.addEventListener  window.getComputedStyle   Most  modern  browsers already support these APIs. Should you want to serve your app on older browsers, Ractive comes with an optional file called  polyfills.js  containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive.", 
             "title": "Legacy browsers"
         }, 
         {
             "location": "/Get Started/Support/#svgs", 
-            "text": "Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below)  do  care.  This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information  If your template includes SVG and these browsers throw an error along those lines,  the only winning move is not to play . You will need to provide an alternate fallback when SVG isn't supported.  You might do something along these lines:  new Ractive({\n  el: 'container',\n  template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent\n});", 
+            "text": "Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below)  do  care.   This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information   If your template includes SVG and these browsers throw an error along those lines,  the only winning move is not to play . You will need to provide an alternate fallback when SVG isn't supported. Ractive provides  Ractive.svg  to indicate if the browser handles SVGs properly.  ```js\nnew Ractive({\n  el: 'container',\n  template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent\n});\n````", 
             "title": "SVGs"
         }, 
         {
             "location": "/Get Started/Contributing/", 
-            "text": "Contributing\n\n\nRactive is a community-driven project. Most of its best features were \nsuggested by users like you\n. There are a lot of ways you can contribute to the project. Here are a few examples:\n\n\nContribute code\n\n\nAn open pull request is better than one that's never submitted. \nPull requests\n are always welcome.\n\n\nWrite documentation\n\n\nEach page in the documentation is just a file written in markdown. Again, \npull requests\n are always welcome.\n\n\nWrite plugins\n\n\nExtend Ractive in ways you've never seen before. Interface with other libraries, create effects, widgets, interactions, custom elements, and so much more with Ractive's very extensible core.\n\n\nRefer to \nPlugins\n for details on how to start writing Ractive plugins.\n\n\nHelp other developers\n\n\nSubscribe to \nStack Overflow questions tagged with \nractivejs\n, and you'll get alerts when someone asks a question that you might be able to answer.\n\n\nSpread the word\n\n\nTweet, write blog posts, recommend it to your friends, submit talks (here are some \ntips on speaking at tech meetups\n). These are just a few ways to spread the word about Ractive. The larger the community, the better it becomes.\n\n\nBuild stuff\n\n\nBut above all, build stuff! If you make something with Ractive, we'd love to hear about it.", 
+            "text": "Contributing\n\n\nRactive is a community-driven project. Most of its best features were \nsuggested by users like you\n. There are a lot of ways you can contribute to the project. Here are a few examples:\n\n\nContribute code\n\n\nRaising issues, reporting bugs, feature requests, enhancements, optimizations, all forms of contributions welcome! . Just go over the \nCONTRIBUTING.md\n and select your course of action.\n\n\nWrite documentation\n\n\nIf you've spotted a typo, a section you can explain better, or if you're just better in The Queen's English than we are, your help is greatly appreciated. Each page in the documentation is just \na file written in markdown\n. All you need is a text editor to get started.\n\n\nWrite plugins\n\n\nExtend Ractive in ways you've never seen before. Interface with other libraries, create effects, widgets, interactions, custom elements, and so much more with Ractive's very extensible core.\n\n\nRefer to \nPlugins\n for details on how to start writing Ractive plugins.\n\n\nHelp other developers\n\n\nSubscribe to \nStack Overflow questions tagged with \nractivejs\n, and you'll get alerts when someone asks a question that you might be able to answer.\n\n\nSpread the word\n\n\nTweet\n, write blog posts, recommend it to your friends, submit talks (here are some \ntips on speaking at tech meetups\n). These are just a few ways to spread the word about Ractive. The larger the community, the better it becomes.\n\n\nBuild stuff\n\n\nBut above all, build stuff! If you make something with Ractive, we'd love to hear about it.", 
             "title": "Contributing"
         }, 
         {
@@ -237,12 +242,12 @@
         }, 
         {
             "location": "/Get Started/Contributing/#contribute-code", 
-            "text": "An open pull request is better than one that's never submitted.  Pull requests  are always welcome.", 
+            "text": "Raising issues, reporting bugs, feature requests, enhancements, optimizations, all forms of contributions welcome! . Just go over the  CONTRIBUTING.md  and select your course of action.", 
             "title": "Contribute code"
         }, 
         {
             "location": "/Get Started/Contributing/#write-documentation", 
-            "text": "Each page in the documentation is just a file written in markdown. Again,  pull requests  are always welcome.", 
+            "text": "If you've spotted a typo, a section you can explain better, or if you're just better in The Queen's English than we are, your help is greatly appreciated. Each page in the documentation is just  a file written in markdown . All you need is a text editor to get started.", 
             "title": "Write documentation"
         }, 
         {
@@ -257,7 +262,7 @@
         }, 
         {
             "location": "/Get Started/Contributing/#spread-the-word", 
-            "text": "Tweet, write blog posts, recommend it to your friends, submit talks (here are some  tips on speaking at tech meetups ). These are just a few ways to spread the word about Ractive. The larger the community, the better it becomes.", 
+            "text": "Tweet , write blog posts, recommend it to your friends, submit talks (here are some  tips on speaking at tech meetups ). These are just a few ways to spread the word about Ractive. The larger the community, the better it becomes.", 
             "title": "Spread the word"
         }, 
         {

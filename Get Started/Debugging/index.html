@@ -585,7 +585,7 @@
             <li class="second-level"><a href="#using-ractivegetnodeinfo-for-debugging">Using Ractive.getNodeInfo() for debugging</a></li>
             
         
-            <li class="second-level"><a href="#adding-debugger-on-evaluated-code">Adding debugger on evaluated code</a></li>
+            <li class="second-level"><a href="#using-the-debugger-statement">Using the debugger statement</a></li>
             
         
     
@@ -595,8 +595,9 @@
 
 <h1 id="debugging">Debugging</h1>
 <h2 id="using-ractivegetnodeinfo-for-debugging">Using <code>Ractive.getNodeInfo()</code> for debugging</h2>
-<p>This is particularly useful for <a href="../../Extend/Decorators/">decorators</a> and debugging. Notably, in Chrome, if you inspect an element, that element will be added to the Chrome Developer Tools' node list and can be referenced in the console as <code>$0</code>. Try inspecting a Ractive-controlled element and using <code>Ractive.getNodeInfo($0)</code> in the console.</p>
-<h2 id="adding-debugger-on-evaluated-code">Adding debugger on evaluated code</h2></div>
+<p><a href="../../API/Static Methods/#ractivegetnodeinfo"><code>Ractive.getNodeInfo()</code></a> is a function that allows you to grab the Ractive instance that holds a specific node. This is especially helpful together with Chrome Dev Tools' <code>$0</code> global which references the last selected element in the Element Inspector. You can simply select the element in the Element Inspector and call <code>Ractive.getNodeInfo($0)</code> in the console to inspect the Ractive instance.</p>
+<h2 id="using-the-debugger-statement">Using the <code>debugger</code> statement</h2>
+<p>Some loaders transform component files into Ractive components on the fly using <code>new Function</code>. As such, you cannot simply look for the file and put breakpoints. In situations like this, you will have to use the <code>debugger</code> statement to put breakpoints on dynamically generated code.</p></div>
         
     </div>
 
