@@ -17,6 +17,8 @@ extra_javascript:
 pages:
   - Get Started:
     - Introduction: index.md
+    - Tutorial:
+      - Hello World: Get Started/Tutorial/Hello World.md
     - Examples:
       - Analog Clock: Get Started/Examples/Analog Clock.md
       - Animated Chart: Get Started/Examples/Animated Chart.md

@@ -36,7 +36,7 @@ Using Ractive is very simple. Create a new instance using `new Ractive({...})` w
 
 ```js
 var ractive = new Ractive({
-    el: 'body',
+    target: 'body',
     template: '<p>{{greeting}}, {{recipient}}</p>',
     data: {
         greeting: 'Hello',
@@ -45,7 +45,7 @@ var ractive = new Ractive({
 });
 ```
 
-While there are _no required options_, `el`, `template` and `data` are the most common. They specify _what element_ to attach an instance with _this markup_ having _this data_. Check out [Initialization Options](API/Initialization Options.md) to learn more about the available options.
+While there are _no required options_, `target`, `template` and `data` are the most common. They specify _what element_ to attach an instance with _this markup_ having _this data_. Check out [Initialization Options](API/Initialization Options.md) to learn more about the available options.
 
 If you get stuck at any point, visit the [Get Support](Get Started/Support.md) page for places to find help.
 
