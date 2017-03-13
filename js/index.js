@@ -51,7 +51,8 @@ var playground = (function() {
   function initFrame(callback) {
     // frame
     var frame = document.createElement('iframe');
-    frame.src = '/playground/';
+    frame.src = '/playground/?env=docs';
+    frame.name = 'embedded playground';
     if (callback) frame.onload = callback;
     div.appendChild(frame);
     window.playgroundEl = div;
@@ -65,8 +66,11 @@ var playground = (function() {
         playground(el);
       });
     } else {
-      window.playgroundEl.classList.remove('min', 'max');
-      window.playgroundEl.classList.add('mid');
+      div.classList.remove('min', 'max');
+      div.classList.add('mid');
+      container.classList.remove('min', 'max');
+      container.classList.add('mid');
+
       var pg = window.playgroundEl.querySelector('iframe').contentWindow;
       pg.postMessage({ code: el.getAttribute('data-playground') }, '*');
     }

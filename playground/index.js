@@ -60,6 +60,7 @@ Ractive.decorators['ace-editor'] = function(node, options) {
   return handle;
 };
 
+var docs = !!~window.location.search.indexOf('env=docs');
 var r = window.r = new Ractive({
   target: '#main',
   template: '#tpl',
@@ -72,6 +73,7 @@ var r = window.r = new Ractive({
       if (content === this.get('compressed')) return;
       var obj = JSON.parse(LZString.decompressFromEncodedURIComponent(content));
       this.set('unit', obj);
+      if (docs) this.set('unit.h.r', 'edge');
     }
   },
   observe: {
@@ -120,7 +122,7 @@ r.observe('unit', debounce(function(value) {
   this.set('compressed', compressed);
 
   var l = window.location;
-  var url = l.protocol + '//' + l.host + l.pathname + '#' + compressed;
+  var url = l.protocol + '//' + l.host + l.pathname + l.search + '#' + compressed;
 
   if (!this.get('settings.skipUrlUpdate')) {
     window.location.replace(url);
