@@ -9,7 +9,7 @@
 # - virtualenv
 
 # Create a virtualenv and activate it
-virutalenv ractivejs.github.io
+virtualenv ractivejs.github.io
 cd ractivejs.github.io
 source ./bin/activate
 
@@ -38,10 +38,7 @@ Refer to the [mkdocs site](http://www.mkdocs.org) for more information.
 
 ## Notes
 
+- Everything is written in vanilla Markdown.
 - Everything goes in the `docs` directory.
-- The menu is managed in `mkdocs.yml`.
-- Everything is written in markdown.
-
-## TODO
-
-- Automate build with Travis
+- Old documentation can be found in the `legacy` directory.
+- The nav bar is managed in `mkdocs.yml`.

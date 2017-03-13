@@ -4,11 +4,11 @@ Ractive is a community-driven project. Most of its best features were [suggested
 
 ## Contribute code
 
-An open pull request is better than one that's never submitted. [Pull requests](https://github.com/ractivejs/ractive/pulls) are always welcome.
+Raising issues, reporting bugs, feature requests, enhancements, optimizations, all forms of contributions welcome! . Just go over the [CONTRIBUTING.md](https://github.com/ractivejs/ractive/blob/dev/CONTRIBUTING.md) and select your course of action.
 
 ## Write documentation
 
-Each page in the documentation is just a file written in markdown. Again, [pull requests](https://github.com/ractivejs/ractive/pulls) are always welcome.
+If you've spotted a typo, a section you can explain better, or if you're just better in The Queen's English than we are, your help is greatly appreciated. Each page in the documentation is just [a file written in markdown](https://github.com/ractivejs/ractivejs.github.io/tree/dev/docs). All you need is a text editor to get started.
 
 ## Write plugins
 
@@ -22,7 +22,7 @@ Subscribe to [Stack Overflow questions tagged with `ractivejs`](http://stackover
 
 ## Spread the word
 
-Tweet, write blog posts, recommend it to your friends, submit talks (here are some [tips on speaking at tech meetups](http://speaking.io/)). These are just a few ways to spread the word about Ractive. The larger the community, the better it becomes.
+[Tweet](https://twitter.com/RactiveJS), write blog posts, recommend it to your friends, submit talks (here are some [tips on speaking at tech meetups](http://speaking.io/)). These are just a few ways to spread the word about Ractive. The larger the community, the better it becomes.
 
 ## Build stuff
 
