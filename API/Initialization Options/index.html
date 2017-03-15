@@ -633,12 +633,6 @@
             <li class="second-level"><a href="#lazy">lazy</a></li>
             
         
-            <li class="second-level"><a href="#magic">magic</a></li>
-            
-        
-            <li class="second-level"><a href="#modifyarrays">modifyArrays</a></li>
-            
-        
             <li class="second-level"><a href="#nocsstransform">noCSSTransform</a></li>
             
         
@@ -717,8 +711,7 @@
         <div class="col-md-9" role="main">
 
 <h1 id="initialization-options">Initialization Options</h1>
-<p>The following is an exhaustive list of initialisation options that you can pass to <code>new Ractive(options)</code> and <code>Ractive.extend(options)</code>, with full descriptions grouped below by category.</p>
-<p>Note that any additional options set that are not part of the <a href="./">initialization options</a> will be added as properties or methods of the instance.</p>
+<p>The following is an exhaustive list of initialisation options that you can pass to <a href=""><code>new Ractive()</code></a> and <a href="../Static Methods/#ractiveextend"><code>Ractive.extend()</code></a>. Extra properties passed as options that are not initialization options are added as properties or methods of the instance.</p>
 <pre><code class="js">var ractive = new Ractive({
   myMethod: function () {
     alert( 'my method was called' );
@@ -730,32 +723,52 @@ ractive.myMethod(); // triggers the alert
 
 <hr />
 <h2 id="adapt">adapt</h2>
-<p><em><code>(Array&lt;string|Object&gt;)</code></em></p>
-<p>Custom wrappers to be used with all or part of the supplied data, see <a href="../../Extend/Adaptors/">Adaptors</a>. Unlike components or other registries where there is a template-level directive that informs Ractive that plugin is to be used, <a href="../../Extend/Adaptors/">adaptors</a> are a data-level construct and so you use the <code>adapt</code> option to tell Ractive which <a href="../../Extend/Adaptors/">adaptors</a> are to be used with that instance. If you define the <a href="../../Extend/Adaptors/">adaptors</a> directly on the instance or component, you do not need to specify them in the <code>adapt</code> option.</p>
-<p>Can either be the <a href="../../Extend/Adaptors/">adaptor</a> itself, or the name of an <a href="../../Extend/Adaptors/">adaptor</a> registred via <code>Ractive.adaptors</code>:</p>
-<pre><code class="js">Ractive.adaptors.myAdaptor = MyAdaptor1;
+<p><code>(Array&lt;string|Object&gt;)</code></p>
+<p>An array of <a href="../../Extend/Adaptors/">adaptors</a> to use. Values can either be names of registered adaptors or an adaptor definition.</p>
+<pre><code class="js">adapt: [ 'MyAdaptor', AdaptorDefinition ]
+</code></pre>
 
-new Ractive({
-  adapt: [ 'myAdaptor', MyAdaptor2 ]
-})
+<p><code>adapt</code> is not required if you registered adaptors via the <a href="#adaptors"><code>adaptors</code></a> initialization property. The adaptors registered via <code>adaptors</code> initialization property are automatically used as if they were set with <code>adapt</code>.</p>
+<pre><code class="js">const instance = new Ractive({
+  adaptors: { MyAdaptor: AdaptorDefinition }
+  // No need to use adapt
+});
+
+const Component = Ractive.extend({
+  adaptors: { MyAdaptor: AdaptorDefinition }
+  // No need to use adapt
+});
+
+new Component({
+  // No need to use adapt
+});
 </code></pre>
 
 <hr />
 <h2 id="adaptors">adaptors</h2>
-<p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
-<p>A key-value hash of <a href="../../Extend/Adaptors/">adaptors</a> that are specific to this instance. Usually the <code>adapt</code> property can directly specify which adaptors
-to use on this instance and the <code>adaptors</code> property is used to register an <a href="../../Extend/Adaptors/">adaptor</a> on components or <code>Ractive.adaptors</code>.</p>
+<p><code>(Object&lt;string, Object&gt;)</code></p>
+<p>A map of <a href="../../Extend/Adaptors/">adaptors</a> where the key is the adaptor name and the value is an adaptor definition.</p>
 <pre><code class="js">adaptors: {
-  myAdaptor: MyAdaptor
+  MyAdaptor: AdaptorDefinition
 }
+</code></pre>
+
+<p>Registering an adaptor via <code>adaptors</code> is not required if you directly specified the adaptor definition via <code>adapt</code>.</p>
+<pre><code class="js">const Adaptor = { ... };
+
+const instance = new Ractive({
+  adapt: [ AdaptorDefinition ]
+  // No need to use adaptors
+});
 </code></pre>
 
 <hr />
 <h2 id="append">append</h2>
-<p><em><code>(boolean|string|HTMLElement|array-like)</code></em></p>
-<p>Controls how the instance is attached to <code>el</code>. Defaults to <code>false</code>.</p>
+<p><code>(boolean|string|HTMLElement|array-like)</code></p>
+<p>Controls how the instance is attached to <a href="#el"><code>el</code></a>. Defaults to <code>false</code>.</p>
 <p><code>false</code> replaces the contents of <code>el</code>.</p>
-<pre><code class="html">&lt;div id='container'&gt;
+<pre><code class="html">&lt;!-- before --&gt;
+&lt;div id='container'&gt;
   &lt;p&gt;existing content&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
@@ -765,30 +778,34 @@ append: false,
 template: '&lt;p&gt;new content&lt;/p&gt;'
 </code></pre>
 
-<pre><code class="html">&lt;div id='container'&gt;
+<pre><code class="html">&lt;!-- after --&gt;
+&lt;div id='container'&gt;
   &lt;p&gt;new content&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
 
 <p><code>true</code> appends the instance to <code>el</code>.</p>
-<pre><code class="html">&lt;div id='container'&gt;
+<pre><code class="html">&lt;!-- before --&gt;
+&lt;div id='container'&gt;
   &lt;p&gt;existing content&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
 
-<pre><code class="jss">el: '#container',
+<pre><code class="js">el: '#container',
 append: true,
 template: '&lt;p&gt;new content&lt;/p&gt;'
 </code></pre>
 
-<pre><code class="html">&lt;div id='container'&gt;
+<pre><code class="html">&lt;!-- after --&gt;
+&lt;div id='container'&gt;
   &lt;p&gt;existing content&lt;/p&gt;
   &lt;p&gt;new content&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
 
-<p>An element id, CSS selector referencing an element, HTML element reference, or an array-like object containing an HTML element reference as its first item that is a child of <code>el</code> will render the instance before that element.</p>
-<pre><code class="html">&lt;div id='container'&gt;
+<p>An <code>id</code> of the element, a CSS selector to an element, an HTML element, or an array-like object whose first item is an HTML element, which is a child of <code>el</code> will render the instance before that element.</p>
+<pre><code class="html">&lt;!-- before --&gt;
+&lt;div id='container'&gt;
   &lt;p&gt;red&lt;/p&gt;
   &lt;p&gt;orange&lt;/p&gt;
   &lt;p&gt;yellow&lt;/p&gt;
@@ -800,7 +817,8 @@ append: document.querySelector('p:nth-child(2)'),
 template: '&lt;p&gt;grey&lt;/p&gt;'
 </code></pre>
 
-<pre><code class="html">&lt;div id='container'&gt;
+<pre><code class="html">&lt;!-- after --&gt;
+&lt;div id='container'&gt;
   &lt;p&gt;red&lt;/p&gt;
   &lt;p&gt;grey&lt;/p&gt;
   &lt;p&gt;orange&lt;/p&gt;
@@ -810,55 +828,89 @@ template: '&lt;p&gt;grey&lt;/p&gt;'
 
 <hr />
 <h2 id="components">components</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A map of <a href="../../Extend/Components/">components</a> where the <code>key</code> is the name of the component the <code>value</code> is either a component definition or a function that returns either a globally registered component name or a component definition.</p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
+<p>A map of <a href="../../Extend/Components/">components</a> where the key is the component name the value is either a component definition or a function that returns either a name of a registered component or a component definition. The function form receives processed <a href="#data"><code>data</code></a> as first argument.</p>
 <pre><code class="js">components: {
-  'my-component': Ractive.extend({
-    template: '#componentTemplate',
-    init: function () {...}
-  }),
-  dynamicComponent: function(data){
-    return data.foo ? 'globallyRegisteredComponent' : componentDefinition;
+  StaticComponent: ComponentDefinition,
+  DynamicComponent: function(data){
+    return data.foo ? 'MyGlobalComponent' : ComponentDefinition;
   }
 }
 </code></pre>
 
-<p>If you need to do additional post-processing on the components, the function option receives post-processed data.</p>
-<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, function component options will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<p>During a <a href="../Instance Methods/#ractivereset"><code>ractive.reset()</code></a>, components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <hr />
 <h2 id="computed">computed</h2>
-<p><em><code>(Object&lt;string, function|Object&gt;)</code></em></p>
-<p>An object that maps to a set of computed values.</p>
-<pre><code class="js">computed: {
-  area: '${width} - ${height}'
+<p><code>(Object&lt;string, function|Object&gt;)</code></p>
+<p>A map of <a href="../../Concepts/Data Binding/Computed Properties/">computed properties</a> where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has <code>get</code> and <code>set</code> functions.</p>
+<pre><code class="js">// Imagine a square...
+computed: {
+  // Computed property expression
+  diagonal: '${side} * Math.sqrt(2)',
+
+  // A function
+  perimeter: function(){
+    return 4 * this.get('side');
+  },
+
+  // An object with get and set functions
+  area: {
+    get: function(){
+      return Math.pow(this.get('side'), 2);
+    },
+    set: function(value){
+      this.set('side', Math.sqrt(value));
+    }
+  },
 }
 </code></pre>
 
-<p>See <a href="../../Concepts/Data Binding/Computed Properties/">Computed Properties</a> for more information and examples .</p>
 <hr />
 <h2 id="csp">csp</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Whether or not to add inline functions for expressions after parsing. This can effectively eliminate <code>eval</code> caused by expressions in templates. It also makes the resulting template no longer JSON compatible, so the template will have to be served via <code>script</code> tag.</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not to add inline functions for expressions after parsing. Defaults to <code>false</code>.</p>
+<p>This can effectively eliminate <code>eval</code> caused by expressions in templates. It also makes the resulting template no longer JSON compatible, so the template will have to be served via <code>script</code> tag.</p>
 <hr />
 <h2 id="css">css</h2>
-<p><em><code>(string)</code></em></p>
-<p>Used on components to specify <code>css</code> styles to be inserted into the document.</p>
+<p><code>(string)</code></p>
+<p>Scoped CSS for a component and its descendants.</p>
+<pre><code class="js">css: `
+  .bold { font-weight: bold }
+`
+</code></pre>
+
+<p>At the moment, only applies to components.</p>
+<pre><code class="js">// This works
+const Component = Ractive.extend({
+  css: '...'
+});
+
+// This will not work
+new Ractive({
+  css: '...'
+});
+</code></pre>
+
 <hr />
 <h2 id="data">data</h2>
-<p><em><code>(Object&lt;string, any&gt;|Function)</code></em></p>
-<p>The data with which to initialise.</p>
-<pre><code class="js">data: { foo: 'bar' }
+<p><code>(Object&lt;string, any&gt;|Function)</code></p>
+<p>The data with which to initialise. Can either be an object or a function that returns an object.</p>
+<pre><code class="js">// Object form
+data: {
+  foo: 'bar'
+}
 
+// Function form
 data: function() {
   return { foo: 'bar' };
 }
 </code></pre>
 
-<p>When using a data object on components, the data is attached to the component's prototype. Standard prototype rules apply, which means modifying non-primitive data will modify the value on the prototype.</p>
+<p>When using data on components in object form, the data is attached to the component's prototype. Standard prototype rules apply, which means modifying data on the prototype will affect all instances using that prototype.</p>
 <pre><code class="js">const Component = Ractive.extend({
-    data: {
-        foo: { bar: 42 }
-    }
+  data: {
+    foo: { bar: 42 }
+  }
 });
 
 var component1 = new Component();
@@ -867,23 +919,23 @@ component1.set( 'foo.bar', 12 );
 component2.get( 'foo.bar' ); // returns 12
 </code></pre>
 
-<p>When using a data function, the function is run to generate the data and the data is attached to each instance rather than to the prototype.</p>
+<p>When using data on components in function, the function is run to give each instance a copy of the data instead of attaching the data to the prototype.</p>
 <pre><code class="js">const Component = Ractive.extend({
-    data: function () {
-        return {
-            foo: { bar: 42 }
-        };
-    }
+  data: function () {
+    return {
+      foo: { bar: 42 }
+    };
+  }
 });
 
 var component1 = new Component();
 var component2 = new Component();
 component1.set( 'foo.bar', 12 );
-component2.get( 'foo.bar' ); // returns 12
+component2.get( 'foo.bar' ); // returns 42
 </code></pre>
 
-<p><code>this._super</code> can be used when using a data function option to merge the parent component data into the extending component. Ractive handles the differences between usage of a data object and data function.</p>
-<pre><code class="js">var Component1 = Ractive.extend({
+<p><code>this._super</code> can be used when using a data function option to merge the parent component data into the extending component. Ractive handles the differences between object and function form.</p>
+<pre><code class="js">var Parent = Ractive.extend({
   data: {
     formatTitle: function (title) {
       return '&quot;' + title.toUpperCase() + '&quot;';
@@ -891,43 +943,42 @@ component2.get( 'foo.bar' ); // returns 12
   }
 });
 
-var Component2 = Component1.extend({
+var Child = Parent.extend({
   data: function( data ) {
     this._super( data );
     data.scale = 5;
   }
 });
 
-var ractive = new Component2({
+var ractive = new Child({
     data: { foo: 'bar' }
 });
 
-// r.data: { foo: &quot;bar&quot;, formatTitle: function, scale: 5 }
+ractive.get(); // { foo: &quot;bar&quot;, formatTitle: function, scale: 5 }
 </code></pre>
 
-<p>Data may also be set asynchronously when using data function options.</p>
+<p>Data may also be set asynchronously when using data in function form.</p>
 <pre><code class="js">data: function () {
+  $.get( 'somedata.url', function( data ) {
+    this.set( '', data );
+  }.bind(this) );
 
-    $.get( 'somedata.url', function( data ) {
-        this.set( '', data );
-    }.bind(this) );
-
-    return {
-        foo: 'default'
-    };
+  return {
+    foo: 'default'
+  };
 }
 </code></pre>
 
-<p>Models can also be used to supply data as long as they return plain objects whose properties are public.</p>
+<p>Constructors can also be used to supply data. Ractive will treat them like POJOs which means it can only utilize publicly visible members.</p>
 <pre><code class="js">data: function ( data ) {
-    return new Model( data );
+  return new Model( data );
 }
 </code></pre>
 
-<p>If you use a constructor guard clause, you can simply provide the reference to the model directly instead using a data function.</p>
+<p>Constructors can also be assigned directly to <code>data</code> as long as you provide a constructor guard. Ractive will treat the constructor like a function.</p>
 <pre><code class="js">function Model ( data ) {
-    if ( !( this instanceof Model) ) { return new Model( data ); }
-    // model setup
+  if ( !( this instanceof Model) ) { return new Model( data ); }
+  // model setup
 }
 
 var MyComponent = Ractive.extend({
@@ -939,118 +990,113 @@ var r = new MyComponent({
 })
 </code></pre>
 
-<p>For more advanced data modelling and backends, use <a href="../../Extend/Adaptors/">Adaptors</a>.</p>
 <hr />
 <h2 id="decorators">decorators</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of decorators that are specific to this instance, where <code>key</code> is the name of the decorator (as referenced within templates as <code>&lt;div decorator="myDecorator"&gt;&lt;/div&gt;</code>), and <code>value</code> is a is a decorator functions.  See <a href="../../Extend/Decorators/">Decorators</a> for more info.</p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
+<p>A map of <a href="../../Extend/Decorators/">decorators</a> where the key is the decorator name and the value is a decorator definition.</p>
 <pre><code class="js">decorators: {
-  'myDecorator': function( node, fire) {...}
+  MyDecorator: DecoratorDefinition
 }
 </code></pre>
 
 <hr />
 <h2 id="delimiters">delimiters</h2>
-<p><em><code>(Array[string])</code></em></p>
-<p>Defaults to <code>[ '{{', '}}' ]</code>. Used to set what delimiters to use when parsing templates.</p>
-<pre><code class="js">template: 'hello &lt;%= world %&gt;',
-delimiters: [ '&lt;%=', '%&gt;' ],
+<p><code>(Array[string])</code></p>
+<p>Sets the template delimiters. Defaults to <code>[ '{{', '}}' ]</code>.</p>
+<pre><code class="js">delimiters: [ '&lt;%=', '%&gt;' ],
+template: 'hello &lt;%= world %&gt;',
 data: { world: 'earth' }
 
 // result:
-hello earth
+// hello earth
 </code></pre>
 
 <hr />
 <h2 id="easing">easing</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of easing function. See [<code>Ractive.easing()</code>](../API/Static Methods.md#Ractive.easing())</p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
+<p>A map of <a href="../../Extend/Easings/">easing functions</a> where the key is the easing function name and the value is the easing function.</p>
+<pre><code class="js">easing: {
+  MyEasing: EasingDefinition
+}
+</code></pre>
+
 <hr />
 <h2 id="el">el</h2>
-<p><em><code>(string|HTMLElement|array-like)</code></em></p>
-<p>Directives for the element to render to. Use <code>append</code> option (see below) to control whether existing content is replaced.</p>
-<p>Can either be an element id, CSS selector referencing an element, a reference to an HTML element, or an array-like object containing an HTML element reference as its first item.</p>
+<p><code>(string|HTMLElement|array-like)</code></p>
+<p>The element to render an instance to. Can either be an <code>id</code> of the element, a CSS selector to an element, an HTML element, or an array-like object whose first item is an HTML element.</p>
 <pre><code class="js">el: 'container'
 el: '#container'
 el: document.getElementById('container')
-el: $('#container')
+el: jQuery('#container')
 </code></pre>
 
 <hr />
 <h2 id="enhance">enhance</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Whether or not to try to reuse the existing DOM in the target element when rendering a.k.a. progressive enhancement. This allows you to serve the fully rendered page and then render the Ractive template at load over the pre-rendered page without completely wiping out the existing content. There are a few limitations surrounding text nodes<sup><a href="#text-limitations">*</a></sup>, but all matching elements will be reused.</p>
-<p>This option cannot be used with <code>append</code>.</p>
-<p><a name="text-limitations">*</a>
-To expand on the limitations with text nodes: since HTML does not have a markup representation for individual adjacent text nodes where the DOM does, the loaded DOM will have all text nodes merged when the document loads from the server. Ractive needs individual adjacent text nodes in certain situations like <code>outer text {{#if foo}}inner text{{/if}}</code>. The <code>'outer text '</code> text node is always present, and if <code>foo</code> becomes truthy, an additional text node will be inserted next to the <code>'outer text '</code> node containing <code>'inner text'</code>. It has been suggested that Ractive could also deal with merged text nodes, but that would become quite complex because there are certain scenarios where a text node would have to split and be rejoined as the model changed e.g. <code>outer text {{#if foo}}&lt;span&gt;hello&lt;/span&gt;{{/if}} the other side</code>. In that case, if <code>foo</code> is initially falsey, the <code>'outer text '</code> and <code>' the other side'</code> nodes could be merged into a single node. However, if <code>foo</code> became truthy, that node would have to be split into two to place on either side of the <code>&lt;span&gt;</code>.</p>
-<p>Additionally, unescaped HTML mustaches (triples) don't play nicely with enhance because there's no easy way to match up the string content to the target DOM nodes. This may be remedied at some point in the future.</p>
-<p>TODO: Simplify/restructure</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not to apply progressive enhancement by inspecting the contents of <code>el</code> and try to reuse as much of the existing tree as possible. Defaults to <code>false</code>.</p>
+<p>There are a few limitations to this feature:</p>
+<ul>
+<li>
+<p>This option cannot be used with <a href="#append"><code>append</code></a>.</p>
+</li>
+<li>
+<p>Unescaped HTML mustaches (triples) don't play nicely with enhance because there's no easy way to match up the string content to the target DOM nodes.</p>
+</li>
+<li>
+<p>All matching elements will be reused, except for a few cases regarding text nodes.</p>
+<p><code>&lt;div&gt;left text {{#if foo}} middle text {{/if}} right text&lt;/div&gt;</code></p>
+<p>HTML does not have markup representation for adjacent text nodes. Rendering the snippet above from the server, regardless of <code>foo</code>'s value, the browser creates one contiguous text node. However, Ractive will need <em>three</em> adjacent text nodes to represent it: One for <code>outer text</code>, another for <code>right text</code> and another for <code>middle text</code> when <code>foo</code> becomes truthy.</p>
+<p>It has been suggested that Ractive could deal with merged text nodes, but that would lead to extra complexity as there are certain scenarios where the text node would have to split and rejoin. When <code>foo</code> is falsey, <code>left text</code> and <code>right text</code> could be merged. But when <code>foo</code> becomes truthy, that text node would have to split in order to accomodate <code>middle text</code>.</p>
+</li>
+</ul>
 <hr />
 <h2 id="events">events</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of <a href="../../Extend/Events/">event plugins</a> that are specific to this instance, where <code>key</code> is the name of the event (as referenced within templates as <code>&lt;button on-mycustomevent="fire"&gt;&lt;/button&gt;</code>), and <code>value</code> is the custom event plugin functions.  See <a href="../../Extend/Events/">Writing Events</a> for more info.</p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
+<p>A map of <a href="../../Extend/Events/">events</a> where the key is the event name and value is an event definition.</p>
 <pre><code class="js">events: {
-  'mycustomevent': function( node, fire ) {...}
+  MyEvent: EventDefinition
 }
 </code></pre>
 
 <hr />
 <h2 id="interpolators">interpolators</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of interpolators use by <a href="../Instance Methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
+<p>A map of <a href="../../Extend/Interpolators/">interpolators</a> where the key is the interpolator name and the value is an interpolator definition.</p>
+<pre><code class="js">interpolators: {
+  MyInterpolator: InterpolatorDefinition
+}
+</code></pre>
+
 <hr />
 <h2 id="isolated">isolated</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. This option is typically only relevant as an extension option for <a href="../../Extend/Components/">Components</a>. Controls whether the component will look outside itself for data and registry items.</p>
+<p><code>(boolean)</code></p>
+<p>Controls whether the component will try to <a href="../../Concepts/Templates/References/">resolve data and plugins on its ancestors</a>. Defaults to <code>false</code>.</p>
+<p>Relevant only to <a href="../../Extend/Components/">Components</a>.</p>
 <hr />
 <h2 id="lazy">lazy</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. If two-way data binding is enabled, whether to only update data based on text inputs on <code>change</code> and <code>blur</code> events, rather than any event (such as key events) that may result in new data.</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not to update data using late-firing DOM events (i.e. <code>change</code>, <code>blur</code>) instead of events that fire immediately on interaction (i.e. <code>keyup</code>, <code>keydown</code>). Defaults to <code>false</code>.</p>
+<p>Only applicable if <a href="#twoway"><code>twoway</code></a> is <code>true</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
   data: { foo: 'bar' },
   lazy: true
 });
 
-// will not fire as user is typing
+// Only fires when input loses focus.
 ractive.on('change', function(){
-  // only happens on exiting &lt;inputor return if submit
   console.log('changed!')
 })
 </code></pre>
 
 <hr />
-<h2 id="magic">magic</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Whether or not to wrap data in ES5 accessors for automatic binding (see <a href="../../Concepts/Data Binding/Magic Mode/">Magic Mode</a>).</p>
-<pre><code class="js">var data = { foo: 'bar' };
-new Ractive({ data: data } );
-// will update automagically:
-data.foo = 'fizz'
-</code></pre>
-
-<hr />
-<h2 id="modifyarrays">modifyArrays</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see <a href="../../Concepts/Data Binding/Array Modification/">Array Modification</a>).</p>
-<pre><code class="js">var items = [ 'red', 'blue' ];
-new Ractive({
-  data: data,
-  modifyArrays: true //default
-});
-
-// will update automagically:
-items.push( 'green' );
-</code></pre>
-
-<hr />
 <h2 id="nocsstransform">noCSSTransform</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Prevents component css from being transformed with scoping guids.</p>
+<p><code>(boolean)</code></p>
+<p>Prevents component CSS from being transformed with scoping guids. Defaults to <code>false</code>.</p>
 <hr />
 <h2 id="nointro">noIntro</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Whether or not to skip intro transitions on render.</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not to skip intro transitions on initial render. Defaults to <code>false</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: '&lt;ul&gt;{{#items}}&lt;li intro=&quot;fade&quot;&gt;{{.}}&lt;/li&gt;{{/items}}&lt;/ul&gt;',
   data: { items: [ 'red', 'blue' ] },
@@ -1065,50 +1111,50 @@ ractive.get('items').push( 'green' );
 
 <hr />
 <h2 id="oncomplete">oncomplete</h2>
-<p><em><code>(Function)</code></em></p>
-<p>A lifecycle event that is called when the instance is rendered <em>and</em> all the transitions have completed.</p>
+<p><code>(Function)</code></p>
+<p>A lifecycle event that is called when the instance is rendered and all the transitions have completed.</p>
 <hr />
 <h2 id="onconfig">onconfig</h2>
-<p><em><code>(Function)</code></em></p>
-<p>A lifecycle event that is called when an instance is constructed and all configuration options have been processed.</p>
+<p><code>(Function)</code></p>
+<p>A lifecycle event that is called when an instance is constructed and all initialization options have been processed.</p>
 <hr />
 <h2 id="onconstruct">onconstruct</h2>
-<p><em><code>(Function)</code></em></p>
-<p>A lifecycle event that is called when an instance is constructed but before any configuration has been processed.</p>
-<p>Accepts the<a href="./">initialization options</a>as arguments.</p>
+<p><code>(Function)</code></p>
+<p>A lifecycle event that is called when an instance is constructed but before any initialization option has been processed.</p>
+<p>Accepts the instance's initialization options as argument.</p>
 <hr />
 <h2 id="ondetach">ondetach</h2>
-<p><em><code>(Function)</code></em></p>
+<p><code>(Function)</code></p>
 <p>A lifecycle event that is called whenever <code>ractive.detach()</code> is called.</p>
 <p>Note that <code>ractive.insert()</code> implicitly calls <code>ractive.detach()</code> if needed.</p>
 <hr />
 <h2 id="oninit">oninit</h2>
-<p><em><code>(Function)</code></em></p>
+<p><code>(Function)</code></p>
 <p>A lifecycle event that is called when an instance is constructed and is ready to be rendered.</p>
 <hr />
 <h2 id="oninsert">oninsert</h2>
-<p><em><code>(Function)</code></em></p>
+<p><code>(Function)</code></p>
 <p>A lifecycle event that is called when <code>ractive.insert()</code> is called.</p>
 <hr />
 <h2 id="onrender">onrender</h2>
-<p><em><code>(Function)</code></em></p>
-<p>A lifecycle event that is called when the instance is rendered and <em>before</em> transitions are started.</p>
+<p><code>(Function)</code></p>
+<p>A lifecycle event that is called when the instance is rendered but <em>before</em> transitions start.</p>
 <hr />
 <h2 id="onteardown">onteardown</h2>
-<p><em><code>(Function)</code></em></p>
+<p><code>(Function)</code></p>
 <p>A lifecycle event that is called when the instance is being torn down.</p>
 <hr />
 <h2 id="onunrender">onunrender</h2>
-<p><em><code>(Function)</code></em></p>
+<p><code>(Function)</code></p>
 <p>A lifecycle event that is called when the instance is being undrendered.</p>
 <hr />
 <h2 id="onupdate">onupdate</h2>
-<p><em><code>(Function)</code></em></p>
+<p><code>(Function)</code></p>
 <p>A lifecycle event that is called when <code>ractive.update()</code> is called.</p>
 <hr />
 <h2 id="partials">partials</h2>
-<p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
-<p>A map of <a href="../../Extend/Partials/">partials</a> where the key is the name of the partial, and the value is either a template string, an parsed template object or a function that returns any of the previous options.</p>
+<p><code>(Object&lt;string, string|Object|Function&gt;)</code></p>
+<p>A map of <a href="../../Extend/Partials/">partials</a> where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and  <a href="../Helper Objects/Parse/">Parse Object</a> as arguments.</p>
 <pre><code class="js">partials: {
   stringPartial: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
   parsedPartial: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
@@ -1118,16 +1164,17 @@ ractive.get('items').push( 'green' );
 }
 </code></pre>
 
-<p>If you need to do additional post-processing on the partials, the function option receives post-processed data and a <a href="../Helper Objects/Parse/">Parse Object</a> that provides helper methods for template manipulation.</p>
-<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, function partials will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <hr />
 <h2 id="preservewhitespace">preserveWhitespace</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>false</code>. Whether or not to preserve whitespace in templates when parsing. (Whitespace in <code>&lt;pre&gt;</code> elements is always preserved.)</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not to preserve whitespace in templates when parsing. Defaults to <code>false</code>.</p>
+<p>Whitespace in <code>&lt;pre&gt;</code> elements are always preserved. The browser will still deal with whitespace in the normal fashion.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
   preserveWhitespace: false //default
 });
+
 console.log( ractive.toHTML() );
 // &quot;&lt;p&gt;hello world&lt;/p&gt;&quot;
 
@@ -1135,39 +1182,46 @@ var ractive = new Ractive({
   template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
   preserveWhitespace: true
 });
+
 console.log( ractive.toHTML() );
 //&quot;&lt;p&gt;hello
 //
 //  world   &lt;/p&gt;&quot;
 </code></pre>
 
-<p>Please note that the browser will still deal with whitespace in the normal fashion.</p>
 <hr />
 <h2 id="sanitize">sanitize</h2>
-<p><em><code>(boolean|Object)</code></em></p>
-<p>Defaults to <code>false</code>. If <code>true</code>, certain elements will be stripped from templates at parse time - <code>&lt;applet&gt;</code>, <code>&lt;base&gt;</code>, <code>&lt;basefont&gt;</code>, <code>&lt;body&gt;</code>, <code>&lt;frame&gt;</code>, <code>&lt;frameset&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;isindex&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;meta&gt;</code>, <code>&lt;noframes&gt;</code>, <code>&lt;noscript&gt;</code>, <code>&lt;Object&gt;</code>, <code>&lt;param&gt;</code>, <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> and <code>&lt;title&gt;</code> - as will event attributes (e.g. <code>onclick</code>).</p>
-<pre><code class="js">template: '&lt;p&gt;some content&lt;/p&gt;&lt;frame&gt;Am I a bad element or just misunderstood?&lt;/frame&gt;',
+<p><code>(boolean|Object)</code></p>
+<p>Whether or not certain elements will be stripped from the template during parsing.  Defaults to <code>false</code>.</p>
+<p><code>true</code> strips out blacklisted elements and event attributes. See <a href="../Static Methods/#ractiveparse"><code>Ractive.parse()</code></a> for the default list of blacklisted elements.</p>
+<pre><code class="js">template: `
+  &lt;p&gt;some content&lt;/p&gt;
+  &lt;frame&gt;Am I a bad element or just misunderstood?&lt;/frame&gt;
+`,
 sanitize: true
 
 // result:
-&lt;p&gt;some content&lt;/p&gt;
+// &lt;p&gt;some content&lt;/p&gt;
 </code></pre>
 
-<p>Alternatively, pass in an object with an <code>elements</code> property containing an array of blacklisted elements, and an optional <code>eventAttributes</code> boolean (<code>true</code> means 'disallow event attributes').</p>
-<pre><code class="js">template: '&lt;p&gt;some content&lt;/p&gt;&lt;div onclick=&quot;doEvil()&quot;&gt;the good stuff&lt;/div&gt;',
+<p>The object form should have <code>elements</code> which is an array of blacklisted elements and <code>eventAttributes</code> boolean which, when <code>true</code>, also strips out event attributes.</p>
+<pre><code class="js">template: `
+  &lt;p&gt;some content&lt;/p&gt;
+  &lt;div onclick=&quot;doEvil()&quot;&gt;the good stuff&lt;/div&gt;
+`,
 sanitize: {
   elements: [ 'p' ],
   eventAttributes: true
 }
 
 // result:
-&lt;div&gt;the good stuff&lt;/div&gt;
+// &lt;div&gt;the good stuff&lt;/div&gt;
 </code></pre>
 
 <hr />
 <h2 id="staticdelimiters">staticDelimiters</h2>
-<p><em><code>(Array[string])</code></em></p>
-<p>Defaults to <code>[ '[[', ']]' ]</code>. Used to set what static (one-time binding) delimiters to use when parsing templates.</p>
+<p><code>(Array[string])</code></p>
+<p>Sets the static (one-time binding) delimiters. Defaults to <code>[ '[[', ']]' ]</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: 'hello [[foo]]',
   staticDelimiters: [ '[[', ']]' ], //default
@@ -1181,8 +1235,8 @@ ractive.set( 'foo', 'mars' );
 
 <hr />
 <h2 id="statictripledelimiters">staticTripleDelimiters</h2>
-<p><em><code>(Array&lt;string&gt;)</code></em></p>
-<p>Defaults to <code>[ '[[[', ']]]' ]</code>. Used to set what static (one-time binding) triple delimiters to use when parsing templates.</p>
+<p><code>(Array&lt;string&gt;)</code></p>
+<p>Sets the static (one-time binding) triple delimiters. Defaults to <code>[ '[[[', ']]]' ]</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: 'hello [[[html]]]',
   staticTripleDelimiters: [ '[[[', ']]]' ], //default
@@ -1196,22 +1250,23 @@ ractive.set( 'html', '&lt;span&gt;mars&lt;/span&gt;' );
 
 <hr />
 <h2 id="stripcomments">stripComments</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>true</code>. Whether or not to remove comments in templates when parsing.</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not to remove comments in templates when parsing. Defaults to <code>true</code>.</p>
 <pre><code class="js">template: '&lt;!-- html comment --&gt;hello world',
 stripComments: false
 
 // result:
-&lt;!-- html comment --&gt;hello world
+// &lt;!-- html comment --&gt;hello world
 </code></pre>
 
 <hr />
 <h2 id="target">target</h2>
-<p>synonym for <code>el</code></p>
+<p><code>(string|HTMLElement|array-like)</code></p>
+<p>Alias for <a href="#el"><code>el</code></a>.</p>
 <hr />
 <h2 id="template">template</h2>
-<p><em><code>(string|array|object|function)</code></em></p>
-<p>The <a href="../../Concepts/Templates/Overview/">template</a> to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [<code>Ractive.parse()</code>](../API/Static Methods.md#Ractive.parse()) or a function that returns any of the previous options.</p>
+<p><code>(string|array|object|function)</code></p>
+<p>The <a href="../../Concepts/Templates/Overview/">template</a> to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [<code>Ractive.parse()</code>](../API/Static Methods.md#Ractive.parse()) or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and a <a href="../Helper Objects/Parse/">Parse Object</a>.</p>
 <pre><code class="js">// Selector
 template: '#my-template',
 
@@ -1227,38 +1282,31 @@ template: function(data, p){
 },
 </code></pre>
 
-<p>If you need to do additional post-processing on templates, the function option receives the post-processed data and a <a href="../Helper Objects/Parse/">Parse Object</a> that provides helper methods for template manipulation.</p>
-<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, function templates will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<p>During a <a href="../Instance Methods/#ractive.reset()"><code>ractive.reset()</code></a>, templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <hr />
 <h2 id="transitions">transitions</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
-<p>A key-value hash of transitions that are specific to this instance. The <code>key</code> is referenced within templates using <code>intro</code> and <code>outro</code> attributes on elements, and <code>value</code> is a transition functions, see <a href="../../Extend/Transitions/">Transitions</a> for more info.</p>
-<pre><code class="js">template: '&lt;p intro=&quot;slide&quot; outro=&quot;slide&quot;&gt;hello world&lt;/p&gt;',
-transitions: {
-  slide: function ( t, params ) {...}
-}
-</code></pre>
-
+<p><code>(Object&lt;string, Function&gt;)</code></p>
+<p>A map of <a href="../../Extend/Transitions/">transitions</a> where the key is the name of the transition and the value is a transition definition.</p>
 <hr />
 <h2 id="transitionsenabled">transitionsEnabled</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>true</code>. Whether or not transitions are enabled for this instance.</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not transitions are enabled. Defaults to <code>true</code>.</p>
 <hr />
 <h2 id="tripledelimiters">tripleDelimiters</h2>
-<p><em><code>(Array[string])</code></em></p>
-<p>Defaults to <code>[ '{{{', '}}}' ]</code>. Used to set what triple delimiters to use when parsing templates.</p>
+<p><code>(Array[string])</code></p>
+<p>Sets the triple delimiters. Defaults to <code>[ '{{{', '}}}' ]</code>.</p>
 <pre><code class="js">template: 'hello @html@',
 tripleDelimiters: [ '@', '@' ],
 data: { html: '&lt;span&gt;world&lt;/span&gt;' }
 
 // result:
-hello &lt;span&gt;world&lt;/span&gt;
+// hello &lt;span&gt;world&lt;/span&gt;
 </code></pre>
 
 <hr />
 <h2 id="twoway">twoway</h2>
-<p><em><code>(boolean)</code></em></p>
-<p>Defaults to <code>true</code>. Whether or not two-way data binding is enabled (see <a href="../../Concepts/Data Binding/Two-Way Binding/">Two-Way Binding</a>).</p>
+<p><code>(boolean)</code></p>
+<p>Whether or not <a href="../../Concepts/Data Binding/Two-Way Binding/">two-way binding</a> is enabled. Defaults to <code>true</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
   data: { foo: 'bar' },
@@ -1266,15 +1314,15 @@ hello &lt;span&gt;world&lt;/span&gt;
 });
 
 // user types &quot;fizz&quot; into &lt;input&gt;, but data value is not changed:
+
 console.log( ractive.get( 'foo' ) ); //logs &quot;bar&quot;
 
 // updates from the model are still pushed to the view
+
 ractive.set( 'foo', 'fizz' );
 
 // input now displays &quot;fizz&quot;
-</code></pre>
-
-<p>Also see <a href="#staticDelimiters">static delimiters</a> for one-time binding</p></div>
+</code></pre></div>
         
     </div>
 
