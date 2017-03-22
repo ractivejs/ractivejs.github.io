@@ -19,6 +19,7 @@ pages:
     - Introduction: index.md
     - Tutorial:
       - Hello World: Get Started/Tutorial/Hello World.md
+      - References and Context: Get Started/Tutorial/References and Context.md
     - Examples:
       - Analog Clock: Get Started/Examples/Analog Clock.md
       - Animated Chart: Get Started/Examples/Animated Chart.md
