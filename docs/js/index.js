@@ -73,6 +73,10 @@ var playground = (function() {
 
       var pg = window.playgroundEl.querySelector('iframe').contentWindow;
       pg.postMessage({ code: el.getAttribute('data-playground') }, '*');
+
+      setTimeout(function() {
+        el.scrollIntoView();
+      }, 500);
     }
   }
 })();
