@@ -1,4 +1,4 @@
-*See also: [proxy events](./Proxy Events.md)*
+*See also: [proxy events](./Proxy-Events.md)*
 
 __Note:__ Unqualified event method calls are deprecated and have been replaced with event expressions that resolve the same way as every other expression in a Ractive template. This means that to call, for instance, `set('foo', 'bar')` in an event, you would now use `@this.set('foo', 'bar')`. Unfortunately, this adds a bit of boilerplate to common method calls, but it is also resolves the disparity between event directives and other template references, allows calling data methods from events, and allows executing multiple, possibly more complex, expressions when an event fires.
 
@@ -9,7 +9,7 @@ As an alternative to [event directive](./Directives.md), right from your templat
 <button on-click='@this.toggle("foo")'>toggle foo</button>
 ```
 
-In this case, because [`ractive.toggle()`](../../API/Instance Properties#ractive.toggle()) is a built-in method, clicking the button will toggle the value of `foo` between `true` and `false` ([demo](http://jsfiddle.net/rich_harris/xxg93vw8/)).
+In this case, because [`ractive.toggle()`](../../API/Instance-Properties#ractivetoggle) is a built-in method, clicking the button will toggle the value of `foo` between `true` and `false` ([demo](http://jsfiddle.net/rich_harris/xxg93vw8/)).
 
 This also works with custom methods:
 
@@ -57,7 +57,7 @@ You can also pass the `event` object, or properties thereof (`event.original` is
 
 The `event` object is also available within body of the method call function as `this.event`. Note that methods on your Ractive instance that may handle your events are effectively part of your public API, and `this.event` will only be available during invocations triggered by an event.
 
-The `event` argument is also extended with contextual helper methods. See [helpers](../../API/Helper Objects/Node Info.md).
+The `event` argument is also extended with contextual helper methods. See [helpers](../../API/Helper-Objects/Node-Info.md).
 
 If you need to evaluate multiple expressions from an event directive, simply separate them with a `,`. For instance:
 

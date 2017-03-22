@@ -140,7 +140,7 @@ setTimeout(function() {
 
 ## ractive.attachChild()
 
-Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [`ractive.extend()`](../API/Static Methods.md#ractiveextend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
+Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [`ractive.extend()`](../API/Static-Methods.md#ractiveextend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
 
 **Syntax**
 ```js
@@ -447,7 +447,7 @@ Returns the first parent of this component instance with the given `name`.
 
 ## ractive.fire()
 
-Fires an event, which will be received by handlers that were bound using [`ractive.on`](#ractiveon). In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static Methods.md#ractiveextend), to allow applications to hook into your subclass.
+Fires an event, which will be received by handlers that were bound using [`ractive.on`](#ractiveon). In practical terms, you would mostly likely use this with [`Ractive.extend()`](../API/Static-Methods.md#ractiveextend), to allow applications to hook into your subclass.
 
 **Syntax**
 
@@ -514,7 +514,7 @@ console.log(r.get('foo.bar.0'));
 
 ## ractive.getNodeInfo()
 
-This is an instance specific version of [`Ractive.getNodeInfo()`](../API/Static Methods.md#ractivegetnodeinfo) that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.
+This is an instance specific version of [`Ractive.getNodeInfo()`](../API/Static-Methods.md#ractivegetnodeinfo) that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.
 
 **Syntax**
 
@@ -526,7 +526,7 @@ This is an instance specific version of [`Ractive.getNodeInfo()`](../API/Static 
 
 **Returns**
 
-- `(NodeInfo)`: Returns an [NodeInfo](Helper Objects/Node Info.md) object with helper methods to interact with the Ractive instance and context associated with the given node.
+- `(NodeInfo)`: Returns an [NodeInfo](Helper-Objects/Node-Info.md) object with helper methods to interact with the Ractive instance and context associated with the given node.
 
 **Examples**
 
@@ -1187,7 +1187,7 @@ Decrements the selected [keypath](../Concepts/Templates/Keypaths.md).
 
 Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.
 
-Calling `ractive.teardown()` causes a `teardown` [event](../Extend/Events.md) to be fired - this is most useful with [`Ractive.extend()`](../API/Static Methods.md#ractiveextend) as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.
+Calling `ractive.teardown()` causes a `teardown` [event](../Extend/Events.md) to be fired - this is most useful with [`Ractive.extend()`](../API/Static-Methods.md#ractiveextend) as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.
 
 **Syntax**
 
@@ -1425,7 +1425,7 @@ ractive.update( 'foo' ); // causes [observer](../Concepts/Events/Publish-Subscri
 
 ## ractive.updateModel()
 
-If you programmatically manipulate inputs and other elements that have [two‐way binding](../Concepts/Data Binding/Two-Way Binding.md) set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
+If you programmatically manipulate inputs and other elements that have [two‐way binding](../Concepts/Data-Binding/Two-Way-Binding.md) set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
 
 **Syntax**
 

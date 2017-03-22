@@ -8,9 +8,9 @@ In many situations, you want to encapsulate behaviour and markup into a single r
 Ractive.components.MyComponent = Ractive.extend({ ... });
 ```
 
-Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect). This configuration sets it apart from regular instances in that you can define different behavior based on what [initialization options](../API/Initialization Options.md) are defined on it.
+Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect). This configuration sets it apart from regular instances in that you can define different behavior based on what [initialization options](../API/Initialization-Options.md) are defined on it.
 
-To declare components, one simply extends Ractive using [Ractive.extend()](../API/Static Methods.md#Ractive.extend()). In turn, these subclasses can also be subclassed.
+To declare components, one simply extends Ractive using [Ractive.extend()](../API/Static-Methods.md#ractiveextend). In turn, these subclasses can also be subclassed.
 
 ```js
 // A regular instance of Ractive
@@ -136,7 +136,7 @@ const ractive = new Ractive({
 ractive.set('message', 'Hello World!');
 ```
 
-While this is handy, sometimes you will want full component isolation and only resolve references within the component. The `isolated`[initialization option](../API/Initialization Options.md)does just that. When set to `true`, the resolver stops resolution up to the component with `isolated:true`.
+While this is handy, sometimes you will want full component isolation and only resolve references within the component. The `isolated`[initialization option](../API/Initialization-Options.md)does just that. When set to `true`, the resolver stops resolution up to the component with `isolated:true`.
 
 In the following example, the instance of `ChildComponent` will not print anything due to the `isolated: true` set on it.
 
@@ -222,7 +222,7 @@ widget.get();  // {"shades":["red","green","blue"], "option1":"A"}
 
 ### Events
 
-Components can fire events like regular elements using [ractive.fire()](../API/Instance Methods.md#ractive.fire()). Enclosing instances can listen for events using the same `on-*` event notation. There are two ways to handle component events.
+Components can fire events like regular elements using [ractive.fire()](../API/Instance-Methods.md#ractivefire). Enclosing instances can listen for events using the same `on-*` event notation. There are two ways to handle component events.
 
 The first is using the method call syntax which is similar to how you would write inline JavaScript.
 

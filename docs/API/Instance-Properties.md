@@ -62,7 +62,7 @@ The instance-only registry of [events](../Extend/Events.md).
 
 _`(Object<string, Function>)`_
 
-A key-value hash of interpolators use by [`ractive.animate()`](../API/Instance Methods.md#ractive.animate()).
+A key-value hash of interpolators use by [`ractive.animate()`](../API/Instance-Methods.md#ractiveanimate).
 
 ---
 

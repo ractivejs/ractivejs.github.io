@@ -1,6 +1,6 @@
 # Parse
 
-The parse object is an object you receive as the second argument in [function templates](../Initialization Options.md#template). This helper object provides you with essential functions to dissect markup before turning over the template for use.
+The parse object is an object you receive as the second argument in [function templates](../Initialization-Options.md#template). This helper object provides you with essential functions to dissect markup before turning over the template for use.
 
 ---
 
@@ -54,7 +54,7 @@ Test whether the supplied template is already parsed and is in its object form.
 
 ## p.parse()
 
-Parses the template using [Ractive.parse()](../Static Methods.md#Ractive.parse()). Full Ractive runtime must be loaded.
+Parses the template using [Ractive.parse()](../Static-Methods.md#ractiveparse). Full Ractive runtime must be loaded.
 
 **Syntax**
 
@@ -63,7 +63,7 @@ Parses the template using [Ractive.parse()](../Static Methods.md#Ractive.parse()
 **Arguments**
 
 - `template (string|Object)`: The template in its string form or object form.
-- `[parseOptions] (Object)`: Template parser options. See [Ractive.parse()](../Static Methods.md#Ractive.parse()) for all available options. If `parseOptions` is not specified, it defaults to those of the current instance.
+- `[parseOptions] (Object)`: Template parser options. See [Ractive.parse()](../Static-Methods.md#ractiveparse) for all available options. If `parseOptions` is not specified, it defaults to those of the current instance.
 
 **Returns**
 

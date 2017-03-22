@@ -44,7 +44,7 @@ The registry of globally available [decorators](../Extend/Decorators.md).
 
 _`(Object<string, any>)`_
 
-The defaults for [initialisation options](../API/Initialization Options.md) with the exception of [plugin registries](../Integrations/Plugins.md).
+The defaults for [initialisation options](../API/Initialization-Options.md) with the exception of [plugin registries](../Integrations/Plugins.md).
 
 ```js
 // Change the default mustache delimiters to [[ ]] globally
@@ -89,7 +89,7 @@ _`(Object<string, Function>)`_
 
 The global registry of [easing functions](../Extend/Easings.md).
 
-The easing functions are used by the [`ractive.animate`](../API/Instance Methods.md#ractive.animate) method and by [transitions](../Extend/Transitions.md). Four are included by default: `linear`, `easeIn`, `easeOut` and `easeInOut`.
+The easing functions are used by the [`ractive.animate`](../API/Instance-Methods.md#ractiveanimate) method and by [transitions](../Extend/Transitions.md). Four are included by default: `linear`, `easeIn`, `easeOut` and `easeInOut`.
 
 ---
 
@@ -105,19 +105,13 @@ The global registry of [events](../Extend/Events.md).
 
 _`(Object<string, Function>)`_
 
-A key-value hash of interpolators use by [`ractive.animate()`](../API/Instance Methods.md#ractive.animate()).
+A key-value hash of interpolators use by [`ractive.animate()`](../API/Instance-Methods.md#ractiveanimate).
 
 ---
 
 ## Ractive.length
 
 Since `Ractive` is a function, and functions have a `length` equal to their number of declared arguments, `Ractive` has a `length` of `1`.
-
----
-
-## Ractive.magic
-
-Indicates whether or not the current environment supports [magic mode](../Concepts/Data Binding/Magic Mode.md).
 
 ---
 

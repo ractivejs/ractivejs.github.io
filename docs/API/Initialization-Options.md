@@ -2,7 +2,7 @@
 
 The following is an exhaustive list of initialisation options that you can pass to `new Ractive(options)` and `Ractive.extend(options)`, with full descriptions grouped below by category.
 
-Note that any additional options set that are not part of the [initialization options](../API/Initialization Options.md) will be added as properties or methods of the instance.
+Note that any additional options set that are not part of the [initialization options](../API/Initialization-Options.md) will be added as properties or methods of the instance.
 
 ```js
 var ractive = new Ractive({
@@ -137,7 +137,7 @@ components: {
 
 If you need to do additional post-processing on the components, the function option receives post-processed data.
 
-During a [`ractive.reset()`](../API/Instance Methods.md#ractive.reset()), function component options will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](../API/Instance-Methods.md#ractivereset), function component options will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 
@@ -153,7 +153,7 @@ computed: {
 }
 ```
 
-See [Computed Properties](../Concepts/Data Binding/Computed Properties.md) for more information and examples .
+See [Computed Properties](../Concepts/Data-Binding/Computed-Properties.md) for more information and examples .
 
 ---
 
@@ -379,7 +379,7 @@ events: {
 
 _`(Object<string, Function>)`_
 
-A key-value hash of interpolators use by [`ractive.animate()`](../API/Instance Methods.md#ractive.animate()).
+A key-value hash of interpolators use by [`ractive.animate()`](../API/Instance-Methods.md#ractiveanimate).
 
 ---
 
@@ -409,40 +409,6 @@ ractive.on('change', function(){
   // only happens on exiting <inputor return if submit
   console.log('changed!')
 })
-```
-
----
-
-## magic
-
-_`(boolean)`_
-
-Defaults to `false`. Whether or not to wrap data in ES5 accessors for automatic binding (see [Magic Mode](../Concepts/Data Binding/Magic Mode.md)).
-
-```js
-var data = { foo: 'bar' };
-new Ractive({ data: data } );
-// will update automagically:
-data.foo = 'fizz'
-```
-
----
-
-## modifyArrays
-
-_`(boolean)`_
-
-Defaults to `false`. Whether or not to modify array mutator methods to enable frictionless data binding with lists (see [Array Modification](../Concepts/Data Binding/Array Modification.md)).
-
-```js
-var items = [ 'red', 'blue' ];
-new Ractive({
-  data: data,
-  modifyArrays: true //default
-});
-
-// will update automagically:
-items.push( 'green' );
 ```
 
 ---
@@ -498,7 +464,7 @@ _`(Function)`_
 
 A lifecycle event that is called when an instance is constructed but before any configuration has been processed.
 
-Accepts the[initialization options](../API/Initialization Options.md)as arguments.
+Accepts the [initialization options](../API/Initialization-Options.md) as arguments.
 
 ---
 
@@ -576,9 +542,9 @@ partials: {
 }
 ```
 
-If you need to do additional post-processing on the partials, the function option receives post-processed data and a [Parse Object](Helper Objects/Parse.md) that provides helper methods for template manipulation.
+If you need to do additional post-processing on the partials, the function option receives post-processed data and a [Parse Object](Helper-Objects/Parse.md) that provides helper methods for template manipulation.
 
-During a [`ractive.reset()`](../API/Instance Methods.md#ractive.reset()), function partials will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](../API/Instance-Methods.md#ractivereset), function partials will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 
@@ -704,7 +670,7 @@ synonym for `el`
 
 _`(string|array|object|function)`_
 
-The [template](../Concepts/Templates/Overview.md) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`]\(../API/Static Methods.md#Ractive.parse()) or a function that returns any of the previous options.
+The [template](../Concepts/Templates/Overview.md) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`]\(../API/Static-Methods.md#ractiveparse) or a function that returns any of the previous options.
 
 ```js
 // Selector
@@ -722,9 +688,9 @@ template: function(data, p){
 },
 ```
 
-If you need to do additional post-processing on templates, the function option receives the post-processed data and a [Parse Object](Helper Objects/Parse.md) that provides helper methods for template manipulation.
+If you need to do additional post-processing on templates, the function option receives the post-processed data and a [Parse Object](Helper-Objects/Parse.md) that provides helper methods for template manipulation.
 
-During a [`ractive.reset()`](../API/Instance Methods.md#ractive.reset()), function templates will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](../API/Instance-Methods.md#ractivereset), function templates will be re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 
@@ -772,7 +738,7 @@ hello <span>world</span>
 
 _`(boolean)`_
 
-Defaults to `true`. Whether or not two-way data binding is enabled (see [Two-Way Binding](../Concepts/Data Binding/Two-Way Binding.md)).
+Defaults to `true`. Whether or not two-way data binding is enabled (see [Two-Way Binding](../Concepts/Data-Binding/Two-Way-Binding.md)).
 
 ```js
 var ractive = new Ractive({
@@ -790,4 +756,4 @@ ractive.set( 'foo', 'fizz' );
 // input now displays "fizz"
 ```
 
-Also see [static delimiters](#staticDelimiters) for one-time binding
+Also see [static delimiters](#staticdelimiters) for one-time binding

@@ -1,6 +1,6 @@
 # Node Info
 
-The nodeinfo object is the type of object you receive when calling [Node Info](Node Info.md). This object contains various properties and methods that allow you to obtain information about the Ractive instance, the node associated with it and the context surrounding it.
+The nodeinfo object is the type of object you receive when calling [Node Info](Node-Info.md). This object contains various properties and methods that allow you to obtain information about the Ractive instance, the node associated with it and the context surrounding it.
 
 Helper methods that take a [keypath](../../Concepts/Templates/Keypaths.md) will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported.
 
@@ -8,13 +8,13 @@ Helper methods that take a [keypath](../../Concepts/Templates/Keypaths.md) will 
 
 ## nodeinfo.add()
 
-See [ractive.add()](../Instance Methods.md#ractive.add()).
+See [ractive.add()](../Instance-Methods.md#ractiveadd).
 
 ---
 
 ## nodeinfo.animate()
 
-See [ractive.animate()](../Instance Methods.md#ractive.animate()).
+See [ractive.animate()](../Instance-Methods.md#ractiveanimate).
 
 ---
 
@@ -28,7 +28,7 @@ The data context of the node.
 
 ## nodeinfo.get()
 
-See [ractive.get()](../Instance Methods.md#ractive.get()).
+See [ractive.get()](../Instance-Methods.md#ractiveget).
 
 ---
 
@@ -136,13 +136,13 @@ The [keypath](../../Concepts/Templates/Keypaths.md) to `context`.
 
 ## nodeinfo.link()
 
-See [ractive.link()](../Instance Methods.md#ractive.link()).
+See [ractive.link()](../Instance-Methods.md#ractivelink).
 
 ---
 
 ## nodeinfo.merge()
 
-See [ractive.merge()](../Instance Methods.md#ractive.merge()).
+See [ractive.merge()](../Instance-Methods.md#ractivemerge).
 
 ---
 
@@ -164,13 +164,13 @@ The original DOM event object. Normally present when the event is a Ractive DOM 
 
 ## nodeinfo.pop()
 
-See [ractive.pop()](../Instance Methods.md#ractive.pop()).
+See [ractive.pop()](../Instance-Methods.md#ractivepop).
 
 ---
 
 ## nodeinfo.push()
 
-See [ractive.push()](../Instance Methods.md#ractive.push()).
+See [ractive.push()](../Instance-Methods.md#ractivepush).
 
 ---
 
@@ -209,13 +209,13 @@ Resolves the given [keypath](../../Concepts/Templates/Keypaths.md) to a full key
 
 ## nodeinfo.reverse()
 
-See [ractive.reverse()](../Instance Methods.md#ractive.reverse()).
+See [ractive.reverse()](../Instance-Methods.md#ractivereverse).
 
 ---
 
 ## nodeinfo.set()
 
-See [ractive.set()](../Instance Methods.md#ractive.set()).
+See [ractive.set()](../Instance-Methods.md#ractiveset).
 
 ---
 
@@ -245,52 +245,52 @@ Sets the binding of the node represented by this info object to the specified va
 
 ## nodeinfo.shift()
 
-See [ractive.shift()](../Instance Methods.md#ractive.shift()).
+See [ractive.shift()](../Instance-Methods.md#ractiveshift).
 
 ---
 
 ## nodeinfo.splice()
 
-See [ractive.splice()](../Instance Methods.md#ractive.splice()).
+See [ractive.splice()](../Instance-Methods.md#ractivesplice).
 
 ---
 
 ## nodeinfo.sort()
 
-See [ractive.sort()](../Instance Methods.md#ractive.sort()).
+See [ractive.sort()](../Instance-Methods.md#ractivesort).
 
 ---
 
 ## nodeinfo.subtract()
 
-See [ractive.subtract()](../Instance Methods.md#ractive.subtract()).
+See [ractive.subtract()](../Instance-Methods.md#ractivesubtract).
 
 ---
 
 ## nodeinfo.toggle()
 
-See [ractive.toggle()](../Instance Methods.md#ractive.toggle()).
+See [ractive.toggle()](../Instance-Methods.md#ractivetoggle).
 
 ---
 
 ## nodeinfo.unlink()
 
-See [ractive.unlink()](../Instance Methods.md#ractive.unlink()).
+See [ractive.unlink()](../Instance-Methods.md#ractiveunlink).
 
 ---
 
 ## nodeinfo.unshift()
 
-See [ractive.unshift()](../Instance Methods.md#ractive.unshift()).
+See [ractive.unshift()](../Instance-Methods.md#ractiveunshift).
 
 ---
 
 ## nodeinfo.update()
 
-See [ractive.update()](../Instance Methods.md#ractive.update()).
+See [ractive.update()](../Instance-Methods.md#ractiveupdate).
 
 ---
 
 ## nodeinfo.updateModel()
 
-See [ractive.updateModel()](../Instance Methods.md#ractive.updateModel()).
+See [ractive.updateModel()](../Instance-Methods.md#ractiveupdatemodel).

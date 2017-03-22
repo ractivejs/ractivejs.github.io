@@ -10,7 +10,7 @@ If you have a mustache which depends on `foo.bar`, and `foo` changes, it's quite
 
 This relationship is expressed through the `_depsMap` property of a Ractive instance - whenever `foo` changes, as well as dealing with direct `foo` dependants we check the map for those indirect dependants.
 
-In the case of [expressions](../Templates/Expressions.md) and [observers](../Data Binding/Observers.md), we also need to consider dependants of *upstream keypaths*. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:
+In the case of [expressions](../Templates/Expressions.md) and [observers](../Data-Binding/Observers.md), we also need to consider dependants of *upstream keypaths*. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:
 
 ```html
 {{#( sort( list, 'name' ) )}}
@@ -41,7 +41,7 @@ ractive.set( 'list[0].name', 'Zebediah' );
 
 In the example, setting `list[0].name` causes dependants of `list` to be updated.
 
-As well as [expressions](../Templates/Expressions.md), [Observers](../Data Binding/Observers.md) respond to both upstream and downstream changes.
+As well as [expressions](../Templates/Expressions.md), [Observers](../Data-Binding/Observers.md) respond to both upstream and downstream changes.
 
 
 # Expressions with multiple dependencies

@@ -17,30 +17,38 @@ extra_javascript:
 pages:
   - Get Started:
     - Introduction: index.md
-    - Tutorial:
-      - Hello World: Get Started/Tutorial/Hello World.md
-      - References and Context: Get Started/Tutorial/References and Context.md
+    - Hello World: Get-Started/Tutorials/Hello-World.md
+    - References and Context: Get-Started/Tutorials/References-and-Context.md
+    - Elements, Attributes, and Context helpers: Get-Started/Tutorials/Elements-Attributes-and-Context-helpers.md
+    - Expressions and Computations: Get-Started/Tutorials/Expressions-and-Computations.md
+    - DOM and Instance Events: Get-Started/Tutorials/DOM-and-Instance-Events.md
+    - Partials and Templates: Get-Started/Tutorials/Partials-and-Templates.md
+    - Forms, Binding, and HTML: Get-Started/Tutorials/Forms-Binding-and-HTML.md
+    - Transitions: Get-Started/Tutorials/Transitions.md
+    - Components: Get-Started/Tutorials/Components.md
+    - Decorators: Get-Started/Tutorials/Decorators.md
+    - SVG and Animation: Get-Started/Tutorials/SVG-and-Animation.md
+    - Debugging: Get-Started/Debugging.md
+    - Support: Get-Started/Support.md
+    - Contributing: Get-Started/Contributing.md
     - Examples:
-      - Analog Clock: Get Started/Examples/Analog Clock.md
-      - Animated Chart: Get Started/Examples/Animated Chart.md
-      - Comments: Get Started/Examples/Comments.md
-      - Donut Chart: Get Started/Examples/Donut Chart.md
-      - Illustration: Get Started/Examples/Illustration.md
-      - Rating Stars: Get Started/Examples/Rating Stars.md
-      - Todo List: Get Started/Examples/Todo List.md
-    - Debugging: Get Started/Debugging.md
-    - Support: Get Started/Support.md
-    - Contributing: Get Started/Contributing.md
+      - Analog Clock: Get-Started/Examples/Analog-Clock.md
+      - Animated Chart: Get-Started/Examples/Animated-Chart.md
+      - Comments: Get-Started/Examples/Comments.md
+      - Donut Chart: Get-Started/Examples/Donut-Chart.md
+      - Illustration: Get-Started/Examples/Illustration.md
+      - Rating Stars: Get-Started/Examples/Rating-Stars.md
+      - Todo List: Get-Started/Examples/Todo-List.md
   - API:
-    - Initialization Options: API/Initialization Options.md
-    - Static Properties: API/Static Properties.md
-    - Static Methods: API/Static Methods.md
-    - Instance Properties: API/Instance Properties.md
-    - Instance Methods: API/Instance Methods.md
+    - Initialization Options: API/Initialization-Options.md
+    - Static Properties: API/Static-Properties.md
+    - Static Methods: API/Static-Methods.md
+    - Instance Properties: API/Instance-Properties.md
+    - Instance Methods: API/Instance-Methods.md
     - Helper Objects:
-      - Node Info: API/Helper Objects/Node Info.md
-      - Parse: API/Helper Objects/Parse.md
-      - Transition: API/Helper Objects/Transition.md
+      - Node Info: API/Helper-Objects/Node-Info.md
+      - Parse: API/Helper-Objects/Parse.md
+      - Transition: API/Helper-Objects/Transition.md
     - Errors: API/Errors.md
   - Integrations:
     - Plugins: Integrations/Plugins.md
@@ -62,23 +70,21 @@ pages:
       - Model: Concepts/Architecture/Model.md
       - View: Concepts/Architecture/View.md
     - Data Binding:
-      - Array Modification: Concepts/Data Binding/Array Modification.md
-      - Computed Properties: Concepts/Data Binding/Computed Properties.md
-      - Dependents: Concepts/Data Binding/Dependents.md
-      - Magic Mode: Concepts/Data Binding/Magic Mode.md
-      - Observers: Concepts/Data Binding/Observers.md
-      - Parallel DOM: Concepts/Data Binding/Parallel DOM.md
-      - Two-Way Binding: Concepts/Data Binding/Two-Way Binding.md
+      - Computed Properties: Concepts/Data-Binding/Computed-Properties.md
+      - Dependents: Concepts/Data-Binding/Dependents.md
+      - Observers: Concepts/Data-Binding/Observers.md
+      - Parallel DOM: Concepts/Data-Binding/Parallel-DOM.md
+      - Two-Way Binding: Concepts/Data-Binding/Two-Way-Binding.md
     - Events:
       - Overview: Concepts/Events/Overview.md
       - Bubbling: Concepts/Events/Bubbling.md
       - Directives: Concepts/Events/Directives.md
-      - Method Calls: Concepts/Events/Method Calls.md
-      - Proxy Events: Concepts/Events/Proxy Events.md
+      - Method Calls: Concepts/Events/Method-Calls.md
+      - Proxy Events: Concepts/Events/Proxy-Events.md
       - Publish-Subscribe: Concepts/Events/Publish-Subscribe.md
     - Rendering:
-      - Progressive Enhancement: Concepts/Rendering/Progressive Enhancement.md
-      - Server-Side Rendering: Concepts/Rendering/Server-Side Rendering.md
+      - Progressive Enhancement: Concepts/Rendering/Progressive-Enhancement.md
+      - Server-Side Rendering: Concepts/Rendering/Server-Side-Rendering.md
     - Security:
       - CSP: Concepts/Security/CSP.md
     - Templates:

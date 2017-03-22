@@ -34,7 +34,7 @@ Creates a "subclass" of the Ractive constructor or a subclass constructor. See [
 
 **Arguments**
 
-- `[options] (Object)`: One or more objects that represent the defaults for instances of the subclass, with the latter objects' properties taking precedence over the former. See [Initialization Options](../API/Initialization Options.md) for a list of possible options.
+- `[options] (Object)`: One or more objects that represent the defaults for instances of the subclass, with the latter objects' properties taking precedence over the former. See [Initialization Options](../API/Initialization-Options.md) for a list of possible options.
 
 **Returns**
 
@@ -113,7 +113,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 ## Ractive.getNodeInfo()
 
-Accepts a node and returns an [Node Info](Helper Objects/Node Info.md) object containing details of the Ractive instance the node is associated to.
+Accepts a node and returns an [Node Info](Helper-Objects/Node-Info.md) object containing details of the Ractive instance the node is associated to.
 
 **Syntax**
 
@@ -125,7 +125,7 @@ Accepts a node and returns an [Node Info](Helper Objects/Node Info.md) object co
 
 **Returns**
 
-- `(NodeInfo)`: An [NodeInfo](Helper Objects/Node Info.md) object.
+- `(NodeInfo)`: An [NodeInfo](Helper-Objects/Node-Info.md) object.
 
 **Examples**
 
