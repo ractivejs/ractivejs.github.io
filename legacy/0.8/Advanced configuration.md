@@ -96,40 +96,6 @@ new Ractive({
 
 ## Data
 
-The data option function can either return a value or use the prototype inheritance chain to construct the
-data object. Use `this._super` to call the parent data option. Ractive will handle integrating
-static data options and data option functions. If a return value is specified, further parent data options
-will not be considered.
-
-```js
-
-var Component1 = Ractive.extend({
-    data: {
-	    formatTitle: function (title) {
-		    return '"' + title.toUpperCase() + '"';
-		}
-	}
-});
-
-var Component2 = Component1.extend({
-    data: function( data ) {
-	    this._super( data );
-	    data.scale = 5;
-	}
-});
-
-var ractive = new Component2({
-    data: { foo: 'bar' }
-})
-
-// r.data: { foo: "bar", formatTitle: function, scale: 5 }
-
-```
-
-The data object instance passed to the instantiated ractive instance will always be retained as
-the `ractive.data` instance, _unless_ a return value is specified from an option function in which
- case that return value instance will be used as `ractive.data`
-
 ### Copying Parent Data
 
 Because parent data is common to all instances, you can use an option function to return a
