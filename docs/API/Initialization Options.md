@@ -247,6 +247,11 @@ data: {
 data: function() {
   return { foo: 'bar' };
 }
+
+// Function form using arrow function for less verbosity
+data: () => ({
+  foo: 'bar'
+})
 ```
 
 When using data on components in object form, the data is attached to the component's prototype. Standard prototype rules apply, which means modifying data on the prototype will affect all instances using that prototype.
@@ -281,31 +286,6 @@ component1.set( 'foo.bar', 12 );
 component2.get( 'foo.bar' ); // returns 42
 ```
 
-`this._super` can be used when using a data function option to merge the parent component data into the extending component. Ractive handles the differences between object and function form.
-
-```js
-var Parent = Ractive.extend({
-  data: {
-    formatTitle: function (title) {
-      return '"' + title.toUpperCase() + '"';
-    }
-  }
-});
-
-var Child = Parent.extend({
-  data: function( data ) {
-    this._super( data );
-    data.scale = 5;
-  }
-});
-
-var ractive = new Child({
-    data: { foo: 'bar' }
-});
-
-ractive.get(); // { foo: "bar", formatTitle: function, scale: 5 }
-```
-
 Data may also be set asynchronously when using data in function form.
 
 ```js
@@ -318,31 +298,6 @@ data: function () {
     foo: 'default'
   };
 }
-```
-
-Constructors can also be used to supply data. Ractive will treat them like POJOs which means it can only utilize publicly visible members.
-
-```js
-data: function ( data ) {
-  return new Model( data );
-}
-```
-
-Constructors can also be assigned directly to `data` as long as you provide a constructor guard. Ractive will treat the constructor like a function.
-
-```js
-function Model ( data ) {
-  if ( !( this instanceof Model) ) { return new Model( data ); }
-  // model setup
-}
-
-var MyComponent = Ractive.extend({
-    data: Model
-});
-
-var r = new MyComponent({
-    data: { foo: 'bar' }
-})
 ```
 
 ---
