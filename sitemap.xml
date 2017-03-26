@@ -10,6 +10,12 @@
     </url>
         
     <url>
+     <loc>https://ractive.js.org/Get Started/60-Second Setup/</loc>
+     <lastmod>2017-03-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>https://ractive.js.org</loc>
      <lastmod></lastmod>
      <changefreq>daily</changefreq>
