@@ -12,7 +12,7 @@ When we take this idea and apply it to user interfaces, we eliminate the DOM man
 
 <!-- break -->
 
-[Ractive.js](http://ractivejs.org) is a new library initially developed to create interactive (hence the name – not to be confused with Reactive.js!) news applications at [theguardian.com](http://theguardian.com). It is designed to dramatically reduce the effort involved in creating web apps by embracing these principles.
+Ractive.js is a new library initially developed to create interactive (hence the name – not to be confused with Reactive.js!) news applications at [theguardian.com](http://theguardian.com). It is designed to dramatically reduce the effort involved in creating web apps by embracing these principles.
 
 Let’s look at a simple example:
 
@@ -142,7 +142,7 @@ As our app becomes more complex, this approach scales beautifully, saving us fro
 
 (You can see a [fully fleshed out TodoMVC implementation here](http://todomvc.com/labs/architecture-examples/ractive/) – (the [source code](https://github.com/tastejs/todomvc/tree/gh-pages/labs/architecture-examples/ractive) is possibly the shortest of any implementation, and arguably some of the most readable).</small>)
 
-It also allows us to do things like [sophisticated animations](http://examples.ractivejs.org/animated-chart), without reams of complex render logic.
+It also allows us to do things like [sophisticated animations](../Get Started/Examples/Animated Chart.md), without reams of complex render logic.
 
 ## How does it work?
 
@@ -211,4 +211,4 @@ But by parsing expressions and blocking ‘accidental’ side-effects, we can en
 
 Expect to see more examples of the reactive programming trend coming to a repository near you. As with all programming paradigms, it’s not a silver bullet, but by integrating reactive thinking into our work we can start to structure our applications in a way that is more readable and (often) more efficient.
 
-[Ractive.js](http://ractivejs.org) is under active development – it’s production-ready (to get started, [try the 60 second setup](https://github.com/RactiveJS/Ractive/wiki/60-second-setup) or [follow the interactive tutorials](http://learn.ractivejs.org)), but will continue to evolve as we collectively figure out the secrets of reactive programming. If you’re interested in being part of that conversation, [come on over to GitHub](https://github.com/RactiveJS/Ractive) and help shape the future of web development.
+Ractive.js is under active development – it’s production-ready (to get started, [try the 60 second setup](https://github.com/RactiveJS/Ractive/wiki/60-second-setup) or [follow the interactive tutorials](http://learn.ractivejs.org)), but will continue to evolve as we collectively figure out the secrets of reactive programming. If you’re interested in being part of that conversation, [come on over to GitHub](https://github.com/RactiveJS/Ractive) and help shape the future of web development.

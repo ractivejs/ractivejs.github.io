@@ -101,7 +101,7 @@ You see the problem. What should be an incredibly basic task is a snakepit of co
 
 ## Enter Ractive.js
 
-[Ractive](http://ractivejs.org) was initially created to tackle the data binding problem in a more elegant way. We on the [Guardian interactive team](http://www.guardian.co.uk/profile/guardian-interactive-department) are acutely aware of the challenges of creating app-like experiences on the web; interactives, by their nature, require a huge amount of DOM manipulation, and as slaves to the editorial agenda we typically have tight deadlines.
+Ractive was initially created to tackle the data binding problem in a more elegant way. We on the [Guardian interactive team](http://www.guardian.co.uk/profile/guardian-interactive-department) are acutely aware of the challenges of creating app-like experiences on the web; interactives, by their nature, require a huge amount of DOM manipulation, and as slaves to the editorial agenda we typically have tight deadlines.
 
 The above example, with Ractive, would go something like this:
 
@@ -176,7 +176,7 @@ But we're only getting started. While it's been used in production in several in
 
 ![Interactive data visualisations are much easier to create with Ractive.js - no DOM event handling, no state management, no labyrinthine render methods](../img/animated-chart.jpg)
 
-<small>Interactive [data visualisations](http://examples.ractivejs.org/animated-chart) are much easier to create with Ractive.js - no DOM event handling, no state management, no labyrinthine render methods</small>
+<small>Interactive [data visualisations](../Get Started/Examples/Animated Chart.md) are much easier to create with Ractive.js - no DOM event handling, no state management, no labyrinthine render methods</small>
 
 ## Acknowledgements
 
