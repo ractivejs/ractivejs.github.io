@@ -3,7 +3,7 @@
 
 ## What is Mustache?
 
-[Mustache](http://mustache.github.com) is one of the most popular templating languages. It's a very lightweight, readable syntax with a comprehensive specification - which means that implementations (such as Ractive) can test that they're doing things correctly.
+[Mustache](http://mustache.github.io/) is one of the most popular templating languages. It's a very lightweight, readable syntax with a comprehensive specification - which means that implementations (such as Ractive) can test that they're doing things correctly.
 
 Other templating languages borrow liberally from Mustache. [Handlebars](http://handlebarsjs.com) has a mustache-like syntax, as does [Angular](http://angularjs.org).
 
