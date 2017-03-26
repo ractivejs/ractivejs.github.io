@@ -133,3 +133,8 @@ div.run-in-playground:hover {
     overflow: auto;
   }
 }
+
+/* Not entirely sure why the built-in bootstrap doesn't have this */
+img{
+  max-width: 100%;
+}
