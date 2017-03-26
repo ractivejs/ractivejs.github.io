@@ -87,5 +87,11 @@ pages:
       - Parsing: Concepts/Templates/Parsing.md
       - Pre-Parsing: Concepts/Templates/Pre-Parsing.md
       - References: Concepts/Templates/References.md
+  - Articles:
+    - Introducing Ractive.js: Articles/introducing-ractive-js.md
+    - The Origins Of Ractive: Articles/the-origins-of-ractive.md
+    - Ractive.js expressions and the new wave of reactive programming: Articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming.md
+    - Ractive vs Angular: Articles/ractive-vs-angular.md
+    - Ractive vs React: Articles/ractive-vs-react.md
 
 
