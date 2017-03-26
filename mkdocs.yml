@@ -17,6 +17,7 @@ extra_javascript:
 pages:
   - Get Started:
     - Introduction: index.md
+    - 60-second setup: Get Started/60-Second Setup.md
     - Examples:
       - Analog Clock: Get Started/Examples/Analog Clock.md
       - Animated Chart: Get Started/Examples/Animated Chart.md

@@ -35,7 +35,7 @@ Using Ractive is very simple. Create a new instance using `new Ractive({...})` w
 <div data-playground="N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvADxICWAbgATVIC8AOiALYCG1AduwD4KAehq0BmHPBj1m9XggDu9AEpcAxqToIAFMFb9SpLjDSlI9AOQBibn0sYDrIwg4AHADZdSCC5YpuAsDAKDAICFq8KEQk9MFh6tRu1Ai8pDEigQ5OpEjeXBb6hs6h4ZEofgASCB4eAPbZxaQJSSlpfgDqdTAeSACEljlEBkQAlADckurwIERAA"></div>
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
     el: 'body',
     template: '<p>{{greeting}}, {{recipient}}</p>',
     data: {
