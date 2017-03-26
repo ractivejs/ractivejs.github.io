@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/Articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/"> 
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Ractive.js expressions and the new wave of reactive programming - Ractive.js</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Introduction</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Analog Clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Animated Chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Donut Chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Rating Stars/">Rating Stars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Get Started/Examples/Todo List/">Todo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Get Started/Contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../API/Initialization Options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Static Properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Static Methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Instance Properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../API/Instance Methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Node Info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../API/Helper Objects/Transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../API/Errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Integrations/Plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Integrations/Libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../Extend/Adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../Extend/Transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/Model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Architecture/View/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Array Modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Computed Properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Magic Mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Parallel DOM/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Data Binding/Two-Way Binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Events/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Method Calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Proxy Events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Events/Publish-Subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Progressive Enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Rendering/Server-Side Rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Security/CSP/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/Pre-Parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../Concepts/Templates/References/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Ractive.js expressions and the new wave of reactive programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ractive-vs-angular/">Ractive vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ractive-vs-react/">Ractive vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../the-origins-of-ractive/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../ractive-vs-angular/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#ractivejs-expressions-and-the-new-wave-of-reactive-programming">Ractive.js expressions and the new wave of reactive programming</a></li>
+        
+            <li class="second-level"><a href="#the-secret-sauce-expressions">The secret sauce: expressions</a></li>
+            
+        
+            <li class="second-level"><a href="#how-does-it-work">How does it work?</a></li>
+            
+        
+            <li class="second-level"><a href="#so-is-it-real-javascript">So is it ‘real JavaScript’?</a></li>
+            
+        
+            <li class="second-level"><a href="#the-future">The future</a></li>
+            
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="ractivejs-expressions-and-the-new-wave-of-reactive-programming">Ractive.js expressions and the new wave of reactive programming</h1>
+<p><em>Originally posted at <a href="http://flippinawesome.org/2013/08/19/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">flippinawesome.org</a></em></p>
+<p>Dedicated followers of JavaScript fashion will by now have noticed this season’s hot new trend. If you haven’t spotted it yet, here are a few projects sporting this style on the GitHub catwalk – <a href="http://facebook.github.io/react/">React</a>, <a href="https://github.com/mattbaker/Reactive.js">Reactive.js</a>, <a href="https://github.com/component/reactive">component/reactive</a> and <a href="https://github.com/yang/reactive-coffee">reactive.coffee</a>.</p>
+<p>That’s right: <em>reactive programming</em> is the new black.</p>
+<p>At a high level, the idea behind reactive programming is that changes in state propagate throughout a system. Put crudely, this means that in a reactive system where <code>a = b * 2</code>, whenever the value of <code>b</code> changes, the value of <code>a</code> will also change, rather than forever being equal to whatever <code>b * 2</code> was at the time of the statement.</p>
+<p>When we take this idea and apply it to user interfaces, we eliminate the DOM manipulation drudgery that dominates web developers’ lives.</p>
+<!-- break -->
+
+<p>Ractive.js is a new library initially developed to create interactive (hence the name – not to be confused with Reactive.js!) news applications at <a href="http://theguardian.com">theguardian.com</a>. It is designed to dramatically reduce the effort involved in creating web apps by embracing these principles.</p>
+<p>Let’s look at a simple example:</p>
+<pre><code class="js">// We create a new ractive, which renders the following to a container element:
+// &lt;p&gt;Hello, Dave! You have 4 tasks remaining.&lt;/p&gt;
+
+var ractive = new Ractive({
+    el: container,
+    template: '&lt;p&gt;Hello, {{name}}! You have {{tasks.incomplete}} tasks remaining.&lt;/p&gt;',
+    data: { name: 'Dave', tasks: { incomplete: 4, total: 11 } }
+});
+
+// Later we get some new data:
+ractive.set( 'tasks', { incomplete: 5, total: 12 });
+
+// The ractive reacts accordingly, surgically updating the part of the DOM that is
+// now out of date:
+// &lt;p&gt;Hello, Dave! You have 5 tasks remaining.&lt;/p&gt;
+</code></pre>
+
+<p>Rather than doing any kind of polling or brute-force ‘dirty checking,’ this uses an elegant dependency tracking system: the text node containing the number of incomplete tasks depends on the <code>tasks.incomplete</code> <em>keypath</em>, which is a child of the <code>tasks</code> keypath. So when we update <code>tasks</code>, we know that we need to check to see if <code>tasks.incomplete</code> has changed – but we don’t need to bother checking <code>tasks.total</code>, because nothing depends on that keypath.</p>
+<p>As applications grow in complexity, this means much less work for the developer. You might think it sounds like more work for the browser, but it’s not. The non-reactive way to do interactive UI typically involves re-rendering views regardless of whether they’ve changed, and replacing chunks of perfectly good DOM (why hello, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management">garbage collector</a>), which is typically much less efficient.</p>
+<p>In other words, reactive UI is a win-win – better for performance, and better for your sanity.</p>
+<h2 id="the-secret-sauce-expressions">The secret sauce: expressions</h2>
+<p>This article won’t go any further into the basics of what Ractive does or why we built it – if you’re interested, you can <a href="http://learn.ractivejs.org">follow the interactive tutorials</a> or <a href="http://theguardian.com/info/developer-blog/2013/jul/24/ractive-js-next-generation-dom-manipulation">read the introductory blog post</a>. Instead, we’re going to focus on one of the features that helps Ractive stand out from its peers, namely <em>expressions</em>.</p>
+<p>Expressions allow you to take the logic that only your interface cares about, and put it in your template <em>where it belongs</em>. Yes, I just said that! If you’ve ever had to debug badly written PHP (for example), you may well shudder at the suggestion that logic belongs in templates. But while it’s true that <em>business logic</em> doesn’t belong in your templates, it’s equally true that a lot of <em>presentation logic</em> – aka ‘data massaging’ – doesn’t really belong in your code.</p>
+<p>(If you still need convincing, here’s a couple of good articles on the subject: <a href="http://www.ebaytechblog.com/2012/10/01/the-case-against-logic-less-templates/">The Case Against Logic-less Templates</a> and <a href="http://boronine.com/2012/09/07/Cult-Of-Logic-less-Templates/">Cult of Logic-Less Templates</a>.)</p>
+<p>Let’s take our initial example and turn it into a basic todo app along the lines of <a href="http://todomvc.com">TodoMVC</a>. Our template looks like this – ignore the question marks for now:</p>
+<pre><code class="html">&lt;p&gt;Hello, {{name}}! You have ??? tasks remaining.&lt;/p&gt;
+
+&lt;ul&gt;
+{{#tasks :i}}
+    &lt;li class='task'&gt;{{i}}: {{description}}&lt;/li&gt;
+{{/tasks}}
+&lt;/ul&gt;
+</code></pre>
+
+<p>Meanwhile our <em>model</em>, if you want to use MVC terminology, is a simple array of objects representing tasks:</p>
+<pre><code class="js">tasks = [
+    { completed: true,  description: 'Add a task' },
+    { completed: false, description: 'Add some more tasks' }.
+    { completed: false, description: 'Solve P = NP' }
+];
+
+ractive = new Ractive({
+    el: container,
+    template: template,
+    data: { name: 'Dave', tasks: tasks }
+});
+</code></pre>
+
+<p>This renders the following:</p>
+<pre><code class="html">&lt;p&gt;Hello, Dave! You have ??? tasks remaining.&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li class='task'&gt;0: Add a task&lt;/li&gt;
+    &lt;li class='task'&gt;1: Add some more tasks&lt;/li&gt;
+    &lt;li class='task'&gt;2: Solve P = NP&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>This time, there’s no <code>tasks.incomplete</code> property, because <code>tasks</code> is an array. We’ll come back to that. The first job is to rejig the numbers so that it starts at 1, because lists starting with 0 only make sense to programmers. Doing so is trivial:</p>
+<pre><code class="html">&lt;li class='task'&gt;{{i+1}}: {{description}}&lt;/li&gt;
+</code></pre>
+
+<p>Next, let’s add a <code>complete</code> class to any completed task:</p>
+<pre><code class="html">&lt;li class='task {{ completed ? &quot;complete&quot; : &quot;pending&quot; }}'&gt;{{i+1}}: {{description}}&lt;/li&gt;
+</code></pre>
+
+<p>Now, our rendered task list looks like this:</p>
+<pre><code class="html">&lt;p&gt;Hello, Dave! You have ??? tasks remaining.&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li class='task complete'&gt;1: Add a task&lt;/li&gt;
+    &lt;li class='task pending'&gt;2: Add some more tasks&lt;/li&gt;
+    &lt;li class='task pending'&gt;3: Solve P = NP&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>Now, let’s deal with those question marks. One way – the traditional way – would be to keep track of the incomplete count as a separate value in our model (or viewmodel, depending on which tribe you belong to), and update it every time the task list changed. The trouble with that is you have to add the necessary logic to every bit of your app that can change the model in some way – a toggle on each task, a ‘mark all as complete’ button, the code that reads from the server (or local storage), or whatever else gets added in future. It doesn’t scale.</p>
+<p>A better way is to have the template react to changes by calling any necessary logic <em>when it needs to</em>:</p>
+<pre><code class="html">&lt;p&gt;Hello, Dave! You have {{ tasks.filter( incomplete ).length }} tasks remaining.&lt;/p&gt;
+</code></pre>
+
+<p>Then, we just need to add an <code>incomplete</code> filter to our model:</p>
+<pre><code class="js">ractive = new Ractive({
+    el: container,
+    template: template,
+    data: {
+        name: 'Dave',
+        tasks: tasks,
+        incomplete: function ( item ) {
+            return !item.completed;
+        }
+    }
+});
+</code></pre>
+
+<p>Now, whenever <code>tasks</code> changes – whether because we’ve added a new one, or changed the status of one or more tasks, or whatever – the expression will be re-evaluated. If the number of incomplete tasks has changed, the DOM will be updated.</p>
+<p>As our app becomes more complex, this approach scales beautifully, saving us from a convoluted observing/massaging/updating of our data.</p>
+<p>(You can see a <a href="http://todomvc.com/labs/architecture-examples/ractive/">fully fleshed out TodoMVC implementation here</a> – (the <a href="https://github.com/tastejs/todomvc/tree/gh-pages/labs/architecture-examples/ractive">source code</a> is possibly the shortest of any implementation, and arguably some of the most readable).</small>)</p>
+<p>It also allows us to do things like <a href="../../Get Started/Examples/Animated Chart/">sophisticated animations</a>, without reams of complex render logic.</p>
+<h2 id="how-does-it-work">How does it work?</h2>
+<p>Traditional templating engines work by <em>interpolating strings</em>, the result of which is typically rendered using <code>innerHTML</code>. Ractive is different – it parses templates into a tree-like JSON structure which contains the DNA of the app, using a <a href="http://en.wikipedia.org/wiki/Parsing_expression_grammar">PEG-style parser</a>. When it encounters an expression, the parser first creates an <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</a> representation of it, then extracts the <em>references</em> from the AST, then collapses it down to a string representation.</p>
+<pre><code class="js">Ractive.parse( '{{i+1}}' );
+
+// results in the following - it's deliberately terse, so that
+// you can parse on the server and send the result to browsers
+// without wasting bytes:
+// {
+//   t: 2,                  // the type of mustache
+//   x: {                    // the expression
+//       r: [ &quot;i&quot; ],    // the references used in the expression
+//       s: &quot;${0}+1&quot;    // a reference-agnostic string representation
+//   }
+// }
+</code></pre>
+
+<p>Later, when Ractive renders this mustache, it will try to <em>resolve the references</em> used in the expression. In this example, there’s only one reference – <code>i</code> – which resolves to <code>0</code> for the first task, then <code>1</code>, then <code>2</code> and so on. Ractive creates a function – using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function constructor</a> – that takes the value of <code>i</code> as an argument and returns <code>i+1</code>.</p>
+<p>This might seem like a roundabout way to add 1 to something. But because we only need to create the function once, rather than repeatedly <code>eval</code>ing code (which is slow), it’s a memory-efficient and performant way to solve the problem even when dealing with hundreds of tasks.</p>
+<p>And because we know which references are involved, we know when to call the function again. Consider the next expression:</p>
+<pre><code class="js">Ractive.parse( '{{ completed ? &quot;complete&quot; : &quot;pending&quot; }}' );
+
+// {
+//   t: 2,
+//   x: {
+//       r: [ &quot;completed&quot; ],
+//       s: &quot;${0}?'complete':'pending'&quot;
+//   }
+// }
+</code></pre>
+
+<p>For the first task, the <code>completed</code> reference resolves to the keypath <code>tasks.0.completed</code> – for the second, <code>tasks.1.completed</code> and so on. In each case, Ractive <em>registers the mustache</em> as a <em>dependant</em> of the keypath, so that when <code>tasks.0.completed</code> changes (again, it doesn’t matter what happened to cause it to change – that’s the beauty of reactive programming), the expression is re-evaluated and the DOM is updated.</p>
+<h2 id="so-is-it-real-javascript">So is it ‘real JavaScript’?</h2>
+<p>Up to a point. Since in a reactive system we don’t have control over when the expression is evaluated, it’s important that expressions don’t have <em>side effects</em> – so if we try to use assignment operators such as <code>foo = bar</code> or <code>foo += 1</code>, the parser will fail. The same goes for certain keywords, such as <code>new</code>, <code>delete</code> and <code>function</code>.</p>
+<p>Of course, it’s still possible to create side-effects by referencing a function which itself has side-effects. Remember our <code>incomplete</code> filter? There’s nothing to stop you doing this:</p>
+<pre><code class="js">ractive = new Ractive({
+    el: container,
+    template: template,
+    data: {
+        name: 'Dave',
+        tasks: tasks,
+        incomplete: function ( item ) {
+            doSomeExpensiveComputation();
+            counter += 1;
+            return !item.completed;
+        }
+    }
+});
+</code></pre>
+
+<p>But by parsing expressions and blocking ‘accidental’ side-effects, we can encourage best practices without preventing power users from manipulating the system to their own ends.</p>
+<h2 id="the-future">The future</h2>
+<p>Expect to see more examples of the reactive programming trend coming to a repository near you. As with all programming paradigms, it’s not a silver bullet, but by integrating reactive thinking into our work we can start to structure our applications in a way that is more readable and (often) more efficient.</p>
+<p>Ractive.js is under active development – it’s production-ready (to get started, <a href="https://github.com/RactiveJS/Ractive/wiki/60-second-setup">try the 60 second setup</a> or <a href="http://learn.ractivejs.org">follow the interactive tutorials</a>), but will continue to evolve as we collectively figure out the secrets of reactive programming. If you’re interested in being part of that conversation, <a href="https://github.com/RactiveJS/Ractive">come on over to GitHub</a> and help shape the future of web development.</p></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>© RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+    <script src="../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
