@@ -44,7 +44,7 @@ The registry of globally available [decorators](../extend/decorators.md).
 
 `(Object<string, any>)`
 
-The defaults for [initialisation options](../api/initialization-options.md) with the exception of [plugin registries](../integrations/plugins.md).
+Global defaults for [initialisation options](../api/initialization-options.md) with the exception of [plugin registries](../integrations/plugins.md).
 
 ```js
 // Change the default mustache delimiters to [[ ]] globally
@@ -56,7 +56,15 @@ ractive1 = new Ractive({
 });
 ```
 
-Configurations set on the instance override the ones present in `Ractive.defaults`.
+Defaults can be specified for a subclass of Ractive, overriding global defaults.
+
+```js
+var MyRactive = Ractive.extend();
+
+MyRactive.defaults.el = document.body;
+```
+
+Configuration on the instance overrides subclass and global defaults.
 
 ```js
 Ractive.defaults.delimiters = [ '[[', ']]' ];
@@ -71,14 +79,6 @@ new Ractive({
 	template: 'hello //world\\',
 	delimiters: [ '//', '\\' ]
 });
-```
-
-Defaults can also be specified a subclass of Ractive.
-
-```js
-var MyRactive = Ractive.extend();
-
-MyRactive.defaults.el = document.body;
 ```
 
 ---
@@ -109,24 +109,6 @@ A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-m
 
 ---
 
-## Ractive.length
-
-Since `Ractive` is a function, and functions have a `length` equal to their number of declared arguments, `Ractive` has a `length` of `1`.
-
----
-
-## Ractive.magic
-
-Indicates whether or not the current environment supports [magic mode](../concepts/data-binding/magic-mode.md).
-
----
-
-## Ractive.name
-
-Like `length`, functions also have a `name`, and `Ractive`'s happens to be `"Ractive"`.
-
----
-
 ## Ractive.partials
 
 `(Object<string, string|Object|Function>)`
@@ -134,14 +116,6 @@ Like `length`, functions also have a `name`, and `Ractive`'s happens to be `"Rac
 The global registry of [partial templates](../extend/partials.md).
 
 Like [templates](../concepts/templates/overview.md), partials are [parsed](../concepts/templates/parsing.md) at the point of use. The parsed output is cached and utilized for future use.
-
----
-
-## Ractive.Promise
-
-`(Function)`
-
-A spec-compliant Promise implementation.
 
 ---
 
