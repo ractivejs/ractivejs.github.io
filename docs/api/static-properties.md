@@ -137,4 +137,6 @@ The global registry of [transition functions](../extend/transitions.md).
 
 ## Ractive.VERSION
 
+`(string)`
+
 The version of the currently loaded Ractive.
