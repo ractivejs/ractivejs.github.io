@@ -674,9 +674,10 @@ Observes the data at a particular [keypath](../concepts/templates/keypaths.md). 
 
 **Arguments**
 
-- `keypath (String)`: The [keypath](../concepts/templates/keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `` character, which is treated as a wildcard. A doubled `*` wildcard means `recursive`.
+- `keypath (String)`: The [keypath](../concepts/templates/keypaths.md) to observe, or a group of space-separated keypaths. Any of the keys can be a `*` character, which is treated as a wildcard. A `**` means recursive.
 
-    The difference between `` and `*` is that `*` provides your callback function `value` and `keypath` arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
+    The difference between `*` and `**` is that `*` provides your callback function `value` and `keypath` arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
+
 - `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../concepts/events/publish-subscribe.md) for more nuance regarding these arguments), whenever the observed [keypath](../concepts/templates/keypaths.md) changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the [keypath](../concepts/templates/keypaths.md) will have their matches passed to the callback at the end of the arguments list as well.
 - `map (Object)`: A map of keypath-observer pairs.
 - `[options] (Object)`:
@@ -699,8 +700,8 @@ Observes the data at a particular [keypath](../concepts/templates/keypaths.md). 
 Note that you can observe [keypath](../concepts/templates/keypaths.md) *patterns*...
 
 ```js
-ractive.observe( 'items.*.status', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-	var index = /items.(\d+).status/.exec( [keypath](../concepts/templates/keypaths.md) )[1];
+ractive.observe( 'items.*.status', function ( newValue, oldValue, keypath) {
+	var index = /items.(\d+).status/.exec( keypath )[1];
 	alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 ```
@@ -708,8 +709,8 @@ ractive.observe( 'items.*.status', function ( newValue, oldValue, [keypath](../c
 ...or multiple space-separated [keypaths](../concepts/templates/keypaths.md) simultaneously:
 
 ```js
-ractive.observe( 'foo bar baz', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-	alert( [keypath](../concepts/templates/keypaths.md) + ' changed from ' + oldValue + ' to ' + newValue );
+ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
+	alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -746,8 +747,8 @@ Observes the data at a particular [keypath](../concepts/templates/keypaths.md) u
 Note that you can observe [keypath](../concepts/templates/keypaths.md) *patterns*...
 
 ```js
-ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-	var index = /items.(\d+).status/.exec( [keypath](../concepts/templates/keypaths.md) )[1];
+ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, keypath ) {
+	var index = /items.(\d+).status/.exec( keypath )[1];
 	alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 ```
@@ -755,8 +756,8 @@ ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, [keypath](
 ...or multiple space-separated [keypaths](../concepts/templates/keypaths.md) simultaneously:
 
 ```js
-ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-	alert( [keypath](../concepts/templates/keypaths.md) + ' changed from ' + oldValue + ' to ' + newValue );
+ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, keypath ) {
+	alert( keypath + ' changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -1418,7 +1419,7 @@ ractive.observe( 'foo', function ( foo ) {
 });
 
 model.foo = 'changed';
-ractive.update( 'foo' ); // causes [observer](../concepts/events/publish-subscribe.md) to alert 'changed'
+ractive.update( 'foo' ); // causes observer to alert 'changed'
 ```
 
 ---
