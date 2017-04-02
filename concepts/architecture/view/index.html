@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/concepts/architecture/view/"> 
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    <title>View - Ractive.js</title>
+
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link href="../../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+
+
+    <link href="../../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../model/">Model</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../data-binding/array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../templates/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../model/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../data-binding/array-modification/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#states">States</a></li>
+        
+    
+        <li class="first-level "><a href="#virtual-dom-items">Virtual DOM Items</a></li>
+        
+            <li class="second-level"><a href="#text">Text</a></li>
+            
+        
+            <li class="second-level"><a href="#interpolator">Interpolator</a></li>
+            
+        
+            <li class="second-level"><a href="#element">Element</a></li>
+            
+        
+            <li class="second-level"><a href="#attributes">Attributes</a></li>
+            
+        
+            <li class="second-level"><a href="#bindings">Bindings</a></li>
+            
+        
+            <li class="second-level"><a href="#section">Section</a></li>
+            
+        
+            <li class="second-level"><a href="#contextconditional">Context/Conditional</a></li>
+            
+        
+            <li class="second-level"><a href="#iterative">Iterative</a></li>
+            
+        
+            <li class="second-level"><a href="#alias">Alias</a></li>
+            
+        
+            <li class="second-level"><a href="#component">Component</a></li>
+            
+        
+    
+        <li class="first-level "><a href="#resolution">Resolution</a></li>
+        
+    
+        <li class="first-level "><a href="#updates">Updates</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>Ractive views are structured virtual DOM trees that are assembled from template AST and manage DOM nodes on the page when they are rendered. Virtual DOM items are grouped together in <code>Fragment</code>s, which contain them, and they may also own <code>Fragment</code>s that contain other items. Each item may contain a reference to a DOM node when rendered, though every item doesn not have a DOM analog.</p>
+<h1 id="states">States</h1>
+<p>Items generally follow a fixed lifecycle.</p>
+<ol>
+<li>Construction - the item is created and knows about its parent and the template chunk from which it was created. Its template may also indicate what its children should look like if it has them.</li>
+<li><code>bind</code> - the item looks up any references is may have and registers with the model(s) that they represent. At this point, the item may create child items and bind them as well.</li>
+<li><code>render</code> - the item may create an actual DOM node and tell its children to create their DOM nodes as necessary. The resulting nodes will be inserted into the document.</li>
+<li><code>unrender</code> - thie item is no longer needed and will be removed from the document immediately or in the near future.</li>
+<li><code>unbind</code> - this typically goes along with <code>unrender</code> and tells the models on which this item depends that they should no longer send change notifications to it.</li>
+</ol>
+<p>There is a sixth floating step <code>rebind</code> that happens any time one dependency models shuffles (and in certain other very special circumstances) that causes the items to re-resolve their models and re-register if necessary.</p>
+<h1 id="virtual-dom-items">Virtual DOM Items</h1>
+<h2 id="text">Text</h2>
+<p>Text is the simplest item. It simply holds a string that it turns into a <code>TextNode</code> when rendered.</p>
+<h2 id="interpolator">Interpolator</h2>
+<p>This is the next simplest item. It resolves a model for its reference or expression and renders the value of the model as a text node if needed. Interpolators don't necessarily render directly, as they may be used for values by other items, such as attributes, mappings, and bindings.</p>
+<h2 id="element">Element</h2>
+<p>An <code>Element</code> represents a DOM element. It also contains a number of other items in the form of <code>Attribute</code>s, <code>Decorator</code>s, <code>Transition</code>s, <code>EventDirective</code>s, and its children in a <code>Fragment</code>.</p>
+<h2 id="attributes">Attributes</h2>
+<p>There are actually several different items that are treated as attributes for <code>Element</code>s, event though only two of them actually may render into the DOM.</p>
+<ul>
+<li><code>Attribute</code>s - maybe obvious, they these represent a DOM attribute on their parent element. There are a number of different handlers for updating attributes depending on the element and attribute name. The <code>updateDelegate</code> for a particular attribute can be found in <code>getUpdateDelegate.js</code>.</li>
+<li><code>ConditionalAttribute</code>s - render as a string and are parsed into actual DOM attributes using a <code>div</code> or an <code>svg</code> depending on their parent element.</li>
+<li><code>Mapping</code>s - when rendered add a mapping to their component, and when unrendered, remove it. These aren't attached to <code>Element</code>s, but instead, are attached to <code>Component</code>s (see below).</li>
+<li><code>EventDirective</code>s - when rendered attach an event listener to their parent, and when unrenedered, remove it. Event parameters are kept in sync with their bindings and are evaluated when the event fires.</li>
+<li><code>BindingDirective</code>s - when rendered and unrendered update their parent element's bindings, if they exist.</li>
+<li><code>Decorator</code>s - when rendered call the named decorator with their parent element, and when unrenedered, remove it. <code>Decorator</code>s also have an update cycle related to their parameters.</li>
+<li><code>Transition</code>s - are a sort of weird case. When rendered, they attach a transition handler to their element, and when the element renders or unrenders, if an appropriate transition handler is registered, will trigger the transition. Transition parameters are also kept in sync with their bindings.</li>
+</ul>
+<h2 id="bindings">Bindings</h2>
+<p>Certain attributes may also trigger a binding to be created on their parent element. For instance, if two-way binding is enabled on the parent element, and the parent element is an <code>input</code>, a <code>value</code> attribute with a single <code>Interpolator</code> as its content will cause a two-way binding to be created between the value of the <code>input</code> and the model of the <code>Interpolator</code>. This binding will handle updating the model when the input <code>value</code> has changed. There are a few other types of bindings for managing check values, content editables, name-bound lists of checkboxes, and other miscellaneous special values.</p>
+<p>A <code>lazy</code> binding directive will cause any associated two-way bindings to fire either after a timeout or on blur, depending on the value of the <code>lazy</code> directive.</p>
+<h2 id="section">Section</h2>
+<p><code>Section</code>s come in many flavors, depending on the chunk of template from which they are created. A section may provide context, be conditional (positive or negative), or be iterative. Generic sections (<code>{{#something}}...{{/}}</code> in template) will adjust their type, to a certain extent, based on the value of their model. A generic section will always provide context in the form of their model. An <code>if</code>-style conditional section, including <code>elseif</code>, <code>else</code>, and <code>unless</code> do not provide context. An <code>each</code> section will always provide context in the form of the current iteration. A <code>with</code> section will always provide context as its model, but it will only render if its model is considered truthy by Ractive, which is pretty much the same as JS truthy except <code>{}</code> and <code>[]</code> are falsey. A generic section will be context/conditional if it is anything other than an array, which will make it iterative.</p>
+<p>Sections that provide context do so by binding their <code>Fragment</code>s with their model so that the reference resolution process can find the appropriate contexts when resolving.</p>
+<h2 id="contextconditional">Context/Conditional</h2>
+<p>Context and conditional sections will render and unrender their child fragment as their model changes truthiness. Conditional sections always stand alone, even it they have <code>elseif</code> or <code>else</code> branches nested within them, because those branches are turned into independent sections during parsing.</p>
+<h2 id="iterative">Iterative</h2>
+<p>If section is designated iterative (<code>{{#each ...}}</code>) or is a general section with an array value resolution, the section will create a special form of fragment for each index or key in the value. The special form <code>RepeatedFragment</code> handles mapping of indices, keys, and references to those to a corresponding model. Iterative sections also have special handling for shuffles so that DOM is not wholesale destroyed and recreated when the array shuffles.</p>
+<p>Iterative sections may supply an alias for their context, so that referencing the iterated value is a little bit easier. See <code>Aliases</code> below for more info, as this is just a slightly specialized form of that.</p>
+<p>Iterative sections may also supply key and/or index aliases so that their keys and/or indices may be referenced by a name from within their child fragments.</p>
+<h2 id="alias">Alias</h2>
+<p>Alias sections simply resolve their models and act as a lookup endpoint for reference resolution. Aliasing happens entirely in the view.</p>
+<h2 id="component">Component</h2>
+<p>A component is a sort-of special form of <code>Element</code> that, instead of creating a DOM element, creates a new Ractive instance. The child instance will be rendered and unrendered in place of the component placeholder in the DOM.</p>
+<p>Any plain <code>Attribute</code>s with a single <code>Interpolator</code> as content in a component's template are turned into <code>Mapping</code>s.</p>
+<h1 id="resolution">Resolution</h1>
+<p>The resolution process for references requires a keypath and a <code>Fragment</code> as a starting point.</p>
+<ol>
+<li>If the reference is a special reference (<code>@index</code>, <code>@this</code>, etc), the appropriate model is looked up and returned.</li>
+<li>If the reference is relative (starts with <code>~/</code>, <code>.</code>, or <code>../</code>) the appropriate base model is retrieved and the rest of the keypath is joined onto it and the resulting model is returned.</li>
+<li>If the reference is non-relative and the base of the keypath is a member of the current context, then the context is joined to the keypath and the resulting model is returned.</li>
+<li>The reference is ambiguous, so the following loop until resolution or no fragments are left, starting with the given fragment:</li>
+<li>If the fragment is an iteration, check to see if there is an index or key alias that matches the root of the reference, and if so, return it.</li>
+<li>If the fragment has aliases, check to see if there is one that matches the root of the reference, and if so, return it.</li>
+<li>If the fragment has context:<ol>
+<li>If the fragment is the root of an instance, note it</li>
+<li>If the context has a child matching the root of the reference:</li>
+<li>If we crossed a component boundary, create an implicit mapping the to the newly discovered model in the current component.</li>
+<li>Return it</li>
+</ol>
+</li>
+<li>If the fragment belongs to a component, use the component's parent fragment and loop.</li>
+<li>Use the fragment's parent and loop.</li>
+</ol>
+<p>The resolution process is no longer happens strictly the vDOM, as the result of <code>Ractive.getNodeInfo</code> also uses the target <code>Element</code>'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.</p>
+<h1 id="updates">Updates</h1>
+<p>The <code>runloop</code> controls when the DOM is actually updated and when transitions start in <code>batch</code>es. It also handles resolving promises when transitions have completed and the DOM is completely up to date.</p>
+<p>As changes propagate through the viewmodel, view items are notified of the change through their <code>handleChange</code> method. Most items just set a dirty flag and notify their parent, via their <code>bubble</code> method, that they will need to be updated at the completion of the runloop turn. The root fragment of each instance affected will then register with the runloop. Once the changes are ready to be flushed to the view, each fragment registered with the runloop is called on to update, where the process happens in reverse, with each parent fragment checking to see if there is a change it needs to respond to and propagating the update downward to its children.</p></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../../..';
+    </script>
+    <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+    <script src="../../../js/base.js"></script>
+    <script src="../../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

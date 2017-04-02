@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/concepts/data-binding/two-way-binding/"> 
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    <title>Two-Way Binding - Ractive.js</title>
+
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link href="../../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+
+
+    <link href="../../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../templates/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../parallel-dom/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../events/overview/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#input-elements">&lt;input&gt; elements</a></li>
+        
+            <li class="second-level"><a href="#checkboxes">Checkboxes</a></li>
+            
+        
+            <li class="second-level"><a href="#radios">Radios</a></li>
+            
+        
+    
+        <li class="first-level "><a href="#textarea-elements">&lt;textarea&gt; elements</a></li>
+        
+    
+        <li class="first-level "><a href="#select-elements">&lt;select&gt; elements</a></li>
+        
+    
+        <li class="first-level "><a href="#contenteditable">contenteditable</a></li>
+        
+    
+        <li class="first-level "><a href="#ambiguous-references">Ambiguous references</a></li>
+        
+    
+        <li class="first-level "><a href="#lazy-updates">Lazy updates</a></li>
+        
+    
+        <li class="first-level "><a href="#observing-changes">Observing changes</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>By default, a Ractive instance will update its internal model based on user input, if you have <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code> or <code>&lt;select&gt;</code> elements.</p>
+<p>If that's unhelpful for your app, you can disable it by passing <code>twoway: false</code> as an <a href="">initialisation option</a>.</p>
+<p>Two-way vinding can also be overridden on a per-element basis using the <code>twoway</code> directive e.g. <code>&lt;input value="{{foo}}" twoway="false"&gt;</code>. If the <code>twoway</code> option is set to false, it can be overridden on a per-element bases using <code>twoway</code> as a boolean attribute e.g. <code>&lt;input value="{{foo}}" twoway&gt;</code> or <code>&lt;input value="{{foo}}" twoway="true"&gt;</code>.</p>
+<h1 id="input-elements"><code>&lt;input&gt;</code> elements</h1>
+<p>Two-way binding works with <code>&lt;input&gt;</code> elements of any type, including the new HTML5 types such as <code>color</code> or <code>email</code>. In most cases, you just add a mustache as the <code>value</code> attribute - this must be a single, standard <em>interpolator</em> mustache, like this:</p>
+<pre><code class="html">&lt;input placeholder='Type your name' value='{{user.name}}'&gt;
+</code></pre>
+
+<p>In the example above, any changes the user makes to the input will be reflected in the <code>user.name</code> property.</p>
+<h2 id="checkboxes">Checkboxes</h2>
+<p>Checkboxes are used to flag a property as <code>true</code> or <code>false</code>. Rather than binding the <code>value</code> attribute, we bind the <code>checked</code> attribute:</p>
+<pre><code class="html">&lt;label&gt;
+    &lt;input type='checkbox' checked='{{on}}'&gt;
+    The lights are {{ on ? 'on' : 'off' }}
+&lt;/label&gt;
+</code></pre>
+
+<p>(True HTML nerds will recognise that <em>boolean attributes</em> such as checked don't have a value, as such - they either exist on an element or they don't. This makes life unnecessarily difficult; Ractive treats dynamic (i.e., controlled by a mustache) boolean attributes as present if the mustache is <code>true</code>, absent if <code>false</code>.)</p>
+<p>Checkboxes may also be bound by the <code>name</code> attribute, which will result in the value specified in the <code>name</code> attribute containing an array of selected checkbox values.</p>
+<pre><code class="html">{{#colors}}
+  &lt;label&gt;
+    &lt;input type='checkbox' name='{{selected}}' value='{{.}}' /&gt;{{.}}
+  &lt;/label&gt;
+{{/}}
+</code></pre>
+
+<p>If <code>colors</code> is an array, <code>['Red', 'Yellow', 'Green', 'Blue']</code>, then checking the first box will result in <code>selected</code> becoming <code>['Red']</code>. Checking the third box will result in <code>selected</code> becoming <code>['Red', 'Green']</code>. The array may also be updated from code using <code>set</code> or any of the array modification methods available to Ractive, and the checkboxes will be updated to reflect the contents of the array in the Ractive viewmodel.</p>
+<p><strong>Note</strong> that checkboxes with both a <code>checked</code> and <code>name</code> binding will <em>only</em> bind on <code>checked</code>, not both. The <code>name</code> binding will be treated
+as a normal mustache variable.</p>
+<h2 id="radios">Radios</h2>
+<p>Radio buttons can be controlled in the same way as checkboxes. However the chances are, if you're using radio buttons, you have a set of mutually exclusive options to choose between. In this case, if you set the <code>name</code> attribute on a radio input to e.g. <code>{{someValue}}</code>, <code>someValue</code> will reflect the <code>value</code> of the currently checked option:</p>
+<pre><code class="html">&lt;label&gt;&lt;input type='radio' name='{{color}}' value='red' checked&gt; Red&lt;/label&gt;
+&lt;label&gt;&lt;input type='radio' name='{{color}}' value='green'&gt; Green&lt;/label&gt;
+&lt;label&gt;&lt;input type='radio' name='{{color}}' value='blue'&gt; Blue&lt;/label&gt;
+
+&lt;p&gt;The currently selected color is &lt;span style='color: {{color}};'&gt;{{color}}&lt;/span&gt;&lt;/p&gt;
+</code></pre>
+
+<p>In the example above, the value of <code>color</code> will initially be <code>'red'</code> (because that input is checked in the template), and will update as and when the user selects another option.</p>
+<h1 id="textarea-elements"><code>&lt;textarea&gt;</code> elements</h1>
+<p>Textareas work exactly the same as standard text inputs - slap a dynamic <code>value</code> attribute on them, and you're done:</p>
+<pre><code class="html">&lt;textarea value='{{content}}'&gt;&lt;/textarea&gt;
+</code></pre>
+
+<h1 id="select-elements"><code>&lt;select&gt;</code> elements</h1>
+<p>Drop-down select menus are good when you have many options to choose from. They're straightforward to use in Ractive:</p>
+<pre><code class="html">&lt;select value='{{selectedCountry}}'&gt;
+    &lt;option selected disabled&gt;Select a country&lt;/option&gt;
+    {{#countries}}
+        &lt;option value='{{id}}'&gt;{{name}}&lt;/option&gt;
+    {{/countries}}
+&lt;/select&gt;
+</code></pre>
+
+<pre><code class="js">ractive = new Ractive({
+    el: myContainer,
+    template: myTemplate,
+    data: {
+        countries: [
+            { id: 'AFG', name: 'Afghanistan' },
+            { id: 'ALB', name: 'Albania' },
+            { id: 'DZA', name: 'Algeria' },
+            { id: 'ASM', name: 'American Samoa' }
+            // and so on...
+        ]
+    }
+});
+</code></pre>
+
+<p>In the example above, no country will initially be selected. If the user were to select Afghanistan from the list, the value of <code>selectedCountry</code> would change to <code>'AFG'</code>.</p>
+<h1 id="contenteditable"><code>contenteditable</code></h1>
+<p>Ractive can two-way data bind contenteditable elements.</p>
+<pre><code class="js">var ractive = new Ractive({
+    el: myContainer,
+    template: myTemplate,
+    data: {
+        content: 'Edit me'
+    }
+});
+
+ractive.observe('content', function(newValue, oldValue, keypath) {
+    //newValue will contain the new content of the div
+});
+</code></pre>
+
+<p><code>myTemplate</code></p>
+<pre><code class="html">&lt;div contenteditable=&quot;true&quot; value=&quot;{{content}}&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<p>This will be rendered as</p>
+<pre><code class="html">&lt;div contenteditable=&quot;true&quot;&gt;Edit Me&lt;/div&gt;
+</code></pre>
+
+<p>As the user edits the data the <code>content</code> will update, and observe will fire.</p>
+<p>There are a few caveats that you need to know. Despite the value binding with only two curly braces <code>{{content}}</code> (double curly braces are required for two way data binding) the returned content may or may not be a string of HTML. If a user presses enter after most browsers will insert a <code>&lt;br /&gt;</code>. The <code>content</code> would be set to <code>Edit Me&lt;br/&gt;</code>. Additionally anything you set to <code>content</code> would be rendered as HTML and not escaped despite the lack of triple curly braces(<code>{{{content}}}</code>).</p>
+<pre><code class="js">ractive.set('content', '&lt;ul&gt;&lt;li&gt;Edit Me&lt;/li&gt;&lt;/ul&gt;');
+</code></pre>
+
+<p>This would actually render an editable unordered list.</p>
+<p>Be aware that not all browsers actually operate the same way when it comes to interacting with contenteditable. HTML generated by one browser may differ from another.</p>
+<h1 id="ambiguous-references">Ambiguous references</h1>
+<p>A mustache used in a two-way binding context must have an <em>unambiguous reference</em>. Consider the following:</p>
+<pre><code class="html">{{#foo}}
+    &lt;input value='{{bar}}'&gt;
+{{/foo}}
+</code></pre>
+
+<pre><code class="js">ractive = new Ractive({
+    el: myContainer,
+    template: myTemplate,
+    data: { foo: {} }
+});
+</code></pre>
+
+<p>Ractive must decide, straight away, what <a href="">keypath</a> to bind the input's <code>value</code> attribute to. It will first see if it can <a href="">reference</a> (<code>'bar'</code>) given the current context stack (which includes a single context - <code>'foo'</code>). It can't, so it is forced to make an assumption - that the <code>'bar'</code> reference should resolve to the <code>'bar'</code> keypath.</p>
+<p>But this might not be what you want - maybe you <em>did</em> want it to resolve to <code>'foo.bar'</code>.</p>
+<p>You have two options - either use a <a href="">restricted reference</a>, i.e. <code>&lt;input value='{{.bar}}'&gt;</code>, or ensure that <code>foo</code> has a <code>bar</code> property (even if the initial value is <code>undefined</code>).</p>
+<h1 id="lazy-updates">Lazy updates</h1>
+<p>Under the hood, Ractive always binds to the <code>change</code> event (and the <code>click</code> event in IE, in the case of checkboxes, due to an IE bug). By default, it will also bind to the <code>input</code> event, which means the model is updated instantly when the user enters data (the <code>change</code> event fires when a change is <a href="https://developer.mozilla.org/en-US/docs/Web/Reference/events/change">'committed by the user'</a>). In some situations, that's not what you want - if you want to only bind to <code>change</code>, pass in <code>lazy: true</code> as an <a href="">initialisation option</a>.</p>
+<p>As with <code>twoway</code>, laziness may be specified on a per-element basis. Besides <code>true</code> (or simply having the attribute preset) and <code>false</code> values, the <code>lazy</code> directive may also be a number that specifies the number of milliseconds to wait after the last <code>input</code> event fires with subsequent <code>input</code> events resetting the timeout. For instance <code>&lt;input value="{{foo}}" lazy&gt;</code> will trigger updates to <code>foo</code> on <code>change</code> and <code>&lt;input value="{{foo}}" lazy="1000"&gt;</code> will trigger updates 1 second after the last keypress.</p>
+<h1 id="observing-changes">Observing changes</h1>
+<p>To use user input elsewhere in your app, you'll need to observe it using <a href="../../../api/instance-properties#ractive.observe()"><code>ractive.observe()</code></a>:</p>
+<pre><code class="html">&lt;input placeholder='Type your name' value='{{user.name}}'&gt;
+</code></pre>
+
+<pre><code class="js">ractive = new Ractive({
+    el: myContainer,
+    template: myTemplate
+});
+
+ractive.observe( 'user.name', function ( newValue ) {
+    app.user.name = newValue;
+    triggerSomeBehaviour();
+});
+</code></pre></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../../..';
+    </script>
+    <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+    <script src="../../../js/base.js"></script>
+    <script src="../../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

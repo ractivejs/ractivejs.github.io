@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/extend/components/"> 
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Components - Ractive.js</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../api/errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/data-binding/array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/templates/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../adaptors/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../decorators/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#components">Components</a></li>
+        
+            <li class="second-level"><a href="#writing">Writing</a></li>
+            
+        
+            <li class="second-level"><a href="#registering">Registering</a></li>
+            
+                <li class="third-level"><a href="#globally-via-the-ractivecomponents-static-property">Globally, via the Ractive.components static property:</a></li>
+            
+                <li class="third-level"><a href="#per-component-via-the-components-components-initialization-property">Per component, via the component's components initialization property.</a></li>
+            
+                <li class="third-level"><a href="#per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's components initialization property.</a></li>
+            
+        
+            <li class="second-level"><a href="#using">Using</a></li>
+            
+                <li class="third-level"><a href="#isolation">Isolation</a></li>
+            
+                <li class="third-level"><a href="#binding">Binding</a></li>
+            
+                <li class="third-level"><a href="#data-context">Data context</a></li>
+            
+                <li class="third-level"><a href="#events">Events</a></li>
+            
+                <li class="third-level"><a href="#bubbling">Bubbling</a></li>
+            
+                <li class="third-level"><a href="#stopping-propagation">Stopping propagation</a></li>
+            
+                <li class="third-level"><a href="#content">{{&gt;content}}</a></li>
+            
+                <li class="third-level"><a href="#yield">{{yield}}</a></li>
+            
+        
+            <li class="second-level"><a href="#examples">Examples</a></li>
+            
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="components">Components</h1>
+<p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({ ... });
+</code></pre>
+
+<p>Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect). This configuration sets it apart from regular instances in that you can define different behavior based on what <a href="../../api/initialization-options/">initialization options</a> are defined on it.</p>
+<p>To declare components, one simply extends Ractive using <a href="../../api/static-methods/#Ractive.extend()">Ractive.extend()</a>. In turn, these subclasses can also be subclassed.</p>
+<pre><code class="js">// A regular instance of Ractive
+const ractive = new Ractive({ ... });
+
+// A subclass of Ractive
+const MyComponent = Ractive.extend({ ... });
+
+// A subclass of our subclass
+const MyComponentSubclass = MyComponent.extend({ ... });
+</code></pre>
+
+<p>As with other inheritance mechanisms, overriding a method essentially replace the method. In order to call the parent of the overridden method, simply call <code>ractive._super()</code>.</p>
+<pre><code class="js">const MyComponentSubclass = MyComponent.extend({
+  // Overrides the oninit of MyComponent
+  oninit: function(...args){
+    // Call MyComponent's oninit
+    this._super(...args);
+  }
+});
+</code></pre>
+
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register components:</p>
+<h3 id="globally-via-the-ractivecomponents-static-property">Globally, via the <code>Ractive.components</code> static property:</h3>
+<pre><code class="js">// Available to all instances of Ractive.
+Ractive.components.MyComponent = Ractive.extend({ ... });
+</code></pre>
+
+<h3 id="per-component-via-the-components-components-initialization-property">Per component, via the component's <code>components</code> initialization property.</h3>
+<pre><code class="js">// Only available for instances of AnotherComponent.
+const AnotherComponent = Ractive.extend({
+  components: {
+    MyComponent
+  }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's <code>components</code> initialization property.</h3>
+<pre><code class="js">// Only available to this specific instance.
+const ractive = new Ractive({
+  components: {
+    MyComponent
+  }
+});
+</code></pre>
+
+<h2 id="using">Using</h2>
+<p>Components are simply subclasses of Ractive, which means the are instatiable via the <code>new</code> keyword.</p>
+<pre><code class="js">const ractive = new MyComponent({ ... });
+</code></pre>
+
+<p>But where components really shine is when they're used on templates. They are written like <em>custom elements</em>. Each custom element notation represents one instance of the component.</p>
+<pre><code class="js">const AnotherComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;
+      &lt;MyComponent /&gt; &lt;!-- One instance of MyComponent --&gt;
+      &lt;MyComponent /&gt; &lt;!-- Another instance of MyComponent --&gt;
+      &lt;MyComponent /&gt; &lt;!-- Yet another instance of MyComponent --&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<p>The component's tag name depends on the name used upon registration. The same component can be registered more than once using different names.</p>
+<pre><code class="js">const MyComponent = Ractive.extend({...});
+Ractive.components.MyComponent = MyComponent;
+Ractive.components.MyComponentOtherName = MyComponent;
+
+const AnotherComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;
+      &lt;MyComponent /&gt;          &lt;!-- Using MyComponent --&gt;
+      &lt;MyComponentOtherName /&gt; &lt;!-- Using MyComponent's other name --&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<h3 id="isolation">Isolation</h3>
+<p>A unique behavior in Ractive is <a href="../../concepts/templates/references/">the resolver's ability to "climb" up the data context</a> if a <a href="../../concepts/templates/keypaths/">keypath</a> doesn't resolve in the current data context. It takes this behavior a step further and also climbs to the parent component's data context if it does not resolve on the child data context.</p>
+<p>In the following example, the instance of <code>ChildComponent</code> prints "Hello World!" even when the data is set on the outer-most instance. The resolver "climbed up" to the outer-most instance to resolve <code>message</code>.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    Child: {{ message }}
+  `
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent /&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;ParentComponent /&gt;
+  `
+});
+
+ractive.set('message', 'Hello World!');
+</code></pre>
+
+<p>While this is handy, sometimes you will want full component isolation and only resolve references within the component. The <code>isolated</code><a href="../../api/initialization-options/">initialization option</a>does just that. When set to <code>true</code>, the resolver stops resolution up to the component with <code>isolated:true</code>.</p>
+<p>In the following example, the instance of <code>ChildComponent</code> will not print anything due to the <code>isolated: true</code> set on it.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  isolated: true,
+  template: `
+    Child: {{ message }}
+  `
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent /&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;ParentComponent /&gt;
+  `
+});
+
+ractive.set('message', 'Hello World!');
+</code></pre>
+
+<h3 id="binding">Binding</h3>
+<p>Bindings connect a piece of data on the parent instance to data on the child instance. Changes on one side will reflect on the other. The syntax is similar to how one would write HTML element attributes.</p>
+<p>The following example binds <code>text</code> on the instance to <code>MyComponent</code>'s <code>message</code>. Updates on the value of <code>text</code> will update <code>message</code>. Typing on the <code>&lt;input&gt;</code> bound to <code>message</code> will update <code>text</code>.</p>
+<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
+  template: `
+    &lt;input type=&quot;text&quot; value=&quot;{{ message }}&quot;&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: '&lt;MyComponent message=&quot;{{ text }} /&gt;'
+});
+
+ractive.set('text', 'Hello World!');
+</code></pre>
+
+<h3 id="data-context">Data context</h3>
+<p>Each component instance comes with its own data context so that parameters don't pollute the primary data. Bindings will still update across both contexts.</p>
+<p>In the following example, we have an instance that has <code>name</code> and <code>colors</code>. We bind bind <code>colors</code> and set an <code>option1</code> to <code>MyComponent</code>. Upon inspection, the data context is just as described. <code>name</code> doesn't cross over to <code>MyComponent</code> nor does <code>option1</code> cross over to the instance. However, since we bound <code>colors</code> to <code>shades</code>, updating one updates the other.</p>
+<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({});
+
+const ractive = new Ractive({
+  template: `
+    &lt;MyComponent shades='{{colors}}' option1='A' /&gt;
+  `,
+  data: {
+    name: 'Colors',
+    colors: ['red', 'blue', 'yellow']
+  }
+});
+
+const widget = ractive.findComponent('MyComponent')
+
+ractive.get(); // {&quot;colors&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
+widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;option1&quot;:&quot;A&quot;}
+
+ractive.set('colors.1', 'green');
+
+ractive.get(); // {&quot;colors&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
+widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;option1&quot;:&quot;A&quot;}
+
+widget.set('colors.2', 'blue');
+
+ractive.get(); // {&quot;colors&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;], &quot;name&quot;:&quot;Colors&quot;}
+widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;], &quot;option1&quot;:&quot;A&quot;}
+</code></pre>
+
+<h3 id="events">Events</h3>
+<p>Components can fire events like regular elements using <a href="../../api/instance-methods/#ractive.fire()">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
+<p>The first is using the method call syntax which is similar to how you would write inline JavaScript.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;&lt;/div&gt;
+  `,
+  oncomplete: function(){
+    this.fire('boringeventname');
+  }
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent on-boringeventname=&quot;@this.greetz()&quot; /&gt;
+  `,
+  greetz: function(){
+    console.log('Hello World');
+  }
+});
+</code></pre>
+
+<p>The other is using the proxy event syntax. It's called "proxy" in the sense that the component event is assigned another name which is actually listened to by the enclosing instance.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;&lt;/div&gt;
+  `,
+  oncomplete: function(){
+    this.fire('boringeventname');
+  }
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent on-boringeventname=&quot;greetz&quot; /&gt;
+  `,
+  oninit: function(){
+    this.on('greetz', function(){
+      console.log('Hello World')
+    });
+  }
+});
+</code></pre>
+
+<h3 id="bubbling">Bubbling</h3>
+<p>Events fired from within components will also "bubble" up the component hierarchy with their component name attached as a namespace. This can be used to avoid having to re-fire events at each level in a deeply nested component hierarchy.</p>
+<p>In the following example, the event from the <code>ChildComponent</code> instance can be listened to from the outer Ractive instance.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;&lt;/div&gt;
+  `,
+  oncomplete: function(){
+    this.fire('childevent');
+  }
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent /&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;ParentComponent /&gt;
+  `
+});
+
+ractive.on('ChildComponent.childevent', function(){
+  console.log('Hello World!');
+});
+</code></pre>
+
+<p>To listen to the same event name regardless of the component that's firing the event, an <code>*</code> can be used as the namespace.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;&lt;/div&gt;
+  `,
+  oncomplete: function(){
+    this.fire('sameevent');
+  }
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent /&gt;
+  `,
+  oncomplete: function(){
+    this.fire('sameevent');
+  }
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;ParentComponent /&gt;
+  `
+});
+
+ractive.on('*.sameevent', function(){
+  console.log('This will fire two times, one for each component.');
+});
+</code></pre>
+
+<p>The namespace is not bound to the component definition but rather to the name of the component.</p>
+<p>In the following example, <code>ChildComponent</code> is registered onto the <code>ParentComponent</code> as <code>ChildComponent1</code> and <code>ChildComponent2</code>. Even with the same definition, there will be two namespaces, one for <code>ChildComponent1</code> and <code>ChildComponent2</code>.</p>
+<pre><code class="js">const ChildComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;&lt;/div&gt;
+  `,
+  oncomplete: function(){
+    this.fire('sameevent');
+  }
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent1 /&gt;
+    &lt;ChildComponent2 /&gt;
+  `,
+  components: {
+    ChildComponent1: ChildComponent,
+    ChildComponent2: ChildComponent
+  }
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;ParentComponent /&gt;
+  `
+});
+
+ractive.on('ChildComponent1.sameevent', function(){
+  console.log('Same component definition, instance with name 1.');
+});
+
+ractive.on('ChildComponent2.sameevent', function(){
+  console.log('Same component definition, instance with name 2.');
+});
+</code></pre>
+
+<h3 id="stopping-propagation">Stopping propagation</h3>
+<p>In order to stop bubbling, simply return <code>false</code> from an event handler. Should the event come from a DOM event, it will call <code>stopPropagation()</code> and <code>preventDefault()</code> automatically.</p>
+<p>In the following example, <code>ParentComponent</code> listens to <code>childevent</code> and returns false to in its handler. This prevents the outer instance from receiving the event.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;&lt;/div&gt;
+  `,
+  oncomplete: function(){
+    this.fire('childevent');
+  }
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent /&gt;
+  `,
+  oninit: function(){
+    this.on('ChildComponent.childevent', function(){
+      return false;
+    });
+  }
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;ParentComponent /&gt;
+  `
+});
+
+ractive.on('ChildComponent.childevent', function(){
+  console.log('This will not fire');
+});
+</code></pre>
+
+<p>Events that have been assigned a handler using <code>on-*</code> will also prevent the bubbling of the original event. A proxy event is assigned, will bubble in its place.</p>
+<p>In the following example, <code>childevent1</code> is prevented by not assigning a handle. <code>childevent2</code> is prevented by having a proxy event <code>childevent2proxy</code> assigned to it, which will also bubble in its place. <code>childevent3</code> is prevented by a method call.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;&lt;/div&gt;
+  `,
+  oncomplete: function() {
+    this.fire('childevent1');
+    this.fire('childevent2');
+    this.fire('childevent3');
+  }
+});
+
+Ractive.components.ParentComponent = Ractive.extend({
+  template: `
+    &lt;ChildComponent on-childevent1=&quot;&quot; on-childevent2=&quot;childevent2proxy&quot; on-childevent3=&quot;@this.parentMethod()&quot; /&gt;
+  `,
+  oninit: function() {
+    this.on('childevent2proxy', function() {
+      console.log('childevent2 handled and will no longer bubble.');
+      console.log('childevent2proxy will take its place.');
+    });
+  },
+  parentMethod: function(){
+    console.log('childevent3 handled by a method')
+  }
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;ParentComponent /&gt;
+  `
+});
+
+ractive.on('ChildComponent.childevent1', function() {
+  console.log('childevent1 stopped');
+});
+
+ractive.on('ChildComponent.childevent2', function() {
+  console.log('childevent2 stopped');
+});
+
+ractive.on('ParentComponent.childevent2proxy', function() {
+  console.log('childevent2proxy fired');
+});
+
+ractive.on('ChildComponent.childevent3', function() {
+  console.log('childevent3 fired');
+});
+</code></pre>
+
+<h3 id="content">{{&gt;content}}</h3>
+<p><code>{{&gt;content}}</code> renders the inner HTML in the context of the component. Partials, components, and any other valid template items can be used as inner HTML. <code>{{&gt;content}}</code> can be thought of as a special partial.</p>
+<p>In the following example, the result will print "Lorem Ipsum" because the inner HTML's context is the component, whose <code>message</code> is set to "Lorem Ipsum".</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div class=&quot;child-component&quot;&gt;{{&gt;content}}&lt;/div&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  data: {
+    message: 'Hello World!'
+  },
+  template: `
+    &lt;div class=&quot;ractive&quot;&gt;
+      &lt;ChildComponent message=&quot;Lorem Ipsum&quot;&gt;
+        &lt;div class=&quot;inner-content&quot;&gt;{{ message }}&lt;/div&gt;
+      &lt;/ChildComponent&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<p>Partials defined in the inner HTML can be used to override partials defined on the component. This can be used to allow easy customization of each instance using partials.</p>
+<p>In the following example, <code>ChildComponent</code>'s default template for the <code>messageWrapper</code> partial is a <code>&lt;strong&gt;</code>. Upon use of <code>ChildComponent</code> in the instance, it overrides the partial to use an <code>&lt;em&gt;</code> instead.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  partials: {
+    messageWrapper: '&lt;strong&gt;{{message}}&lt;/strong&gt;'
+  },
+  template: `
+    &lt;div class=&quot;child-component&quot;&gt;{{&gt;content}}&lt;/div&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  data: {
+    message: 'Hello World!'
+  },
+  template: `
+    &lt;div class=&quot;ractive&quot;&gt;
+      &lt;ChildComponent message=&quot;Lorem Ipsum&quot;&gt;
+
+        {{#partial messageWrapper}}&lt;em&gt;{{message}}&lt;/em&gt;{{/}}
+
+        &lt;div class=&quot;inner-content&quot;&gt;
+          {{&gt; messageWrapper }}
+        &lt;/div&gt;
+
+      &lt;/ChildComponent&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<h3 id="yield">{{yield}}</h3>
+<p><code>{{yield}}</code> renders the inner HTML in the context of the parent component. Partials, components, and any other valid template items can be used as inner HTML. A common use case of <code>{{yield}}</code> is to provide wrapper markup transparently.</p>
+<p>In the following example, the result will print "Hello World!" because the inner HTML's context is the parent component's, whose <code>message</code> is "Hello World!".</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div class=&quot;child-component&quot;&gt;{{ yield }}&lt;/div&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  data: {
+    message: 'Hello World!'
+  },
+  template: `
+    &lt;div class=&quot;ractive&quot;&gt;
+      &lt;ChildComponent message=&quot;Lorem Ipsum&quot;&gt;
+        &lt;div class=&quot;inner-content&quot;&gt;{{ message }}&lt;/div&gt;
+      &lt;/ChildComponent&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<p>Yields can also be customized using named yields. Instead of rendering with the component's inner HTML, a named yield will look for a partial in the inner HTML with the same name and use that to render the yielded content.</p>
+<p>In the following example, <code>ChildComponent</code> renders the yield content 3 times. However, the last two yields will look for <code>italicYield</code> and <code>boldYield</code> partials in the inner HTML and use that to render. What's rendered is three "Hello World!"s in regular, italic and bold.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: `
+    &lt;div class=&quot;child-component&quot;&gt;
+      {{ yield }}
+      {{ yield italicYield }}
+      {{ yield boldYield }}
+    &lt;/div&gt;
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  data: {
+    message: 'Hello World!'
+  },
+  template: `
+    &lt;div class=&quot;ractive&quot;&gt;
+      &lt;ChildComponent message=&quot;Lorem Ipsum&quot;&gt;
+        {{#partial italicYield }}&lt;em&gt;{{message}}&lt;/em&gt;{{/}}
+        {{#partial boldYield }}&lt;strong&gt;{{message}}&lt;/strong&gt;{{/}}
+        {{message}}
+      &lt;/ChildComponent&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<pre><code></code></pre></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+    <script src="../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/articles/ractive-vs-angular/"> 
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Ractive.js vs Angular - Ractive.js</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../api/errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/data-binding/array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/templates/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../ractive-js-expressions-and-the-new-wave-of-reactive-programming/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../ractive-vs-react/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#ractive-vs-angular">Ractive vs Angular</a></li>
+        
+            <li class="second-level"><a href="#what-is-angular">What is Angular?</a></li>
+            
+        
+            <li class="second-level"><a href="#so-why-bother-with-ractive">So why bother with Ractive?</a></li>
+            
+        
+            <li class="second-level"><a href="#enough-with-the-sales-pitch-what-do-they-have-in-common">Enough with the sales pitch. What do they have in common?</a></li>
+            
+        
+            <li class="second-level"><a href="#and-where-do-they-differ">And where do they differ?</a></li>
+            
+        
+            <li class="second-level"><a href="#honestly-just-try-it">Honestly, just try it</a></li>
+            
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="ractive-vs-angular">Ractive vs Angular</h1>
+<p><img alt="angular-v-ractive" src="../../img/angular-v-ractive.png" /></p>
+<p>Lots of people have asked what the difference is between Ractive and other libraries and frameworks. It's long been my intention to write a series of articles attempting to answer, but I've always put it off because a) I didn't have anywhere to post the articles, and b) I didn't feel qualified to compare Ractive to libraries that I'm not particularly familiar with.</p>
+<p>Now that I've got round to setting up this blog, a) is no longer an issue. As for b)... well, if I get stuff wrong, people will correct me - this is the Internet, after all. And I'll edit these posts as necessary to keep them accurate.</p>
+<p>I was going to begin the series by comparing Ractive to <a href="http://facebook.github.io/react/">React.js</a>, which in my view is one of the more interesting JavaScript libraries of 2013. It has lots of philosophical similarities to Ractive, but also some stark differences. It should be an interesting study.</p>
+<p>But the question I've had more frequently - and <a href="http://stackoverflow.com/questions/20893066/differences-between-ractivejs-and-angularjs">most recently</a> - is how Ractive compares to <a href="http://angularjs.org/">Angular</a>. So I'm going to start there.</p>
+<!-- break -->
+
+<h2 id="what-is-angular">What is Angular?</h2>
+<p>You're kidding, right? Angular is a wildly successful project. Its <a href="https://github.com/angular/angular.js">GitHub repo</a> has 18,579 stargazers (at the time of writing) - almost ten times Ractive's 1,950. Their <a href="http://twitter.com/angularjs">twitter account</a> has 28,629 followers, and there are hundreds if not thousands of <a href="http://builtwith.angularjs.org/">Angular apps</a> in the wild. Most days, an article or video or tutorial about Angular will show up on the Hacker News front page if not on dozens of other front end blogs.</p>
+<p><img src='/img/anglebars.jpg' style='width: 5em; float: left; margin: 0 1em 0 0'></p>
+<p>(Fun fact! Way back in the mists of time, Ractive was called Anglebars - because it was kind of halfway between Angular and Handlebars. I even ripped off the logo. In other words, Angular was a big inspiration for Ractive.)</p>
+<div style="clear:both"></div>
+
+<p>It is, by any measure, an impressive showing. And it's built and maintained by the geniuses at Google, several of whom work on it full time. Ractive, by contrast, has one core contributor - yours truly (though it has an excellent community which has made it immeasurably better) - and is the product of unpaid evenings and weekends. Given a choice between Angular and Ractive for a large production application, most developers would probably be wise to select Angular.</p>
+<h2 id="so-why-bother-with-ractive">So why bother with Ractive?</h2>
+<p>One word: simplicity. Angular looks easy at first, but to master it you have to learn some novel concepts (scope, dependency injection, transclusions, modules, directives...) that make writing Angular code feel quite different from writing regular JavaScript. (Before I continue, I should emphasise that I'm not an Angular expert by any stretch - my impressions are largely formed from reading what other people have written.)</p>
+<p>Ractive, on the other hand, is designed to be as simple as possible, but no simpler. That's because of its heritage: it was <a href="../the-origins-of-ractive">created in the newsroom</a> of <a href="http://theguardian.com">theguardian.com</a> for building interactive news applications. These apps have to be built in a very short space of time and work reliably across different environments - there's no time for prototyping etc. Just build it and ship it. You can't spend long optimising things, so the library has to make smart decisions for you.</p>
+<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p><a href="https://twitter.com/dmitrigrabov">@dmitrigrabov</a> Simplest binding framework I&#39;ve ever used is new: <a href="https://twitter.com/RactiveJS">@RactiveJS</a> from the Guardian. &#10;&#10;1. have object&#10;2. have template&#10;&#10;Done.</p>&mdash; Mike MacCana (@mikemaccana) <a href="https://twitter.com/mikemaccana/statuses/411108002297806848">December 12, 2013</a></blockquote>
+
+<script async="async" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Most of all, a lot of people building these kinds of apps aren't experienced developers - they're journalists or graphics people who have learned some JavaScript because they want to expand their skillsets and stay relevant, not because they get a kick out of watching Douglas Crockford videos.</p>
+<blockquote class="twitter-tweet" lang="en"><p>First piece of code that actually makes sense to my design-oriented brain: <a href="https://twitter.com/RactiveJS">@RactiveJS</a> - still on lesson 5, though</p>&mdash; K. Ant.  (@konstantinosant) <a href="https://twitter.com/konstantinosant/statuses/405590478956920832">November 27, 2013</a></blockquote>
+
+<script async="async" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Don't try explaining to a hacker-journalist that they need to call <code>$scope.digest()</code> or that, having just got their head around minification, they need to perform some elaborate maneouvres to prevent the dependency injection from breaking - trust me, they won't care!</p>
+<h2 id="enough-with-the-sales-pitch-what-do-they-have-in-common">Enough with the sales pitch. What do they have in common?</h2>
+<p>Well, they're both largely concerned with eliminating ad-hoc DOM manipulation from the list of things developers have to worry about, by doing what's called <em>data binding</em> - modifying the page as data (your <em>model</em>, in MVC jargon) changes. Both libraries also offer <em>two-way data binding</em>, so that user interactions with the page update the model as necessary.</p>
+<p>Angular wasn't the first framework to offer data binding, but it arguably did it better than anyone had before, with a concise syntax based on the <a href="http://mustache.github.io/">Mustache</a> templating language. Ractive also uses Mustache, since it is easy to read and write, is widely used, and comes with a <a href="https://github.com/mustache/spec">formal test suite</a> against which implementations like Ractive can check compliance.</p>
+<p>They also share philosophical underpinnings. From <a href="http://angularjs.org">angularjs.org</a>:</p>
+<blockquote>
+<p>HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications ... Other frameworks deal with HTML’s shortcomings by either abstracting away HTML, CSS, and/or JavaScript or by providing an imperative way for manipulating the DOM. Neither of these address the root problem that HTML was not designed for dynamic views.</p>
+</blockquote>
+<p>Amen! Ractive, like Angular, takes the view that we should augment HTML to make it better suited to modern application development, rather than hiding the guts of our apps in JavaScript files, where it's hard to form complete mental models and <em>reason effectively</em> about them.</p>
+<p>Finally, both Angular and Ractive believe that your model should take the form of <a href="http://odetocode.com/blogs/scott/archive/2012/02/27/plain-old-javascript.aspx">POJOs</a>. Loading data from a server without having to convert it to some kind of <code>Model</code> or <code>Collection</code> object before you can use it is a liberating feeling. (That said, some apps benefit from the more rigorous approach, and Ractive fully supports that via <a href="../../extend/adaptors/">adaptors</a>)</p>
+<h2 id="and-where-do-they-differ">And where do they differ?</h2>
+<p>Firstly, Angular isn't just about your user interface - it has opinions on routing, validation, server communication, testing, and so on. In other words it's a <em>framework</em> rather than a <em>library</em>.</p>
+<p>Ractive only really cares about UI. Use any router/backend/whatever you want - that's your responsibility.</p>
+<p>In some situations the framework is exactly what you need - a consistent, opinionated foundation on which to build your app. In other situations, it's a straitjacket. Personally I prefer building apps in a more modular fashion, but that's probably because of the type of app I build for a living. YMMV.</p>
+<p>Secondly, they have very different approaches to data binding. Angular uses 'dirty checking', whereby properties of the model are checked on every <code>$scope.digest()</code>, which is called automatically most of the time. Ractive uses a dependency tracking mechanism instead. When you call <code>ractive.set('foo', 'bar')</code>, all the <em>dependants</em> of <code>foo</code> are notified (if its value changed). The same principle applies when dealing with complex <a href="../../concepts/templates/expressions/">expressions</a>, which means you don't have to constantly worry about whether your computed properties will cause performance issues.</p>
+<p>Miško Hevery, the father of Angular, wrote <a href="http://stackoverflow.com/questions/9682092/databinding-in-angularjs/9693933#9693933">this Stack Overflow post</a> defending dirty checking, containing this zinger when comparing it to dependency tracking as seen in <a href="http://knockoutjs.com/">Knockout.js</a>:</p>
+<blockquote>
+<p>KO dependency tracking is a clever feature for a problem which angular does not have.</p>
+</blockquote>
+<p>True, but Angular's <code>$digest</code> loop is a clever solution for a problem that no other library has! In any case, Pete Hunt of <a href="http://facebook.github.io/react/">React.js</a> fame <a href="http://www.reddit.com/r/javascript/comments/1oo1y8">takes issue</a> with the notion that Angular's dirty checking is fast enough.</p>
+<p>A final important difference is in how your app is rendered. Traditional templating engines compile a string template to a function that, given some data, returns another string (which typically is <code>innerHTML</code>'d into the page). Angular (and also Knockout) work by traversing the DOM, reading attributes, and setting up bindings accordingly. Aside from the <a href="http://iarouse.com/blog/2013/10/30/angularjs-avoid-flash-of-unstyled-content-fouc/">FOUC</a> that you then have to work around, this means that your page is peppered with non-validating gubbins like <code>ng-model</code>.</p>
+<p>Ractive takes a different approach. Your template lives as a string, and is parsed (on the server, if needs be - Ractive is <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/">isomorphic</a>) into a tree-like structure that can be transported as JSON. From there, Ractive constructs a lightweight <a href="../../concepts/data-binding/parallel-dom/">parallel DOM</a> containing all the information it needs to construct the real DOM and set up data-binding etc. In my view, this is a more hygienic approach. Parsing the template before the browser has a chance to has many benefits, even if some people do question the sanity of doing so:</p>
+<blockquote class="twitter-tweet" lang="en"><p>This is both brilliant &amp; ridiculous at the same time: “Introducing Ractive.js: next-generation DOM manipulation” <a href="http://t.co/17uHMKZFCQ">http://t.co/17uHMKZFCQ</a></p>&mdash; Rev Dan Catt (@revdancatt) <a href="https://twitter.com/revdancatt/statuses/360340071133622272">July 25, 2013</a></blockquote>
+
+<script async="async" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="honestly-just-try-it">Honestly, just try it</h2>
+<p>This was a long post - if you made it this far, I salute you. But if you really want to know the differences between Angular and Ractive, you should just try them both. Ractive has a <a href="http://docs.ractivejs.org/latest/second-setup">60-second setup guide</a> and a set of <a href="http://learn.ractivejs.org">interactive tutorials</a> (with more coming soon), and Angular has <a href="http://docs.angularjs.org/tutorial">learning resources</a> of its own.</p>
+<p>Ractive's development has been very community-driven - there is no ivory tower master plan, just hard-won real-life experience distilled into feature requests. It tastes of delicious <a href="http://www.newrepublic.com/article/115349/dogfooding-tech-slang-working-out-glitches">dogfood</a>. So if it doesn't have a feature you need, there's a very real chance it could do soon - just <a href="https://github.com/RactiveJS/Ractive">come on over to GitHub</a> and raise an issue.</p></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+    <script src="../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

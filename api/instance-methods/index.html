@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/api/instance-methods/"> 
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Instance Methods - Ractive.js</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/data-binding/array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/templates/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../instance-properties/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../helper-objects/node-info/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#instance-methods">Instance Methods</a></li>
+        
+            <li class="second-level"><a href="#ractive_super">ractive._super()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveadd">ractive.add()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveanimate">ractive.animate()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveattachchild">ractive.attachChild()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivedetach">ractive.detach()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivedetachchild">ractive.detachChild()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivefind">ractive.find()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivefindall">ractive.findAll()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivefindallcomponents">ractive.findAllComponents()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivefindcomponent">ractive.findComponent()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivefindcontainer">ractive.findContainer()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivefindparent">ractive.findParent()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivefire">ractive.fire()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveget">ractive.get()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivegetnodeinfo">ractive.getNodeInfo()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveinsert">ractive.insert()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivelink">ractive.link()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivemerge">ractive.merge()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveobserve">ractive.observe()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveobserveonce">ractive.observeOnce()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveoff">ractive.off()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveon">ractive.on()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveonce">ractive.once()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivepop">ractive.pop()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivepush">ractive.push()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiverender">ractive.render()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivereset">ractive.reset()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveresetpartial">ractive.resetPartial()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivereverse">ractive.reverse()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveset">ractive.set()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveshift">ractive.shift()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivesort">ractive.sort()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivesplice">ractive.splice()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivesubtract">ractive.subtract()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveteardown">ractive.teardown()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivetocss">ractive.toCSS()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivetohtml">ractive.toHTML()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivetoggle">ractive.toggle()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivetransition">ractive.transition()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveunlink">ractive.unlink()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveunrender">ractive.unrender()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveunshift">ractive.unshift()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveupdate">ractive.update()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractiveupdatemodel">ractive.updateModel()</a></li>
+            
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="instance-methods">Instance Methods</h1>
+<h2 id="ractive_super">ractive._super()</h2>
+<p>Calls the parent method from a child method of the same name.</p>
+<p><code>ractive._super()</code> is not always available. Only when Ractive detects its use does it make this reference to the parent method.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive._super([arg[, ...argN]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[arg] (any)</code>: One or more arguments to pass to the function.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(any)</code>: Depends on the method called.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGbVOAWwAOPNNxTMAvMwBKSeigCWUtADo0AD3TcAJgApgAHW5OUPI9yMpIzAGYArtyGRjz2AJTMzq4obly8-OYInADm9gDkGAHKaHKe3unhLm44LjjhANzF3DJyAMoBAEYKKmoa2vJKqtzqKBbW6g7Rbh5ePv5BIWGRw7EobEYYZgD6WTkwEVUxcTx8AmbJaZlNzPkohVslZUWu3D0A7swNzV1tKJu4QA"></div>
+
+<pre><code class="js">var Component = Ractive.extend({
+    oninit: function() {
+        console.log('super init')
+    }
+});
+
+var SubComponent = Component.extend({
+    oninit: function() {
+        this._super();
+        console.log('sub init');
+    }
+})
+
+new SubComponent();
+</code></pre>
+
+<hr />
+<h2 id="ractiveadd">ractive.add()</h2>
+<p>Increments the selected keypath.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.add(keypath[, number])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the number we're incrementing.</li>
+<li><code>[number] (number)</code>: The number to increment by. Defaults to <code>1</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise that resolves when the operation completes.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiQmJkzC-r1CmarNeY0ENDOEDQBzTPOvxZud0GD0eEzw9AAjMNoaCVAtlqt1lpNjtlHsDkcTj1zpdrrdtAMYBVIcNYeoDhhXu9Pj8-gD8aZgZNQfh6AAmaGk6a4IA"></div>
+
+<pre><code class="js">var r = new Ractive({
+    el: '#main',
+    template: '#tpl',
+    data: {
+        counter: 0
+    }
+});
+
+setTimeout(function() {
+    r.add('counter');
+    console.log(r.get('counter'));
+}, 1000);
+
+setTimeout(function() {
+    r.add('counter', 10);
+    console.log(r.get('counter'));
+}, 2000);
+</code></pre>
+
+<hr />
+<h2 id="ractiveanimate">ractive.animate()</h2>
+<p>Similar to <a href="#ractiveset"><code>ractive.set()</code></a>, this will update the data and re-render any affected mustaches and notify <a href="../../concepts/events/publish-subscribe/">observers</a>.</p>
+<p>All animations are handled by a global timer that is shared between Ractive instances (and which only runs if there are one or more animations still in progress), so you can trigger as many separate animations as you like without worrying about timer congestion. Where possible, <code>requestAnimationFrame</code> is used rather than <code>setTimeout</code>.</p>
+<p>Numeric values and strings that can be parsed as numeric values can be interpolated. Objects and arrays containing numeric values (or other objects and arrays which themselves contain numeric values, and so on recursively) are also interpolated.</p>
+<p>Note that there is currently no mechanism for detecting cyclical structures! Animating to a value that indirectly references itself will cause an infinite loop.</p>
+<p>Future versions of Ractive may include string interpolators - e.g. for SVG paths, colours, transformations and so on, a la D3 - and the ability to pass in your own interpolator.</p>
+<p>If an animation is started on a <a href="../../concepts/templates/keypaths/">keypath</a> which is <em>already</em> being animated, the first animation is cancelled. (Currently, there is no mechanism in place to prevent collisions between e.g. <code>ractive.animate('foo', { bar: 1 })</code> and <code>ractive.animate('foo.bar', 0)</code>.)</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.animate(keypath, value[, options])</code></li>
+<li><code>ractive.animate(map[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to animate.</li>
+<li><code>value (number|string|Object|Array)</code>: The value to animate to.</li>
+<li><code>map (Object)</code>: A key-value hash of <a href="../../concepts/templates/keypaths/">keypath</a> and value.</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>[duration] (number)</code>: How many milliseconds the animation should run for. Defaults to <code>400</code>.</li>
+<li><code>[easing] (string|Function)</code>: The name of an easing function or the easing function itself. Defaults to <code>linear</code>.</li>
+<li><code>[step] (Function)</code>: A function to be called on each step of the animation. Receives <code>t</code> and <code>value</code> as arguments, where <code>t</code> is the animation progress (between <code>0</code> and <code>1</code>, as determined by the easing function) and <code>value</code> is the intermediate value at <code>t</code>.</li>
+<li><code>[complete] (Function)</code>: A function to be called when the animation completes, with the same argument signature as <code>step</code> (i.e. <code>t</code> is <code>1</code>, and <code>value</code> is the destination value)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a Promise with an additional <code>stop</code> method, which cancels the animation.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiRlVfrMwv69CvoAJmG8Q3omLRhUfeUDF+Gw3oU1mEzeAEZAcMZrggA"></div>
+
+<pre><code class="js">var r = new Ractive({
+    el: '#main',
+    template: '#tpl',
+    data: {
+        counter: 0
+    }
+});
+
+setTimeout(function() {
+    r.animate('counter', 20, { duration: 2000 });
+}, 1000);
+</code></pre>
+
+<hr />
+<h2 id="ractiveattachchild">ractive.attachChild()</h2>
+<p>Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by <a href="../static-methods/#ractiveextend"><code>ractive.extend()</code></a>, but that is not a requirement, as children may be a plain Ractive instance created with <code>new Ractive()</code>.</p>
+<p><strong>Syntax</strong></p>
+<pre><code class="js">ractive.attachChild( child );
+ractive.attachChild( child, options );
+</code></pre>
+
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>child (Ractive instance)</code>: The child instance to attach.</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>[target] (string)</code>: An anchor name at which to render the instance. See <a href="../../extend/components/"><code>Components</code></a>. If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.</li>
+<li><code>[append] (boolean)</code>: Default <code>true</code> - add the instance to the end of the list for the targeted anchor.</li>
+<li><code>[prepend] (boolean)</code>: Add the instance to the beginning of the list for the targeted anchor.</li>
+<li><code>[insertAt] (number)</code>: Index at which to add the instance in the list for the targeted anchor.</li>
+</ul>
+</li>
+</ul>
+<p>When a child is attached to a parent, the child's <code>parent</code> property is updated in an observable way, so any references to <code>@this.parent</code> in the child will be notified of the change.</p>
+<p>A child may be targeted to a <a href="../../extend/components/"><code>Components</code></a> when it is attached. If a child has no specified target, then it is responsible for managing its own render cycle. If a child does have a specified target, then the parent will manage rendering and unrendering the child as appropriate in the same way that a regular component has a managed render cycle.</p>
+<p>When a child is attached targeting an anchor, only anchors that belong directly to the parent are considered as hosts. However, any element or component queries on the parent instance, including live queries, will consider the child when trying to match both elements and components. There is also an option on the query methods that allows querying remote, unmanaged instances, so that non-anchored children can also be queried for elements and components.</p>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A <code>Promise</code> that resolves with the child instance when any transitions are complete.</li>
+</ul>
+<p>Children can be detached using <a href="#ractivedetachchild"><code>ractive.detachChild()</code></a>.</p>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivedetach">ractive.detach()</h2>
+<p>Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with <a href="#ractiveinsert"><code>ractive.insert()</code></a> (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.detach()</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(DocumentFragment)</code>: A document fragment.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJgAjAvIB7AK7L0MSPWDA9h4zhwkp2lWqTKm9DLplpeYlCrsVqOiVVZRImKgA3RlYOGSQqVUU7cIiFEAIMeAikGHpclnplNAB3egAlJHIUSLQACmBHdARTAHIAYjiElrxG9BkuVDRWtpQubsamVCRTBtVfFEsjNBN6AAZGnBUcAEoAbkdlDDQUABUqTwMUWoAzQyqqXWVa7bNG7NyU+gKmXXJ9TyMADpKGhBgBRBBoAFXFopFp7CaRQFIGiCFwAYTAVAQTFqMEBTGOlTAzwRcz0h10kMBCF0AHNailAQkijAABInACyABkyfh6JpVkK9rggA"></div>
+
+<pre><code class="js">var r = new Ractive({
+    el: '#main',
+    template: '#tpl',
+    data: {
+        counter: 0
+    }
+});
+
+setTimeout(function() {
+    var div = document.createElement('div');
+    div.appendChild(r.detach());
+    console.log(div.innerHTML);
+}, 1000);
+</code></pre>
+
+<hr />
+<h2 id="ractivedetachchild">ractive.detachChild()</h2>
+<p>Detaches a child from an instance when it was previously attached with <a href="#ractiveattachchild"><code>ractive.attachChild()</code></a>.</p>
+<p>When a child instance that was attached targeting an anchor is detached, its instance is spliced out of the <code>@this.children.byName.anchorName</code> array so that subsequent children move forward to fill the void.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.detachChild( child )</code></li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A <code>Promise</code> that resolves with the child instance when any transitions are complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivefind">ractive.find()</h2>
+<p>Returns the first element inside a given Ractive instance matching a CSS selector. This is similar to doing <code>this.el.querySelector(selector)</code> (though it doesn't actually use <code>querySelector()</code>).</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.find(selector[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>selector (string)</code>: A CSS selector representing the element to find.</li>
+<li><code>[options] (Object)</code>:</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Node)</code>: A Node.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnsaPtdn4se0mLdXjQ-HFEslXrCguRCU0EGg-NUErdmej0DBTEiALLpTnKfD0ACMAAYVbDcEA"></div>
+
+<pre><code class="js">var r = new Ractive({
+    el: '#main',
+    template: '#tpl'
+});
+
+setTimeout(function() {
+    var p = r.find('p.target');
+    console.log(p.outerHTML);
+}, 1000);
+</code></pre>
+
+<hr />
+<h2 id="ractivefindall">ractive.findAll()</h2>
+<p>This method is similar to [<code>ractive.find()</code>]ractivefind), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a <em>live</em> list, which will stay in sync with the DOM as it continues to update.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.findAll(selector[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>selector (string)</code>: A CSS selector representing the elements to find.</li>
+<li><code>[options] (Object)</code><ul>
+<li><code>[live] (boolean)</code>: Whether to return a live list or a static one. Defaults to <code>false</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Array&lt;Node&gt;)</code>: An array of nodes.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnt8vtdn4se0mABBBAIW6vGivWFBfK0rIAUUuYGxuPxhNuNBJZNc5EJTQQaD81QSYr86PQMFMSIAsulOXpoZCSgBGAAMpthuCAA"></div>
+
+<pre><code class="js">var r = new Ractive({
+    el: '#main',
+    template: '#tpl'
+});
+
+setTimeout(function() {
+    var ps = r.findAll('p');
+    ps.forEach(function(p) {
+        console.log(p.outerHTML);
+    })
+}, 1000);
+</code></pre>
+
+<hr />
+<h2 id="ractivefindallcomponents">ractive.findAllComponents()</h2>
+<p>Returns all components inside a given Ractive instance with the given <code>name</code> (or all components of any kind if no name is given).</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.findAllComponents([name[, options]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[name] (string)</code>: The name of the component to find.</li>
+<li><code>[options] (Object)</code><ul>
+<li><code>[live] (boolean)</code>: Whether to return a live list or a static one. Defaults to <code>false</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Array&lt;ractive&gt;)</code>: An array of ractive instances.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NimDAAxGiTkw9ANoBGPPQBMpgMwBdHDhVq1JJlQBuCkgGEA9jJrflNGUGZQBXGQAjNBhhDQA6Ox4JDwkXdwd1YAkdPUTlEgkKajolVXy0xlYOGSQqVUUCtIUQAgx4VyQYeh8-AKCGFnoAJV0UNzQ4sXRlJgAKYAz0P2R0SHoAch7-QOD6DTDI6Lt1lRwASgBuB2UOrq7BwIB3YdHx+Yy0BDX1zRq69bwizQy1QaG+mhQXABGXIvm2-QwawWqhQai2fWCa3RO1RKPsynOVzKGDQKAAKlQZGhvKEULMAGahZTkMYBWZnPYZW70cgYeiDGBxel1JgAQQQCGxCNmmzhGJQ60uMIwQu8MAAorowAymSyqGzyBzkY4ULDlBhvAgJghvABzWbkOIobwACTJAFkADLspV4s6nUxGAAMIcuuCAAa"></div>
+
+<pre><code class="js">var Component = Ractive.extend({
+    template: 'Component {{number}}'
+});
+
+var r = new Ractive({
+    el: '#main',
+    template: '#tpl',
+    components: {
+        Component: Component
+    }
+});
+
+setTimeout(function() {
+    var cs = r.findAllComponents('Component');
+    cs.forEach(function(c) {
+        console.log(c.toHTML());
+    })
+}, 1000);
+</code></pre>
+
+<hr />
+<h2 id="ractivefindcomponent">ractive.findComponent()</h2>
+<p>Returns the first component inside a given Ractive instance with the given <code>name</code> (or the first component of any kind if no name is given).</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.findComponent([name[, options]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[name] (string)</code>: The name of the component to find.</li>
+<li><code>[options] (Object)</code>:</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Ractive)</code>: A ractive instance.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NimDAAxGiTkw9ANoBGPPQBMpgMwBdHDhVq1JJlQBuCkgGEA9jJrflNGUGZQBXGQAjNBhhDQA6Ox4JDwkXdwd1YAkdPUTlEgkKajolVXy0xlYOGSQqVUUCtIUQAgx4VyQYeh8-AKCGFnoAJV0UNzQ4sXRlJgAKYAz0P2R0SHoAch7-QOD6DTDI6Lt1lRwASgBuB2UOrq7BwIB3YdHx+Yy0BDX1zRq69bwizQy1QaG+mhQXABGXIvm2-QwawWqhQai2fWCa3RO1RKPsynOVzKGDQKAAKlQZGhvKEULMAGahZTkMYBWZnPYZW70cj0QYwOL0upMbH9WabOEYlDrS4wgIYbwICYIbwAc1m5DiKG8AAkyQBZAAy7NlBNMRgADFbLrggA"></div>
+
+<pre><code class="js">var Component = Ractive.extend({
+    template: 'Component {{number}}'
+});
+
+var r = new Ractive({
+    el: '#main',
+    template: '#tpl',
+    components: {
+        Component: Component
+    }
+});
+
+setTimeout(function() {
+    var c = r.findComponent('Component');
+    console.log(c.toHTML());
+}, 1000);
+</code></pre>
+
+<hr />
+<h2 id="ractivefindcontainer">ractive.findContainer()</h2>
+<p>Returns the first container of this component instance with the given <code>name</code>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.findContainer(name)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>name (string)</code>: The name of the container to find.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Ractive)</code>: Returns the first container of this component with the given <code>name</code>.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivefindparent">ractive.findParent()</h2>
+<p>Returns the first parent of this component instance with the given <code>name</code>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.findParent(name)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>name (string)</code>: The name of the parent to find.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Ractive)</code>: Returns the first parent of this component with the given <code>name</code>.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivefire">ractive.fire()</h2>
+<p>Fires an event, which will be received by handlers that were bound using <a href="#ractiveon"><code>ractive.on</code></a>. In practical terms, you would mostly likely use this with <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a>, to allow applications to hook into your subclass.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.fire(eventName[, arg1[, ...argN])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>name (string)</code>: The name of the event.</li>
+<li><code>[arg] (any)</code>: The arguments that event handlers will be called with.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(boolean)</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAAoAlAG4AOt0swAdD0MByAGadODvMycBXbjt33jZmBLcxQuXn40GwROAHNHF05PXRg0ABMHM0scLKtuWycUo2dXTNNcIA"></div>
+
+<pre><code class="js">var r = new Ractive();
+
+r.on('foo', function() {
+  console.log('foo fired');
+});
+
+r.fire('foo');
+</code></pre>
+
+<hr />
+<h2 id="ractiveget">ractive.get()</h2>
+<p>Returns the value at <code>keypath</code>. If the <a href="../../concepts/templates/keypaths/">keypath</a> is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, but excludes computed properties.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.get([keypath])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[keypath] (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the data to retrieve.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(any)</code>: Returns whatever data was on the keypath, or all if no <a href="../../concepts/templates/keypaths/">keypath</a> was provided.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAApgAHW4mUAE1RJIzU+ZQWAZp052HFrygBGsuwDazADkfgBewcwAumbeOLEo8dw4AJQA3LHcXLz8aAB0CJwA5oYweUVoKIbBrpx5fmUADMEp6bhAA"></div>
+
+<pre><code class="js">var r = new Ractive({
+    data: {
+        foo: {
+            bar: [ 'baz' ]
+        }
+    }
+});
+
+console.log(r.get('foo.bar.0'));
+</code></pre>
+
+<hr />
+<h2 id="ractivegetnodeinfo">ractive.getNodeInfo()</h2>
+<p>This is an instance specific version of <a href="../static-methods/#ractivegetnodeinfo"><code>Ractive.getNodeInfo()</code></a> that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.getNodeInfo(node)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>node (string|Node)</code>: The DOM node or a CSS selector of a target node for which you wish to retrieve the Ractive instance or view details.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(NodeInfo)</code>: Returns an <a href="../helper-objects/node-info/">NodeInfo</a> object with helper methods to interact with the Ractive instance and context associated with the given node.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveinsert">ractive.insert()</h2>
+<p>Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also <a href="#ractivedetach"><code>ractive.detach()</code></a>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.insert(target[, anchor])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>target (string|Node|array-like)</code>: The new parent element.</li>
+<li><code>[anchor] (string|Node|array-like)</code>: The sibling element to insert the instance before. If omitted, the instance will be inserted as the last child of the parent.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(undefined)</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivelink">ractive.link()</h2>
+<p>Creates a link between two <a href="../../concepts/templates/keypaths/">keypaths</a> that keeps them in sync. Since Ractive can't always watch the contents of objects, copying an object to two different <a href="../../concepts/templates/keypaths/">keypaths</a> in your data usually leads to one or both of them getting out of sync. <code>link</code> creates a sort of symlink between the two paths so that Ractive knows they are actually the same object. This is particularly useful for master/detail scenarios where you have a complex list of data and you want to be able to select an item to edit in a detail form.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.link(source, destination)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>source (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the source item.</li>
+<li><code>destination (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to use as the destination - or where you'd like the data 'copied'.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">ractive.link( 'some.nested.0.list.25.item', 'current' );
+ractive.set( 'current.name', 'Rich' ); // some.nested.0.list.25.item.name is also updated to be 'Rich'
+</code></pre>
+
+<p>This can be used to great effect with method events and the <a href="../../concepts/templates/references/"><code>@keypath</code></a> special ref:</p>
+<pre><code class="html">{{#each some.nested}}
+  {{#each list}}
+    {{#with item}}
+      {{.name}}
+      &lt;button on-click=&quot;event.link('.', 'current')&quot;&gt;Select&lt;/button&gt;
+    {{/with}}
+  {{/each}}
+{{/each}}
+
+Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
+</code></pre>
+
+<p>Links can be removed using <a href="#ractiveunlink"><code>ractive.unlink()</code></a>.</p>
+<hr />
+<h2 id="ractivemerge">ractive.merge()</h2>
+<p>Sets the indicated <a href="../../concepts/templates/keypaths/">keypath</a> to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.</p>
+<p>This is an efficient way to (for example) handle data from a server. It also helps to control <code>intro</code> and <code>outro</code> <a href="../../extend/transitions/">transitions</a> which might not otherwise happen with a basic <a href="#ractiveset"><code>ractive.set()</code></a> operation.</p>
+<p>To determine whether the first item of <code>['foo', 'bar', 'baz']</code> is the same as the last item of <code>['bar', 'baz', 'foo']</code>, by default we do a strict equality (<code>===</code>) check.</p>
+<p>In some situations that won't work, because the arrays contain objects, which may <em>look</em> the same but not be identical. To deal with these, we use the <code>compare</code> option detailed below.</p>
+<p>Merge can also be used to created a context block that uses transitions when the context changes.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.merge(keypath, value[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array we're updating.</li>
+<li><code>value (Array)</code>: The new data to merge in.</li>
+<li><code>[options] (Object)</code><ul>
+<li><code>[compare] (boolean)</code>: If <code>true</code>, values will be stringified (with <code>JSON.stringify</code>) before comparison.</li>
+<li><code>[compare] (string)</code>: A property name that will be used to compare the array elements.</li>
+<li><code>[compare] (Function)</code>: A function that returns a value with which to compare array members.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code> - Returns a promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="html">{{#user}}
+&lt;div intro='fade'&gt;{{first}} {{last}}&lt;/div&gt;
+{{/}}
+</code></pre>
+
+<pre><code class="js">var r = new Ractive({
+    el: document.body,
+    template: '#template',
+    data: {
+        user: [{
+            first: 'sam',
+            last: 'smith'
+        }]
+    },
+    complete: function(){
+        this.merge('user', [{
+            first: 'jane',
+            last: 'johnson'
+        }])
+    }
+})
+</code></pre>
+
+<hr />
+<h2 id="ractiveobserve">ractive.observe()</h2>
+<p>Observes the data at a particular <a href="../../concepts/templates/keypaths/">keypath</a>. Unless specified otherwise, the callback will be fired immediately, with <code>undefined</code> as <code>oldValue</code>. Thereafter it will be called whenever the <em>observed keypath</em> changes.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.observe(keypath, callback[, options])</code></li>
+<li><code>ractive.observe(map[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>
+<p><code>keypath (String)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a <code>` character, which is treated as a wildcard. A doubled</code>*<code>wildcard means</code>recursive`.</p>
+<p>The difference between <code>` and</code><em><code>is that</code></em><code>provides your callback function</code>value<code>and</code>keypath<code>arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
+-</code>callback (Function)<code>: The function that will be called, with</code>newValue<code>,</code>oldValue<code>and</code>keypath<code>as arguments (see [Observers](../concepts/events/publish-subscribe.md) for more nuance regarding these arguments), whenever the observed [keypath](../concepts/templates/keypaths.md) changes value. By default the function will be called with</code>ractive<code>as</code>this<code>. Any wildcards in the [keypath](../concepts/templates/keypaths.md) will have their matches passed to the callback at the end of the arguments list as well.
+-</code>map (Object)<code>: A map of keypath-observer pairs.
+-</code>[options] (Object)<code>:
+-</code>[init] (boolean)<code>: Defaults to</code>true<code>. Whether or not to initialise the observer, i.e. call the function with the current value of</code>keypath<code>as the first argument and</code>undefined<code>as the second.
+-</code>[defer] (boolean)<code>: Defaults to</code>false<code>, in which case [observers](../concepts/events/publish-subscribe.md) will fire before any DOM changes take place. If</code>true<code>, the [observer](../concepts/events/publish-subscribe.md) will fire once the DOM has been updated.
+-</code>[links] (boolean)<code>: Defaults to</code>false<code>.  Whether or not the observer should "follow through" any links created with [</code>ractive.link()<code>](#ractivelink).
+-</code>[strict] (boolean)<code>: Defaults to</code>false<code>.</code>strict<code>uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with</code>{ data: { foo: { bar: 'baz' } } }<code>,</code>ractive.observe('foo', ..., { strict: true })<code>will not fire on</code>ractive.set('foo.bar', 'bat')<code>but will on</code>ractive.set('foo', { bar: 'bip' })<code>.
+-</code>[context] (any)<code>: Defaults to</code>ractive<code>. The context the [observer](../concepts/events/publish-subscribe.md) is called in (i.e. the value of</code>this`)</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>: An object with a <code>cancel</code> method, for cancelling all observers</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<p>Note that you can observe <a href="../../concepts/templates/keypaths/">keypath</a> <em>patterns</em>...</p>
+<pre><code class="js">ractive.observe( 'items.*.status', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
+    var index = /items.(\d+).status/.exec( [keypath](../concepts/templates/keypaths.md) )[1];
+    alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
+});
+</code></pre>
+
+<p>...or multiple space-separated <a href="../../concepts/templates/keypaths/">keypaths</a> simultaneously:</p>
+<pre><code class="js">ractive.observe( 'foo bar baz', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
+    alert( [keypath](../concepts/templates/keypaths.md) + ' changed from ' + oldValue + ' to ' + newValue );
+});
+</code></pre>
+
+<p>See <a href="../../concepts/events/publish-subscribe/">Observers</a> for more detail.</p>
+<hr />
+<h2 id="ractiveobserveonce">ractive.observeOnce()</h2>
+<p>Observes the data at a particular <a href="../../concepts/templates/keypaths/">keypath</a> until the first change. After the handler has been called, it will be unsubscribed from any future changes.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.observeOnce(keypath, callback[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a `` character, which is treated as a wildcard.</li>
+<li><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../../concepts/events/publish-subscribe/">Observers</a> for more nuance regarding these arguments), whenever the observed <a href="../../concepts/templates/keypaths/">keypath</a> changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the <a href="../../concepts/templates/keypaths/">keypath</a> will have their matches passed to the callback at the end of the arguments list as well.</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>[defer] (boolean)</code>: Defaults to <code>false</code>, in which case <a href="../../concepts/events/publish-subscribe/">observers</a> will fire before any DOM changes take place. If <code>true</code>, the <a href="../../concepts/events/publish-subscribe/">observer</a> will fire once the DOM has been updated.</li>
+<li><code>[context] (any)</code>: Defaults to <code>ractive</code>. The context the <a href="../../concepts/events/publish-subscribe/">observer</a> is called in (i.e. the value of <code>this</code>)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>: An object with a <code>cancel</code> method, for cancelling the observer.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<p>Note that you can observe <a href="../../concepts/templates/keypaths/">keypath</a> <em>patterns</em>...</p>
+<pre><code class="js">ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
+    var index = /items.(\d+).status/.exec( [keypath](../concepts/templates/keypaths.md) )[1];
+    alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
+});
+</code></pre>
+
+<p>...or multiple space-separated <a href="../../concepts/templates/keypaths/">keypaths</a> simultaneously:</p>
+<pre><code class="js">ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
+    alert( [keypath](../concepts/templates/keypaths.md) + ' changed from ' + oldValue + ' to ' + newValue );
+});
+</code></pre>
+
+<p>See <a href="../../concepts/events/publish-subscribe/">Observers</a> for more detail.</p>
+<hr />
+<h2 id="ractiveoff">ractive.off()</h2>
+<p>Removes an event handler, several event handlers, or all event handlers.</p>
+<p>To remove a single handler, you must specify both the event name and the handler. If you only specify the event name, all handlers bound to that event name will be removed. If you specify neither event name nor handler, <strong>all</strong> event handlers will be removed.</p>
+<p>An alternative way to remove event handlers is to use the <code>cancel</code> method of the return value of a call to <code>ractive.on()</code>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.off([eventName[, handler]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>eventName (string)</code>: The event name to which this handler is currently bound.</li>
+<li><code>handler (Function)</code>: The handler to remove.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Ractive)</code>: Returns the <code>ractive</code> instance to allow this call to be chainable.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveon">ractive.on()</h2>
+<p>Subscribe to <a href="../../extend/events/">events</a>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.on(eventName, handler)</code></li>
+<li><code>ractive.on(obj)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>eventName (String)</code>: The name of the event to subscribe to</li>
+<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../extend/events/">event bubbling</a>.</li>
+<li><code>obj (Object)</code>: An object with keys named for each event to subscribe to. The value at each key is the handler function for that event.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code> - An <code>Object</code> with a <code>cancel</code> method, which removes the handler.</li>
+<li><code>(Object)</code> - An <code>Object</code> with a <code>cancel</code> method, which removes all handlers in the passed-in <code>obj</code>.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// single handler to function
+ractive.on( 'activate', function () {...});
+
+// wildcard pattern matching
+ractive.on( 'foo.*', function () {...} );
+
+// multiple handlers to one function
+ractive.on( 'activate select', function () {...} );
+
+// map of handler/function pairs
+ractive.on({
+    activate: function () {...},
+    select: function () {...}
+});
+
+// knock yourself out:
+ractive.on({
+    activate: function () {...},
+    'bip bop boop': function () {...},
+    'select foo.* bar': function () {...}
+});
+</code></pre>
+
+<hr />
+<h2 id="ractiveonce">ractive.once()</h2>
+<p>Subscribe to an event for a single firing. This is a convenience function on top of <a href="#ractiveon"><code>ractive.on()</code></a>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.once(eventName, handler)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>eventName (string)</code>: The name of the event to subscribe to.</li>
+<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../extend/events/">event bubbling</a>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>: Returns an <code>Object</code> with a <code>cancel</code> method, which removes the handler.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivepop">ractive.pop()</h2>
+<p>The Ractive equivalent to <code>Array.pop</code> that removes an element from the end of the array at the given <a href="../../concepts/templates/keypaths/">keypath</a> and triggers an update event.</p>
+<p>If the given <a href="../../concepts/templates/keypaths/">keypath</a> does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given <a href="../../concepts/templates/keypaths/">keypath</a> does not resolve to an array, an error will be thrown.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.pop(keypath)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array to change, e.g. <code>list</code> or <code>order.items</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise that will resolve with the removed element after the update is complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivepush">ractive.push()</h2>
+<p>The Ractive equivalent to <code>Array.push</code> that appends one or more elements to the array at the given <a href="../../concepts/templates/keypaths/">keypath</a> and triggers an update event.</p>
+<p>If the given <a href="../../concepts/templates/keypaths/">keypath</a> does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given <a href="../../concepts/templates/keypaths/">keypath</a> does not resolve to an array, an error will be thrown.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.push(keypath, value[, ...valueN])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array to change, e.g. <code>list</code> or <code>order.items</code>.</li>
+<li><code>value (any)</code>: The value to append to the end of the array. One or more values may be supplied.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code> - Returns a Promise that will resolve after the update is complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiverender">ractive.render()</h2>
+<p>Renders the component into a DOM element.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.render(target)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>target (Node|String|array-like)</code>: The DOM element to render to.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise that resolves when rendering completes or when the instance is already rendered.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivereset">ractive.reset()</h2>
+<p>Resets the entire <code>ractive.data</code> object and updates the DOM.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.reset(data)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>data (Object)</code>: The data to reset with. Defaults to <code>{}</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>This differs from <code>ractive.set()</code> in the following way:</p>
+<pre><code class="js">ractive = new Ractive({
+  // ...,
+  data: { foo: 1 }
+});
+
+ractive.set({ bar: 2 });
+console.log( ractive.get() ); // { foo: 1, bar: 2 }
+
+ractive.reset({ bar: 2 });
+console.log( ractive.get() ); // { bar: 2 }
+</code></pre>
+
+<hr />
+<h2 id="ractiveresetpartial">ractive.resetPartial()</h2>
+<p>Resets a partial and re-renders all of its use-sites, including in any components that have inherited it. If a component has a partial with a same name that is its own, that partial will not be affected.</p>
+<p>Inline partials that don't belong directly to a Ractive instance aren't affected by <code>resetPartial</code>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.resetPartial(name, partial)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>name (string)</code>: The partial to reset.</li>
+<li><code>partial (string|Object|Function)</code>: A template string, pre-parsed template or a function that returns either.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">ractive = new Ractive({
+  // ...,
+  partials: { foo: 'foo' }
+});
+
+// {{&gt;foo}} will be replaced with 'foo'
+
+ractive.resetPartial('foo', 'bar');
+
+// {{&gt;foo}} will be replaced with 'bar'
+</code></pre>
+
+<hr />
+<h2 id="ractivereverse">ractive.reverse()</h2>
+<p>The Ractive equivalent to <code>Array.reverse</code> reverses the array at the given <a href="../../concepts/templates/keypaths/">keypath</a> and triggers an update event.</p>
+<p>If the given <a href="../../concepts/templates/keypaths/">keypath</a> does not resolve to an array, an error will be thrown.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.reverse(keypath)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (String)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array to reverse, e.g. <code>list</code> or <code>order.items</code></li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code> - A promise that will resolve after the update is complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveset">ractive.set()</h2>
+<p>Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any <a href="../../concepts/events/publish-subscribe/">observers</a> of affected <a href="../../concepts/templates/keypaths/">keypaths</a> will be notified.</p>
+<p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../../extend/transitions/">transitions</a>. See <a href="#ractivemerge"><code>ractive.merge()</code></a> for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.set(keypath, value)</code></li>
+<li><code>ractive.set(map)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the data we're changing, e.g. <code>user</code> or <code>user.name</code> or <code>user.friends[1]</code> or <code>users.*.status</code>.</li>
+<li><code>value (any)</code>: The value we're changing it to. Can be a primitive or an object (or array), in which case dependants of <em>downstream keypaths</em> will also be re-rendered (if they have changed).</li>
+<li><code>map (Object)</code>: A map of <code>keypath: value</code> pairs, as above.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise that will be called after the set operation and any transitions are complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<p>The <code>keypath</code> can also contain wildcards <a href="../../concepts/events/publish-subscribe/">pattern-observers</a>. All matching <a href="../../concepts/templates/keypaths/">keypaths</a> will be set with the supplied values:</p>
+<pre><code class="js">ractive.on('selectAll', function(){
+    ractive.set('items.*.selected', true);
+})
+</code></pre>
+
+<hr />
+<h2 id="ractiveshift">ractive.shift()</h2>
+<p>The Ractive equivalent to <code>Array.shift</code> that removes an element from the beginning of the array at the given <a href="../../concepts/templates/keypaths/">keypath</a> and triggers an update event.</p>
+<p>If the given <a href="../../concepts/templates/keypaths/">keypath</a> does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given <a href="../../concepts/templates/keypaths/">keypath</a> does not resolve to an array, an error will be thrown.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.shift(keypath)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array to change, e.g. <code>list</code> or <code>order.items</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise that will resolve with the removed element after the update is complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivesort">ractive.sort()</h2>
+<p>The Ractive equivalent to <code>Array.sort</code> sorts the array at the given <a href="../../concepts/templates/keypaths/">keypath</a> and triggers an update event.</p>
+<p>If the given <a href="../../concepts/templates/keypaths/">keypath</a> does not resolve to an array, an error will be thrown.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.sort(keypath)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array to sort, e.g. <code>list</code> or <code>order.items</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise that will resolve after the update is complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivesplice">ractive.splice()</h2>
+<p>The Ractive equivalent to <code>Array.splice</code> that can add new elements to the array while removing existing elements.</p>
+<p>If the given <a href="../../concepts/templates/keypaths/">keypath</a> does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given <a href="../../concepts/templates/keypaths/">keypath</a> does not resolve to an array, an error will be thrown.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.splice(keypath, index, [removeCount[, add]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array to change, e.g. <code>list</code> or <code>order.items</code>.</li>
+<li><code>index (number)</code>: The index at which to start the operation.</li>
+<li><code>[removeCount] (number)</code>: The number of elements to remove starting with the element at *<code>index</code>. This may be 0 if you don't want to remove any elements.</li>
+<li><code>[add] (any)</code>: Any elements to insert into the array starting at *<code>index</code>. There can be 0 or more elements passed to add to the array.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise that will resolve with the removed elements after the update is complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivesubtract">ractive.subtract()</h2>
+<p>Decrements the selected <a href="../../concepts/templates/keypaths/">keypath</a>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.subtract(keypath[, number])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the number we're decrementing.</li>
+<li><code>[number] (number)</code>: Defaults to <code>1</code>. The number to decrement by.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveteardown">ractive.teardown()</h2>
+<p>Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.</p>
+<p>Calling <code>ractive.teardown()</code> causes a <code>teardown</code> <a href="../../extend/events/">event</a> to be fired - this is most useful with <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a> as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.teardown()</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivetocss">ractive.toCSS()</h2>
+<p>Returns the scoped CSS of the current instance and its descendants.</p>
+<p>At the moment, this will not work on a direct instance of Ractive and will log a warning. You can only use this method on an instance of a subclass.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.toCSS()</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(string)</code>: The scoped CSS of the instance.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">const Subclass = Ractive.extend({
+    ...
+    css: 'div{ color: red }'
+    ...
+});
+
+const subclassInstance = new Subclass({...});
+
+// Contains the scoped version of div{ color: red }
+subclassInstance.toCSS();
+</code></pre>
+
+<hr />
+<h2 id="ractivetohtml">ractive.toHTML()</h2>
+<p>Returns a chunk of HTML representing the current state of the instance. This is most useful when you're using Ractive in node.js, as it allows you to serve fully-rendered pages (good for SEO and initial pageload performance) to the client.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.toHTML()</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(string)</code>: The instance HTML.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivetoggle">ractive.toggle()</h2>
+<p>Toggles the selected <a href="../../concepts/templates/keypaths/">keypath</a>. In other words, if <code>foo</code> is <a href="http://james.padolsey.com/javascript/truthy-falsey/">truthy</a>, then <code>ractive.toggle('foo')</code> will make it <code>false</code>, and vice-versa.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.toggle(keypath)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to toggle the value of. If <strong>keypath</strong> is a pattern, then all matching <a href="../../concepts/templates/keypaths/">keypaths</a> will be toggled.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivetransition">ractive.transition()</h2>
+<p>Triggers a transition on a node managed by this Ractive instance.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.transition(transition, node, options)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>transition (string|Function)</code>: A transition function or a name of a transition function.</li>
+<li><code>node (HTMLElement)</code>: The node on which to start the transition - optional if called from within a Ractive event handler, as it will be retrieved from the event if not supplied.</li>
+<li><code>options (Object)</code>: Options supplied to the transition.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise that resolves when the transition completes.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveunlink">ractive.unlink()</h2>
+<p>Removes a link set up by <a href="#ractivelink"><code>ractive.link()</code></a>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.unlink(destination)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>destination (string)</code>: The destination supplied to [<code>ractive.link()</code>].</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveunrender">ractive.unrender()</h2>
+<hr />
+<p>Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to <a href="#ractiverender"><code>ractive.render()</code></a>. The rest of the ractive instance is left intact, unlike <a href="#ractiveteardown"><code>ractive.teardown()</code></a>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.unrender()</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveunshift">ractive.unshift()</h2>
+<p>The Ractive equivalent to <code>Array.unshift</code> that prepends one or more elements to the array at the given <a href="../../concepts/templates/keypaths/">keypath</a> and triggers an update event.</p>
+<p>If the given <a href="../../concepts/templates/keypaths/">keypath</a> does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given <a href="../../concepts/templates/keypaths/">keypath</a> does not resolve to an array, an error will be thrown.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.unshift(keypath, value)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> of the array to change, e.g. <code>list</code> or <code>order.items</code>.</li>
+<li><code>value (any)</code>: The value to prepend to the beginning of the array. One or more values may be supplied.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise that will resolve after the update is complete.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractiveupdate">ractive.update()</h2>
+<p>Forces everything that depends on the specified <a href="../../concepts/templates/keypaths/">keypaths</a> (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. <a href="#ractiveset"><code>ractive.set()</code></a>, <a href="#ractiveanimate"><code>ractive.animate()</code></a>, or array modification):</p>
+<p>If no <code>keypath</code> is specified, all mustaches and <a href="../../concepts/events/publish-subscribe/">observers</a> will be checked.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.update([keypath])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[keypath] (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to treat as 'dirty'. Any mustaches or <a href="../../concepts/events/publish-subscribe/">observers</a> that depend (directly or indirectly) on this <a href="../../concepts/templates/keypaths/">keypath</a> will be checked to see if they need to update</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise. If a <a href="../../concepts/templates/keypaths/">keypath</a> is not supplied, this 'dirty checks' everything.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">ractive.observe( 'foo', function ( foo ) {
+    alert( foo );
+});
+
+model.foo = 'changed';
+ractive.update( 'foo' ); // causes [observer](../concepts/events/publish-subscribe.md) to alert 'changed'
+</code></pre>
+
+<hr />
+<h2 id="ractiveupdatemodel">ractive.updateModel()</h2>
+<p>If you programmatically manipulate inputs and other elements that have <a href="../../concepts/data-binding/two-way-binding/">two‐way binding</a> set up, your model can get out of sync. In these cases, we need to force a resync with <code>ractive.updateModel()</code>:</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.updateModel([keypath[, cascade]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>keypath (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to treat as 'dirty'. Any two-way bindings linked to this <a href="../../concepts/templates/keypaths/">keypath</a> will be checked to see if the model is out of date</li>
+<li><code>cascade (boolean)</code>: If true, bindings that are <em>downstream</em> of <code>keypath</code> will also be checked - e.g. <code>ractive.updateModel( 'items', true )</code> would check <code>items.0.foo</code> and <code>items.1.foo</code> and so on. Defaults to <code>false</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise. If a <code>keypath</code> is not specified, all two-way bindings will be checked.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">ractive = new Ractive({
+  el: 'container',
+  template: '&lt;input value=&quot;{{name}}&quot;&gt;'
+  data: { name: 'Bob' }
+});
+
+ractive.find( 'input' ).value = 'Jim';
+alert( ractive.get( 'name' ) ); // alerts 'Bob', not 'Jim'
+
+ractive.updateModel();
+alert( ractive.get( 'name' ) ); // alerts 'Jim'
+</code></pre></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+    <script src="../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

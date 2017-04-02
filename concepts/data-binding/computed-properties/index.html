@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/concepts/data-binding/computed-properties/"> 
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    <title>Computed Properties - Ractive.js</title>
+
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link href="../../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+
+
+    <link href="../../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../templates/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../array-modification/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../dependents/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#computed-properties-to-the-rescue">Computed properties to the rescue</a></li>
+        
+    
+        <li class="first-level "><a href="#compact-syntax">Compact syntax</a></li>
+        
+    
+        <li class="first-level "><a href="#setting-computed-values">Setting computed values</a></li>
+        
+    
+        <li class="first-level "><a href="#components">Components</a></li>
+        
+    
+        <li class="first-level "><a href="#data-context-for-computed-properties">Data context for computed properties</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>The idea is fairly simple: you can define computed properties that update reactively based on their dependencies. In previous versions you may have done something as follows.</p>
+<pre><code class="js">ractive = new Ractive({
+  el: 'body',
+  template: '{{width}} * {{height}} = {{ area() }}', // note the function invocation
+  data: {
+    width: 100,
+    height: 100,
+    area: function () { return this.get( 'width' ) * this.get( 'height' ); }
+  }
+});
+</code></pre>
+
+<p>That's nice and all - the <code>{{ area() }}</code> mustache updates reactively as <code>width</code> and <code>height</code> change - but it's limited. To get the area value programmatically you'd have to do something like...</p>
+<pre><code class="js">area = ractive.get('area').call(ractive);
+</code></pre>
+
+<p>...which effectively prevents you from composing computed values together in any meaningful way. And you can't 'observe' the area outside of the template, without doing something like this:</p>
+<pre><code class="js">ractive.observe( 'width height', function () {
+    var area = this.get( 'width' ) * this.get( 'height' );
+    doSomething( area );
+});
+</code></pre>
+
+<h1 id="computed-properties-to-the-rescue">Computed properties to the rescue</h1>
+<p>Now, you can do</p>
+<pre><code class="js">ractive = new Ractive({
+  el: 'body',
+  template: '{{width}} * {{height}} = {{area}}', // `area` looks like a regular property
+  data: {
+    width: 100,
+    height: 100
+  },
+  computed: {
+    area: function () { return this.get( 'width' ) * this.get( 'height' ); }
+  }
+});
+</code></pre>
+
+<p>With this, the <code>area</code> property can be treated like any other. It will update reactively (because the calls to <code>ractive.get()</code> tell Ractive that it should be recomputed when <code>width</code> or <code>height</code> change), so you can do...</p>
+<pre><code class="js">ractive.observe( 'area', doSomething );
+</code></pre>
+
+<p>...instead of manually recalculating it. And computed values can depend on other computed values, and so on (before anyone asks, we're not doing a topological sort or anything fancy like that - in real world scenarios I'd expect the overhead of doing the sort to be greater than the cost of occasionally recomputing a node in the dependency graph more times than is required).</p>
+<h1 id="compact-syntax">Compact syntax</h1>
+<p>The syntax used above, where each computed property is defined as a function, gives you a lot of flexibility. But there's a more compact string syntax you can use:</p>
+<pre><code class="js">ractive = new Ractive({
+  ...,
+  computed: {
+    area: '${width} * ${height}'
+  }
+});
+</code></pre>
+
+<p>This string is turned into a function with the <code>Function</code> constructor (which unfortunately means it isn't <a href="https://developer.mozilla.org/en-US/docs/Security/CSP">CSP compliant</a>) - any <code>${...}</code> blocks are basically turned into <code>ractive.get('...')</code>, so it works exactly the same way. Needless to say you can use any JavaScript here - <code>${foo}.toUpperCase()</code>, <code>Math.round(${num})</code>, and so on.</p>
+<h1 id="setting-computed-values">Setting computed values</h1>
+<p>By default, computed values are read-only, and if you try to <code>ractive.set('someComputedProperty')</code> an error will be thrown. But you can use a third syntax option which allows you to declare a <code>set()</code> method:</p>
+<pre><code class="js">ractive = new Ractive({
+  data: { firstname: 'Douglas', lastname: 'Crockford' },
+  computed: {
+    fullname: {
+      get: '${firstname} + &quot; &quot; + ${lastname}', // or use the function syntax
+      set: function ( fullname ) {
+        var names = fullname.split( ' ' );
+
+        this.set({
+          firstname: names[0] || '',
+          lastname: names[1] || ''
+        });
+      }
+    }
+  }
+});
+
+ractive.set( 'fullname', 'Rich Harris' );
+
+ractive.get( 'firstname' ); // Rich
+ractive.get( 'lastname' ); // Harris
+</code></pre>
+
+<h1 id="components">Components</h1>
+<p>You can, of course, declare computed values on components:</p>
+<pre><code class="js">Box = Ractive.extend({
+  template: boxTemplate,
+  computed: { area: '${width} * ${height}' }
+});
+
+box = new Box({
+  ...,
+  data: { width: 20, height: 40 }
+});
+
+box.get( 'area' ); // 800
+</code></pre>
+
+<p>Additional computed properties can be declared on the instance:</p>
+<pre><code class="js">box2 = new Box({
+  ...,
+  data: { width: 20, height: 40, depth: 60 },
+  computed: { volume: '${area} * ${depth}' }
+});
+
+box2.get( 'area' ); // 800
+box2.get( 'volume' ); // 48000
+</code></pre>
+
+<h1 id="data-context-for-computed-properties">Data context for computed properties</h1>
+<p>Computed properties can only be calculated for the instance context as a whole. You can't, for example, directly
+compute a value for each member of an array:</p>
+<pre><code class="js">new Ractive({
+  template: '{{#boxes}}{{area}}{{/}}',
+  data: {
+    boxes: [
+      { width: 20, height: 40 },
+      { width: 30, height: 45 },
+      { width: 20, height: 20 }
+    ]
+  },
+  // there's no way to specify this for &quot;each&quot; box :(
+  computed: { area: '${width} * ${height}' }
+});
+</code></pre>
+
+<p>The solution is to either use a function that calculates the value for each member:</p>
+<pre><code class="js">  template: '{{#boxes:b}}{{ getArea(b) }}{{/}}',
+  data: {
+    boxes: [
+      { width: 20, height: 40 },
+      { width: 30, height: 45 },
+      { width: 20, height: 20 }
+    ],
+    getArea: function ( i ) {
+      var box = this.get( 'boxes.' + i );
+      return box.width * box.area;
+    }
+  }
+</code></pre>
+
+<p>Or leverage a component to "scope" the data to each item:</p>
+<pre><code class="js">Box = Ractive.extend({
+  template: boxTemplate,
+  computed: { area: '${width} * ${height}' }
+});
+
+new Ractive({
+  template: '{{#boxes}}&lt;box/&gt;{{/}}',
+  data: {
+    boxes: [
+      { width: 20, height: 40 },
+      { width: 30, height: 45 },
+      { width: 20, height: 20 }
+    ]
+  },
+  components: { box: Box }
+});
+</code></pre></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../../..';
+    </script>
+    <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+    <script src="../../../js/base.js"></script>
+    <script src="../../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

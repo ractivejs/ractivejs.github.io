@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/extend/adaptors/"> 
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Adaptors - Ractive.js</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+
+
+    <link href="../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../api/errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/data-binding/array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/data-binding/two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../concepts/templates/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../concepts/templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../../integrations/libraries/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../components/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#adaptors">Adaptors</a></li>
+        
+            <li class="second-level"><a href="#writing">Writing</a></li>
+            
+                <li class="third-level"><a href="#adaptors-only-adapt-one-level">Adaptors only adapt one level</a></li>
+            
+                <li class="third-level"><a href="#no-built-in-infinite-loop-detection">No built-in infinite loop detection</a></li>
+            
+                <li class="third-level"><a href="#different-for-every-back-end">Different for every back-end</a></li>
+            
+        
+            <li class="second-level"><a href="#registering">Registering</a></li>
+            
+                <li class="third-level"><a href="#globally-via-the-ractiveadaptors-static-property">Globally, via the Ractive.adaptors static property.</a></li>
+            
+                <li class="third-level"><a href="#per-component-via-the-components-adaptors-initialization-property">Per component, via the component's adaptors initialization property.</a></li>
+            
+                <li class="third-level"><a href="#per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's adaptors initialization property.</a></li>
+            
+        
+            <li class="second-level"><a href="#using">Using</a></li>
+            
+        
+            <li class="second-level"><a href="#examples">Examples</a></li>
+            
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="adaptors">Adaptors</h1>
+<p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. <a href="./">Adaptors</a> allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">Ractive.adaptors.myAdaptor = {
+  filter: function ( object, keypath, ractive ) {
+    // return `true` if a particular object is of the type we want to adapt.
+  },
+  wrap: function ( ractive, object, keypath, prefixer ) {
+    // Setup
+    return {
+      teardown: function(){
+        // Code executed on teardown.
+      },
+      get: function(){
+        // Returns POJO version of your data backend.
+      },
+      set: function(property, value){
+        // Data setter for POJO property keypaths.
+      },
+      reset: function(value){
+        // Data setter for POJO keypath.
+      }
+    }
+  }
+};
+</code></pre>
+
+<p>Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an <a href="./">adaptor</a> is as follows:</p>
+<ol>
+<li>Provides an POJO version of your data source to Ractive.</li>
+<li>Captures data changes on your data source and mirror them to the data in Ractive.</li>
+<li>Captures data changes on the data in Ractive and mirror them to the data source.</li>
+</ol>
+<p>Whether it's a third-party data modelling library, a RESTful service, a socket server, browser storage, or whatever, as long as all of the three can be done, it can be adapted.</p>
+<p><code>filter</code> is a function that gets called to check if <code>object</code> needs to use an adaptor.</p>
+<p><code>object</code> is the data source to adapt.</p>
+<p><code>keypath</code> is the <a href="../../concepts/templates/keypaths/">keypath</a> to <code>object</code>.</p>
+<p><code>ractive</code> is the ractive instance that is currently using the adaptor.</p>
+<p><code>wrap</code> is a function that gets called to set up the <a href="./">adaptor</a> on <code>object</code>.</p>
+<p><code>prefixer</code> is a helper function that accepts an object and automatically prefixes <code>keypath</code> to the object's keys.</p>
+<p><code>get</code> is a function that gets called when Ractive needs the adapted representation of the <code>object</code>.</p>
+<p><code>set</code> is a function that is called when <code>ractive.set()</code> updates a <a href="../../concepts/templates/keypaths/">keypath</a> to a property of the adapted data. This function allows you to update the same property on <code>object</code>.</p>
+<p><code>property</code> is the <a href="../../concepts/templates/keypaths/">keypath</a> to the property being updated, relative to <code>keypath</code>.</p>
+<p><code>value</code> is the value being passed into <code>ractive.set()</code>.</p>
+<p><code>reset</code> is a function that is called when <code>ractive.set()</code> updates a <a href="../../concepts/templates/keypaths/">keypath</a> to the adapted data. This function allows you to either update <code>object</code> or tear down the adaptor.</p>
+<p><code>teardown</code> is a function called when the <a href="./">adaptor</a> is being removed. This function allows you to do cleanup work on anything that was done during the <a href="./">adaptor</a> setup.</p>
+<h3 id="adaptors-only-adapt-one-level"><a href="./">Adaptors</a> only adapt one level</h3>
+<p>An <a href="./">adaptor</a> only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.</p>
+<h3 id="no-built-in-infinite-loop-detection">No built-in infinite loop detection</h3>
+<p>There is no built-in mechanism for avoiding infinite loops. If your <a href="./">adaptor</a> calls <code>ractive.set()</code> on adapted data, which in turn will call the adaptor's <code>set()</code> method, which may directly or indirectly trigger another <code>ractive.set()</code> on the same adapted data, a stack overflow error might occur.</p>
+<p>This isn't a problem with primitive values since Ractive doesn't bother calling <code>set()</code> if a value hasn't changed. But with objects and arrays, there's no easy and performant way to tell if the contents have changed. So <code>set()</code> gets called <em>in case something changed</em> rather than <em>because something changed</em>.</p>
+<h3 id="different-for-every-back-end">Different for every back-end</h3>
+<p>The <a href="./">adaptor</a> structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an <a href="./">adaptor</a> for a certain back-end. For instance, an <a href="./">adaptor</a> for a constructor-based object may be written differently from an <a href="./">adaptor</a> meant to interact with a socket server.</p>
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register adaptors:</p>
+<h3 id="globally-via-the-ractiveadaptors-static-property">Globally, via the <code>Ractive.adaptors</code> static property.</h3>
+<pre><code class="js">Ractive.adaptors.myAdaptor = myAdaptor;
+</code></pre>
+
+<h3 id="per-component-via-the-components-adaptors-initialization-property">Per component, via the component's <code>adaptors</code> initialization property.</h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  adaptors: {
+    myAdaptor: myAdaptor
+  }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</h3>
+<pre><code class="js">const ractive = new Ractive({
+  adaptors: {
+    myAdaptor: myAdaptor
+  }
+});
+</code></pre>
+
+<h2 id="using">Using</h2>
+<p>In order to use an adaptor, you must tell the component or an instance to use it using the <code>adapt</code> <a href="../../api/initialization-options/">initialization option</a>.</p>
+<pre><code class="js">const ractive = new Ractive({
+  adapt: [ 'myAdaptor', myAdaptor ]
+})
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<p>In the following example, we have a <code>Box</code> constructor that uses accessors to get and set its <code>width</code> and <code>height</code> properties. Since an instance of <code>Box</code> will have no publicly visible properties, Ractive cannot bind to them directly.</p>
+<pre><code class="js">function Box(width, height){
+  var _width = width;
+  var _height = height;
+
+  this.getWidth = function(){ return _width; };
+  this.setWidth = function(width){ _width = width; };
+  this.getHeight = function(){ return _height; };
+  this.setHeight = function(height){ _height = height };
+}
+</code></pre>
+
+<p>In order for Ractive to properly use a <code>Box</code> instance, we build an <a href="./">adaptor</a> for <code>Box</code>.</p>
+<pre><code class="js">Ractive.adaptors.boxAdaptor = {
+  filter: function ( object ) {
+    // Checks if the piece of data is an instance of Box.
+    return object instanceof Box;
+  },
+  wrap: function ( ractive, box, keypath, prefixer ) {
+
+    // We keep a reference to the original functions before monkey-patching.
+    const setWidth = box.setWidth;
+    const setHeight = box.setHeight;
+
+    // Use ractive.set on the the adapted data whenever the setters are used.
+    box.setWidth = function(width){
+      ractive.set(prefixer({
+        width: width
+      }));
+    };
+
+    box.setHeight = function(height){
+      ractive.set(prefixer({
+        height: height
+      }));
+    };
+
+    return {
+      // Return a POJO representation of an instance of Box.
+      get: function(){
+        return {
+          width: box.getWidth(),
+          height: box.getHeight();
+        };
+      },
+      // Update the adapted object's properties
+      set: function(property, value){
+        if(property === 'width') setWidth.call(box, value);
+        if(property === 'height') setHeight.call(box, value);
+      },
+      // Update the adapted object.
+      reset: function(data){
+        // We don't adapt non-objects. And if the new data is an instance of Box
+        // there's a high chance that its a new instance. In either case, we
+        // need to tear down this adapter and have Ractive set it up again if
+        // necessary.
+        if(typeof data !== 'object' || data instanceof Box) return false;
+
+        // Otherwise, we just parse through the data and update the existing box
+        // instance.
+        if(data.width !== undefined) setWidth.call(box, data.width);
+        if(data.height !== undefined) setHeight.call(box, data.height);
+      },
+      // Delete the monkey-patched methods.
+      teardown: function(){
+        delete box.setWidth;
+        delete box.setHeight;
+      }
+    };
+  }
+};
+</code></pre>
+
+<p>Then we use <code>boxAdaptor</code> on an instance. The data can now be treated like regular Ractive data. Updates done directly on <code>box</code> will reflect on Ractive. Any changes via Ractive will reflect on <code>box</code>.</p>
+<pre><code class="js">const ractive = new Ractive({
+  el: 'body',
+  // Tell the instance we'll be using boxAdaptor
+  adapt: [ 'boxAdaptor' ],
+  // We write Ractive like normal.
+  template: `
+    &lt;div&gt;Box is {{ box.width }}x{{ box.height }}&lt;/div&gt;,
+    &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.width }}&quot;&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.height }}&quot;&gt;&lt;/div&gt;
+  `
+});
+
+const box = new Box(3, 4);
+
+// Set the Box instance as if it were a POJO.
+ractive.set('box', box);
+
+// Both box instance and box object will have 7 width and 11 height and will
+// be rendered in the UI accordingly.
+box.setWidth(7);
+ractive.set('box.height', 11);
+</code></pre></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+    <script src="../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

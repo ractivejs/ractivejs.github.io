@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/concepts/templates/references/"> 
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    <title>References - Ractive.js</title>
+
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link href="../../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+
+
+    <link href="../../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../get-started/examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/errors/">Errors</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../data-binding/array-modification/">Array Modification</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/magic-mode/">Magic Mode</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../pre-parsing/">Pre-Parsing</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../pre-parsing/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../../articles/introducing-ractive-js/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#huh">Huh?</a></li>
+        
+    
+        <li class="first-level "><a href="#lists">Lists</a></li>
+        
+    
+        <li class="first-level "><a href="#current-context-or-this">Current context - {{.}} or {{this}}</a></li>
+        
+    
+        <li class="first-level "><a href="#restricted-references">Restricted references</a></li>
+        
+            <li class="second-level"><a href="#ancestor-references">Ancestor references</a></li>
+            
+        
+            <li class="second-level"><a href="#root-references">Root references</a></li>
+            
+        
+    
+        <li class="first-level "><a href="#special-references">Special references</a></li>
+        
+    
+        <li class="first-level "><a href="#summary-of-prefixes">Summary of prefixes</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>Within this documentation, and within Ractive's code, a <em>reference</em> is a string that refers to a piece of data - in other words, within a <code>{{name}}</code> <a href="">mustache</a>, <code>name</code> is the reference.</p>
+<p>By themselves, references are useless - they must <em>resolve</em> to a <em><a href="">keypath</a></em> before we can do anything with them (like render their value). If the reference exists with a section mustache, it may need to be resolved <em>in the context of that section</em>. In fact, because sections can be nested, we have to resolve each reference within its <em>context stack</em>.</p>
+<p>The resolution algorithm looks like this:</p>
+<ol>
+<li>Is the reference a special ref? If so, resolve with the appropriate special keypath.</li>
+<li>If the reference is explicit or matches a path in the current context exactly, resolve with that keypath.</li>
+<li>Grab the current virtual node from the template hierarchy.</li>
+<li>If there are any aliases, index, or key mapping defined that match, resolve with that keypath.</li>
+<li>If this is a component and there are any matching mappings, resolve with that keypath.</li>
+<li>If this node has context and there is a matching path, resolve with that keypath.</li>
+<li>Otherwise, remove the innermost context from the stack. Repeat (3-7).</li>
+<li>See if <code>reference</code> is a valid keypath by itself. If so, resolve with that keypath.</li>
+<li>If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.</li>
+</ol>
+<h1 id="huh">Huh?</h1>
+<p>That's a little bit abstract. The following example may help explain:</p>
+<pre><code class="html">{{#user}}
+  &lt;p&gt;Welcome back, {{name}}!
+    {{#messages}}
+      You have {{unread}} unread of {{total}} total messages.
+      You last logged in on {{lastLogin}}.
+    {{/messages}}
+  &lt;/p&gt;
+{{/user}}
+</code></pre>
+
+<pre><code class="js">ractive = new Ractive({
+  el: container,
+  template: myTemplate,
+  data: {
+    user: {
+      name: 'Jim',
+      messages: {
+        total: 10,
+        unread: 3
+      },
+      lastLogin: 'Wednesday'
+    }
+  }
+});
+</code></pre>
+
+<p>We start with an empty context stack, so to resolve the <code>user</code> in <code>{{#user}}</code> we skip ahead to step 6 of the algorithm. Is <code>user</code> a valid keypath - i.e. does <code>ractive.data</code> have a <code>user</code> property? Why yes, it does.</p>
+<p>Within the <code>{{#user}}</code> section, <code>user</code> is a context. So we now have a non-empty context stack - <code>['user']</code>. So when we come to resolve the <code>name</code> in <code>{{name}}</code>, we go to step 2. The innermost (and only) context is <code>user</code>, so we test the keypath <code>user.name</code>. Is it valid? Why yes, it is. So the <code>name</code> resolves to <code>user.name</code>.</p>
+<p>Next up, <code>{{#messages}}</code>. The innermost context is still <code>user</code>, so we test <code>user.messages</code> - bingo. Because it's a section mustache, anything inside it now has a two-level context stack (<code>['user', 'user.messages']</code>).</p>
+<p>We take <code>{{unread}}</code> and <code>{{total}}</code> and apply the same algorithm - sure enough, they resolve to <code>user.messages.unread</code> and <code>user.messages.total</code>.</p>
+<p>What about <code>{{lastLogin}}</code>? Again, we take the innermost context from the stack - <code>user.messages</code>. Is <code>user.messages.lastLogin</code> a valid keypath? No, it isn't. So we take the next innermost context - <code>user</code>. As it turns out, <code>user.lastLogin</code> is a valid keypath, so the reference resolves.</p>
+<p>Most of the time you don't need to be aware that this is going on, especially if you're already familiar with <a href="">Mustache</a>, but it's useful to have a background understanding.</p>
+<h1 id="lists">Lists</h1>
+<p>This is also how list sections work. Consider the following:</p>
+<pre><code class="html">{{#items}}
+  {{content}}
+{{/items}}
+</code></pre>
+
+<pre><code class="js">ractive = new Ractive({
+  el: container,
+  template: myTemplate,
+  data: {
+    items: [{ content: 'zero' }, { content: 'one' }, { content: 'two' }]
+  }
+});
+</code></pre>
+
+<p>The contents of the <code>{{#items}}</code> section are rendered once for each member of <code>items</code>. Each time round, the context changes - the first time it is <code>items.0</code>, then it is <code>items.1</code>, then it is <code>items.2</code>.</p>
+<p>With a context of <code>items.0</code>, the <code>content</code> reference resolves to <code>items.0.content</code>, and so on.</p>
+<h1 id="current-context-or-this">Current context - <code>{{.}}</code> or <code>{{this}}</code></h1>
+<p>Using <code>{{.}}</code> or <code>{{this}}</code> (they refer to the same thing) resolves to the current data context.</p>
+<p>For example, sometimes you will have lists of primitives (i.e. strings and numbers) rather than objects. To refer to the primitives, we must use the <em>implicit iterator</em>:</p>
+<pre><code class="html">{{#items}}
+  {{.}}
+{{/items}}
+</code></pre>
+
+<pre><code class="js">ractive = new Ractive({
+  el: container,
+  template: myTemplate,
+  data: {
+    items: [ 'zero', 'one', 'two' ]
+  }
+});
+</code></pre>
+
+<p>Whenever Ractive sees <code>{{.}}</code>, it simply resolves it to the innermost context - <code>items.0</code>, <code>items.1</code>, <code>items.2</code>.</p>
+<p>In Ractive (but not Mustache), you can use <code>{{this}}</code> in place of <code>{{.}}</code>. This is because in expressions - <code>{{this.toFixed(1)}}</code> looks much nicer than <code>{{..toFixed(1)}}</code> (for example).</p>
+<h1 id="restricted-references">Restricted references</h1>
+<p>Sometimes you may want to reference a property within the current context regardless of whether that property currently exists. For those situations you can use what's called a <em>restricted reference</em> (note that this feature does not exist in vanilla Mustache):</p>
+<pre><code class="html">{{#options}}
+  &lt;label&gt;&lt;input type='checkbox' checked='{{.selected}}'&gt; {{description}}&lt;/label&gt;
+{{/options}}
+</code></pre>
+
+<p>This feature is particularly useful with <a href="">two-way binding</a> as these references have to be resolved immediately.</p>
+<p>You can also use the form <code>{{./selected}}</code> if you prefer, or <code>{{this.selected}}</code>, both of which are the same as <code>{{.selected}}</code>.</p>
+<h2 id="ancestor-references">Ancestor references</h2>
+<p>Very occasionally, you might need to refer explicitly to a property higher up in the tree to avoid naming conflicts. You can do that by prefixing references with <code>../</code> (or <code>../../</code>, or <code>../../../</code>...):</p>
+<pre><code class="html">&lt;h1&gt;Blog posts by {{name}}&lt;/p&gt;
+
+&lt;ul class='blog-posts'&gt;
+  {{#posts}}
+    &lt;li&gt;&lt;a href='{{ slugify(../../name) }}/{{ slugify(name) }}'&gt;{{name}}&lt;/a&gt;&lt;/li&gt;
+  {{/posts}}
+&lt;/ul&gt;
+</code></pre>
+
+<pre><code class="js">var ractive = new Ractive({
+  el: document.body,
+  template: myTemplate,
+  data: {
+    name: 'Rich',
+    posts: [
+      { name: 'This is a blog post' },
+      { name: 'And so is this' }
+    ],
+    slugify: function ( str ) {
+      var slug;
+      /* SOME CODE HAPPENS */
+      return slug;
+    }
+  }
+});
+</code></pre>
+
+<p>In this example, some damn fool decided it would be a good idea to give posts a 'name' property as well as authors. Which means that in the <code>href</code> attribute, it wouldn't be possible to refer to the root-level <code>name</code> property, because it would always resolve to the <code>name</code> property of the current post - and that's no good, because the root-level <code>name</code> property is used to construct the URL.</p>
+<p>By using <code>../../name</code> instead of <code>name</code>, we're saying 'go up one level (to <code>posts</code>), then up one more (to the root), and <em>then</em> look for the <code>name</code> property'.</p>
+<h2 id="root-references">Root references</h2>
+<p>You can also navigate directly from the top of the data hierarchy with <code>~/</code>. Note that this is the root of the ractive instance in which the template appears, not the entire view hierarchy of nested components.</p>
+<p>The above example could also use a root reference:</p>
+<pre><code class="html">&lt;h1&gt;Blog posts by {{name}}&lt;/p&gt;
+
+&lt;ul class='blog-posts'&gt;
+  {{#posts}}
+    &lt;li&gt;&lt;a href='{{ ~/name }}/{{ name }}'&gt;{{name}}&lt;/a&gt;&lt;/li&gt;
+  {{/posts}}
+&lt;/ul&gt;
+</code></pre>
+
+<h1 id="special-references">Special references</h1>
+<p>There are a few things that can be useful to reference from the template that don't really exist in your data. For instance, the current iteration index of a repeated section. These special references can be used just like any other data reference, excepting two-way binding. Here's the list of specials and their resolutions:</p>
+<ol>
+<li><code>@index</code> - the current iteration index of the containing repeated section e.g. <code>{{#each list}}{{@index}}{{/each}}</code></li>
+<li><code>@key</code> - the current key name of the containing object iteration section e.g. <code>{{#each someObj}}{{@key}}{{/each}}</code></li>
+<li><code>@keypath</code> - the keypath to the current context e.g. <code>foo.bar.baz</code> in <code>{{#foo}}{{#with bar.baz}}{{@keypath}}{{/with}}{{/}}</code>. If the current context happens to be a mapping in a component, the keypath will be adjusted relative to the mapping.</li>
+<li><code>@rootpath</code> - the same as keypath, except not adjusted for components.</li>
+<li><code>@global</code> - the current global object for this environment e.g. <code>window</code> in a browser or <code>global</code> in node. This reference can be used with two-way binding, but note that if something outside of Ractive changes a value, Ractive won't know unless you tell it to <code>update</code>.</li>
+<li><code>@this</code> - the current Ractive instance e.g. the current component or the Ractive root. You can access any properties or methods available on a Ractive instance with this, and due to the way capture works, you can also use <code>@this.get('...')</code> in a binding and it will update with the target keypath.</li>
+</ol>
+<h1 id="summary-of-prefixes">Summary of prefixes</h1>
+<ul>
+<li><code>~/</code> means at the current instance root.</li>
+<li><code>.</code> means the current context. When more path follows, it follows the path from the current context.</li>
+<li><code>../</code> means the parent of the current context and may also be stacked and have a following path.</li>
+<li><code>@</code> means this is a special reference that has meaning specified by where it exists in the template e.g. <code>@index</code> means the current iteration index of the containing repeated section.</li>
+</ul></div>
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+    </footer>
+
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../../..';
+    </script>
+    <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+    <script src="../../../js/base.js"></script>
+    <script src="../../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
