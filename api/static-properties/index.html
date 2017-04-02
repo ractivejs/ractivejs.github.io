@@ -654,19 +654,7 @@
             <li class="second-level"><a href="#ractiveinterpolators">Ractive.interpolators</a></li>
             
         
-            <li class="second-level"><a href="#ractivelength">Ractive.length</a></li>
-            
-        
-            <li class="second-level"><a href="#ractivemagic">Ractive.magic</a></li>
-            
-        
-            <li class="second-level"><a href="#ractivename">Ractive.name</a></li>
-            
-        
             <li class="second-level"><a href="#ractivepartials">Ractive.partials</a></li>
-            
-        
-            <li class="second-level"><a href="#ractivepromise">Ractive.Promise</a></li>
             
         
             <li class="second-level"><a href="#ractivesvg">Ractive.svg</a></li>
@@ -685,28 +673,28 @@
 
 <h1 id="static-properties">Static Properties</h1>
 <h2 id="ractiveadaptors">Ractive.adaptors</h2>
-<p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
+<p><code>(Object&lt;string, Object&gt;)</code></p>
 <p>The registry of globally available <a href="../../extend/adaptors/">adaptors</a>.</p>
 <hr />
 <h2 id="ractivecomponents">Ractive.components</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The registry of globally available <a href="../../extend/components/">component definitions</a>.</p>
 <hr />
 <h2 id="ractivedebug">Ractive.DEBUG</h2>
-<p><em><code>(boolean)</code></em></p>
+<p><code>(boolean)</code></p>
 <p>Tells Ractive if it's in debug mode or not. When set to <code>true</code>, non-fatal errors are logged. When set to <code>false</code>, non-fatal errors are suppressed. By default, this is set to <code>true</code>.</p>
 <hr />
 <h2 id="ractivedebug_promises">Ractive.DEBUG_PROMISES</h2>
-<p><em><code>(boolean)</code></em></p>
+<p><code>(boolean)</code></p>
 <p>Tells Ractive to log errors thrown inside promises. When set to <code>true</code>, errors thrown in promises are logged. When set to <code>false</code>, errors inside promises are suppressed. By default, this is set to <code>true</code>.</p>
 <hr />
 <h2 id="ractivedecorators">Ractive.decorators</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The registry of globally available <a href="../../extend/decorators/">decorators</a>.</p>
 <hr />
 <h2 id="ractivedefaults">Ractive.defaults</h2>
-<p><em><code>(Object&lt;string, any&gt;)</code></em></p>
-<p>The defaults for <a href="../initialization-options/">initialisation options</a> with the exception of <a href="../../integrations/plugins/">plugin registries</a>.</p>
+<p><code>(Object&lt;string, any&gt;)</code></p>
+<p>Global defaults for <a href="../initialization-options/">initialisation options</a> with the exception of <a href="../../integrations/plugins/">plugin registries</a>.</p>
 <pre><code class="js">// Change the default mustache delimiters to [[ ]] globally
 Ractive.defaults.delimiters = [ '[[', ']]' ];
 
@@ -716,7 +704,13 @@ ractive1 = new Ractive({
 });
 </code></pre>
 
-<p>Configurations set on the instance override the ones present in <code>Ractive.defaults</code>.</p>
+<p>Defaults can be specified for a subclass of Ractive, overriding global defaults.</p>
+<pre><code class="js">var MyRactive = Ractive.extend();
+
+MyRactive.defaults.el = document.body;
+</code></pre>
+
+<p>Configuration on the instance overrides subclass and global defaults.</p>
 <pre><code class="js">Ractive.defaults.delimiters = [ '[[', ']]' ];
 
 // Uses the delimiters specified above
@@ -731,50 +725,31 @@ new Ractive({
 });
 </code></pre>
 
-<p>Defaults can also be specified a subclass of Ractive.</p>
-<pre><code class="js">var MyRactive = Ractive.extend();
-
-MyRactive.defaults.el = document.body;
-</code></pre>
-
 <hr />
 <h2 id="ractiveeasing">Ractive.easing</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The global registry of <a href="../../extend/easings/">easing functions</a>.</p>
 <p>The easing functions are used by the <a href="../instance-methods/#ractive.animate"><code>ractive.animate</code></a> method and by <a href="../../extend/transitions/">transitions</a>. Four are included by default: <code>linear</code>, <code>easeIn</code>, <code>easeOut</code> and <code>easeInOut</code>.</p>
 <hr />
 <h2 id="ractiveevents">Ractive.events</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The global registry of <a href="../../extend/events/">events</a>.</p>
 <hr />
 <h2 id="ractiveinterpolators">Ractive.interpolators</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>A key-value hash of interpolators use by <a href="../instance-methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
 <hr />
-<h2 id="ractivelength">Ractive.length</h2>
-<p>Since <code>Ractive</code> is a function, and functions have a <code>length</code> equal to their number of declared arguments, <code>Ractive</code> has a <code>length</code> of <code>1</code>.</p>
-<hr />
-<h2 id="ractivemagic">Ractive.magic</h2>
-<p>Indicates whether or not the current environment supports <a href="../../concepts/data-binding/magic-mode/">magic mode</a>.</p>
-<hr />
-<h2 id="ractivename">Ractive.name</h2>
-<p>Like <code>length</code>, functions also have a <code>name</code>, and <code>Ractive</code>'s happens to be <code>"Ractive"</code>.</p>
-<hr />
 <h2 id="ractivepartials">Ractive.partials</h2>
-<p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, string|Object|Function&gt;)</code></p>
 <p>The global registry of <a href="../../extend/partials/">partial templates</a>.</p>
 <p>Like <a href="../../concepts/templates/overview/">templates</a>, partials are <a href="../../concepts/templates/parsing/">parsed</a> at the point of use. The parsed output is cached and utilized for future use.</p>
 <hr />
-<h2 id="ractivepromise">Ractive.Promise</h2>
-<p><em><code>(Function)</code></em></p>
-<p>A spec-compliant Promise implementation.</p>
-<hr />
 <h2 id="ractivesvg">Ractive.svg</h2>
-<p><em><code>(boolean)</code></em></p>
+<p><code>(boolean)</code></p>
 <p>Indicates whether or not the browser supports SVG.</p>
 <hr />
 <h2 id="ractivetransitions">Ractive.transitions</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The global registry of <a href="../../extend/transitions/">transition functions</a>.</p>
 <hr />
 <h2 id="ractiveversion">Ractive.VERSION</h2>

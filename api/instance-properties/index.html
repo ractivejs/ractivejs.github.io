@@ -670,15 +670,15 @@
 
 <h1 id="instance-properties">Instance Properties</h1>
 <h2 id="ractiveadaptors">ractive.adaptors</h2>
-<p><em><code>(Object&lt;string, Object&gt;)</code></em></p>
+<p><code>(Object&lt;string, Object&gt;)</code></p>
 <p>The instance-only registry of <a href="../../extend/adaptors/">adaptors</a>.</p>
 <hr />
 <h2 id="ractivecomponents">ractive.components</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The instance-only registry of <a href="../../extend/components/">components</a>.</p>
 <hr />
 <h2 id="ractivecontainer">ractive.container</h2>
-<p><em><code>(Ractive)</code></em></p>
+<p><code>(Ractive)</code></p>
 <p>Each component instance that is in a yielded fragment has a container instance that is accessible using <code>this.container</code>.</p>
 <pre><code class="html">&lt;foo&gt;
   &lt;bar&gt;
@@ -690,23 +690,23 @@
 <p>If <code>bar</code> <code>{{yield}}</code>s, then <code>baz</code>'s container will be the <code>foo</code> instance.</p>
 <hr />
 <h2 id="ractivedecorators">ractive.decorators</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The instance-only registry of <a href="../../extend/decorators/">decorators</a>.</p>
 <hr />
 <h2 id="ractiveeasing">ractive.easing</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The instance-only registry of <a href="../../extend/easings/">easing functions</a>.</p>
 <hr />
 <h2 id="ractiveevents">ractive.events</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The instance-only registry of <a href="../../extend/events/">events</a>.</p>
 <hr />
 <h2 id="ractiveinterpolators">ractive.interpolators</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>A key-value hash of interpolators use by <a href="../instance-methods/#ractive.animate()"><code>ractive.animate()</code></a>.</p>
 <hr />
 <h2 id="ractivenodes">ractive.nodes</h2>
-<p><em><code>(Object&lt;string, HTMLElement&gt;)</code></em></p>
+<p><code>(Object&lt;string, HTMLElement&gt;)</code></p>
 <p>An object containing all of the elements inside the instance that have an <code>id</code> attribute.</p>
 <pre><code class="js">const ractive = new Ractive({
   el: body,
@@ -735,7 +735,7 @@ ractive.nodes[ 'item_' + num ];
 
 <hr />
 <h2 id="ractiveparent">ractive.parent</h2>
-<p><em><code>(Ractive)</code></em></p>
+<p><code>(Ractive)</code></p>
 <p>Each component instance can access its parent using <code>this.parent</code>.</p>
 <pre><code class="html">&lt;foo&gt;
   &lt;bar&gt;
@@ -747,11 +747,11 @@ ractive.nodes[ 'item_' + num ];
 <p><code>baz</code>'s parent is the <code>bar</code> instance, and <code>bar</code>'s parent is the <code>foo</code> instance.</p>
 <hr />
 <h2 id="ractivepartials">ractive.partials</h2>
-<p><em><code>(Object&lt;string, string|Object|Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, string|Object|Function&gt;)</code></p>
 <p>The instance-only registry of <a href="../../extend/partials/">partials</a>.</p>
 <hr />
 <h2 id="ractiveroot">ractive.root</h2>
-<p><em><code>(Ractive)</code></em></p>
+<p><code>(Ractive)</code></p>
 <p>Each component instance can access its root Ractive instance using <code>this.root</code>.</p>
 <pre><code class="html">&lt;foo&gt;
   &lt;bar&gt;
@@ -763,7 +763,7 @@ ractive.nodes[ 'item_' + num ];
 <p><code>foo</code>, <code>bar</code>, and <code>baz</code> will all have the Ractive instance with this template as their <code>root</code>.</p>
 <hr />
 <h2 id="ractivetransitions">ractive.transitions</h2>
-<p><em><code>(Object&lt;string, Function&gt;)</code></em></p>
+<p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The instance-only registry of <a href="../../extend/transitions/">transitions</a>.</p></div>
         
     </div>
