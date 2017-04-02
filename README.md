@@ -1,41 +1,48 @@
 # Ractive.js Website
 
+## Super basic setup
 
-## Setup
+You only need a text editor with Markdown support and preview to start writing documentation. Simply fork the repo, clone your fork and start writing.
 
 ```sh
-# Install the following. Installation procedure may vary by platform.
-# - Python 2.7
-# - pip
-# - virtualenv
+# Fork this repo and clone your fork
+git clone git@github.com:YOUR_USERNAME/ractivejs.github.io.git ractive.js.org
+cd ractive.js.org
 
+# Start editing the docs!
+```
+
+## Running the site locally
+
+If you want to run the full site locally, you will need a virtualenv setup. Install the following additional software and do the following commands. Installation of the additional software may vary by platform. Refer to their platform-specific documentation to know more.
+
+- Python 2.7
+- pip
+- virtualenv
+
+```sh
 # Create a virtualenv and activate it
 virtualenv ractivejs.github.io
 cd ractivejs.github.io
 
-# Fork this repo and clone your fork.
+# Fork this repo and clone your fork
 git clone git@github.com:YOUR_USERNAME/ractivejs.github.io.git src
 cd src
 
-# Install dependencies
+# Start the virtualenv
 source ../bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
-```
 
-## Development
-
-```sh
-# Activate the virtualenv
-source ./bin/activate
-
-# Serve the site
+# Start the webserver
 mkdocs serve
 
 # When done developing, deactivate the virtualenv
 deactivate
 ```
 
-### Finding and fixing broken links
+## Finding and fixing broken links
 
 ```sh
 # Install broken-link checker
@@ -50,7 +57,7 @@ blc -egorv http://localhost:8000
 - Everything is written in vanilla Markdown.
 - Current documentation goes in the `docs` directory.
 - Legacy documentation goes in the `legacy` directory.
-- File names should be lowercase kebab-style format (i.e. `hello-world.md`).
+- Paths should be in lowercase kebab-style (i.e. `path-to/my/hello-world.md`).
 - All links must be relative to the current file.
 - Pages should start with a title as first heading.
-- The nav bar is managed in `mkdocs.yml`.
+- The nav bar is managed in `mkdocs.yml` under `pages`.
