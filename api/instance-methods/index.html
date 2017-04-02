@@ -1337,16 +1337,20 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <p><strong>Arguments</strong></p>
 <ul>
 <li>
-<p><code>keypath (String)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a <code>` character, which is treated as a wildcard. A doubled</code>*<code>wildcard means</code>recursive`.</p>
-<p>The difference between <code>` and</code><em><code>is that</code></em><code>provides your callback function</code>value<code>and</code>keypath<code>arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
--</code>callback (Function)<code>: The function that will be called, with</code>newValue<code>,</code>oldValue<code>and</code>keypath<code>as arguments (see [Observers](../concepts/events/publish-subscribe.md) for more nuance regarding these arguments), whenever the observed [keypath](../concepts/templates/keypaths.md) changes value. By default the function will be called with</code>ractive<code>as</code>this<code>. Any wildcards in the [keypath](../concepts/templates/keypaths.md) will have their matches passed to the callback at the end of the arguments list as well.
--</code>map (Object)<code>: A map of keypath-observer pairs.
--</code>[options] (Object)<code>:
--</code>[init] (boolean)<code>: Defaults to</code>true<code>. Whether or not to initialise the observer, i.e. call the function with the current value of</code>keypath<code>as the first argument and</code>undefined<code>as the second.
--</code>[defer] (boolean)<code>: Defaults to</code>false<code>, in which case [observers](../concepts/events/publish-subscribe.md) will fire before any DOM changes take place. If</code>true<code>, the [observer](../concepts/events/publish-subscribe.md) will fire once the DOM has been updated.
--</code>[links] (boolean)<code>: Defaults to</code>false<code>.  Whether or not the observer should "follow through" any links created with [</code>ractive.link()<code>](#ractivelink).
--</code>[strict] (boolean)<code>: Defaults to</code>false<code>.</code>strict<code>uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with</code>{ data: { foo: { bar: 'baz' } } }<code>,</code>ractive.observe('foo', ..., { strict: true })<code>will not fire on</code>ractive.set('foo.bar', 'bat')<code>but will on</code>ractive.set('foo', { bar: 'bip' })<code>.
--</code>[context] (any)<code>: Defaults to</code>ractive<code>. The context the [observer](../concepts/events/publish-subscribe.md) is called in (i.e. the value of</code>this`)</p>
+<p><code>keypath (String)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to observe, or a group of space-separated keypaths. Any of the keys can be a <code>*</code> character, which is treated as a wildcard. A <code>**</code> means recursive.</p>
+<p>The difference between <code>*</code> and <code>**</code> is that <code>*</code> provides your callback function <code>value</code> and <code>keypath</code> arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.</p>
+</li>
+<li>
+<p><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../../concepts/events/publish-subscribe/">Observers</a> for more nuance regarding these arguments), whenever the observed <a href="../../concepts/templates/keypaths/">keypath</a> changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the <a href="../../concepts/templates/keypaths/">keypath</a> will have their matches passed to the callback at the end of the arguments list as well.</p>
+</li>
+<li><code>map (Object)</code>: A map of keypath-observer pairs.</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>[init] (boolean)</code>: Defaults to <code>true</code>. Whether or not to initialise the observer, i.e. call the function with the current value of <code>keypath</code> as the first argument and <code>undefined</code> as the second.</li>
+<li><code>[defer] (boolean)</code>: Defaults to <code>false</code>, in which case <a href="../../concepts/events/publish-subscribe/">observers</a> will fire before any DOM changes take place. If <code>true</code>, the <a href="../../concepts/events/publish-subscribe/">observer</a> will fire once the DOM has been updated.</li>
+<li><code>[links] (boolean)</code>: Defaults to <code>false</code>.  Whether or not the observer should "follow through" any links created with <a href="#ractivelink"><code>ractive.link()</code></a>.</li>
+<li><code>[strict] (boolean)</code>: Defaults to <code>false</code>. <code>strict</code> uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with <code>{ data: { foo: { bar: 'baz' } } }</code>, <code>ractive.observe('foo', ..., { strict: true })</code> will not fire on <code>ractive.set('foo.bar', 'bat')</code> but will on <code>ractive.set('foo', { bar: 'bip' })</code>.</li>
+<li><code>[context] (any)</code>: Defaults to <code>ractive</code>. The context the <a href="../../concepts/events/publish-subscribe/">observer</a> is called in (i.e. the value of <code>this</code>)</li>
+</ul>
 </li>
 </ul>
 <p><strong>Returns</strong></p>
@@ -1358,15 +1362,15 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </code></pre>
 
 <p>Note that you can observe <a href="../../concepts/templates/keypaths/">keypath</a> <em>patterns</em>...</p>
-<pre><code class="js">ractive.observe( 'items.*.status', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-    var index = /items.(\d+).status/.exec( [keypath](../concepts/templates/keypaths.md) )[1];
+<pre><code class="js">ractive.observe( 'items.*.status', function ( newValue, oldValue, keypath) {
+    var index = /items.(\d+).status/.exec( keypath )[1];
     alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 </code></pre>
 
 <p>...or multiple space-separated <a href="../../concepts/templates/keypaths/">keypaths</a> simultaneously:</p>
-<pre><code class="js">ractive.observe( 'foo bar baz', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-    alert( [keypath](../concepts/templates/keypaths.md) + ' changed from ' + oldValue + ' to ' + newValue );
+<pre><code class="js">ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
+    alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue );
 });
 </code></pre>
 
@@ -1397,15 +1401,15 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </code></pre>
 
 <p>Note that you can observe <a href="../../concepts/templates/keypaths/">keypath</a> <em>patterns</em>...</p>
-<pre><code class="js">ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-    var index = /items.(\d+).status/.exec( [keypath](../concepts/templates/keypaths.md) )[1];
+<pre><code class="js">ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, keypath ) {
+    var index = /items.(\d+).status/.exec( keypath )[1];
     alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 </code></pre>
 
 <p>...or multiple space-separated <a href="../../concepts/templates/keypaths/">keypaths</a> simultaneously:</p>
-<pre><code class="js">ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, [keypath](../concepts/templates/keypaths.md) ) {
-    alert( [keypath](../concepts/templates/keypaths.md) + ' changed from ' + oldValue + ' to ' + newValue );
+<pre><code class="js">ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, keypath ) {
+    alert( keypath + ' changed from ' + oldValue + ' to ' + newValue );
 });
 </code></pre>
 
@@ -1936,7 +1940,7 @@ subclassInstance.toCSS();
 });
 
 model.foo = 'changed';
-ractive.update( 'foo' ); // causes [observer](../concepts/events/publish-subscribe.md) to alert 'changed'
+ractive.update( 'foo' ); // causes observer to alert 'changed'
 </code></pre>
 
 <hr />
