@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="RactiveJS contributors"> 
-    <link rel="canonical" href="https://ractive.js.org/concepts/data-binding/dependents/"> 
+    <link rel="canonical" href="https://ractive.js.org/concepts/templates/single-file-components/"> 
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Dependents - Ractive.js</title>
+    <title>Single-File Components - Ractive.js</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -365,43 +365,43 @@
         
             
 <li >
-    <a href="../array-modification/">Array Modification</a>
+    <a href="../../data-binding/array-modification/">Array Modification</a>
 </li>
 
         
             
 <li >
-    <a href="../computed-properties/">Computed Properties</a>
-</li>
-
-        
-            
-<li class="active">
-    <a href="./">Dependents</a>
+    <a href="../../data-binding/computed-properties/">Computed Properties</a>
 </li>
 
         
             
 <li >
-    <a href="../magic-mode/">Magic Mode</a>
+    <a href="../../data-binding/dependents/">Dependents</a>
 </li>
 
         
             
 <li >
-    <a href="../observers/">Observers</a>
+    <a href="../../data-binding/magic-mode/">Magic Mode</a>
 </li>
 
         
             
 <li >
-    <a href="../parallel-dom/">Parallel DOM</a>
+    <a href="../../data-binding/observers/">Observers</a>
 </li>
 
         
             
 <li >
-    <a href="../two-way-binding/">Two-Way Binding</a>
+    <a href="../../data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../data-binding/two-way-binding/">Two-Way Binding</a>
 </li>
 
         
@@ -497,55 +497,55 @@
         
             
 <li >
-    <a href="../../templates/overview/">Overview</a>
+    <a href="../overview/">Overview</a>
 </li>
 
         
             
 <li >
-    <a href="../../templates/elements/">Elements</a>
+    <a href="../elements/">Elements</a>
 </li>
 
         
             
 <li >
-    <a href="../../templates/expressions/">Expressions</a>
+    <a href="../expressions/">Expressions</a>
 </li>
 
         
             
 <li >
-    <a href="../../templates/keypaths/">Keypaths</a>
+    <a href="../keypaths/">Keypaths</a>
 </li>
 
         
             
 <li >
-    <a href="../../templates/mustaches/">Mustaches</a>
+    <a href="../mustaches/">Mustaches</a>
 </li>
 
         
             
 <li >
-    <a href="../../templates/parsing/">Parsing</a>
+    <a href="../parsing/">Parsing</a>
 </li>
 
         
             
 <li >
-    <a href="../../templates/pre-parsing/">Pre-Parsing</a>
+    <a href="../pre-parsing/">Pre-Parsing</a>
 </li>
 
         
             
 <li >
-    <a href="../../templates/references/">References</a>
+    <a href="../references/">References</a>
 </li>
 
         
             
-<li >
-    <a href="../../templates/single-file-components/">Single-File Components</a>
+<li class="active">
+    <a href="./">Single-File Components</a>
 </li>
 
         
@@ -607,12 +607,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../computed-properties/">
+                        <a rel="next" href="../references/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../magic-mode/">
+                        <a rel="prev" href="../../../articles/introducing-ractive-js/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -637,53 +637,16 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#indirect-dependencies">Indirect dependencies</a></li>
-        
-    
-        <li class="first-level "><a href="#expressions-with-multiple-dependencies">Expressions with multiple dependencies</a></li>
+        <li class="first-level active"><a href="#single-file-components">Single-file components</a></li>
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>Ractive maintains a <em>dependency graph</em> in order to do the minimum amount of work necessary to keep the DOM up-to-date.</p>
-<p>If you inspect a Ractive instance in your console, you'll see a property called <code>_deps</code>. This is where all dependants are listed, indexed by their dependency.</p>
-<p>There is also a concept of 'priority', which exists to save us some work. If, for example, a section needs to be removed (perhaps it's a conditional section, and the condition just went from truthy to falsy), there is no point in updating all its children, so we make sure that we teardown the section first. As part of that teardown process, the children - which all have lower priority - unregister themselves as dependants before they get a chance to update.</p>
-<h1 id="indirect-dependencies">Indirect dependencies</h1>
-<p>If you have a mustache which depends on <code>foo.bar</code>, and <code>foo</code> changes, it's quite possible that the mustache needs to re-render. We say that the mustache has an <em>indirect dependency</em> on <code>foo</code>, or that it has a <em>direct dependency on a downstream keypath</em> of <code>foo</code>.</p>
-<p>This relationship is expressed through the <code>_depsMap</code> property of a Ractive instance - whenever <code>foo</code> changes, as well as dealing with direct <code>foo</code> dependants we check the map for those indirect dependants.</p>
-<p>In the case of <a href="../../templates/expressions/">expressions</a> and <a href="../observers/">observers</a>, we also need to consider dependants of <em>upstream keypaths</em>. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:</p>
-<pre><code class="html">{{#( sort( list, 'name' ) )}}
-  &lt;p&gt;{{name}}&lt;/p&gt;
-{{/()}}
-</code></pre>
-
-<pre><code class="js">ractive = new Ractive({
-  el: myContainer,
-  template: myTemplate,
-  data: {
-    list: [{ name: 'Bob' }, { name: 'Charles' }, { name: 'Alice' }],
-    sort: function ( list, property ) {
-      return list.slice().sort( function ( a, b ) {
-        return a[ property ] &lt; b[ property ] ? -1 : 1;
-      });
-    }
-  }
-});
-
-// renders Alice, Bob, Charles
-
-ractive.set( 'list[0].name', 'Zebediah' );
-
-// updates to Alice, Charles, Zebediah
-</code></pre>
-
-<p>In the example, setting <code>list[0].name</code> causes dependants of <code>list</code> to be updated.</p>
-<p>As well as <a href="../../templates/expressions/">expressions</a>, <a href="../observers/">Observers</a> respond to both upstream and downstream changes.</p>
-<h1 id="expressions-with-multiple-dependencies">Expressions with multiple dependencies</h1>
-<p>The expression <code>{{ a + b }}</code> has two dependencies - <code>a</code> and <code>b</code> (or more accurately, whatever those <a href="../../templates/references/">references</a> resolve to). The <code>_deps</code> graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.</p>
-<p>Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing <code>ractive.set({ a: 1, b: 2 })</code> will only trigger one update, not two.</p></div>
+<h1 id="single-file-components">Single-file components</h1>
+<p>Single-file components will need to be pre-processed, and will require a <a href="../../../integrations/loaders/">loader</a>.</p>
+<p>// TODO: explain</p></div>
         
     </div>
 
