@@ -543,9 +543,18 @@
 </li>
 
         
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Authoring</a>
+    <ul class="dropdown-menu">
+        
             
 <li >
-    <a href="../../concepts/templates/single-file-components/">Single-File Components</a>
+    <a href="../../concepts/authoring/component-files/">Component Files</a>
 </li>
 
         
@@ -639,16 +648,50 @@
     
         <li class="first-level active"><a href="#loaders">Loaders</a></li>
         
+            <li class="second-level"><a href="#vanilla">Vanilla</a></li>
+            
+        
+            <li class="second-level"><a href="#requirejs">RequireJS</a></li>
+            
+        
+            <li class="second-level"><a href="#browserify">Browserify</a></li>
+            
+        
+            <li class="second-level"><a href="#broccoli">Broccoli</a></li>
+            
+        
+            <li class="second-level"><a href="#webpack">Webpack</a></li>
+            
+        
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="loaders">Loaders</h1>
-<p>// TODO: List down all component loaders here
-// - ractive-load
-// - rvc
-// - moar</p></div>
+<p>By itself, Ractive doesn't know what to do with a <a href="../../concepts/authoring/component-files/">component file</a>. You will need a <em>loader</em> to transform a component file into a representation that the target tool or environment can understand.</p>
+<h2 id="vanilla">Vanilla</h2>
+<ul>
+<li><a href="https://github.com/ractivejs/ractive-load">ractive-load</a></li>
+</ul>
+<h2 id="requirejs"><a href="http://requirejs.org/">RequireJS</a></h2>
+<ul>
+<li><a href="https://github.com/ractivejs/rvc">rvc</a> - Works with plain and <a href="http://requirejs.org/docs/optimization.html">optimized</a> AMD modules.</li>
+</ul>
+<h2 id="browserify"><a href="http://browserify.org/">Browserify</a></h2>
+<ul>
+<li><a href="https://github.com/marcello3d/node-ractify">ractify</a></li>
+<li><a href="https://github.com/norcalli/ractiveify">ractiveify</a> - Similar to ractify, but supports JS/CSS compilation.</li>
+<li><a href="https://github.com/blackgate/ractive-componentify">ractive-componentify</a> - Similar to ractiveify, but supports sourcemaps and partial imports.</li>
+</ul>
+<h2 id="broccoli"><a href="http://broccolijs.com/">Broccoli</a></h2>
+<ul>
+<li><a href="https://github.com/ractivejs/broccoli-ractive">broccoli-ractive</a> - Supports AMD, CJS, and ES6 outputs.</li>
+</ul>
+<h2 id="webpack"><a href="https://webpack.github.io/">Webpack</a></h2>
+<ul>
+<li><a href="https://github.com/thomsbg/ractive-component-loader">ractive-component-loader</a></li>
+</ul></div>
         
     </div>
 
