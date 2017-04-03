@@ -1181,6 +1181,16 @@
             "title": "YET_ANOTHER_LOG_CONSTANT_HERE"
         }, 
         {
+            "location": "/api/component-files/", 
+            "text": "Component files", 
+            "title": "Component Files"
+        }, 
+        {
+            "location": "/api/component-files/#component-files", 
+            "text": "", 
+            "title": "Component files"
+        }, 
+        {
             "location": "/integrations/loaders/", 
             "text": "Loaders\n\n\nBy itself, Ractive doesn't know what to do with a \ncomponent file\n. You will need a \nloader\n to transform a component file into a representation that the target tool or environment can understand.\n\n\nVanilla\n\n\n\n\nractive-load\n\n\n\n\nRequireJS\n\n\n\n\nrvc\n - Works with plain and \noptimized\n AMD modules.\n\n\n\n\nBrowserify\n\n\n\n\nractify\n\n\nractiveify\n - Similar to ractify, but supports JS/CSS compilation.\n\n\nractive-componentify\n - Similar to ractiveify, but supports sourcemaps and partial imports.\n\n\n\n\nBroccoli\n\n\n\n\nbroccoli-ractive\n - Supports AMD, CJS, and ES6 outputs.\n\n\n\n\nWebpack\n\n\n\n\nractive-component-loader", 
             "title": "Loaders"
@@ -2574,16 +2584,6 @@
             "location": "/concepts/templates/references/#summary-of-prefixes", 
             "text": "~/  means at the current instance root.  .  means the current context. When more path follows, it follows the path from the current context.  ../  means the parent of the current context and may also be stacked and have a following path.  @  means this is a special reference that has meaning specified by where it exists in the template e.g.  @index  means the current iteration index of the containing repeated section.", 
             "title": "Summary of prefixes"
-        }, 
-        {
-            "location": "/concepts/authoring/component-files/", 
-            "text": "Component files", 
-            "title": "Component Files"
-        }, 
-        {
-            "location": "/concepts/authoring/component-files/#component-files", 
-            "text": "", 
-            "title": "Component files"
         }, 
         {
             "location": "/articles/introducing-ractive-js/", 
