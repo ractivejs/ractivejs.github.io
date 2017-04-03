@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="RactiveJS contributors"> 
-    <link rel="canonical" href="https://ractive.js.org/extend/decorators/"> 
+    <link rel="canonical" href="https://ractive.js.org/integrations/loaders/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Decorators - Ractive.js</title>
+    <title>Loaders - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -231,31 +231,31 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
-<li >
-    <a href="../../integrations/loaders/">Loaders</a>
+<li class="active">
+    <a href="./">Loaders</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../integrations/plugins/">Plugins</a>
+    <a href="../plugins/">Plugins</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../integrations/tools/">Tools</a>
+    <a href="../tools/">Tools</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../integrations/libraries/">Libraries</a>
+    <a href="../libraries/">Libraries</a>
 </li>
 
                         
@@ -264,55 +264,55 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../adaptors/">Adaptors</a>
+    <a href="../../extend/adaptors/">Adaptors</a>
 </li>
 
                         
                             
 <li >
-    <a href="../components/">Components</a>
-</li>
-
-                        
-                            
-<li class="active">
-    <a href="./">Decorators</a>
+    <a href="../../extend/components/">Components</a>
 </li>
 
                         
                             
 <li >
-    <a href="../easings/">Easings</a>
+    <a href="../../extend/decorators/">Decorators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../events/">Events</a>
+    <a href="../../extend/easings/">Easings</a>
 </li>
 
                         
                             
 <li >
-    <a href="../interpolators/">Interpolators</a>
+    <a href="../../extend/events/">Events</a>
 </li>
 
                         
                             
 <li >
-    <a href="../partials/">Partials</a>
+    <a href="../../extend/interpolators/">Interpolators</a>
 </li>
 
                         
                             
 <li >
-    <a href="../transitions/">Transitions</a>
+    <a href="../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/transitions/">Transitions</a>
 </li>
 
                         
@@ -601,12 +601,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../components/">
+                        <a rel="next" href="../../api/errors/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../easings/">
+                        <a rel="prev" href="../plugins/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -631,113 +631,18 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#decorators">Decorators</a></li>
-        
-            <li class="second-level"><a href="#writing">Writing</a></li>
-            
-        
-            <li class="second-level"><a href="#registering">Registering</a></li>
-            
-                <li class="third-level"><a href="#globally-via-the-ractivedecorators-static-property">Globally, via the Ractive.decorators static property.</a></li>
-            
-                <li class="third-level"><a href="#per-component-via-the-components-decorators-initialization-property">Per component, via the component's decorators initialization property.</a></li>
-            
-                <li class="third-level"><a href="#per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's decorators initialization property.</a></li>
-            
-        
-            <li class="second-level"><a href="#using">Using</a></li>
-            
-        
-            <li class="second-level"><a href="#examples">Examples</a></li>
-            
+        <li class="first-level active"><a href="#loaders">Loaders</a></li>
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="decorators">Decorators</h1>
-<p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
-<h2 id="writing">Writing</h2>
-<pre><code class="js">function MyDecorator(node[, ...args]) {
-  // Setup code
-  return {
-    teardown: function(){
-      // Cleanup code
-    },
-    update: function([...args]){
-      // Update code
-    }
-  };
-};
-</code></pre>
-
-<p>Decorators are simply functions that are called upon to setup the decorator once Ractive detects its use. It takes a <code>node</code> argument and returns an object with a <code>teardown</code> and <code>update</code> property.</p>
-<p><code>node</code> is the element to which the decorator is applied to.</p>
-<p><code>args</code> are optional arguments provided by the decorator directive.</p>
-<p><code>teardown</code> is a function that gets called when the decorator is torn down.</p>
-<p><code>update</code> is an optional function that gets called when the arguments update.</p>
-<p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
-<h2 id="registering">Registering</h2>
-<p>Like other plugins, there's 3 ways you can register decorators:</p>
-<h3 id="globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</h3>
-<pre><code class="js">Ractive.decorators.mydecorator = MyDecorator;
-</code></pre>
-
-<h3 id="per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</h3>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  decorators: {
-    mydecorator: MyDecorator
-  }
-});
-</code></pre>
-
-<h3 id="per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</h3>
-<pre><code class="js">const ractive = new Ractive({
-  decorators: {
-    mydecorator: MyDecorator
-  }
-});
-</code></pre>
-
-<h2 id="using">Using</h2>
-<p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
-<pre><code class="html">&lt;!-- without arguments --&gt;
-&lt;div as-mydecorator&gt;...&lt;/div&gt;
-
-&lt;!-- with arguments --&gt;
-&lt;div as-mydecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
-</code></pre>
-
-<h2 id="examples">Examples</h2>
-<p>The following example builds a decorator that updates the time.</p>
-<pre><code class="js">Ractive.decorators.timer = function(node, time) {
-  node.innerHTML = 'Hello World!';
-
-  return {
-    teardown: function() {
-      node.innerHTML = '';
-    },
-    update: function(time) {
-      node.innerHTML = time;
-    }
-  }
-};
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;span as-timer=&quot;time&quot;&gt;&lt;/span&gt;
-  `,
-  data: {
-    time: 0
-  }
-});
-
-setInterval(function() {
-  ractive.set('time', Date.now())
-}, 1000);
-</code></pre></div>
+<h1 id="loaders">Loaders</h1>
+<p>// TODO: List down all component loaders here
+// - ractive-load
+// - rvc
+// - moar</p></div>
         
     </div>
 

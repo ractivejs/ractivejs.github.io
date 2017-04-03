@@ -237,6 +237,12 @@
                         
                             
 <li >
+    <a href="../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../integrations/plugins/">Plugins</a>
 </li>
 
@@ -667,31 +673,38 @@
         <div class="col-md-9" role="main">
 
 <h1 id="components">Components</h1>
-<p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications.</p>
+<p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications. Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect).</p>
 <h2 id="writing">Writing</h2>
-<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({ ... });
-</code></pre>
-
-<p>Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect). This configuration sets it apart from regular instances in that you can define different behavior based on what <a href="../../api/initialization-options/">initialization options</a> are defined on it.</p>
-<p>To declare components, one simply extends Ractive using <a href="../../api/static-methods/#Ractive.extend()">Ractive.extend()</a>. In turn, these subclasses can also be subclassed.</p>
-<pre><code class="js">// A regular instance of Ractive
-const ractive = new Ractive({ ... });
-
-// A subclass of Ractive
-const MyComponent = Ractive.extend({ ... });
-
-// A subclass of our subclass
-const MyComponentSubclass = MyComponent.extend({ ... });
-</code></pre>
-
-<p>As with other inheritance mechanisms, overriding a method essentially replace the method. In order to call the parent of the overridden method, simply call <code>ractive._super()</code>.</p>
-<pre><code class="js">const MyComponentSubclass = MyComponent.extend({
-  // Overrides the oninit of MyComponent
-  oninit: function(...args){
-    // Call MyComponent's oninit
-    this._super(...args);
-  }
+<p>There are several ways to write Ractive components. Standard <a href="../../api/initialization-options/">initialization options</a> apply for configuration unless where changes are explicitly mentioned.</p>
+<p>The most common way to define a component is by using <a href="../../api/static-methods/#Ractive.extend()"><code>Ractive.extend()</code></a>.</p>
+<pre><code class="js">// A subclass of Ractive
+const MyComponent = Ractive.extend({
+  template: `
+    &lt;div class=&quot;my-component&quot;&gt;
+      &lt;span class=&quot;my-component__message&quot;&gt;{{ message }}&lt;/span&gt;
+    &lt;/div&gt;
+  `,
+  css: `
+    .my-component__message { color: red }
+  `,
+  data: { message: 'Hello World' }
 });
+</code></pre>
+
+<p>Another way to define a component is by using <a href="../concepts/templates/single-file-components.md">single-file components</a>.</p>
+<pre><code class="html">&lt;div class=&quot;my-component&quot;&gt;
+  &lt;span class=&quot;my-component__message&quot;&gt;{{ message }}&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  .my-component__message { color: red }
+&lt;/style&gt;
+
+&lt;script&gt;
+component.exports = {
+  data: { message: 'Hello World' }
+};
+&lt;/script&gt;
 </code></pre>
 
 <h2 id="registering">Registering</h2>
