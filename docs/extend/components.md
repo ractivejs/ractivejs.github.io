@@ -23,7 +23,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Another way to define a component is by using [single-file components](../concepts/templates/single-file-components.md).
+Another way to define a component is by using [component files](../concepts/authoring/component-files.md) and [loaders](../integrations/loaders.md).
 
 ```html
 <div class="my-component">
