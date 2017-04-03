@@ -41,6 +41,7 @@ pages:
       - Transition: api/helper-objects/transition.md
     - Errors: api/errors.md
   - Integrations:
+    - Loaders: integrations/loaders.md
     - Plugins: integrations/plugins.md
     - Tools: integrations/tools.md
     - Libraries: integrations/libraries.md
@@ -88,6 +89,7 @@ pages:
       - Parsing: concepts/templates/parsing.md
       - Pre-Parsing: concepts/templates/pre-parsing.md
       - References: concepts/templates/references.md
+      - Single-File Components: concepts/templates/single-file-components.md
   - Articles:
     - Introducing Ractive.js: articles/introducing-ractive-js.md
     - The Origins Of Ractive: articles/the-origins-of-ractive.md

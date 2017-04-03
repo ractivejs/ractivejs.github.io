@@ -1,38 +1,44 @@
 # Components
 
-In many situations, you want to encapsulate behaviour and markup into a single reusable *component*, which can be dropped into Ractive applications.
+In many situations, you want to encapsulate behaviour and markup into a single reusable *component*, which can be dropped into Ractive applications. Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect).
 
 ## Writing
 
-```js
-Ractive.components.MyComponent = Ractive.extend({ ... });
-```
+There are several ways to write Ractive components. Standard [initialization options](../api/initialization-options.md) apply for configuration unless where changes are explicitly mentioned.
 
-Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect). This configuration sets it apart from regular instances in that you can define different behavior based on what [initialization options](../api/initialization-options.md) are defined on it.
-
-To declare components, one simply extends Ractive using [Ractive.extend()](../api/static-methods.md#Ractive.extend()). In turn, these subclasses can also be subclassed.
+The most common way to define a component is by using [`Ractive.extend()`](../api/static-methods.md#Ractive.extend()).
 
 ```js
-// A regular instance of Ractive
-const ractive = new Ractive({ ... });
-
 // A subclass of Ractive
-const MyComponent = Ractive.extend({ ... });
-
-// A subclass of our subclass
-const MyComponentSubclass = MyComponent.extend({ ... });
+const MyComponent = Ractive.extend({
+  template: `
+    <div class="my-component">
+      <span class="my-component__message">{{ message }}</span>
+    </div>
+  `,
+  css: `
+    .my-component__message { color: red }
+  `,
+  data: { message: 'Hello World' }
+});
 ```
 
-As with other inheritance mechanisms, overriding a method essentially replace the method. In order to call the parent of the overridden method, simply call `ractive._super()`.
+Another way to define a component is by using [single-file components](../concepts/templates/single-file-components.md).
 
-```js
-const MyComponentSubclass = MyComponent.extend({
-  // Overrides the oninit of MyComponent
-  oninit: function(...args){
-    // Call MyComponent's oninit
-    this._super(...args);
-  }
-});
+```html
+<div class="my-component">
+  <span class="my-component__message">{{ message }}</span>
+</div>
+
+<style>
+  .my-component__message { color: red }
+</style>
+
+<script>
+component.exports = {
+  data: { message: 'Hello World' }
+};
+</script>
 ```
 
 ## Registering
