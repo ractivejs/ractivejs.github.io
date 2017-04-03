@@ -1,6 +1,6 @@
 # Loaders
 
-By itself, Ractive doesn't know what to do with a [component file](../concepts/authoring/component-files.md). You will need a _loader_ to transform a component file into a representation that the target tool or environment can understand.
+By itself, Ractive doesn't know what to do with a [component file](../api/component-files.md). You will need a _loader_ to transform a component file into a representation that the target tool or environment can understand.
 
 ## Vanilla
 

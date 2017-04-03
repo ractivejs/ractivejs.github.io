@@ -40,6 +40,7 @@ pages:
       - Parse: api/helper-objects/parse.md
       - Transition: api/helper-objects/transition.md
     - Errors: api/errors.md
+    - Component Files: api/component-files.md
   - Integrations:
     - Loaders: integrations/loaders.md
     - Plugins: integrations/plugins.md
@@ -89,8 +90,6 @@ pages:
       - Parsing: concepts/templates/parsing.md
       - Pre-Parsing: concepts/templates/pre-parsing.md
       - References: concepts/templates/references.md
-    - Authoring:
-      - Component Files: concepts/authoring/component-files.md
   - Articles:
     - Introducing Ractive.js: articles/introducing-ractive-js.md
     - The Origins Of Ractive: articles/the-origins-of-ractive.md
