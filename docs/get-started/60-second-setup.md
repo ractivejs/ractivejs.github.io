@@ -1,7 +1,8 @@
 # 60-second setup
 
-Create a file called `index.html` and paste in the following:
+Create a file called `index.html` and paste in the following (or just open the playground):
 
+<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeAQgFoKACAFTDWrQTQFs0A7FalAe2ta8Arlx4NqASw5YkHAMaMqAPgA6MFRxIATCQDdJWgLwqQSAA5mTSkgHodupSAIZ4Nm9QCC1DBNZmW1HK8frwcnNxaaABmUhIoEqF4gcH+aOjUAO5xYAJIMADWQmZJWACeLBjUslrUWqhIahoASkhy8bpoAHRBIWFcGJ0AEswIvADqvDAINYbULW16XWgAHugcWgAUwI0c1Dxs-qhokNQABjt7e9p6quq7l1dgAIxKwwij1MDAApgYSADmjBwOFsz1uGgeVykZiE3BQpTMaGMhBWKBM1F0SAQQiRJi+Pwwf0B1GB6Js4PuVzsNwuZzwtLkhJO5zuD2en2SoxgJxgaBqOFpp3prNq9ROGwAlNRDEpqFtaXt2ISAcdqAByCZTLRkNW0nASnb6gDcOx2bmoAFlhKJZJJpChZApqLwomJGD0zKFwjx+ChxEEuEgpGh1HcA1gqhZpXNWu00Ft9n5kOgTmqSG9RprpuS1UlmKmAMTmMxqkkSo24IA"></div>
 ```html
 <!doctype html>
 <html>
