@@ -87,6 +87,81 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Tutorials</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/hello-world/">Hello World</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/references-and-context/">References and Context</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/elements-attributes-and-context-helpers/">Elements, Attributes, and Context Helpers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/expressions-and-computations/">Expressions and Computations</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/dom-and-instance-events/">DOM and Instance Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/partials-and-templates/">Partials and Templates</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/forms-binding-and-html/">Forms, Binding, and HTML</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/transitions/">Transitions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/components/">Coomponents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/decorators/">Decorators</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/svg-and-animation/">SVG and Animation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Examples</a>
     <ul class="dropdown-menu">
         
@@ -736,17 +811,17 @@
 <p>Helper methods that take a <a href="../../../concepts/templates/keypaths/">keypath</a> will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported.</p>
 <hr />
 <h2 id="nodeinfoadd">nodeinfo.add()</h2>
-<p>See <a href="../../instance-methods/#ractive.add()">ractive.add()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveadd">ractive.add()</a>.</p>
 <hr />
 <h2 id="nodeinfoanimate">nodeinfo.animate()</h2>
-<p>See <a href="../../instance-methods/#ractive.animate()">ractive.animate()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveanimate">ractive.animate()</a>.</p>
 <hr />
 <h2 id="nodeinfocontext">nodeinfo.context</h2>
 <p><em><code>(any)</code></em></p>
 <p>The data context of the node.</p>
 <hr />
 <h2 id="nodeinfoget">nodeinfo.get()</h2>
-<p>See <a href="../../instance-methods/#ractive.get()">ractive.get()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveget">ractive.get()</a>.</p>
 <hr />
 <h2 id="nodeinfogetbinding">nodeinfo.getBinding()</h2>
 <p>Returns the value of the binding if the node represented by this info object has a two-way binding.</p>
@@ -826,10 +901,10 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 <p>The <a href="../../../concepts/templates/keypaths/">keypath</a> to <code>context</code>.</p>
 <hr />
 <h2 id="nodeinfolink">nodeinfo.link()</h2>
-<p>See <a href="../../instance-methods/#ractive.link()">ractive.link()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivelink">ractive.link()</a>.</p>
 <hr />
 <h2 id="nodeinfomerge">nodeinfo.merge()</h2>
-<p>See <a href="../../instance-methods/#ractive.merge()">ractive.merge()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivemerge">ractive.merge()</a>.</p>
 <hr />
 <h2 id="nodeinfonode">nodeinfo.node</h2>
 <p><em><code>(Node|undefined)</code></em></p>
@@ -840,10 +915,10 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 <p>The original DOM event object. Normally present when the event is a Ractive DOM event. May be <code>undefined</code> on custom events or events from event plugins.</p>
 <hr />
 <h2 id="nodeinfopop">nodeinfo.pop()</h2>
-<p>See <a href="../../instance-methods/#ractive.pop()">ractive.pop()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivepop">ractive.pop()</a>.</p>
 <hr />
 <h2 id="nodeinfopush">nodeinfo.push()</h2>
-<p>See <a href="../../instance-methods/#ractive.push()">ractive.push()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivepush">ractive.push()</a>.</p>
 <hr />
 <h2 id="nodeinforactive">nodeinfo.ractive</h2>
 <p><em>(Ractive)</em></p>
@@ -870,10 +945,10 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 
 <hr />
 <h2 id="nodeinforeverse">nodeinfo.reverse()</h2>
-<p>See <a href="../../instance-methods/#ractive.reverse()">ractive.reverse()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivereverse">ractive.reverse()</a>.</p>
 <hr />
 <h2 id="nodeinfoset">nodeinfo.set()</h2>
-<p>See <a href="../../instance-methods/#ractive.set()">ractive.set()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveset">ractive.set()</a>.</p>
 <hr />
 <h2 id="nodeinfosetbinding">nodeinfo.setBinding()</h2>
 <p>Sets the binding of the node represented by this info object to the specified value.</p>
@@ -895,31 +970,31 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 
 <hr />
 <h2 id="nodeinfoshift">nodeinfo.shift()</h2>
-<p>See <a href="../../instance-methods/#ractive.shift()">ractive.shift()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveshift">ractive.shift()</a>.</p>
 <hr />
 <h2 id="nodeinfosplice">nodeinfo.splice()</h2>
-<p>See <a href="../../instance-methods/#ractive.splice()">ractive.splice()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivesplice">ractive.splice()</a>.</p>
 <hr />
 <h2 id="nodeinfosort">nodeinfo.sort()</h2>
-<p>See <a href="../../instance-methods/#ractive.sort()">ractive.sort()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivesort">ractive.sort()</a>.</p>
 <hr />
 <h2 id="nodeinfosubtract">nodeinfo.subtract()</h2>
-<p>See <a href="../../instance-methods/#ractive.subtract()">ractive.subtract()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivesubtract">ractive.subtract()</a>.</p>
 <hr />
 <h2 id="nodeinfotoggle">nodeinfo.toggle()</h2>
-<p>See <a href="../../instance-methods/#ractive.toggle()">ractive.toggle()</a>.</p>
+<p>See <a href="../../instance-methods/#ractivetoggle">ractive.toggle()</a>.</p>
 <hr />
 <h2 id="nodeinfounlink">nodeinfo.unlink()</h2>
-<p>See <a href="../../instance-methods/#ractive.unlink()">ractive.unlink()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveunlink">ractive.unlink()</a>.</p>
 <hr />
 <h2 id="nodeinfounshift">nodeinfo.unshift()</h2>
-<p>See <a href="../../instance-methods/#ractive.unshift()">ractive.unshift()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveunshift">ractive.unshift()</a>.</p>
 <hr />
 <h2 id="nodeinfoupdate">nodeinfo.update()</h2>
-<p>See <a href="../../instance-methods/#ractive.update()">ractive.update()</a>.</p>
+<p>See <a href="../../instance-methods/#ractiveupdate">ractive.update()</a>.</p>
 <hr />
 <h2 id="nodeinfoupdatemodel">nodeinfo.updateModel()</h2>
-<p>See <a href="../../instance-methods/#ractive.updateModel()">ractive.updateModel()</a>.</p></div>
+<p>See <a href="../../instance-methods/#ractiveupdatemodel">ractive.updateModel()</a>.</p></div>
         
     </div>
 

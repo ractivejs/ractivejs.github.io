@@ -87,6 +87,81 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Tutorials</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/hello-world/">Hello World</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/references-and-context/">References and Context</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/elements-attributes-and-context-helpers/">Elements, Attributes, and Context Helpers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/expressions-and-computations/">Expressions and Computations</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/dom-and-instance-events/">DOM and Instance Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/partials-and-templates/">Partials and Templates</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/forms-binding-and-html/">Forms, Binding, and HTML</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/transitions/">Transitions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/components/">Coomponents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/decorators/">Decorators</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/svg-and-animation/">SVG and Animation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Examples</a>
     <ul class="dropdown-menu">
         
@@ -661,7 +736,7 @@
 
 <p><em>See also: <a href="../method-calls/">method calls from templates</a></em></p>
 <p>Ractive has a concept of <em>proxy events</em>, which translate a user <em>action</em> (e.g. a mouseclick) defined via an <a href="../directives/">event directive</a> into an <em>intention</em> (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).</p>
-<p>As with all events in Ractive, you subscribe with <a href="../../../api/instance-properties#ractive.on()"><code>ractive.on()</code></a> (also see <a href="../publish-subscribe/">publish-subscribe</a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
+<p>As with all events in Ractive, you subscribe with <a href="../../../api/instance-properties#ractiveon"><code>ractive.on()</code></a> (also see <a href="../publish-subscribe/">publish-subscribe</a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
 <pre><code class="js">ractive = new Ractive({
   el: 'body',
   template: '&lt;button on-click=&quot;activate&quot;&gt;click me!&lt;/button&gt;'
@@ -672,7 +747,7 @@ ractive.on( 'activate', function ( event ) {
 });
 </code></pre>
 
-<p>In this example, it is <code>activate</code> (and not <code>click</code>!) that is the name of the handler event that will be fired for any registered handlers created via <a href="../../../api/instance-properties#ractive.on()"><code>ractive.on()</code></a>.</p>
+<p>In this example, it is <code>activate</code> (and not <code>click</code>!) that is the name of the handler event that will be fired for any registered handlers created via <a href="../../../api/instance-properties#ractiveon"><code>ractive.on()</code></a>.</p>
 <h1 id="event-arguments">Event arguments</h1>
 <h2 id="the-event-object">The <code>event</code> object</h2>
 <p>The first argument to a proxy event handler is always a Ractive <code>event</code> object. It contains various properties:</p>

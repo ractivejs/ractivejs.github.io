@@ -87,6 +87,81 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Tutorials</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/hello-world/">Hello World</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/references-and-context/">References and Context</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/elements-attributes-and-context-helpers/">Elements, Attributes, and Context Helpers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/expressions-and-computations/">Expressions and Computations</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/dom-and-instance-events/">DOM and Instance Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/partials-and-templates/">Partials and Templates</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/forms-binding-and-html/">Forms, Binding, and HTML</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/transitions/">Transitions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/components/">Coomponents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/decorators/">Decorators</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../get-started/tutorials/svg-and-animation/">SVG and Animation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Examples</a>
     <ul class="dropdown-menu">
         
@@ -669,11 +744,11 @@ model.set( 'myValue', 2 ); // alerts 'myValue changed to 2'
 </code></pre>
 
 <p>This works because <code>Backbone.Model.prototype</code> inherits from <code>Backbone.Events</code>.</p>
-<p>Ractive implements pub/sub with <a href="../../../api/instance-methods/#ractive.on()"><code>ractive.on()</code></a>, <a href="../../../api/instance-methods/#ractive.off()"><code>ractive.off()</code></a> and <a href="../../../api/instance-methods/#ractive.fire()"><code>ractive.fire()</code></a>, <a href="../../../api/instance-methods/#ractive.off()"><code>ractive.off()</code></a> and <a href="../../../api/instance-methods/#ractive.fire"><code>ractive.fire</code></a> - see <a href="">Events</a> for more info.</p>
+<p>Ractive implements pub/sub with <a href="../../../api/instance-methods/#ractiveon"><code>ractive.on()</code></a>, <a href="../../../api/instance-methods/#ractiveoff"><code>ractive.off()</code></a> and <a href="../../../api/instance-methods/#ractivefire"><code>ractive.fire()</code></a>, <a href="../../../api/instance-methods/#ractiveoff"><code>ractive.off()</code></a> and <a href="../../../api/instance-methods/#ractivefire"><code>ractive.fire</code></a> - see <a href="">Events</a> for more info.</p>
 <h1 id="observing-models-with-nested-properties">Observing models with nested properties</h1>
 <p>But the normal pub/sub mechanism won't work for monitoring data changes with Ractive, because our data can contain nested properties. It's no good subscribing to a <code>change:foo.bar</code> event, if <code>foo.bar</code> can change as a result of <code>foo</code> changing.</p>
 <p>So instead, we introduce the concept of <em>observers</em>.</p>
-<p>An observer observes a particular <a href="">keypath</a>, and is <em>notified</em> when the value of its keypath changes, whether directly or indirectly (because an <em>upstream</em> or <em>downstream</em> keypath changed). You create one with <code>ractive.observe()</code> (see <a href="../../../api/instance-properties#ractive.observe()"><code>ractive.observe()</code></a> for full method
+<p>An observer observes a particular <a href="">keypath</a>, and is <em>notified</em> when the value of its keypath changes, whether directly or indirectly (because an <em>upstream</em> or <em>downstream</em> keypath changed). You create one with <code>ractive.observe()</code> (see <a href="../../../api/instance-properties#ractiveobserve"><code>ractive.observe()</code></a> for full method
 API).</p>
 <p>Here's an example:</p>
 <pre><code class="js">ractive = new Ractive({

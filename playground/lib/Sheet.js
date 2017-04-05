@@ -33,8 +33,22 @@ Ractive.components.Sheet = Ractive.extend({
       handler: function(unit) {
         var scripts = ((unit.h || {}).s || []).map(function(s) { return '\n\t\t<' + 'script src="' + s + '"><' + '/script>'; }).join('');
         if (unit.h && unit.h.r) scripts = '\n\t\t<' + 'script src="//unpkg.com/ractive@' + unit.h.r + '"><' + '/script>' + scripts;
-        var html = '<!DOCTYPE html>\n\t<head>\n\t\t<title>Ractive Play Output</title>\n\t\t<style>\n\t\t\t' + (unit.c || '').replace(/\n/g, '\n\t\t\t') + '</style>' + scripts + '\n\t\t<' + 'script>\n\t\t\t(function() {\n\t\t\t\tvar csl = console.log, csw = console.warn; cse = console.error;\n\t\t\t\tfunction proxy(fn, type) {\n\t\t\t\t\treturn function() {\n\t\t\t\t\t\tvar args = Array.prototype.slice.call(arguments);\n\t\t\t\t\t\twindow.parent.postMessage({ log: args, type: type }, \'*\');\n\t\t\t\t\t\tfn.apply(console, args);\n\t\t\t\t\t};\n\t\t\t\t}\n\t\t\t\tconsole.log = proxy(csl, \'log\');\n\t\t\t\tconsole.warn = proxy(csw, \'warn\');\n\t\t\t\tconsole.error = proxy(cse, \'error\');\n\t\t\t})();\n\t\t</' + 'script>\n\t</head>\n\t<body>\n\t\t' + (unit.t || '').replace(/\n/g, '\n\t\t') + '\n\t\t<' + 'script>\n\t\t\t' + (unit.s || '').replace(/\n/g, '\n\t\t\t') + '\n\t\t<' + '/script>\n\t</body>\n</html>';
-        this.find('iframe').setAttribute('srcdoc', html);
+        var html = '<!DOCTYPE html>\n\t<head>\n\t\t<title>Ractive Play Output</title>\n\t\t<style>\n\t\t\t' + (unit.c || '').replace(/\n/g, '\n\t\t\t') + '</style>' + scripts + '\n\t</head>\n\t<body>\n\t\t' + (unit.t || '').replace(/\n/g, '\n\t\t') + '\n\t</body>\n</html>';
+        var frame = this.find('iframe');
+        frame.setAttribute('srcdoc', html);
+        var ready = function() {
+          var script = frame.contentDocument.createElement('script');
+          script.textContent = '\n(function() {\n\tvar csl = console.log, csw = console.warn; cse = console.error;\n\tfunction proxy(fn, type) {\n\t\treturn function() {\n\t\t\tvar args = Array.prototype.slice.call(arguments);\n\t\t\twindow.parent.postMessage({ log: args, type: type }, \'*\');\n\t\t\tfn.apply(console, args);\n\t\t};\n\t}\n\tconsole.log = proxy(csl, \'log\');\n\tconsole.warn = proxy(csw, \'warn\');\n\tconsole.error = proxy(cse, \'error\');\n})();';
+          frame.contentDocument.body.appendChild(script);
+
+          script = frame.contentDocument.createElement('script');
+          script.textContent = (unit.s || '');
+          frame.contentDocument.body.appendChild(script);
+
+          frame.onload = null;
+        };
+        frame.onload = ready;
+
         if (!this.get('selected')) this.set('selected', 'output');
       },
       init: false

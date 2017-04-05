@@ -87,6 +87,81 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Tutorials</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../get-started/tutorials/hello-world/">Hello World</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/references-and-context/">References and Context</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/elements-attributes-and-context-helpers/">Elements, Attributes, and Context Helpers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/expressions-and-computations/">Expressions and Computations</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/dom-and-instance-events/">DOM and Instance Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/partials-and-templates/">Partials and Templates</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/forms-binding-and-html/">Forms, Binding, and HTML</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/transitions/">Transitions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/components/">Coomponents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/decorators/">Decorators</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/svg-and-animation/">SVG and Animation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Examples</a>
     <ul class="dropdown-menu">
         
@@ -682,7 +757,7 @@
 <p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications. Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect).</p>
 <h2 id="writing">Writing</h2>
 <p>There are several ways to write Ractive components. Standard <a href="../../api/initialization-options/">initialization options</a> apply for configuration unless where changes are explicitly mentioned.</p>
-<p>The most common way to define a component is by using <a href="../../api/static-methods/#Ractive.extend()"><code>Ractive.extend()</code></a>.</p>
+<p>The most common way to define a component is by using <a href="../../api/static-methods/#ractiveextend"><code>Ractive.extend()</code></a>.</p>
 <pre><code class="js">// A subclass of Ractive
 const MyComponent = Ractive.extend({
   template: `
@@ -869,7 +944,7 @@ widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;b
 </code></pre>
 
 <h3 id="events">Events</h3>
-<p>Components can fire events like regular elements using <a href="../../api/instance-methods/#ractive.fire()">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
+<p>Components can fire events like regular elements using <a href="../../api/instance-methods/#ractivefire">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
 <p>The first is using the method call syntax which is similar to how you would write inline JavaScript.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
   template: `

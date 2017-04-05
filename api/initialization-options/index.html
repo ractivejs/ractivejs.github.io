@@ -87,6 +87,81 @@
                         
                             
   <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Tutorials</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../get-started/tutorials/hello-world/">Hello World</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/references-and-context/">References and Context</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/elements-attributes-and-context-helpers/">Elements, Attributes, and Context Helpers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/expressions-and-computations/">Expressions and Computations</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/dom-and-instance-events/">DOM and Instance Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/partials-and-templates/">Partials and Templates</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/forms-binding-and-html/">Forms, Binding, and HTML</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/transitions/">Transitions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/components/">Coomponents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/decorators/">Decorators</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../get-started/tutorials/svg-and-animation/">SVG and Animation</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
     <a tabindex="-1" href="">Examples</a>
     <ul class="dropdown-menu">
         
@@ -1182,7 +1257,7 @@ ractive.get('items').push( 'green' );
 }
 </code></pre>
 
-<p>During a <a href="../instance-methods/#ractive.reset()"><code>ractive.reset()</code></a>, function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<p>During a <a href="../instance-methods/#ractivereset"><code>ractive.reset()</code></a>, function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <hr />
 <h2 id="preservewhitespace">preserveWhitespace</h2>
 <p><code>(boolean)</code></p>
@@ -1284,7 +1359,7 @@ stripComments: false
 <hr />
 <h2 id="template">template</h2>
 <p><code>(string|array|object|function)</code></p>
-<p>The <a href="../../concepts/templates/overview/">template</a> to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [<code>Ractive.parse()</code>](../api/static-methods.md#Ractive.parse()) or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and a <a href="../helper-objects/parse/">Parse Object</a>.</p>
+<p>The <a href="../../concepts/templates/overview/">template</a> to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [<code>Ractive.parse()</code>](../api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and a <a href="../helper-objects/parse/">Parse Object</a>.</p>
 <pre><code class="js">// Selector
 template: '#my-template',
 
@@ -1300,7 +1375,7 @@ template: function(data, p){
 },
 </code></pre>
 
-<p>During a <a href="../instance-methods/#ractive.reset()"><code>ractive.reset()</code></a>, templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
+<p>During a <a href="../instance-methods/#ractivereset"><code>ractive.reset()</code></a>, templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <hr />
 <h2 id="transitions">transitions</h2>
 <p><code>(Object&lt;string, Function&gt;)</code></p>
