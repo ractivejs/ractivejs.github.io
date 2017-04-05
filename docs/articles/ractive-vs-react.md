@@ -77,7 +77,7 @@ In short, I'd recommend React as the best way to build user interfaces, if Racti
 
 ## Where Ractive shines
 
-For starters, you can [learn Ractive in 60 seconds](http://www.ractivejs.org/60-second-setup). If you know HTML and the basics of Mustache (which itself has almost zero learning curve), then all you need to learn is the `ractive.set()` method and you're already most of the way there. People of all levels of experience 'get' Ractive very quickly, because there are so few concepts to learn.
+For starters, you can [learn Ractive in 60 seconds](/get-started/60-second-setup). If you know HTML and the basics of Mustache (which itself has almost zero learning curve), then all you need to learn is the `ractive.set()` method and you're already most of the way there. People of all levels of experience 'get' Ractive very quickly, because there are so few concepts to learn.
 
 Because of Ractive's newsroom heritage, it has always prioritised certain features that make it easy to build UIs that are *slick* - declarative transitions, animations, and first-class SVG support. A Ractive component can include CSS in its definition, which is encapsulated by default (i.e. component styles don't leak into the page). These are tricky problems that other libraries have, for the most part, yet to solve well, if at all.
 
