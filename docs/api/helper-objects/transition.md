@@ -46,7 +46,7 @@ Signals Ractive that the transition is complete.
 
 **Arguments**
 
-- `[noReset] (boolean)`: If `true`, [`t.resetStyle()`](#t.resetStyle()) is not called. Defaults to `false`.
+- `[noReset] (boolean)`: If `true`, [`t.resetStyle()`](#tresetstyle) is not called. Defaults to `false`.
 
 **Returns**
 

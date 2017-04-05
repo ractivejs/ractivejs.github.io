@@ -576,7 +576,7 @@ partials: {
 }
 ```
 
-During a [`ractive.reset()`](../api/instance-methods.md#ractive.reset()), function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](../api/instance-methods.md#ractivereset), function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 
@@ -715,7 +715,7 @@ Alias for [`el`](#el).
 
 `(string|array|object|function)`
 
-The [template](../concepts/templates/overview.md) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`]\(../api/static-methods.md#Ractive.parse()) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](helper-objects/parse.md).
+The [template](../concepts/templates/overview.md) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`]\(../api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](helper-objects/parse.md).
 
 ```js
 // Selector
@@ -733,7 +733,7 @@ template: function(data, p){
 },
 ```
 
-During a [`ractive.reset()`](../api/instance-methods.md#ractive.reset()), templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](../api/instance-methods.md#ractivereset), templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 

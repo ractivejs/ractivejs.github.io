@@ -6,7 +6,7 @@ In many situations, you want to encapsulate behaviour and markup into a single r
 
 There are several ways to write Ractive components. Standard [initialization options](../api/initialization-options.md) apply for configuration unless where changes are explicitly mentioned.
 
-The most common way to define a component is by using [`Ractive.extend()`](../api/static-methods.md#Ractive.extend()).
+The most common way to define a component is by using [`Ractive.extend()`](../api/static-methods.md#ractiveextend).
 
 ```js
 // A subclass of Ractive
@@ -228,7 +228,7 @@ widget.get();  // {"shades":["red","green","blue"], "option1":"A"}
 
 ### Events
 
-Components can fire events like regular elements using [ractive.fire()](../api/instance-methods.md#ractive.fire()). Enclosing instances can listen for events using the same `on-*` event notation. There are two ways to handle component events.
+Components can fire events like regular elements using [ractive.fire()](../api/instance-methods.md#ractivefire). Enclosing instances can listen for events using the same `on-*` event notation. There are two ways to handle component events.
 
 The first is using the method call syntax which is similar to how you would write inline JavaScript.
 

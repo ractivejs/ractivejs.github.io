@@ -2,7 +2,7 @@
 
 Ractive has a concept of *proxy events*, which translate a user *action* (e.g. a mouseclick) defined via an [event directive](./directives.md) into an *intention* (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).
 
-As with all events in Ractive, you subscribe with [`ractive.on()`](../../api/instance-properties#ractive.on()) (also see [publish-subscribe](./publish-subscribe.md)). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
+As with all events in Ractive, you subscribe with [`ractive.on()`](../../api/instance-properties#ractiveon) (also see [publish-subscribe](./publish-subscribe.md)). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
 
 ```js
 ractive = new Ractive({
@@ -15,7 +15,7 @@ ractive.on( 'activate', function ( event ) {
 });
 ```
 
-In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via [`ractive.on()`](../../api/instance-properties#ractive.on()).
+In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via [`ractive.on()`](../../api/instance-properties#ractiveon).
 
 # Event arguments
 

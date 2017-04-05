@@ -9,7 +9,7 @@ As an alternative to [event directive](./directives.md), right from your templat
 <button on-click='@this.toggle("foo")'>toggle foo</button>
 ```
 
-In this case, because [`ractive.toggle()`](../../api/instance-properties#ractive.toggle()) is a built-in method, clicking the button will toggle the value of `foo` between `true` and `false` ([demo](http://jsfiddle.net/rich_harris/xxg93vw8/)).
+In this case, because [`ractive.toggle()`](../../api/instance-properties#ractivetoggle) is a built-in method, clicking the button will toggle the value of `foo` between `true` and `false` ([demo](http://jsfiddle.net/rich_harris/xxg93vw8/)).
 
 This also works with custom methods:
 
