@@ -728,28 +728,28 @@
 <h2 id="available-loaders">Available loaders</h2>
 <h3 id="vanilla">Vanilla</h3>
 <ul>
-<li><a href="https://github.com/ractivejs/ractive-load">ractive-load</a> - Uses XHR to load your component files and creates component constructors at runtime.</li>
+<li><a href="https://github.com/ractivejs/ractive-load">ractive-load</a> - Uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XHR</a> to load your component files and creates component constructors at runtime.</li>
 </ul>
 <h3 id="requirejs"><a href="http://requirejs.org/">RequireJS</a></h3>
 <ul>
-<li><a href="https://github.com/ractivejs/rvc">rvc</a> - Converts component files into AMD modules. Works with plain and <a href="http://requirejs.org/docs/optimization.html">optimized</a> AMD modules.</li>
+<li><a href="https://github.com/ractivejs/rvc">rvc</a> - Converts component files into <a href="http://requirejs.org/docs/api.html">AMD modules</a>. Works with plain and <a href="http://requirejs.org/docs/optimization.html">optimized</a> AMD modules.</li>
 </ul>
 <h3 id="browserify"><a href="http://browserify.org/">Browserify</a></h3>
 <ul>
-<li><a href="https://github.com/marcello3d/node-ractify">ractify</a> - Converts component files into CJS modules.</li>
+<li><a href="https://github.com/marcello3d/node-ractify">ractify</a> - Converts component files into <a href="https://nodejs.org/api/modules.html">CJS modules</a>.</li>
 <li><a href="https://github.com/norcalli/ractiveify">ractiveify</a> - Similar to ractify, but supports JS/CSS compilation.</li>
-<li><a href="https://github.com/blackgate/ractive-componentify">ractive-componentify</a> - Similar to ractiveify, but supports sourcemaps and partial imports.</li>
+<li><a href="https://github.com/blackgate/ractive-componentify">ractive-componentify</a> - Similar to ractiveify, but supports <a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map">source maps</a> and partial imports.</li>
 </ul>
 <h3 id="broccoli"><a href="http://broccolijs.com/">Broccoli</a></h3>
 <ul>
-<li><a href="https://github.com/ractivejs/broccoli-ractive">broccoli-ractive</a> - Converts your component files into either AMD, CJS, or ES6 modules.</li>
+<li><a href="https://github.com/ractivejs/broccoli-ractive">broccoli-ractive</a> - Converts your component files into either AMD, CJS, or ES modules.</li>
 </ul>
 <h3 id="webpack"><a href="https://webpack.github.io/">Webpack</a></h3>
 <ul>
 <li><a href="https://github.com/thomsbg/ractive-component-loader">ractive-component-loader</a> - Allows you to load component files as constructors via Webpack.</li>
 </ul>
 <h2 id="looking-to-write-your-own-loader">Looking to write your own loader?</h2>
-<p>Head over to the <a href="https://github.com/ractivejs/component-spec">component specifications repo</a> for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.</p>
+<p>Head over to the <a href="https://github.com/ractivejs/component-spec">component file specifications</a> repo for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.</p>
 <p>Ractive also has a couple of handy modules to aid you in loader development:</p>
 <ul>
 <li><a href="https://github.com/ractivejs/rcu">rcu</a> - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.</li>
