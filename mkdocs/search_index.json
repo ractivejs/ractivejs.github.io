@@ -1417,48 +1417,93 @@
         }, 
         {
             "location": "/api/component-files/", 
-            "text": "Component files", 
+            "text": "Component files\n\n\nRemember the good old days? When all CSS went in \nstyle\n elements in \nhead\n? When all JS went in \nscript\n elements just before \n/body\n? When all HTML was written in Mustache inside inert \nscript\n elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.\n\n\nRactive component files are simply a self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.\n\n\nExample component file\n\n\n!-- Example component file --\n\n\n\n!-- Import a component named Foo from the file foo.html. --\n\n\nlink rel='ractive' href='foo.html' name='foo'\n\n\n\n!-- Define the markup for this component. --\n\n\nh1\n{{ title }}\n/h1\n\n\n\n!-- Use imported foo component --\n\n\np\nThis is an imported 'foo' component: \nfoo/\n/p\n\n\n\n!-- Define the styles for this component. --\n\n\nstyle\n\n  p { color: red; }\n\n/style\n\n\n\n!-- Define the behavior for this component. --\n\n\nscript\n\nconst $ = require( 'jquery' );\n\ncomponent.exports = {\n  onrender: function () {\n    $('\np /\n').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  }\n};\n\n/script\n\n\n\n\n\nThe above component file roughly translates to the following in vanilla JS:\n\n\nimport Ractive from 'ractive';\nimport $ from 'jquery';\nimport foo from './foo.html';\n\nexport default Ractive.extend({\n  components: { foo },\n  onrender: function () {\n    $('\np /\n').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  },\n  template: `\n    \nh1\n{{ title }}\n/h1\n\n    \np\nThis is an imported 'foo' component: \nfoo/\n/p\n\n  `,\n  css: `\n    p { color: red; }\n  `\n});\n\n\n\n\nWriting\n\n\nlink rel=\"ractive\"\n\n\nTop-level \nlink rel=\"ractive\"\n elements define dependencies on other components. It accepts two attributes:\n\n\n\n\n\n\nhref\n - The path to the required component file. Paths that start with \n./\n or \n../\n are resolved relative to the importing component file. Otherwise, resolution is loader-specific.\n\n\n\n\n\n\nname\n (optional) - The registered name of the component. This corresponds to the key used in the \ncomponents\n initialization option. When not defined, the filename of the dependency will be used as the name.\n\n\n\n\n\n\nThe names and the loaded dependency will be assigned to the component's \ncomponents\n initialization option.\n\n\nstyle\n\n\nTop-level \nstyle\n elements define the styles for the component. If more than one \nstyle\n element is found on the component file, their contents are concatenated in the order of appearance of the \nstyle\n elements. Contents of these elements will be concatenated and assigned to the component's \ncss\n initialization option.\n\n\nscript\n\n\nA top-level \nscript\n defines the component's initialization. The script's scope has a \ncomponent\n object that is similar to Node's \nmodule\n object. Initialization options for the component is expected via \ncomponent.exports\n. It also has a special \nrequire\n function that fetches script dependencies. \nrequire\n's behavior depends on the loader used. Refer to the specific loader's documentation to know more.\n\n\nThere can only ever be one \nscript\n in a component file. Defining more than one will result in the loader throwing an error.\n\n\nTemplate\n\n\nAfter yanking out top-level \nlink rel=\"ractive\"\n, \nstyle\n or \nscript\n from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's \ntemplate\n initialization option.\n\n\nUsing\n\n\nIn order to use component files, you will have to use \nloaders\n, Head over to the \nloaders\n page to learn more about loaders and help you choose a loader that suits your needs.", 
             "title": "Component Files"
         }, 
         {
             "location": "/api/component-files/#component-files", 
-            "text": "", 
+            "text": "Remember the good old days? When all CSS went in  style  elements in  head ? When all JS went in  script  elements just before  /body ? When all HTML was written in Mustache inside inert  script  elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.  Ractive component files are simply a self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.", 
             "title": "Component files"
         }, 
         {
+            "location": "/api/component-files/#example-component-file", 
+            "text": "!-- Example component file --  !-- Import a component named Foo from the file foo.html. --  link rel='ractive' href='foo.html' name='foo'  !-- Define the markup for this component. --  h1 {{ title }} /h1  !-- Use imported foo component --  p This is an imported 'foo' component:  foo/ /p  !-- Define the styles for this component. --  style \n  p { color: red; } /style  !-- Define the behavior for this component. --  script \nconst $ = require( 'jquery' );\n\ncomponent.exports = {\n  onrender: function () {\n    $(' p / ').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  }\n}; /script   The above component file roughly translates to the following in vanilla JS:  import Ractive from 'ractive';\nimport $ from 'jquery';\nimport foo from './foo.html';\n\nexport default Ractive.extend({\n  components: { foo },\n  onrender: function () {\n    $(' p / ').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  },\n  template: `\n     h1 {{ title }} /h1 \n     p This is an imported 'foo' component:  foo/ /p \n  `,\n  css: `\n    p { color: red; }\n  `\n});", 
+            "title": "Example component file"
+        }, 
+        {
+            "location": "/api/component-files/#writing", 
+            "text": "", 
+            "title": "Writing"
+        }, 
+        {
+            "location": "/api/component-files/#link-relractive", 
+            "text": "Top-level  link rel=\"ractive\"  elements define dependencies on other components. It accepts two attributes:    href  - The path to the required component file. Paths that start with  ./  or  ../  are resolved relative to the importing component file. Otherwise, resolution is loader-specific.    name  (optional) - The registered name of the component. This corresponds to the key used in the  components  initialization option. When not defined, the filename of the dependency will be used as the name.    The names and the loaded dependency will be assigned to the component's  components  initialization option.", 
+            "title": "&lt;link rel=\"ractive\"&gt;"
+        }, 
+        {
+            "location": "/api/component-files/#style", 
+            "text": "Top-level  style  elements define the styles for the component. If more than one  style  element is found on the component file, their contents are concatenated in the order of appearance of the  style  elements. Contents of these elements will be concatenated and assigned to the component's  css  initialization option.", 
+            "title": "&lt;style&gt;"
+        }, 
+        {
+            "location": "/api/component-files/#script", 
+            "text": "A top-level  script  defines the component's initialization. The script's scope has a  component  object that is similar to Node's  module  object. Initialization options for the component is expected via  component.exports . It also has a special  require  function that fetches script dependencies.  require 's behavior depends on the loader used. Refer to the specific loader's documentation to know more.  There can only ever be one  script  in a component file. Defining more than one will result in the loader throwing an error.", 
+            "title": "&lt;script&gt;"
+        }, 
+        {
+            "location": "/api/component-files/#template", 
+            "text": "After yanking out top-level  link rel=\"ractive\" ,  style  or  script  from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's  template  initialization option.", 
+            "title": "Template"
+        }, 
+        {
+            "location": "/api/component-files/#using", 
+            "text": "In order to use component files, you will have to use  loaders , Head over to the  loaders  page to learn more about loaders and help you choose a loader that suits your needs.", 
+            "title": "Using"
+        }, 
+        {
             "location": "/integrations/loaders/", 
-            "text": "Loaders\n\n\nBy itself, Ractive doesn't know what to do with a \ncomponent file\n. You will need a \nloader\n to transform a component file into a representation that the target tool or environment can understand.\n\n\nVanilla\n\n\n\n\nractive-load\n\n\n\n\nRequireJS\n\n\n\n\nrvc\n - Works with plain and \noptimized\n AMD modules.\n\n\n\n\nBrowserify\n\n\n\n\nractify\n\n\nractiveify\n - Similar to ractify, but supports JS/CSS compilation.\n\n\nractive-componentify\n - Similar to ractiveify, but supports sourcemaps and partial imports.\n\n\n\n\nBroccoli\n\n\n\n\nbroccoli-ractive\n - Supports AMD, CJS, and ES6 outputs.\n\n\n\n\nWebpack\n\n\n\n\nractive-component-loader", 
+            "text": "Loaders\n\n\nBy itself, neither Ractive nor your tools know what to do with a \ncomponent file\n. You will need a \nloader\n to transform a component file into a representation that the target tool or environment can understand.\n\n\nAvailable loaders\n\n\nVanilla\n\n\n\n\nractive-load\n - Uses XHR to load your component files and creates component constructors at runtime.\n\n\n\n\nRequireJS\n\n\n\n\nrvc\n - Converts component files into AMD modules. Works with plain and \noptimized\n AMD modules.\n\n\n\n\nBrowserify\n\n\n\n\nractify\n - Converts component files into CJS modules.\n\n\nractiveify\n - Similar to ractify, but supports JS/CSS compilation.\n\n\nractive-componentify\n - Similar to ractiveify, but supports sourcemaps and partial imports.\n\n\n\n\nBroccoli\n\n\n\n\nbroccoli-ractive\n - Converts your component files into either AMD, CJS, or ES6 modules.\n\n\n\n\nWebpack\n\n\n\n\nractive-component-loader\n - Allows you to load component files as constructors via Webpack.\n\n\n\n\nLooking to write your own loader?\n\n\nHead over to the \ncomponent specifications repo\n for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.\n\n\nRactive also has a couple of handy modules to aid you in loader development:\n\n\n\n\nrcu\n - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.\n\n\nrcu-builders\n - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.", 
             "title": "Loaders"
         }, 
         {
             "location": "/integrations/loaders/#loaders", 
-            "text": "By itself, Ractive doesn't know what to do with a  component file . You will need a  loader  to transform a component file into a representation that the target tool or environment can understand.", 
+            "text": "By itself, neither Ractive nor your tools know what to do with a  component file . You will need a  loader  to transform a component file into a representation that the target tool or environment can understand.", 
             "title": "Loaders"
         }, 
         {
+            "location": "/integrations/loaders/#available-loaders", 
+            "text": "", 
+            "title": "Available loaders"
+        }, 
+        {
             "location": "/integrations/loaders/#vanilla", 
-            "text": "ractive-load", 
+            "text": "ractive-load  - Uses XHR to load your component files and creates component constructors at runtime.", 
             "title": "Vanilla"
         }, 
         {
             "location": "/integrations/loaders/#requirejs", 
-            "text": "rvc  - Works with plain and  optimized  AMD modules.", 
+            "text": "rvc  - Converts component files into AMD modules. Works with plain and  optimized  AMD modules.", 
             "title": "RequireJS"
         }, 
         {
             "location": "/integrations/loaders/#browserify", 
-            "text": "ractify  ractiveify  - Similar to ractify, but supports JS/CSS compilation.  ractive-componentify  - Similar to ractiveify, but supports sourcemaps and partial imports.", 
+            "text": "ractify  - Converts component files into CJS modules.  ractiveify  - Similar to ractify, but supports JS/CSS compilation.  ractive-componentify  - Similar to ractiveify, but supports sourcemaps and partial imports.", 
             "title": "Browserify"
         }, 
         {
             "location": "/integrations/loaders/#broccoli", 
-            "text": "broccoli-ractive  - Supports AMD, CJS, and ES6 outputs.", 
+            "text": "broccoli-ractive  - Converts your component files into either AMD, CJS, or ES6 modules.", 
             "title": "Broccoli"
         }, 
         {
             "location": "/integrations/loaders/#webpack", 
-            "text": "ractive-component-loader", 
+            "text": "ractive-component-loader  - Allows you to load component files as constructors via Webpack.", 
             "title": "Webpack"
+        }, 
+        {
+            "location": "/integrations/loaders/#looking-to-write-your-own-loader", 
+            "text": "Head over to the  component specifications repo  for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.  Ractive also has a couple of handy modules to aid you in loader development:   rcu  - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.  rcu-builders  - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.", 
+            "title": "Looking to write your own loader?"
         }, 
         {
             "location": "/integrations/plugins/", 

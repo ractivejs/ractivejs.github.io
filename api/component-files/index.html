@@ -702,12 +702,107 @@
     
         <li class="first-level active"><a href="#component-files">Component files</a></li>
         
+            <li class="second-level"><a href="#example-component-file">Example component file</a></li>
+            
+        
+            <li class="second-level"><a href="#writing">Writing</a></li>
+            
+                <li class="third-level"><a href="#link-relractive">&lt;link rel="ractive"&gt;</a></li>
+            
+                <li class="third-level"><a href="#style">&lt;style&gt;</a></li>
+            
+                <li class="third-level"><a href="#script">&lt;script&gt;</a></li>
+            
+                <li class="third-level"><a href="#template">Template</a></li>
+            
+        
+            <li class="second-level"><a href="#using">Using</a></li>
+            
+        
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="component-files">Component files</h1></div>
+<h1 id="component-files">Component files</h1>
+<p>Remember the good old days? When all CSS went in <code>&lt;style&gt;</code> elements in <code>&lt;head&gt;</code>? When all JS went in <code>&lt;script&gt;</code> elements just before <code>&lt;/body&gt;</code>? When all HTML was written in Mustache inside inert <code>&lt;script&gt;</code> elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.</p>
+<p>Ractive component files are simply a self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.</p>
+<h2 id="example-component-file">Example component file</h2>
+<pre><code class="html">&lt;!-- Example component file --&gt;
+
+&lt;!-- Import a component named Foo from the file foo.html. --&gt;
+&lt;link rel='ractive' href='foo.html' name='foo'&gt;
+
+&lt;!-- Define the markup for this component. --&gt;
+&lt;h1&gt;{{ title }}&lt;/h1&gt;
+
+&lt;!-- Use imported foo component --&gt;
+&lt;p&gt;This is an imported 'foo' component: &lt;foo/&gt;&lt;/p&gt;
+
+&lt;!-- Define the styles for this component. --&gt;
+&lt;style&gt;
+  p { color: red; }
+&lt;/style&gt;
+
+&lt;!-- Define the behavior for this component. --&gt;
+&lt;script&gt;
+const $ = require( 'jquery' );
+
+component.exports = {
+  onrender: function () {
+    $('&lt;p /&gt;').text('component rendered').insertAfter($this.find('p'));
+  },
+  data: {
+    title: 'Hello World!'
+  }
+};
+&lt;/script&gt;
+</code></pre>
+
+<p>The above component file roughly translates to the following in vanilla JS:</p>
+<pre><code class="js">import Ractive from 'ractive';
+import $ from 'jquery';
+import foo from './foo.html';
+
+export default Ractive.extend({
+  components: { foo },
+  onrender: function () {
+    $('&lt;p /&gt;').text('component rendered').insertAfter($this.find('p'));
+  },
+  data: {
+    title: 'Hello World!'
+  },
+  template: `
+    &lt;h1&gt;{{ title }}&lt;/h1&gt;
+    &lt;p&gt;This is an imported 'foo' component: &lt;foo/&gt;&lt;/p&gt;
+  `,
+  css: `
+    p { color: red; }
+  `
+});
+</code></pre>
+
+<h2 id="writing">Writing</h2>
+<h3 id="link-relractive"><code>&lt;link rel="ractive"&gt;</code></h3>
+<p>Top-level <code>&lt;link rel="ractive"&gt;</code> elements define dependencies on other components. It accepts two attributes:</p>
+<ul>
+<li>
+<p><code>href</code> - The path to the required component file. Paths that start with <code>./</code> or <code>../</code> are resolved relative to the importing component file. Otherwise, resolution is loader-specific.</p>
+</li>
+<li>
+<p><code>name</code> (optional) - The registered name of the component. This corresponds to the key used in the <code>components</code> initialization option. When not defined, the filename of the dependency will be used as the name.</p>
+</li>
+</ul>
+<p>The names and the loaded dependency will be assigned to the component's <code>components</code> initialization option.</p>
+<h3 id="style"><code>&lt;style&gt;</code></h3>
+<p>Top-level <code>&lt;style&gt;</code> elements define the styles for the component. If more than one <code>&lt;style&gt;</code> element is found on the component file, their contents are concatenated in the order of appearance of the <code>&lt;style&gt;</code> elements. Contents of these elements will be concatenated and assigned to the component's <code>css</code> initialization option.</p>
+<h3 id="script"><code>&lt;script&gt;</code></h3>
+<p>A top-level <code>&lt;script&gt;</code> defines the component's initialization. The script's scope has a <code>component</code> object that is similar to Node's <code>module</code> object. Initialization options for the component is expected via <code>component.exports</code>. It also has a special <code>require</code> function that fetches script dependencies. <code>require</code>'s behavior depends on the loader used. Refer to the specific loader's documentation to know more.</p>
+<p>There can only ever be one <code>&lt;script&gt;</code> in a component file. Defining more than one will result in the loader throwing an error.</p>
+<h3 id="template">Template</h3>
+<p>After yanking out top-level <code>&lt;link rel="ractive"&gt;</code>, <code>&lt;style&gt;</code> or <code>&lt;script&gt;</code> from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's <code>template</code> initialization option.</p>
+<h2 id="using">Using</h2>
+<p>In order to use component files, you will have to use <em>loaders</em>, Head over to the <a href="../../integrations/loaders/">loaders</a> page to learn more about loaders and help you choose a loader that suits your needs.</p></div>
         
     </div>
 
