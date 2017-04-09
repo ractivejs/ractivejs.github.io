@@ -2,7 +2,7 @@
 
 Remember the good old days? When all CSS went in `<style>` elements in `<head>`? When all JS went in `<script>` elements just before `</body>`? When all HTML was written in Mustache inside inert `<script>` elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.
 
-Ractive component files are simply a self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.
+Ractive component files are simply self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.
 
 ## Example component file
 
@@ -73,11 +73,11 @@ Top-level `<link rel="ractive">` elements define dependencies on other component
 
 - `name` (optional) - The registered name of the component. This corresponds to the key used in the `components` initialization option. When not defined, the filename of the dependency will be used as the name.
 
-The names and the loaded dependency will be assigned to the component's `components` initialization option.
+The names and the loaded dependency will be assigned to the component's [`components`](./initialization-options.md#components) initialization option.
 
 ### `<style>`
 
-Top-level `<style>` elements define the styles for the component. If more than one `<style>` element is found on the component file, their contents are concatenated in the order of appearance of the `<style>` elements. Contents of these elements will be concatenated and assigned to the component's `css` initialization option.
+Top-level `<style>` elements define the styles for the component. If more than one `<style>` element is found on the component file, their contents are concatenated in the order of appearance of the `<style>` elements. Contents of these elements will be concatenated and assigned to the component's [`css`](./initialization-options.md#css) initialization option.
 
 ### `<script>`
 
@@ -87,7 +87,7 @@ There can only ever be one `<script>` in a component file. Defining more than on
 
 ### Template
 
-After yanking out top-level `<link rel="ractive">`, `<style>` or `<script>` from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's `template` initialization option.
+After yanking out top-level `<link rel="ractive">`, `<style>` or `<script>` from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's [`template`](./initialization-options.md#template) initialization option.
 
 ## Using
 
