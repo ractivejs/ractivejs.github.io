@@ -1,8 +1,10 @@
-## Plugins
+# Plugins
 
 It may not be apparent but Ractive is actually built with extreme extensibility in mind. Plugins allow you to augment Ractive with extra functionality. Whether you're a JavaScript developer, an interface designer or just trying to get away from your framework overlords, Ractive can accomodate one and all.
 
-## [Adaptors](../extend/adaptors.md)
+## Available plugins
+
+### [Adaptors](../extend/adaptors.md)
 
 Interface with different backends.
 
@@ -15,7 +17,7 @@ Interface with different backends.
 - [Ractive](https://github.com/rstacruz/ractive-ractive) by [@rstacruz](https://github.com/rstacruz) - Synchronise several Ractive instances.
 - [ss-ractive](https://github.com/arxpoetica/ss-ractive) by Robert Hall [@arxpoetica](https://github.com/arxpoetica) - Ractive Template Engine wrapper for [SocketStream](https://github.com/socketstream/socketstream).
 
-## [Components](../extend/components.md)
+### [Components](../extend/components.md)
 
 Encapsulate functionality behind the guise of a custom element.
 
@@ -26,7 +28,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [Select](https://github.com/JonDum/ractive-select) - A `<select>` replacement component.
 - [Stepper](https://github.com/JonDum/ractive-stepper) - A numeric stepper component.
 
-## [Decorators](../extend/decorators.md)
+### [Decorators](../extend/decorators.md)
 
 Augment the DOM with more functionality.
 
@@ -36,11 +38,11 @@ Augment the DOM with more functionality.
 - [Sortable](http://ractivejs.github.io/Ractive-decorators-sortable/)
 - [Tooltip](http://github.com/JonDum/ractive-tooltip)
 
-## [Easings](../extend/easings.md)
+### [Easings](../extend/easings.md)
 
 Custom animation progressions.
 
-## [Events](../extend/events.md)
+### [Events](../extend/events.md)
 
 Augment the DOM with custom events beyond those supported by the browser.
 
@@ -56,11 +58,11 @@ Augment the DOM with custom events beyond those supported by the browser.
 - [Typing](https://github.com/svapreddy/ractive-events-typing) by [@svapreddy](https://github.com/svapreddy)
 - [Viewport](https://github.com/svapreddy/ractive-event-viewport) by [@svapreddy](https://github.com/svapreddy)
 
-## [Partials](../extend/partials.md)
+### [Partials](../extend/partials.md)
 
 Reusable pieces of markup.
 
-## [Transitions](../extend/transitions.md)
+### [Transitions](../extend/transitions.md)
 
 Apply custom animation.
 
