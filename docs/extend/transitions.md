@@ -45,7 +45,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  decorators: {
+  transitions: {
     myTransition: myTransition
   }
 });
