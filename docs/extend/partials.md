@@ -34,7 +34,7 @@ Ractive.partials.myPartial = MyPartial;
 
 ```js
 const MyComponent = Ractive.extend({
-  events: {
+  partials: {
     myPartial: myPartial
   }
 });
@@ -44,7 +44,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  events: {
+  partials: {
     myPartial: myPartial
   }
 });
