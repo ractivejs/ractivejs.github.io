@@ -387,34 +387,6 @@ In previous versions of Ractive it was required to close a section with the open
 {{/comments}}
 ```
 
-<a name="special-refs"></a>
-## Special references
-
-There are a few implicit variables that are available anywhere within a ractive template.
-
-* `@index` is a reference to the index or key name of the nearest iterative section. It is available even if an index name is not supplied for the section.
-
-    ```html
-    {{#items}}{{@index + 1}} - {{.}}{{/}}
-    ```
-
-* `@key` is a reference to the current key in the nearest object iterator section.
-* `@keypath` is the current context used to resolve references.
-
-    ```html
-    {{#foo}}{{#bar}}{{@keypath}} - foo.bar{{/}}{{/}}
-    {{#items}}{{#.condition}}{{@keypath}} - for the first item will be items.0.condition{{/}}{{/}}
-    ```
-
-  `@keypath` is particularly useful when aliasing is used and the current context outside of the aliasing is hidden.
-
-<a name="restricted-refs"></a>
-## Restricted references
-
-Normally, references are resolved according to a specific algorithm, which involves *moving up the context stack* until a property matching the reference is found. In the vast majority of cases this is exactly what you want, but occasionally (for example when dealing with [recursive partials]()) it is useful to be able to specify more specific directives about the context of a property being referenced.
-
-See [References]() for all available reference restrictions.
-
 <a name="expressions"></a>
 ## Expressions
 

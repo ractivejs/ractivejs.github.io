@@ -1,38 +1,60 @@
-Within this documentation, and within Ractive's code, a *reference* is a string that refers to a piece of data - in other words, within a `{{name}}` [mustache](), `name` is the reference.
+# References
 
-By themselves, references are useless - they must *resolve* to a *[keypath]()* before we can do anything with them (like render their value). If the reference exists with a section mustache, it may need to be resolved *in the context of that section*. In fact, because sections can be nested, we have to resolve each reference within its *context stack*.
+A reference is a string that refers to a piece of data. They may look like a regular [keypath](./keypaths.md), like `{{ foo.bar.baz }}` or may contain special keywords and glyphs, like `{{ @this.sayHello() }}`.
 
-The resolution algorithm looks like this:
-
-1. Is the reference a special ref? If so, resolve with the appropriate special keypath.
-2. If the reference is explicit or matches a path in the current context exactly, resolve with that keypath.
-3. Grab the current virtual node from the template hierarchy.
-4. If there are any aliases, index, or key mapping defined that match, resolve with that keypath.
-5. If this is a component and there are any matching mappings, resolve with that keypath.
-6. If this node has context and there is a matching path, resolve with that keypath.
-7. Otherwise, remove the innermost context from the stack. Repeat (3-7).
-8. See if `reference` is a valid keypath by itself. If so, resolve with that keypath.
-9. If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.
-
-# Huh?
-
-That's a little bit abstract. The following example may help explain:
-
-```html
-{{#user}}
-  <p>Welcome back, {{name}}!
-    {{#messages}}
-      You have {{unread}} unread of {{total}} total messages.
-      You last logged in on {{lastLogin}}.
-    {{/messages}}
-  </p>
-{{/user}}
-```
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYExhN41aiuSRqAcgBG4gCYBPVxhs7By9ZbFkXa1t7B2oAM3FxFw9ZGH9A6Mx0h2wVSQpkUJUXAAMsmPwvZXUASWoYFViVevhiFTiE6gB3MmwwallqJVlkRCLqYGB28Wo0NC1KpXUyh3x3RDZxe2wfChVmEDWN+BZqTYBaYmQyYgF9gAFeskIRQlkfAAknZHELAEoNADCVxu1AAsiotIdsJsllEHMUAnDaG9Pqgfr9IkEYhJ4IRxMgVCJvkILK4AcMCV44jApP17CpVPAaL1QtREIQVFSBvVGs1WtRof1qJIVL1vK5-ki0Ok0L8ANwgNBAA"></div>
 
 ```js
-ractive = new Ractive({
-  el: container,
-  template: myTemplate,
+Ractive({
+  el: 'body',
+  data: {
+    foo: 'bar',
+  },
+  template: `
+    <div>I reference foo with a value: {{ foo }}</div>
+    <button type="button" on-click="@this.sayHello()">Click Me</button>
+  `,
+  sayHello(){
+    console.log('Called from an event that used a reference to a method')
+  }
+});
+```
+
+## Reference resolution
+
+In order for a reference to be usable, it has to resolve to something. Ractive follows the following resolution algorithm to find the value of a reference:
+
+1. If the reference a [special reference](../../api/special-references.md), resolve with that keypath.
+2. If the reference is [explicit](../../api/keypath-prefixes.md) or matches a path in the current context exactly, resolve with that keypath.
+3. Grab the current virtual node from the template hierarchy.
+4. If the reference matches an [alias](./mustaches.md#aliasing), section indexes, or keys, resolve with that keypath.
+5. If the reference matches any [mappings](../../extend/components.md#binding), resolve with that keypath.
+6. If the reference matches a path on the context, resolve with that keypath.
+7. Remove the innermost context from the stack. Repeat steps 3-7.
+8. If the reference is a valid keypath by itself, resolve with that keypath.
+9. If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.
+
+## Context stack
+
+Steps 6 and 7 of the [resolution algorithm](#reference-resolution) defines the ability of Ractive to "climb" contexts when a reference does not resolve in the current context. This is similar to how JavaScript climbs to the global scope to resolve a variable.
+
+To do this, whenever Ractive encounters [section mustaches](./mustaches.md#sections) or similar constructs, it stores the context in a *context stack*. Ractive then resolves references starting with the context on the top of the stack, and popping off contexts until the reference resolves to a keypath.
+
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3ewVSQpkWUCnAAN-O2pgYABiREIVGDQ0aJjqfAp1AHUHCUkVald5AQxY4HhZIrSAQgzMyviiwkJZIRVCNMam6gBNcURqMFlVSr4YFVkPNOpJ6Y9qcQAzSuxxbFl0NGoNreRqVvbOwhFepsHh0MIaZHEhTqWyW3FbOJvsABkHl7Tz2x9SpcY4dLo9QGZLQ5RpxXjJVLpQERPyAjxhWROayQ+YIrEXapFJzOABSZEkvguoNO+JxmX22ycAEYAAyooHzeBTGZOADMF0wF0+PyEL2J+Q88C66J8jSRdiRaAAlABuEBoIA"></div>
+
+```js
+Ractive({
+  el: 'body',
+  template: `
+    {{#user}}
+      <p>Welcome back, {{name}}!
+        {{#messages}}
+          You have {{unread}} unread of {{total}} total messages.
+          You last logged in on {{lastLogin}}.
+        {{/messages}}
+      </p>
+    {{/user}}
+  `,
   data: {
     user: {
       name: 'Jim',
@@ -44,153 +66,59 @@ ractive = new Ractive({
     }
   }
 });
+
+// Welcome back, Jim! You have 3 unread of 10 total messages. You last logged in on Wednesday.
 ```
 
-We start with an empty context stack, so to resolve the `user` in `{{#user}}` we skip ahead to step 6 of the algorithm. Is `user` a valid keypath - i.e. does `ractive.data` have a `user` property? Why yes, it does.
+`{{# user }}` creates a context and the context stack becomes `['user']`. To resolve `name`, the following context resolution order is followed, where `name` resolves with the `user.name` keypath:
 
-Within the `{{#user}}` section, `user` is a context. So we now have a non-empty context stack - `['user']`. So when we come to resolve the `name` in `{{name}}`, we go to step 2. The innermost (and only) context is `user`, so we test the keypath `user.name`. Is it valid? Why yes, it is. So the `name` resolves to `user.name`.
+1. `user.name` (resolved here)
+2. `name`
 
-Next up, `{{#messages}}`. The innermost context is still `user`, so we test `user.messages` - bingo. Because it's a section mustache, anything inside it now has a two-level context stack (`['user', 'user.messages']`).
+In the same way, `{{# messages }}` also creates a context. Since the `messages` section under the `user` section, the context stack becomes `['user', 'user.messages']`. To resolve `unread` and `total`, the following resolution order is followed:
 
-We take `{{unread}}` and `{{total}}` and apply the same algorithm - sure enough, they resolve to `user.messages.unread` and `user.messages.total`.
+`unread`
 
-What about `{{lastLogin}}`? Again, we take the innermost context from the stack - `user.messages`. Is `user.messages.lastLogin` a valid keypath? No, it isn't. So we take the next innermost context - `user`. As it turns out, `user.lastLogin` is a valid keypath, so the reference resolves.
+1. `user.messages.unread` (resolved here)
+2. `user.unread`
+3. `unread`
 
-Most of the time you don't need to be aware that this is going on, especially if you're already familiar with [Mustache](), but it's useful to have a background understanding.
+`total`
 
+1. `user.messages.total` (resolved here)
+2. `user.total`
+3. `total`
 
-# Lists
+In the case of `lastLogin`, the `user.messages.lastLogin` keypath does not exist. What Ractive does is pop off `user.messages` from the context stack and tries to resolve `lastLogin` using `user.lastLogin`. Since `user.lastLogin` is a valid keypath, `lastLogin` resolves as `user.lastLogin`.
 
-This is also how list sections work. Consider the following:
+1. `user.messages.lastLogin`
+2. `user.lastLogin` (resolved here)
+3. `lastLogin`
 
-```html
-{{#items}}
-  {{content}}
-{{/items}}
-```
+# Arrays
+
+Unlike objects where the section uses the object as context, the context of a section that goes over an array are the items of that array.
+
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3Y9ZbFkna1s7ajJsFUlOagBtfwi7YGoJeGiMp2cALxUYcWdqTCTk1PTM7GzxeBUikvCytJrK7OwAd0Li0uoAXSSGu2jJCmQglScAAyTgYABiKJjCNDQe2YqVDJWZ4C5F2O3w6fg0AEoAbhA0IA"></div>
 
 ```js
-ractive = new Ractive({
-  el: container,
-  template: myTemplate,
+Ractive({
+  el: 'body',
   data: {
-    items: [{ content: 'zero' }, { content: 'one' }, { content: 'two' }]
-  }
+    items: [
+      { content: 'zero' },
+      { content: 'one' },
+      { content: 'two' }
+    ]
+  },
+  template: `
+  {{#items}}
+    {{content}}
+  {{/items}}
+  `
 });
+
+// zeroonetwo
 ```
 
-The contents of the `{{#items}}` section are rendered once for each member of `items`. Each time round, the context changes - the first time it is `items.0`, then it is `items.1`, then it is `items.2`.
-
-With a context of `items.0`, the `content` reference resolves to `items.0.content`, and so on.
-
-# Current context - `{{.}}` or `{{this}}`
-
-Using `{{.}}` or `{{this}}` (they refer to the same thing) resolves to the current data context.
-
-For example, sometimes you will have lists of primitives (i.e. strings and numbers) rather than objects. To refer to the primitives, we must use the *implicit iterator*:
-
-```html
-{{#items}}
-  {{.}}
-{{/items}}
-```
-
-```js
-ractive = new Ractive({
-  el: container,
-  template: myTemplate,
-  data: {
-    items: [ 'zero', 'one', 'two' ]
-  }
-});
-```
-
-Whenever Ractive sees `{{.}}`, it simply resolves it to the innermost context - `items.0`, `items.1`, `items.2`.
-
-In Ractive (but not Mustache), you can use `{{this}}` in place of `{{.}}`. This is because in expressions - `{{this.toFixed(1)}}` looks much nicer than `{{..toFixed(1)}}` (for example).
-
-# Restricted references
-
-Sometimes you may want to reference a property within the current context regardless of whether that property currently exists. For those situations you can use what's called a *restricted reference* (note that this feature does not exist in vanilla Mustache):
-
-```html
-{{#options}}
-  <label><input type='checkbox' checked='{{.selected}}'> {{description}}</label>
-{{/options}}
-```
-
-This feature is particularly useful with [two-way binding]() as these references have to be resolved immediately.
-
-You can also use the form `{{./selected}}` if you prefer, or `{{this.selected}}`, both of which are the same as `{{.selected}}`.
-
-
-## Ancestor references
-
-Very occasionally, you might need to refer explicitly to a property higher up in the tree to avoid naming conflicts. You can do that by prefixing references with `../` (or `../../`, or `../../../`...):
-
-```html
-<h1>Blog posts by {{name}}</p>
-
-<ul class='blog-posts'>
-  {{#posts}}
-    <li><a href='{{ slugify(../../name) }}/{{ slugify(name) }}'>{{name}}</a></li>
-  {{/posts}}
-</ul>
-```
-
-```js
-var ractive = new Ractive({
-  el: document.body,
-  template: myTemplate,
-  data: {
-    name: 'Rich',
-    posts: [
-      { name: 'This is a blog post' },
-      { name: 'And so is this' }
-    ],
-    slugify: function ( str ) {
-      var slug;
-      /* SOME CODE HAPPENS */
-      return slug;
-    }
-  }
-});
-```
-
-In this example, some damn fool decided it would be a good idea to give posts a 'name' property as well as authors. Which means that in the `href` attribute, it wouldn't be possible to refer to the root-level `name` property, because it would always resolve to the `name` property of the current post - and that's no good, because the root-level `name` property is used to construct the URL.
-
-By using `../../name` instead of `name`, we're saying 'go up one level (to `posts`), then up one more (to the root), and *then* look for the `name` property'.
-
-## Root references
-
-You can also navigate directly from the top of the data hierarchy with `~/`. Note that this is the root of the ractive instance in which the template appears, not the entire view hierarchy of nested components.
-
-The above example could also use a root reference:
-
-```html
-<h1>Blog posts by {{name}}</p>
-
-<ul class='blog-posts'>
-  {{#posts}}
-    <li><a href='{{ ~/name }}/{{ name }}'>{{name}}</a></li>
-  {{/posts}}
-</ul>
-```
-
-# Special references
-
-There are a few things that can be useful to reference from the template that don't really exist in your data. For instance, the current iteration index of a repeated section. These special references can be used just like any other data reference, excepting two-way binding. Here's the list of specials and their resolutions:
-
-1. `@index` - the current iteration index of the containing repeated section e.g. `{{#each list}}{{@index}}{{/each}}`
-2. `@key` - the current key name of the containing object iteration section e.g. `{{#each someObj}}{{@key}}{{/each}}`
-3. `@keypath` - the keypath to the current context e.g. `foo.bar.baz` in `{{#foo}}{{#with bar.baz}}{{@keypath}}{{/with}}{{/}}`. If the current context happens to be a mapping in a component, the keypath will be adjusted relative to the mapping.
-3. `@rootpath` - the same as keypath, except not adjusted for components.
-4. `@global` - the current global object for this environment e.g. `window` in a browser or `global` in node. This reference can be used with two-way binding, but note that if something outside of Ractive changes a value, Ractive won't know unless you tell it to `update`.
-5. `@this` - the current Ractive instance e.g. the current component or the Ractive root. You can access any properties or methods available on a Ractive instance with this, and due to the way capture works, you can also use `@this.get('...')` in a binding and it will update with the target keypath.
-
-# Summary of prefixes
-
-* `~/` means at the current instance root.
-* `.` means the current context. When more path follows, it follows the path from the current context.
-* `../` means the parent of the current context and may also be stacked and have a following path.
-* `@` means this is a special reference that has meaning specified by where it exists in the template e.g. `@index` means the current iteration index of the containing repeated section.
+In the example above, context is created for each item on the array. The first time it is `items.0`, then `items.1`, then `items.2`. `content` will be resolved for relative to each, doing `items.0.content`, then `items.1.content` and finally `items.2.content`.
