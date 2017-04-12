@@ -5,13 +5,13 @@
         
     <url>
      <loc>https://ractive.js.org/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/60-second-setup/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -29,19 +29,19 @@
         
     <url>
      <loc>https://ractive.js.org/get-started/debugging/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/support/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/contributing/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -51,31 +51,31 @@
         
     <url>
      <loc>https://ractive.js.org/api/initialization-options/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/static-properties/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/static-methods/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/instance-properties/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/instance-methods/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -87,13 +87,13 @@
         
     <url>
      <loc>https://ractive.js.org/api/errors/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/component-files/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -103,25 +103,25 @@
         
     <url>
      <loc>https://ractive.js.org/integrations/loaders/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/integrations/plugins/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/integrations/tools/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/integrations/libraries/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -131,49 +131,49 @@
         
     <url>
      <loc>https://ractive.js.org/extend/adaptors/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/components/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/decorators/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/easings/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/events/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/interpolators/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/partials/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/transitions/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -223,31 +223,31 @@
         
     <url>
      <loc>https://ractive.js.org/articles/introducing-ractive-js/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/articles/the-origins-of-ractive/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/articles/ractive-vs-angular/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/articles/ractive-vs-react/</loc>
-     <lastmod>2017-04-11</lastmod>
+     <lastmod>2017-04-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
