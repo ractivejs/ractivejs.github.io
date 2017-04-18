@@ -98,7 +98,6 @@ pages:
       - Keypaths: concepts/templates/keypaths.md
       - Mustaches: concepts/templates/mustaches.md
       - Parsing: concepts/templates/parsing.md
-      - Pre-Parsing: concepts/templates/pre-parsing.md
       - References: concepts/templates/references.md
   - Articles:
     - Introducing Ractive.js: articles/introducing-ractive-js.md

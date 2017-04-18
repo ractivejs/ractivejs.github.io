@@ -1,13 +1,21 @@
-Before templates can be used, they must be parsed. Parsing involves reading in a template string and converting it to a tree-like data structure, much like a browser's parser would.
+# Parsing
 
-Ordinarily, parsing happens automatically. However you can use `Ractive.parse()` as a standalone function if, for example, you want to parse templates as part of your build process (it works in Node.js). See also [Using Ractive with RequireJS]().
+In order for Ractive to utilize templates, it first parses the templates into a tree-like data structure, much like how a browser's HTML parser would process HTML. This data structure contains everything Ractive needs to know to construct an instance's DOM, data bindings, events and transitions etc.
 
-The output of `Ractive.parse()` is an array or object (depending on whether the template contains [inline partials]() or not). Here's an example:
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwT4hGhVkxCKgCYAVFZIrJZ2FdQbUASvMWqRFlYqABQA5Pg2ytTELoSEzCCSKnGyQmog6gASKqji1ADq4jDINgCEWpFK6qEAlADcTPAmhOLIKiLI4kLBAFIAygDyAHIiZuTwQmQAZgCewYHW9o7Orio19SBoQA"></div>
 
+```
+Ractive.parse('<div class="message">Hello World!</div>');
 
-This contains everything Ractive needs to construct its bit of the DOM and set up data-binding, proxy event handlers, and transitions.
+// {"v":4,"t":[{"t":7,"e":"div","m":[{"n":"class","f":"message","t":13}],"f":["Hello World!"]}]}
+```
 
-It's not designed to be human-readable or -editable, but rather to use as few bytes as possible. Typically a parsed template is only about 30-40% larger than the string version. (There is some useful testing to be done to see whether the tradeoff of piping the extra few bytes to users is worth the few milliseconds of parsing that it will save!)
+Normally, parsing is done automatically. Ractive will use [`Ractive.parse()`](../../api/static-methods.md#ractiveparse) under the hood if a string template is provided to the [`template`](../../api/initialization-options.md#template) initialization option.
 
-Wherever possible (in other words, with whichever bits of a template don't use Ractive-specific features), the template will be stored as plain HTML.
+The parsed template is not designed to be readable nor editable by a human. It is meant to represent the template structure as an object in a way Ractive understands with as few bytes as possible. Where the template doesn't use Ractive-specific features, these parts will be represented as plain HTML in the data structure.
 
+## Pre-parsing
+
+Parsing templates can be a very slow operation, particularly for very large apps, very complex templates, or intricate SVGs. As an optimization option, templates can be pre-parsed into their object form outside of runtime. This would allow Ractive to skip parsing during runtime and speed up app initialization. Typically, a parsed template is only about 30-40% larger than the string version, making pre-parsing a trade-off between space and processing.
+
+Pre-parsing can be done in many different ways as long as Ractive receives the parsed template during runtime. One way would be to simply serve the pre-parsed template separately from the component or instance and load it via AJAX. Another would be to extract and replace the template on the file with the parsed version during compile time - an approach that works well with [component files](../../api/component-files.md). Read more about [loaders](../../integrations/loaders.md) to know more about how loaders do pre-parsing on compile time.
