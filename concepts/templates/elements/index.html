@@ -297,6 +297,12 @@
                         
                             
 <li >
+    <a href="../../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../../api/errors/">Errors</a>
 </li>
 
@@ -565,12 +571,6 @@
     <ul class="dropdown-menu">
         
             
-<li >
-    <a href="../overview/">Overview</a>
-</li>
-
-        
-            
 <li class="active">
     <a href="./">Elements</a>
 </li>
@@ -664,7 +664,7 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../overview/">
+                        <a rel="next" href="../../security/csp/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
@@ -694,15 +694,9 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#conditional-attributes">Conditional attributes</a></li>
+        <li class="first-level active"><a href="#elements">Elements</a></li>
         
-    
-        <li class="first-level "><a href="#class-and-style-attributes">Class and style attributes</a></li>
-        
-            <li class="second-level"><a href="#style-attributes">style-* attributes</a></li>
-            
-        
-            <li class="second-level"><a href="#class-attributes">class-* attributes</a></li>
+            <li class="second-level"><a href="#conditional-attributes">Conditional attributes</a></li>
             
         
     
@@ -710,29 +704,17 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>Just about any useful template will contain at least one HTML element, and Ractive has a few directives and other constructs built into its element representation to make life easier. Some of these constructs have their own sections in the docs, such as <a href="">Events</a>, <a href="">Transitions</a>, <a href="">Two-way binding</a>, <a href="">Decorators</a>, and <a href="">Components</a>.</p>
-<h1 id="conditional-attributes">Conditional attributes</h1>
+<h1 id="elements">Elements</h1>
+<p>Strictly speaking, Ractive templates are are not HTML. It has a few special directives and other constructs built into its element representation to make DOM manipulation a bit easier. You can think of them as "HTML-like" - they look like HTML for ease of authoring but are not really HTML nor even a superset of HTML. However, when rendered, they are emitted as perfectly valid HTML.</p>
+<p>In addition, Ractive's template parser is not quite as forgiving as the browser's HTML parser either and may throw parser errors where it sees ambiguity. However, it does allow things like implicitly closed elements.</p>
+<h2 id="conditional-attributes">Conditional attributes</h2>
 <p>You can wrap one or more attributes inside an element tag in a conditional section, and Ractive will add and remove those attributes as the conditional section is rendered and unrendered. For instance:</p>
-<pre><code class="html">&lt;ul&gt;
-{{#each list as item}}
-    &lt;li {{#if ~/selectedItems.indexOf(item) !== -1}}class=&quot;selected&quot;{{/if}}&gt;
-        {{item.name}}
-    &lt;/li&gt;
-{{/each}}
-&lt;/ul&gt;
+<pre><code class="html">&lt;div {{#if highlighted}}class=&quot;highlighted&quot;{{/if}}&gt;Highlightable element&lt;/div&gt;
 </code></pre>
 
-<p>In this example, if the current <code>item</code> in the <code>list</code> iteration is also in the <code>selectedItems</code> array, then a class attribute will be added to the rendered li and set to <code>"selected"</code>.</p>
-<p>Any number of attributes can be used in a section, and other <a href="">Mustache</a> constructs can be used to supply attributes.</p>
-<h1 id="class-and-style-attributes">Class and style attributes</h1>
-<p>Ractive has special handlers for style and class attributes that only add and remove values for classes or style properties that are in the template. This allows external code to modify the element without Ractive overriding the change on its next update.</p>
-<p>There are also two special classes of attributes for handling a single class or style property at a time.</p>
-<h2 id="style-attributes"><code>style-*</code> attributes</h2>
-<p>To facilitate quick updates to a single style property of an element, Ractive supports using <code>style-property-name="value"</code> or <code>style-propertyName="value"</code> attributes. The value may be any text including any mustaches, and when the value is updated, the appropriate style property on the element will be updated with the new value. Any hyphens after the first will be removed and the subsequent letter capitalized so both <code>style-text-align</code> and <code>style-textAlign</code> will target the <code>textAlign</code> property of the element's style.</p>
-<p><code>style-</code> attributes are processed as text rather than expressions, so you can use mustaches to set values e.g. <code>&lt;div style-left="{{x}}px" style-top="{{y}}em"&gt;...&lt;/div&gt;</code>. Any mustaches can be used in the value, including interpolators, sections, and partials.</p>
-<h2 id="class-attributes"><code>class-*</code> attributes</h2>
-<p>To facilitate easily adding and removing a single class on an element, Ractive supports using <code>class-class-name</code> and <code>class-className</code> attributes. Unlike style attributes, no changes are made to the hyphenation of the attribute name, so <code>class-class-name</code> and <code>class-className</code> will target <code>class-name</code> and <code>className</code>, respectively. The truthiness of the value assigned to a <code>class-</code> attribute determines whether or not Ractive will add the class to the element. If the value is truthy, the class will be added. If the value becomes falsey, then the class will be removed. No other classes on the element will be affected by changes to a <code>class-</code> attribute.</p>
-<p><code>class-</code> attributes, like <code>style-</code> attributes, not processed as expressions, so in order to supply the conditional to determine whether or not the class is set, you must use an interpolator e.g. <code>&lt;div class-foo="{{someBoolean}}" class-bar="{{num + 33 &gt; 42}}"&gt;...&lt;/div&gt;</code>.</p></div>
+<p>Any number of attributes can be used in a section, and other <a href="../mustaches/">Mustache</a> constructs can be used to supply attributes.</p>
+<pre><code class="html">&lt;div {{#if highlighted}}class=&quot;highlighted {{ anotherClass }}&quot; title=&quot;I'm highlighted&quot;{{/if}}&gt;Highlightable element&lt;/div&gt;
+</code></pre></div>
         
     </div>
 
