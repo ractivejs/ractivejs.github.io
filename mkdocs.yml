@@ -51,6 +51,7 @@ pages:
       - Node Info: api/helper-objects/node-info.md
       - Parse: api/helper-objects/parse.md
       - Transition: api/helper-objects/transition.md
+    - Attributes: api/attributes.md
     - Errors: api/errors.md
     - Component Files: api/component-files.md
   - Integrations:
@@ -92,7 +93,6 @@ pages:
     - Security:
       - CSP: concepts/security/csp.md
     - Templates:
-      - Overview: concepts/templates/overview.md
       - Elements: concepts/templates/elements.md
       - Expressions: concepts/templates/expressions.md
       - Keypaths: concepts/templates/keypaths.md
