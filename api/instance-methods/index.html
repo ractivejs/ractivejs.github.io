@@ -1989,27 +1989,27 @@ subclassInstance.toCSS();
 
 <hr />
 <h2 id="ractiveupdate">ractive.update()</h2>
-<p>Forces everything that depends on the specified <a href="../../concepts/templates/keypaths/">keypaths</a> (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. <a href="#ractiveset"><code>ractive.set()</code></a>, <a href="#ractiveanimate"><code>ractive.animate()</code></a>, or array modification):</p>
-<p>If no <code>keypath</code> is specified, all mustaches and <a href="../../concepts/events/publish-subscribe/">observers</a> will be checked.</p>
+<p>"Dirty checks" everything that depends directly or indirectly on the specified <a href="../../concepts/templates/keypaths/">keypath</a>. If no <code>keypath</code> is specified, all keypaths will be checked. Keypaths that involve special references (i.e. <code>@global</code>) require the keypath to be supplied.</p>
+<p>This is useful when manipulating the instance's data without using the built in setter methods (i.e. <a href="#ractiveset"><code>ractive.set()</code></a>, <a href="#ractiveanimate"><code>ractive.animate()</code></a>).</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.update([keypath])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>[keypath] (string)</code>: The <a href="../../concepts/templates/keypaths/">keypath</a> to treat as 'dirty'. Any mustaches or <a href="../../concepts/events/publish-subscribe/">observers</a> that depend (directly or indirectly) on this <a href="../../concepts/templates/keypaths/">keypath</a> will be checked to see if they need to update</li>
+<li><code>[keypath] (string)</code>: The keypath to treat as 'dirty'.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Promise)</code>: A promise. If a <a href="../../concepts/templates/keypaths/">keypath</a> is not supplied, this 'dirty checks' everything.</li>
+<li><code>(Promise)</code>: A promise that resolves when the operation completes.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">ractive.observe( 'foo', function ( foo ) {
-    alert( foo );
+  alert( foo );
 });
 
-model.foo = 'changed';
-ractive.update( 'foo' ); // causes observer to alert 'changed'
+model.foo = 'changed';   // Does not cause the instance to update.
+ractive.update( 'foo' ); // Informs the instance that foo was changed externally.
 </code></pre>
 
 <hr />
