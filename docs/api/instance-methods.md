@@ -1395,9 +1395,9 @@ If the given [keypath](../concepts/templates/keypaths.md) does not exist (is `un
 
 ## ractive.update()
 
-Forces everything that depends on the specified [keypaths](../concepts/templates/keypaths.md) (whether directly or indirectly) to be 'dirty checked'. This is useful if you manipulate data without using the built in setter methods (i.e. [`ractive.set()`](#ractiveset), [`ractive.animate()`](#ractiveanimate), or array modification):
+"Dirty checks" everything that depends directly or indirectly on the specified [keypath](../concepts/templates/keypaths.md). If no `keypath` is specified, all keypaths will be checked. Keypaths that involve special references (i.e. `@global`) require the keypath to be supplied.
 
-If no `keypath` is specified, all mustaches and [observers](../concepts/events/publish-subscribe.md) will be checked.
+This is useful when manipulating the instance's data without using the built in setter methods (i.e. [`ractive.set()`](#ractiveset), [`ractive.animate()`](#ractiveanimate)).
 
 **Syntax**
 
@@ -1405,21 +1405,21 @@ If no `keypath` is specified, all mustaches and [observers](../concepts/events/p
 
 **Arguments**
 
-- `[keypath] (string)`: The [keypath](../concepts/templates/keypaths.md) to treat as 'dirty'. Any mustaches or [observers](../concepts/events/publish-subscribe.md) that depend (directly or indirectly) on this [keypath](../concepts/templates/keypaths.md) will be checked to see if they need to update
+- `[keypath] (string)`: The keypath to treat as 'dirty'.
 
 **Returns**
 
-- `(Promise)`: A promise. If a [keypath](../concepts/templates/keypaths.md) is not supplied, this 'dirty checks' everything.
+- `(Promise)`: A promise that resolves when the operation completes.
 
 **Examples**
 
 ```js
 ractive.observe( 'foo', function ( foo ) {
-	alert( foo );
+  alert( foo );
 });
 
-model.foo = 'changed';
-ractive.update( 'foo' ); // causes observer to alert 'changed'
+model.foo = 'changed';   // Does not cause the instance to update.
+ractive.update( 'foo' ); // Informs the instance that foo was changed externally.
 ```
 
 ---
