@@ -1,3 +1,4 @@
+[![gitter chat](https://badges.gitter.im/ractivejs/ractive.svg)](https://gitter.im/ractivejs/ractive)
 [![npm version](https://img.shields.io/npm/v/ractive.svg?style=flat-square)](https://www.npmjs.com/package/ractive)
 [![devDependency Status](https://img.shields.io/david/dev/ractivejs/ractive.svg?style=flat-square)](https://david-dm.org/RactiveJS/Ractive#info=devDependencies)
 [![Build Status](https://img.shields.io/travis/ractivejs/ractive/dev.svg?style=flat-square)](https://travis-ci.org/ractivejs/ractive)
