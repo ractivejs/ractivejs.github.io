@@ -235,7 +235,7 @@ new Ractive({
 
 `(Object<string, any>|Function)`
 
-The data with which to initialise. Can either be an object or a function that returns an object.
+The data for an instance, or default data for a component. Can either be an object or a function that returns an object.
 
 ```js
 // Object form
@@ -254,7 +254,7 @@ data: () => ({
 })
 ```
 
-When using data on components in object form, the data is attached to the component's prototype. Standard prototype rules apply, which means modifying data on the prototype will affect all instances using that prototype.
+When using the object form, the data is attached to the component's prototype. Standard prototype rules apply.
 
 ```js
 const Component = Ractive.extend({
@@ -269,7 +269,7 @@ component1.set( 'foo.bar', 12 );
 component2.get( 'foo.bar' ); // returns 12
 ```
 
-When using data on components in function, the function is run to give each instance a copy of the data instead of attaching the data to the prototype.
+When using the function form, the function is executed to give each instance a copy of the data. Standard prototype rules apply.
 
 ```js
 const Component = Ractive.extend({
@@ -286,18 +286,24 @@ component1.set( 'foo.bar', 12 );
 component2.get( 'foo.bar' ); // returns 42
 ```
 
-Data may also be set asynchronously when using data in function form.
+When extending from a constructor, data from the parent constructor will be shallow-copied over to the child data. Child data takes precedence in the event of collisions.
 
 ```js
-data: function () {
-  $.get( 'somedata.url', function( data ) {
-    this.set( '', data );
-  }.bind(this) );
+const Parent = Ractive.extend({
+  data: {
+    foo: 'Hello',
+    bar: 'World'
+  }
+});
 
-  return {
-    foo: 'default'
-  };
-}
+const Child = Parent.extend({
+  data: {
+    foo: 'Goodbye'
+  }
+});
+
+Parent().get(); // { foo: 'Hello', bar: 'World' }
+Child().get();  // { foo: 'Goodbye', bar: 'World' }
 ```
 
 ---
