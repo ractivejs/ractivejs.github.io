@@ -14,7 +14,7 @@
   </head>
   <body>
     <script type="text/html" id="tpl">
-      <div class="panel" class-primary="{{!sheetPopped}}" class-shared="{{sheetPopped === 1}}" class-min="{{sheetPopped === 2}}">
+      <div class="panel" class-primary="!sheetPopped" class-shared="sheetPopped === 1" class-min="sheetPopped === 2">
         <Tabs on-selected="sheetPopped === 2 ? @.set('sheetPopped', 1) : null">
           <Tab title="HTML">
             <div as-ace-editor={ syntax: "handlebars", bind: "~/unit.t", ...settings.editor } class="ace-editor" />
@@ -98,7 +98,7 @@
           <Action title="&#9654;" on-click="play" />
         </Tabs>
       </div>
-      <div class="panel" class-primary="{{sheetPopped === 2}}" class-shared="{{sheetPopped === 1}}">
+      <div class="panel" class-primary="sheetPopped === 2" class-shared="sheetPopped === 1">
         <Sheet unit="{{compiled}}" popped="{{sheetPopped}}" />
       </div>
     </script>

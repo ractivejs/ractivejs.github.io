@@ -110,6 +110,16 @@ button.circle {
   height: 3em;
 }
 
+.rs-message button {
+  position: absolute;
+  top: 2px;
+  right: 0.5em;
+  height: 1em;
+  line-height: 1em;
+  padding: 0 0.5em;
+  margin: 0;
+}
+
 input, select, textarea {
   font-size: 1em;
   border-radius: 2px;
