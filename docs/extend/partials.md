@@ -4,8 +4,8 @@ A partial is a template snippet which can be reused in templates or in other par
 
 ## Writing
 
-```html
-Ractive.partials.myPartial = '<!-- template -->';
+```js
+const myPartial = '<!-- template -->';
 ```
 
 Partials are simply Ractive templates.
@@ -34,9 +34,7 @@ Ractive.partials.myPartial = MyPartial;
 
 ```js
 const MyComponent = Ractive.extend({
-  partials: {
-    myPartial: myPartial
-  }
+  partials: { myPartial }
 });
 ```
 
@@ -44,9 +42,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  partials: {
-    myPartial: myPartial
-  }
+  partials: { myPartial }
 });
 ```
 

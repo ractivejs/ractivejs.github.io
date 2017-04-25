@@ -5,7 +5,7 @@ Events allow custom-named events on DOM elements. Common use cases for custom DO
 ## Writing
 
 ```js
-Ractive.events.MyEvent = function(node, fire){
+const myEvent = function(node, fire){
   // Setup code
   return {
     teardown: function(){
@@ -32,16 +32,14 @@ Like other plugins, there's 3 ways you can register events:
 ### Globally, via the `Ractive.events` static property.
 
 ```js
-Ractive.events.myevent = MyEvent;
+Ractive.events.myEvent = myEvent;
 ```
 
 ### Per component, via the component's `events` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
-  events: {
-    myevent: MyEvent
-  }
+  events: { myEvent }
 });
 ```
 
@@ -49,9 +47,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  events: {
-    myevent: MyEvent
-  }
+  events: { myEvent }
 });
 ```
 
@@ -60,9 +56,9 @@ const ractive = new Ractive({
 Events use the same `on-*` attribute syntax as component and DOM events. When Ractive encounters an `on-*` attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.
 
 ```html
-// This will apply the "myevent" custom event if one is registered.
+// This will apply the "myEvent" custom event if one is registered.
 // Otherwise, Ractive will think it's a DOM event. You have been warned!
-<span on-myevent="foo()">Click me!</span>
+<span on-myEvent="foo()">Click me!</span>
 ```
 
 ## Examples

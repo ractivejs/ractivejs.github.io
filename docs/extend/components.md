@@ -57,9 +57,7 @@ Ractive.components.MyComponent = Ractive.extend({ ... });
 ```js
 // Only available for instances of AnotherComponent.
 const AnotherComponent = Ractive.extend({
-  components: {
-    MyComponent
-  }
+  components: { MyComponent }
 });
 ```
 
@@ -68,9 +66,7 @@ const AnotherComponent = Ractive.extend({
 ```js
 // Only available to this specific instance.
 const ractive = new Ractive({
-  components: {
-    MyComponent
-  }
+  components: { MyComponent }
 });
 ```
 

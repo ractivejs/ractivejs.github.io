@@ -5,7 +5,7 @@ A decorator is a simple way to add behaviour to a node when it is rendered, or t
 ## Writing
 
 ```js
-function MyDecorator(node[, ...args]) {
+const myDecorator = function(node[, ...args]) {
   // Setup code
   return {
     teardown: function(){
@@ -37,16 +37,14 @@ Like other plugins, there's 3 ways you can register decorators:
 ### Globally, via the `Ractive.decorators` static property.
 
 ```js
-Ractive.decorators.mydecorator = MyDecorator;
+Ractive.decorators.myDecorator = myDecorator;
 ```
 
 ### Per component, via the component's `decorators` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
-  decorators: {
-    mydecorator: MyDecorator
-  }
+  decorators: { myDecorator }
 });
 ```
 
@@ -54,9 +52,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  decorators: {
-    mydecorator: MyDecorator
-  }
+  decorators: { myDecorator }
 });
 ```
 
@@ -66,10 +62,10 @@ You can invoke one or more decorators on your elements by using a decorator dire
 
 ```html
 <!-- without arguments -->
-<div as-mydecorator>...</div>
+<div as-myDecorator>...</div>
 
 <!-- with arguments -->
-<div as-mydecorator="arg1, .some.other.arg2, 10 * @index" as-somethingElseToo>...</div>
+<div as-myDecorator="arg1, .some.other.arg2, 10 * @index" as-somethingElseToo>...</div>
 ```
 
 ## Examples

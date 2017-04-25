@@ -5,7 +5,7 @@ In some cases you want to write your UI in Ractive but have a custom back-end ma
 ## Writing
 
 ```js
-Ractive.adaptors.myAdaptor = {
+const myAdaptor = {
   filter: function ( object, keypath, ractive ) {
     // return `true` if a particular object is of the type we want to adapt.
   },
@@ -89,9 +89,7 @@ Ractive.adaptors.myAdaptor = myAdaptor;
 
 ```js
 const MyComponent = Ractive.extend({
-  adaptors: {
-    myAdaptor: myAdaptor
-  }
+  adaptors: { myAdaptor }
 });
 ```
 
@@ -99,9 +97,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  adaptors: {
-    myAdaptor: myAdaptor
-  }
+  adaptors: { myAdaptor }
 });
 ```
 
@@ -111,7 +107,7 @@ In order to use an adaptor, you must tell the component or an instance to use it
 
 ```js
 const ractive = new Ractive({
-  adapt: [ 'myAdaptor', myAdaptor ]
+  adapt: [ 'myAdaptor' ]
 })
 ```
 

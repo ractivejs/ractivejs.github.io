@@ -5,7 +5,7 @@ Transitions allow you to control how enter the DOM and how they leave the DOM. T
 ## Writing
 
 ```js
-Ractive.transitions.myTransition = function ( t, params ) {
+const myTransition = function ( t, params ) {
   // Manipulate the DOM.
   // Call t.complete() when completed.
 };
@@ -13,11 +13,11 @@ Ractive.transitions.myTransition = function ( t, params ) {
 
 Transitions are simply functions that get called to animate a specified element.
 
-`t` is a helper object that aids in the implementation of the transition. See the Transition Object for details.
+`t` is a [transition helper object](../api/helper-objects/transition.md) that aids in the implementation of the transition.
 
 `params` is the parameters passed in via the transition directive.
 
-Transitions are expected to be asynchronous. In order to signal Ractive that a transition has completed, the transition must call the `t.complete()`.
+Transitions are expected to be asynchronous. In order to signal Ractive that the transition has completed, the transition must call the `t.complete()`.
 
 Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.
 
@@ -35,9 +35,7 @@ Ractive.transitions.myTransition = myTransition;
 
 ```js
 const MyComponent = Ractive.extend({
-  transitions: {
-    myTransition: myTransition
-  }
+  transitions: { myTransition }
 });
 ```
 
@@ -45,9 +43,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  transitions: {
-    myTransition: myTransition
-  }
+  transitions: { myTransition }
 });
 ```
 

@@ -5,7 +5,7 @@ Easing functions are used by `ractive.animate` and some transitions. They descri
 ## Writing
 
 ```js
-Ractive.easing.MyEasingFunction = function ( x ) {
+const myEasing = function ( x ) {
   // Calculation
   return y;
 };
@@ -20,16 +20,14 @@ Like other plugins, there's 3 ways you can register an easing function:
 ### Globally via the `Ractive.easing` static property.
 
 ```js
-Ractive.easing.MyEasingFunction = function(){ ... };
+Ractive.easing.myEasing = myEasing;
 ```
 
 ### Per component via the component's `easing` initialization property.
 
 ```js
 const MyComponent = Ractive.extend({
-  easing: {
-    MyEasingFunction: function(){ ... }
-  }
+  easing: { myEasing }
 });
 ```
 
@@ -37,9 +35,7 @@ const MyComponent = Ractive.extend({
 
 ```js
 const ractive = new Ractive({
-  easing: {
-    MyEasingFunction: function(){ ... }
-  }
+  easing: { myEasing }
 });
 ```
 
@@ -49,7 +45,7 @@ Easing functions don't work alone. They are utilized by [ractive.animate()](../a
 
 ```js
 ractive.animate('foo.bar', 1, {
-  easing: 'MyEasingFunction'
+  easing: 'myEasing'
 });
 ```
 
