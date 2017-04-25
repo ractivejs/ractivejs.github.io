@@ -303,6 +303,18 @@
                         
                             
 <li >
+    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../../api/errors/">Errors</a>
 </li>
 
@@ -741,12 +753,6 @@
             <li class="second-level"><a href="#object-iteration">Object iteration</a></li>
             
         
-            <li class="second-level"><a href="#special-references">Special references</a></li>
-            
-        
-            <li class="second-level"><a href="#restricted-references">Restricted references</a></li>
-            
-        
             <li class="second-level"><a href="#expressions">Expressions</a></li>
             
         
@@ -1059,30 +1065,6 @@ Comments may contain newlines.</p>
 {{/comments}}
 </code></pre>
 
-<p><a name="special-refs"></a></p>
-<h2 id="special-references">Special references</h2>
-<p>There are a few implicit variables that are available anywhere within a ractive template.</p>
-<ul>
-<li>
-<p><code>@index</code> is a reference to the index or key name of the nearest iterative section. It is available even if an index name is not supplied for the section.</p>
-<p><code>html
-{{#items}}{{@index + 1}} - {{.}}{{/}}</code></p>
-</li>
-<li>
-<p><code>@key</code> is a reference to the current key in the nearest object iterator section.</p>
-</li>
-<li>
-<p><code>@keypath</code> is the current context used to resolve references.</p>
-<p><code>html
-{{#foo}}{{#bar}}{{@keypath}} - foo.bar{{/}}{{/}}
-{{#items}}{{#.condition}}{{@keypath}} - for the first item will be items.0.condition{{/}}{{/}}</code></p>
-</li>
-</ul>
-<p><code>@keypath</code> is particularly useful when aliasing is used and the current context outside of the aliasing is hidden.</p>
-<p><a name="restricted-refs"></a></p>
-<h2 id="restricted-references">Restricted references</h2>
-<p>Normally, references are resolved according to a specific algorithm, which involves <em>moving up the context stack</em> until a property matching the reference is found. In the vast majority of cases this is exactly what you want, but occasionally (for example when dealing with <a href="">recursive partials</a>) it is useful to be able to specify more specific directives about the context of a property being referenced.</p>
-<p>See <a href="">References</a> for all available reference restrictions.</p>
 <p><a name="expressions"></a></p>
 <h2 id="expressions">Expressions</h2>
 <p>Expressions are a big topic, so they have a <a href="">page of their own</a>. But this section is about explaining the difference between vanilla Mustache and Ractive Mustache, so they deserve a mention here.</p>

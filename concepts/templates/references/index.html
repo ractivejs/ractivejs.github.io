@@ -303,6 +303,18 @@
                         
                             
 <li >
+    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../../api/errors/">Errors</a>
 </li>
 
@@ -694,63 +706,71 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#huh">Huh?</a></li>
+        <li class="first-level active"><a href="#references">References</a></li>
         
-    
-        <li class="first-level "><a href="#lists">Lists</a></li>
-        
-    
-        <li class="first-level "><a href="#current-context-or-this">Current context - {{.}} or {{this}}</a></li>
-        
-    
-        <li class="first-level "><a href="#restricted-references">Restricted references</a></li>
-        
-            <li class="second-level"><a href="#ancestor-references">Ancestor references</a></li>
+            <li class="second-level"><a href="#reference-resolution">Reference resolution</a></li>
             
         
-            <li class="second-level"><a href="#root-references">Root references</a></li>
+            <li class="second-level"><a href="#context-stack">Context stack</a></li>
             
         
     
-        <li class="first-level "><a href="#special-references">Special references</a></li>
-        
-    
-        <li class="first-level "><a href="#summary-of-prefixes">Summary of prefixes</a></li>
+        <li class="first-level "><a href="#arrays">Arrays</a></li>
         
     
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<p>Within this documentation, and within Ractive's code, a <em>reference</em> is a string that refers to a piece of data - in other words, within a <code>{{name}}</code> <a href="">mustache</a>, <code>name</code> is the reference.</p>
-<p>By themselves, references are useless - they must <em>resolve</em> to a <em><a href="">keypath</a></em> before we can do anything with them (like render their value). If the reference exists with a section mustache, it may need to be resolved <em>in the context of that section</em>. In fact, because sections can be nested, we have to resolve each reference within its <em>context stack</em>.</p>
-<p>The resolution algorithm looks like this:</p>
-<ol>
-<li>Is the reference a special ref? If so, resolve with the appropriate special keypath.</li>
-<li>If the reference is explicit or matches a path in the current context exactly, resolve with that keypath.</li>
-<li>Grab the current virtual node from the template hierarchy.</li>
-<li>If there are any aliases, index, or key mapping defined that match, resolve with that keypath.</li>
-<li>If this is a component and there are any matching mappings, resolve with that keypath.</li>
-<li>If this node has context and there is a matching path, resolve with that keypath.</li>
-<li>Otherwise, remove the innermost context from the stack. Repeat (3-7).</li>
-<li>See if <code>reference</code> is a valid keypath by itself. If so, resolve with that keypath.</li>
-<li>If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.</li>
-</ol>
-<h1 id="huh">Huh?</h1>
-<p>That's a little bit abstract. The following example may help explain:</p>
-<pre><code class="html">{{#user}}
-  &lt;p&gt;Welcome back, {{name}}!
-    {{#messages}}
-      You have {{unread}} unread of {{total}} total messages.
-      You last logged in on {{lastLogin}}.
-    {{/messages}}
-  &lt;/p&gt;
-{{/user}}
+<h1 id="references">References</h1>
+<p>A reference is a string that refers to a piece of data. They may look like a regular <a href="../keypaths/">keypath</a>, like <code>{{ foo.bar.baz }}</code> or may contain special keywords and glyphs, like <code>{{ @this.sayHello() }}</code>.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYExhN41aiuSRqAcgBG4gCYBPVxhs7By9ZbFkXa1t7B2oAM3FxFw9ZGH9A6Mx0h2wVSQpkUJUXAAMsmPwvZXUASWoYFViVevhiFTiE6gB3MmwwallqJVlkRCLqYGB28Wo0NC1KpXUyh3x3RDZxe2wfChVmEDWN+BZqTYBaYmQyYgF9gAFeskIRQlkfAAknZHELAEoNADCVxu1AAsiotIdsJsllEHMUAnDaG9Pqgfr9IkEYhJ4IRxMgVCJvkILK4AcMCV44jApP17CpVPAaL1QtREIQVFSBvVGs1WtRof1qJIVL1vK5-ki0Ok0L8ANwgNBAA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    foo: 'bar',
+  },
+  template: `
+    &lt;div&gt;I reference foo with a value: {{ foo }}&lt;/div&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.sayHello()&quot;&gt;Click Me&lt;/button&gt;
+  `,
+  sayHello(){
+    console.log('Called from an event that used a reference to a method')
+  }
+});
 </code></pre>
 
-<pre><code class="js">ractive = new Ractive({
-  el: container,
-  template: myTemplate,
+<h2 id="reference-resolution">Reference resolution</h2>
+<p>In order for a reference to be usable, it has to resolve to something. Ractive follows the following resolution algorithm to find the value of a reference:</p>
+<ol>
+<li>If the reference a <a href="../../../api/special-references/">special reference</a>, resolve with that keypath.</li>
+<li>If the reference is <a href="../../../api/keypath-prefixes/">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
+<li>Grab the current virtual node from the template hierarchy.</li>
+<li>If the reference matches an <a href="../mustaches/#aliasing">alias</a>, section indexes, or keys, resolve with that keypath.</li>
+<li>If the reference matches any <a href="../../../extend/components/#binding">mappings</a>, resolve with that keypath.</li>
+<li>If the reference matches a path on the context, resolve with that keypath.</li>
+<li>Remove the innermost context from the stack. Repeat steps 3-7.</li>
+<li>If the reference is a valid keypath by itself, resolve with that keypath.</li>
+<li>If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.</li>
+</ol>
+<h2 id="context-stack">Context stack</h2>
+<p>Steps 6 and 7 of the <a href="#reference-resolution">resolution algorithm</a> defines the ability of Ractive to "climb" contexts when a reference does not resolve in the current context. This is similar to how JavaScript climbs to the global scope to resolve a variable.</p>
+<p>To do this, whenever Ractive encounters <a href="../mustaches/#sections">section mustaches</a> or similar constructs, it stores the context in a <em>context stack</em>. Ractive then resolves references starting with the context on the top of the stack, and popping off contexts until the reference resolves to a keypath.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3ewVSQpkWUCnAAN-O2pgYABiREIVGDQ0aJjqfAp1AHUHCUkVald5AQxY4HhZIrSAQgzMyviiwkJZIRVCNMam6gBNcURqMFlVSr4YFVkPNOpJ6Y9qcQAzSuxxbFl0NGoNreRqVvbOwhFepsHh0MIaZHEhTqWyW3FbOJvsABkHl7Tz2x9SpcY4dLo9QGZLQ5RpxXjJVLpQERPyAjxhWROayQ+YIrEXapFJzOABSZEkvguoNO+JxmX22ycAEYAAyooHzeBTGZOADMF0wF0+PyEL2J+Q88C66J8jSRdiRaAAlABuEBoIA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  template: `
+    {{#user}}
+      &lt;p&gt;Welcome back, {{name}}!
+        {{#messages}}
+          You have {{unread}} unread of {{total}} total messages.
+          You last logged in on {{lastLogin}}.
+        {{/messages}}
+      &lt;/p&gt;
+    {{/user}}
+  `,
   data: {
     user: {
       name: 'Jim',
@@ -762,120 +782,58 @@
     }
   }
 });
+
+// Welcome back, Jim! You have 3 unread of 10 total messages. You last logged in on Wednesday.
 </code></pre>
 
-<p>We start with an empty context stack, so to resolve the <code>user</code> in <code>{{#user}}</code> we skip ahead to step 6 of the algorithm. Is <code>user</code> a valid keypath - i.e. does <code>ractive.data</code> have a <code>user</code> property? Why yes, it does.</p>
-<p>Within the <code>{{#user}}</code> section, <code>user</code> is a context. So we now have a non-empty context stack - <code>['user']</code>. So when we come to resolve the <code>name</code> in <code>{{name}}</code>, we go to step 2. The innermost (and only) context is <code>user</code>, so we test the keypath <code>user.name</code>. Is it valid? Why yes, it is. So the <code>name</code> resolves to <code>user.name</code>.</p>
-<p>Next up, <code>{{#messages}}</code>. The innermost context is still <code>user</code>, so we test <code>user.messages</code> - bingo. Because it's a section mustache, anything inside it now has a two-level context stack (<code>['user', 'user.messages']</code>).</p>
-<p>We take <code>{{unread}}</code> and <code>{{total}}</code> and apply the same algorithm - sure enough, they resolve to <code>user.messages.unread</code> and <code>user.messages.total</code>.</p>
-<p>What about <code>{{lastLogin}}</code>? Again, we take the innermost context from the stack - <code>user.messages</code>. Is <code>user.messages.lastLogin</code> a valid keypath? No, it isn't. So we take the next innermost context - <code>user</code>. As it turns out, <code>user.lastLogin</code> is a valid keypath, so the reference resolves.</p>
-<p>Most of the time you don't need to be aware that this is going on, especially if you're already familiar with <a href="">Mustache</a>, but it's useful to have a background understanding.</p>
-<h1 id="lists">Lists</h1>
-<p>This is also how list sections work. Consider the following:</p>
-<pre><code class="html">{{#items}}
-  {{content}}
-{{/items}}
-</code></pre>
-
-<pre><code class="js">ractive = new Ractive({
-  el: container,
-  template: myTemplate,
-  data: {
-    items: [{ content: 'zero' }, { content: 'one' }, { content: 'two' }]
-  }
-});
-</code></pre>
-
-<p>The contents of the <code>{{#items}}</code> section are rendered once for each member of <code>items</code>. Each time round, the context changes - the first time it is <code>items.0</code>, then it is <code>items.1</code>, then it is <code>items.2</code>.</p>
-<p>With a context of <code>items.0</code>, the <code>content</code> reference resolves to <code>items.0.content</code>, and so on.</p>
-<h1 id="current-context-or-this">Current context - <code>{{.}}</code> or <code>{{this}}</code></h1>
-<p>Using <code>{{.}}</code> or <code>{{this}}</code> (they refer to the same thing) resolves to the current data context.</p>
-<p>For example, sometimes you will have lists of primitives (i.e. strings and numbers) rather than objects. To refer to the primitives, we must use the <em>implicit iterator</em>:</p>
-<pre><code class="html">{{#items}}
-  {{.}}
-{{/items}}
-</code></pre>
-
-<pre><code class="js">ractive = new Ractive({
-  el: container,
-  template: myTemplate,
-  data: {
-    items: [ 'zero', 'one', 'two' ]
-  }
-});
-</code></pre>
-
-<p>Whenever Ractive sees <code>{{.}}</code>, it simply resolves it to the innermost context - <code>items.0</code>, <code>items.1</code>, <code>items.2</code>.</p>
-<p>In Ractive (but not Mustache), you can use <code>{{this}}</code> in place of <code>{{.}}</code>. This is because in expressions - <code>{{this.toFixed(1)}}</code> looks much nicer than <code>{{..toFixed(1)}}</code> (for example).</p>
-<h1 id="restricted-references">Restricted references</h1>
-<p>Sometimes you may want to reference a property within the current context regardless of whether that property currently exists. For those situations you can use what's called a <em>restricted reference</em> (note that this feature does not exist in vanilla Mustache):</p>
-<pre><code class="html">{{#options}}
-  &lt;label&gt;&lt;input type='checkbox' checked='{{.selected}}'&gt; {{description}}&lt;/label&gt;
-{{/options}}
-</code></pre>
-
-<p>This feature is particularly useful with <a href="">two-way binding</a> as these references have to be resolved immediately.</p>
-<p>You can also use the form <code>{{./selected}}</code> if you prefer, or <code>{{this.selected}}</code>, both of which are the same as <code>{{.selected}}</code>.</p>
-<h2 id="ancestor-references">Ancestor references</h2>
-<p>Very occasionally, you might need to refer explicitly to a property higher up in the tree to avoid naming conflicts. You can do that by prefixing references with <code>../</code> (or <code>../../</code>, or <code>../../../</code>...):</p>
-<pre><code class="html">&lt;h1&gt;Blog posts by {{name}}&lt;/p&gt;
-
-&lt;ul class='blog-posts'&gt;
-  {{#posts}}
-    &lt;li&gt;&lt;a href='{{ slugify(../../name) }}/{{ slugify(name) }}'&gt;{{name}}&lt;/a&gt;&lt;/li&gt;
-  {{/posts}}
-&lt;/ul&gt;
-</code></pre>
-
-<pre><code class="js">var ractive = new Ractive({
-  el: document.body,
-  template: myTemplate,
-  data: {
-    name: 'Rich',
-    posts: [
-      { name: 'This is a blog post' },
-      { name: 'And so is this' }
-    ],
-    slugify: function ( str ) {
-      var slug;
-      /* SOME CODE HAPPENS */
-      return slug;
-    }
-  }
-});
-</code></pre>
-
-<p>In this example, some damn fool decided it would be a good idea to give posts a 'name' property as well as authors. Which means that in the <code>href</code> attribute, it wouldn't be possible to refer to the root-level <code>name</code> property, because it would always resolve to the <code>name</code> property of the current post - and that's no good, because the root-level <code>name</code> property is used to construct the URL.</p>
-<p>By using <code>../../name</code> instead of <code>name</code>, we're saying 'go up one level (to <code>posts</code>), then up one more (to the root), and <em>then</em> look for the <code>name</code> property'.</p>
-<h2 id="root-references">Root references</h2>
-<p>You can also navigate directly from the top of the data hierarchy with <code>~/</code>. Note that this is the root of the ractive instance in which the template appears, not the entire view hierarchy of nested components.</p>
-<p>The above example could also use a root reference:</p>
-<pre><code class="html">&lt;h1&gt;Blog posts by {{name}}&lt;/p&gt;
-
-&lt;ul class='blog-posts'&gt;
-  {{#posts}}
-    &lt;li&gt;&lt;a href='{{ ~/name }}/{{ name }}'&gt;{{name}}&lt;/a&gt;&lt;/li&gt;
-  {{/posts}}
-&lt;/ul&gt;
-</code></pre>
-
-<h1 id="special-references">Special references</h1>
-<p>There are a few things that can be useful to reference from the template that don't really exist in your data. For instance, the current iteration index of a repeated section. These special references can be used just like any other data reference, excepting two-way binding. Here's the list of specials and their resolutions:</p>
+<p><code>{{# user }}</code> creates a context and the context stack becomes <code>['user']</code>. To resolve <code>name</code>, the following context resolution order is followed, where <code>name</code> resolves with the <code>user.name</code> keypath:</p>
 <ol>
-<li><code>@index</code> - the current iteration index of the containing repeated section e.g. <code>{{#each list}}{{@index}}{{/each}}</code></li>
-<li><code>@key</code> - the current key name of the containing object iteration section e.g. <code>{{#each someObj}}{{@key}}{{/each}}</code></li>
-<li><code>@keypath</code> - the keypath to the current context e.g. <code>foo.bar.baz</code> in <code>{{#foo}}{{#with bar.baz}}{{@keypath}}{{/with}}{{/}}</code>. If the current context happens to be a mapping in a component, the keypath will be adjusted relative to the mapping.</li>
-<li><code>@rootpath</code> - the same as keypath, except not adjusted for components.</li>
-<li><code>@global</code> - the current global object for this environment e.g. <code>window</code> in a browser or <code>global</code> in node. This reference can be used with two-way binding, but note that if something outside of Ractive changes a value, Ractive won't know unless you tell it to <code>update</code>.</li>
-<li><code>@this</code> - the current Ractive instance e.g. the current component or the Ractive root. You can access any properties or methods available on a Ractive instance with this, and due to the way capture works, you can also use <code>@this.get('...')</code> in a binding and it will update with the target keypath.</li>
+<li><code>user.name</code> (resolved here)</li>
+<li><code>name</code></li>
 </ol>
-<h1 id="summary-of-prefixes">Summary of prefixes</h1>
-<ul>
-<li><code>~/</code> means at the current instance root.</li>
-<li><code>.</code> means the current context. When more path follows, it follows the path from the current context.</li>
-<li><code>../</code> means the parent of the current context and may also be stacked and have a following path.</li>
-<li><code>@</code> means this is a special reference that has meaning specified by where it exists in the template e.g. <code>@index</code> means the current iteration index of the containing repeated section.</li>
-</ul></div>
+<p>In the same way, <code>{{# messages }}</code> also creates a context. Since the <code>messages</code> section under the <code>user</code> section, the context stack becomes <code>['user', 'user.messages']</code>. To resolve <code>unread</code> and <code>total</code>, the following resolution order is followed:</p>
+<p><code>unread</code></p>
+<ol>
+<li><code>user.messages.unread</code> (resolved here)</li>
+<li><code>user.unread</code></li>
+<li><code>unread</code></li>
+</ol>
+<p><code>total</code></p>
+<ol>
+<li><code>user.messages.total</code> (resolved here)</li>
+<li><code>user.total</code></li>
+<li><code>total</code></li>
+</ol>
+<p>In the case of <code>lastLogin</code>, the <code>user.messages.lastLogin</code> keypath does not exist. What Ractive does is pop off <code>user.messages</code> from the context stack and tries to resolve <code>lastLogin</code> using <code>user.lastLogin</code>. Since <code>user.lastLogin</code> is a valid keypath, <code>lastLogin</code> resolves as <code>user.lastLogin</code>.</p>
+<ol>
+<li><code>user.messages.lastLogin</code></li>
+<li><code>user.lastLogin</code> (resolved here)</li>
+<li><code>lastLogin</code></li>
+</ol>
+<h1 id="arrays">Arrays</h1>
+<p>Unlike objects where the section uses the object as context, the context of a section that goes over an array are the items of that array.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3Y9ZbFkna1s7ajJsFUlOagBtfwi7YGoJeGiMp2cALxUYcWdqTCTk1PTM7GzxeBUikvCytJrK7OwAd0Li0uoAXSSGu2jJCmQglScAAyTgYABiKJjCNDQe2YqVDJWZ4C5F2O3w6fg0AEoAbhA0IA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    items: [
+      { content: 'zero' },
+      { content: 'one' },
+      { content: 'two' }
+    ]
+  },
+  template: `
+  {{#items}}
+    {{content}}
+  {{/items}}
+  `
+});
+
+// zeroonetwo
+</code></pre>
+
+<p>In the example above, context is created for each item on the array. The first time it is <code>items.0</code>, then <code>items.1</code>, then <code>items.2</code>. <code>content</code> will be resolved for relative to each, doing <code>items.0.content</code>, then <code>items.1.content</code> and finally <code>items.2.content</code>.</p></div>
         
     </div>
 
