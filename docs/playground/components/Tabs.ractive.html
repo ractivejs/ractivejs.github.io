@@ -119,16 +119,16 @@
     <li class="rt-tab rt-tab-right" {{#if .action}}{{yield action}}{{/if}}>{{#if .title}}{{yield .title}}{{/if}}</li>
     {{/each}}
     {{#each tabs}}
-    <li class="rt-tab" class-rt-tab-active="{{~/selected === @index}}"
-      class-rt-tab-disabled="{{.disabled}}"
-      class-rt-tab-right="{{.right}}"
+    <li class="rt-tab" class-rt-tab-active="~/selected === @index"
+      class-rt-tab-disabled=".disabled"
+      class-rt-tab-right=".right"
       {{#if !.disabled}}on-click="['selected', @index]"{{/if}}>{{#if .title}}{{yield .title}}{{/if}}</li>
     {{/each}}
   </ul>
   <ul class="rt-contents">
     {{#each tabs}}
       {{#if .content}}
-        <li class="rt-content" class-rt-content-active="{{~/selected === @index}}" class-rt-scroll="{{.scroll}}">
+        <li class="rt-content" class-rt-content-active="~/selected === @index" class-rt-scroll=".scroll">
         {{yield .content}}
       </li>
       {{/if}}
