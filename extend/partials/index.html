@@ -750,7 +750,7 @@
 <h1 id="partials">Partials</h1>
 <p>A partial is a template snippet which can be reused in templates or in other partials. They help to keep templates uncluttered, non-repetetive and easy to read.</p>
 <h2 id="writing">Writing</h2>
-<pre><code class="html">Ractive.partials.myPartial = '&lt;!-- template --&gt;';
+<pre><code class="js">const myPartial = '&lt;!-- template --&gt;';
 </code></pre>
 
 <p>Partials are simply Ractive templates.</p>
@@ -769,17 +769,13 @@
 <p><code>text/html</code> is another good choice for <code>type</code> because many editors will highlight the content of the tag as HTML. Anything other than <code>text/javascript</code>, <code>application/javascript</code>, or no <code>type</code> at all will do.</p>
 <h3 id="per-component-via-the-components-partials-initialization-property">Per component, via the component's <code>partials</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
-  partials: {
-    myPartial: myPartial
-  }
+  partials: { myPartial }
 });
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's <code>partials</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
-  partials: {
-    myPartial: myPartial
-  }
+  partials: { myPartial }
 });
 </code></pre>
 

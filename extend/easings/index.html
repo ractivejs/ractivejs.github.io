@@ -734,7 +734,7 @@
 <h1 id="easings">Easings</h1>
 <p>Easing functions are used by <code>ractive.animate</code> and some transitions. They describe the animation's progression from start to finish.</p>
 <h2 id="writing">Writing</h2>
-<pre><code class="js">Ractive.easing.MyEasingFunction = function ( x ) {
+<pre><code class="js">const myEasing = function ( x ) {
   // Calculation
   return y;
 };
@@ -744,29 +744,25 @@
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register an easing function:</p>
 <h3 id="globally-via-the-ractiveeasing-static-property">Globally via the <code>Ractive.easing</code> static property.</h3>
-<pre><code class="js">Ractive.easing.MyEasingFunction = function(){ ... };
+<pre><code class="js">Ractive.easing.myEasing = myEasing;
 </code></pre>
 
 <h3 id="per-component-via-the-components-easing-initialization-property">Per component via the component's <code>easing</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
-  easing: {
-    MyEasingFunction: function(){ ... }
-  }
+  easing: { myEasing }
 });
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-easing-initialization-property">Per instance, via the instance's <code>easing</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
-  easing: {
-    MyEasingFunction: function(){ ... }
-  }
+  easing: { myEasing }
 });
 </code></pre>
 
 <h2 id="using">Using</h2>
 <p>Easing functions don't work alone. They are utilized by <a href="../../api/instance-methods/#ractiveanimate">ractive.animate()</a> and <a href="../transitions/">Transitions</a> to dictate animations.</p>
 <pre><code class="js">ractive.animate('foo.bar', 1, {
-  easing: 'MyEasingFunction'
+  easing: 'myEasing'
 });
 </code></pre>
 

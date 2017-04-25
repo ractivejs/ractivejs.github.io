@@ -734,7 +734,7 @@
 <h1 id="events">Events</h1>
 <p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
 <h2 id="writing">Writing</h2>
-<pre><code class="js">Ractive.events.MyEvent = function(node, fire){
+<pre><code class="js">const myEvent = function(node, fire){
   // Setup code
   return {
     teardown: function(){
@@ -752,30 +752,26 @@
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register events:</p>
 <h3 id="globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</h3>
-<pre><code class="js">Ractive.events.myevent = MyEvent;
+<pre><code class="js">Ractive.events.myEvent = myEvent;
 </code></pre>
 
 <h3 id="per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
-  events: {
-    myevent: MyEvent
-  }
+  events: { myEvent }
 });
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
-  events: {
-    myevent: MyEvent
-  }
+  events: { myEvent }
 });
 </code></pre>
 
 <h2 id="using">Using</h2>
 <p>Events use the same <code>on-*</code> attribute syntax as component and DOM events. When Ractive encounters an <code>on-*</code> attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.</p>
-<pre><code class="html">// This will apply the &quot;myevent&quot; custom event if one is registered.
+<pre><code class="html">// This will apply the &quot;myEvent&quot; custom event if one is registered.
 // Otherwise, Ractive will think it's a DOM event. You have been warned!
-&lt;span on-myevent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
+&lt;span on-myEvent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
 </code></pre>
 
 <h2 id="examples">Examples</h2>

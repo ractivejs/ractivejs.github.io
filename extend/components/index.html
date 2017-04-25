@@ -792,18 +792,14 @@ Ractive.components.MyComponent = Ractive.extend({ ... });
 <h3 id="per-component-via-the-components-components-initialization-property">Per component, via the component's <code>components</code> initialization property.</h3>
 <pre><code class="js">// Only available for instances of AnotherComponent.
 const AnotherComponent = Ractive.extend({
-  components: {
-    MyComponent
-  }
+  components: { MyComponent }
 });
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's <code>components</code> initialization property.</h3>
 <pre><code class="js">// Only available to this specific instance.
 const ractive = new Ractive({
-  components: {
-    MyComponent
-  }
+  components: { MyComponent }
 });
 </code></pre>
 

@@ -740,7 +740,7 @@
 <h1 id="adaptors">Adaptors</h1>
 <p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. <a href="./">Adaptors</a> allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
 <h2 id="writing">Writing</h2>
-<pre><code class="js">Ractive.adaptors.myAdaptor = {
+<pre><code class="js">const myAdaptor = {
   filter: function ( object, keypath, ractive ) {
     // return `true` if a particular object is of the type we want to adapt.
   },
@@ -798,24 +798,20 @@
 
 <h3 id="per-component-via-the-components-adaptors-initialization-property">Per component, via the component's <code>adaptors</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
-  adaptors: {
-    myAdaptor: myAdaptor
-  }
+  adaptors: { myAdaptor }
 });
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
-  adaptors: {
-    myAdaptor: myAdaptor
-  }
+  adaptors: { myAdaptor }
 });
 </code></pre>
 
 <h2 id="using">Using</h2>
 <p>In order to use an adaptor, you must tell the component or an instance to use it using the <code>adapt</code> <a href="../../api/initialization-options/">initialization option</a>.</p>
 <pre><code class="js">const ractive = new Ractive({
-  adapt: [ 'myAdaptor', myAdaptor ]
+  adapt: [ 'myAdaptor' ]
 })
 </code></pre>
 

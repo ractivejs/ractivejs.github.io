@@ -734,7 +734,7 @@
 <h1 id="decorators">Decorators</h1>
 <p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
 <h2 id="writing">Writing</h2>
-<pre><code class="js">function MyDecorator(node[, ...args]) {
+<pre><code class="js">const myDecorator = function(node[, ...args]) {
   // Setup code
   return {
     teardown: function(){
@@ -756,32 +756,28 @@
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register decorators:</p>
 <h3 id="globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</h3>
-<pre><code class="js">Ractive.decorators.mydecorator = MyDecorator;
+<pre><code class="js">Ractive.decorators.myDecorator = myDecorator;
 </code></pre>
 
 <h3 id="per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
-  decorators: {
-    mydecorator: MyDecorator
-  }
+  decorators: { myDecorator }
 });
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</h3>
 <pre><code class="js">const ractive = new Ractive({
-  decorators: {
-    mydecorator: MyDecorator
-  }
+  decorators: { myDecorator }
 });
 </code></pre>
 
 <h2 id="using">Using</h2>
 <p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
 <pre><code class="html">&lt;!-- without arguments --&gt;
-&lt;div as-mydecorator&gt;...&lt;/div&gt;
+&lt;div as-myDecorator&gt;...&lt;/div&gt;
 
 &lt;!-- with arguments --&gt;
-&lt;div as-mydecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
+&lt;div as-myDecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
 </code></pre>
 
 <h2 id="examples">Examples</h2>
