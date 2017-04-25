@@ -38,7 +38,7 @@ The core Ractive library requires the following APIs need to be present:
 - `window.addEventListener`
 - `window.getComputedStyle`
 
-Most _modern_ browsers already support these APIs. Should you want to serve your app on older browsers, Ractive comes with an optional file called `polyfills.js` containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive.
+[Most _modern_ browsers already support these APIs](https://kangax.github.io/compat-table). Should you want to serve your app on older browsers, Ractive comes with an optional file called `polyfills.js` containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive.
 
 ## SVGs
 
