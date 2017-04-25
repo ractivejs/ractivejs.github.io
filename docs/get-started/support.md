@@ -8,6 +8,7 @@ There are a lot of places to find help if you get stuck with Ractive:
 * [Google Groups](http://groups.google.com/forum/#!forum/ractive-js)
 * [GitHub](https://github.com/ractivejs/ractive/issues)
 * [Twitter](http://twitter.com/RactiveJS)
+* [Gitter](https://gitter.im/ractivejs/ractive)
 
 ## Legacy versions
 
