@@ -11,26 +11,12 @@
 
 ## `class-*`
 
-`class-*` attributes toggle individual class names based on the truthiness of its value. The part of the attribute following `class-` will be used as the class name.
+`class-*` attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following `class-` will be used as the class name. `class-*` attribute values are processed as expressions.
 
 ```html
-<div class-foo="{{ isFoo }}">Adds "foo" if isFoo</div>
-<div class-foo-bar="{{ isFooBar }}">Adds "foo-bar" if isFooBar</div>
-<div class-fooBar="{{ isFooBar }}">Adds "fooBar" if isFooBar</div>
-```
-
-`class-*` attributes are only processed as text, and any text provided is considered a truthy value.
-
-```html
-<div class-highlighted="true">I'm highlighted</div>
-<div class-highlighted="false">I'm also highlighted</div>
-```
-
-To supply the expression that determines the presence of the class name, an interpolator must be used. When the values are updated, the appropriate class name will be added to or removed from the element.
-
-```html
-<div class-highlighted="{{ isHighlighted }}">Highlighted if true</div>
-<div class-highlighted="{{ age === 42 }}">Highlighted if forty-two</div>
+<div class-foo="isFoo">Adds "foo" if isFoo is truthy</div>
+<div class-foo-bar="isFooBar">Adds "foo-bar" if isFooBar is truthy</div>
+<div class-fooBar="isFooBar">Adds "fooBar" if isFooBar is truthy</div>
 ```
 
 ## `on-*`
@@ -98,7 +84,7 @@ Ractive({
 <div style-textAlign="center">Applies style.textAlign</div>
 ```
 
-Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value. `style-*` attributes are only processed as text.
+`style-*` attribute values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.
 
 ```html
 <div style-vertical-align="{{ vAlign }}" style-textAlign="{{ tAlign }}">...</div>
