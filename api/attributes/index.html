@@ -736,20 +736,10 @@
 </code></pre>
 
 <h2 id="class-"><code>class-*</code></h2>
-<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute following <code>class-</code> will be used as the class name.</p>
-<pre><code class="html">&lt;div class-foo=&quot;{{ isFoo }}&quot;&gt;Adds &quot;foo&quot; if isFoo&lt;/div&gt;
-&lt;div class-foo-bar=&quot;{{ isFooBar }}&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar&lt;/div&gt;
-&lt;div class-fooBar=&quot;{{ isFooBar }}&quot;&gt;Adds &quot;fooBar&quot; if isFooBar&lt;/div&gt;
-</code></pre>
-
-<p><code>class-*</code> attributes are only processed as text, and any text provided is considered a truthy value.</p>
-<pre><code class="html">&lt;div class-highlighted=&quot;true&quot;&gt;I'm highlighted&lt;/div&gt;
-&lt;div class-highlighted=&quot;false&quot;&gt;I'm also highlighted&lt;/div&gt;
-</code></pre>
-
-<p>To supply the expression that determines the presence of the class name, an interpolator must be used. When the values are updated, the appropriate class name will be added to or removed from the element.</p>
-<pre><code class="html">&lt;div class-highlighted=&quot;{{ isHighlighted }}&quot;&gt;Highlighted if true&lt;/div&gt;
-&lt;div class-highlighted=&quot;{{ age === 42 }}&quot;&gt;Highlighted if forty-two&lt;/div&gt;
+<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions.</p>
+<pre><code class="html">&lt;div class-foo=&quot;isFoo&quot;&gt;Adds &quot;foo&quot; if isFoo is truthy&lt;/div&gt;
+&lt;div class-foo-bar=&quot;isFooBar&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar is truthy&lt;/div&gt;
+&lt;div class-fooBar=&quot;isFooBar&quot;&gt;Adds &quot;fooBar&quot; if isFooBar is truthy&lt;/div&gt;
 </code></pre>
 
 <h2 id="on-"><code>on-*</code></h2>
@@ -803,7 +793,7 @@
 &lt;div style-textAlign=&quot;center&quot;&gt;Applies style.textAlign&lt;/div&gt;
 </code></pre>
 
-<p>Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value. <code>style-*</code> attributes are only processed as text.</p>
+<p><code>style-*</code> attribute values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.</p>
 <pre><code class="html">&lt;div style-vertical-align=&quot;{{ vAlign }}&quot; style-textAlign=&quot;{{ tAlign }}&quot;&gt;...&lt;/div&gt;
 </code></pre></div>
         
