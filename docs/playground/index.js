@@ -56,6 +56,7 @@ Ractive.decorators['ace-editor'] = function(node, options) {
   };
 
   handle.update(options);
+  if (options.bind) setTimeout(function() { observed(info.get(options.bind)); }, 1);
 
   return handle;
 };
@@ -139,6 +140,10 @@ function debounce(fn, time, ctx) {
   return timeout;
 };
 
+window.matchMedia('(min-width: 1200px)').addListener(function(list) {
+  r.set('layout', list.matches ? 'desktop' : 'mobile');
+});
+
 r.observe('unit', debounce(function(value) {
   var str = JSON.stringify(value);
   var compressed = LZString.compressToEncodedURIComponent(str);
@@ -187,8 +192,4 @@ window.addEventListener('message', function(event) {
       r.findComponent('Tabs').fire('selected', event.data.tab === 'html' ? 0 : event.data.tab === 'script' ? 1 : 2);
     }
   }
-});
-
-window.matchMedia('(min-width: 1200px)').addListener(function(list) {
-  r.set('layout', list.matches ? 'desktop' : 'mobile');
 });
