@@ -11,6 +11,7 @@ var playground = (function() {
   down.innerHTML = '\u25bc';
   down.setAttribute('class', 'down-btn');
   down.addEventListener('click', function() {
+    pinScroll(false);
     if (div.classList.contains('mid')) {
       div.classList.remove('mid');
       div.classList.add('min');
@@ -28,6 +29,7 @@ var playground = (function() {
   up.innerHTML = '\u25b2';
   up.setAttribute('class', 'up-btn');
   up.addEventListener('click', function() {
+    pinScroll(true);
     if (!window.playgroundEl) initFrame();
 
     if (div.classList.contains('mid')) {
@@ -48,6 +50,21 @@ var playground = (function() {
   var footer = document.querySelector('footer');
   footer.parentNode.insertBefore(div, footer);
 
+  function pinScroll(up) {
+    var top;
+    if (up && container.classList.contains('max')) {
+      top = document.body.scrollTop;
+      setTimeout(function() {
+        container.scrollTop = top;
+      }, 210);
+    } else if (!up && div.classList.contains('mid')) {
+      top = container.scrollTop;
+      setTimeout(function() {
+        document.body.scrollTop = top;
+      }, 210);
+    }
+  }
+
   function initFrame(callback) {
     // frame
     var frame = document.createElement('iframe');
@@ -66,13 +83,19 @@ var playground = (function() {
         playground(el);
       });
     } else {
+      pinScroll(true);
       div.classList.remove('min', 'max');
       div.classList.add('mid');
       container.classList.remove('min', 'max');
       container.classList.add('mid');
 
       var pg = window.playgroundEl.querySelector('iframe').contentWindow;
-      pg.postMessage({ code: el.getAttribute('data-playground') }, '*');
+      var code = el.getAttribute('data-playground') || el.getAttribute('data-tutorial') || el.getAttribute('data-runtutorial');
+      var tab = el.getAttribute('data-tab');
+      var run = el.getAttribute('data-run');
+      var eval = el.getAttribute('data-eval');
+
+      if (code) pg.postMessage({ code: code, tab: tab, run: run, eval: eval }, '*');
     }
   }
 })();
@@ -90,4 +113,25 @@ document.querySelectorAll('div[data-playground] ~ pre').forEach(function(el) {
     });
     el.appendChild(btn);
   }
+});
+
+document.querySelectorAll('div[data-runtutorial] ~ pre').forEach(function(el) {
+  var div = el.previousSibling.previousSibling;
+  if (div.nodeType === 1 && div.getAttribute('data-runtutorial')) {
+    el.style.position = 'relative';
+    var btn = document.createElement('div');
+    btn.innerHTML = '\u25b6';
+    btn.setAttribute('class', 'run-in-playground');
+    btn.setAttribute('title', 'Click to execute this code in the playground.');
+    btn.addEventListener('click', function(ev) {
+      playground(div);
+    });
+    el.appendChild(btn);
+  }
+});
+
+document.querySelectorAll('[data-tutorial]').forEach(function(el) {
+  el.addEventListener('click', function(ev) {
+    playground(el);
+  });
 });

@@ -11,7 +11,7 @@ div#main {
   height: 100vh;
   top: 0;
   left: 0;
-  overflow: auto;
+  overflow: hidden;
   min-width: 400px;
 }
 
@@ -26,15 +26,16 @@ div.ace-editor {
 div.panel {
   position: relative;
   width: 100%;
+  transition: height 0.2s ease-in-out;
+}
+div.panel.min {
+  height: 3em;
 }
 div.panel.shared {
   height: 50%;
 }
 div.panel.primary {
   height: calc(100% - 3em);
-}
-div.panel ~ div.panel.primary {
-  top: 3em;
 }
 
 div.card {

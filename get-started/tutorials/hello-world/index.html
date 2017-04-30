@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://ractive.js.org/get-started/tutorials/hello-world/"> 
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Hello World - Ractive.js</title>
+    <title>Hello, world! - Ractive.js</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -87,12 +87,12 @@
                         
                             
   <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Tutorials</a>
+    <a tabindex="-1" href="">Learn</a>
     <ul class="dropdown-menu">
         
             
 <li class="active">
-    <a href="./">Hello World</a>
+    <a href="./">Hello, world!</a>
 </li>
 
         
@@ -104,31 +104,25 @@
         
             
 <li >
-    <a href="../elements-attributes-and-context-helpers/">Elements, Attributes, and Context Helpers</a>
-</li>
-
-        
-            
-<li >
     <a href="../expressions-and-computations/">Expressions and Computations</a>
 </li>
 
         
             
 <li >
+    <a href="../all-things-template/">All Things Template</a>
+</li>
+
+        
+            
+<li >
+    <a href="../context-and-helpers/">Context and Helpers</a>
+</li>
+
+        
+            
+<li >
     <a href="../dom-and-instance-events/">DOM and Instance Events</a>
-</li>
-
-        
-            
-<li >
-    <a href="../partials-and-templates/">Partials and Templates</a>
-</li>
-
-        
-            
-<li >
-    <a href="../forms-binding-and-html/">Forms, Binding, and HTML</a>
 </li>
 
         
@@ -708,27 +702,13 @@
     
         <li class="first-level active"><a href="#hello-world">Hello, world!</a></li>
         
-            <li class="second-level"><a href="#lets-get-started">Let's get started</a></li>
+            <li class="second-level"><a href="#step-1">Step 1</a></li>
             
         
-            <li class="second-level"><a href="#mustaches">Mustaches</a></li>
-            
-                <li class="third-level"><a href="#data-and-keypaths">Data and Keypaths</a></li>
-            
-                <li class="third-level"><a href="#conditionals">Conditionals</a></li>
-            
-                <li class="third-level"><a href="#expressions">Expressions</a></li>
-            
-                <li class="third-level"><a href="#iteration">Iteration</a></li>
+            <li class="second-level"><a href="#step-2">Step 2</a></li>
             
         
-            <li class="second-level"><a href="#events">Events</a></li>
-            
-        
-            <li class="second-level"><a href="#two-way-binding">Two-way Binding</a></li>
-            
-        
-            <li class="second-level"><a href="#fin">Fin.</a></li>
+            <li class="second-level"><a href="#step-3">Step 3</a></li>
             
         
     
@@ -737,174 +717,66 @@
         <div class="col-md-9" role="main">
 
 <h1 id="hello-world">Hello, world!</h1>
-<p>Welcome to the interactive tutorials for Ractive.js! These tutorials are designed to take you from zero to expert at your own pace. If you're in a modern browser, each code block in the tutorials has a button on the top, right-hand side that will open the embedded Ractive Playground so that you can implement a feature, fix a bug, or just play around with the code.</p>
-<p>The playground has three tabs - one each for HTML, JavaScript, and CSS, much like JSFiddle, JSBin, and CodePen. There are also output and console tabs along the bottom that have the playground output and and console statements logged in the playground, respectively. To run the code on the playground, press the &#9654; button in the top, right-hand corner. The playground takes your HTML and injects it into the body of the document in the output tab. It also injects your script and CSS in the appropriate places in the output tab. The latest version of Ractive is also available in the playground.</p>
-<h2 id="lets-get-started">Let's get started</h2>
-<p>The simplest example of doing anything useful with Ractive requires three things: a template, an element in which to mount a Ractive instance, and a Ractive instance. At its simplest, a template is just HTML, so we'll start there:</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaWyDgGd4AOwQB3cgCUGAY1xkEACmC1h5criYtI5JAHsZAVwC2CYbgB0AR0MIYATwDKCADYI5emIoDkAYk3MCLjeAJRYquq4CMYADi4MUTreBGAATGwAEq4ueljkYp4uSACEXGls3qoYIQDcmEA"></div>
+<p>Welcome to the Ractive.js tutorials. This is a set of interactive tutorials which you can take at your own pace. Each tutorial consists of a number of steps – first up is step 1 of the 'Hello world!' tutorial.</p>
+<p>At any time you can start or reset a step by clicking its Start button.</p>
+<h2 id="step-1">Step 1</h2>
+<p><div class="tutorial">
+    <button data-tab="script" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbABIIVKgPZZyAdw8wVJABCLichTjEJaTYQHGF4Tk5yYwRRAFcFLTBiYXJRDyQEX2JcMCyi1QZtcgAjDNwPfkom0qKGyQBaCRQwGXyYfgQYcg8AMyyc8kkGQYFSJnJzS2tyanJBn3IAJQsrUgQACmABcmSVSHIAcgBiXCYWS6wTrSVKhQubhWU1BUuBDAAlABuOz8RJZGAeNI9KEyVrCNoZfzEBgqYTeVowIqTGYjDKSDLkHjFUrkXFUEbjS53ZgIXB-MFJGZIMkvb7qIqRKQyHwlMrklljK5fN4IBng7RQvK40bEfgs1p43AEmTE5ls0XkLnSEYtMBFZwAFQAsgAZLQMGqYIA">Start</button>
+</div></p>
+<p>Try creating a new Ractive by executing the JavaScript in the script tab of the playground by hitting the &#9654; button on the top right-hand corner of the playground.</p>
+<blockquote>
+<p>In later steps, if you can't get it to work (or if you're just lazy!) you can click the Fix Code button, if there is one available, next to the Start button to insert working code as though you'd followed the instructions exactly.</p>
+<p>Throughout the tutorials, boxes like this will contain technical notes and asides, for the particularly nerdy or curious.</p>
+</blockquote>
+<h2 id="step-2">Step 2</h2>
+<p><div class="tutorial">
+    <button data-tab="html" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYEAzgGMYxAA65KNergQBbCQBsG8+uVwBPCQjp4EAD1ycYDEbjIJ2A2rgIS2ACQTLlAeyzkA7u5jKkAEIuRwEuUXEpNhAcIXhSJnIzCytyanJ+BG9yACVzS1IEAApgAXJyV0hyAHIAYlwmFmqsMs1FFTUEKrr5JVV5aoEMAEoAbgFMIA">Start</button>
+    <button data-tab="script" data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYEAzgGMYxAA65KNergQBbCQBsG8+uVwBPCQjp4EAD1ycYDEbjIJ2A2rgIS2wYChgIEl-igzZyz-gwKCD4AhFyOAlyi4lJsIDhC8KRM5GYWVuTU5PwIAO7kAErmlqQIABTAAuTkCMqQ5ADkAMS4TCwNWFWaiipqCPXN8kqq8h1dSGoM9cDkru6eKAMAErXKAPYd2YH9jblrMMpIDeQYAhgAlADcAphAA">Fix Code</button>
+</div></p>
+<p>That's not very exciting. Let's make our template more templatey – replace the hard-coded text in the template with some variables:</p>
+<pre><code class="handlebars">&lt;p&gt;{{greeting}} {{name}}!&lt;/p&gt;
+</code></pre>
 
-<pre><code class="js">new Ractive({
-  target: document.querySelector('#target'),
-  template: '&lt;h2&gt;Hello, world!&lt;/h2&gt;'
+<p>Then, add some data to it, by adding a data initialisation option to our code on the script tab so that it looks like this:</p>
+<pre><code class="js">var ractive = new Ractive({
+  el: output,
+  template: template,
+  data: { greeting: 'Hello', name: 'world' }
 });
 </code></pre>
 
-<p>In this case, our target element is a <code>div</code> with an id of <code>target</code>. When the script executes, Ractive will parse the template, which consists only of an <code>h2</code> element, and render into the given target element. That's really about as simple as it possibly could be, but it's also not terribly useful. If you just wanted to throw <code>Hello, world!</code> into an <code>h2</code> and onto a page, there are much simpler ways to do so. Maybe you want to greet an entity other than the world, which brings us nicely around to data binding, or the task for which Ractive was made.</p>
-<h2 id="mustaches">Mustaches</h2>
-<p>In order to turn our static template into something a bit more dynamic, we'll turn to one of the mustaches understood by Ractive - the interpolator.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaWyDgGd4pJuQYAHceWrkAdggDu5AEoMAxrjIIAFMFqzy5XExaRySAPZqArgFsEs3ADoAjtYQwAngGUEAGwQNCxhtAHIAYmNmBFxQgEosfUNcBFtxPwYUs1CCMAAmNmBgFBgEGOJZFAxsciKHTVxPaoBCLny2UMSDc0yGMz1uwxKyzUrsgAl-PwtOpMNyeuJG7IVgvyRQuYx9DDiAbkwgA"></div>
+<p>Execute the code (with the &#9654; button). It should look exactly as it did before.</p>
+<h2 id="step-3">Step 3</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYEAzgGMYxAA65KNergQBbCQBsG8+uVwBPCQjp4EAD1ycYDEbjIJ2A2rgIS2wYChgIEl-igzZyz-gwKCD4AhFyOAlyi4lJsIDhC8KRM5GYWVuTU5PwIAO7kAErmlqQIABTAAuTkCMqQ5ADkAMS4TCwNWFWaiipqCPXN8kqq8h1dSGoM9cDkru6eKAMAErXKAPYd2YH9jblrMMpIDeQYAhgAlADcAphAA">Start</button>
+</div></p>
+<p>Here's where Ractive differs from other templating libraries. Normally, if you wanted to change the data, you would have to re-render the entire view, which would have the effect of discarding the DOM nodes you'd already created. That's wasteful.</p>
+<p>Instead, we can manipulate views we've already created. Try running this code - click on it and hit Shift-Space:</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYEAzgGMYxAA65KNergQBbCQBsG8+uVwBPCQjp4EAD1ycYDEbjIJ2A2rgIS2wYChgIEl-igzZyz-gwKCD4AhFyOAlyi4lJsIDhC8KRM5GYWVuTU5PwIAO7kAErmlqQIABTAAuTkCMqQ5ADkAMS4TCwNWFWaiipqCPXN8kqq8h1dSGoM9cDkru6eKAMAErXKAPYd2YH9jblrMMpIDeQYAhgAlADcAphAA" data-eval="E4QwxgLglgbgpgOgM5wgCgOQHNh1VAOywwBoACDAIQHsCAragV2AwEoBuIA"></div>
 
-<pre><code class="js">var app = new Ractive({
-  target: document.querySelector('#target'),
-  template: '&lt;h2&gt;{{greeting}}, {{entity}}!&lt;/h2&gt;',
-  data: {
-    greeting: 'Hello',
-    entity: 'world'
-  }
+<pre><code class="js">ractive.set('greeting', 'Bonjour');
+</code></pre>
+
+<p>And now this:</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYEAzgGMYxAA65KNergQBbCQBsG8+uVwBPCQjp4EAD1ycYDEbjIJ2A2rgIS2wYChgIEl-igzZyz-gwKCD4AhFyOAlyi4lJsIDhC8KRM5GYWVuTU5PwIAO7kAErmlqQIABTAAuTkCMqQ5ADkAMS4TCwNWFWaiipqCPXN8kqq8h1dSGoM9cDkru6eKAMAErXKAPYd2YH9jblrMMpIDeQYAhgAlADcAphAA" data-eval="E4QwxgLglgbgpgOgM5wgCgOQHNh1VAOywwBoACDAIQHsCAragV2AwEoBuAKFElkRXQYCIALZxSFCEwhkANnDIjaAE3EcgA"></div>
+
+<pre><code class="js">ractive.set('name', 'tout le monde');
+</code></pre>
+
+<p>Ooh la la! Even better, we could set both properties in one go. Let's do it in Mandarin this time:</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYEAzgGMYxAA65KNergQBbCQBsG8+uVwBPCQjp4EAD1ycYDEbjIJ2A2rgIS2wYChgIEl-igzZyz-gwKCD4AhFyOAlyi4lJsIDhC8KRM5GYWVuTU5PwIAO7kAErmlqQIABTAAuTkCMqQ5ADkAMS4TCwNWFWaiipqCPXN8kqq8h1dSGoM9cDkru6eKAMAErXKAPYd2YH9jblrMMpIDeQYAhgAlADcAphAA" data-eval="E4QwxgLglgbgpgOgM5wgCgN4CgAEODmwcqUAdvgFw4DkgBvKC+mtQDS46kgC2cV1gaHKAyrtSwBfAJQBuIA"></div>
+
+<pre><code class="js">ractive.set({
+  greeting: '你好',
+  name: '世界'
 });
 </code></pre>
 
-<p>Here, we've introduced two interpolators into our template, <code>{{greeting}}</code> and <code>{{entity}}</code>, in which Ractive will substitute our <code>data</code>, which is simply a plain old JS object. The content of the interpolators specify what Ractive calls a reference in the data, so <code>greeting</code> in the interpolator refers to <code>greeting</code> in the data. Put your name in the data in place of the entity and switch the greeting to something a little more formal and possibly British, like 'Delighted to meet you' (studies have shown that it's more fun if you say it in your head with an accent). Go ahead, I'll wait.</p>
-<p>Here's where Ractive deviates a bit from templating libraries like Mustache and Handlebars. If you want to change any of the bound values in the template with a pure templating library, you would need to re-render everything with the new data, tear down the old rendered HTML, and insert the new. That's terribly wasteful though, so Ractive takes a slightly different approach using a virtual DOM to keep track of which bits of data are tied to which bits of DOM. Then when the data changes, Ractive can update only the bits of DOM that need to be updated. How do you tell Ractive to update the data though?</p>
-<h3 id="data-and-keypaths">Data and Keypaths</h3>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaWyDgGd4pJuQYAHceWrkAdggDu5AEoMAxrjIIAFMFqzy5XExaRySAPZqArgFsEs3ADoAjtYQwAngGUEAGwQNCxhtAHIAYmNmBFxQgEosfUNcBFtxPwYUs1CCMAAmNmBgFBgEGOJZFAxsciKHTVxPaoBCLny2UMSDc0yGMz1uwxKyzUrsgAl-PwtOpMNyeuJG7IVgvyRQuYx9DDiAbn19CXEnARiw4fLKzvJN2lDva3F4vcwgA"></div>
-
-<pre><code class="js">app.set('greeting', '\'Sup');
-</code></pre>
-
-<p>Ractive has a number of data manipulation methods to add, update, and retrieve data, such as the <code>set</code> method. The <code>key</code> portion of the call to <code>set</code>, <code>'greeting'</code>, is called a keypath, because it describes the path to the data from the root of Ractive's viewmodel. In this case, the <code>'greeting'</code> key exists directly on the root data object, but most useful data isn't just a single object. If the data object were <code>{ foo: { bar: { greeting: 'Hello' } } }</code>, then the keypath to access the greeting would be <code>'foo.bar.greeting'</code>. Keypaths are Ractive's universal key into your data, and as such, can be used in templates and from the API.</p>
-<p>Ractive also provides a <code>get</code> method to retrieve data from an instance, and as you may have guessed, the <code>get</code> method takes a keypath as a parameter.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaWyDgGd4pJuQYAHceWrkAdggDu5AEoMAxrjIIAFMFqzy5XExaRySAPZqArgFsEs3ADoAjtYQwAngGUEAGwQNCxhtAHIAYmNmBFxQgEosfUNcBFtxPwYUs1CCMAAmNmBgFBgEGOJZFAxsciKHTVxPaoBCLny2AGEwQIBrI27yNQtZAQsAp1DEg3NMhjM9acMSss1K7IAJfz8LSaTDcnriRuyFYL8kUL2MfQw4gG59fQlxJwEYsOXyysnyS9pQ7zWcTxB6yIYjMYIJzbFDaZ5OFgfUpfFDxe6YIA"></div>
-
-<pre><code class="js">console.log(app.get('greeting'));
-</code></pre>
-
-<p>Access to Ractive keypaths is generally safe so that trying to retrieve <code>foo.bar.baz.greeting</code> on that more complex object above would not throw an error, but would instead return <code>undefined</code> in the same way that accessing a key that doesn't exist on an object returns <code>undefined</code>. <code>set</code>ting a keypath that doesn't exist results in any missing intermediate objects being created automatically, if possible. This means that <code>app.set( 'foo.bar.baz.greeting', 'Ta' )</code> would result in an object containing a <code>'greeting'</code> key with the value <code>'Ta'</code> being set to a new <code>'baz'</code> key on the object at <code>'foo.bar'</code>. If the missing intermediate object happens to contain a numeric key, like <code>'foo.bar.baz.0.greeting'</code>, Ractive will insert an array instead of an object.</p>
-<h3 id="conditionals">Conditionals</h3>
-<p>Mustaches in Ractive come in two flavors - inline and block. Interpolators are inline mustaches in that they have no body other than their value. Inline mustaches generally correspond to a single DOM text node. Block mustaches have a body, and therefore, require an opening and closing mustache. Block mustaches open with a <code>{{#...}}</code> and close with <code>{{/...}}</code>. Interpolators are great, but by themselves, they aren't particularly useful. Another useful mustache is the conditional block, which will render its content into the DOM if its condition is true.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcwYAGJyAMxokA9qqTlc5ExgxqNNOmHJEaAd3JChNGAlMIYYg2NTc0tVMWdcGABXXDB6W01gHn1rNQIeUgpqFVUCMwA3MQl2XFkYNFxldIKlEBwieHyymllKShpmGlUEFxoAJVkSC3yEAApgNXtS8oRcSBoAcm1pioWsSboEaTkFeaWFbfkENY2keVl5ibCaDSCzCxN5gEYNm1UMAEoAbltVIlmACrkAQIIwxUZ6KKqIahUYfGhXDStSgAOn+uFGCzuIRMaxoAG0ALrfGg8Hg0LbUegtGAwWT0ZyyUw0IwAIwAVgghozvDQ9LIhP9qeQwgMYSM1NgaAAmAAM8u+mCAA"></div>
-
-<pre><code class="handlebars">{{#if condition}}
-  this will render if condition is truthy
-{{/if}}
-</code></pre>
-
+<p>What's happening here is that the contents of the <code>&lt;p&gt;</code> element are split into four text nodes – one for <code>{{greeting}}</code>, one for the comma and space characters, one for <code>{{name}}</code>, and one for the <code>!</code>. Ractive stores references to the nodes that correspond to the variables, and updates them when the data changes, leaving everything else untouched.</p>
+<p>Surgically updating text nodes is much faster than replacing elements, particularly when you only need to change part of your ractive.</p>
 <blockquote>
-<p><strong>Note:</strong>
-We are using truthy and falsey here instead of <code>true</code> and <code>false</code> because Ractive follows JavaScript's version of truthiness fairly closely with a few ergonomic deviations.</p>
-</blockquote>
-<p>If <code>condition</code> becomes falsey at any point, for instance by calling <code>app.set('condition', false)</code>, then the conditional block will unrender its content. Conventiently, an alternate path is also supported for conditionals using the <code>{{else}}</code> special mustache.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcwYAGJyAMxokA9qqTlc5ExgxqNNOmHJEaAd3JChNGAlMIYYg2NTc0tVMWdcGABXXDB6W01gBCEiBGsE+1inV3dPb19-fUMTMwsTcJo9WRSEePVEnn101QIeUgpqFRazADcxCXZcWRg0XGVW3qUQHCJ4HuGaWUpKGmYaVQQXGgAlWRILHoQACmA1TOHRyBoAcm0hkYRca6wzugRpOQUr24UP+QRnq8kPJZFdTmEaBogqVQlcAIyvGyqDAASgA3LZVKlcAAVcgCBBGGJHPRRVT7UJHFE0cEaJaUAB02KO12hIRMzxoAG0ALromg8Hg0d7UeiLGAwWT0ZyyUw0IwAIwAVgh9jLvJVqqkxeQwrsKYc1NgaAAmAAMFvRmCAA"></div>
-
-<pre><code class="handlebars">{{#if condition}}
-  this will render if condition is truthy
-{{else}}
-  this will render if condition is falsey
-{{/if}}
-</code></pre>
-
-<p>Like most languages that support branching, Ractive's conditional blocks also support alternate branches in the form of special <code>{{elseif condition}}</code> mustaches. Fallthrough works as you'd expect from normal branching. If the first condition is truthy, then its content will be rendered and no other branches will be considered. If it is falsey, then the second branch is considered, and so on until a truthy condition is found or an <code>{{else}}</code> branch is reached. If no branch has a truthy condition and there is no <code>{{else}}</code> branch, then nothing will be rendered.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcwYAGJyAMxokA9qqTlc5ExgxqNNOmHJEaAd3JChNGAlMIYYg2NTc0tVMWdcGABXXDB6W01gBCEiBH0aI1i-AGETMwsrG3VaBydXd09vX390oPzQ8Jo9WRSEehpZUwysmFzggrCyyJi4hK1k1OsE+1iytw8vHyQ-AJoAI0ywQzyQkw6uzZydgY7vJpbU+OKtHn0p1QIeUgpqFQezADcxCXZcWRg0LhlI9PkoQDgiPAPv8OpRKDRmDRVAgXDQAEqyEgWD4IAAUwDUM3+gMgNAA5No-gCELgyVhCXQENI5ApSRSFMz5Ag6QykPJZKSCWEaBo6rtVKSAIz04UaQ69Y6hUnDRTCooYACUAG5bKpUrgACrkAQIIwxXF6KKqLGhXEamhCjSyOEAOn1uLJYoGdJoAG0ALramg8Hg0JnUdr-GCyejOTpIDJrABWCCxcbOzVa7XIYQxNpxCX1RpNZtwFqtNpMdodCSdrvdZPlfXqJh9wE1OuK2BoACYAAwD7Vqbv9wdazBAA"></div>
-
-<pre><code class="handlebars">{{#if condition}}
-  this will render if condition is truthy
-{{elseif otherCondition}}
-  this will render if condition is falsey and otherCondition is truthy
-{{else}}
-  this will render if both condition and otherCondition are falsey
-{{/if}}
-</code></pre>
-
-<h3 id="expressions">Expressions</h3>
-<p>Having conditional content render based on single variable at a time is also not particularly useful for any but the simplest cases. To work around that, Ractive supports expressions in templates that are equivalent to JavaScript expressions.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcwYAGJyAMxqqArgIBGCGDSU0ArBgxqNNGgElDCZDXk0hCWUVpcAHcAexowWVUkIjowkhCjVUCwrWMzC3tHTWAefUzVAh5SCmoVAqRyADcxCXZcWRg0XGVCisqlEBwieEqGr0pKGmZ3IJoAJVkSXCqEAApgNWd6xoRcSBoAcm1lpo2sRboEaTkFda2FY-kEPYOkeVl1hdVnDTTzGHWAdgOHVQwASgA3JggA"></div>
-
-<pre><code class="handlebars">{{#if number &gt; 5}}
-  I need at least two hands to count to {{number}}.
-{{/if}}
-</code></pre>
-
-<p><code>number &gt; 5</code> is not just a reference to a bit of data. It is an expression that uses the greater than operator to compare a bit of data to the number <code>5</code>, and the result of that expression is used by the conditional block to determine whether or not it should render. Ractive will keep track of each reference (keypath) within each expression in the template as a dependency of the expression, and when a dependency changes, the expression will be re-evaluated to update the view as necessary. In this example, any updates to the <code>number</code> keypath (<code>app.set('number', 2)</code>, for instance) will cause both of the interpolators to update at the same time.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcwYKoCuAgEYIYGDDVmqiAdyNE6AezpgENAI46ERXOTuqzSJDQ6lPY0WroGRjQAVDQALABMJmoEPKQU1CqqBEjkAG5iEuy4sjBouMopOblKIDhE8LklZpTBzDSqCJY0AEqyJF65CAAUwGo0dCVlkDQA5ADExaUIuDNYY3QI0nIK0-MKW-IIq+tI8rLTo740GuGGMNMA7OsYahgAlADcampEywAq5AECDsOlwQwAZjpVP1vKohm9Qt9ii0AHS-MEzW5GVY0eKfV5YXEABhJn0wQA"></div>
-
-<pre><code class="handlebars">{{number}} answers to the question add up to {{number * 42}}
-</code></pre>
-
-<p>The code allowed in expressions is fairly open-ended, but there are a few notable exceptions that can't be used:</p>
-<ul>
-<li>Assignments i.e. <code>foo = 10</code>, <code>foo += 5</code>, <code>foo++</code></li>
-<li><code>new</code>, <code>delete</code>, and <code>void</code> operators</li>
-<li>Function literals i.e. <code>foo(function() { return 'nope'; })</code></li>
-</ul>
-<p>Some people frown on putting <em>any</em> sort of logic like that in a template, but it can be much clearer to have view-specific logic directly in the template than to have to craft specific helpers that are relatively distant from the template for each tiny bit of logic needed by the view. Ractive does offer <code>computed</code> properties for more complex bits of logic, and you can also call helper functions using template expressions to keep template logic minimal.</p>
-<blockquote>
-<p><strong>Note:</strong>
-Ractive supports ES5 and many ES6/ES2015 language features in its expression parser, including function argument spreads, object property shorthand, array spreads, object spreads, and template strings. Each of those constructs is converted to an equivalent ES5 expression at parse time, so you don't have to worry about compatibility with older browsers.</p>
-</blockquote>
-<h3 id="iteration">Iteration</h3>
-<p>Beyond conditionals, the other basic block structure in most languages is the loop, or some form of iteration. Ractive doesn't support loops, but it does support iterating over each value in an array or each key in an object with its <code>{{#each}}</code> block mustache. For each key in the object or value in the array, Ractive will render the content of the block with a few special references available.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcBAK5CV63MGABiBLJJgaQ8kVqyiYhQIwY1GmjQJWl5RzUMABclUkLhoAahoARmcxe0MfBCcMAh4vVwNgHlNzZ3SUnT0U0gpqQqRyADcxCXZcWRg0XGUU8oqlEBwieAr6mllKShpmGlUEAHcaACUzXEqEAApgNXc6hoRcSBoAciNVxq2sZbpEmXkETZ3HU4UDo6R5WU2l1XcNKxtNgG0jjQ0t-pkCCItxeNF+uC2ACNZKoYXYQa8mhCAPYwGFoYE-XAAXSOLlUGAAlABuTBAA"></div>
-
-<pre><code class="handlebars">&lt;ul&gt;
-{{#each list as item}}
-  &lt;li&gt;item {{@index + 1}} is {{item}}&lt;/li&gt;
-{{/each}}
-&lt;/ul&gt;
-</code></pre>
-
-<p>When <code>list</code> is the array <code>['apples', 'bananas', 'oranges']</code>, Ractive will render the <code>&lt;li&gt;</code> template inside the <code>each</code> block three times. In the first iteration, <code>item</code> will be <code>'apples'</code>, as you would expect. There's also a special reference, <code>@index</code>, which is a special reference that Ractive supplies to iterative block content. On the first iteration, <code>@index</code> will be <code>0</code>. On the second iteration, <code>item</code> will be <code>'bananas'</code>, and <code>@index</code> will be <code>1</code>. This is a good example of how template expressions are a bit more clear than the corresponding helper version in other view librarys, which tends to look something like <code>{{@index | add: 1}}</code>.</p>
-<p>Like the <code>{{#if}}</code> block, the value being iterated can be any expression. Ractive also supports a special case empty iteration using the <code>{{else}}</code> special mustache.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcBAK5CV63MGABiBLJJgaWoghhEMGNRpo0CQ8ksMA6VbIEJ7BDxuehqGCELW9o60LsEAcgD2lta2nmmBwdGGPKbmUfqBOnqBpBTUxUjkAG5iEuy4sjBouMqBlVVKIDhE8FWNNLKUlDTMNKoIAO40AEpmuNUIABTAas4NTQi4kDQA5EbrzTtYq3QI0nIK23sK5-IIRydI8rLbK6rOGlY2RNsA2gC6JwcqgwAEoANyOVTWXAAFXIfgSWlwiwAZlpVCR5glVItQTQ3hpBpRPJQrGBFjsvrYjjRos5gGNfAgrtNyOYaAAJRoUIg7GjYekEpl+K4AKQSYHeAEUtORMfQaABBJ4CPkC476Bkilm7AAyPMVAHVZEIhPzgRoIWpsDQAEwABidEMwQA"></div>
-
-<pre><code class="handlebars">&lt;ul&gt;
-{{#each users}}
-  &lt;li&gt;{{.name}}&lt;/li&gt;
-{{else}}
-  &lt;li&gt;No users...&lt;/li&gt;
-{{/each}}
-&lt;/ul&gt;
-</code></pre>
-
-<blockquote>
-<p><strong>Note:</strong>
-Since Ractive uses a virtual DOM to represent the view, each block-level element must exist as a single unit. This means that unlike string-templating, you can't inject closing and opening tags into a tag by using a conditional section (e.g. <code>&lt;div&gt;hello{{#if split}}&lt;/div&gt;&lt;div&gt;{{/if}}world&lt;/div&gt;</code>) because elements are also block-level entities.</p>
-</blockquote>
-<h2 id="events">Events</h2>
-<p>That covers the basics of templating, but it's not particularly interactive. The most immediate example of interactivity in a web app would be responding to an event, and Ractive strives to make event handling as simple and powerful as is possible.</p>
-<blockquote>
-<p><strong>Note:</strong>
-Ractive gets its name from the word 'interactive'. See it there hanging out with the 'inte'?</p>
-</blockquote>
-<p>Ractive uses special element attributes, known as directives, to set up special handling for elements, and event handlers use the event directive. An event directive looks much like the old global inline event handler <code>onclick</code>, but it's not global or inline. Ractive's <code>on-click</code> directive will actually use <code>addEventListener</code>, when the directive is rendered, to set up an event listener on the target element.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcBAEYBXXLgD2qmkYC0JIeRIBrSQAFcYckQB0spEgAUAchIGdqgow3gCUyo7ONLr6RgQ80YaqSjRgskRRCAjGFlbWyDTAwH4BQRgYdOQCCERqcaQU1CqqBEjkAG5iEuy4sjBouMpxrW1KIDhE8G29NLKUlDTMNKoIAO40AEqyJLjtCJ7AajR0vf2QNN4AxD19CLjeWId0CNJyCmeXCi-yCPePSPKyM4HYw0DTFQIIGBnAAMjwwagwIQA3JggA"></div>
-
-<pre><code class="handlebars">&lt;button on-click=&quot;@this.add('counter')&quot;&gt;this button&lt;/button&gt; has been clicked {{counter}} times
-</code></pre>
-
-<p>When the <code>button</code> is rendered, Ractive will attach its proxy event handler to the button's <code>click</code> event, and when the button fires a <code>click</code> event, Ractive will evaluate the expression passed to the directive. In this case, the special reference <code>@this</code>, also known as the shorthand <code>@</code>, is used to get a handle to the Ractive instance and call the method <code>add</code>, which increments the given keypath by one (or the number passed if there is one). This means that each <code>click</code> event on the button will effectively call <code>app.add('counter')</code>.</p>
-<p>Event directives can target any DOM event, including touch events where they're supported. The event directive takes the form <code>on-${eventName}</code>, and multiple events can be subscribed with the same directive by separating the event names with <code>-</code> e.g. <code>&lt;div on-mouseover-mousemove-mouseout="@.add('movements')"&gt;mouse movements: {{movements}}&lt;/div&gt;</code>.</p>
-<blockquote>
-<p><strong>Note:</strong>
-Ractive also supports firing and listening to instance events and includes a shortcut for converting a DOM event into an instance event, but that's a bit of a more advanced topic for the Hello, World tutorial.</p>
-</blockquote>
-<h2 id="two-way-binding">Two-way Binding</h2>
-<p>Events are one major form of interaction, but they are not the only form of user input on a web page. Ractive also has very good support for form controls using two-way bindings to form values. This is a slightly polarizing form of handling user input, where some libraries demand that data updates be one-way and pushed from some external broker that handles input events back into the model. Ractive, however, embraces two-way binding, though you can have one-way updates using event handlers if that's what you want. In fact, Ractive's two-way bindings are effectively library managed event handlers with an appropriate <code>set</code> statement as the expression along with a little bit of attribute locking.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcBcqsoBXWgDdZQ3S3bBgAhESKy0GDKJ4r1mykoCaAe111GySBpzS2tbe0cQADoCHnc1GNIKahcCJHIDMQl2XFkYNFxlGLSDJRAcIngjGBpZSkoaZhpVBAB3GgAlWRJcdIQACmA1Gjpc-MCAcgBiHLyEXHGsIboEaTkFCemVmXkEcbUMAEoAbkwgA"></div>
-
-<pre><code class="handlebars">&lt;input value=&quot;{{message}}&quot; /&gt;
-&lt;p&gt;You typed: &quot;{{message}}&quot;.&lt;/p&gt;
-</code></pre>
-
-<p>When two-way binding is not disabled, Ractive treats <code>value</code> attributes as binding directives. In this case, the <code>value</code> attribute of the input is bound to the <code>message</code> keypath in the model. Each time the input fires an <code>input</code> or <code>change</code> event, Ractive will update the <code>message</code> keypath with the new value. <code>value</code> bindings may also be <code>lazy</code>, which means they only fire on <code>change</code> events (when focus is lost) or are debounced, depending on the value of the <code>lazy</code> binding directive.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABLgJ6UIC8AOnggB64D0YuAWwA27GuSRsOAykICGuBOwB8rAHatcBcqsoBXWgDdZQ3S3bBgAhESKy0GDKLkAvepICMABm+ieK9ZqUSgCSAORCQjQIBgiquLrGQvR0CBE09AD2unRg8ulZdIzINOaW1rb2jiAAdAQ8QWp1pBTU-gRI5AZiEuy4sjBouMp1HQZKIDhE8EYwNLKUlDTMNKoIAO40AEqyJLidCAAUwGo0dP2DkDShAMR9Awi4oVgnKdJyCpc3Cm-yCKFqGAAlABuTBAA"></div>
-
-<pre><code class="handlebars">&lt;input value=&quot;{{message}}&quot; lazy=&quot;1000&quot; /&gt;
-&lt;p&gt;I'll eventually tell you that you typed &quot;{{message}}&quot;.&lt;/p&gt;
-</code></pre>
-
-<p>There are also special bindings for checkboxes, radios, selects, multiple selects, content-editiables, and textareas.</p>
-<h2 id="fin">Fin.</h2>
-<p>That's all for the basic tour of Ractive! From here, each tutorial explores or expands on a particular feature or group of related features in detail.</p></div>
+<p>Note that due to the way the tutorials interact with the playground, the eval blocks above are actually running after the entire example is reloaded in the output pane. That's why running the last eval before running the next to last eval doesn't leave the Mandarin greeting intact. Under normal circumstances, the entire example wouldn't need to be re-run, which <em>would</em> leave the Mandarin greeting intact.</p>
+</blockquote></div>
         
     </div>
 
