@@ -94,6 +94,21 @@
                 </p>
               </div>
             </div>
+
+            <div class="card">
+              <h3>Utils</h3>
+              <div class="content">
+                <div style="display: inline-block; width: 50%; box-sizing: border-box; padding: 0.5em;">
+                  <label class="full">Encoded Text
+                    <textarea style-height="10em" twoway="false" on-change=['encoded-content', @node.value]>{{utils.encoded}}</textarea>
+                  </label>
+                </div><div style="display: inline-block; width: 50%; box-sizing: border-box; padding: 0.5em;">
+                  <label class="full">Plain Text
+                    <textarea style-height="10em" twoway="false" on-change=['plain-content', @node.value]>{{utils.plain}}</textarea>
+                  </label>
+                </div>
+              </div>
+            </div>
           </Tab>
           <Action title="&#9654;" on-click="play" />
         </Tabs>

@@ -29,24 +29,39 @@
 
 .dropdown-submenu > .dropdown-menu li:first-child a {
 	-webkit-border-radius: 0px 6px 0px 0px;
-	-moz-border-radius: 0px 6px 0px 0px;	
+	-moz-border-radius: 0px 6px 0px 0px;
 	border-radius: 0px 6px 0px 0px;
 }
 
 .dropdown-submenu > .dropdown-menu li:last-child a {
 	-webkit-border-radius: 0px 0px 6px 6px;
-	-moz-border-radius: 0px 0px 6px 6px;	
+	-moz-border-radius: 0px 0px 6px 6px;
 	border-radius: 0px 0px 6px 6px;
 }
 
 .dropdown-submenu > .dropdown-menu li:only-child a {
   -webkit-border-radius: 0px 6px 6px 6px;
-	-moz-border-radius: 0px 6px 6px 6px;	
+	-moz-border-radius: 0px 6px 6px 6px;
 	border-radius: 0px 6px 6px 6px;
 }
 
 code {
   white-space: pre-wrap;
+}
+
+div.tutorial {
+  float: right;
+}
+
+button {
+  background-color: #888;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.25em 1em;
+  border-radius: 0.2em;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  margin: 0.25em;
 }
 
 /* playground stuff */
@@ -59,6 +74,7 @@ code {
   background-color: #fff;
   z-index: 10;
   text-align: right;
+  transition: height 0.2s ease-in-out;
 }
 #playground-div.min {
   height: 1.5em;
@@ -102,7 +118,11 @@ code {
   margin-left: 0.75em;
 }
 
+#docs {
+  transition: height 0.2s ease-in-out;
+}
 #docs.max {
+  height: 100%;
 }
 #docs.mid {
   height: calc(40vh - 60px);

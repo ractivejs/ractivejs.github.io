@@ -61,6 +61,7 @@ Ractive.decorators['ace-editor'] = function(node, options) {
 };
 
 var docs = !!~window.location.search.indexOf('env=docs');
+var utilLock = false;
 var r = window.r = new Ractive({
   target: '#main',
   template: '#tpl',
@@ -74,6 +75,28 @@ var r = window.r = new Ractive({
       var obj = JSON.parse(LZString.decompressFromEncodedURIComponent(content));
       this.set('unit', obj);
       if (docs) this.set('unit.h.r', 'edge');
+    },
+    'encoded-content': function(ctx, content) {
+      if (utilLock) return;
+      utilLock = true;
+
+      this.set({
+        'utils.encoded': content,
+        'utils.plain': LZString.decompressFromEncodedURIComponent(content)
+      });
+
+      utilLock = false;
+    },
+    'plain-content': function(ctx, content) {
+      if (utilLock) return;
+      utilLock = true;
+
+      this.set({
+        'utils.encoded': LZString.compressToEncodedURIComponent(content),
+        'utils.plain': content
+      });
+
+      utilLock = false;
     }
   },
   observe: {
@@ -82,7 +105,7 @@ var r = window.r = new Ractive({
         var self = this;
         setTimeout(() => {
           this.findAll('.ace-editor').forEach(function(e) { self.getNodeInfo(e).decorators['ace-editor'].editor.resize(); });
-        }, 10);
+        }, 210);
       },
       init: false
     }
@@ -156,5 +179,12 @@ if (window.localStorage) {
 window.addEventListener('message', function(event) {
   if (event.data && typeof event.data.code === 'string') {
     r.fire('pasted-content', event.data.code);
+    if (event.data.eval) r.set('unit.e', LZString.decompressFromEncodedURIComponent(event.data.eval));
+    if (event.data.run || event.data.eval) {
+      r.fire('play');
+    }
+    if (event.data.tab) {
+      r.findComponent('Tabs').fire('selected', event.data.tab === 'html' ? 0 : event.data.tab === 'script' ? 1 : 2);
+    }
   }
 });

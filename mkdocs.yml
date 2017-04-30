@@ -18,14 +18,13 @@ pages:
   - Get Started:
     - Introduction: index.md
     - 60-second Setup: get-started/60-second-setup.md
-    - Tutorials:
-      - Hello World: get-started/tutorials/hello-world.md
+    - Learn:
+      - Hello, world!: get-started/tutorials/hello-world.md
       - References and Context: get-started/tutorials/references-and-context.md
-      - Elements, Attributes, and Context Helpers: get-started/tutorials/elements-attributes-and-context-helpers.md
       - Expressions and Computations: get-started/tutorials/expressions-and-computations.md
+      - All Things Template: get-started/tutorials/all-things-template.md
+      - Context and Helpers: get-started/tutorials/context-and-helpers.md
       - DOM and Instance Events: get-started/tutorials/dom-and-instance-events.md
-      - Partials and Templates: get-started/tutorials/partials-and-templates.md
-      - Forms, Binding, and HTML: get-started/tutorials/forms-binding-and-html.md
       - Transitions: get-started/tutorials/transitions.md
       - Coomponents: get-started/tutorials/components.md
       - Decorators: get-started/tutorials/decorators.md

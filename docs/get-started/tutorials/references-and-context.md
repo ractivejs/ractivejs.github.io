@@ -15,60 +15,70 @@ A context in Ractive is simply the bit of data at the current place in the templ
 4. A plain block mustache will introduce a new context because it acts like either a conditional `with` or an iterative block, depending on the what is passed to it.
 5. Every component introduces its own root context.
 
-Contexts tend to build linearly through a template, meaning that the first context in a template may be `foo`, and nested within the block that created that context may be another `bar`, making the full keypath for the inner context `foo.bar`. If `foo.bar` is an array that is passed to an iterative block, the body of the first iteration would have a context of `foo.bar.0`, the second `foo.bar.1`, and so on. Note though, that context is _not required_ to build linearly like that; it's just very common because it builds naturally alongside the data structure.
+Contexts tend to build linearly through a template, meaning that the first context in a template may be `blog`, and nested within the block that created that context may be another `posts`, making the full keypath for the inner context `blog.posts`. If `blog.posts` is an array that is passed to an iterative block, the body of the first iteration would have a context of `blog.posts.0`, the second `blog.posts.1`, and so on. Note though, that context is _not required_ to build linearly like that; it's just very common because it builds naturally alongside the data structure.
 
 If this section is a little confusing, don't worry too much about it because all of these concepts are closely related and tend to make sense more as a whole than individual parts.
 
 ## Specificity and Ambiguity
 
-A reference is ambiguous if it does not exist in the current context. Ractive will resolve ambiguous references by looking at each context up the stack from the current point in the template to the root. If no data matching the base key and no matching alias is found, then the current context will be used as the starting point for the reference. That means that with a context of `foo.bar`, referencing `baz.bat` that doesn't exist anywhere in the context hierarchy will end up with a resolved keypath of `foo.bar.baz.bat`. References only resolve once as the template is being rendered, which means that if data appears after a conditional has rendered and the conditional later unrenders and re-renders, then the new, more specific data will be resolved in the newly rendered conditional.
+A reference is ambiguous if it does not exist in the current context. Ractive will resolve ambiguous references by looking at each context up the stack from the current point in the template to the root. If no data matching the base key and no matching alias is found, then the current context will be used as the starting point for the reference. That means that with a context of `blog.posts.0`, referencing `author.name` that doesn't exist anywhere in the context hierarchy will end up with a resolved keypath of `blog.posts.0.author.name`. References only resolve once as the template is being rendered, which means that if data appears after a conditional has rendered and the conditional later unrenders and re-renders, then the new, more specific data will be resolved in the newly rendered conditional.
 
 ```handlebars
-{{#with foo.bar}}
-  {{baz.bat}}
+{{#with blog.posts.0}}
+  Author: {{author.name}}
 {{/with}}
 ```
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdc5XAE9JCOngQAPXJzAN+SADYIARk2H1KNergQBbSboaX2A2rmDAAxAHdiuMOQO6AexQAOkkA4VxhYIAGDAwnGXIAQQBXHwCYSHJXBjSwDOD+BisEOITXTi8fMv4uMQlpNhAcYXhSJnIGSUlyanJ+BA9yACUGUVwyBAAKYFoYAXJZJhYsgHI3XGWEXFWsOYXZa1t7BDWNo7tLXf3+RaR7BizZ+dvFv0CUJ5u3t7CI4SyAG1shhyABdb5veIvRbQgQYACUAG4bjdhNsACrEEoBNJTABmKX442IAX4UwR2UhXUkwXRuCmq38QVC4UiMWCuXSMEKxQQu3IqwAUgEwLcAIrBEYIYQBXSkBAwVbIm7YcgARmiWuRmCAA"></div>
 ```js
 var app = new Ractive({
   target: '#target',
   template: '#template',
   data: {
-    foo: { bar: {} }
+    blog: {
+      posts: [ {} ]
+    }
   }
 });
 
 setTimeout(function() {
-  app.set('foo.bar.baz.bat', 'See, the initial resolution was foo.bar.baz.bat');
+  app.set('blog.posts.0.author.name', 'John Q. Resolver');
 }, 1000);
 ```
 
-Ambiguity in Ractive is generally discouraged, since it can lead to weird scenarios like that described above in the unrendering/re-rendering of a conditional section. It's also not as fast to search up the context hierarchy as it is to simply start with the current context, which is usually what you want anyway. To that end, there is a special reference `this`, that refers to the current context at the current point in the template. `this` is meant to mirror the JavaScript keyword of the same name and similar concept. There's also a shorthand for `this`, `.` e.g. `{{this}} is the same as {{.}}` and `{{this.foo}} is the same as {{.foo}}`. Ambiguity does have its purposes, but generally, if you can, you should use specific references.
+Ambiguity in Ractive is generally discouraged, since it can lead to weird scenarios like that described above in the unrendering/re-rendering of a conditional section. It's also not as fast to search up the context hierarchy as it is to simply start with the current context, which is usually what you want anyway. To that end, there is a special reference `this`, that refers to the current context at the current point in the template. `this` is meant to mirror the JavaScript keyword of the same name and similar concept. There's also a shorthand for `this`, `.` e.g. `{{this}} is the same as {{.}}` and `{{this.name}} is the same as {{.name}}`. Ambiguity does have its purposes, but generally, if you can, you should use specific references.
 
 ```handlebars
 {{#if show}}
-  {{#with foo}}
-    {{#with bar}}
+  {{#with blog}}
+    {{#with posts.0}}
       <h2>Ambiguity may be good or bad, depending on what you're trying to do.</h2>
-      <p>{{.baz}}</p>
-      <p>{{baz}}</p>
+      <p>{{.name}}</p>
+      <p>{{name}}</p>
     {{/with}}
   {{/with}}
 {{/if}}
 ```
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdc5XAE9JCOngQAPXJzAN+SADYIARk2H1KNergQBbSboaX2A2rmDAAxMQBm5YWAD2AO4YGE4y5K5uAcS4YOQGun4owaHkqeHuUTHkkn7CuMIAdAAMyYJhaeQEYABMbACCVgbEKACu0XLkVgwdBgjkKH5+SOR+MHEMSFjkSAiKOsT8KCP85AFaMnJ+LQDkMH24MHILS7h+034FXDV8ZRWpBJJsrgX8DFYIwVyPKXcPT8Cvd6fTjfW5pVycTJgUrOVIQqEwlzATheUpcMQSaRsEA4YTwUhMcgMSSScjUcj8BABcgAJQYolwZAQAApgLQYAJUrgmCxIORtm5ucwELhtlh2ZzZNZbPYEHyBZYbHZLGKJStpvYGHy2Rz1al4oltWq7tlcvk+QBtcIYcgAXXFupNgLl-IAsgxYgAhBIobbGtLYf2pXyBPkHFoIf0hXUYACUAG41WrhCKACrEd5bXDMzwtfgM4h+fjM2Phf3EyQFFPZ7YGlAFHJ5QpFF5vBBi-kASSJVnInkGBSMMEHDAAXtsE-7-dX05mWtnc-nGUWS2XdbCiSSCqcUCh9MztiGAhPE+uwhXt4k9yzD-5j5PHeRsOQAIxFd8PgTPt8f08CTBAA"></div>
 ```js
 var app = new Ractive({
   target: '#target',
   template: '#template',
   data: {
-    foo: { bar: {}, baz: 'I am foo.baz' },
+    blog: {
+      posts: [ {} ],
+      name: 'Mah Blog'
+    },
     show: true
   }
 });
 
 setTimeout(function() {
-  app.set('foo.bar.baz', 'I am foo.bar.baz');
-  app.toggle('show');
-  app.toggle('show');
+  app.set('blog.posts.0.name', 'I am foo.bar.baz');
+
+  setTimeout(function() {
+    app.toggle('show');
+    app.toggle('show');
+  }, 1000);
 }, 1000);
 ```
 
@@ -76,32 +86,33 @@ setTimeout(function() {
 
 Sometimes the data you're after may not exist in the current context or one of it's child keypaths. Ractive offers a few ways to navigate both contexts and keypaths.
 
-Navigating keypaths is very similar to naviagating a filesystem, both syntactically and conceptually. If your current context is `foo.bar.baz` and you want to access `foo.bat`, you can pop up the keypath using the `../` prefix e.g. `../../bat`. Note that this _only_ traverses the current keypath and not the context stack, even though those turn out to be the same in many cases. If the context stack happens to contain disjointed keypaths e.g. `foo.bar` with a nested context of `baz.bat` (also on the root data object), then you would have to pop all the way to the root keypath to access a `foo` keypath. That's not a terrible imposition with a shallow data structure, but it can be painful if the current context is more than a few keys deep.
+Navigating keypaths is very similar to naviagating a filesystem, both syntactically and conceptually. If your current context is `user.settings.display` and you want to access `user.name`, you can pop up the keypath using the `../` prefix e.g. `../../name`. Note that this _only_ traverses the current keypath and not the context stack, even though those turn out to be the same in many cases. If the context stack happens to contain disjointed keypaths e.g. `user.settings` with a nested context of `blog.posts` (also on the root data object), then you would have to pop all the way to the root keypath to access a `user` keypath. That's not a terrible imposition with a shallow data structure, but it can be painful if the current context is more than a few keys deep.
 
-To address that, Ractive also supports a root keypath prefix, `~/` that is meant to mirror the "home" directory prefix available to POSIX environments. From the previous example, instead of using `../../foo` from the `baz.bat` context, you could simply use `~/foo`. The root prefix refers to the root of the data in the current Ractive instance, meaning that containing instances of a component are not directly accessible using `~/`.
+To address that, Ractive also supports a root keypath prefix, `~/` that is meant to mirror the "home" directory prefix available to POSIX environments. From the previous example, instead of using `../../user` from the `blog.posts` context, you could simply use `~/user`. The root prefix refers to the root of the data in the current Ractive instance, meaning that containing instances of a component are not directly accessible using `~/`.
 
-Some contexts are not directly addessable from outside of their context children, like expression contexts e.g. `{{#with { foo: 42, bar: [ 1, 2, 3 ] } }}{{#with ~/some.key}} there's no way to get back to the outer context using ../ or ~/ {{/with}}{{/with}}`. If you're not sure what's happening with that outer context, don't worry because that's covered more elsewhere. To address situations like that, Ractive provides a context-popping prefix, `^^/` that is similar to the keypath-popping prefix. In the example, `^^/foo` would resolve to `42` from the inner context because `^^/` steps one step up the context hierarchy and gets the key `foo`, which in this case happens to be on the inline object expression `{ foo: 42, bar: [ 1, 2, 3 ] }`. Context popping is not something you need often, but it's the only way to work around some corner-case scenarios explicitly.
+Some contexts are not directly addessable from outside of their context children, like expression contexts e.g. `{{#with { answer: 42, list: [ 1, 2, 3 ] } }}{{#with ~/some.key}} there's no way to get back to the outer context using ../ or ~/ {{/with}}{{/with}}`. If you're not sure what's happening with that outer context, don't worry because that's covered more elsewhere. To address situations like that, Ractive provides a context-popping prefix, `^^/` that is similar to the keypath-popping prefix. In the example, `^^/answer` would resolve to `42` from the inner context because `^^/` steps one step up the context hierarchy and gets the key `answer`, which in this case happens to be on the inline object expression `{ answer: 42, list: [ 1, 2, 3 ] }`. Context popping is not something you need often, but it's the only way to work around some corner-case scenarios explicitly.
 
-Note that aside from `~/`, prefixed keypaths are not accessible from non-context API methods, like `app.set('../foo', 42)` because there's no way to determine to which keypath that should be relative. There are context helpers that make such relative keypaths available, but they're covered elsewhere.
+Note that aside from `~/`, prefixed keypaths are not accessible from non-context API methods, like `app.set('../answer', 42)` because there's no way to determine to which keypath that should be relative. There are context helpers that make such relative keypaths available, but they're covered elsewhere.
 
 ### Iterative Contexts
 
 It's worth noting that iterative mustaches introduce an implicit context that is two levels deeper than the surrounding context, which can be a little confusing at first glance. For instance:
 
 ```handlebars
-{{#with foo.bar}}
-  {{#each list}}
-    {{../bat}}
+{{#with user.blog}}
+  {{#each posts}}
+    {{../title}}
   {{/each}}
 {{/with}}
 ```
 
-In that example, you may expect `../bat` in the each block body to resolve to `foo.bar.bat`, but it doesn't. Instead, it resolves to `foo.bar.list.bat` because each iteration has two additional keys added e.g. `foo.bar.list.0` to make the current item the context of the iteration body. Popping up the keypath once only removes the index key, leaving you at the list rather than the surrounding context. Note that this is actually quite useful for things like:
+In that example, you may expect `../title` in the each block body to resolve to `user.blog.title`, but it doesn't. Instead, it resolves to `user.blog.posts.title` because each iteration has two additional keys added e.g. `user.blog.posts.0` to make the current item the context of the iteration body. Popping up the keypath once only removes the index key, leaving you at the list rather than the surrounding context. Note that this is actually quite useful for things like:
 
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdc5XAE9JCOngQAPXJzAN+SADYIARk2H1KNergQBbSboaX2A2rgIBXXX0G5gwAMQIGUTByXWJhXAwMJxlyAlC2AElLK3IfAAFiHTVyAGpyAEZI8gB7ADNU4AA6Ss59fhRcMCKwisrIrnjon04AoMjorndPLjEJaTYQHGF4UiZyBklJcmpyfgQAd3IAJUDcMgQACmBaGAFyWSYWSHIAcl9cS4RcG6wTs9lrW3sEa7vkr8sLze-HOSHsDGux1OIPIzlC4WuAG0bgtbAgXrdijBtGgMTcjPxtAwbgBdYHnKLQjAASgA3JggA"></div>
 ```handlebars
 <ul>
 {{#each list}}
-  <li>Item {{@index + 1}} of {{../length}}</li>
+  <li>Item {{@index + 1}} of {{../length}} is {{.}}</li>
 {{/each}}
 </ul>
 ```
@@ -129,7 +140,7 @@ The current index of an iteration is available as the special `@index` reference
 
 The `@this` special reference resolves to a special handle to the current Ractive instance. This is useful for calling methods or accessing properties on the Ractive instance that aren't part of the instance's data. If you have any helper methods that need to be accessible from both the API and the template, or you simply don't like putting helper functions in your data, you can place them on the Ractive instance and access them using `@this`.
 
-As with `this`, `@this` also has a special shorthand form `@`, so `@this.set('foo', 42)` is the same as `@.set('foo', 42)`. The `@this` reference is one of the few special references that is available outside of a template e.g. `app.set('@this.foo', 42)`, and that is handled because it's the only way to have instance properties update directly in an observable way.
+As with `this`, `@this` also has a special shorthand form `@`, so `@this.set('answer', 42)` is the same as `@.set('answer', 42)`. The `@this` reference is one of the few special references that is available outside of a template e.g. `app.set('@this.answer', 42)`, and that is handled because it's the only way to have instance properties update directly in an observable way.
 
 Properties on the `@this` reference that have a Ractive instance as a value will resolve to the equivalent `@this` for that value. This means that referencing a property on a foreign instance will result in a binding that updates correctly everywhere when it changes.
 
@@ -174,7 +185,7 @@ Ractive provides a special `@local` reference that is a context-local model desi
 | `.`              | Immediate context, and any further keys are accessed from the immediate context. |
 | `../`            | Move up one level in the keypath of the current context. This can be stacked, and any keys after the prefix are accessed from the resulting context. |
 | `~/`             | The local root context, and any keys after the prefix are accessed starting from the root context. |
-| `^^/`            | The immediate parent context, and keys after the prefix are accessed from the resulting context. This can also be stacked with `../` e.g. `^^/^^/../foo`, which would pop the context twice, then the keypath on that context once, and finally return the `foo` key. |
+| `^^/`            | The immediate parent context, and keys after the prefix are accessed from the resulting context. This can also be stacked with `../` e.g. `^^/^^/../name`, which would pop the context twice, then the keypath on that context once, and finally return the `name` key. |
 | `@this`          | The instance associated with the current context. |
 | `@index`         | The index of the nearest parent iterative mustache. |
 | `@key`           | The key of the nearest parent iterative mustache. |
@@ -183,6 +194,6 @@ Ractive provides a special `@local` reference that is a context-local model desi
 | `@global`        | The global object e.g. `global` in node.js and `window` in the browser. |
 | `@shared`        | Ractive-private global storage. |
 | `@context`       | The context object associated with the current context. |
-| `@event`         | The DOME or instance event triggering an event directive.
-| `@node`          | The DOM element associated with a particular event directive. |
+| `@event`         | The DOM or instance event triggering an event directive. This is only accessible inside event directives. |
+| `@node`          | The DOM element associated with a particular event directive. This is only accessible inside event directives. |
 | `@local`         | Special storage associated with the current context. |
