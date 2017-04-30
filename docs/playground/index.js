@@ -183,8 +183,12 @@ window.addEventListener('message', function(event) {
     if (event.data.run || event.data.eval) {
       r.fire('play');
     }
-    if (event.data.tab) {
+    if (event.data.tab && r.get('layout') !== 'desktop') {
       r.findComponent('Tabs').fire('selected', event.data.tab === 'html' ? 0 : event.data.tab === 'script' ? 1 : 2);
     }
   }
+});
+
+window.matchMedia('(min-width: 1200px)').addListener(function(list) {
+  r.set('layout', list.matches ? 'desktop' : 'mobile');
 });
