@@ -54,13 +54,7 @@ pages:
     - Attributes: api/attributes.md
     - Keypath Prefixes: api/keypath-prefixes.md
     - Special References: api/special-references.md
-    - Errors: api/errors.md
     - Component Files: api/component-files.md
-  - Integrations:
-    - Loaders: integrations/loaders.md
-    - Plugins: integrations/plugins.md
-    - Tools: integrations/tools.md
-    - Libraries: integrations/libraries.md
   - Extend:
     - Adaptors: extend/adaptors.md
     - Components: extend/components.md
@@ -70,6 +64,11 @@ pages:
     - Interpolators: extend/interpolators.md
     - Partials: extend/partials.md
     - Transitions: extend/transitions.md
+  - Integrations:
+    - Loaders: integrations/loaders.md
+    - Plugins: integrations/plugins.md
+    - Tools: integrations/tools.md
+    - Libraries: integrations/libraries.md
   - Concepts:
     - Architecture:
       - Overview: concepts/architecture/overview.md
