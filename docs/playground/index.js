@@ -140,8 +140,12 @@ function debounce(fn, time, ctx) {
   return timeout;
 };
 
-window.matchMedia('(min-width: 1200px)').addListener(function(list) {
-  r.set('layout', list.matches ? 'desktop' : 'mobile');
+var mqList = window.matchMedia('(min-width: 960px)');
+mqList.addListener(function(list) {
+  r.set('layout', r.get('settings.layout') || (list.matches ? 'desktop' : 'mobile'));
+});
+r.observe('settings.layout', function(value) {
+  r.set('layout', value || (mqList.matches ? 'desktop' : 'mobile'));
 });
 
 r.observe('unit', debounce(function(value) {

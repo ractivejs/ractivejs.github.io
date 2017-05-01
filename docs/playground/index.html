@@ -38,6 +38,12 @@
             <label class="check"><input type="checkbox" checked="{{settings.editor.margin}}" /><span>Show print margin</label>
             <br/>
             <label><span>Tab size</span><input type="number" value="{{settings.editor.tabSize}}" /></label>
+            <br/>
+            <label><span>Layout</span><select value="{{settings.layout}}">
+              <option bind-value="null">&lt;Auto&gt;</option>
+              <option value="mobile">Plain</option>
+              <option value="desktop">Split</option>
+            </select></label>
           </div>
         </div>
 

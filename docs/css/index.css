@@ -66,28 +66,15 @@ button {
 
 /* playground stuff */
 #playground-div {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
   background-color: #fff;
   z-index: 10;
-  text-align: right;
-  transition: height 0.2s ease-in-out;
 }
 #playground-div.min {
-  height: 1.5em;
-  width: 2.5em;
-  left: calc(100% - 5em);
-  border-radius: 1em 1em 0 0;
+  overflow: hidden;
 }
-#playground-div.mid {
-  height: 60vh;
-}
-#playground-div.max {
-  height: 85vh;
-}
+
 #playground-div > iframe {
   border: 0;
   position: absolute;
@@ -118,21 +105,13 @@ button {
   margin-left: 0.75em;
 }
 
-#docs {
-  transition: height 0.2s ease-in-out;
-}
-#docs.max {
-  height: 100%;
-}
-#docs.mid {
-  height: calc(40vh - 60px);
+#main {
+  transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
+  position: absolute;
+  height: calc(100% - 54px);
+  width: 100%;
   overflow: auto;
-  margin-top: -15px;
-}
-#docs.min {
-  height: calc(15vh - 60px);
-  overflow: auto;
-  margin-top: -15px;
+  top: 54px;
 }
 
 div.run-in-playground {
@@ -154,14 +133,15 @@ div.run-in-playground:hover {
     max-height: calc(100% - 100px);
     overflow-y: auto;
     height: auto;
+    top: 115px;
   }
-  #docs.mid .bs-sidebar.affix {
-    max-height: calc(40vh - 60px);
-    top: 55px;
+  #main.mid .bs-sidebar.affix {
+    max-height: calc(50vh - 100px);
+    top: 115px;
   }
-  #docs.min .bs-sidebar.affix {
-    max-height: calc(15vh - 60px);
-    top: 55px;
+  #main.min .bs-sidebar.affix {
+    max-height: calc(15vh - 100px);
+    top: 115px;
   }
 }
 
@@ -169,6 +149,144 @@ div.run-in-playground:hover {
   .bs-sidebar.affix {
     max-height: calc(50vh - 3em);
     overflow: auto;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 1199.99px) {
+  #playground-div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: right;
+  }
+  #playground-div.min {
+    height: 1.5em;
+    width: 2.5em;
+    left: calc(100% - 5em);
+    border-radius: 1em 1em 0 0;
+    transition: none;
+  }
+  #playground-div.mid {
+    height: 50vh;
+  }
+  #playground-div.max {
+    height: 85vh;
+  }
+
+  #main.max {
+  }
+  #main.mid {
+    height: calc(50vh - 60px);
+    overflow: auto;
+  }
+  #main.min {
+    height: calc(15vh - 60px);
+    overflow: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bs-sidebar.affix {
+    top: 69px;
+  }
+
+  #playground-div {
+    position: absolute;
+    right: 0;
+    height: calc(100% - 54px);
+    top: 54px;
+  }
+  #playground-div.max {
+    width: 50%;
+  }
+
+  #playground-div.mid {
+    width: 50%;
+  }
+  #playground-div.mid #expand-playground {
+    display: none;
+  }
+  #playground-div.mid #collapse-playground {
+    display: inline-block;
+    transform: rotate(-90deg);
+    margin-left: 0.5em;
+  }
+
+  #playground-div.min {
+    transition: none;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    right: 3em;
+    height: 1.5em;
+    width: 2.5em;
+    border-radius: 1em 1em 0 0;
+  }
+  #playground-div.min > span {
+    transform: rotate(-90deg);
+    display: inline-block;
+  }
+
+  #main {
+    height: calc(100% - 54px);
+  }
+
+  #main.max {
+  }
+
+  #main.mid {
+    width: 50%;
+  }
+
+  #main.mid .container {
+    width: 100%;
+  }
+  #main.mid [role=main] {
+    width: 100%;
+  }
+  #main.mid [role=subnav] {
+    display: none;
+  }
+
+  #main.min {
+  }
+}
+
+@media (min-width: 1600px) {
+  #playground-div.mid {
+    width: 60%;
+  }
+
+  #main.mid {
+    width: 40%;
+  }
+}
+
+@media (max-width: 1199.9px) and (min-width: 768px) {
+  #main {
+    height: calc(100% - 100px);
+    top: 99px;
+  }
+  #main.mid {
+    height: calc(50vh - 100px);
+  }
+  #main.min {
+    height: calc(15vh - 100px);
+  }
+}
+
+@media (max-width: 768px) {
+  #main {
+    height: calc(100% - 54px);
+    top: 54px;
+  }
+  #main.mid {
+    height: calc(50vh - 54px);
+  }
+  #main.min {
+    height: calc(15vh - 54px);
   }
 }
 

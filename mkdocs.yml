@@ -9,6 +9,7 @@ site_author: RactiveJS contributors
 copyright: ©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.
 
 theme: cinder
+theme_dir: custom_theme
 extra_css:
   - css/index.css
 extra_javascript:
