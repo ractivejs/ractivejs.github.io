@@ -53,7 +53,6 @@ pages:
     - Attributes: api/attributes.md
     - Keypath Prefixes: api/keypath-prefixes.md
     - Special References: api/special-references.md
-    - Errors: api/errors.md
     - Component Files: api/component-files.md
   - Integrations:
     - Loaders: integrations/loaders.md
