@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#indirect-dependencies">Indirect dependencies</a></li>
@@ -702,7 +703,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <p>Ractive maintains a <em>dependency graph</em> in order to do the minimum amount of work necessary to keep the DOM up-to-date.</p>
 <p>If you inspect a Ractive instance in your console, you'll see a property called <code>_deps</code>. This is where all dependants are listed, indexed by their dependency.</p>
@@ -741,16 +742,17 @@ ractive.set( 'list[0].name', 'Zebediah' );
 <h1 id="expressions-with-multiple-dependencies">Expressions with multiple dependencies</h1>
 <p>The expression <code>{{ a + b }}</code> has two dependencies - <code>a</code> and <code>b</code> (or more accurately, whatever those <a href="../../templates/references/">references</a> resolve to). The <code>_deps</code> graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.</p>
 <p>Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing <code>ractive.set({ a: 1, b: 2 })</code> will only trigger one update, not two.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>

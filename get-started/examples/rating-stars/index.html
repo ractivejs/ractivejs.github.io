@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#rating-stars">Rating Stars</a></li>
@@ -708,7 +709,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <h1 id="rating-stars">Rating Stars</h1>
 <pre><code>Embed demo here
@@ -842,16 +843,17 @@ ractive.observe( 'rating', function ( rating ) {
   }
 &lt;/style&gt;
 </code></pre></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>

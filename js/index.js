@@ -1,69 +1,52 @@
 var playground = (function() {
-  var container = document.querySelector('footer').previousSibling.previousSibling;
+  var main = document.querySelector('#main');
   var div = document.createElement('div');
   div.id = 'playground-div';
   div.setAttribute('class', 'min');
-  container.classList.add('max');
-  container.id = 'docs';
+  main.classList.add('max');
 
   // buttons
   var down = document.createElement('span');
   down.innerHTML = '\u25bc';
   down.setAttribute('class', 'down-btn');
+  down.setAttribute('id', 'collapse-playground');
   down.addEventListener('click', function() {
-    pinScroll(false);
     if (div.classList.contains('mid')) {
       div.classList.remove('mid');
       div.classList.add('min');
-      container.classList.add('max');
-      container.classList.remove('mid');
+      main.classList.add('max');
+      main.classList.remove('mid');
     } else if (div.classList.contains('max')) {
       div.classList.remove('max');
       div.classList.add('mid');
-      container.classList.add('mid');
-      container.classList.remove('min');
+      main.classList.add('mid');
+      main.classList.remove('min');
     }
   });
 
   var up = document.createElement('span');
   up.innerHTML = '\u25b2';
   up.setAttribute('class', 'up-btn');
+  up.setAttribute('id', 'expand-playground');
   up.addEventListener('click', function() {
-    pinScroll(true);
     if (!window.playgroundEl) initFrame();
 
     if (div.classList.contains('mid')) {
       div.classList.remove('mid');
       div.classList.add('max');
-      container.classList.add('min');
-      container.classList.remove('mid');
+      main.classList.add('min');
+      main.classList.remove('mid');
     } else if (div.classList.contains('min')) {
       div.classList.remove('min');
       div.classList.add('mid');
-      container.classList.add('mid');
-      container.classList.remove('max');
+      main.classList.add('mid');
+      main.classList.remove('max');
     }
   });
   div.appendChild(down);
   div.appendChild(up);
 
-  var footer = document.querySelector('footer');
-  footer.parentNode.insertBefore(div, footer);
-
-  function pinScroll(up) {
-    var top;
-    if (up && container.classList.contains('max')) {
-      top = document.body.scrollTop;
-      setTimeout(function() {
-        container.scrollTop = top;
-      }, 210);
-    } else if (!up && div.classList.contains('mid')) {
-      top = container.scrollTop;
-      setTimeout(function() {
-        document.body.scrollTop = top;
-      }, 210);
-    }
-  }
+  document.body.appendChild(div);
 
   function initFrame(callback) {
     // frame
@@ -83,11 +66,10 @@ var playground = (function() {
         playground(el);
       });
     } else {
-      pinScroll(true);
       div.classList.remove('min', 'max');
       div.classList.add('mid');
-      container.classList.remove('min', 'max');
-      container.classList.add('mid');
+      main.classList.remove('min', 'max');
+      main.classList.add('mid');
 
       var pg = window.playgroundEl.querySelector('iframe').contentWindow;
       var code = el.getAttribute('data-playground') || el.getAttribute('data-tutorial') || el.getAttribute('data-runtutorial');

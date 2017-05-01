@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#mustaches">Mustaches</a></li>
@@ -705,7 +706,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <p>Ractive uses a recursive descent parser that is comprised of a number readers and converters that are responsible for parsing individual bits of the template AST. The root-level parsers are text, mustache, and element.</p>
 <h1 id="mustaches">Mustaches</h1>
@@ -714,16 +715,17 @@
 <p>The expression readers are set arranged such that they can read valid ES expressions with the correct operator precedence by starting with ternary conditionals and trying different expression types from there. Once the expression tree has been parsed, it is flattened into an expression string and a list of references that are used within that string. If the parsing is done with <code>csp</code> (Content Security Policy) support enabled, then the expression strings are also turned into functions and attached to the output template structure so that the template can be used as-is from a script tag without <code>eval</code>ing.</p>
 <h1 id="cleanup">Cleanup</h1>
 <p>After all of the nodes have been parsed from the template, the template is cleaned up in a process that, among other things, merges adjacent text nodes and forms individual conditional sections out of <code>elseif</code>/<code>else</code> trees.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>

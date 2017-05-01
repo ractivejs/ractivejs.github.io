@@ -689,14 +689,15 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <p>Ractive works by maintaining a simplified model of the part of the DOM that it's responsible for. This model contains all the information - about data-binding, event handling and so on - that it needs to keep things up-to-date.</p>
 <p>You can inspect the parallel DOM to understand what's going on under the hood, if you're into that sort of thing. Each Ractive instance, once rendered, has a <code>fragment</code> property. Each fragment has a number of properties:</p>
@@ -710,16 +711,17 @@
 <p>Elements may also have attributes, which have a different kind of fragment (a <em>text fragment</em> as opposed to a <em>DOM fragment</em>), containing text and mustaches.</p>
 <p>Each item has a <code>descriptor</code>, which is something like DNA. This comes straight from the <a href="">parsed template</a>.</p>
 <p>This is the briefest of overviews - if you want to gain a deeper understanding of what's going on under the hood, <a href="https://github.com/RactiveJS/Ractive/tree/master/src">use the source</a>.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>

@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#states">States</a></li>
@@ -738,7 +739,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <p>Ractive views are structured virtual DOM trees that are assembled from template AST and manage DOM nodes on the page when they are rendered. Virtual DOM items are grouped together in <code>Fragment</code>s, which contain them, and they may also own <code>Fragment</code>s that contain other items. Each item may contain a reference to a DOM node when rendered, though every item doesn not have a DOM analog.</p>
 <h1 id="states">States</h1>
@@ -809,16 +810,17 @@
 <h1 id="updates">Updates</h1>
 <p>The <code>runloop</code> controls when the DOM is actually updated and when transitions start in <code>batch</code>es. It also handles resolving promises when transitions have completed and the DOM is completely up to date.</p>
 <p>As changes propagate through the viewmodel, view items are notified of the change through their <code>handleChange</code> method. Most items just set a dirty flag and notify their parent, via their <code>bubble</code> method, that they will need to be updated at the completion of the runloop turn. The root fragment of each instance affected will then register with the runloop. Once the changes are ready to be flushed to the view, each fragment registered with the runloop is called on to update, where the process happens in reverse, with each parent fragment checking to see if there is a change it needs to respond to and propagating the update downward to its children.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>

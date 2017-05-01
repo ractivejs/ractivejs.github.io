@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#hygiene">Hygiene</a></li>
@@ -699,7 +700,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <p>Like many libraries, Ractive implements the <a href="http://addyosmani.com/blog/understanding-the-publishsubscribe-pattern-for-greater-javascript-scalability/">publish/subscribe</a> mechanism to allow you to respond to, or trigger, particular events.</p>
 <pre><code class="js">ractive = new Ractive({
@@ -729,16 +730,17 @@ The <a href="">publish-subscribe</a> event handling in Ractive allows you to con
 <p>One of the advantages of using Ractive events is that, in addition to being able to manually unsubscribe events, both DOM events and
 Ractive Events will be automatically unsubscribed when the ractive instance or component is torndown.</p>
 <p>In practice, this means adding a template directive like <code>on-click='select'</code> is all that is needed to manage the DOM event.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>

@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#cancelling-events">Cancelling events</a></li>
@@ -699,7 +700,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <p><em>See also: <a href="../proxy-events/">proxy events</a></em></p>
 <p><strong>Note:</strong> Unqualified event method calls are deprecated and have been replaced with event expressions that resolve the same way as every other expression in a Ractive template. This means that to call, for instance, <code>set('foo', 'bar')</code> in an event, you would now use <code>@this.set('foo', 'bar')</code>. Unfortunately, this adds a bit of boilerplate to common method calls, but it is also resolves the disparity between event directives and other template references, allows calling data methods from events, and allows executing multiple, possibly more complex, expressions when an event fires.</p>
@@ -761,16 +762,17 @@
 <p>Note that this is a list of independent expressions, and as long as one doesn't throw, they will all be evaluated.</p>
 <h2 id="cancelling-events">Cancelling events</h2>
 <p>As with proxy events, you can cancel a DOM event by returning <code>false</code> from your event handler. Ractive with then call <code>preventDefault()</code> and <code>stopPropagation()</code> on the original DOM event. You can also call any methods on the original event by having it passed to your handler or accessing it using <code>this.event.original</code>. With event expressions, you can force the cancellation regardless of the return from any methods you call by simply including <code>false</code> as the last expression in your list, as above in the 'Remove and Notify' example. You can also override cancellation in much the same way by using <code>true</code> instead of <code>false</code>.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>

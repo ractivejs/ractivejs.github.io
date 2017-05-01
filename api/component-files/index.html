@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#component-files">Component files</a></li>
@@ -716,7 +717,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <h1 id="component-files">Component files</h1>
 <p>Remember the good old days? When all CSS went in <code>&lt;style&gt;</code> elements in <code>&lt;head&gt;</code>? When all JS went in <code>&lt;script&gt;</code> elements just before <code>&lt;/body&gt;</code>? When all HTML was written in Mustache inside inert <code>&lt;script&gt;</code> elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.</p>
@@ -797,16 +798,17 @@ export default Ractive.extend({
 <p>After yanking out top-level <code>&lt;link rel="ractive"&gt;</code>, <code>&lt;style&gt;</code> or <code>&lt;script&gt;</code> from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's <a href="../initialization-options/#template"><code>template</code></a> initialization option.</p>
 <h2 id="using">Using</h2>
 <p>In order to use component files, you will have to use <em>loaders</em>, Head over to the <a href="../../integrations/loaders/">loaders</a> page to learn more about loaders and help you choose a loader that suits your needs.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../js/jquery-1.10.2.min.js"></script>
     <script src="../../js/bootstrap-3.0.3.min.js"></script>

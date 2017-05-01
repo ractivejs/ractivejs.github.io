@@ -689,9 +689,10 @@
     </div>
 </div>
 
-    <div class="container">
-        
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
         <li class="first-level active"><a href="#upstream-and-downstream-keypaths">Upstream and downstream keypaths</a></li>
@@ -708,7 +709,7 @@
     
     </ul>
 </div></div>
-        <div class="col-md-9" role="main">
+            <div class="col-md-9" role="main">
 
 <p>The main way to interact with a Ractive instance is by setting <em>keypaths</em>. A keypath is a string representing the location of a piece of data:</p>
 <pre><code class="js">ractive = new Ractive({
@@ -767,16 +768,17 @@ ractive.get( 'letters[0]' ); // returns undefined
 
 <h1 id="escaping">Escaping</h1>
 <p>While not ideal, sometimes properties of objects have <code>.</code>s in name e.g. <code>foo['bar.baz']</code>. Note that while numbers are supported in array notation, strings are not. To access a peypath with a literal <code>.</code> in one of the keys, you can escape it with a <code>\</code> e.g. <code>foo.bar\.baz</code>. Any keys accessible in the template will be unescaped, so if you're trying to use them with simple string concatenation to access a keypath with a <code>.</code> in it, you'll need to make sure you escape it first.</p></div>
-        
-    </div>
+            
+        </div>
 
-    <footer class="col-md-12 text-center">
-        <hr>
-        <p>
-        <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
-        
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
 
     <script src="../../../js/jquery-1.10.2.min.js"></script>
     <script src="../../../js/bootstrap-3.0.3.min.js"></script>
