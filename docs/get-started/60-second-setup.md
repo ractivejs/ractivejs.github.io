@@ -2,7 +2,7 @@
 
 Create a file called `index.html` and paste in the following (or just open the playground):
 
-<div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeAQgFoKACAFTDWrQTQFs0A7FalAe2ta8Arlx4NqASw5YkHAMaMqAPgA6MFRxIATCQDdJWgLwqQSAA5mTSkgHodupSAIZ4Nm9QCC1DBNZmW1HK8frwcnNxaaABmUhIoEqF4gcH+aOjUAO5xYAJIMADWQmZJWACeLBjUslrUWqhIahoASkhy8bpoAHRBIWFcGJ0AEswIvADqvDAINYbULW16XWgAHugcWgAUwI0c1Dxs-qhokNQABjt7e9p6quq7l1dgAIxKwwij1MDAApgYSADmjBwOFsz1uGgeVykZiE3BQpTMaGMhBWKBM1F0SAQQiRJi+Pwwf0B1GB6Js4PuVzsNwuZzwtLkhJO5zuD2en2SoxgJxgaBqOFpp3prNq9ROGwAlNRDEpqFtaXt2ISAcdqAByCZTLRkNW0nASnb6gDcOx2bmoAFlhKJZJJpChZApqLwomJGD0zKFwjx+ChxEEuEgpGh1HcA1gqhZpXNWu00Ft9n5kOgTmqSG9RprpuS1UlmKmAMTmMxqkkSo24IA"></div>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwCEAtCQAQAqYC5CANggLYIB2u5uA9uU1wK7tONcgEtWAZ1wBDVgGNaZAHwAdGCtYEkogG5ikAXhUhpAB1PGlBAPTadSkDgnxr18gEFyE0U1ONycly+XKxsHEgIAGbioriiIVgBQX4IuLQA7rFgvNIwANb8polSAJ6MEuSySORI0jJqGgBK0nJxOggAdIHBoewSHQASDPRcAOpcMPTVBuTNrbqdCAAeaaxIABTADazknMx+dQiQ5AAG27u7Wrqq6jsXl2AAjEpD9CPkwMC8CBIS0mjkDAYGxPG4ae6XcSmfgcXAlUwIIx4Za4YzkHTSej8RHGT7fX7-WhAtHWMF3S62a7nU5YalyX7HM63e5PD5JEYwY4wZCA6knWnMmp1aTHdYASnIBiU5E21N2LAJaGOAHJxpMkERldSMGLtjqANzbbaucgAWQEQlkYkkMnktC4kWEtG6phCYU4PFwIkC7Gk4gQ6luPqklXMktmLTaCE2e189EOKoIrxGaqmpOViRkMDQuBVAGIzKZlYCxfrMEA"></div>
 ```html
 <!doctype html>
 <html>
@@ -38,7 +38,7 @@ Create a file called `index.html` and paste in the following (or just open the p
     });
 
     // Mount an instance of the component to the container
-    const app = Ractive({ template: '<HelloWorld/>', el: '#app' });
+    const app = Ractive({ template: '<HelloWorld/>', target: '#app' });
 
   </script>
 </body>

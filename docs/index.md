@@ -33,11 +33,11 @@ bower install --save ractive
 
 Using Ractive is very simple. Create a new instance using `new Ractive({...})` with the desired options.
 
-<div data-playground="N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvADxICWAbgATVIC8AOiALYCG1AduwD4KAehq0BmHPBj1m9XggDu9AEpcAxqToIAFMFb9SpLjDSlI9AOQBibn0sYDrIwg4AHADZdSCC5YpuAsDAKDAICFq8KEQk9MFh6tRu1Ai8pDEigQ5OpEjeXBb6hs6h4ZEofgASCB4eAPbZxaQJSSlpfgDqdTAeSACEljlEBkQAlADckurwIERAA"></div>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvJjvDAAQC8NAdggO40BKAhgMakCWANwQAKYAB1GY0qU4w0pSDQDkAIwD2SAJ5KMEqaQQBbAA4AbTgcVKAPMYB8wYChgIE-RiiIkajl9z7GfAiMpF7WAPT2OnqkSBaciuKSpFLOru4oVgASCKamatHJUn4BQSFWAOpqMKZIAIRKMUQSRACUANyU3BREQA"></div>
 
 ```js
 var ractive = Ractive({
-    el: 'body',
+    target: 'body',
     template: '<p>{{greeting}}, {{recipient}}</p>',
     data: {
         greeting: 'Hello',
@@ -46,7 +46,7 @@ var ractive = Ractive({
 });
 ```
 
-While there are _no required options_, `el`, `template` and `data` are the most common. They specify _what element_ to attach an instance with _this markup_ having _this data_. Check out [Initialization Options](api/initialization-options.md) to learn more about the available options.
+While there are _no required options_, `target`, `template` and `data` are the most common. They specify _what element_ to attach an instance with _this markup_ having _this data_. Check out [Initialization Options](api/initialization-options.md) to learn more about the available options.
 
 If you get stuck at any point, visit the [Get Support](get-started/support.md) page for places to find help.
 
