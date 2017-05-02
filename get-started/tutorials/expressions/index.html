@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="RactiveJS contributors"> 
-    <link rel="canonical" href="https://ractive.js.org/get-started/tutorials/decorators/"> 
+    <link rel="canonical" href="https://ractive.js.org/get-started/tutorials/expressions/"> 
     <link rel="shortcut icon" href="../../../img/favicon.ico">
 
-    <title>Decorators - Ractive.js</title>
+    <title>Expressions - Ractive.js</title>
 
     <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -98,55 +98,19 @@
         
             
 <li >
-    <a href="../references-and-context/">References and Context</a>
-</li>
-
-        
-            
-<li >
-    <a href="../expressions-and-computations/">Expressions and Computations</a>
-</li>
-
-        
-            
-<li >
-    <a href="../all-things-template/">All Things Template</a>
-</li>
-
-        
-            
-<li >
-    <a href="../context-and-helpers/">Context and Helpers</a>
-</li>
-
-        
-            
-<li >
-    <a href="../dom-and-instance-events/">DOM and Instance Events</a>
-</li>
-
-        
-            
-<li >
-    <a href="../transitions/">Transitions</a>
-</li>
-
-        
-            
-<li >
-    <a href="../components/">Coomponents</a>
+    <a href="../nested-properties/">Nested Properties</a>
 </li>
 
         
             
 <li class="active">
-    <a href="./">Decorators</a>
+    <a href="./">Expressions</a>
 </li>
 
         
             
 <li >
-    <a href="../svg-and-animation/">SVG and Animation</a>
+    <a href="../events/">Events</a>
 </li>
 
         
@@ -664,12 +628,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../components/">
+                        <a rel="next" href="../nested-properties/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../svg-and-animation/">
+                        <a rel="prev" href="../events/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -695,15 +659,132 @@
             <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#decorators">Decorators</a></li>
+        <li class="first-level active"><a href="#expressions">Expressions</a></li>
+        
+            <li class="second-level"><a href="#step-1">Step 1</a></li>
+            
+        
+            <li class="second-level"><a href="#step-2">Step 2</a></li>
+            
+        
+            <li class="second-level"><a href="#step-3">Step 3</a></li>
+            
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="decorators">Decorators</h1>
-<p>TODO</p></div>
+<h1 id="expressions">Expressions</h1>
+<p>One problem with the last example – the population number. Printing out a number like 63230000 just looks a bit daft.</p>
+<h2 id="step-1">Step 1</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbACpgE5SQHtJAVzVXPfnJPADNyYGBRTx9+XBhtDAxKYXDgL19-YkDEgDouJyFOMQlpNhAcYXhSJnJzS2tyanJ+BAB3cgAlCytSBAAKYAFycgQVSHIAcgBiXCYWCawhrSVVdQRx6YVlfwQFpaR1BnHBoOHyKJi47Q3cN3IAVQBpPdPh9L91LP5xgDYAZgATH8AAyg4FLDACDAASgA3OUQKJ4JggA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbACpgE5SQHtJAVzVXPfnJPADNyYGBRTx9+XBhtDAxKYXDgchDPGEV1AAovX39iQIBKckSAOi4nIU4xCWk2EBxheFImcnNLa3Jqcn4EAHdyACULK1IEHOABcnIEFUhyAHIAYlwmFiWsGa0lVXUERdWFZX8ELZ2kdQZF6aDZ8iiYuO0j3DdyAFUAaQv72fyfnURX4iwAbABmABMEIADPDYdt-ulMtlcIsQjEuoFyDk+j5FORSncHg9iGE8fwCeQ2OQAIwIxnwokdBC4HwwIKU6mcelMxlE8q4TwAMWIRmQeLpLIA1MtyAAjYgqFQgpYAbh2pPJuPxhNpDKZLJgbI5XL15F5hoFxSFovFkvpsvlimVqsCGq1ZIpFoNCONps5uoAsuowOUQipPJluYSrf7SqU5VsluQ5bHyABSPnM4qa5GzE3soNUxT50kYHaV-gYPNNECieCYIA">Fix Code</button>
+</div></p>
+<p>We could replace the number with a string, like '63.2 million'. But numbers are generally a hell of a lot easier to work with.</p>
+<p>Instead, we can use an <em>expression</em>. Expressions look just like regular mustaches:</p>
+<pre><code class="handlebars">{{ format(population) }}
+</code></pre>
+
+<p>Add a <code>format</code> property alongside the country data (it may seem weird adding a function as 'data', but it will make sense in due course!):</p>
+<pre><code class="js">function ( num ) {
+  if ( num &gt; 1000000000 ) return ( num / 1000000000 ).toFixed( 1 ) + ' billion';
+  if ( num &gt; 1000000 ) return ( num / 1000000 ).toFixed( 1 ) + ' million';
+  if ( num &gt; 1000 ) return ( Math.floor( num / 1000 ) ) + ',' + ( num % 1000 );
+  return num;
+}
+</code></pre>
+
+<p>Execute the code. Doesn't that look better? Try changing the values.</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbACpgE5SQHtJAVzVXPfnJPADNyYGBRTx9+XBhtDAxKYXDgchDPGEV1AAovX39iQIBKckSAOi4nIU4xCWk2EBxheFImcnNLa3Jqcn4EAHdyACULK1IEHOABcnIEFUhyAHIAYlwmFiWsGa0lVXUERdWFZX8ELZ2kdQZF6aDZ8iiYuO0j3DdyAFUAaQv72fyfnURX4iwAbABmABMEIADPDYdt-ulMtlcIsQjEuoFyDk+j5FORSncHg9iGE8fwCeQ2OQAIwIxnwokdBC4HwwIKU6mcelMxlE8q4TwAMWIRmQeLpLIA1MtyAAjYgqFQgpYAbh2pPJuPxhNpDKZLJgbI5XL15F5hoFxSFovFkvpsvlimVqsCGq1ZIpFoNCONps5uoAsuowOUQipPJluYSrf7SqU5VsluQ5bHyABSPnM4qa5GzE3soNUxT50kYHaV-gYPNNECieCYIA" data-eval="E4QwxgLglgbgpgOgM5wgCgN4CgAEOwD2ArgHYTACeAXDgOQDCAFlCSLQDS44AOB3RAGxDQCJGgEYAzAFZxABgWKsAXwCUAbiA"></div>
+
+<pre><code class="js">ractive.set({
+  country: 'China',
+  population: 1351000000
+});
+</code></pre>
+
+<blockquote>
+<p>Note that expressions are not part of the mustache syntax – they are specific to Ractive.js.</p>
+</blockquote>
+<h2 id="step-2">Step 2</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQawe4YH+-+8wNgAFCVEEcj0YcmBgYgVFDAwuXCC7L3tHIIBFAFcGfisdFLTPAKy2ABUAeycVEr8vFN901u8WsqbcJDZYyTCEJJSetszu3uAAR3zC+O0hznHR7x7htnICAEIAWm3yBiQkLTAI3FqGFXITmAjdxszFjoenV3chTjEJaTYQHGF4UhMcjmSzWcjUcj8BAAd3IACULFZSAgABTAATkcgIFSQcgAcgAxE5mAhcHisBitEpVOoELjCQkaQpyZSkOoGLj0fxMZj4kp6ZJiIVyNUAGbkRTEFQAaxZ3J5-WI4VxAAYAHQAFgAnBT5ZjpgUitpcQBWSkYAQYACUAG5fiBRPBMEA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQawe4YH+-+8wNgAFCVEEcj0YcmBgYgVFDAwuXCC7L3tHIIBFAFcGfisdFLTPAKy2ABUAeycVEr8vFN901u8WsqbcJDZY8gAzaphFdQAKSTCEAEpyJJSetszu3uAAR3zC+O05zmXF7x6+weGxyMnyACpydYKi7XIZnb3O5saUlzcPLjEJaTYQHDCeCkJjkcyWazkajkfgIADu5AAShYrKQEKNgAJyOQECpIOQAOQAYiczAQuAJWCxWiUqnUCHxxISdIUlOpSHUDHxmP42Ox8SUjMkxEK5Gq-XIimIKgA1mzeXyJsRwviAAwAOgALABOKkK7E3TY6fEAVj1fIGQxGuHx-Vy-Ah1V5oxhuUUDxi1ItxAlLv4bvIBHIAEYPTBybkYM6Q6rVZdXe6ZgBqQmSAkAbi9fPDuEjvIJAGKCeQU-7FOrcNUAGLEIzIF0AJgemf1s2pGAEGCm6YBIFE8EwQA">Fix Code</button>
+</div></p>
+<p>You can also use mathematical expressions. Let's rummage around in the bag of contrived examples and see what comes out... yep... this one will do... it's a shopping basket.</p>
+<p>We have an <code>item</code> property, a <code>price</code>, and a <code>quantity</code>. Add an expression where the total should go:</p>
+<pre><code class="handlebars">&lt;td&gt;{{ price * quantity }}&lt;/td&gt;
+</code></pre>
+
+<p>Execute the code. The total should appear. Now we just need to add a currency formatter – here's one for the UK (if you're not from here, write one for your own currency for extra credit):</p>
+<pre><code class="js">function ( num ) {
+  if ( num &lt; 1 ) return ( 100 * num ) + 'p';
+  return '£' + num.toFixed( 2 );
+}
+</code></pre>
+
+<p>Add that, and use in the template it for both the price and the total. Try changing the price and the quantity.</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQawe4YH+-+8wNgAFCVEEcj0YcmBgYgVFDAwuXCC7L3tHIIBFAFcGfisdFLTPAKy2ABUAeycVEr8vFN901u8WsqbcJDZY8gAzaphFdQAKSTCEAEpyJJSetszu3uAAR3zC+O05zmXF7x6+weGxyMnyACpydYKi7XIZnb3O5saUlzcPLjEJaTYQHDCeCkJjkcyWazkajkfgIADu5AAShYrKQEKNgAJyOQECpIOQAOQAYiczAQuAJWCxWiUqnUCHxxISdIUlOpSHUDHxmP42Ox8SUjMkxEK5Gq-XIimIKgA1mzeXyJsRwviAAwAOgALABOKkK7E3TY6fEAVj1fIGQxGuHx-Vy-Ah1V5oxhuUUDxi1ItxAlLv4bvIBHIAEYPTBybkYM6Q6rVZdXe6ZgBqQmSAkAbi9fPDuEjvIJAGKCeQU-7FOrcNUAGLEIzIF0AJgemf1s2pGAEGCm6YBIFE8EwQA" data-eval="E4QwxgLglgbgpgOgM5wgCgN4CgAEOoRwC2AXDgOQBGIAdrSOQDS44AOwUYcZADAgIwBOZngCOAV1rQIATzIB2LAF8AlAG4gA"></div>
+
+<pre><code class="js">ractive.set({
+  item: 'banana',
+  price: 0.19,
+  quantity: 7
+});
+</code></pre>
+
+<blockquote>
+<p>You might reasonably ask how this works. What happens is this: when the template is parsed, any <em>references</em> inside expressions (such as <code>price</code>, <code>quantity</code> or <code>format</code> in the example above) are identified. At render time, the expression binds to those references and creates a function to calculate the result. (Whenever possible, Ractive.js will re-use functions – for example <code>{{a+b}}</code> and <code>{{c+d}}</code> would share the same function.)</p>
+<p>When the value of one or more of those references change, the expression is re-evaluated. If the result changes, the DOM is updated.</p>
+<p>For the super-curious, there's more information on the <a href="../../../concepts/templates/expressions">docs</a>.</p>
+</blockquote>
+<h2 id="step-3">Step 3</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbGMkhcndhz3LCdK-QDkAEYWANYoMAD2AK78SAC0opEqkTCQ5C5IANye5Hl5AO5UuGDpwMCZGBgApFnkYAjEKGC46QCMSlkBHNxkfIKsA45sEQgI-G6cHkPevtr+1MFhETFxicmp6aPjOQP5hcWl5OXb-FW19Y3NreQdil09PP32nsNBKtEIk9P2RGQ+fkCIVE4SisQSSRSaXI70+u3s+3IRSQJTKwFhCHOdQaTRa7U63S4T08rycIlwUX4KGcCGE0RUrS4vkp1Pczy8-zmCyWIJW4PWUPSzCCAApypVsMdgKcqlgpRiqgBKeEyfY4674+7dV69XhCThiCTSNggHDCeCkJgZCxWUgIcjUcj8BAFcgAJRt1jFAjyCBU6QCAGJcEwWAEsD6tEpVOovuQgwplGoFOHI0h1AwypG8pl0gAGAB0ABYAKwR-j7U75gsANja5f2GOrACZIxgBBhlaaQKJ4JggA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbGMkhcndhz3LCdK-QDkAEYWANYoMAD2AK78SAC0opEqkTCQ5C5IANye5Hl5AO5UuGDpwMCZ5ABU5ACMAAz1GBgApFnkYAjEKGC46bVKWQEc3GR8gqwTjmwRCAj8bpweU96+2v7UwWERMXGJyanps-M5E-mFxaXk5cf81XWNzW0dXT19dYPD5Fw84-ae0yCKmiCEWy3sRDIPj8gRConCUViCSSKTS5CBINO9nO5CKSBKZWAGIQ9waTVa7U63V6-U+bG+o14ngBThEuCi-BQzgQwmiKj6XF8HK57j+Xihaw2W3hOyR+1R6WYQQAFOUALLqMAAOkRcWVlRqACYAKzGgCUzSw12AGpKOt2SGVt3uJvNluttu1usdxJdpotGDNWJk5ypb1piiG9J+YyEnDEEmkbBAOGE8FITAyFispBJ1HI-AQBXIACVs9ZVQI8ggVOkAgBiXBMFgBLBVrRKVTqUHkBsKZRqBSt9tIdQMMrtvKZdL1LUAFmNbbu+VuM61ADZakvzsS14b2xgBIGsimQKJ4JggA">Fix Code</button>
+</div></p>
+<p>In this next contrived example, we're going to make a colour mixer.</p>
+<p>First, we want to show how much we're using of each colour. We'll use <code>&lt;div&gt;</code> elements with a percentage width corresponding to the amount. All the colour values are between 0 and 1, so we need to multiply by 100:</p>
+<pre><code class="handlebars">&lt;div style='background-color: red;
+     width: {{red*100}}%;'&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Update the first three <code>&lt;div&gt;</code> elements in the template accordingly.</p>
+<blockquote>
+<p>Pro-tip: in the playground editors, hold the <code>Cmd</code> key (or <code>Ctrl</code> if you're not on a Mac) and click in each of the places where you need to type 100. Multiple cursors FTW!</p>
+</blockquote>
+<p>To show the result, we can use an <code>rgb(r,g,b)</code> CSS colour value. But instead of percentages, these need to be between 0 and 255:</p>
+<pre><code class="handlebars">&lt;div style='background-color:
+  rgb({{red   * 255}},
+      {{green * 255}},
+      {{blue  * 255}})'&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Update the template and execute the code. Did it work?</p>
+<p>No, it didn't. That's because CSS insists that you use integers – no decimals allowed. So let's use <code>Math.round</code> to turn the numbers into integers:</p>
+<pre><code class="handlebars">&lt;div style='background-color:
+  rgb({{Math.round(red   * 255)}},
+      {{Math.round(green * 255)}},
+      {{Math.round(blue  * 255)}})'&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Execute the code. Ta-da! Try changing the colours.</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbGMkhcndhz3LCdK-QDkAEYWANYoMAD2AK78SAC0opEqkTCQ5C5IANye5Hl5AO5UuGDpwMCZ5ABU5ACMAAz1GBgApFnkYAjEKGC46bVKWQEc3GR8gqwTjmwRCAj8bpweU96+2v7UwWERMXGJyanps-M5E-mFxaXk5cf81XWNzW0dXT19dYPD5Fw84-ae0yCKmiCEWy3sRDIPj8gRConCUViCSSKTS5CBINO9nO5CKSBKZWAGIQ9waTVa7U63V6-U+bG+o14ngBThEuCi-BQzgQwmiKj6XF8HK57j+Xihaw2W3hOyR+1R6WYQQAFOUALLqMAAOkRcWVlRqACYAKzGgCUzSw12AGpKOt2SGVt3uJvNluttu1usdxJdpotGDNWJk5ypb1piiG9J+YyEnDEEmkbBAOGE8FITAyFispBJ1HI-AQBXIACVs9ZVQI8ggVOkAgBiXBMFgBLBVrRKVTqUHkBsKZRqBSt9tIdQMMrtvKZdL1LUAFmNbbu+VuM61ADZakvzsS14b2xgBIGsimQKJ4JggA" data-eval="E4QwxgLglgbgpgOgM5wgCgOTDgEwwGgAIBGASgG4g"></div>
+
+<pre><code class="js">ractive.set( 'red', 1 );
+// PSST! Want a sneak preview of something neat?
+// Try using ractive.animate() instead of ractive.set().
+// You can drop it in after the line 9 in the Script content.
+</code></pre>
+
+<blockquote>
+<p>The <code>Math</code> object is one of several built-in JavaScript objects you have direct access to within expressions, alongside <code>Date</code>, <code>encodeURI</code>, <code>parseInt</code>, <code>JSON</code> and various others. Consult the documentation for a full list. You can also access other globals using the <code>@global</code> special reference, where the <code>JSON</code> object would be accessible as <code>@global.JSON</code>.</p>
+<p>Expressions can be as simple or as complex as you like, as long as they only refer to properties of their view model (i.e. the properties on the data object), don't include assignment operators (including <code>+=</code>, <code>-=</code>, <code>++</code> and  <code>--</code>), <code>new</code>, <code>delete</code> or <code>void</code>, and don't use function literals.</p>
+</blockquote></div>
             
         </div>
 

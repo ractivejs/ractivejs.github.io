@@ -99,55 +99,19 @@
         
             
 <li >
-    <a href="get-started/tutorials/references-and-context/">References and Context</a>
+    <a href="get-started/tutorials/nested-properties/">Nested Properties</a>
 </li>
 
         
             
 <li >
-    <a href="get-started/tutorials/expressions-and-computations/">Expressions and Computations</a>
+    <a href="get-started/tutorials/expressions/">Expressions</a>
 </li>
 
         
             
 <li >
-    <a href="get-started/tutorials/all-things-template/">All Things Template</a>
-</li>
-
-        
-            
-<li >
-    <a href="get-started/tutorials/context-and-helpers/">Context and Helpers</a>
-</li>
-
-        
-            
-<li >
-    <a href="get-started/tutorials/dom-and-instance-events/">DOM and Instance Events</a>
-</li>
-
-        
-            
-<li >
-    <a href="get-started/tutorials/transitions/">Transitions</a>
-</li>
-
-        
-            
-<li >
-    <a href="get-started/tutorials/components/">Coomponents</a>
-</li>
-
-        
-            
-<li >
-    <a href="get-started/tutorials/decorators/">Decorators</a>
-</li>
-
-        
-            
-<li >
-    <a href="get-started/tutorials/svg-and-animation/">SVG and Animation</a>
+    <a href="get-started/tutorials/events/">Events</a>
 </li>
 
         
@@ -738,10 +702,10 @@ bower install --save ractive
 
 <h2 id="usage">Usage</h2>
 <p>Using Ractive is very simple. Create a new instance using <code>new Ractive({...})</code> with the desired options.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvADxICWAbgATVIC8AOiALYCG1AduwD4KAehq0BmHPBj1m9XggDu9AEpcAxqToIAFMFb9SpLjDSlI9AOQBibn0sYDrIwg4AHADZdSCC5YpuAsDAKDAICFq8KEQk9MFh6tRu1Ai8pDEigQ5OpEjeXBb6hs6h4ZEofgASCB4eAPbZxaQJSSlpfgDqdTAeSACEljlEBkQAlADckurwIERAA"></div>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSANCAzlA2gLoC+WALvJjvDAAQC8NAdggO40BKAhgMakCWANwQAKYAB1GY0qU4w0pSDQDkAIwD2SAJ5KMEqaQQBbAA4AbTgcVKAPMYB8wYChgIE-RiiIkajl9z7GfAiMpF7WAPT2OnqkSBaciuKSpFLOru4oVgASCKamatHJUn4BQSFWAOpqMKZIAIRKMUQSRACUANyU3BREQA"></div>
 
 <pre><code class="js">var ractive = Ractive({
-    el: 'body',
+    target: 'body',
     template: '&lt;p&gt;{{greeting}}, {{recipient}}&lt;/p&gt;',
     data: {
         greeting: 'Hello',
@@ -750,7 +714,7 @@ bower install --save ractive
 });
 </code></pre>
 
-<p>While there are <em>no required options</em>, <code>el</code>, <code>template</code> and <code>data</code> are the most common. They specify <em>what element</em> to attach an instance with <em>this markup</em> having <em>this data</em>. Check out <a href="api/initialization-options/">Initialization Options</a> to learn more about the available options.</p>
+<p>While there are <em>no required options</em>, <code>target</code>, <code>template</code> and <code>data</code> are the most common. They specify <em>what element</em> to attach an instance with <em>this markup</em> having <em>this data</em>. Check out <a href="api/initialization-options/">Initialization Options</a> to learn more about the available options.</p>
 <p>If you get stuck at any point, visit the <a href="get-started/support/">Get Support</a> page for places to find help.</p>
 <hr />
 <h2 id="about-ractivejs">About Ractive.js</h2>
@@ -814,5 +778,5 @@ bower install --save ractive
 
 <!--
 MkDocs version : 0.16.1
-Build Date UTC : 2017-05-02 19:04:26
+Build Date UTC : 2017-05-02 21:34:54
 -->
