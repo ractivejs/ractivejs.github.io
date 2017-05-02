@@ -58,6 +58,26 @@ var playground = (function() {
     window.playgroundEl = div;
   }
 
+  function offsetTop(el, target) {
+    var y = 0;
+    while (el && el !== target) {
+      y += el.offsetTop;
+      el = el.offsetParent;
+    }
+    return y;
+  }
+
+  function ease(duration, cb) {
+    var start = Date.now();
+    function step() {
+      var t = (Date.now() - start) / duration;
+      cb(t * t * t);
+      if (t < 1) setTimeout(step, 16.667);
+      else cb(1);
+    }
+    step();
+  }
+
   return function playground(el) {
     if(!el) return;
 
@@ -78,6 +98,17 @@ var playground = (function() {
       var eval = el.getAttribute('data-eval');
 
       if (code) pg.postMessage({ code: code, tab: tab, run: run, eval: eval }, '*');
+
+      if (el.getAttribute('data-tutorial')) {
+        setTimeout(function() {
+          var start = main.scrollTop;
+          var mid = start - offsetTop(el, main);
+          var distance = -(mid > 0 ? mid - 50 : mid + 50)
+          ease(500, function(t) {
+            main.scrollTop = start + (t * distance);
+          });
+        }, 210);
+      }
     }
   }
 })();

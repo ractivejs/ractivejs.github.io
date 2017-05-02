@@ -28,25 +28,39 @@
 }
 
 .dropdown-submenu > .dropdown-menu li:first-child a {
-	-webkit-border-radius: 0px 6px 0px 0px;
-	-moz-border-radius: 0px 6px 0px 0px;
-	border-radius: 0px 6px 0px 0px;
+  -webkit-border-radius: 0px 6px 0px 0px;
+  -moz-border-radius: 0px 6px 0px 0px;
+  border-radius: 0px 6px 0px 0px;
 }
 
 .dropdown-submenu > .dropdown-menu li:last-child a {
-	-webkit-border-radius: 0px 0px 6px 6px;
-	-moz-border-radius: 0px 0px 6px 6px;
-	border-radius: 0px 0px 6px 6px;
+  -webkit-border-radius: 0px 0px 6px 6px;
+  -moz-border-radius: 0px 0px 6px 6px;
+  border-radius: 0px 0px 6px 6px;
 }
 
 .dropdown-submenu > .dropdown-menu li:only-child a {
   -webkit-border-radius: 0px 6px 6px 6px;
-	-moz-border-radius: 0px 6px 6px 6px;
-	border-radius: 0px 6px 6px 6px;
+  -moz-border-radius: 0px 6px 6px 6px;
+  border-radius: 0px 6px 6px 6px;
 }
 
 code {
   white-space: pre-wrap;
+  color: #050;
+}
+
+blockquote {
+  background-color: #f9fcf6;
+  border-left: 2px solid #729d34;
+  color: #222;
+}
+blockquote p {
+  font-size: 16px;
+}
+
+pre, code {
+  background-color: rgba(0,0,0,0.015);
 }
 
 div.tutorial {
@@ -62,6 +76,16 @@ button {
   border: 1px solid transparent;
   box-sizing: border-box;
   margin: 0.25em;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0px 0px 0px transparent;
+}
+button:hover {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background-color: #999;
+}
+button:active {
+  box-shadow: 0px 0px 0px transparent;
+  background-color: #777;
 }
 
 /* playground stuff */
@@ -172,17 +196,17 @@ div.run-in-playground:hover {
     height: 50vh;
   }
   #playground-div.max {
-    height: 85vh;
+    height: calc(100vh - 54px);
   }
 
   #main.max {
   }
   #main.mid {
-    height: calc(50vh - 60px);
+    height: calc(50vh - 54px);
     overflow: auto;
   }
   #main.min {
-    height: calc(15vh - 60px);
+    height: 0;
     overflow: auto;
   }
 }
@@ -265,6 +289,10 @@ div.run-in-playground:hover {
 }
 
 @media (max-width: 1199.9px) and (min-width: 768px) {
+  #playground-div.max {
+    height: calc(100% - 100px);
+  }
+
   #main {
     height: calc(100% - 100px);
     top: 99px;
@@ -273,11 +301,14 @@ div.run-in-playground:hover {
     height: calc(50vh - 100px);
   }
   #main.min {
-    height: calc(15vh - 100px);
+    height: 0;
   }
 }
 
 @media (max-width: 768px) {
+  #playground-div.max {
+    height: calc(100% - 54px);
+  }
   #main {
     height: calc(100% - 54px);
     top: 54px;
