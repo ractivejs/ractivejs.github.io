@@ -21,15 +21,9 @@ pages:
     - 60-second Setup: get-started/60-second-setup.md
     - Learn:
       - Hello, world!: get-started/tutorials/hello-world.md
-      - References and Context: get-started/tutorials/references-and-context.md
-      - Expressions and Computations: get-started/tutorials/expressions-and-computations.md
-      - All Things Template: get-started/tutorials/all-things-template.md
-      - Context and Helpers: get-started/tutorials/context-and-helpers.md
-      - DOM and Instance Events: get-started/tutorials/dom-and-instance-events.md
-      - Transitions: get-started/tutorials/transitions.md
-      - Coomponents: get-started/tutorials/components.md
-      - Decorators: get-started/tutorials/decorators.md
-      - SVG and Animation: get-started/tutorials/svg-and-animation.md
+      - Nested Properties: get-started/tutorials/nested-properties.md
+      - Expressions: get-started/tutorials/expressions.md
+      - Events: get-started/tutorials/events.md
     - Examples:
       - Analog Clock: get-started/examples/analog-clock.md
       - Animated Chart: get-started/examples/animated-chart.md
