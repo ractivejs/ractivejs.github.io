@@ -825,53 +825,60 @@ const AnotherComponent = Ractive.extend({
 </code></pre>
 
 <h3 id="isolation">Isolation</h3>
-<p>A unique behavior in Ractive is <a href="../../concepts/templates/references/">the resolver's ability to "climb" up the data context</a> if a <a href="../../concepts/templates/keypaths/">keypath</a> doesn't resolve in the current data context. It takes this behavior a step further and also climbs to the parent component's data context if it does not resolve on the child data context.</p>
-<p>In the following example, the instance of <code>ChildComponent</code> prints "Hello World!" even when the data is set on the outer-most instance. The resolver "climbed up" to the outer-most instance to resolve <code>message</code>.</p>
+<p>By default, components are "isolated". This means it can only bind data explicitely provided to it.
+In the following example, the instance of <code>ChildComponent</code> will not print anything.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: `
-    Child: {{ message }}
-  `
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent /&gt;
-  `
+  template: 'Message missing {{ message }}'
 });
 
 const ractive = new Ractive({
   el: 'body',
-  template: `
-    &lt;ParentComponent /&gt;
-  `
+  template: '&lt;ChildComponent /&gt;',
+  data: {
+    message: 'The ChildComponent will not know anything about this message'
+  }
 });
-
-ractive.set('message', 'Hello World!');
 </code></pre>
 
-<p>While this is handy, sometimes you will want full component isolation and only resolve references within the component. The <code>isolated</code><a href="../../api/initialization-options/">initialization option</a>does just that. When set to <code>true</code>, the resolver stops resolution up to the component with <code>isolated:true</code>.</p>
-<p>In the following example, the instance of <code>ChildComponent</code> will not print anything due to the <code>isolated: true</code> set on it.</p>
+<p>You have to pass data explicitely:</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  isolated: true,
-  template: `
-    Child: {{ message }}
-  `
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent /&gt;
-  `
+  template: 'My message: {{ message }}'
 });
 
 const ractive = new Ractive({
   el: 'body',
   template: `
-    &lt;ParentComponent /&gt;
-  `
+    &lt;ChildComponent message=&quot;Some static message&quot; /&gt;
+    &lt;ChildComponent message=&quot;{{myMessage}}&quot; /&gt;
+  `,
+  data: {
+    myMessage: 'Hello World!'
+  }
+});
+</code></pre>
+
+<p>This ensures the reusability of components in any context and avoids accidentally binding to wrong data.</p>
+<hr />
+<p>There is also a possibility to make components aware of the outer context by specifying <code>isolated: false</code> <a href="../../api/initialization-options/">initialization option</a>.
+In that case, it climbs to the parent component's data context if it does not resolve on the child data context.</p>
+<p>In the following example, the instance of <code>ChildComponent</code> prints "Hello World!" even when the data is set on the outer-most instance.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  isolated: false,
+  template: 'Child: {{ message }}'
 });
 
-ractive.set('message', 'Hello World!');
+Ractive.components.ParentComponent = Ractive.extend({
+  isolated: false,
+  template: 'Nested &lt;ChildComponent /&gt;'
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  template: '&lt;ParentComponent /&gt;',
+  data: {
+    message: 'The nested component will find me!'
+  }
+});
 </code></pre>
 
 <h3 id="binding">Binding</h3>
