@@ -424,7 +424,7 @@ interpolators: {
 
 `(boolean)`
 
-Controls whether the component will try to [resolve data and plugins on its ancestors](../concepts/templates/references.md). Defaults to `false`.
+Controls whether the component will try to [resolve data and plugins on its ancestors](../concepts/templates/references.md). Defaults to `true`.
 
 Relevant only to [Components](../extend/components.md).
 
