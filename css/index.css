@@ -92,7 +92,11 @@ button:active {
   text-align: center;
 }
 .footer-nav a {
-  margin: 0 6vw;
+  margin: 0 6%;
+}
+
+footer hr {
+  margin: 0.2em auto;
 }
 
 /* playground stuff */
@@ -161,17 +165,17 @@ div.run-in-playground:hover {
 
 @media (min-width: 992px) {
   .bs-sidebar.affix {
-    max-height: calc(100% - 100px);
+    max-height: calc(100% - 200px);
     overflow-y: auto;
     height: auto;
     top: 115px;
   }
   #main.mid .bs-sidebar.affix {
-    max-height: calc(50vh - 100px);
+    max-height: calc(50vh - 200px);
     top: 115px;
   }
   #main.min .bs-sidebar.affix {
-    max-height: calc(15vh - 100px);
+    max-height: calc(15vh - 200px);
     top: 115px;
   }
 }
@@ -200,7 +204,7 @@ div.run-in-playground:hover {
     transition: none;
   }
   #playground-div.mid {
-    height: 50vh;
+    height: 55vh;
   }
   #playground-div.max {
     height: calc(100vh - 54px);
@@ -209,7 +213,7 @@ div.run-in-playground:hover {
   #main.max {
   }
   #main.mid {
-    height: calc(50vh - 54px);
+    height: calc(45vh - 54px);
     overflow: auto;
   }
   #main.min {
@@ -305,7 +309,7 @@ div.run-in-playground:hover {
     top: 99px;
   }
   #main.mid {
-    height: calc(50vh - 100px);
+    height: calc(45vh - 100px);
   }
   #main.min {
     height: 0;
@@ -321,7 +325,7 @@ div.run-in-playground:hover {
     top: 54px;
   }
   #main.mid {
-    height: calc(50vh - 54px);
+    height: calc(45vh - 54px);
   }
   #main.min {
     height: calc(15vh - 54px);
