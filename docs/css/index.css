@@ -88,6 +88,13 @@ button:active {
   background-color: #777;
 }
 
+.footer-nav {
+  text-align: center;
+}
+.footer-nav a {
+  margin: 0 6vw;
+}
+
 /* playground stuff */
 #playground-div {
   transition: height 0.2s ease-in-out, width 0.2s ease-in-out;

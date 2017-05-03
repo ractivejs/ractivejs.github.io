@@ -73,6 +73,12 @@
             {% endblock %}
         </div>
 
+        <div class="footer-nav">
+            {% if previous_page %}<a rel="prev" href="{{ previous_page.url }}">previous</a>{% endif %}
+            {% if page %}<a rel="edit" href="{{ page.edit_url.replace('ractive/edit/master', 'ractivejs.github.io/edit/dev') }}" target="_blank">edit this page{% endif %}
+            {% if next_page %}<a rel="next" href="{{ next_page.url }}">next</a>{% endif %}
+        </div>
+
         <footer class="col-md-12 text-center">
             <hr>
             <p>{% if copyright %}
