@@ -24,16 +24,16 @@ Calls the parent method from a child method of the same name.
 
 ```js
 var Component = Ractive.extend({
-	oninit: function() {
-		console.log('super init')
-	}
+  oninit: function() {
+    console.log('super init')
+  }
 });
 
 var SubComponent = Component.extend({
-	oninit: function() {
-		this._super();
-		console.log('sub init');
-	}
+  oninit: function() {
+    this._super();
+    console.log('sub init');
+  }
 })
 
 new SubComponent();
@@ -64,21 +64,21 @@ Increments the selected keypath.
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	data: {
-		counter: 0
-	}
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
 });
 
 setTimeout(function() {
-	r.add('counter');
-	console.log(r.get('counter'));
+  r.add('counter');
+  console.log(r.get('counter'));
 }, 1000);
 
 setTimeout(function() {
-	r.add('counter', 10);
-	console.log(r.get('counter'));
+  r.add('counter', 10);
+  console.log(r.get('counter'));
 }, 2000);
 ```
 
@@ -124,15 +124,15 @@ If an animation is started on a [keypath](../concepts/templates/keypaths.md) whi
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	data: {
-		counter: 0
-	}
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
 });
 
 setTimeout(function() {
-	r.animate('counter', 20, { duration: 2000 });
+  r.animate('counter', 20, { duration: 2000 });
 }, 1000);
 ```
 
@@ -199,17 +199,17 @@ Detaches the instance from the DOM, returning a document fragment. You can reins
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	data: {
-		counter: 0
-	}
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
 });
 
 setTimeout(function() {
-	var div = document.createElement('div');
-	div.appendChild(r.detach());
-	console.log(div.innerHTML);
+  var div = document.createElement('div');
+  div.appendChild(r.detach());
+  console.log(div.innerHTML);
 }, 1000);
 ```
 
@@ -260,13 +260,13 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl'
+  el: '#main',
+  template: '#tpl'
 });
 
 setTimeout(function() {
-	var p = r.find('p.target');
-	console.log(p.outerHTML);
+  var p = r.find('p.target');
+  console.log(p.outerHTML);
 }, 1000);
 ```
 
@@ -296,15 +296,15 @@ This method is similar to [`ractive.find()`]ractivefind), with two important dif
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl'
+  el: '#main',
+  template: '#tpl'
 });
 
 setTimeout(function() {
-	var ps = r.findAll('p');
-	ps.forEach(function(p) {
-		console.log(p.outerHTML);
-	})
+  var ps = r.findAll('p');
+  ps.forEach(function(p) {
+    console.log(p.outerHTML);
+  })
 }, 1000);
 ```
 
@@ -334,22 +334,22 @@ Returns all components inside a given Ractive instance with the given `name` (or
 
 ```js
 var Component = Ractive.extend({
-	template: 'Component {{number}}'
+  template: 'Component {{number}}'
 });
 
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	components: {
-		Component: Component
-	}
+  el: '#main',
+  template: '#tpl',
+  components: {
+    Component: Component
+  }
 });
 
 setTimeout(function() {
-	var cs = r.findAllComponents('Component');
-	cs.forEach(function(c) {
-		console.log(c.toHTML());
-	})
+  var cs = r.findAllComponents('Component');
+  cs.forEach(function(c) {
+    console.log(c.toHTML());
+  })
 }, 1000);
 ```
 
@@ -378,20 +378,20 @@ Returns the first component inside a given Ractive instance with the given `name
 
 ```js
 var Component = Ractive.extend({
-	template: 'Component {{number}}'
+  template: 'Component {{number}}'
 });
 
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	components: {
-		Component: Component
-	}
+  el: '#main',
+  template: '#tpl',
+  components: {
+    Component: Component
+  }
 });
 
 setTimeout(function() {
-	var c = r.findComponent('Component');
-	console.log(c.toHTML());
+  var c = r.findComponent('Component');
+  console.log(c.toHTML());
 }, 1000);
 ```
 
@@ -500,11 +500,11 @@ Returns the value at `keypath`. If the [keypath](../concepts/templates/keypaths.
 
 ```js
 var r = new Ractive({
-	data: {
-		foo: {
-			bar: [ 'baz' ]
-		}
-	}
+  data: {
+    foo: {
+      bar: [ 'baz' ]
+    }
+  }
 });
 
 console.log(r.get('foo.bar.0'));
@@ -701,8 +701,8 @@ Note that you can observe [keypath](../concepts/templates/keypaths.md) *patterns
 
 ```js
 ractive.observe( 'items.*.status', function ( newValue, oldValue, keypath) {
-	var index = /items.(\d+).status/.exec( keypath )[1];
-	alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
+  var index = /items.(\d+).status/.exec( keypath )[1];
+  alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -710,7 +710,7 @@ ractive.observe( 'items.*.status', function ( newValue, oldValue, keypath) {
 
 ```js
 ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
-	alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue );
+  alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -748,8 +748,8 @@ Note that you can observe [keypath](../concepts/templates/keypaths.md) *patterns
 
 ```js
 ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, keypath ) {
-	var index = /items.(\d+).status/.exec( keypath )[1];
-	alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
+  var index = /items.(\d+).status/.exec( keypath )[1];
+  alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -757,7 +757,7 @@ ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, keypath ) 
 
 ```js
 ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, keypath ) {
-	alert( keypath + ' changed from ' + oldValue + ' to ' + newValue );
+  alert( keypath + ' changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -828,15 +828,15 @@ ractive.on( 'activate select', function () {...} );
 
 // map of handler/function pairs
 ractive.on({
-	activate: function () {...},
-	select: function () {...}
+  activate: function () {...},
+  select: function () {...}
 });
 
 // knock yourself out:
 ractive.on({
-	activate: function () {...},
-	'bip bop boop': function () {...},
-	'select foo.* bar': function () {...}
+  activate: function () {...},
+  'bip bop boop': function () {...},
+  'select foo.* bar': function () {...}
 });
 ```
 
@@ -1072,7 +1072,7 @@ The `keypath` can also contain wildcards [pattern-observers](../concepts/events/
 
 ```js
 ractive.on('selectAll', function(){
-	ractive.set('items.*.selected', true);
+  ractive.set('items.*.selected', true);
 })
 ```
 
