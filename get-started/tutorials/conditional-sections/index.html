@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="author" content="RactiveJS contributors"> 
+    <link rel="canonical" href="https://ractive.js.org/get-started/tutorials/conditional-sections/"> 
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="theme-color" content="#557526">
+
+    <title>Conditional Sections - Ractive.js</title>
+
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link href="../../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+
+
+    <link href="../../../css/index.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../../..">Ractive.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../..">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../60-second-setup/">60-second Setup</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Learn</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../hello-world/">Hello, world!</a>
+</li>
+
+        
+            
+<li >
+    <a href="../nested-properties/">Nested Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../events/">Events</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Conditional Sections</a>
+</li>
+
+        
+            
+<li >
+    <a href="../iterative-sections/">Iterative Sections</a>
+</li>
+
+        
+            
+<li >
+    <a href="../two-way-binding/">Two-way Binding</a>
+</li>
+
+        
+            
+<li >
+    <a href="../partials/">Partials</a>
+</li>
+
+        
+            
+<li >
+    <a href="../triples-embedded-html/">Triples (Embedded HTML)</a>
+</li>
+
+        
+            
+<li >
+    <a href="../components/">Components</a>
+</li>
+
+        
+            
+<li >
+    <a href="../animation/">Animations</a>
+</li>
+
+        
+            
+<li >
+    <a href="../svg/">SVG</a>
+</li>
+
+        
+            
+<li >
+    <a href="../transitions/">Transitions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../decorators/">Decorators</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Examples</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../examples/analog-clock/">Analog Clock</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../examples/animated-chart/">Animated Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../examples/comments/">Comments</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../examples/donut-chart/">Donut Chart</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../examples/illustration/">Illustration</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../examples/rating-stars/">Rating Sars</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../examples/todo-list/">ToDo List</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../contributing/">Contributing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/component-files/">Component Files</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Concepts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Architecture</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../concepts/architecture/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/architecture/parser/">Parser</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/architecture/model/">Model</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/architecture/view/">View</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Data Binding</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../concepts/data-binding/computed-properties/">Computed Properties</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/data-binding/dependents/">Dependents</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/data-binding/observers/">Observers</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/data-binding/parallel-dom/">Parallel DOM</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/data-binding/two-way-binding/">Two-Way Binding</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Events</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../concepts/events/overview/">Overview</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/events/bubbling/">Bubbling</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/events/directives/">Directives</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/events/method-calls/">Method Calls</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/events/proxy-events/">Proxy Events</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/events/publish-subscribe/">Publish-Subscribe</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Rendering</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../concepts/rendering/progressive-enhancement/">Progressive Enhancement</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/rendering/server-side-rendering/">Server-Side Rendering</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Security</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../concepts/security/csp/">CSP</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Templates</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../concepts/templates/elements/">Elements</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/templates/expressions/">Expressions</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/templates/keypaths/">Keypaths</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/templates/mustaches/">Mustaches</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/templates/parsing/">Parsing</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../concepts/templates/references/">References</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../articles/introducing-ractive-js/">Introducing Ractive.js</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/the-origins-of-ractive/">The Origins Of Ractive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/">Ractive.js Expressions And The New Wave Of Reactive Programming</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-angular/">Ractive.js vs Angular</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../articles/ractive-vs-react/">Ractive.js vs React</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../events/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../iterative-sections/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/ractivejs/ractive">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div id="main">
+        <div class="container">
+            
+            <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="first-level active"><a href="#conditional-sections">Conditional Sections</a></li>
+        
+            <li class="second-level"><a href="#step-1">Step 1</a></li>
+            
+        
+            <li class="second-level"><a href="#step-2">Step 2</a></li>
+            
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="conditional-sections">Conditional Sections</h1>
+<p>Often, you want to show or hide part of your view depending on whether a particular condition is met. For example you might want to show a slightly different view to users depending on whether they're signed in or not.</p>
+<h2 id="step-1">Step 1</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEAhAFpn5RQmHCGacgDMAexhyYWIUfmRnYn5yAFdhBBhhclc+QQdJNgB1BBVRAI9yACMLAGsscmBgeMT+Bg8MDEcuTLtWdKdXd09vX0Dg-gD+Z1DwyOi4hKSU5zT7AkyACWItMESER3IABRUEBgTyAgZyMBgEP2oAcgBiS-Ih51EVYlFSq4ABADpR-gBJfgAFABKS5sH6UfhcBgcTitSGcMQSaRsEA4YTwUhMcjmSzWcjUcgRADu5AAShYrKQEADgG1cEwWJByDd6cwELhLlg6UpVOoEEyWTy1ApOW0kOoGEzaTFyLKfsh-ky-AwVAkuTLZYNcABlMIRJCKrQwWI2GXYARyvWGvyxfi4obkYGVC3keyYgb1BD48iSGAFaQA5kAUX4CmC2gCsWCNRgdUKuACIT1EM5zJxlIQAH1lfw7kCANx2dKy9PWb7smltWWymNx-mEz3q+zVpNjA38Jm4Y0IJsyata3Vt60qhJV8gYAsujACCf5zBAA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBgAYmIAzcsOIp+yAJL8MDDtWXAIAQgBaCPJFBGFhBjRyVwB7GA8vHyQI4n5yAFdhBBhhcii+QRCCSTYAdQQVURTY8gAjCwBrLHJHQuL+BljAsK4a4MdON0Dg8ec3cn4U3ABlTL8AoMr7cKiYuISk1PTF-gjPb2QcvL6SsoiK+22agAliLTBihDDyAAUVBAYRXIBAY5DAMAQrmoAHInNDyClTqIVMRRB0YQABAB0534-gAFABKaFsXGUfhcBgcThjSoTKabLhiCTSNggHDCeCkJjkcyWazkagLBAAd3IACULFZSAh8cBgrgmCxIORYYrmAhcNCsAqlKp1AgVWq9WoFNrgkh1AwVfK8uR7bj1irXAwVEUdXb7YsVmskP4VbgYPkbHbsAIHZl-cl8vx+YjyESeuHyPZucdBghBeRJDBmtJ8aqAKL8BTpbQpfLpG4DFq4FIZbzk7WqvnShAAfRd-HhhIA3HZKvbW9YcZq5cF7fbqxmVTWEB77JOG1ko4HgwuZJPvasLn7+M7XUUJ+QMH3k5tT73MEA">Fix Code</button>
+</div></p>
+<p>In this example we've already set up a mock sign-in mechanism – click the 'sign in' button and enter your name in the prompt.</p>
+<p>All we need to do is hide the 'please sign in' message when we're signed in, and the 'welcome back!' message when we're not.</p>
+<p>Wrap the first block in an <code>#if</code> section that uses the <code>signedIn</code> property:</p>
+<pre><code class="handlebars">{{#if signedIn}}
+  &lt;!-- message for signed-in users --&gt;
+  &lt;p&gt;Welcome back, {{username}}!&lt;/p&gt;
+{{/if}}
+</code></pre>
+
+<p>Now do the same for the other block, except with the <code>notSignedIn</code> property. Execute the code.</p>
+<blockquote>
+<p>The plain mustache block <code>{{#...}}</code> is equivalent to <code>{{#if ...}}{{#with ...}}</code>. It is both conditional and contextual.</p>
+</blockquote>
+<h2 id="step-2">Step 2</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBgAYmIAzcsOIp+yAJL8MDDtWXAIAQgBaCPJFBGFhBjRyVwB7GA8vHyQI4n5yAFdhBBhhcii+QRCCSTYAdQQVURTY8gAjCwBrLHJHQuL+BljAsK4a4MdON0Dg8ec3cn4U3ABlTL8AoMr7cKiYuISk1PTF-gjPb2QcvL6SsoiK+22agAliLTBihDDyAAUVBAYRXIBAY5DAMAQrmoAHInNDyClTqIVMRRB0YQABAB0534-gAFABKaFsXGUfhcBgcThjSoTKabLhiCTSNggHDCeCkJjkcyWazkagLBAAd3IACULFZSAh8cBgrgmCxIORYYrmAhcNCsAqlKp1AgVWq9WoFNrgkh1AwVfK8uR7bj1irXAwVEUdXb7YsVmskP4VbgYPkbHbsAIHZl-cl8vx+YjyESeuHyPZucdBghBeRJDBmtJ8aqAKL8BTpbQpfLpG4DFq4FIZbzk7WqvnShAAfRd-HhhIA3HZKvbW9YcZq5cF7fbqxmVTWEB77JOG1ko4HgwuZJPvasLn7+M7XUUJ+QMH3k5tT73MEA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBgAYmIAzcsOIp+yAJL8MDDtWXAIAQgBaCPJFBGFhBjRyVwB7GA8vHyQI4n5yAFdhBBhhcii+QRCCSTYAdQQVURTY8gAjCwBrLHJHQuL+BljAsK4a4McGosDg+3ComLiEpNT0-hT+CM9vZBy8vpKyiIr7WZqACWItMGKEMPIABRUEBiLyAgZyMBgEV2oAcicf3I6wiohUxFEHX+AAEAHRbfj+AAUAEo-mwEZR+FwGBxOGNKo5OG5ptjOGIJNI2CAcMJ4KQmORzJZrORqOQfAB3cgAJQsVlICCRwGCuCYLEg5ABYuYCFwfywoqUqnUCEl0uVagUCuCSHUDElIry5BNCL8-ElrgYKiKAhN2DtGW8-kt+X4LPW5FRPUd9gZq0GCDZ5EkMGa0iRUoAovwFOltCl8ul9gMWrgUk68rkFVLmQKEAB9K38IEogDcdkqJrz1nhcuFwRNJpTgclqYQiqrTbNSBdWhg+RsXYw5cdQQC5cwQA">Fix Code</button>
+</div></p>
+<p>Having two properties (<code>signedIn</code> and <code>notSignedIn</code>) to represent one piece of data (whether or not the user is signed in) is the sort of thing that makes most programmers itch uncontrollably.</p>
+<p>We have a couple of options. We could use an <code>#unless</code> section:</p>
+<pre><code class="handlebars">{{#unless signedIn}}
+  &lt;!-- not-signed-in block --&gt;
+{{/unless}}
+</code></pre>
+
+<blockquote>
+<p>There's also a plain mustache for negated sections, <code>{{^signedIn}}...{{/}}</code>.</p>
+</blockquote>
+<p>Alternatively, we could use else:</p>
+<pre><code class="handlebars">{{#if signedIn}}
+  &lt;!-- signed-in block --&gt;
+{{else}}
+  &lt;!-- not-signed-in block --&gt;
+{{/if}}
+</code></pre>
+
+<p>Update the template. Then, remove the references to notSignedIn in the JavaScript. Then breathe a sigh of relief – doesn't that feel better?</p>
+<blockquote>
+<p>If you have another branch in your conditional, you can include it with an <code>{{elseif ...}}</code> mustache. An <code>{{#if}}</code> section can include as many <code>elseif</code>s as you need, but it can only contain one <code>else</code>.</p>
+</blockquote></div>
+            
+        </div>
+
+        <div class="footer-nav">
+            <a rel="prev" href="../events/">previous</a>
+            <a rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/tutorials/conditional-sections.md" target="_blank">edit this page
+            <a rel="next" href="../iterative-sections/">next</a>
+        </div>
+
+        <footer class="col-md-12 text-center">
+            <hr>
+            <p>
+            <small>©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.<br></small>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+        </footer>
+    </div>
+
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    var base_url = '../../..';
+    </script>
+    <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
+    <script src="../../../js/base.js"></script>
+    <script src="../../../js/index.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
