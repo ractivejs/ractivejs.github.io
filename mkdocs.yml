@@ -24,6 +24,16 @@ pages:
       - Nested Properties: get-started/tutorials/nested-properties.md
       - Expressions: get-started/tutorials/expressions.md
       - Events: get-started/tutorials/events.md
+      - Conditional Sections: get-started/tutorials/conditional-sections.md
+      - Iterative Sections: get-started/tutorials/iterative-sections.md
+      - Two-way Binding: get-started/tutorials/two-way-binding.md
+      - Partials: get-started/tutorials/partials.md
+      - Triples (Embedded HTML): get-started/tutorials/triples-embedded-html.md
+      - Components: get-started/tutorials/components.md
+      - Animations: get-started/tutorials/animation.md
+      - SVG: get-started/tutorials/svg.md
+      - Transitions: get-started/tutorials/transitions.md
+      - Decorators: get-started/tutorials/decorators.md
     - Examples:
       - Analog Clock: get-started/examples/analog-clock.md
       - Animated Chart: get-started/examples/animated-chart.md
