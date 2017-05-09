@@ -15,8 +15,8 @@ Welcome! These pages aim to provide all the information you need to master Racti
 Ractive is available via the following channels:
 
 ```
-// unpkg
-https://unpkg.com/ractive
+// jsDelivr
+https://cdn.jsdelivr.net/npm/ractive
 
 // CDNjs
 https://cdnjs.com/libraries/ractive
