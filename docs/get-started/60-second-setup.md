@@ -11,8 +11,8 @@ Create a file called `index.html` and paste in the following (or just open the p
   <meta charset='utf-8'>
   <title>Hello World</title>
 
-  <!-- The latest release of Ractive can always be found at https://unpkg.com/ractive -->
-  <script src='https://unpkg.com/ractive'></script>
+  <!-- The latest release of Ractive can always be found at https://cdn.jsdelivr.net/npm/ractive -->
+  <script src='https://cdn.jsdelivr.net/npm/ractive'></script>
 </head>
 <body>
 
