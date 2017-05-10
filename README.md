@@ -32,6 +32,9 @@ cd src
 # Start the virtualenv
 source ../bin/activate
 
+# on Windows start the virtualenv with
+..\Scripts\activate
+
 # Install dependencies
 pip install -r requirements.txt
 

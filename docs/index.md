@@ -46,6 +46,23 @@ var ractive = Ractive({
 });
 ```
 
+<div id="demo-one">moo</div>
+
+<script>
+    let view = new Ractive({
+    target: "#demo-one",
+    template: "<button on-click='@this.run()'>Run</button> {{#show}} <p>{{greeting}}, {{recipient}}</p> {{/}}",
+    data: {
+        greeting: 'Hello',
+        recipient: 'World!'
+    },
+    run: function() {
+        console.log("ok");
+        this.set("show", true);
+    }
+});
+</script>
+
 While there are _no required options_, `target`, `template` and `data` are the most common. They specify _what element_ to attach an instance with _this markup_ having _this data_. Check out [Initialization Options](api/initialization-options.md) to learn more about the available options.
 
 If you get stuck at any point, visit the [Get Support](get-started/support.md) page for places to find help.
