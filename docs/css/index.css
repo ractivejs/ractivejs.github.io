@@ -1,6 +1,7 @@
 /* colors */
 .navbar-default {
   background-color: #557526;
+  border-bottom: 1px solid #ebf2f2;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
@@ -143,10 +144,10 @@ footer hr {
 #main {
   transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
   position: absolute;
-  height: calc(100% - 54px);
+  height: calc(100% - 44px);
   width: 100%;
   overflow: auto;
-  top: 54px;
+  top: 44px;
 }
 
 div.run-in-playground {
@@ -207,13 +208,13 @@ div.run-in-playground:hover {
     height: 55vh;
   }
   #playground-div.max {
-    height: calc(100vh - 54px);
+    height: calc(100vh - 44px);
   }
 
   #main.max {
   }
   #main.mid {
-    height: calc(45vh - 54px);
+    height: calc(45vh - 44px);
     overflow: auto;
   }
   #main.min {
@@ -230,8 +231,8 @@ div.run-in-playground:hover {
   #playground-div {
     position: absolute;
     right: 0;
-    height: calc(100% - 54px);
-    top: 54px;
+    height: calc(100% - 44px);
+    top: 44px;
   }
   #playground-div.max {
     width: 50%;
@@ -265,7 +266,7 @@ div.run-in-playground:hover {
   }
 
   #main {
-    height: calc(100% - 54px);
+    height: calc(100% - 44px);
   }
 
   #main.max {
@@ -301,15 +302,15 @@ div.run-in-playground:hover {
 
 @media (max-width: 1199.9px) and (min-width: 768px) {
   #playground-div.max {
-    height: calc(100% - 100px);
+    height: calc(100% - 90px);
   }
 
   #main {
-    height: calc(100% - 100px);
-    top: 99px;
+    height: calc(100% - 90px);
+    top: 90px;
   }
   #main.mid {
-    height: calc(45vh - 100px);
+    height: calc(45vh - 90px);
   }
   #main.min {
     height: 0;
@@ -318,17 +319,17 @@ div.run-in-playground:hover {
 
 @media (max-width: 768px) {
   #playground-div.max {
-    height: calc(100% - 54px);
+    height: calc(100% - 44px);
   }
   #main {
-    height: calc(100% - 54px);
-    top: 54px;
+    height: calc(100% - 44px);
+    top: 44px;
   }
   #main.mid {
-    height: calc(45vh - 54px);
+    height: calc(45vh - 44px);
   }
   #main.min {
-    height: calc(15vh - 54px);
+    height: calc(15vh - 44px);
   }
 }
 
