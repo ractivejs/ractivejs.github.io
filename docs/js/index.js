@@ -103,7 +103,7 @@ var playground = (function() {
         setTimeout(function() {
           var start = main.scrollTop;
           var mid = start - offsetTop(el, main);
-          var distance = -(mid > 0 ? mid - 50 : mid + 50)
+          var distance = -(mid + 60)
           ease(500, function(t) {
             main.scrollTop = start + (t * distance);
           });
