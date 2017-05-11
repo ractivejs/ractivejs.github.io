@@ -68,8 +68,8 @@
     <div id="main">
         <div class="container">
             {% block content %}
-            <div class="col-md-3" role="subnav">{% include "toc.html" %}</div>
-            <div class="col-md-9" role="main">{% include "content.html" %}</div>
+            {% if current_page and current_page.is_homepage %}{% else %}<div class="col-md-3" role="subnav">{% include "toc.html" %}</div>{% endif %}
+            <div class="col-md-{% if current_page and current_page.is_homepage %}12{% else %}9{% endif %}" role="main">{% include "content.html" %}</div>
             {% endblock %}
         </div>
 
