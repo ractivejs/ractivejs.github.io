@@ -1,6 +1,7 @@
 /* colors */
 .navbar-default {
   background-color: #557526;
+  border-bottom: 1px solid #ebf2f2;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
@@ -43,6 +44,30 @@
   -webkit-border-radius: 0px 6px 6px 6px;
   -moz-border-radius: 0px 6px 6px 6px;
   border-radius: 0px 6px 6px 6px;
+}
+
+.bs-sidenav {
+  font-size: 14px;
+}
+
+.bs-sidebar .nav > li > a:hover, .bs-sidebar .nav > li > a:focus {
+  border-color: #557526;
+}
+
+.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a{
+  border-right: 4px solid #557526;
+  border-radius: 2px;
+}
+
+h1, h2 {
+  font-weight: 100;
+}
+
+a {
+  color: #222;
+}
+a:hover, a:focus {
+  color: #384e19;
 }
 
 code {
@@ -99,6 +124,94 @@ footer hr {
   margin: 0.2em auto;
 }
 
+/* index stuff */
+#logo {
+  text-align: center;
+  margin: 2em auto 1em;
+}
+
+#logo .name {
+  display: inline-block;
+  font-size: 2.5em;
+  font-weight: 200;
+  vertical-align: bottom;
+}
+
+#logo .slogan {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 9em;
+  height: 2.5em;
+  text-align: left;
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #999;
+}
+
+#cdn {
+  font-size: 1.5em;
+  text-align: center;
+  color: #999;
+  margin-bottom: 1em;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background-color: #fcfcfc;
+  position: relative;
+}
+
+#cdn:before, #cdn:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  width: 1em;
+  height: calc(100% + 2px);
+}
+#cdn:before {
+  left: 0;
+  background: linear-gradient(90deg, #fff, transparent);
+}
+#cdn:after {
+  right: 0;
+  background: linear-gradient(270deg, #fff, transparent);
+}
+
+#cdn .url {
+  color: #729d33;
+}
+
+#info-blocks {
+  margin-bottom: 1em;
+}
+
+#badges + p {
+  text-align: center;
+}
+
+@media (max-width: 740px) {
+  #cdn .fluff {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  #logo .name {
+    font-size: 1.5em;
+  }
+  #logo .slogan {
+    width: 100%;
+    font-size: 0.5em;
+    text-align: center;
+  }
+
+  #cdn {
+    font-size: 0.8em;
+  }
+
+  #logo, #cdn, #info-blocks {
+    margin-bottom: 0.5em;
+  }
+}
+
 /* playground stuff */
 #playground-div {
   transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
@@ -143,10 +256,10 @@ footer hr {
 #main {
   transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
   position: absolute;
-  height: calc(100% - 54px);
+  height: calc(100% - 44px);
   width: 100%;
   overflow: auto;
-  top: 54px;
+  top: 44px;
 }
 
 div.run-in-playground {
@@ -207,13 +320,13 @@ div.run-in-playground:hover {
     height: 55vh;
   }
   #playground-div.max {
-    height: calc(100vh - 54px);
+    height: calc(100vh - 44px);
   }
 
   #main.max {
   }
   #main.mid {
-    height: calc(45vh - 54px);
+    height: calc(45vh - 44px);
     overflow: auto;
   }
   #main.min {
@@ -230,8 +343,8 @@ div.run-in-playground:hover {
   #playground-div {
     position: absolute;
     right: 0;
-    height: calc(100% - 54px);
-    top: 54px;
+    height: calc(100% - 44px);
+    top: 44px;
   }
   #playground-div.max {
     width: 50%;
@@ -265,7 +378,7 @@ div.run-in-playground:hover {
   }
 
   #main {
-    height: calc(100% - 54px);
+    height: calc(100% - 44px);
   }
 
   #main.max {
@@ -301,15 +414,15 @@ div.run-in-playground:hover {
 
 @media (max-width: 1199.9px) and (min-width: 768px) {
   #playground-div.max {
-    height: calc(100% - 100px);
+    height: calc(100% - 90px);
   }
 
   #main {
-    height: calc(100% - 100px);
-    top: 99px;
+    height: calc(100% - 90px);
+    top: 90px;
   }
   #main.mid {
-    height: calc(45vh - 100px);
+    height: calc(45vh - 90px);
   }
   #main.min {
     height: 0;
@@ -318,21 +431,21 @@ div.run-in-playground:hover {
 
 @media (max-width: 768px) {
   #playground-div.max {
-    height: calc(100% - 54px);
+    height: calc(100% - 44px);
   }
   #main {
-    height: calc(100% - 54px);
-    top: 54px;
+    height: calc(100% - 44px);
+    top: 44px;
   }
   #main.mid {
-    height: calc(45vh - 54px);
+    height: calc(45vh - 44px);
   }
   #main.min {
-    height: calc(15vh - 54px);
+    height: calc(15vh - 44px);
   }
 }
 
 /* Not entirely sure why the built-in bootstrap doesn't have this */
-img{
+img {
   max-width: 100%;
 }
