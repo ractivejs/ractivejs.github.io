@@ -6,7 +6,7 @@ $( document ).ready(function() {
 });
 
 
-$('body').scrollspy({
+$('#main').scrollspy({
     target: '.bs-sidebar',
 });
 
