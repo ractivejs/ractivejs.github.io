@@ -2,9 +2,7 @@
 
 ## ractive._super()
 
-Calls the parent method from a child method of the same name.
-
-`ractive._super()` is not always available. Only when Ractive detects its use does it make this reference to the parent method.
+Calls the parent method from a child method of the same name. If the parent is not a function, `ractive._super()` will return the value of the parent.
 
 **Syntax**
 
@@ -16,7 +14,7 @@ Calls the parent method from a child method of the same name.
 
 **Returns**
 
-- `(any)`: Depends on the method called.
+- `(any)`: The return value of the parent function or the value of the parent property.
 
 **Examples**
 
@@ -24,20 +22,22 @@ Calls the parent method from a child method of the same name.
 
 ```js
 var Component = Ractive.extend({
-	oninit: function() {
-		console.log('super init')
-	}
+  oninit: function() {
+    console.log('super init')
+  }
 });
 
 var SubComponent = Component.extend({
-	oninit: function() {
-		this._super();
-		console.log('sub init');
-	}
+  oninit: function() {
+    this._super();
+    console.log('sub init');
+  }
 })
 
 new SubComponent();
 ```
+
+`ractive._super()` is only available within a method that calls it. Ractive will detect the call and dynamically provide it to the method.
 
 ---
 
@@ -56,7 +56,7 @@ Increments the selected keypath.
 
 **Returns**
 
-- `(Promise)`: A promise that resolves when the operation completes.
+- `(Promise)`: A promise that resolves with `undefined` when transitions related to the affected keypath completes.
 
 **Examples**
 
@@ -64,21 +64,21 @@ Increments the selected keypath.
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	data: {
-		counter: 0
-	}
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
 });
 
 setTimeout(function() {
-	r.add('counter');
-	console.log(r.get('counter'));
+  r.add('counter');
+  console.log(r.get('counter'));
 }, 1000);
 
 setTimeout(function() {
-	r.add('counter', 10);
-	console.log(r.get('counter'));
+  r.add('counter', 10);
+  console.log(r.get('counter'));
 }, 2000);
 ```
 
@@ -116,7 +116,7 @@ If an animation is started on a [keypath](../concepts/templates/keypaths.md) whi
 
 **Returns**
 
-- `(Promise)`: Returns a Promise with an additional `stop` method, which cancels the animation.
+- `(Promise)`: A promise that resolves with `undefined` when transitions related to the affected keypath completes. The promise comes with an additional `stop` method, which can be called to cancel the animation.
 
 **Examples**
 
@@ -124,15 +124,15 @@ If an animation is started on a [keypath](../concepts/templates/keypaths.md) whi
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	data: {
-		counter: 0
-	}
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
 });
 
 setTimeout(function() {
-	r.animate('counter', 20, { duration: 2000 });
+  r.animate('counter', 20, { duration: 2000 });
 }, 1000);
 ```
 
@@ -199,17 +199,17 @@ Detaches the instance from the DOM, returning a document fragment. You can reins
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	data: {
-		counter: 0
-	}
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
 });
 
 setTimeout(function() {
-	var div = document.createElement('div');
-	div.appendChild(r.detach());
-	console.log(div.innerHTML);
+  var div = document.createElement('div');
+  div.appendChild(r.detach());
+  console.log(div.innerHTML);
 }, 1000);
 ```
 
@@ -239,7 +239,7 @@ When a child instance that was attached targeting an anchor is detached, its ins
 
 ## ractive.find()
 
-Returns the first element inside a given Ractive instance matching a CSS selector. This is similar to doing `this.el.querySelector(selector)` (though it doesn't actually use `querySelector()`).
+Returns the first element inside a given Ractive instance matching a CSS selector. This is similar to doing `this.el.querySelector(selector)`.
 
 **Syntax**
 
@@ -252,7 +252,7 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 
 **Returns**
 
-- `(Node)`: A Node.
+- `(Node)`: The matched element.
 
 **Examples**
 
@@ -260,13 +260,13 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl'
+  el: '#main',
+  template: '#tpl'
 });
 
 setTimeout(function() {
-	var p = r.find('p.target');
-	console.log(p.outerHTML);
+  var p = r.find('p.target');
+  console.log(p.outerHTML);
 }, 1000);
 ```
 
@@ -288,7 +288,7 @@ This method is similar to [`ractive.find()`]ractivefind), with two important dif
 
 **Returns**
 
-- `(Array<Node>)`: An array of nodes.
+- `(Array<Node>)`: An array of matched elements.
 
 **Examples**
 
@@ -296,15 +296,15 @@ This method is similar to [`ractive.find()`]ractivefind), with two important dif
 
 ```js
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl'
+  el: '#main',
+  template: '#tpl'
 });
 
 setTimeout(function() {
-	var ps = r.findAll('p');
-	ps.forEach(function(p) {
-		console.log(p.outerHTML);
-	})
+  var ps = r.findAll('p');
+  ps.forEach(function(p) {
+    console.log(p.outerHTML);
+  })
 }, 1000);
 ```
 
@@ -326,7 +326,7 @@ Returns all components inside a given Ractive instance with the given `name` (or
 
 **Returns**
 
-- `(Array<ractive>)`: An array of ractive instances.
+- `(Array<Ractive>)`: An array of matched Ractive instances.
 
 **Examples**
 
@@ -334,22 +334,22 @@ Returns all components inside a given Ractive instance with the given `name` (or
 
 ```js
 var Component = Ractive.extend({
-	template: 'Component {{number}}'
+  template: 'Component {{number}}'
 });
 
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	components: {
-		Component: Component
-	}
+  el: '#main',
+  template: '#tpl',
+  components: {
+    Component: Component
+  }
 });
 
 setTimeout(function() {
-	var cs = r.findAllComponents('Component');
-	cs.forEach(function(c) {
-		console.log(c.toHTML());
-	})
+  var cs = r.findAllComponents('Component');
+  cs.forEach(function(c) {
+    console.log(c.toHTML());
+  })
 }, 1000);
 ```
 
@@ -370,7 +370,7 @@ Returns the first component inside a given Ractive instance with the given `name
 
 **Returns**
 
-- `(Ractive)`: A ractive instance.
+- `(Ractive)`: The Ractive instance.
 
 **Examples**
 
@@ -378,20 +378,20 @@ Returns the first component inside a given Ractive instance with the given `name
 
 ```js
 var Component = Ractive.extend({
-	template: 'Component {{number}}'
+  template: 'Component {{number}}'
 });
 
 var r = new Ractive({
-	el: '#main',
-	template: '#tpl',
-	components: {
-		Component: Component
-	}
+  el: '#main',
+  template: '#tpl',
+  components: {
+    Component: Component
+  }
 });
 
 setTimeout(function() {
-	var c = r.findComponent('Component');
-	console.log(c.toHTML());
+  var c = r.findComponent('Component');
+  console.log(c.toHTML());
 }, 1000);
 ```
 
@@ -411,7 +411,7 @@ Returns the first container of this component instance with the given `name`.
 
 **Returns**
 
-- `(Ractive)`: Returns the first container of this component with the given `name`.
+- `(Ractive)`: The first container of this component with the given `name`.
 
 **Examples**
 
@@ -435,7 +435,7 @@ Returns the first parent of this component instance with the given `name`.
 
 **Returns**
 
-- `(Ractive)`: Returns the first parent of this component with the given `name`.
+- `(Ractive)`: The first parent of this component with the given `name`.
 
 **Examples**
 
@@ -460,7 +460,7 @@ Fires an event, which will be received by handlers that were bound using [`racti
 
 **Returns**
 
-- `(boolean)`
+- `(boolean)`: A boolean that, when `true`, indicates that the event should propagate.
 
 **Examples**
 
@@ -480,7 +480,7 @@ r.fire('foo');
 
 ## ractive.get()
 
-Returns the value at `keypath`. If the [keypath](../concepts/templates/keypaths.md) is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, but excludes computed properties.
+Returns the value at `keypath`. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, but excludes computed properties.
 
 **Syntax**
 
@@ -492,7 +492,7 @@ Returns the value at `keypath`. If the [keypath](../concepts/templates/keypaths.
 
 **Returns**
 
-- `(any)`: Returns whatever data was on the keypath, or all if no [keypath](../concepts/templates/keypaths.md) was provided.
+- `(any)`: The data on the keypath or all of the data if no keypath was provided.
 
 **Examples**
 
@@ -500,11 +500,11 @@ Returns the value at `keypath`. If the [keypath](../concepts/templates/keypaths.
 
 ```js
 var r = new Ractive({
-	data: {
-		foo: {
-			bar: [ 'baz' ]
-		}
-	}
+  data: {
+    foo: {
+      bar: [ 'baz' ]
+    }
+  }
 });
 
 console.log(r.get('foo.bar.0'));
@@ -514,7 +514,9 @@ console.log(r.get('foo.bar.0'));
 
 ## ractive.getNodeInfo()
 
-This is an instance specific version of [`Ractive.getNodeInfo()`](../api/static-methods.md#ractivegetnodeinfo) that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.
+Searches the instance DOM for a node that matches the provided selector. If the given value is not a string, it is assumed to be a node and will be searched for instance information.
+
+This is the instance-specific version of [`Ractive.getNodeInfo()`](../api/static-methods.md#ractivegetnodeinfo).
 
 **Syntax**
 
@@ -526,7 +528,7 @@ This is an instance specific version of [`Ractive.getNodeInfo()`](../api/static-
 
 **Returns**
 
-- `(NodeInfo)`: Returns an [NodeInfo](helper-objects/node-info.md) object with helper methods to interact with the Ractive instance and context associated with the given node.
+- `(NodeInfo)`: An [NodeInfo](helper-objects/node-info.md) object containing information about the node.
 
 **Examples**
 
@@ -701,8 +703,8 @@ Note that you can observe [keypath](../concepts/templates/keypaths.md) *patterns
 
 ```js
 ractive.observe( 'items.*.status', function ( newValue, oldValue, keypath) {
-	var index = /items.(\d+).status/.exec( keypath )[1];
-	alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
+  var index = /items.(\d+).status/.exec( keypath )[1];
+  alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -710,7 +712,7 @@ ractive.observe( 'items.*.status', function ( newValue, oldValue, keypath) {
 
 ```js
 ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
-	alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue );
+  alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -748,8 +750,8 @@ Note that you can observe [keypath](../concepts/templates/keypaths.md) *patterns
 
 ```js
 ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, keypath ) {
-	var index = /items.(\d+).status/.exec( keypath )[1];
-	alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
+  var index = /items.(\d+).status/.exec( keypath )[1];
+  alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -757,7 +759,7 @@ ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, keypath ) 
 
 ```js
 ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, keypath ) {
-	alert( keypath + ' changed from ' + oldValue + ' to ' + newValue );
+  alert( keypath + ' changed from ' + oldValue + ' to ' + newValue );
 });
 ```
 
@@ -828,15 +830,15 @@ ractive.on( 'activate select', function () {...} );
 
 // map of handler/function pairs
 ractive.on({
-	activate: function () {...},
-	select: function () {...}
+  activate: function () {...},
+  select: function () {...}
 });
 
 // knock yourself out:
 ractive.on({
-	activate: function () {...},
-	'bip bop boop': function () {...},
-	'select foo.* bar': function () {...}
+  activate: function () {...},
+  'bip bop boop': function () {...},
+  'select foo.* bar': function () {...}
 });
 ```
 
@@ -1072,7 +1074,7 @@ The `keypath` can also contain wildcards [pattern-observers](../concepts/events/
 
 ```js
 ractive.on('selectAll', function(){
-	ractive.set('items.*.selected', true);
+  ractive.set('items.*.selected', true);
 })
 ```
 
@@ -1395,7 +1397,7 @@ If the given [keypath](../concepts/templates/keypaths.md) does not exist (is `un
 
 ## ractive.update()
 
-"Dirty checks" everything that depends directly or indirectly on the specified [keypath](../concepts/templates/keypaths.md). If no `keypath` is specified, all keypaths will be checked. Keypaths that involve special references (i.e. `@global`) require the keypath to be supplied.
+"Dirty checks" everything that depends directly or indirectly on the specified keypath. If no `keypath` is specified, all keypaths will be checked. Keypaths that involve special references (i.e. `@global`) require the keypath to be supplied.
 
 This is useful when manipulating the instance's data without using the built in setter methods (i.e. [`ractive.set()`](#ractiveset), [`ractive.animate()`](#ractiveanimate)).
 
@@ -1405,11 +1407,11 @@ This is useful when manipulating the instance's data without using the built in 
 
 **Arguments**
 
-- `[keypath] (string)`: The keypath to treat as 'dirty'.
+- `[keypath] (string)`: The [keypath](../concepts/templates/keypaths.md) to treat as 'dirty'.
 
 **Returns**
 
-- `(Promise)`: A promise that resolves when the operation completes.
+- `(Promise)`: A promise that resolves with `undefined` when transitions related to the affected keypaths complete.
 
 **Examples**
 
@@ -1434,12 +1436,12 @@ If you programmatically manipulate inputs and other elements that have [two‐wa
 
 **Arguments**
 
-- `keypath (string)`: The [keypath](../concepts/templates/keypaths.md) to treat as 'dirty'. Any two-way bindings linked to this [keypath](../concepts/templates/keypaths.md) will be checked to see if the model is out of date
+- `keypath (string)`: The [keypath](../concepts/templates/keypaths.md) to treat as 'dirty'. Any two-way bindings linked to this keypath will be checked to see if the model is out of date. If `keypath` is not specified, all two-way bindings will be checked.
 - `cascade (boolean)`: If true, bindings that are *downstream* of `keypath` will also be checked - e.g. `ractive.updateModel( 'items', true )` would check `items.0.foo` and `items.1.foo` and so on. Defaults to `false`.
 
 **Returns**
 
-- `(Promise)`: A promise. If a `keypath` is not specified, all two-way bindings will be checked.
+- `(Promise)`: A promise that resolves with `undefined` when transitions related to the affected keypaths complete.
 
 **Examples**
 
