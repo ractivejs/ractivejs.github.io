@@ -4,9 +4,9 @@ In many situations, you want to encapsulate behaviour and markup into a single r
 
 ## Writing
 
-There are several ways to write Ractive components. Standard [initialization options](../api/initialization-options.md) apply for configuration unless where changes are explicitly mentioned.
+There are several ways to write Ractive components. Standard [initialization options](../api.md) apply for configuration unless where changes are explicitly mentioned.
 
-The most common way to define a component is by using [`Ractive.extend()`](../api/static-methods.md#ractiveextend).
+The most common way to define a component is by using [`Ractive.extend()`](../api.md#ractiveextend).
 
 ```js
 // A subclass of Ractive
@@ -23,7 +23,7 @@ const MyComponent = Ractive.extend({
 });
 ```
 
-Another way to define a component is by using [component files](../api/component-files.md) and [loaders](../integrations/loaders.md).
+Another way to define a component is by using [component files](../api.md) and [loaders](../integrations/loaders.md).
 
 ```html
 <div class="my-component">
@@ -151,7 +151,7 @@ This ensures the reusability of components in any context and avoids accidentall
 
 ---
 
-There is also a possibility to make components aware of the outer context by specifying `isolated: false` [initialization option](../api/initialization-options.md).
+There is also a possibility to make components aware of the outer context by specifying `isolated: false` [initialization option](../api.md).
 In that case, it climbs to the parent component's data context if it does not resolve on the child data context.
 
 In the following example, the instance of `ChildComponent` prints "Hello World!" even when the data is set on the outer-most instance.
@@ -235,7 +235,7 @@ widget.get();  // {"shades":["red","green","blue"], "option1":"A"}
 
 ### Events
 
-Components can fire events like regular elements using [ractive.fire()](../api/instance-methods.md#ractivefire). Enclosing instances can listen for events using the same `on-*` event notation. There are two ways to handle component events.
+Components can fire events like regular elements using [ractive.fire()](../api.md#ractivefire). Enclosing instances can listen for events using the same `on-*` event notation. There are two ways to handle component events.
 
 The first is using the method call syntax which is similar to how you would write inline JavaScript.
 

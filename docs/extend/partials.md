@@ -334,7 +334,7 @@ new Ractive({
 
 ### Updating Partials
 
-Partials may be reset after they are rendered using [`ractive.resetPartial()`](../api/instance-methods.md#ractiveresetpartial). A reset partial will update everywhere it is referenced, so if it is used multiple times or inherited by a component, those instances will be updated as well. If a component has a partial with the same name as a parent partial, partial resets will not affect it since it is a different partial.
+Partials may be reset after they are rendered using [`ractive.resetPartial()`](../api.md#ractiveresetpartial). A reset partial will update everywhere it is referenced, so if it is used multiple times or inherited by a component, those instances will be updated as well. If a component has a partial with the same name as a parent partial, partial resets will not affect it since it is a different partial.
 
 It should be noted that partials evaluate lazily, so it is possible to cause a single partial to update by wrapping it in a conditional section and causing the section to be hidden and re-shown.
 

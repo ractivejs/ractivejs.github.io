@@ -57,7 +57,7 @@ You can also pass the `event` object, or properties thereof (`event.original` is
 
 The `event` object is also available within body of the method call function as `this.event`. Note that methods on your Ractive instance that may handle your events are effectively part of your public API, and `this.event` will only be available during invocations triggered by an event.
 
-The `event` argument is also extended with contextual helper methods. See [helpers](../../api/helper-objects/node-info.md).
+The `event` argument is also extended with contextual helper methods. See [helpers](../../api.md).
 
 If you need to evaluate multiple expressions from an event directive, simply separate them with a `,`. For instance:
 

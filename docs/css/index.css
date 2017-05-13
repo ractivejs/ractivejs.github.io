@@ -50,6 +50,21 @@
   font-size: 14px;
 }
 
+.bs-sidebar{
+  display:  none;
+}
+
+@media screen and (min-width: 992px){
+  .bs-sidebar{
+    display: block;
+    position: relative;
+    top: 25px;
+  }
+  .bs-sidebar.affix{
+    position: relative
+  }
+}
+
 .bs-sidebar .nav > li > a:hover, .bs-sidebar .nav > li > a:focus {
   border-color: #557526;
 }
@@ -276,31 +291,6 @@ div.run-in-playground:hover {
   color: #000;
 }
 
-@media (min-width: 992px) {
-  .bs-sidebar.affix {
-    max-height: calc(100% - 200px);
-    overflow-y: auto;
-    height: auto;
-    top: 115px;
-  }
-  #main.mid .bs-sidebar.affix {
-    max-height: calc(50vh - 200px);
-    top: 115px;
-  }
-  #main.min .bs-sidebar.affix {
-    max-height: calc(15vh - 200px);
-    top: 115px;
-  }
-}
-
-@media (max-width: 991px) {
-  .bs-sidebar.affix {
-    max-height: calc(50vh - 3em);
-    overflow: auto;
-    margin-top: 15px;
-  }
-}
-
 @media (max-width: 1199.99px) {
   #playground-div {
     position: absolute;
@@ -336,9 +326,6 @@ div.run-in-playground:hover {
 }
 
 @media (min-width: 1200px) {
-  .bs-sidebar.affix {
-    top: 69px;
-  }
 
   #playground-div {
     position: absolute;

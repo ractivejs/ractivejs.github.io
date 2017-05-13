@@ -103,7 +103,7 @@ const ractive = new Ractive({
 
 ## Using
 
-In order to use an adaptor, you must tell the component or an instance to use it using the `adapt` [initialization option](../api/initialization-options.md).
+In order to use an adaptor, you must tell the component or an instance to use it using the `adapt` [initialization option](../api.md).
 
 ```js
 const ractive = new Ractive({

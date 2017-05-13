@@ -16,7 +16,7 @@ model.set( 'myValue', 2 ); // alerts 'myValue changed to 2'
 
 This works because `Backbone.Model.prototype` inherits from `Backbone.Events`.
 
-Ractive implements pub/sub with [`ractive.on()`](../../api/instance-methods.md#ractiveon), [`ractive.off()`](../../api/instance-methods.md#ractiveoff) and [`ractive.fire()`](../../api/instance-methods.md#ractivefire), [`ractive.off()`](../../api/instance-methods.md#ractiveoff) and [`ractive.fire`](../../api/instance-methods.md#ractivefire) - see [Events]() for more info.
+Ractive implements pub/sub with [`ractive.on()`](../../api.md#ractiveon), [`ractive.off()`](../../api.md#ractiveoff) and [`ractive.fire()`](../../api.md#ractivefire), [`ractive.off()`](../../api.md#ractiveoff) and [`ractive.fire`](../../api.md#ractivefire) - see [Events]() for more info.
 
 
 # Observing models with nested properties

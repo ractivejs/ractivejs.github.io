@@ -41,7 +41,7 @@ const ractive = new Ractive({
 
 ## Using
 
-Easing functions don't work alone. They are utilized by [ractive.animate()](../api/instance-methods.md#ractiveanimate) and [Transitions](../extend/transitions.md) to dictate animations.
+Easing functions don't work alone. They are utilized by [ractive.animate()](../api.md#ractiveanimate) and [Transitions](../extend/transitions.md) to dictate animations.
 
 ```js
 ractive.animate('foo.bar', 1, {
