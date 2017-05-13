@@ -42,9 +42,7 @@ pages:
       - Illustration: get-started/examples/illustration.md
       - Rating Sars: get-started/examples/rating-stars.md
       - ToDo List: get-started/examples/todo-list.md
-    - Debugging: get-started/debugging.md
     - Support: get-started/support.md
-    - Contributing: get-started/contributing.md
   - API: api.md
   - Extend: extend.md
   - Integrations: integrations.md
