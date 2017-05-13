@@ -16,7 +16,7 @@ model.set( 'myValue', 2 ); // alerts 'myValue changed to 2'
 
 This works because `Backbone.Model.prototype` inherits from `Backbone.Events`.
 
-Ractive implements pub/sub with [`ractive.on()`](../../api.md#ractiveon), [`ractive.off()`](../../api.md#ractiveoff) and [`ractive.fire()`](../../api.md#ractivefire), [`ractive.off()`](../../api.md#ractiveoff) and [`ractive.fire`](../../api.md#ractivefire) - see [Events]() for more info.
+Ractive implements pub/sub with [`ractive.on()`](../../api/instance-methods.md#ractiveon), [`ractive.off()`](../../api/instance-methods.md#ractiveoff) and [`ractive.fire()`](../../api/instance-methods.md#ractivefire), [`ractive.off()`](../../api/instance-methods.md#ractiveoff) and [`ractive.fire`](../../api/instance-methods.md#ractivefire) - see [Events]() for more info.
 
 
 # Observing models with nested properties
@@ -25,7 +25,7 @@ But the normal pub/sub mechanism won't work for monitoring data changes with Rac
 
 So instead, we introduce the concept of *observers*.
 
-An observer observes a particular [keypath](), and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()` (see [`ractive.observe()`](../../api.md#ractiveobserve) for full method
+An observer observes a particular [keypath](), and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()` (see [`ractive.observe()`](../../api/instance-properties#ractiveobserve) for full method
 API).
 
 Here's an example:

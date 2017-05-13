@@ -47,14 +47,12 @@ deactivate
 
 ## Finding and fixing broken links
 
-Normally, mkdocs will warn you of links that point to nowhere. However, as an extra precaution, links must be checked on the actual pages.
-
 ```sh
 # Install broken-link checker
 npm install -g broken-link-checker
 
 # Run broken-link checker while mkdocs is running
-blc -egor http://localhost:8000
+blc -egorv http://localhost:8000
 ```
 
 ## Conventions

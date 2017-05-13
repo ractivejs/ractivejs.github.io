@@ -2,7 +2,7 @@
 
 Ractive has a concept of *proxy events*, which translate a user *action* (e.g. a mouseclick) defined via an [event directive](./directives.md) into an *intention* (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).
 
-As with all events in Ractive, you subscribe with [`ractive.on()`](../../api.md)). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
+As with all events in Ractive, you subscribe with [`ractive.on()`](../../api/instance-properties#ractiveon) (also see [publish-subscribe](./publish-subscribe.md)). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
 
 ```js
 ractive = new Ractive({
@@ -15,7 +15,7 @@ ractive.on( 'activate', function ( event ) {
 });
 ```
 
-In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via [`ractive.on()`](../../api.md#ractiveon).
+In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via [`ractive.on()`](../../api/instance-properties#ractiveon).
 
 # Event arguments
 
@@ -28,7 +28,7 @@ The first argument to a proxy event handler is always a Ractive `event` object. 
 * `event.keypath` - the [keypath](../templates/keypaths.md) of the current context
 * `event.context` - the value of `this.get(event.keypath)`
 * `event.index` - a map of index references
-* `event.component` - the component that raised the event, only present on [bubbled events](bubbling.md)
+* `event.component` - the component that raised the event, only present on [bubbled events](./bubbling)
 * `event.original` - the original DOM event, if available
 
 In the example above, `event.keypath` might be `items.0` for the first item in the list, `items.1` for the second, and so on. The `event.index` map would have a property `i`, which would correspond to those indices.

@@ -53,7 +53,7 @@ That's it - you're in business!
 
 - As your app grows, you'll want to separate each component definition into its own file.
 
-- Ractive has many ways to register a component, as well as [tools](../integrations.md#tools) to allow you to write components depending on your setup.
+- Ractive has many ways to [register](../extend/components.md#registering) a component, as well as [tools](../integrations/tools.md) to allow you to write components depending on your setup.
 
 - Ractive also allows for [single-file components](https://github.com/ractivejs/component-spec/blob/master/authors.md) where you define the markup, styles and logic for a single component in a single file.
 
