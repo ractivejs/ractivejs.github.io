@@ -232,19 +232,7 @@
                         
                             
 <li >
-    <a href="../../../get-started/debugging/">Debugging</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../../get-started/support/">Support</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -594,7 +582,7 @@ model.set( 'myValue', 2 ); // alerts 'myValue changed to 2'
 <h1 id="observing-models-with-nested-properties">Observing models with nested properties</h1>
 <p>But the normal pub/sub mechanism won't work for monitoring data changes with Ractive, because our data can contain nested properties. It's no good subscribing to a <code>change:foo.bar</code> event, if <code>foo.bar</code> can change as a result of <code>foo</code> changing.</p>
 <p>So instead, we introduce the concept of <em>observers</em>.</p>
-<p>An observer observes a particular <a href="">keypath</a>, and is <em>notified</em> when the value of its keypath changes, whether directly or indirectly (because an <em>upstream</em> or <em>downstream</em> keypath changed). You create one with <code>ractive.observe()</code> (see <a href="../../../api/instance-properties#ractiveobserve"><code>ractive.observe()</code></a> for full method
+<p>An observer observes a particular <a href="">keypath</a>, and is <em>notified</em> when the value of its keypath changes, whether directly or indirectly (because an <em>upstream</em> or <em>downstream</em> keypath changed). You create one with <code>ractive.observe()</code> (see <a href="../../../api/#ractiveobserve"><code>ractive.observe()</code></a> for full method
 API).</p>
 <p>Here's an example:</p>
 <pre><code class="js">ractive = new Ractive({

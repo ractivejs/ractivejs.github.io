@@ -232,19 +232,7 @@
                         
                             
 <li >
-    <a href="../../../get-started/debugging/">Debugging</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../../get-started/support/">Support</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -590,7 +578,7 @@ ractive.on( 'activate', function ( event ) {
 });
 </code></pre>
 
-<p>In this example, it is <code>activate</code> (and not <code>click</code>!) that is the name of the handler event that will be fired for any registered handlers created via <a href="../../../api/instance-properties#ractiveon"><code>ractive.on()</code></a>.</p>
+<p>In this example, it is <code>activate</code> (and not <code>click</code>!) that is the name of the handler event that will be fired for any registered handlers created via <a href="../../../api/#ractiveon"><code>ractive.on()</code></a>.</p>
 <h1 id="event-arguments">Event arguments</h1>
 <h2 id="the-event-object">The <code>event</code> object</h2>
 <p>The first argument to a proxy event handler is always a Ractive <code>event</code> object. It contains various properties:</p>
@@ -600,7 +588,7 @@ ractive.on( 'activate', function ( event ) {
 <li><code>event.keypath</code> - the <a href="../../templates/keypaths/">keypath</a> of the current context</li>
 <li><code>event.context</code> - the value of <code>this.get(event.keypath)</code></li>
 <li><code>event.index</code> - a map of index references</li>
-<li><code>event.component</code> - the component that raised the event, only present on <a href="../bubbling">bubbled events</a></li>
+<li><code>event.component</code> - the component that raised the event, only present on <a href="../bubbling/">bubbled events</a></li>
 <li><code>event.original</code> - the original DOM event, if available</li>
 </ul>
 <p>In the example above, <code>event.keypath</code> might be <code>items.0</code> for the first item in the list, <code>items.1</code> for the second, and so on. The <code>event.index</code> map would have a property <code>i</code>, which would correspond to those indices.</p>

@@ -232,19 +232,7 @@
                         
                             
 <li >
-    <a href="../../debugging/">Debugging</a>
-</li>
-
-                        
-                            
-<li >
     <a href="../../support/">Support</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../contributing/">Contributing</a>
 </li>
 
                         
@@ -691,7 +679,7 @@ var ractive = new Ractive({
 
 <p>Update the code with another images array and put two <code>slideshow</code> components in the main instance.</p>
 <blockquote>
-<p>Mappings are automatically managed cross-instance <a href="../../../api/instance-methods#ractivelink"><code>link</code></a>s. A link is a bit like a filesystem symlink in that the data isn't copied anywhere - it just gets a new path that points to it. Changing the data in either place is effectively the same as changing it everywhere at once.</p>
+<p>Mappings are automatically managed cross-instance <a href="../../../api/#ractivelink"><code>link</code></a>s. A link is a bit like a filesystem symlink in that the data isn't copied anywhere - it just gets a new path that points to it. Changing the data in either place is effectively the same as changing it everywhere at once.</p>
 </blockquote>
 <h2 id="step-4">Step 4</h2>
 <p><div class="tutorial">
@@ -756,7 +744,7 @@ ractive.on( 'render', function () {} );
 </div></p>
 <p>When we started out with our slideshow, we were rendering it directly to a target element rather than as a component in another Ractive.js instance. It turns out that having self-contained components like that is a pretty convenient pattern for managing complexity in a larger app. All of the related functionality for a feature or group of features can be grouped into one Ractive.js extension known as a <em>view</em>. Each individual view can then be loaded and/or rendered independently.</p>
 <p>In order do use views with a main instance controlling the overall app, you would have to have some sort of big <code>#if</code>/<code>else</code> block with each view included as a branch. You could also resort to some sort of partial generation scheme. There's an easier way though.</p>
-<p>Ractive.js will allow you to attach one independent instance to another using <a href="../../../api/instance-methods#ractiveattachchild"><code>attachChild</code></a>, optionally specifying a <em>target</em>. If you don't specify a target, then the child instance will not be rendered, but if you <em>do</em> specify a target, then the instance will be rendered into the first available matching <em>anchor</em>. An anchor looks like a component or element, but its name always starts with a <code>#</code>. You may have as many anchors as you like, and they may each have the same or different names.</p>
+<p>Ractive.js will allow you to attach one independent instance to another using <a href="../../../api/#ractiveattachchild"><code>attachChild</code></a>, optionally specifying a <em>target</em>. If you don't specify a target, then the child instance will not be rendered, but if you <em>do</em> specify a target, then the instance will be rendered into the first available matching <em>anchor</em>. An anchor looks like a component or element, but its name always starts with a <code>#</code>. You may have as many anchors as you like, and they may each have the same or different names.</p>
 <pre><code class="handlebars">&lt;#anchor /&gt;
 &lt;#ICallThisOneStan&gt;
   Stan has a content partial.
@@ -766,7 +754,7 @@ ractive.on( 'render', function () {} );
 
 <p>Go ahead and fill out the two provided views as you like, add anchors to the main instance template, and attach an instance of each view to an anchor on the main instance.</p>
 <blockquote>
-<p>You can detach a child using the conveniently named <a href="../../../api/instance-methods#ractivedetachchild"><code>detachChild</code></a> method.</p>
+<p>You can detach a child using the conveniently named <a href="../../../api/#ractivedetachchild"><code>detachChild</code></a> method.</p>
 <p>Child instances can be attached in <code>prepend</code>, <code>insertAt</code>, or <code>append</code> (the default) mode. Ractive.js will try to find a matching anchor for each child starting with the first. If there aren't enough anchors, some instances will not be rendered. Each time a child is attached or detached, Ractive.js will adjust any affected anchors so all instances that can be rendered are rendered.</p>
 <p>Each anchor has its own list of children associated with it, which is what the attachment modes are referreing to - <code>prepend</code> will insert a child at the front, <code>append</code> at the end, and <code>insertAt</code> at the specified index. The list of children for a particular anchor, say <code>&lt;#main /&gt;</code>, os kept up to date in an observable way so that you can automatically generate anchors as components are attached using <code>{{#each @.children.byName.main}}&lt;#main /&gt;{{/each}}</code>.</p>
 <p>An anchored attached child is effectively a component that the host instance doesn't control.</p>

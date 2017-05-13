@@ -28,19 +28,7 @@
     </url>
         
     <url>
-     <loc>https://ractive.js.org/get-started/debugging/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>https://ractive.js.org/get-started/support/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/get-started/contributing/</loc>
      <lastmod>2017-05-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
