@@ -253,92 +253,8 @@
                 
                 
                 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                            
-<li >
-    <a href="../../api/initialization-options/">Initialization Options</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../api/static-properties/">Static Properties</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../api/static-methods/">Static Methods</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../api/instance-properties/">Instance Properties</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../api/instance-methods/">Instance Methods</a>
-</li>
-
-                        
-                            
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Helper Objects</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../../api/helper-objects/node-info/">Node Info</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../api/helper-objects/parse/">Parse</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../api/helper-objects/transition/">Transition</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-<li >
-    <a href="../../api/attributes/">Attributes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../api/keypath-prefixes/">Keypath Prefixes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../api/special-references/">Special References</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../api/component-files/">Component Files</a>
-</li>
-
-                        
-                        </ul>
+                    <li >
+                        <a href="../../api/">API</a>
                     </li>
                 
                 
@@ -764,8 +680,8 @@
 <h1 id="components">Components</h1>
 <p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications. Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect).</p>
 <h2 id="writing">Writing</h2>
-<p>There are several ways to write Ractive components. Standard <a href="../../api/initialization-options/">initialization options</a> apply for configuration unless where changes are explicitly mentioned.</p>
-<p>The most common way to define a component is by using <a href="../../api/static-methods/#ractiveextend"><code>Ractive.extend()</code></a>.</p>
+<p>There are several ways to write Ractive components. Standard <a href="../../api/">initialization options</a> apply for configuration unless where changes are explicitly mentioned.</p>
+<p>The most common way to define a component is by using <a href="../../api/#ractiveextend"><code>Ractive.extend()</code></a>.</p>
 <pre><code class="js">// A subclass of Ractive
 const MyComponent = Ractive.extend({
   template: `
@@ -780,7 +696,7 @@ const MyComponent = Ractive.extend({
 });
 </code></pre>
 
-<p>Another way to define a component is by using <a href="../../api/component-files/">component files</a> and <a href="../../integrations/loaders/">loaders</a>.</p>
+<p>Another way to define a component is by using <a href="../../api/">component files</a> and <a href="../../integrations/loaders/">loaders</a>.</p>
 <pre><code class="html">&lt;div class=&quot;my-component&quot;&gt;
   &lt;span class=&quot;my-component__message&quot;&gt;{{ message }}&lt;/span&gt;
 &lt;/div&gt;
@@ -884,7 +800,7 @@ const ractive = new Ractive({
 
 <p>This ensures the reusability of components in any context and avoids accidentally binding to wrong data.</p>
 <hr />
-<p>There is also a possibility to make components aware of the outer context by specifying <code>isolated: false</code> <a href="../../api/initialization-options/">initialization option</a>.
+<p>There is also a possibility to make components aware of the outer context by specifying <code>isolated: false</code> <a href="../../api/">initialization option</a>.
 In that case, it climbs to the parent component's data context if it does not resolve on the child data context.</p>
 <p>In the following example, the instance of <code>ChildComponent</code> prints "Hello World!" even when the data is set on the outer-most instance.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -955,7 +871,7 @@ widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;b
 </code></pre>
 
 <h3 id="events">Events</h3>
-<p>Components can fire events like regular elements using <a href="../../api/instance-methods/#ractivefire">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
+<p>Components can fire events like regular elements using <a href="../../api/#ractivefire">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
 <p>The first is using the method call syntax which is similar to how you would write inline JavaScript.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
   template: `

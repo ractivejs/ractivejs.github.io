@@ -253,92 +253,8 @@
                 
                 
                 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                            
-<li >
-    <a href="../../../api/initialization-options/">Initialization Options</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/static-properties/">Static Properties</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/static-methods/">Static Methods</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/instance-properties/">Instance Properties</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/instance-methods/">Instance Methods</a>
-</li>
-
-                        
-                            
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Helper Objects</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../../../api/helper-objects/node-info/">Node Info</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../../api/helper-objects/parse/">Parse</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../../api/helper-objects/transition/">Transition</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-<li >
-    <a href="../../../api/attributes/">Attributes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/special-references/">Special References</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/component-files/">Component Files</a>
-</li>
-
-                        
-                        </ul>
+                    <li >
+                        <a href="../../../api/">API</a>
                     </li>
                 
                 
@@ -744,7 +660,7 @@
 
 <p><em>See also: <a href="../method-calls/">method calls from templates</a></em></p>
 <p>Ractive has a concept of <em>proxy events</em>, which translate a user <em>action</em> (e.g. a mouseclick) defined via an <a href="../directives/">event directive</a> into an <em>intention</em> (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).</p>
-<p>As with all events in Ractive, you subscribe with <a href="../../../api/instance-properties#ractiveon"><code>ractive.on()</code></a> (also see <a href="../publish-subscribe/">publish-subscribe</a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
+<p>As with all events in Ractive, you subscribe with <a href="../../../api/"><code>ractive.on()</code></a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
 <pre><code class="js">ractive = new Ractive({
   el: 'body',
   template: '&lt;button on-click=&quot;activate&quot;&gt;click me!&lt;/button&gt;'

@@ -253,92 +253,8 @@
                 
                 
                 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                            
-<li >
-    <a href="../../../api/initialization-options/">Initialization Options</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/static-properties/">Static Properties</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/static-methods/">Static Methods</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/instance-properties/">Instance Properties</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/instance-methods/">Instance Methods</a>
-</li>
-
-                        
-                            
-  <li class="dropdown-submenu">
-    <a tabindex="-1" href="">Helper Objects</a>
-    <ul class="dropdown-menu">
-        
-            
-<li >
-    <a href="../../../api/helper-objects/node-info/">Node Info</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../../api/helper-objects/parse/">Parse</a>
-</li>
-
-        
-            
-<li >
-    <a href="../../../api/helper-objects/transition/">Transition</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-                        
-                            
-<li >
-    <a href="../../../api/attributes/">Attributes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/special-references/">Special References</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../api/component-files/">Component Files</a>
-</li>
-
-                        
-                        </ul>
+                    <li >
+                        <a href="../../../api/">API</a>
                     </li>
                 
                 
@@ -752,7 +668,7 @@ model.set( 'myValue', 2 ); // alerts 'myValue changed to 2'
 </code></pre>
 
 <p>This works because <code>Backbone.Model.prototype</code> inherits from <code>Backbone.Events</code>.</p>
-<p>Ractive implements pub/sub with <a href="../../../api/instance-methods/#ractiveon"><code>ractive.on()</code></a>, <a href="../../../api/instance-methods/#ractiveoff"><code>ractive.off()</code></a> and <a href="../../../api/instance-methods/#ractivefire"><code>ractive.fire()</code></a>, <a href="../../../api/instance-methods/#ractiveoff"><code>ractive.off()</code></a> and <a href="../../../api/instance-methods/#ractivefire"><code>ractive.fire</code></a> - see <a href="">Events</a> for more info.</p>
+<p>Ractive implements pub/sub with <a href="../../../api/#ractiveon"><code>ractive.on()</code></a>, <a href="../../../api/#ractiveoff"><code>ractive.off()</code></a> and <a href="../../../api/#ractivefire"><code>ractive.fire()</code></a>, <a href="../../../api/#ractiveoff"><code>ractive.off()</code></a> and <a href="../../../api/#ractivefire"><code>ractive.fire</code></a> - see <a href="">Events</a> for more info.</p>
 <h1 id="observing-models-with-nested-properties">Observing models with nested properties</h1>
 <p>But the normal pub/sub mechanism won't work for monitoring data changes with Ractive, because our data can contain nested properties. It's no good subscribing to a <code>change:foo.bar</code> event, if <code>foo.bar</code> can change as a result of <code>foo</code> changing.</p>
 <p>So instead, we introduce the concept of <em>observers</em>.</p>
