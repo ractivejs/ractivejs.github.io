@@ -47,11 +47,7 @@ pages:
     - Contributing: get-started/contributing.md
   - API: api.md
   - Extend: extend.md
-  - Integrations:
-    - Loaders: integrations/loaders.md
-    - Plugins: integrations/plugins.md
-    - Tools: integrations/tools.md
-    - Libraries: integrations/libraries.md
+  - Integrations: integrations.md
   - Concepts:
     - Architecture:
       - Overview: concepts/architecture/overview.md
