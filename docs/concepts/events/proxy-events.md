@@ -15,7 +15,7 @@ ractive.on( 'activate', function ( event ) {
 });
 ```
 
-In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via [`ractive.on()`](../../api/instance-properties#ractiveon).
+In this example, it is `activate` (and not `click`!) that is the name of the handler event that will be fired for any registered handlers created via [`ractive.on()`](../../api.md#ractiveon).
 
 # Event arguments
 
@@ -28,7 +28,7 @@ The first argument to a proxy event handler is always a Ractive `event` object. 
 * `event.keypath` - the [keypath](../templates/keypaths.md) of the current context
 * `event.context` - the value of `this.get(event.keypath)`
 * `event.index` - a map of index references
-* `event.component` - the component that raised the event, only present on [bubbled events](./bubbling)
+* `event.component` - the component that raised the event, only present on [bubbled events](bubbling.md)
 * `event.original` - the original DOM event, if available
 
 In the example above, `event.keypath` might be `items.0` for the first item in the list, `items.1` for the second, and so on. The `event.index` map would have a property `i`, which would correspond to those indices.

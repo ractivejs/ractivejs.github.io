@@ -169,7 +169,7 @@ As with `twoway`, laziness may be specified on a per-element basis. Besides `tru
 
 # Observing changes
 
-To use user input elsewhere in your app, you'll need to observe it using [`ractive.observe()`](../../api/instance-properties#ractive.observe()):
+To use user input elsewhere in your app, you'll need to observe it using [`ractive.observe()`](../../api.md#ractiveobserve):
 
 ```html
 <input placeholder='Type your name' value='{{user.name}}'>

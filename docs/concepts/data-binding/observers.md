@@ -25,7 +25,7 @@ But the normal pub/sub mechanism won't work for monitoring data changes with Rac
 
 So instead, we introduce the concept of *observers*.
 
-An observer observes a particular [keypath](), and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()` (see [`ractive.observe()`](../../api/instance-properties#ractiveobserve) for full method
+An observer observes a particular [keypath](), and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()` (see [`ractive.observe()`](../../api.md#ractiveobserve) for full method
 API).
 
 Here's an example:
