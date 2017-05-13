@@ -4,7 +4,7 @@ It may not be apparent but Ractive is actually built with extreme extensibility 
 
 ## Available plugins
 
-### [Adaptors](../extend/adaptors.md)
+### [Adaptors](../extend.md#adaptors)
 
 Interface with different backends.
 
@@ -17,7 +17,7 @@ Interface with different backends.
 - [Ractive](https://github.com/rstacruz/ractive-ractive) by [@rstacruz](https://github.com/rstacruz) - Synchronise several Ractive instances.
 - [ss-ractive](https://github.com/arxpoetica/ss-ractive) by Robert Hall [@arxpoetica](https://github.com/arxpoetica) - Ractive Template Engine wrapper for [SocketStream](https://github.com/socketstream/socketstream).
 
-### [Components](../extend/components.md)
+### [Components](../extend.md#components)
 
 Encapsulate functionality behind the guise of a custom element.
 
@@ -29,7 +29,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [Stepper](https://github.com/JonDum/ractive-stepper) - A numeric stepper component.
 - [Split](https://dagnelies.github.io/ractive-split)
 
-### [Decorators](../extend/decorators.md)
+### [Decorators](../extend.md#decorators)
 
 Augment the DOM with more functionality.
 
@@ -39,11 +39,11 @@ Augment the DOM with more functionality.
 - [Sortable](http://ractivejs.github.io/Ractive-decorators-sortable/)
 - [Tooltip](http://github.com/JonDum/ractive-tooltip)
 
-### [Easings](../extend/easings.md)
+### [Easings](../extend.md#easings)
 
 Custom animation progressions.
 
-### [Events](../extend/events.md)
+### [Events](../extend.md#events)
 
 Augment the DOM with custom events beyond those supported by the browser.
 
@@ -59,11 +59,11 @@ Augment the DOM with custom events beyond those supported by the browser.
 - [Typing](https://github.com/svapreddy/ractive-events-typing) by [@svapreddy](https://github.com/svapreddy)
 - [Viewport](https://github.com/svapreddy/ractive-event-viewport) by [@svapreddy](https://github.com/svapreddy)
 
-### [Partials](../extend/partials.md)
+### [Partials](../extend.md#partials)
 
 Reusable pieces of markup.
 
-### [Transitions](../extend/transitions.md)
+### [Transitions](../extend.md#transitions)
 
 Apply custom animation.
 

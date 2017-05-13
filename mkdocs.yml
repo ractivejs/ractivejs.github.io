@@ -46,15 +46,7 @@ pages:
     - Support: get-started/support.md
     - Contributing: get-started/contributing.md
   - API: api.md
-  - Extend:
-    - Adaptors: extend/adaptors.md
-    - Components: extend/components.md
-    - Decorators: extend/decorators.md
-    - Easings: extend/easings.md
-    - Events: extend/events.md
-    - Interpolators: extend/interpolators.md
-    - Partials: extend/partials.md
-    - Transitions: extend/transitions.md
+  - Extend: extend.md
   - Integrations:
     - Loaders: integrations/loaders.md
     - Plugins: integrations/plugins.md

@@ -18,7 +18,7 @@ ractive.myMethod(); // triggers the alert
 
 `(Array<string|Object>)`
 
-An array of [adaptors](extend/adaptors.md) to use. Values can either be names of registered adaptors or an adaptor definition.
+An array of [adaptors](extend.md#adaptors) to use. Values can either be names of registered adaptors or an adaptor definition.
 
 ```js
 adapt: [ 'MyAdaptor', AdaptorDefinition ]
@@ -48,7 +48,7 @@ new Component({
 
 `(Object<string, Object>)`
 
-A map of [adaptors](extend/adaptors.md) where the key is the adaptor name and the value is an adaptor definition.
+A map of [adaptors](extend.md#adaptors) where the key is the adaptor name and the value is an adaptor definition.
 
 ```js
 adaptors: {
@@ -147,7 +147,7 @@ template: '<p>grey</p>'
 
 `(Object<string, Function>)`
 
-A map of [components](extend/components.md) where the key is the component name the value is either a component definition or a function that returns either a name of a registered component or a component definition. The function form receives processed [`data`](#data) as first argument.
+A map of [components](extend.md#components) where the key is the component name the value is either a component definition or a function that returns either a name of a registered component or a component definition. The function form receives processed [`data`](#data) as first argument.
 
 ```js
 components: {
@@ -312,7 +312,7 @@ Child().get();  // { foo: 'Goodbye', bar: 'World' }
 
 `(Object<string, Function>)`
 
-A map of [decorators](extend/decorators.md) where the key is the decorator name and the value is a decorator definition.
+A map of [decorators](extend.md#decorators) where the key is the decorator name and the value is a decorator definition.
 
 ```js
 decorators: {
@@ -343,7 +343,7 @@ data: { world: 'earth' }
 
 `(Object<string, Function>)`
 
-A map of [easing functions](extend/easings.md) where the key is the easing function name and the value is the easing function.
+A map of [easing functions](extend.md#easings) where the key is the easing function name and the value is the easing function.
 
 ```js
 easing: {
@@ -396,7 +396,7 @@ There are a few limitations to this feature:
 
 `(Object<string, Function>)`
 
-A map of [events](extend/events.md) where the key is the event name and value is an event definition.
+A map of [events](extend.md#events) where the key is the event name and value is an event definition.
 
 ```js
 events: {
@@ -410,7 +410,7 @@ events: {
 
 `(Object<string, Function>)`
 
-A map of [interpolators](extend/interpolators.md) where the key is the interpolator name and the value is an interpolator definition.
+A map of [interpolators](extend.md#interpolators) where the key is the interpolator name and the value is an interpolator definition.
 
 ```js
 interpolators: {
@@ -426,7 +426,7 @@ interpolators: {
 
 Controls whether the component will try to [resolve data and plugins on its ancestors](concepts/templates/references.md). Defaults to `true`.
 
-Relevant only to [Components](extend/components.md).
+Relevant only to [Components](extend.md#components).
 
 ---
 
@@ -570,7 +570,7 @@ A lifecycle event that is called when `ractive.update()` is called.
 
 `(Object<string, string|Object|Function>)`
 
-A map of [partials](extend/partials.md) where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and  [Parse Object](#parse) as arguments.
+A map of [partials](extend.md#partials) where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and  [Parse Object](#parse) as arguments.
 
 ```js
 partials: {
@@ -747,7 +747,7 @@ During a [`ractive.reset()`](api.md#ractivereset), templates provided using a fu
 
 `(Object<string, Function>)`
 
-A map of [transitions](extend/transitions.md) where the key is the name of the transition and the value is a transition definition.
+A map of [transitions](extend.md#transitions) where the key is the name of the transition and the value is a transition definition.
 
 ---
 
@@ -806,7 +806,7 @@ ractive.set( 'foo', 'fizz' );
 
 `(Object<string, Object>)`
 
-The registry of globally available [adaptors](extend/adaptors.md).
+The registry of globally available [adaptors](extend.md#adaptors).
 
 ---
 
@@ -814,7 +814,7 @@ The registry of globally available [adaptors](extend/adaptors.md).
 
 `(Object<string, Function>)`
 
-The registry of globally available [component definitions](extend/components.md).
+The registry of globally available [component definitions](extend.md#components).
 
 ---
 
@@ -838,7 +838,7 @@ Tells Ractive to log errors thrown inside promises. When set to `true`, errors t
 
 `(Object<string, Function>)`
 
-The registry of globally available [decorators](extend/decorators.md).
+The registry of globally available [decorators](extend.md#decorators).
 
 ---
 
@@ -889,9 +889,9 @@ new Ractive({
 
 `(Object<string, Function>)`
 
-The global registry of [easing functions](extend/easings.md).
+The global registry of [easing functions](extend.md#easings).
 
-The easing functions are used by the [`ractive.animate`](api.md#ractive.animate) method and by [transitions](extend/transitions.md). Four are included by default: `linear`, `easeIn`, `easeOut` and `easeInOut`.
+The easing functions are used by the [`ractive.animate`](api.md#ractive.animate) method and by [transitions](extend.md#transitions). Four are included by default: `linear`, `easeIn`, `easeOut` and `easeInOut`.
 
 ---
 
@@ -899,7 +899,7 @@ The easing functions are used by the [`ractive.animate`](api.md#ractive.animate)
 
 `(Object<string, Function>)`
 
-The global registry of [events](extend/events.md).
+The global registry of [events](extend.md#events).
 
 ---
 
@@ -915,7 +915,7 @@ A key-value hash of interpolators use by [`ractive.animate()`](api.md#ractive.an
 
 `(Object<string, string|Object|Function>)`
 
-The global registry of [partial templates](extend/partials.md).
+The global registry of [partial templates](extend.md#partials).
 
 Like templates, partials are [parsed](concepts/templates/parsing.md) at the point of use. The parsed output is cached and utilized for future use.
 
@@ -933,7 +933,7 @@ Indicates whether or not the browser supports SVG.
 
 `(Object<string, Function>)`
 
-The global registry of [transition functions](extend/transitions.md).
+The global registry of [transition functions](extend.md#transitions).
 
 ---
 
@@ -971,7 +971,7 @@ Ractive.escapeKey('foo.bar'); // foo\.bar
 
 ## Ractive.extend()
 
-Creates a "subclass" of the Ractive constructor or a subclass constructor. See [`Components`](extend/components.md) for an in-depth discussion on the use of `Ractive.extend`.
+Creates a "subclass" of the Ractive constructor or a subclass constructor. See [`Components`](extend.md#components) for an in-depth discussion on the use of `Ractive.extend`.
 
 **Syntax**
 
@@ -1226,7 +1226,7 @@ Ractive.unescapeKey('foo\.bar'); // foo.bar
 
 `(Object<string, Object>)`
 
-The instance-only registry of [adaptors](extend/adaptors.md).
+The instance-only registry of [adaptors](extend.md#adaptors).
 
 ---
 
@@ -1234,7 +1234,7 @@ The instance-only registry of [adaptors](extend/adaptors.md).
 
 `(Object<string, Function>)`
 
-The instance-only registry of [components](extend/components.md).
+The instance-only registry of [components](extend.md#components).
 
 ---
 
@@ -1260,7 +1260,7 @@ If `bar` `{{yield}}`s, then `baz`'s container will be the `foo` instance.
 
 `(Object<string, Function>)`
 
-The instance-only registry of [decorators](extend/decorators.md).
+The instance-only registry of [decorators](extend.md#decorators).
 
 ---
 
@@ -1268,7 +1268,7 @@ The instance-only registry of [decorators](extend/decorators.md).
 
 `(Object<string, Function>)`
 
-The instance-only registry of [easing functions](extend/easings.md).
+The instance-only registry of [easing functions](extend.md#easings).
 
 ---
 
@@ -1276,7 +1276,7 @@ The instance-only registry of [easing functions](extend/easings.md).
 
 `(Object<string, Function>)`
 
-The instance-only registry of [events](extend/events.md).
+The instance-only registry of [events](extend.md#events).
 
 ---
 
@@ -1346,7 +1346,7 @@ Each component instance can access its parent using `this.parent`.
 
 `(Object<string, string|Object|Function>)`
 
-The instance-only registry of [partials](extend/partials.md).
+The instance-only registry of [partials](extend.md#partials).
 
 ---
 
@@ -1372,7 +1372,7 @@ Each component instance can access its root Ractive instance using `this.root`.
 
 `(Object<string, Function>)`
 
-The instance-only registry of [transitions](extend/transitions.md).
+The instance-only registry of [transitions](extend.md#transitions).
 
 # Instance Methods
 
@@ -1528,14 +1528,14 @@ ractive.attachChild( child, options );
 
 - `child (Ractive instance)`: The child instance to attach.
 - `[options] (Object)`:
-    - `[target] (string)`: An anchor name at which to render the instance. See [`Components`](extend/components.md). If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.
+    - `[target] (string)`: An anchor name at which to render the instance. See [`Components`](extend.md#components). If the instance is already rendered, it will be unrendered and re-rendered at an appropriate anchor.
     - `[append] (boolean)`: Default `true` - add the instance to the end of the list for the targeted anchor.
     - `[prepend] (boolean)`: Add the instance to the beginning of the list for the targeted anchor.
     - `[insertAt] (number)`: Index at which to add the instance in the list for the targeted anchor.
 
 When a child is attached to a parent, the child's `parent` property is updated in an observable way, so any references to `@this.parent` in the child will be notified of the change.
 
-A child may be targeted to a [`Components`](extend/components.md) when it is attached. If a child has no specified target, then it is responsible for managing its own render cycle. If a child does have a specified target, then the parent will manage rendering and unrendering the child as appropriate in the same way that a regular component has a managed render cycle.
+A child may be targeted to a [`Components`](extend.md#components) when it is attached. If a child has no specified target, then it is responsible for managing its own render cycle. If a child does have a specified target, then the parent will manage rendering and unrendering the child as appropriate in the same way that a regular component has a managed render cycle.
 
 When a child is attached targeting an anchor, only anchors that belong directly to the parent are considered as hosts. However, any element or component queries on the parent instance, including live queries, will consider the child when trying to match both elements and components. There is also an option on the query methods that allows querying remote, unmanaged instances, so that non-anchored children can also be queried for elements and components.
 
@@ -1984,7 +1984,7 @@ Links can be removed using [`ractive.unlink()`](#ractiveunlink).
 
 Sets the indicated [keypath](concepts/templates/keypaths.md) to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.
 
-This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro` [transitions](extend/transitions.md) which might not otherwise happen with a basic [`ractive.set()`](#ractiveset) operation.
+This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro` [transitions](extend.md#transitions) which might not otherwise happen with a basic [`ractive.set()`](#ractiveset) operation.
 
 To determine whether the first item of `['foo', 'bar', 'baz']` is the same as the last item of `['bar', 'baz', 'foo']`, by default we do a strict equality (`===`) check.
 
@@ -2172,7 +2172,7 @@ An alternative way to remove event handlers is to use the `cancel` method of the
 
 ## ractive.on()
 
-Subscribe to [events](extend/events.md).
+Subscribe to [events](extend.md#events).
 
 **Syntax**
 
@@ -2182,7 +2182,7 @@ Subscribe to [events](extend/events.md).
 **Arguments**
 
 - `eventName (String)`: The name of the event to subscribe to
-- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](extend/events.md).
+- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](extend.md#events).
 - `obj (Object)`: An object with keys named for each event to subscribe to. The value at each key is the handler function for that event.
 
 **Returns**
@@ -2229,7 +2229,7 @@ Subscribe to an event for a single firing. This is a convenience function on top
 **Arguments**
 
 - `eventName (string)`: The name of the event to subscribe to.
-- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](extend/events.md).
+- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](extend.md#events).
 
 **Returns**
 
@@ -2421,7 +2421,7 @@ If the given [keypath](concepts/templates/keypaths.md) does not resolve to an ar
 
 Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any [observers](concepts/events/publish-subscribe.md) of affected [keypaths](concepts/templates/keypaths.md) will be notified.
 
-When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with [transitions](extend/transitions.md). See [`ractive.merge()`](#ractivemerge) for setting a new array value while retaining existing nodes corresponding to individual array item values.
+When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with [transitions](extend.md#transitions). See [`ractive.merge()`](#ractivemerge) for setting a new array value while retaining existing nodes corresponding to individual array item values.
 
 **Syntax**
 
@@ -2564,7 +2564,7 @@ Decrements the selected [keypath](concepts/templates/keypaths.md).
 
 Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.
 
-Calling `ractive.teardown()` causes a `teardown` [event](extend/events.md) to be fired - this is most useful with [`Ractive.extend()`](api.md#ractiveextend) as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.
+Calling `ractive.teardown()` causes a `teardown` [event](extend.md#events) to be fired - this is most useful with [`Ractive.extend()`](api.md#ractiveextend) as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.
 
 **Syntax**
 
@@ -3379,7 +3379,7 @@ Sets a CSS property on `t.node` to a value.
 
 ## `as-*`
 
-`as-*` attributes augment the element with [decorators](extend/decorators.md). It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.
+`as-*` attributes augment the element with [decorators](extend.md#decorators). It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.
 
 ```html
 <div as-modal>Div appearing as modal</div>
@@ -3398,7 +3398,7 @@ Sets a CSS property on `t.node` to a value.
 
 ## `on-*`
 
-`on-*` attributes attach event handlers for both native and [custom events](extend/events.md). They are designed to look similar to regular `on*` attributes for familiarity, the only difference being the hyphen. `on-*` can be used in two ways: proxy event syntax and expression syntax.
+`on-*` attributes attach event handlers for both native and [custom events](extend.md#events). They are designed to look similar to regular `on*` attributes for familiarity, the only difference being the hyphen. `on-*` can be used in two ways: proxy event syntax and expression syntax.
 
 Using the proxy event syntax, `on-*` accepts an event name as value. Events are handled by registering a function with [`ractive.on`](./#ractiveon) using the assigned event name.
 
@@ -3443,7 +3443,7 @@ Ractive({
 
 ## `*-in`, `*-out`, `*-in-out`
 
-`*-in`, `*-out`, and `*-in-out` attributes apply [transitions](extend/transitions.md) to the element. `*-in` specifies intro-only, `*-out` specifies outro-only, and `*-in-out` for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.
+`*-in`, `*-out`, and `*-in-out` attributes apply [transitions](extend.md#transitions) to the element. `*-in` specifies intro-only, `*-out` specifies outro-only, and `*-in-out` for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.
 
 ```html
 <div fade-in>Fades on render</div>

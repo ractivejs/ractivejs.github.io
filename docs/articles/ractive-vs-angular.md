@@ -55,7 +55,7 @@ They also share philosophical underpinnings. From [angularjs.org](http://angular
 
 Amen! Ractive, like Angular, takes the view that we should augment HTML to make it better suited to modern application development, rather than hiding the guts of our apps in JavaScript files, where it's hard to form complete mental models and *reason effectively* about them.
 
-Finally, both Angular and Ractive believe that your model should take the form of [POJOs](http://odetocode.com/blogs/scott/archive/2012/02/27/plain-old-javascript.aspx). Loading data from a server without having to convert it to some kind of `Model` or `Collection` object before you can use it is a liberating feeling. (That said, some apps benefit from the more rigorous approach, and Ractive fully supports that via [adaptors](../extend/adaptors.md))
+Finally, both Angular and Ractive believe that your model should take the form of [POJOs](http://odetocode.com/blogs/scott/archive/2012/02/27/plain-old-javascript.aspx). Loading data from a server without having to convert it to some kind of `Model` or `Collection` object before you can use it is a liberating feeling. (That said, some apps benefit from the more rigorous approach, and Ractive fully supports that via [adaptors](../extend.md#adaptors))
 
 
 ## And where do they differ?

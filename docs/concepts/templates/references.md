@@ -28,7 +28,7 @@ In order for a reference to be usable, it has to resolve to something. Ractive f
 2. If the reference is [explicit](../../api.md) or matches a path in the current context exactly, resolve with that keypath.
 3. Grab the current virtual node from the template hierarchy.
 4. If the reference matches an [alias](./mustaches.md#aliasing), section indexes, or keys, resolve with that keypath.
-5. If the reference matches any [mappings](../../extend/components.md#binding), resolve with that keypath.
+5. If the reference matches any [mappings](../../extend.md#components), resolve with that keypath.
 6. If the reference matches a path on the context, resolve with that keypath.
 7. Remove the innermost context from the stack. Repeat steps 3-7.
 8. If the reference is a valid keypath by itself, resolve with that keypath.
