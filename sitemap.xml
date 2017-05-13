@@ -64,31 +64,11 @@
     
 
     
-        
     <url>
-     <loc>https://ractive.js.org/integrations/loaders/</loc>
+     <loc>https://ractive.js.org/integrations/</loc>
      <lastmod>2017-05-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    <url>
-     <loc>https://ractive.js.org/integrations/plugins/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/integrations/tools/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/integrations/libraries/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
     
 
     

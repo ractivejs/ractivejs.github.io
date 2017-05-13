@@ -1966,167 +1966,192 @@
             "title": "Examples"
         }, 
         {
-            "location": "/integrations/loaders/", 
-            "text": "Loaders\n\n\nBy itself, neither Ractive nor your tools know what to do with a \ncomponent file\n. You will need a \nloader\n to transform a component file into a representation that the target tool or environment can understand.\n\n\nAvailable loaders\n\n\nVanilla\n\n\n\n\nractive-load\n - Uses \nXHR\n to load your component files and creates component constructors at runtime.\n\n\n\n\nRequireJS\n\n\n\n\nrvc\n - Converts component files into \nAMD modules\n. Works with plain and \noptimized\n AMD modules.\n\n\n\n\nBrowserify\n\n\n\n\nractify\n - Converts component files into \nCJS modules\n.\n\n\nractiveify\n - Similar to ractify, but supports JS/CSS compilation.\n\n\nractive-componentify\n - Similar to ractiveify, but supports \nsource maps\n and partial imports.\n\n\n\n\nBroccoli\n\n\n\n\nbroccoli-ractive\n - Converts your component files into either AMD, CJS, or ES modules.\n\n\n\n\nWebpack\n\n\n\n\nractive-component-loader\n - Allows you to load component files as constructors via Webpack.\n\n\n\n\nLooking to write your own loader?\n\n\nHead over to the \ncomponent file specifications\n repo for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.\n\n\nRactive also has a couple of handy modules to aid you in loader development:\n\n\n\n\nrcu\n - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.\n\n\nrcu-builders\n - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.", 
-            "title": "Loaders"
+            "location": "/integrations/", 
+            "text": "Component files\n\n\nRemember the good old days? When all CSS went in \nstyle\n elements in \nhead\n? When all JS went in \nscript\n elements just before \n/body\n? When all HTML was written in Mustache inside inert \nscript\n elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.\n\n\nRactive component files are simply self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.\n\n\nExample component file\n\n\n!-- Example component file --\n\n\n\n!-- Import a component named Foo from the file foo.html. --\n\n\nlink rel='ractive' href='foo.html' name='foo'\n\n\n\n!-- Define the markup for this component. --\n\n\nh1\n{{ title }}\n/h1\n\n\n\n!-- Use imported foo component --\n\n\np\nThis is an imported 'foo' component: \nfoo/\n/p\n\n\n\n!-- Define the styles for this component. --\n\n\nstyle\n\n  p { color: red; }\n\n/style\n\n\n\n!-- Define the behavior for this component. --\n\n\nscript\n\nconst $ = require( 'jquery' );\n\ncomponent.exports = {\n  onrender: function () {\n    $('\np /\n').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  }\n};\n\n/script\n\n\n\n\n\nThe above component file roughly translates to the following in vanilla JS:\n\n\nimport Ractive from 'ractive';\nimport $ from 'jquery';\nimport foo from './foo.html';\n\nexport default Ractive.extend({\n  components: { foo },\n  onrender: function () {\n    $('\np /\n').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  },\n  template: `\n    \nh1\n{{ title }}\n/h1\n\n    \np\nThis is an imported 'foo' component: \nfoo/\n/p\n\n  `,\n  css: `\n    p { color: red; }\n  `\n});\n\n\n\n\nWriting\n\n\nlink rel=\"ractive\"\n\n\nTop-level \nlink rel=\"ractive\"\n elements define dependencies on other components. It accepts two attributes:\n\n\n\n\n\n\nhref\n - The path to the required component file. Paths that start with \n./\n or \n../\n are resolved relative to the importing component file. Otherwise, resolution is loader-specific.\n\n\n\n\n\n\nname\n (optional) - The registered name of the component. This corresponds to the key used in the \ncomponents\n initialization option. When not defined, the filename of the dependency will be used as the name.\n\n\n\n\n\n\nThe names and the loaded dependency will be assigned to the component's \ncomponents\n initialization option.\n\n\nstyle\n\n\nTop-level \nstyle\n elements define the styles for the component. If more than one \nstyle\n element is found on the component file, their contents are concatenated in the order of appearance of the \nstyle\n elements. Contents of these elements will be concatenated and assigned to the component's \ncss\n initialization option.\n\n\nscript\n\n\nA top-level \nscript\n defines the component's initialization. The script's scope has a \ncomponent\n object that is similar to Node's \nmodule\n object. Initialization options for the component is expected via \ncomponent.exports\n. It also has a special \nrequire\n function that fetches script dependencies. \nrequire\n's behavior depends on the loader used. Refer to the specific loader's documentation to know more.\n\n\nThere can only ever be one \nscript\n in a component file. Defining more than one will result in the loader throwing an error.\n\n\nTemplate\n\n\nAfter yanking out top-level \nlink rel=\"ractive\"\n, \nstyle\n or \nscript\n from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's \ntemplate\n initialization option.\n\n\nUsing\n\n\nIn order to use component files, you will have to use \nloaders\n, Head over to the \nloaders\n page to learn more about loaders and help you choose a loader that suits your needs.\n\n\nLoaders\n\n\nBy itself, neither Ractive nor your tools know what to do with a \ncomponent file\n. You will need a \nloader\n to transform a component file into a representation that the target tool or environment can understand.\n\n\nAvailable loaders\n\n\nVanilla\n\n\n\n\nractive-load\n - Uses \nXHR\n to load your component files and creates component constructors at runtime.\n\n\n\n\nRequireJS\n\n\n\n\nrvc\n - Converts component files into \nAMD modules\n. Works with plain and \noptimized\n AMD modules.\n\n\n\n\nBrowserify\n\n\n\n\nractify\n - Converts component files into \nCJS modules\n.\n\n\nractiveify\n - Similar to ractify, but supports JS/CSS compilation.\n\n\nractive-componentify\n - Similar to ractiveify, but supports \nsource maps\n and partial imports.\n\n\n\n\nBroccoli\n\n\n\n\nbroccoli-ractive\n - Converts your component files into either AMD, CJS, or ES modules.\n\n\n\n\nWebpack\n\n\n\n\nractive-component-loader\n - Allows you to load component files as constructors via Webpack.\n\n\n\n\nLooking to write your own loader?\n\n\nHead over to the \ncomponent file specifications\n repo for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.\n\n\nRactive also has a couple of handy modules to aid you in loader development:\n\n\n\n\nrcu\n - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.\n\n\nrcu-builders\n - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.\n\n\n\n\nPlugins\n\n\nIt may not be apparent but Ractive is actually built with extreme extensibility in mind. Plugins allow you to augment Ractive with extra functionality. Whether you're a JavaScript developer, an interface designer or just trying to get away from your framework overlords, Ractive can accomodate one and all.\n\n\nAvailable plugins\n\n\nAdaptors\n\n\nInterface with different backends.\n\n\n\n\nBackbone\n\n\nBacon.js\n\n\nModella\n by \n@staygrimm\n\n\nPromises\n by \n@lluchs\n\n\nPromise-alt\n by \n@rstacruz\n\n\nRxJS\n\n\nRactive\n by \n@rstacruz\n - Synchronise several Ractive instances.\n\n\nss-ractive\n by Robert Hall \n@arxpoetica\n - Ractive Template Engine wrapper for \nSocketStream\n.\n\n\n\n\nComponents\n\n\nEncapsulate functionality behind the guise of a custom element.\n\n\n\n\nRactive-Require\n\n\nCodeMirror\n\n\nBootstrap\n\n\nDatatable\n\n\nSelect\n - A \nselect\n replacement component.\n\n\nStepper\n - A numeric stepper component.\n\n\nSplit\n\n\n\n\nDecorators\n\n\nAugment the DOM with more functionality.\n\n\n\n\nChosen\n by \n@rahulcs\n (\n@kalcifer\n)\n\n\nminmaxwidth\n by \n@cfenzo\n\n\nSelect2\n by \n@sandermarechal\n (\n@Prezent\n)\n\n\nSortable\n\n\nTooltip\n\n\n\n\nEasings\n\n\nCustom animation progressions.\n\n\nEvents\n\n\nAugment the DOM with custom events beyond those supported by the browser.\n\n\n\n\nDrag and Drop (HTML5)\n by \n@Nijikokun\n\n\nDrag and Drop (non-HTML5)\n by \n@smallhadroncollider\n\n\nDrag and Drop Sortable List\n by \n@Nijikokun\n\n\nResize\n by \n@smallhadroncollider\n\n\nHover\n\n\nKeys\n\n\nMousewheel\n\n\nTap\n\n\nTouch\n by \n@rstacruz\n\n\nTyping\n by \n@svapreddy\n\n\nViewport\n by \n@svapreddy\n\n\n\n\nPartials\n\n\nReusable pieces of markup.\n\n\nTransitions\n\n\nApply custom animation.\n\n\n\n\nFade\n\n\nFly\n\n\nScale\n by \n@1N50MN14\n\n\nSlide\n\n\nTypewriter\n\n\n\n\nAnd so much more!\n\n\nDue to the nature of how easy it is to write and distribute plugins as well as how diverse the distribution channels are, we cannot possibly know what other Ractive plugins exist in the wild.\n\n\nTo discover more, try searching your favorite package manager, search engine, or code hosting service for the keyword \"ractive\". I guarantee you'll be surprised.\n\n\nNote: Like any other open-source project, these plugins may not have been maintained for a while. Should bugs arise, we highly encourage reporting the issue to relevant parties so that it can be addressed.\n\n\nTools\n\n\nBrowserify\n\n\nBrowserify\n is a way of using \nnode-style\n requires in the browser, bundling your scripts into a single file for efficient deployment.\n\n\nThere are three Browserify transforms available that you can use for Ractive.js:\n\n\n\n\nRactivate\n, a transform that will pre-parse templates. Contributed by \njrajav\n. \n(Github repository)\n\n\nRactify\n, a transform that will pre-compile components. Contributed by \nmarcello3d\n. \n(Github repository)\n\n\nRactiveify\n, a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by \nnorcalli\n. \n(Github repository)\n\n\n\n\nA \nstarter project\n is available for using Ractivate with \ngulp.js\n build system.\n\n\nUsing plugins with Ractive and Browserify\n\n\nPlugins\n typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls \nrequire('ractive')\n. If you want to be explicit about \nwhich\n version of Ractive gets loaded, you can do it when you configure browserify like so:\n\n\nbrowserify.require('./my-copy-of-ractive.js', { expose: 'ractive' });\n\n\n\n\nRequireJS\n\n\nPsst! Looking for the \nRactive + RequireJS sample application\n?\n\n\nIf Ractive detects that you're using an \nAMD\n module loader (in other words, if \ntypeof define !== 'undefined' \n define.amd\n) such as \nRequireJS\n, it will register itself as an AMD module rather than as a browser global.\n\n\nYou'd then use Ractive the same as you'd use any other module, such as in this (contrived, oversimple) example:\n\n\n// define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'jquery', 'Ractive' ], function ( $, Ractive ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // load our template with jQuery AJAX\n      $.ajax( 'templates/main.html' ).then( function ( mainTemplate ) {\n\n        // render our main view\n        this.mainView = new Ractive({\n          el: 'container',\n          template: mainTemplate\n        });\n      });\n    }\n  };\n\n  return app;\n\n});\n\n\n\n\nLoading templates without AJAX\n\n\nWe can do one better than that. Rather than stuffing our code full of asynchronous logic, we can use AMD to do the donkey work for us.\n\n\nInclude the \nRequireJS text loader plugin\n in the root of your project (or whatever you've specified as the RequireJS \nbaseUrl\n) - you can now do this (note we no longer require jQuery):\n\n\n// define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'Ractive', 'text!templates/main.html' ], function ( Ractive, mainTemplate ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // render our main view\n      this.mainView = new Ractive({\n        el: 'container',\n        template: mainTemplate\n      });\n    }\n  };\n\n  return app;\n\n});\n\n\n\n\nBut we can do even better. If you use the \nRactive RequireJS loader plugin\n, it will pre-parse the template for us. We'll see in a moment why that's useful.\n\n\nPut the plugin in the same folder as the text loader plugin (which the Ractive plugin depends on). Note that we can omit the \n'.html'\n file extension:\n\n\n// define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // render our main view\n      this.mainView = new Ractive({\n        el: 'container',\n        template: mainTemplate\n      });\n    }\n  };\n\n  return app;\n\n});\n\n\n\n\nUsing the RequireJS optimiser\n\n\nYou might wonder why the third example is better than the second - after all, we've basically just added another middleman, right?\n\n\nThe answer is that you can now use the \nRequireJS optimiser\n to parse your template as part of your build process. The optimiser converts your project into a single minified file, which in most cases makes your app much quicker to load for the end user (because the browser only needs to make one HTTP request, and the total file size is reduced).\n\n\nBy pre-parsing templates, we save browsers having to do it, which shaves a few milliseconds off at render time.\n\n\nSo you get the best of both worlds - your templates stay neatly organised in their own files, where you can easily edit them, and the user gets the best possible experience.\n\n\nIf you're \nreally\n anal about performance, you can tweak things further still. We don't need the loader plugins any more (because everything has been inlined), but they're still there in our optimised file. We can instruct the optimiser to 'stub them out', saving ourselves a few precious bytes. In your optimiser config, add the following option:\n\n\n({\n    stubModules: [ 'rv', 'text' ]\n})\n\n\n\n\n(This assumes you're using a \nbuild.js\n file, or a build system like Grunt. If you're using the optimiser on the command line it will be different - consult the \ndocumentation\n for more info.)\n\n\nGetting to grips with AMD and RequireJS can be tricky at first, but it's worth the effort. Good luck!\n\n\nYeoman\n\n\nYeoman\n is a tool for scaffolding webapps. \nJorge Colindres\n has created \ngenerator-ractive\n, a Yeoman generator to quickly set up a Ractive application.\n\n\nRollup\n\n\nTODO\n\n\nBabel\n\n\nTODO\n\n\nLibraries\n\n\nWe heard that you love your framework so much, we put Ractive in your framework!\n\n\njQuery Mobile\n\n\nSergio Castillo\n has made a jQuery mobile plugin, which you can \nsee in action on this JSFiddle\n.", 
+            "title": "Integrations"
         }, 
         {
-            "location": "/integrations/loaders/#loaders", 
+            "location": "/integrations/#component-files", 
+            "text": "Remember the good old days? When all CSS went in  style  elements in  head ? When all JS went in  script  elements just before  /body ? When all HTML was written in Mustache inside inert  script  elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.  Ractive component files are simply self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.", 
+            "title": "Component files"
+        }, 
+        {
+            "location": "/integrations/#example-component-file", 
+            "text": "!-- Example component file --  !-- Import a component named Foo from the file foo.html. --  link rel='ractive' href='foo.html' name='foo'  !-- Define the markup for this component. --  h1 {{ title }} /h1  !-- Use imported foo component --  p This is an imported 'foo' component:  foo/ /p  !-- Define the styles for this component. --  style \n  p { color: red; } /style  !-- Define the behavior for this component. --  script \nconst $ = require( 'jquery' );\n\ncomponent.exports = {\n  onrender: function () {\n    $(' p / ').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  }\n}; /script   The above component file roughly translates to the following in vanilla JS:  import Ractive from 'ractive';\nimport $ from 'jquery';\nimport foo from './foo.html';\n\nexport default Ractive.extend({\n  components: { foo },\n  onrender: function () {\n    $(' p / ').text('component rendered').insertAfter($this.find('p'));\n  },\n  data: {\n    title: 'Hello World!'\n  },\n  template: `\n     h1 {{ title }} /h1 \n     p This is an imported 'foo' component:  foo/ /p \n  `,\n  css: `\n    p { color: red; }\n  `\n});", 
+            "title": "Example component file"
+        }, 
+        {
+            "location": "/integrations/#writing", 
+            "text": "", 
+            "title": "Writing"
+        }, 
+        {
+            "location": "/integrations/#link-relractive", 
+            "text": "Top-level  link rel=\"ractive\"  elements define dependencies on other components. It accepts two attributes:    href  - The path to the required component file. Paths that start with  ./  or  ../  are resolved relative to the importing component file. Otherwise, resolution is loader-specific.    name  (optional) - The registered name of the component. This corresponds to the key used in the  components  initialization option. When not defined, the filename of the dependency will be used as the name.    The names and the loaded dependency will be assigned to the component's  components  initialization option.", 
+            "title": "&lt;link rel=\"ractive\"&gt;"
+        }, 
+        {
+            "location": "/integrations/#style", 
+            "text": "Top-level  style  elements define the styles for the component. If more than one  style  element is found on the component file, their contents are concatenated in the order of appearance of the  style  elements. Contents of these elements will be concatenated and assigned to the component's  css  initialization option.", 
+            "title": "&lt;style&gt;"
+        }, 
+        {
+            "location": "/integrations/#script", 
+            "text": "A top-level  script  defines the component's initialization. The script's scope has a  component  object that is similar to Node's  module  object. Initialization options for the component is expected via  component.exports . It also has a special  require  function that fetches script dependencies.  require 's behavior depends on the loader used. Refer to the specific loader's documentation to know more.  There can only ever be one  script  in a component file. Defining more than one will result in the loader throwing an error.", 
+            "title": "&lt;script&gt;"
+        }, 
+        {
+            "location": "/integrations/#template", 
+            "text": "After yanking out top-level  link rel=\"ractive\" ,  style  or  script  from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's  template  initialization option.", 
+            "title": "Template"
+        }, 
+        {
+            "location": "/integrations/#using", 
+            "text": "In order to use component files, you will have to use  loaders , Head over to the  loaders  page to learn more about loaders and help you choose a loader that suits your needs.", 
+            "title": "Using"
+        }, 
+        {
+            "location": "/integrations/#loaders", 
             "text": "By itself, neither Ractive nor your tools know what to do with a  component file . You will need a  loader  to transform a component file into a representation that the target tool or environment can understand.", 
             "title": "Loaders"
         }, 
         {
-            "location": "/integrations/loaders/#available-loaders", 
+            "location": "/integrations/#available-loaders", 
             "text": "", 
             "title": "Available loaders"
         }, 
         {
-            "location": "/integrations/loaders/#vanilla", 
+            "location": "/integrations/#vanilla", 
             "text": "ractive-load  - Uses  XHR  to load your component files and creates component constructors at runtime.", 
             "title": "Vanilla"
         }, 
         {
-            "location": "/integrations/loaders/#requirejs", 
+            "location": "/integrations/#requirejs", 
             "text": "rvc  - Converts component files into  AMD modules . Works with plain and  optimized  AMD modules.", 
             "title": "RequireJS"
         }, 
         {
-            "location": "/integrations/loaders/#browserify", 
+            "location": "/integrations/#browserify", 
             "text": "ractify  - Converts component files into  CJS modules .  ractiveify  - Similar to ractify, but supports JS/CSS compilation.  ractive-componentify  - Similar to ractiveify, but supports  source maps  and partial imports.", 
             "title": "Browserify"
         }, 
         {
-            "location": "/integrations/loaders/#broccoli", 
+            "location": "/integrations/#broccoli", 
             "text": "broccoli-ractive  - Converts your component files into either AMD, CJS, or ES modules.", 
             "title": "Broccoli"
         }, 
         {
-            "location": "/integrations/loaders/#webpack", 
+            "location": "/integrations/#webpack", 
             "text": "ractive-component-loader  - Allows you to load component files as constructors via Webpack.", 
             "title": "Webpack"
         }, 
         {
-            "location": "/integrations/loaders/#looking-to-write-your-own-loader", 
+            "location": "/integrations/#looking-to-write-your-own-loader", 
             "text": "Head over to the  component file specifications  repo for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.  Ractive also has a couple of handy modules to aid you in loader development:   rcu  - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.  rcu-builders  - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.", 
             "title": "Looking to write your own loader?"
         }, 
         {
-            "location": "/integrations/plugins/", 
-            "text": "Plugins\n\n\nIt may not be apparent but Ractive is actually built with extreme extensibility in mind. Plugins allow you to augment Ractive with extra functionality. Whether you're a JavaScript developer, an interface designer or just trying to get away from your framework overlords, Ractive can accomodate one and all.\n\n\nAvailable plugins\n\n\nAdaptors\n\n\nInterface with different backends.\n\n\n\n\nBackbone\n\n\nBacon.js\n\n\nModella\n by \n@staygrimm\n\n\nPromises\n by \n@lluchs\n\n\nPromise-alt\n by \n@rstacruz\n\n\nRxJS\n\n\nRactive\n by \n@rstacruz\n - Synchronise several Ractive instances.\n\n\nss-ractive\n by Robert Hall \n@arxpoetica\n - Ractive Template Engine wrapper for \nSocketStream\n.\n\n\n\n\nComponents\n\n\nEncapsulate functionality behind the guise of a custom element.\n\n\n\n\nRactive-Require\n\n\nCodeMirror\n\n\nBootstrap\n\n\nDatatable\n\n\nSelect\n - A \nselect\n replacement component.\n\n\nStepper\n - A numeric stepper component.\n\n\nSplit\n\n\n\n\nDecorators\n\n\nAugment the DOM with more functionality.\n\n\n\n\nChosen\n by \n@rahulcs\n (\n@kalcifer\n)\n\n\nminmaxwidth\n by \n@cfenzo\n\n\nSelect2\n by \n@sandermarechal\n (\n@Prezent\n)\n\n\nSortable\n\n\nTooltip\n\n\n\n\nEasings\n\n\nCustom animation progressions.\n\n\nEvents\n\n\nAugment the DOM with custom events beyond those supported by the browser.\n\n\n\n\nDrag and Drop (HTML5)\n by \n@Nijikokun\n\n\nDrag and Drop (non-HTML5)\n by \n@smallhadroncollider\n\n\nDrag and Drop Sortable List\n by \n@Nijikokun\n\n\nResize\n by \n@smallhadroncollider\n\n\nHover\n\n\nKeys\n\n\nMousewheel\n\n\nTap\n\n\nTouch\n by \n@rstacruz\n\n\nTyping\n by \n@svapreddy\n\n\nViewport\n by \n@svapreddy\n\n\n\n\nPartials\n\n\nReusable pieces of markup.\n\n\nTransitions\n\n\nApply custom animation.\n\n\n\n\nFade\n\n\nFly\n\n\nScale\n by \n@1N50MN14\n\n\nSlide\n\n\nTypewriter\n\n\n\n\nAnd so much more!\n\n\nDue to the nature of how easy it is to write and distribute plugins as well as how diverse the distribution channels are, we cannot possibly know what other Ractive plugins exist in the wild.\n\n\nTo discover more, try searching your favorite package manager, search engine, or code hosting service for the keyword \"ractive\". I guarantee you'll be surprised.\n\n\nNote: Like any other open-source project, these plugins may not have been maintained for a while. Should bugs arise, we highly encourage reporting the issue to relevant parties so that it can be addressed.", 
-            "title": "Plugins"
-        }, 
-        {
-            "location": "/integrations/plugins/#plugins", 
+            "location": "/integrations/#plugins", 
             "text": "It may not be apparent but Ractive is actually built with extreme extensibility in mind. Plugins allow you to augment Ractive with extra functionality. Whether you're a JavaScript developer, an interface designer or just trying to get away from your framework overlords, Ractive can accomodate one and all.", 
             "title": "Plugins"
         }, 
         {
-            "location": "/integrations/plugins/#available-plugins", 
+            "location": "/integrations/#available-plugins", 
             "text": "", 
             "title": "Available plugins"
         }, 
         {
-            "location": "/integrations/plugins/#adaptors", 
+            "location": "/integrations/#adaptors", 
             "text": "Interface with different backends.   Backbone  Bacon.js  Modella  by  @staygrimm  Promises  by  @lluchs  Promise-alt  by  @rstacruz  RxJS  Ractive  by  @rstacruz  - Synchronise several Ractive instances.  ss-ractive  by Robert Hall  @arxpoetica  - Ractive Template Engine wrapper for  SocketStream .", 
             "title": "Adaptors"
         }, 
         {
-            "location": "/integrations/plugins/#components", 
+            "location": "/integrations/#components", 
             "text": "Encapsulate functionality behind the guise of a custom element.   Ractive-Require  CodeMirror  Bootstrap  Datatable  Select  - A  select  replacement component.  Stepper  - A numeric stepper component.  Split", 
             "title": "Components"
         }, 
         {
-            "location": "/integrations/plugins/#decorators", 
+            "location": "/integrations/#decorators", 
             "text": "Augment the DOM with more functionality.   Chosen  by  @rahulcs  ( @kalcifer )  minmaxwidth  by  @cfenzo  Select2  by  @sandermarechal  ( @Prezent )  Sortable  Tooltip", 
             "title": "Decorators"
         }, 
         {
-            "location": "/integrations/plugins/#easings", 
+            "location": "/integrations/#easings", 
             "text": "Custom animation progressions.", 
             "title": "Easings"
         }, 
         {
-            "location": "/integrations/plugins/#events", 
+            "location": "/integrations/#events", 
             "text": "Augment the DOM with custom events beyond those supported by the browser.   Drag and Drop (HTML5)  by  @Nijikokun  Drag and Drop (non-HTML5)  by  @smallhadroncollider  Drag and Drop Sortable List  by  @Nijikokun  Resize  by  @smallhadroncollider  Hover  Keys  Mousewheel  Tap  Touch  by  @rstacruz  Typing  by  @svapreddy  Viewport  by  @svapreddy", 
             "title": "Events"
         }, 
         {
-            "location": "/integrations/plugins/#partials", 
+            "location": "/integrations/#partials", 
             "text": "Reusable pieces of markup.", 
             "title": "Partials"
         }, 
         {
-            "location": "/integrations/plugins/#transitions", 
+            "location": "/integrations/#transitions", 
             "text": "Apply custom animation.   Fade  Fly  Scale  by  @1N50MN14  Slide  Typewriter", 
             "title": "Transitions"
         }, 
         {
-            "location": "/integrations/plugins/#and-so-much-more", 
+            "location": "/integrations/#and-so-much-more", 
             "text": "Due to the nature of how easy it is to write and distribute plugins as well as how diverse the distribution channels are, we cannot possibly know what other Ractive plugins exist in the wild.  To discover more, try searching your favorite package manager, search engine, or code hosting service for the keyword \"ractive\". I guarantee you'll be surprised.  Note: Like any other open-source project, these plugins may not have been maintained for a while. Should bugs arise, we highly encourage reporting the issue to relevant parties so that it can be addressed.", 
             "title": "And so much more!"
         }, 
         {
-            "location": "/integrations/tools/", 
-            "text": "Tools\n\n\nBrowserify\n\n\nBrowserify\n is a way of using \nnode-style\n requires in the browser, bundling your scripts into a single file for efficient deployment.\n\n\nThere are three Browserify transforms available that you can use for Ractive.js:\n\n\n\n\nRactivate\n, a transform that will pre-parse templates. Contributed by \njrajav\n. \n(Github repository)\n\n\nRactify\n, a transform that will pre-compile components. Contributed by \nmarcello3d\n. \n(Github repository)\n\n\nRactiveify\n, a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by \nnorcalli\n. \n(Github repository)\n\n\n\n\nA \nstarter project\n is available for using Ractivate with \ngulp.js\n build system.\n\n\nUsing plugins with Ractive and Browserify\n\n\nPlugins\n typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls \nrequire('ractive')\n. If you want to be explicit about \nwhich\n version of Ractive gets loaded, you can do it when you configure browserify like so:\n\n\nbrowserify.require('./my-copy-of-ractive.js', { expose: 'ractive' });\n\n\n\n\nRequireJS\n\n\nPsst! Looking for the \nRactive + RequireJS sample application\n?\n\n\nIf Ractive detects that you're using an \nAMD\n module loader (in other words, if \ntypeof define !== 'undefined' \n define.amd\n) such as \nRequireJS\n, it will register itself as an AMD module rather than as a browser global.\n\n\nYou'd then use Ractive the same as you'd use any other module, such as in this (contrived, oversimple) example:\n\n\n// define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'jquery', 'Ractive' ], function ( $, Ractive ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // load our template with jQuery AJAX\n      $.ajax( 'templates/main.html' ).then( function ( mainTemplate ) {\n\n        // render our main view\n        this.mainView = new Ractive({\n          el: 'container',\n          template: mainTemplate\n        });\n      });\n    }\n  };\n\n  return app;\n\n});\n\n\n\n\nLoading templates without AJAX\n\n\nWe can do one better than that. Rather than stuffing our code full of asynchronous logic, we can use AMD to do the donkey work for us.\n\n\nInclude the \nRequireJS text loader plugin\n in the root of your project (or whatever you've specified as the RequireJS \nbaseUrl\n) - you can now do this (note we no longer require jQuery):\n\n\n// define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'Ractive', 'text!templates/main.html' ], function ( Ractive, mainTemplate ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // render our main view\n      this.mainView = new Ractive({\n        el: 'container',\n        template: mainTemplate\n      });\n    }\n  };\n\n  return app;\n\n});\n\n\n\n\nBut we can do even better. If you use the \nRactive RequireJS loader plugin\n, it will pre-parse the template for us. We'll see in a moment why that's useful.\n\n\nPut the plugin in the same folder as the text loader plugin (which the Ractive plugin depends on). Note that we can omit the \n'.html'\n file extension:\n\n\n// define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // render our main view\n      this.mainView = new Ractive({\n        el: 'container',\n        template: mainTemplate\n      });\n    }\n  };\n\n  return app;\n\n});\n\n\n\n\nUsing the RequireJS optimiser\n\n\nYou might wonder why the third example is better than the second - after all, we've basically just added another middleman, right?\n\n\nThe answer is that you can now use the \nRequireJS optimiser\n to parse your template as part of your build process. The optimiser converts your project into a single minified file, which in most cases makes your app much quicker to load for the end user (because the browser only needs to make one HTTP request, and the total file size is reduced).\n\n\nBy pre-parsing templates, we save browsers having to do it, which shaves a few milliseconds off at render time.\n\n\nSo you get the best of both worlds - your templates stay neatly organised in their own files, where you can easily edit them, and the user gets the best possible experience.\n\n\nIf you're \nreally\n anal about performance, you can tweak things further still. We don't need the loader plugins any more (because everything has been inlined), but they're still there in our optimised file. We can instruct the optimiser to 'stub them out', saving ourselves a few precious bytes. In your optimiser config, add the following option:\n\n\n({\n    stubModules: [ 'rv', 'text' ]\n})\n\n\n\n\n(This assumes you're using a \nbuild.js\n file, or a build system like Grunt. If you're using the optimiser on the command line it will be different - consult the \ndocumentation\n for more info.)\n\n\nGetting to grips with AMD and RequireJS can be tricky at first, but it's worth the effort. Good luck!\n\n\nYeoman\n\n\nYeoman\n is a tool for scaffolding webapps. \nJorge Colindres\n has created \ngenerator-ractive\n, a Yeoman generator to quickly set up a Ractive application.\n\n\nRollup\n\n\nTODO\n\n\nBabel\n\n\nTODO", 
-            "title": "Tools"
-        }, 
-        {
-            "location": "/integrations/tools/#tools", 
+            "location": "/integrations/#tools", 
             "text": "", 
             "title": "Tools"
         }, 
         {
-            "location": "/integrations/tools/#browserify", 
+            "location": "/integrations/#browserify_1", 
             "text": "Browserify  is a way of using  node-style  requires in the browser, bundling your scripts into a single file for efficient deployment.  There are three Browserify transforms available that you can use for Ractive.js:   Ractivate , a transform that will pre-parse templates. Contributed by  jrajav .  (Github repository)  Ractify , a transform that will pre-compile components. Contributed by  marcello3d .  (Github repository)  Ractiveify , a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by  norcalli .  (Github repository)   A  starter project  is available for using Ractivate with  gulp.js  build system.", 
             "title": "Browserify"
         }, 
         {
-            "location": "/integrations/tools/#using-plugins-with-ractive-and-browserify", 
+            "location": "/integrations/#using-plugins-with-ractive-and-browserify", 
             "text": "Plugins  typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls  require('ractive') . If you want to be explicit about  which  version of Ractive gets loaded, you can do it when you configure browserify like so:  browserify.require('./my-copy-of-ractive.js', { expose: 'ractive' });", 
             "title": "Using plugins with Ractive and Browserify"
         }, 
         {
-            "location": "/integrations/tools/#requirejs", 
+            "location": "/integrations/#requirejs_1", 
             "text": "Psst! Looking for the  Ractive + RequireJS sample application ?  If Ractive detects that you're using an  AMD  module loader (in other words, if  typeof define !== 'undefined'   define.amd ) such as  RequireJS , it will register itself as an AMD module rather than as a browser global.  You'd then use Ractive the same as you'd use any other module, such as in this (contrived, oversimple) example:  // define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'jquery', 'Ractive' ], function ( $, Ractive ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // load our template with jQuery AJAX\n      $.ajax( 'templates/main.html' ).then( function ( mainTemplate ) {\n\n        // render our main view\n        this.mainView = new Ractive({\n          el: 'container',\n          template: mainTemplate\n        });\n      });\n    }\n  };\n\n  return app;\n\n});", 
             "title": "RequireJS"
         }, 
         {
-            "location": "/integrations/tools/#loading-templates-without-ajax", 
+            "location": "/integrations/#loading-templates-without-ajax", 
             "text": "We can do one better than that. Rather than stuffing our code full of asynchronous logic, we can use AMD to do the donkey work for us.  Include the  RequireJS text loader plugin  in the root of your project (or whatever you've specified as the RequireJS  baseUrl ) - you can now do this (note we no longer require jQuery):  // define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'Ractive', 'text!templates/main.html' ], function ( Ractive, mainTemplate ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // render our main view\n      this.mainView = new Ractive({\n        el: 'container',\n        template: mainTemplate\n      });\n    }\n  };\n\n  return app;\n\n});  But we can do even better. If you use the  Ractive RequireJS loader plugin , it will pre-parse the template for us. We'll see in a moment why that's useful.  Put the plugin in the same folder as the text loader plugin (which the Ractive plugin depends on). Note that we can omit the  '.html'  file extension:  // define our main application, with an 'init' method to call when\n// the DOM is ready etc\ndefine([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {\n\n  'use strict';\n\n  var app = {\n    init: function () {\n\n      // render our main view\n      this.mainView = new Ractive({\n        el: 'container',\n        template: mainTemplate\n      });\n    }\n  };\n\n  return app;\n\n});", 
             "title": "Loading templates without AJAX"
         }, 
         {
-            "location": "/integrations/tools/#using-the-requirejs-optimiser", 
+            "location": "/integrations/#using-the-requirejs-optimiser", 
             "text": "You might wonder why the third example is better than the second - after all, we've basically just added another middleman, right?  The answer is that you can now use the  RequireJS optimiser  to parse your template as part of your build process. The optimiser converts your project into a single minified file, which in most cases makes your app much quicker to load for the end user (because the browser only needs to make one HTTP request, and the total file size is reduced).  By pre-parsing templates, we save browsers having to do it, which shaves a few milliseconds off at render time.  So you get the best of both worlds - your templates stay neatly organised in their own files, where you can easily edit them, and the user gets the best possible experience.  If you're  really  anal about performance, you can tweak things further still. We don't need the loader plugins any more (because everything has been inlined), but they're still there in our optimised file. We can instruct the optimiser to 'stub them out', saving ourselves a few precious bytes. In your optimiser config, add the following option:  ({\n    stubModules: [ 'rv', 'text' ]\n})  (This assumes you're using a  build.js  file, or a build system like Grunt. If you're using the optimiser on the command line it will be different - consult the  documentation  for more info.)  Getting to grips with AMD and RequireJS can be tricky at first, but it's worth the effort. Good luck!", 
             "title": "Using the RequireJS optimiser"
         }, 
         {
-            "location": "/integrations/tools/#yeoman", 
+            "location": "/integrations/#yeoman", 
             "text": "Yeoman  is a tool for scaffolding webapps.  Jorge Colindres  has created  generator-ractive , a Yeoman generator to quickly set up a Ractive application.", 
             "title": "Yeoman"
         }, 
         {
-            "location": "/integrations/tools/#rollup", 
+            "location": "/integrations/#rollup", 
             "text": "TODO", 
             "title": "Rollup"
         }, 
         {
-            "location": "/integrations/tools/#babel", 
+            "location": "/integrations/#babel", 
             "text": "TODO", 
             "title": "Babel"
         }, 
         {
-            "location": "/integrations/libraries/", 
-            "text": "Libraries\n\n\nWe heard that you love your framework so much, we put Ractive in your framework!\n\n\njQuery Mobile\n\n\nSergio Castillo\n has made a jQuery mobile plugin, which you can \nsee in action on this JSFiddle\n.", 
-            "title": "Libraries"
-        }, 
-        {
-            "location": "/integrations/libraries/#libraries", 
+            "location": "/integrations/#libraries", 
             "text": "We heard that you love your framework so much, we put Ractive in your framework!", 
             "title": "Libraries"
         }, 
         {
-            "location": "/integrations/libraries/#jquery-mobile", 
+            "location": "/integrations/#jquery-mobile", 
             "text": "Sergio Castillo  has made a jQuery mobile plugin, which you can  see in action on this JSFiddle .", 
             "title": "jQuery Mobile"
         }, 

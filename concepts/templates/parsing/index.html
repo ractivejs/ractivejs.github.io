@@ -265,35 +265,8 @@
                 
                 
                 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                            
-<li >
-    <a href="../../../integrations/loaders/">Loaders</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../integrations/plugins/">Plugins</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../integrations/tools/">Tools</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../../integrations/libraries/">Libraries</a>
-</li>
-
-                        
-                        </ul>
+                    <li >
+                        <a href="../../../integrations/">Integrations</a>
                     </li>
                 
                 
@@ -607,7 +580,7 @@
 <p>The parsed template is not designed to be readable nor editable by a human. It is meant to represent the template structure as an object in a way Ractive understands with as few bytes as possible. Where the template doesn't use Ractive-specific features, these parts will be represented as plain HTML in the data structure.</p>
 <h2 id="pre-parsing">Pre-parsing</h2>
 <p>Parsing templates can be a very slow operation, particularly for very large apps, very complex templates, or intricate SVGs. As an optimization option, templates can be pre-parsed into their object form outside of runtime. This would allow Ractive to skip parsing during runtime and speed up app initialization. Typically, a parsed template is only about 30-40% larger than the string version, making pre-parsing a trade-off between space and processing.</p>
-<p>Pre-parsing can be done in many different ways as long as Ractive receives the parsed template during runtime. One way would be to simply serve the pre-parsed template separately from the component or instance and load it via AJAX. Another would be to extract and replace the template on the file with the parsed version during compile time - an approach that works well with <a href="../../../api/">component files</a>. Read more about <a href="../../../integrations/loaders/">loaders</a> to know more about how loaders do pre-parsing on compile time.</p></div>
+<p>Pre-parsing can be done in many different ways as long as Ractive receives the parsed template during runtime. One way would be to simply serve the pre-parsed template separately from the component or instance and load it via AJAX. Another would be to extract and replace the template on the file with the parsed version during compile time - an approach that works well with <a href="../../../api/">component files</a>. Read more about <a href="../../integrations/loaders.md">loaders</a> to know more about how loaders do pre-parsing on compile time.</p></div>
             
         </div>
 
