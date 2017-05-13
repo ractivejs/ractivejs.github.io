@@ -56,55 +56,11 @@
     
 
     
-        
     <url>
-     <loc>https://ractive.js.org/extend/adaptors/</loc>
+     <loc>https://ractive.js.org/extend/</loc>
      <lastmod>2017-05-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    <url>
-     <loc>https://ractive.js.org/extend/components/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/extend/decorators/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/extend/easings/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/extend/events/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/extend/interpolators/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/extend/partials/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/extend/transitions/</loc>
-     <lastmod>2017-05-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
     
 
     
