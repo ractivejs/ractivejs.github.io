@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="RactiveJS contributors"> 
-    <link rel="canonical" href="https://ractive.js.org/api/attributes/"> 
+    <link rel="canonical" href="https://ractive.js.org/api/transition/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <meta name="theme-color" content="#557526">
 
-    <title>Attributes - Ractive.js</title>
+    <title>Transition - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -207,8 +207,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Attributes</a>
+<li >
+    <a href="../attributes/">Attributes</a>
 </li>
 
                         
@@ -237,8 +237,8 @@
 
                         
                             
-<li >
-    <a href="../transition/">Transition</a>
+<li class="active">
+    <a href="./">Transition</a>
 </li>
 
                         
@@ -398,12 +398,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../instance-methods/">
+                        <a rel="next" href="../parse/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../keypath-prefixes/">
+                        <a rel="prev" href="../../extend/adaptors/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -429,21 +429,30 @@
             <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#attributes">Attributes</a></li>
+        <li class="first-level active"><a href="#transition">Transition</a></li>
         
-            <li class="second-level"><a href="#as-">as-*</a></li>
+            <li class="second-level"><a href="#tanimatestyle">t.animateStyle()</a></li>
             
         
-            <li class="second-level"><a href="#class-">class-*</a></li>
+            <li class="second-level"><a href="#tcomplete">t.complete()</a></li>
             
         
-            <li class="second-level"><a href="#on-">on-*</a></li>
+            <li class="second-level"><a href="#tgetstyle">t.getStyle()</a></li>
             
         
-            <li class="second-level"><a href="#-in-out-in-out">*-in, *-out, *-in-out</a></li>
+            <li class="second-level"><a href="#tisintro">t.isIntro</a></li>
             
         
-            <li class="second-level"><a href="#style-">style-*</a></li>
+            <li class="second-level"><a href="#tname">t.name</a></li>
+            
+        
+            <li class="second-level"><a href="#tnode">t.node</a></li>
+            
+        
+            <li class="second-level"><a href="#tprocessparams">t.processParams()</a></li>
+            
+        
+            <li class="second-level"><a href="#tsetstyle">t.setStyle()</a></li>
             
         
     
@@ -451,81 +460,142 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="attributes">Attributes</h1>
-<h2 id="as-"><code>as-*</code></h2>
-<p><code>as-*</code> attributes augment the element with <a href="../../extend/decorators/">decorators</a>. It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.</p>
-<pre><code class="html">&lt;div as-modal&gt;Div appearing as modal&lt;/div&gt;
-&lt;div as-modal=&quot;true, true, true, false&quot;&gt;Div appearing as modal&lt;/div&gt;
+<h1 id="transition">Transition</h1>
+<p>The transition object is an object you receive when writing transitions. It has a few properties and methods designed to make creating transitions easier.</p>
+<hr />
+<h2 id="tanimatestyle">t.animateStyle()</h2>
+<p>Animates CSS properties to a certain value.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.animateStyle(prop, value, options[, complete])</code></li>
+<li><code>t.animateStyle(props, options[, complete])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>props (Object)</code>: A map of animation properties and values.</li>
+<li><code>prop (string)</code>: The style to animate.</li>
+<li><code>value (any)</code>: The value to animate it to.</li>
+<li><code>options (Object)</code>: Animation options.</li>
+<li><code>duration (number)</code>: The duration of the animation.</li>
+<li><code>easing (string)</code>: The easing function of the animation.</li>
+<li><code>delay (number)</code>: The number of milliseconds before the animation starts.</li>
+<li><code>[complete] (Function)</code>: A function that is executed when the animation completes, or immediately if no changes were made.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise that resolves when the animation completes.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="class-"><code>class-*</code></h2>
-<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions.</p>
-<pre><code class="html">&lt;div class-foo=&quot;isFoo&quot;&gt;Adds &quot;foo&quot; if isFoo is truthy&lt;/div&gt;
-&lt;div class-foo-bar=&quot;isFooBar&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar is truthy&lt;/div&gt;
-&lt;div class-fooBar=&quot;isFooBar&quot;&gt;Adds &quot;fooBar&quot; if isFooBar is truthy&lt;/div&gt;
+<hr />
+<h2 id="tcomplete">t.complete()</h2>
+<p>Signals Ractive that the transition is complete.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.complete[noReset])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[noReset] (boolean)</code>: If <code>true</code>, <a href="#tresetstyle"><code>t.resetStyle()</code></a> is not called. Defaults to <code>false</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(undefined)</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="on-"><code>on-*</code></h2>
-<p><code>on-*</code> attributes attach event handlers for both native and <a href="../../extend/events/">custom events</a>. They are designed to look similar to regular <code>on*</code> attributes for familiarity, the only difference being the hyphen. <code>on-*</code> can be used in two ways: proxy event syntax and expression syntax.</p>
-<p>Using the proxy event syntax, <code>on-*</code> accepts an event name as value. Events are handled by registering a function with <a href="../instance-methods/#ractiveon"><code>ractive.on</code></a> using the assigned event name.</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;clicked&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  oninit(){
-    this.on('clicked', event =&gt; {
-      console.log('clicked!');
-    });
-  }
-});
+<hr />
+<h2 id="tgetstyle">t.getStyle()</h2>
+<p>Retrieve a CSS property value from <code>t.node</code>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.getStyle(prop)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>prop (string)</code>: An unprefixed CSS property either in camelCase or kebab-case.</li>
+<li><code>prop (Array)</code>: An array of CSS properties.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(string)</code>: The value of the specified style property.</li>
+<li><code>(Object)</code>: A key-value pair of properties and their respective values.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
-<p>Using the expression syntax, <code>on-*</code> accepts expressions as value. This allows it to appear like regular inline scripts, similar to how it's done in inline event handlers.</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  someMethod(){
-    console.log('clicked!');
-  }
-});
+<hr />
+<h2 id="tisintro">t.isIntro</h2>
+<p><em>(boolean)</em></p>
+<p>Should be self-explanatory...</p>
+<hr />
+<h2 id="tname">t.name</h2>
+<p><em>(string)</em></p>
+<p>The name of the transition.</p>
+<hr />
+<h2 id="tnode">t.node</h2>
+<p><em>(Node)</em></p>
+<p>The node that's entering or leaving the DOM</p>
+<hr />
+<h2 id="tprocessparams">t.processParams()</h2>
+<p>Builds a map of parameters whose values are taken from the provided arguments. When used with a single number or string argument, serves as a shorthand for creating a map with a <code>duration</code> property.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.processParams(params[, defaults])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>params (number)</code>: Numeric shorthand for the <code>duration</code> parameter. Expressed in milliseconds.</li>
+<li><code>params (string)</code>: String shorthand for the <code>duration</code> parameter. Valid values are:<ul>
+<li>"fast" - 200ms</li>
+<li>"slow" - 600ms</li>
+<li>Any other string - 400ms</li>
+</ul>
+</li>
+<li><code>params (Object)</code>: A map of parameters and their values.</li>
+<li><code>[defaults] (Object)</code>: A map of parameters and their default values.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>: A map of parameters and their values.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
-<p>Multiple events can also be tied to the same handler by separating them with a hyphen:</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-hover-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  someMethod(){
-    console.log('Fires on hover and on click!');
-  }
-});
-</code></pre>
-
-<h2 id="-in-out-in-out"><code>*-in</code>, <code>*-out</code>, <code>*-in-out</code></h2>
-<p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> attributes apply <a href="../../extend/transitions/">transitions</a> to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.</p>
-<pre><code class="html">&lt;div fade-in&gt;Fades on render&lt;/div&gt;
-&lt;div fade-out&gt;Fades before removal&lt;/div&gt;
-&lt;div fade-in-out&gt;Fades on render and before removal&lt;/div&gt;
-&lt;div fade-in-out=&quot;{ duration: 500 }&quot;&gt;Fades with 500ms duration&lt;/div&gt;
-</code></pre>
-
-<h2 id="style-"><code>style-*</code></h2>
-<p><code>style-*</code> attributes update individual <code>style</code> properties of the element. The part of the attribute following <code>style-</code> will be used as the style property name. There are two forms of the syntax: <code>style-property-name</code> (CSS style) and <code>style-propertyName</code> (JS style). Style property names will be normalized.</p>
-<pre><code class="html">&lt;div style-vertical-align=&quot;middle&quot;&gt;Applies style.verticalAlign&lt;/div&gt;
-&lt;div style-textAlign=&quot;center&quot;&gt;Applies style.textAlign&lt;/div&gt;
-</code></pre>
-
-<p><code>style-*</code> attribute values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.</p>
-<pre><code class="html">&lt;div style-vertical-align=&quot;{{ vAlign }}&quot; style-textAlign=&quot;{{ tAlign }}&quot;&gt;...&lt;/div&gt;
+<hr />
+<h2 id="tsetstyle">t.setStyle()</h2>
+<p>Sets a CSS property on <code>t.node</code> to a value.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.setStyle(prop, value)</code></li>
+<li><code>t.setStyle(props)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>prop (string)</code>: An unprefixed CSS property either in camelCase or kebab-case.</li>
+<li><code>props (Object)</code>: A key-value pair of CSS properties and their respective values.</li>
+<li><code>value (string)</code>: A valid value for the specified CSS property.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(undefined)</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre></div>
             
         </div>
 
         <div class="footer-nav">
-            <a rel="prev" href="../instance-methods/">previous</a>
-            <a rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/attributes.md" target="_blank">edit this page
-            <a rel="next" href="../keypath-prefixes/">next</a>
+            <a rel="prev" href="../parse/">previous</a>
+            <a rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/transition.md" target="_blank">edit this page
+            <a rel="next" href="../../extend/adaptors/">next</a>
         </div>
 
         <footer class="col-md-12 text-center">

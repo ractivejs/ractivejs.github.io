@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="RactiveJS contributors"> 
-    <link rel="canonical" href="https://ractive.js.org/api/attributes/"> 
+    <link rel="canonical" href="https://ractive.js.org/api/node-info/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <meta name="theme-color" content="#557526">
 
-    <title>Attributes - Ractive.js</title>
+    <title>Node Info - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -207,8 +207,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Attributes</a>
+<li >
+    <a href="../attributes/">Attributes</a>
 </li>
 
                         
@@ -225,8 +225,8 @@
 
                         
                             
-<li >
-    <a href="../node-info/">Node Info</a>
+<li class="active">
+    <a href="./">Node Info</a>
 </li>
 
                         
@@ -398,12 +398,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../instance-methods/">
+                        <a rel="next" href="../special-references/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../keypath-prefixes/">
+                        <a rel="prev" href="../parse/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -429,21 +429,93 @@
             <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#attributes">Attributes</a></li>
+        <li class="first-level active"><a href="#node-info">Node Info</a></li>
         
-            <li class="second-level"><a href="#as-">as-*</a></li>
+            <li class="second-level"><a href="#nodeinfoadd">nodeinfo.add()</a></li>
             
         
-            <li class="second-level"><a href="#class-">class-*</a></li>
+            <li class="second-level"><a href="#nodeinfoanimate">nodeinfo.animate()</a></li>
             
         
-            <li class="second-level"><a href="#on-">on-*</a></li>
+            <li class="second-level"><a href="#nodeinfocontext">nodeinfo.context</a></li>
             
         
-            <li class="second-level"><a href="#-in-out-in-out">*-in, *-out, *-in-out</a></li>
+            <li class="second-level"><a href="#nodeinfoget">nodeinfo.get()</a></li>
             
         
-            <li class="second-level"><a href="#style-">style-*</a></li>
+            <li class="second-level"><a href="#nodeinfogetbinding">nodeinfo.getBinding()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfogetbindingpath">nodeinfo.getBindingPath()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfoindex">nodeinfo.index</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfoisbound">nodeinfo.isBound()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfokeypath">nodeinfo.keypath</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfolink">nodeinfo.link()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfomerge">nodeinfo.merge()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfonode">nodeinfo.node</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfooriginal">nodeinfo.original</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfopop">nodeinfo.pop()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfopush">nodeinfo.push()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinforactive">nodeinfo.ractive</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinforesolve">nodeinfo.resolve()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinforeverse">nodeinfo.reverse()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfoset">nodeinfo.set()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfosetbinding">nodeinfo.setBinding()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfoshift">nodeinfo.shift()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfosplice">nodeinfo.splice()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfosort">nodeinfo.sort()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfosubtract">nodeinfo.subtract()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfotoggle">nodeinfo.toggle()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfounlink">nodeinfo.unlink()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfounshift">nodeinfo.unshift()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfoupdate">nodeinfo.update()</a></li>
+            
+        
+            <li class="second-level"><a href="#nodeinfoupdatemodel">nodeinfo.updateModel()</a></li>
             
         
     
@@ -451,81 +523,202 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="attributes">Attributes</h1>
-<h2 id="as-"><code>as-*</code></h2>
-<p><code>as-*</code> attributes augment the element with <a href="../../extend/decorators/">decorators</a>. It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.</p>
-<pre><code class="html">&lt;div as-modal&gt;Div appearing as modal&lt;/div&gt;
-&lt;div as-modal=&quot;true, true, true, false&quot;&gt;Div appearing as modal&lt;/div&gt;
+<h1 id="node-info">Node Info</h1>
+<p>The nodeinfo object is the type of object you receive when calling <a href="./">Node Info</a>. This object contains various properties and methods that allow you to obtain information about the Ractive instance, the node associated with it and the context surrounding it.</p>
+<p>Helper methods that take a <a href="../../concepts/templates/#keypaths">keypath</a> will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported.</p>
+<hr />
+<h2 id="nodeinfoadd">nodeinfo.add()</h2>
+<p>See <a href="../instance-methods/#ractiveadd">ractive.add()</a>.</p>
+<hr />
+<h2 id="nodeinfoanimate">nodeinfo.animate()</h2>
+<p>See <a href="../instance-methods/#ractiveanimate">ractive.animate()</a>.</p>
+<hr />
+<h2 id="nodeinfocontext">nodeinfo.context</h2>
+<p><em><code>(any)</code></em></p>
+<p>The data context of the node.</p>
+<hr />
+<h2 id="nodeinfoget">nodeinfo.get()</h2>
+<p>See <a href="../instance-methods/#ractiveget">ractive.get()</a>.</p>
+<hr />
+<h2 id="nodeinfogetbinding">nodeinfo.getBinding()</h2>
+<p>Returns the value of the binding if the node represented by this info object has a two-way binding.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>nodeinfo.getBinding()</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(any)</code>: The value of the binding.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="html">{{#with foo.bar}}&lt;input id=&quot;findMe&quot; value=&quot;{{.baz}}&quot; /&gt;{{/with}}
 </code></pre>
 
-<h2 id="class-"><code>class-*</code></h2>
-<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions.</p>
-<pre><code class="html">&lt;div class-foo=&quot;isFoo&quot;&gt;Adds &quot;foo&quot; if isFoo is truthy&lt;/div&gt;
-&lt;div class-foo-bar=&quot;isFooBar&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar is truthy&lt;/div&gt;
-&lt;div class-fooBar=&quot;isFooBar&quot;&gt;Adds &quot;fooBar&quot; if isFooBar is truthy&lt;/div&gt;
+<pre><code class="js">Ractive.getNodeInfo('#findMe').getBinding(); // returns value of foo.bar.baz
 </code></pre>
 
-<h2 id="on-"><code>on-*</code></h2>
-<p><code>on-*</code> attributes attach event handlers for both native and <a href="../../extend/events/">custom events</a>. They are designed to look similar to regular <code>on*</code> attributes for familiarity, the only difference being the hyphen. <code>on-*</code> can be used in two ways: proxy event syntax and expression syntax.</p>
-<p>Using the proxy event syntax, <code>on-*</code> accepts an event name as value. Events are handled by registering a function with <a href="../instance-methods/#ractiveon"><code>ractive.on</code></a> using the assigned event name.</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;clicked&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  oninit(){
-    this.on('clicked', event =&gt; {
-      console.log('clicked!');
-    });
-  }
-});
+<h2 id="nodeinfogetbindingpath">nodeinfo.getBindingPath()</h2>
+<p>Returns the keypath of the binding if the node represented by this info object has a two-way binding.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>nodeinfo.getBindingPath([ractive])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[ractive] (Ractive)</code>: The instance to resolve the keypath against.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(string)</code>: The keypath of the node binding.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="html">{{#with foo.bar}}&lt;input id=&quot;findMe&quot; value=&quot;{{.baz}}&quot; /&gt;{{/with}}
 </code></pre>
 
-<p>Using the expression syntax, <code>on-*</code> accepts expressions as value. This allows it to appear like regular inline scripts, similar to how it's done in inline event handlers.</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  someMethod(){
-    console.log('clicked!');
-  }
-});
+<pre><code class="js">Ractive.getNodeInfo('#findMe').getBindingPath(); // Returns &quot;foo.bar.baz&quot;
 </code></pre>
 
-<p>Multiple events can also be tied to the same handler by separating them with a hyphen:</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-hover-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  someMethod(){
-    console.log('Fires on hover and on click!');
-  }
-});
+<hr />
+<h2 id="nodeinfoindex">nodeinfo.index</h2>
+<p><em><code>(number|undefined)</code></em></p>
+<p>The index of <code>context</code> if it's in an array. If not in an array, the value is <code>undefined</code>.</p>
+<hr />
+<h2 id="nodeinfoisbound">nodeinfo.isBound()</h2>
+<p>Returns <code>true</code> if the node represented by this info object has a two-way binding.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>nodeinfo.isBound()</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(boolean)</code>: <code>true</code> if the node represented has a two-way binding.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="html">{{#with foo.bar}}
+  &lt;input id=&quot;foo&quot; value=&quot;{{.baz}}&quot; /&gt;
+  &lt;input id=&quot;bar&quot; value=&quot;&quot; /&gt;
+{{/with}}
 </code></pre>
 
-<h2 id="-in-out-in-out"><code>*-in</code>, <code>*-out</code>, <code>*-in-out</code></h2>
-<p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> attributes apply <a href="../../extend/transitions/">transitions</a> to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.</p>
-<pre><code class="html">&lt;div fade-in&gt;Fades on render&lt;/div&gt;
-&lt;div fade-out&gt;Fades before removal&lt;/div&gt;
-&lt;div fade-in-out&gt;Fades on render and before removal&lt;/div&gt;
-&lt;div fade-in-out=&quot;{ duration: 500 }&quot;&gt;Fades with 500ms duration&lt;/div&gt;
+<pre><code class="js">Ractive.getNodeInfo('#foo').isBound(); // Returns true
+Ractive.getNodeInfo('#bar').isBound(); // Returns false
 </code></pre>
 
-<h2 id="style-"><code>style-*</code></h2>
-<p><code>style-*</code> attributes update individual <code>style</code> properties of the element. The part of the attribute following <code>style-</code> will be used as the style property name. There are two forms of the syntax: <code>style-property-name</code> (CSS style) and <code>style-propertyName</code> (JS style). Style property names will be normalized.</p>
-<pre><code class="html">&lt;div style-vertical-align=&quot;middle&quot;&gt;Applies style.verticalAlign&lt;/div&gt;
-&lt;div style-textAlign=&quot;center&quot;&gt;Applies style.textAlign&lt;/div&gt;
+<hr />
+<h2 id="nodeinfokeypath">nodeinfo.keypath</h2>
+<p><em><code>(string)</code></em></p>
+<p>The keypath to <code>context</code>.</p>
+<hr />
+<h2 id="nodeinfolink">nodeinfo.link()</h2>
+<p>See <a href="../instance-methods/#ractivelink">ractive.link()</a>.</p>
+<hr />
+<h2 id="nodeinfomerge">nodeinfo.merge()</h2>
+<p>See <a href="../instance-methods/#ractivemerge">ractive.merge()</a>.</p>
+<hr />
+<h2 id="nodeinfonode">nodeinfo.node</h2>
+<p><em><code>(Node|undefined)</code></em></p>
+<p>The node the event originated from. Normally present when the event is a Ractive DOM. May be <code>undefined</code> on custom events or events from event plugins.</p>
+<hr />
+<h2 id="nodeinfooriginal">nodeinfo.original</h2>
+<p><em><code>(Event|undefined)</code></em></p>
+<p>The original DOM event object. Normally present when the event is a Ractive DOM event. May be <code>undefined</code> on custom events or events from event plugins.</p>
+<hr />
+<h2 id="nodeinfopop">nodeinfo.pop()</h2>
+<p>See <a href="../instance-methods/#ractivepop">ractive.pop()</a>.</p>
+<hr />
+<h2 id="nodeinfopush">nodeinfo.push()</h2>
+<p>See <a href="../instance-methods/#ractivepush">ractive.push()</a>.</p>
+<hr />
+<h2 id="nodeinforactive">nodeinfo.ractive</h2>
+<p><em>(Ractive)</em></p>
+<p>This property holds a reference to the Ractive instance that controls the node represented by this info object.</p>
+<hr />
+<h2 id="nodeinforesolve">nodeinfo.resolve()</h2>
+<p>Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>nodeinfo.resolve([keypath[, ractive]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[keypath] (string)</code>: The keypath to resolve.</li>
+<li><code>[ractive] (Ractive)</code>: The instance to resolve the keypath against.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(string)</code>: The resolved keypath.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
-<p><code>style-*</code> attribute values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.</p>
-<pre><code class="html">&lt;div style-vertical-align=&quot;{{ vAlign }}&quot; style-textAlign=&quot;{{ tAlign }}&quot;&gt;...&lt;/div&gt;
-</code></pre></div>
+<hr />
+<h2 id="nodeinforeverse">nodeinfo.reverse()</h2>
+<p>See <a href="../instance-methods/#ractivereverse">ractive.reverse()</a>.</p>
+<hr />
+<h2 id="nodeinfoset">nodeinfo.set()</h2>
+<p>See <a href="../instance-methods/#ractiveset">ractive.set()</a>.</p>
+<hr />
+<h2 id="nodeinfosetbinding">nodeinfo.setBinding()</h2>
+<p>Sets the binding of the node represented by this info object to the specified value.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>nodeinfo.setBinding(value)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>value (any)</code>. The value to set.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="nodeinfoshift">nodeinfo.shift()</h2>
+<p>See <a href="../instance-methods/#ractiveshift">ractive.shift()</a>.</p>
+<hr />
+<h2 id="nodeinfosplice">nodeinfo.splice()</h2>
+<p>See <a href="../instance-methods/#ractivesplice">ractive.splice()</a>.</p>
+<hr />
+<h2 id="nodeinfosort">nodeinfo.sort()</h2>
+<p>See <a href="../instance-methods/#ractivesort">ractive.sort()</a>.</p>
+<hr />
+<h2 id="nodeinfosubtract">nodeinfo.subtract()</h2>
+<p>See <a href="../instance-methods/#ractivesubtract">ractive.subtract()</a>.</p>
+<hr />
+<h2 id="nodeinfotoggle">nodeinfo.toggle()</h2>
+<p>See <a href="../instance-methods/#ractivetoggle">ractive.toggle()</a>.</p>
+<hr />
+<h2 id="nodeinfounlink">nodeinfo.unlink()</h2>
+<p>See <a href="../instance-methods/#ractiveunlink">ractive.unlink()</a>.</p>
+<hr />
+<h2 id="nodeinfounshift">nodeinfo.unshift()</h2>
+<p>See <a href="../instance-methods/#ractiveunshift">ractive.unshift()</a>.</p>
+<hr />
+<h2 id="nodeinfoupdate">nodeinfo.update()</h2>
+<p>See <a href="../instance-methods/#ractiveupdate">ractive.update()</a>.</p>
+<hr />
+<h2 id="nodeinfoupdatemodel">nodeinfo.updateModel()</h2>
+<p>See <a href="../instance-methods/#ractiveupdatemodel">ractive.updateModel()</a>.</p></div>
             
         </div>
 
         <div class="footer-nav">
-            <a rel="prev" href="../instance-methods/">previous</a>
-            <a rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/attributes.md" target="_blank">edit this page
-            <a rel="next" href="../keypath-prefixes/">next</a>
+            <a rel="prev" href="../special-references/">previous</a>
+            <a rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/node-info.md" target="_blank">edit this page
+            <a rel="next" href="../parse/">next</a>
         </div>
 
         <footer class="col-md-12 text-center">

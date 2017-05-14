@@ -2,45 +2,101 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     
-        
     <url>
      <loc>https://ractive.js.org/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
         
     <url>
-     <loc>https://ractive.js.org/get-started/60-second-setup/</loc>
+     <loc>https://ractive.js.org/get-started/tutorials/hello-world/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
+     <loc>https://ractive.js.org/get-started/tutorials/nested-properties/</loc>
+     <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
+     <loc>https://ractive.js.org/get-started/tutorials/expressions/</loc>
+     <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org/get-started/debugging/</loc>
+     <loc>https://ractive.js.org/get-started/tutorials/events/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/conditional-sections/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/iterative-sections/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/two-way-binding/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/partials/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/triples-embedded-html/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/components/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/animation/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/svg/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/transitions/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/get-started/tutorials/decorators/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/support/</loc>
-     <lastmod>2017-05-14</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/get-started/contributing/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -80,12 +136,6 @@
     </url>
         
     <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>https://ractive.js.org/api/attributes/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
@@ -104,7 +154,19 @@
     </url>
         
     <url>
-     <loc>https://ractive.js.org/api/component-files/</loc>
+     <loc>https://ractive.js.org/api/node-info/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/api/parse/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/api/transition/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -166,6 +228,12 @@
     
         
     <url>
+     <loc>https://ractive.js.org/api/component-files/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>https://ractive.js.org/integrations/loaders/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
@@ -194,71 +262,37 @@
     
         
     <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org</loc>
-     <lastmod></lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>https://ractive.js.org/articles/introducing-ractive-js/</loc>
+     <loc>https://ractive.js.org/concepts/architecture/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org/articles/the-origins-of-ractive/</loc>
+     <loc>https://ractive.js.org/concepts/rendering/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org/articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming/</loc>
+     <loc>https://ractive.js.org/concepts/security/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org/articles/ractive-vs-angular/</loc>
+     <loc>https://ractive.js.org/concepts/data-binding/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org/articles/ractive-vs-react/</loc>
+     <loc>https://ractive.js.org/concepts/events/</loc>
+     <lastmod>2017-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://ractive.js.org/concepts/templates/</loc>
      <lastmod>2017-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>

@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="RactiveJS contributors"> 
-    <link rel="canonical" href="https://ractive.js.org/api/attributes/"> 
+    <link rel="canonical" href="https://ractive.js.org/api/parse/"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <meta name="theme-color" content="#557526">
 
-    <title>Attributes - Ractive.js</title>
+    <title>Parse - Ractive.js</title>
 
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -207,8 +207,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Attributes</a>
+<li >
+    <a href="../attributes/">Attributes</a>
 </li>
 
                         
@@ -231,8 +231,8 @@
 
                         
                             
-<li >
-    <a href="../parse/">Parse</a>
+<li class="active">
+    <a href="./">Parse</a>
 </li>
 
                         
@@ -398,12 +398,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../instance-methods/">
+                        <a rel="next" href="../node-info/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../keypath-prefixes/">
+                        <a rel="prev" href="../transition/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -429,21 +429,15 @@
             <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#attributes">Attributes</a></li>
+        <li class="first-level active"><a href="#parse">Parse</a></li>
         
-            <li class="second-level"><a href="#as-">as-*</a></li>
+            <li class="second-level"><a href="#pfromid">p.fromId()</a></li>
             
         
-            <li class="second-level"><a href="#class-">class-*</a></li>
+            <li class="second-level"><a href="#pisparsed">p.isParsed()</a></li>
             
         
-            <li class="second-level"><a href="#on-">on-*</a></li>
-            
-        
-            <li class="second-level"><a href="#-in-out-in-out">*-in, *-out, *-in-out</a></li>
-            
-        
-            <li class="second-level"><a href="#style-">style-*</a></li>
+            <li class="second-level"><a href="#pparse">p.parse()</a></li>
             
         
     
@@ -451,81 +445,72 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="attributes">Attributes</h1>
-<h2 id="as-"><code>as-*</code></h2>
-<p><code>as-*</code> attributes augment the element with <a href="../../extend/decorators/">decorators</a>. It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.</p>
-<pre><code class="html">&lt;div as-modal&gt;Div appearing as modal&lt;/div&gt;
-&lt;div as-modal=&quot;true, true, true, false&quot;&gt;Div appearing as modal&lt;/div&gt;
+<h1 id="parse">Parse</h1>
+<p>The parse object is an object you receive as the second argument in <a href="../initialization-options/#template">function templates</a>. This helper object provides you with essential functions to dissect markup before turning over the template for use.</p>
+<hr />
+<h2 id="pfromid">p.fromId()</h2>
+<p>Retrieves the template from the DOM <code>&lt;script&gt;</code> tag specified by <code>id</code>. Make sure to set <code>type='text/ractive'</code> on the <code>&lt;script&gt;</code> tag to prevent the browser from running the template as a script.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>p.fromId(id)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>id (string)</code>: The id of the <code>&lt;script&gt;</code> tag containing the template. The leading <code>#</code> is optional.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(string)</code>: The template inside the specified element.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="class-"><code>class-*</code></h2>
-<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions.</p>
-<pre><code class="html">&lt;div class-foo=&quot;isFoo&quot;&gt;Adds &quot;foo&quot; if isFoo is truthy&lt;/div&gt;
-&lt;div class-foo-bar=&quot;isFooBar&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar is truthy&lt;/div&gt;
-&lt;div class-fooBar=&quot;isFooBar&quot;&gt;Adds &quot;fooBar&quot; if isFooBar is truthy&lt;/div&gt;
+<hr />
+<h2 id="pisparsed">p.isParsed()</h2>
+<p>Test whether the supplied template is already parsed and is in its object form.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>p.isParsed(template)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>template (string|Object)</code>: The template, either in its string form or object form.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(boolean)</code>: Returns <code>true</code> if the template is already parsed, <code>false</code> if otherwise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="on-"><code>on-*</code></h2>
-<p><code>on-*</code> attributes attach event handlers for both native and <a href="../../extend/events/">custom events</a>. They are designed to look similar to regular <code>on*</code> attributes for familiarity, the only difference being the hyphen. <code>on-*</code> can be used in two ways: proxy event syntax and expression syntax.</p>
-<p>Using the proxy event syntax, <code>on-*</code> accepts an event name as value. Events are handled by registering a function with <a href="../instance-methods/#ractiveon"><code>ractive.on</code></a> using the assigned event name.</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;clicked&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  oninit(){
-    this.on('clicked', event =&gt; {
-      console.log('clicked!');
-    });
-  }
-});
-</code></pre>
-
-<p>Using the expression syntax, <code>on-*</code> accepts expressions as value. This allows it to appear like regular inline scripts, similar to how it's done in inline event handlers.</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  someMethod(){
-    console.log('clicked!');
-  }
-});
-</code></pre>
-
-<p>Multiple events can also be tied to the same handler by separating them with a hyphen:</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-hover-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  someMethod(){
-    console.log('Fires on hover and on click!');
-  }
-});
-</code></pre>
-
-<h2 id="-in-out-in-out"><code>*-in</code>, <code>*-out</code>, <code>*-in-out</code></h2>
-<p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> attributes apply <a href="../../extend/transitions/">transitions</a> to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.</p>
-<pre><code class="html">&lt;div fade-in&gt;Fades on render&lt;/div&gt;
-&lt;div fade-out&gt;Fades before removal&lt;/div&gt;
-&lt;div fade-in-out&gt;Fades on render and before removal&lt;/div&gt;
-&lt;div fade-in-out=&quot;{ duration: 500 }&quot;&gt;Fades with 500ms duration&lt;/div&gt;
-</code></pre>
-
-<h2 id="style-"><code>style-*</code></h2>
-<p><code>style-*</code> attributes update individual <code>style</code> properties of the element. The part of the attribute following <code>style-</code> will be used as the style property name. There are two forms of the syntax: <code>style-property-name</code> (CSS style) and <code>style-propertyName</code> (JS style). Style property names will be normalized.</p>
-<pre><code class="html">&lt;div style-vertical-align=&quot;middle&quot;&gt;Applies style.verticalAlign&lt;/div&gt;
-&lt;div style-textAlign=&quot;center&quot;&gt;Applies style.textAlign&lt;/div&gt;
-</code></pre>
-
-<p><code>style-*</code> attribute values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.</p>
-<pre><code class="html">&lt;div style-vertical-align=&quot;{{ vAlign }}&quot; style-textAlign=&quot;{{ tAlign }}&quot;&gt;...&lt;/div&gt;
+<hr />
+<h2 id="pparse">p.parse()</h2>
+<p>Parses the template using <a href="../static-methods/#ractiveparse">Ractive.parse()</a>. Full Ractive runtime must be loaded.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>p.parse(template[, parseOptions])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>template (string|Object)</code>: The template in its string form or object form.</li>
+<li><code>[parseOptions] (Object)</code>: Template parser options. See <a href="../static-methods/#ractiveparse">Ractive.parse()</a> for all available options. If <code>parseOptions</code> is not specified, it defaults to those of the current instance.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>: The parsed template.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
 </code></pre></div>
             
         </div>
 
         <div class="footer-nav">
-            <a rel="prev" href="../instance-methods/">previous</a>
-            <a rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/attributes.md" target="_blank">edit this page
-            <a rel="next" href="../keypath-prefixes/">next</a>
+            <a rel="prev" href="../node-info/">previous</a>
+            <a rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/parse.md" target="_blank">edit this page
+            <a rel="next" href="../transition/">next</a>
         </div>
 
         <footer class="col-md-12 text-center">
