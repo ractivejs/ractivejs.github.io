@@ -1347,6 +1347,8 @@ Removes a link set up by [`ractive.link()`](#ractivelink).
 
 Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to [`ractive.render()`](#ractiverender). The rest of the ractive instance is left intact, unlike [`ractive.teardown()`](#ractiveteardown).
 
+Note that if the instance happens to be a component that is managed by another instance, the owning instance may veto the call to `unrender`. If you need more precise control over component rendering, you should probably use an anchor and [`ractive.attachChild()`](#ractiveattachchild) instead.
+
 **Syntax**
 
 - `ractive.unrender()`
