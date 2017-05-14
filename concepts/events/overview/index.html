@@ -232,7 +232,19 @@
                         
                             
 <li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -241,20 +253,182 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../api/">API</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/component-files/">Component Files</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../extend/">Extend</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../integrations/">Integrations</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -575,7 +749,7 @@ The <a href="">publish-subscribe</a> event handling in Ractive allows you to con
 <li><a href="">Proxy events</a>, mentioned above, proxy DOM and custom events defined in your template</li>
 <li><a href="">Method calls</a> are a more powerful alternative to proxy events that allow you to execute one or more expressions when an event fires.</li>
 <li><a href="">Lifecycle events</a> generated by each ractive instance - such as <code>init</code>, <code>render</code> and <code>teardown</code></li>
-<li><a href="">Custom events</a> fired in code using <a href="../../../api/#ractivefire"><code>ractive.fire()</code></a>, which can be anything you like</li>
+<li><a href="">Custom events</a> fired in code using <a href="../../../api/instance-properties#ractive.fire()"><code>ractive.fire()</code></a>, which can be anything you like</li>
 </ul>
 <h1 id="hygiene">Hygiene</h1>
 <p>One of the advantages of using Ractive events is that, in addition to being able to manually unsubscribe events, both DOM events and

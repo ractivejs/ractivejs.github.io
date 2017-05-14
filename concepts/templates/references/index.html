@@ -232,7 +232,19 @@
                         
                             
 <li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -241,20 +253,182 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../api/">API</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/component-files/">Component Files</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../extend/">Extend</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../integrations/">Integrations</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -549,8 +723,10 @@
         <li class="first-level active"><a href="#references">References</a></li>
         
             <li class="second-level"><a href="#reference-resolution">Reference resolution</a></li>
+            
         
             <li class="second-level"><a href="#context-stack">Context stack</a></li>
+            
         
     
         <li class="first-level "><a href="#arrays">Arrays</a></li>
@@ -582,11 +758,11 @@
 <h2 id="reference-resolution">Reference resolution</h2>
 <p>In order for a reference to be usable, it has to resolve to something. Ractive follows the following resolution algorithm to find the value of a reference:</p>
 <ol>
-<li>If the reference a <a href="../../../api/">special reference</a>, resolve with that keypath.</li>
-<li>If the reference is <a href="../../../api/">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
+<li>If the reference a <a href="../../../api/special-references/">special reference</a>, resolve with that keypath.</li>
+<li>If the reference is <a href="../../../api/keypath-prefixes/">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
 <li>Grab the current virtual node from the template hierarchy.</li>
 <li>If the reference matches an <a href="../mustaches/#aliasing">alias</a>, section indexes, or keys, resolve with that keypath.</li>
-<li>If the reference matches any <a href="../../../extend/#components">mappings</a>, resolve with that keypath.</li>
+<li>If the reference matches any <a href="../../../extend/components/#binding">mappings</a>, resolve with that keypath.</li>
 <li>If the reference matches a path on the context, resolve with that keypath.</li>
 <li>Remove the innermost context from the stack. Repeat steps 3-7.</li>
 <li>If the reference is a valid keypath by itself, resolve with that keypath.</li>

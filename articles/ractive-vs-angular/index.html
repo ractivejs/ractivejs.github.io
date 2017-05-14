@@ -232,7 +232,19 @@
                         
                             
 <li >
+    <a href="../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -241,20 +253,182 @@
                 
                 
                 
-                    <li >
-                        <a href="../../api/">API</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/component-files/">Component Files</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../extend/">Extend</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../integrations/">Integrations</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -549,14 +723,19 @@
         <li class="first-level active"><a href="#ractive-vs-angular">Ractive vs Angular</a></li>
         
             <li class="second-level"><a href="#what-is-angular">What is Angular?</a></li>
+            
         
             <li class="second-level"><a href="#so-why-bother-with-ractive">So why bother with Ractive?</a></li>
+            
         
             <li class="second-level"><a href="#enough-with-the-sales-pitch-what-do-they-have-in-common">Enough with the sales pitch. What do they have in common?</a></li>
+            
         
             <li class="second-level"><a href="#and-where-do-they-differ">And where do they differ?</a></li>
+            
         
             <li class="second-level"><a href="#honestly-just-try-it">Honestly, just try it</a></li>
+            
         
     
     </ul>
@@ -599,7 +778,7 @@
 <p>HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications ... Other frameworks deal with HTML’s shortcomings by either abstracting away HTML, CSS, and/or JavaScript or by providing an imperative way for manipulating the DOM. Neither of these address the root problem that HTML was not designed for dynamic views.</p>
 </blockquote>
 <p>Amen! Ractive, like Angular, takes the view that we should augment HTML to make it better suited to modern application development, rather than hiding the guts of our apps in JavaScript files, where it's hard to form complete mental models and <em>reason effectively</em> about them.</p>
-<p>Finally, both Angular and Ractive believe that your model should take the form of <a href="http://odetocode.com/blogs/scott/archive/2012/02/27/plain-old-javascript.aspx">POJOs</a>. Loading data from a server without having to convert it to some kind of <code>Model</code> or <code>Collection</code> object before you can use it is a liberating feeling. (That said, some apps benefit from the more rigorous approach, and Ractive fully supports that via <a href="../../extend/#adaptors">adaptors</a>)</p>
+<p>Finally, both Angular and Ractive believe that your model should take the form of <a href="http://odetocode.com/blogs/scott/archive/2012/02/27/plain-old-javascript.aspx">POJOs</a>. Loading data from a server without having to convert it to some kind of <code>Model</code> or <code>Collection</code> object before you can use it is a liberating feeling. (That said, some apps benefit from the more rigorous approach, and Ractive fully supports that via <a href="../../extend/adaptors/">adaptors</a>)</p>
 <h2 id="and-where-do-they-differ">And where do they differ?</h2>
 <p>Firstly, Angular isn't just about your user interface - it has opinions on routing, validation, server communication, testing, and so on. In other words it's a <em>framework</em> rather than a <em>library</em>.</p>
 <p>Ractive only really cares about UI. Use any router/backend/whatever you want - that's your responsibility.</p>

@@ -232,7 +232,19 @@
                         
                             
 <li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -241,20 +253,182 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../api/">API</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/component-files/">Component Files</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../extend/">Extend</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../integrations/">Integrations</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -549,8 +723,10 @@
         <li class="first-level active"><a href="#input-elements">&lt;input&gt; elements</a></li>
         
             <li class="second-level"><a href="#checkboxes">Checkboxes</a></li>
+            
         
             <li class="second-level"><a href="#radios">Radios</a></li>
+            
         
     
         <li class="first-level "><a href="#textarea-elements">&lt;textarea&gt; elements</a></li>
@@ -696,7 +872,7 @@ ractive.observe('content', function(newValue, oldValue, keypath) {
 <p>Under the hood, Ractive always binds to the <code>change</code> event (and the <code>click</code> event in IE, in the case of checkboxes, due to an IE bug). By default, it will also bind to the <code>input</code> event, which means the model is updated instantly when the user enters data (the <code>change</code> event fires when a change is <a href="https://developer.mozilla.org/en-US/docs/Web/Reference/events/change">'committed by the user'</a>). In some situations, that's not what you want - if you want to only bind to <code>change</code>, pass in <code>lazy: true</code> as an <a href="">initialisation option</a>.</p>
 <p>As with <code>twoway</code>, laziness may be specified on a per-element basis. Besides <code>true</code> (or simply having the attribute preset) and <code>false</code> values, the <code>lazy</code> directive may also be a number that specifies the number of milliseconds to wait after the last <code>input</code> event fires with subsequent <code>input</code> events resetting the timeout. For instance <code>&lt;input value="{{foo}}" lazy&gt;</code> will trigger updates to <code>foo</code> on <code>change</code> and <code>&lt;input value="{{foo}}" lazy="1000"&gt;</code> will trigger updates 1 second after the last keypress.</p>
 <h1 id="observing-changes">Observing changes</h1>
-<p>To use user input elsewhere in your app, you'll need to observe it using <a href="../../../api/#ractiveobserve"><code>ractive.observe()</code></a>:</p>
+<p>To use user input elsewhere in your app, you'll need to observe it using <a href="../../../api/instance-properties#ractive.observe()"><code>ractive.observe()</code></a>:</p>
 <pre><code class="html">&lt;input placeholder='Type your name' value='{{user.name}}'&gt;
 </code></pre>
 

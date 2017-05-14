@@ -232,7 +232,19 @@
                         
                             
 <li >
+    <a href="../../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -241,20 +253,182 @@
                 
                 
                 
-                    <li >
-                        <a href="../../../api/">API</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../api/component-files/">Component Files</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../extend/">Extend</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../../integrations/">Integrations</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -549,10 +723,13 @@
         <li class="first-level active"><a href="#event-arguments">Event arguments</a></li>
         
             <li class="second-level"><a href="#the-event-object">The event object</a></li>
+            
         
             <li class="second-level"><a href="#custom-arguments">Custom arguments</a></li>
+            
         
             <li class="second-level"><a href="#cancelling-dom-events">Cancelling DOM events</a></li>
+            
         
     
         <li class="first-level "><a href="#reserved-event-names">Reserved event names</a></li>
@@ -567,7 +744,7 @@
 
 <p><em>See also: <a href="../method-calls/">method calls from templates</a></em></p>
 <p>Ractive has a concept of <em>proxy events</em>, which translate a user <em>action</em> (e.g. a mouseclick) defined via an <a href="../directives/">event directive</a> into an <em>intention</em> (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).</p>
-<p>As with all events in Ractive, you subscribe with <a href="../../../api/"><code>ractive.on()</code></a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
+<p>As with all events in Ractive, you subscribe with <a href="../../../api/instance-properties#ractiveon"><code>ractive.on()</code></a> (also see <a href="../publish-subscribe/">publish-subscribe</a>). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:</p>
 <pre><code class="js">ractive = new Ractive({
   el: 'body',
   template: '&lt;button on-click=&quot;activate&quot;&gt;click me!&lt;/button&gt;'
@@ -578,7 +755,7 @@ ractive.on( 'activate', function ( event ) {
 });
 </code></pre>
 
-<p>In this example, it is <code>activate</code> (and not <code>click</code>!) that is the name of the handler event that will be fired for any registered handlers created via <a href="../../../api/#ractiveon"><code>ractive.on()</code></a>.</p>
+<p>In this example, it is <code>activate</code> (and not <code>click</code>!) that is the name of the handler event that will be fired for any registered handlers created via <a href="../../../api/instance-properties#ractiveon"><code>ractive.on()</code></a>.</p>
 <h1 id="event-arguments">Event arguments</h1>
 <h2 id="the-event-object">The <code>event</code> object</h2>
 <p>The first argument to a proxy event handler is always a Ractive <code>event</code> object. It contains various properties:</p>
@@ -588,7 +765,7 @@ ractive.on( 'activate', function ( event ) {
 <li><code>event.keypath</code> - the <a href="../../templates/keypaths/">keypath</a> of the current context</li>
 <li><code>event.context</code> - the value of <code>this.get(event.keypath)</code></li>
 <li><code>event.index</code> - a map of index references</li>
-<li><code>event.component</code> - the component that raised the event, only present on <a href="../bubbling/">bubbled events</a></li>
+<li><code>event.component</code> - the component that raised the event, only present on <a href="../bubbling">bubbled events</a></li>
 <li><code>event.original</code> - the original DOM event, if available</li>
 </ul>
 <p>In the example above, <code>event.keypath</code> might be <code>items.0</code> for the first item in the list, <code>items.1</code> for the second, and so on. The <code>event.index</code> map would have a property <code>i</code>, which would correspond to those indices.</p>

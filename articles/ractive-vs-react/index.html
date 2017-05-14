@@ -232,7 +232,19 @@
                         
                             
 <li >
+    <a href="../../get-started/debugging/">Debugging</a>
+</li>
+
+                        
+                            
+<li >
     <a href="../../get-started/support/">Support</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../get-started/contributing/">Contributing</a>
 </li>
 
                         
@@ -241,20 +253,182 @@
                 
                 
                 
-                    <li >
-                        <a href="../../api/">API</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../api/initialization-options/">Initialization Options</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-properties/">Static Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/static-methods/">Static Methods</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-properties/">Instance Properties</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/instance-methods/">Instance Methods</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Helper Objects</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../api/helper-objects/node-info/">Node Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/parse/">Parse</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../api/helper-objects/transition/">Transition</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../api/attributes/">Attributes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/keypath-prefixes/">Keypath Prefixes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/special-references/">Special References</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../api/component-files/">Component Files</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../extend/">Extend</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extend <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../extend/adaptors/">Adaptors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/components/">Components</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/decorators/">Decorators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/easings/">Easings</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/events/">Events</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/interpolators/">Interpolators</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/partials/">Partials</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../extend/transitions/">Transitions</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../../integrations/">Integrations</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Integrations <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../integrations/loaders/">Loaders</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/plugins/">Plugins</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/tools/">Tools</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../integrations/libraries/">Libraries</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -549,20 +723,28 @@
         <li class="first-level active"><a href="#ractive-vs-react">Ractive vs React</a></li>
         
             <li class="second-level"><a href="#what-is-react">What is React?</a></li>
+            
         
             <li class="second-level"><a href="#the-similarities-between-ractive-and-react">The similarities between Ractive and React</a></li>
+            
         
             <li class="second-level"><a href="#templating">Templating</a></li>
+            
         
             <li class="second-level"><a href="#change-tracking">Change tracking</a></li>
+            
         
             <li class="second-level"><a href="#two-way-binding">Two-way binding</a></li>
+            
         
             <li class="second-level"><a href="#where-react-shines">Where React shines</a></li>
+            
         
             <li class="second-level"><a href="#where-ractive-shines">Where Ractive shines</a></li>
+            
         
             <li class="second-level"><a href="#conclusion">Conclusion</a></li>
+            
         
     
     </ul>
@@ -593,7 +775,7 @@
 <h2 id="change-tracking">Change tracking</h2>
 <p>React re-renders the entire app on each state change, and diffs the result. Ractive, on the other hand, implements a change tracking mechanism, so only a subset of the virtual DOM gets notified of any change.</p>
 <p>There's no right answer to the question 'which approach is better?'. Ractive's more conservative approach is often faster - as you'd expect, because there's generally less work to do - but React's is undoubtedly <em>simpler</em>, in the sense of that word <a href="http://www.infoq.com/presentations/Simple-Made-Easy">as used by Clojure author Rich Hickey</a>. (The Clojure community appears to have had a profound influence on React's design, as evidenced by its popularity among prominent ClojureScript developers such as <a href="https://twitter.com/swannodette">David Nolen</a>, the author of <a href="https://github.com/swannodette/om">Om</a>, and the aforementioned Chris Granger who created <a href="http://www.lighttable.com/">Light Table</a>.)</p>
-<p>One point is worth noting however. Unlike just about every other data-binding tool (except Angular, which does something totally different), Ractive doesn't require you to wrap your data up in some library-specific observable class (e.g. <code>ko.observable()</code> or <code>Backbone.Model()</code>) - a requirement that React developers criticise, not without justification. Instead, it uses an approach based on <a href="../../concepts/templates/keypaths/">keypaths</a>, which means you can use plain old JavaScript objects (though you certainly can use observables, with the use of <a href="../../extend/#adaptors">adaptors</a>, if that's how your app is built).</p>
+<p>One point is worth noting however. Unlike just about every other data-binding tool (except Angular, which does something totally different), Ractive doesn't require you to wrap your data up in some library-specific observable class (e.g. <code>ko.observable()</code> or <code>Backbone.Model()</code>) - a requirement that React developers criticise, not without justification. Instead, it uses an approach based on <a href="../../concepts/templates/keypaths/">keypaths</a>, which means you can use plain old JavaScript objects (though you certainly can use observables, with the use of <a href="../../extend/adaptors/">adaptors</a>, if that's how your app is built).</p>
 <h2 id="two-way-binding">Two-way binding</h2>
 <p>Most data-binding tools implement some form of <em>two-way binding</em>, where user interaction - such as text entry in an <code>&lt;input&gt;</code> element, or toggling a checkbox - causes the application state to be updated. Implementing this manually is often finicky and requires the developer to be aware of various browser inconsistencies, and so robust two-way binding support is a real timesaver.</p>
 <p>React rejects this. In the React world, data flows one way - from parent to child - and two-way binding is seen as a source of bugs and confusion since (<a href="https://twitter.com/asolove/status/459391361310269441">its detractors say</a>) there's no longer a 'single source of truth' (SSOT).</p>
