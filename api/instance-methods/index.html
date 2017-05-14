@@ -1976,6 +1976,7 @@ subclassInstance.toCSS();
 <h2 id="ractiveunrender">ractive.unrender()</h2>
 <hr />
 <p>Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to <a href="#ractiverender"><code>ractive.render()</code></a>. The rest of the ractive instance is left intact, unlike <a href="#ractiveteardown"><code>ractive.teardown()</code></a>.</p>
+<p>Note that if the instance happens to be a component that is managed by another instance, the owning instance may veto the call to <code>unrender</code>. If you need more precise control over component rendering, you should probably use an anchor and <a href="#ractiveattachchild"><code>ractive.attachChild()</code></a> instead.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.unrender()</code></li>
