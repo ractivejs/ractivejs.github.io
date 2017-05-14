@@ -115,7 +115,7 @@ A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-m
 
 The global registry of [partial templates](../extend/partials.md).
 
-Like [templates](../concepts/templates/overview.md), partials are [parsed](../concepts/templates/parsing.md) at the point of use. The parsed output is cached and utilized for future use.
+Like [templates](../concepts/templates.md#overview), partials are [parsed](../concepts/templates.md#parser) at the point of use. The parsed output is cached and utilized for future use.
 
 ---
 

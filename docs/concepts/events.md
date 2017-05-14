@@ -148,11 +148,9 @@ However, there are some differences and limitations to component event directive
 
 # Method calls
 
-*See also: [proxy events](./proxy-events.md)*
-
 __Note:__ Unqualified event method calls are deprecated and have been replaced with event expressions that resolve the same way as every other expression in a Ractive template. This means that to call, for instance, `set('foo', 'bar')` in an event, you would now use `@this.set('foo', 'bar')`. Unfortunately, this adds a bit of boilerplate to common method calls, but it is also resolves the disparity between event directives and other template references, allows calling data methods from events, and allows executing multiple, possibly more complex, expressions when an event fires.
 
-As an alternative to [event directive](./directives.md), right from your template:
+As an alternative to [event directive](#directives), right from your template:
 
 ```html
 <p>foo is {{foo}}</p>
@@ -207,7 +205,7 @@ You can also pass the `event` object, or properties thereof (`event.original` is
 
 The `event` object is also available within body of the method call function as `this.event`. Note that methods on your Ractive instance that may handle your events are effectively part of your public API, and `this.event` will only be available during invocations triggered by an event.
 
-The `event` argument is also extended with contextual helper methods. See [helpers](../../api/helper-objects/node-info.md).
+The `event` argument is also extended with contextual helper methods. See [helpers](../api/node-info.md).
 
 If you need to evaluate multiple expressions from an event directive, simply separate them with a `,`. For instance:
 
@@ -231,11 +229,9 @@ As with proxy events, you can cancel a DOM event by returning `false` from your 
 
 # Proxy events
 
-*See also: [method calls from templates](./method-calls.md)*
+Ractive has a concept of *proxy events*, which translate a user *action* (e.g. a mouseclick) defined via an [event directive](#directives) into an *intention* (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).
 
-Ractive has a concept of *proxy events*, which translate a user *action* (e.g. a mouseclick) defined via an [event directive](./directives.md) into an *intention* (e.g. 'select this option'). This allows you to handle user interaction in a readable, declarative fashion, without resorting to peppering your markup with class names to use as 'hooks' (which must then be kept consistent between your markup and your JavaScript code).
-
-As with all events in Ractive, you subscribe with [`ractive.on()`](../../api/instance-properties#ractiveon) (also see [publish-subscribe](./publish-subscribe.md)). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
+As with all events in Ractive, you subscribe with [`ractive.on()`](../../api/instance-properties#ractiveon) (also see [publish-subscribe](#publish-subscribe)). Proxy events declare the handler name of the event that will be fired, along with any optional arguments:
 
 ```js
 ractive = new Ractive({
@@ -258,15 +254,15 @@ The first argument to a proxy event handler is always a Ractive `event` object. 
 
 * `event.name` - the name of the event, in this case 'activate'
 * `event.node` - the DOM node in question
-* `event.keypath` - the [keypath](../templates/keypaths.md) of the current context
+* `event.keypath` - the [keypath](./templates.md#keypaths) of the current context
 * `event.context` - the value of `this.get(event.keypath)`
 * `event.index` - a map of index references
-* `event.component` - the component that raised the event, only present on [bubbled events](./bubbling)
+* `event.component` - the component that raised the event, only present on [bubbled events](#bubbling)
 * `event.original` - the original DOM event, if available
 
 In the example above, `event.keypath` might be `items.0` for the first item in the list, `items.1` for the second, and so on. The `event.index` map would have a property `i`, which would correspond to those indices.
 
-The event object is also available in event handlers using `this.event`, see [publish-subscribe](./publish-subscribe.md) for more details.
+The event object is also available in event handlers using `this.event`, see [publish-subscribe](#publish-subscribe) for more details.
 
 ### Custom arguments
 
@@ -299,7 +295,7 @@ ractive.on( 'addToCart', function ( event, item, qty ) {
 
 If you return `false` from a proxy event handler, ractive will automatically call both `preventDefault()` and `stopPropagation()` on the original DOM event.
 
-Note that returning `false` has a dual purpose of both cancelling further bubbling up the view hierarchy [event bubbling](./bubbling.md) __as well as__ cancelling the DOM Event if the event was DOM-based.
+Note that returning `false` has a dual purpose of both cancelling further bubbling up the view hierarchy [event bubbling](#bubbling) __as well as__ cancelling the DOM Event if the event was DOM-based.
 
 If you only want to cancel the DOM event, you can call the appropriate methods directly on `event.original` or `this.event.original`, which are both references to the current DOM event object.
 
@@ -311,7 +307,7 @@ Note: the built-in [lifecycle events]() are **reserved**, which means you can't 
 
 ## Dynamic proxy event names
 
-[Mustache references](../templates/mustaches) can be used as proxy event names:
+[Mustache references](./templates.md#mustaches) can be used as proxy event names:
 
 ```html
 <button on-click="{{handler}}">click me!</button>
@@ -347,7 +343,7 @@ This can be used to subscribe to any of the following type of events:
 
 * [Proxy events]() for DOM and custom events defined in your template
 * [Lifecycle events]() generated by each ractive instance - such as `init`, `render` and `teardown`
-* [Custom events]() fired in code using [`ractive.fire()`](../../api/instance-properties#ractive.fire()), which can be anything you like, see below.
+* [Custom events]() fired in code using [`ractive.fire()`](../api/instance-properties.md#ractivefire), which can be anything you like, see below.
 
 ### Multiple events to one handler
 

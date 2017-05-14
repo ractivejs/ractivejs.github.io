@@ -12,7 +12,7 @@ You can wrap one or more attributes inside an element tag in a conditional secti
 <div {{#if highlighted}}class="highlighted"{{/if}}>Highlightable element</div>
 ```
 
-Any number of attributes can be used in a section, and other [Mustache](./mustaches.md) constructs can be used to supply attributes.
+Any number of attributes can be used in a section, and other [Mustache](#mustaches) constructs can be used to supply attributes.
 
 ```html
 <div {{#if highlighted}}class="highlighted {{ anotherClass }}" title="I'm highlighted"{{/if}}>Highlightable element</div>
@@ -296,7 +296,7 @@ Ractive.parse('<div class="message">Hello World!</div>');
 // {"v":4,"t":[{"t":7,"e":"div","m":[{"n":"class","f":"message","t":13}],"f":["Hello World!"]}]}
 ```
 
-Normally, parsing is done automatically. Ractive will use [`Ractive.parse()`](../../api/static-methods.md#ractiveparse) under the hood if a string template is provided to the [`template`](../../api/initialization-options.md#template) initialization option.
+Normally, parsing is done automatically. Ractive will use [`Ractive.parse()`](../api/static-methods.md#ractiveparse) under the hood if a string template is provided to the [`template`](../api/initialization-options.md#template) initialization option.
 
 The parsed template is not designed to be readable nor editable by a human. It is meant to represent the template structure as an object in a way Ractive understands with as few bytes as possible. Where the template doesn't use Ractive-specific features, these parts will be represented as plain HTML in the data structure.
 
@@ -304,11 +304,11 @@ The parsed template is not designed to be readable nor editable by a human. It i
 
 Parsing templates can be a very slow operation, particularly for very large apps, very complex templates, or intricate SVGs. As an optimization option, templates can be pre-parsed into their object form outside of runtime. This would allow Ractive to skip parsing during runtime and speed up app initialization. Typically, a parsed template is only about 30-40% larger than the string version, making pre-parsing a trade-off between space and processing.
 
-Pre-parsing can be done in many different ways as long as Ractive receives the parsed template during runtime. One way would be to simply serve the pre-parsed template separately from the component or instance and load it via AJAX. Another would be to extract and replace the template on the file with the parsed version during compile time - an approach that works well with [component files](../../api/component-files.md). Read more about [loaders](../../integrations/loaders.md) to know more about how loaders do pre-parsing on compile time.
+Pre-parsing can be done in many different ways as long as Ractive receives the parsed template during runtime. One way would be to simply serve the pre-parsed template separately from the component or instance and load it via AJAX. Another would be to extract and replace the template on the file with the parsed version during compile time - an approach that works well with [component files](../api/component-files.md). Read more about [loaders](../integrations/loaders.md) to know more about how loaders do pre-parsing on compile time.
 
 # References
 
-A reference is a string that refers to a piece of data. They may look like a regular [keypath](./keypaths.md), like `{{ foo.bar.baz }}` or may contain special keywords and glyphs, like `{{ @this.sayHello() }}`.
+A reference is a string that refers to a piece of data. They may look like a regular [keypath](#keypaths), like `{{ foo.bar.baz }}` or may contain special keywords and glyphs, like `{{ @this.sayHello() }}`.
 
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYExhN41aiuSRqAcgBG4gCYBPVxhs7By9ZbFkXa1t7B2oAM3FxFw9ZGH9A6Mx0h2wVSQpkUJUXAAMsmPwvZXUASWoYFViVevhiFTiE6gB3MmwwallqJVlkRCLqYGB28Wo0NC1KpXUyh3x3RDZxe2wfChVmEDWN+BZqTYBaYmQyYgF9gAFeskIRQlkfAAknZHELAEoNADCVxu1AAsiotIdsJsllEHMUAnDaG9Pqgfr9IkEYhJ4IRxMgVCJvkILK4AcMCV44jApP17CpVPAaL1QtREIQVFSBvVGs1WtRof1qJIVL1vK5-ki0Ok0L8ANwgNBAA"></div>
 
@@ -332,11 +332,11 @@ Ractive({
 
 In order for a reference to be usable, it has to resolve to something. Ractive follows the following resolution algorithm to find the value of a reference:
 
-1. If the reference a [special reference](../../api/special-references.md), resolve with that keypath.
-2. If the reference is [explicit](../../api/keypath-prefixes.md) or matches a path in the current context exactly, resolve with that keypath.
+1. If the reference a [special reference](../api/special-references.md), resolve with that keypath.
+2. If the reference is [explicit](../api/keypath-prefixes.md) or matches a path in the current context exactly, resolve with that keypath.
 3. Grab the current virtual node from the template hierarchy.
-4. If the reference matches an [alias](./mustaches.md#aliasing), section indexes, or keys, resolve with that keypath.
-5. If the reference matches any [mappings](../../extend/components.md#binding), resolve with that keypath.
+4. If the reference matches an [alias](#aliasing), section indexes, or keys, resolve with that keypath.
+5. If the reference matches any [mappings](../extend/components.md#binding), resolve with that keypath.
 6. If the reference matches a path on the context, resolve with that keypath.
 7. Remove the innermost context from the stack. Repeat steps 3-7.
 8. If the reference is a valid keypath by itself, resolve with that keypath.
@@ -346,7 +346,7 @@ In order for a reference to be usable, it has to resolve to something. Ractive f
 
 Steps 6 and 7 of the [resolution algorithm](#reference-resolution) defines the ability of Ractive to "climb" contexts when a reference does not resolve in the current context. This is similar to how JavaScript climbs to the global scope to resolve a variable.
 
-To do this, whenever Ractive encounters [section mustaches](./mustaches.md#sections) or similar constructs, it stores the context in a *context stack*. Ractive then resolves references starting with the context on the top of the stack, and popping off contexts until the reference resolves to a keypath.
+To do this, whenever Ractive encounters [section mustaches](#sections) or similar constructs, it stores the context in a *context stack*. Ractive then resolves references starting with the context on the top of the stack, and popping off contexts until the reference resolves to a keypath.
 
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3ewVSQpkWUCnAAN-O2pgYABiREIVGDQ0aJjqfAp1AHUHCUkVald5AQxY4HhZIrSAQgzMyviiwkJZIRVCNMam6gBNcURqMFlVSr4YFVkPNOpJ6Y9qcQAzSuxxbFl0NGoNreRqVvbOwhFepsHh0MIaZHEhTqWyW3FbOJvsABkHl7Tz2x9SpcY4dLo9QGZLQ5RpxXjJVLpQERPyAjxhWROayQ+YIrEXapFJzOABSZEkvguoNO+JxmX22ycAEYAAyooHzeBTGZOADMF0wF0+PyEL2J+Q88C66J8jSRdiRaAAlABuEBoIA"></div>
 

@@ -41,7 +41,7 @@ Whether it's a third-party data modelling library, a RESTful service, a socket s
 
 `object` is the data source to adapt.
 
-`keypath` is the [keypath](../concepts/templates/keypaths.md) to `object`.
+`keypath` is the keypath to `object`.
 
 `ractive` is the ractive instance that is currently using the adaptor.
 
@@ -51,13 +51,13 @@ Whether it's a third-party data modelling library, a RESTful service, a socket s
 
 `get` is a function that gets called when Ractive needs the adapted representation of the `object`.
 
-`set` is a function that is called when `ractive.set()` updates a [keypath](../concepts/templates/keypaths.md) to a property of the adapted data. This function allows you to update the same property on `object`.
+`set` is a function that is called when `ractive.set()` updates a keypath to a property of the adapted data. This function allows you to update the same property on `object`.
 
-`property` is the [keypath](../concepts/templates/keypaths.md) to the property being updated, relative to `keypath`.
+`property` is the keypath to the property being updated, relative to `keypath`.
 
 `value` is the value being passed into `ractive.set()`.
 
-`reset` is a function that is called when `ractive.set()` updates a [keypath](../concepts/templates/keypaths.md) to the adapted data. This function allows you to either update `object` or tear down the adaptor.
+`reset` is a function that is called when `ractive.set()` updates a keypath to the adapted data. This function allows you to either update `object` or tear down the adaptor.
 
 `teardown` is a function called when the [adaptor](../extend/adaptors.md) is being removed. This function allows you to do cleanup work on anything that was done during the [adaptor](../extend/adaptors.md) setup.
 

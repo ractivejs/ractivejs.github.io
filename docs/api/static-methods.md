@@ -2,7 +2,7 @@
 
 ## Ractive.escapeKey()
 
-Escapes the given key so that it can be concatenated with a [keypath](../concepts/templates/keypaths.md) string.
+Escapes the given key so that it can be concatenated with a keypath string.
 
 **Syntax**
 
@@ -113,7 +113,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 ## Ractive.getNodeInfo()
 
-Accepts a node and returns an [Node Info](helper-objects/node-info.md) object containing details of the Ractive instance the node is associated to.
+Accepts a node and returns an [Node Info](./node-info.md) object containing details of the Ractive instance the node is associated to.
 
 **Syntax**
 
@@ -125,7 +125,7 @@ Accepts a node and returns an [Node Info](helper-objects/node-info.md) object co
 
 **Returns**
 
-- `(NodeInfo)`: An [NodeInfo](helper-objects/node-info.md) object.
+- `(NodeInfo)`: An [NodeInfo](./node-info.md) object.
 
 **Examples**
 
@@ -139,7 +139,7 @@ const info = Ractive.getNodeInfo('#some-node');
 
 ## Ractive.joinKeys()
 
-Joins the given keys into a properly escaped [keypath](../concepts/templates/keypaths.md) e.g. `
+Joins the given keys into a properly escaped keypath.
 
 **Syntax**
 
@@ -231,7 +231,7 @@ TODO: `Ractive.parse` has more options. Document them.
 
 ## Ractive.splitKeypath()
 
-Splits the given [keypath](../concepts/templates/keypaths.md) into an array of unescaped keys.
+Splits the given keypath into an array of unescaped keys.
 
 **Syntax**
 
@@ -239,7 +239,7 @@ Splits the given [keypath](../concepts/templates/keypaths.md) into an array of u
 
 **Arguments**
 
-- `keypath (string)`: The [keypath](../concepts/templates/keypaths.md) to split into keys.
+- `keypath (string)`: The keypath to split into keys.
 
 **Returns**
 

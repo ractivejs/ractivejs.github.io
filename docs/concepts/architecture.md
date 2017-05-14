@@ -91,7 +91,7 @@ Every piece of DOM that Ractive can manage has a corresponding class in the virt
 
 All virtual DOM items go through roughly the same lifecycle: creation, binding, rendering, bubbling, updating, unrendering, and unbinding. Creation is basically just the constructor call and almost always is immediately followed by binding. Binding is the point at which the item resolves and registers with its data references. Rendering is the point at which the item inserts an actual DOM node into the DOM. Bubbling and updating are the two halves of the update process, which is discussed in the next section. Unrendering is the point at which the item should no longer be present in the DOM, and it often occurs at the same point as unbinding, which is the point at which the item unregisters with the viewmodel and is effectively destroyed.
 
-There a number of other members, such as events and decorators, and processes, such as change propagation, which are described in detail in the [view overview](view.md).
+There a number of other members, such as events and decorators, and processes, such as change propagation, which are described in detail in the [view overview](#virtual-dom).
 
 Ractive views are structured virtual DOM trees that are assembled from template AST and manage DOM nodes on the page when they are rendered. Virtual DOM items are grouped together in `Fragment`s, which contain them, and they may also own `Fragment`s that contain other items. Each item may contain a reference to a DOM node when rendered, though every item doesn not have a DOM analog.
 

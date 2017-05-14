@@ -166,7 +166,7 @@ During a [`ractive.reset()`](../api/instance-methods.md#ractivereset), component
 
 `(Object<string, function|Object>)`
 
-A map of [computed properties](../concepts/data-binding/computed-properties.md) where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has `get` and `set` functions.
+A map of [computed properties](../concepts/data-binding.md#computed-properties) where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has `get` and `set` functions.
 
 ```js
 // Imagine a square...
@@ -424,7 +424,7 @@ interpolators: {
 
 `(boolean)`
 
-Controls whether the component will try to [resolve data and plugins on its ancestors](../concepts/templates/references.md). Defaults to `true`.
+Controls whether the component will try to [resolve data and plugins on its ancestors](../concepts/templates.md#references). Defaults to `true`.
 
 Relevant only to [Components](../extend/components.md).
 
@@ -570,7 +570,7 @@ A lifecycle event that is called when `ractive.update()` is called.
 
 `(Object<string, string|Object|Function>)`
 
-A map of [partials](../extend/partials.md) where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and  [Parse Object](helper-objects/parse.md) as arguments.
+A map of [partials](../extend/partials.md) where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and  [Parse Object](./parse.md) as arguments.
 
 ```js
 partials: {
@@ -721,7 +721,7 @@ Alias for [`el`](#el).
 
 `(string|array|object|function)`
 
-The [template](../concepts/templates/overview.md) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`](../api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](helper-objects/parse.md).
+The [template](../concepts/templates.md#overview) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`](../api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](./parse.md).
 
 ```js
 // Selector
@@ -780,7 +780,7 @@ data: { html: '<span>world</span>' }
 
 `(boolean)`
 
-Whether or not [two-way binding](../concepts/data-binding/two-way-binding.md) is enabled. Defaults to `true`.
+Whether or not [two-way binding](../concepts/data-binding.md#two-way-binding) is enabled. Defaults to `true`.
 
 ```js
 var ractive = new Ractive({

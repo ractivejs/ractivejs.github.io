@@ -1,6 +1,6 @@
 # Keypath prefixes
 
-Normally, keypaths are resolved following a [defined routine](../concepts/templates/references.md). But there are times where you want to skip the normal resolution routine and resolve a keypath relative to a specific data context. Keypath prefixes allow you to specify which data context a keypath resolves to, regardless if it resolves to something or not.
+Normally, keypaths are resolved following a [defined routine](../concepts/templates.md#references). But there are times where you want to skip the normal resolution routine and resolve a keypath relative to a specific data context. Keypath prefixes allow you to specify which data context a keypath resolves to, regardless if it resolves to something or not.
 
 ## Current context (`.`)
 

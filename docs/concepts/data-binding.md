@@ -201,7 +201,7 @@ If you have a mustache which depends on `foo.bar`, and `foo` changes, it's quite
 
 This relationship is expressed through the `_depsMap` property of a Ractive instance - whenever `foo` changes, as well as dealing with direct `foo` dependants we check the map for those indirect dependants.
 
-In the case of [expressions](../templates/expressions.md) and [observers](../data-binding/observers.md), we also need to consider dependants of *upstream keypaths*. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:
+In the case of [expressions](./templates.md#expressions) and [observers](./data-binding.md#observers), we also need to consider dependants of *upstream keypaths*. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:
 
 ```html
 {{#( sort( list, 'name' ) )}}
@@ -232,12 +232,12 @@ ractive.set( 'list[0].name', 'Zebediah' );
 
 In the example, setting `list[0].name` causes dependants of `list` to be updated.
 
-As well as [expressions](../templates/expressions.md), [Observers](../data-binding/observers.md) respond to both upstream and downstream changes.
+As well as [expressions](./templates.md#expressions), [Observers](./data-binding.md#observers) respond to both upstream and downstream changes.
 
 
 ## Expressions with multiple dependencies
 
-The expression `{{ a + b }}` has two dependencies - `a` and `b` (or more accurately, whatever those [references](../templates/references.md) resolve to). The `_deps` graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.
+The expression `{{ a + b }}` has two dependencies - `a` and `b` (or more accurately, whatever those [references](./templates.md#references) resolve to). The `_deps` graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.
 
 Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing `ractive.set({ a: 1, b: 2 })` will only trigger one update, not two.
 
@@ -264,7 +264,7 @@ model.set( 'myValue', 2 ); // alerts 'myValue changed to 2'
 
 This works because `Backbone.Model.prototype` inherits from `Backbone.Events`.
 
-Ractive implements pub/sub with [`ractive.on()`](../../api/instance-methods.md#ractiveon), [`ractive.off()`](../../api/instance-methods.md#ractiveoff) and [`ractive.fire()`](../../api/instance-methods.md#ractivefire), [`ractive.off()`](../../api/instance-methods.md#ractiveoff) and [`ractive.fire`](../../api/instance-methods.md#ractivefire) - see [Events]() for more info.
+Ractive implements pub/sub with [`ractive.on()`](../api/instance-methods.md#ractiveon), [`ractive.off()`](../api/instance-methods.md#ractiveoff) and [`ractive.fire()`](../api/instance-methods.md#ractivefire), [`ractive.off()`](../api/instance-methods.md#ractiveoff) and [`ractive.fire`](../api/instance-methods.md#ractivefire) - see [Events]() for more info.
 
 
 ## Observing models with nested properties
@@ -273,7 +273,7 @@ But the normal pub/sub mechanism won't work for monitoring data changes with Rac
 
 So instead, we introduce the concept of *observers*.
 
-An observer observes a particular [keypath](), and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()` (see [`ractive.observe()`](../../api/instance-properties#ractiveobserve) for full method
+An observer observes a particular [keypath](), and is *notified* when the value of its keypath changes, whether directly or indirectly (because an *upstream* or *downstream* keypath changed). You create one with `ractive.observe()` (see [`ractive.observe()`](../api/instance-properties.md#ractiveobserve) for full method
 API).
 
 Here's an example:
@@ -702,7 +702,7 @@ As with `twoway`, laziness may be specified on a per-element basis. Besides `tru
 
 ## Observing changes
 
-To use user input elsewhere in your app, you'll need to observe it using [`ractive.observe()`](../../api/instance-properties#ractive.observe()):
+To use user input elsewhere in your app, you'll need to observe it using [`ractive.observe()`](../api/instance-properties.md#ractiveobserve):
 
 ```html
 <input placeholder='Type your name' value='{{user.name}}'>

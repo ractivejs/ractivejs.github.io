@@ -1,6 +1,6 @@
 # Nested Properties
 
-Ractive uses the [mustache syntax](/concepts/templates/mustaches/), which supports nested properties – in JavaScript-land, that means properties that are objects with their own properties (which might be objects with their own properties...).
+Ractive uses the [mustache syntax](../../concepts/templates.md#mustaches), which supports nested properties – in JavaScript-land, that means properties that are objects with their own properties (which might be objects with their own properties...).
 
 ## Step 1
 <div class="tutorial">
@@ -57,7 +57,7 @@ We don't have to. Instead, we can use a _with section_ to provide _context_:
 ```
 
 > Strictly speaking, you don't need the with - you can just use a # sign by itself:
-> 
+>
     {{#country}}
       <p>{{name}} is a {{climate.temperature}} country
       with {{climate.rainfall}} rainfall and a population
@@ -70,9 +70,9 @@ We don't have to. Instead, we can use a _with section_ to provide _context_:
 Go ahead and update the template, creating a section for the capital as well. (You can either create a `{{#with country.capital}}` section, or a  `{{#with capital}}` section inside the `{{#with country}}` section. Use whichever structure is easier in a given situation.)
 
 > Notice that if you create a `{{#with capital}}` section, you could end up having two `{{name}}` variables – one for the country, one for the capital.
-> 
+>
 > We say that the capital `{{name}}` reference has a two-level context stack – if the innermost context (`country.capital`) has a name property, `{{name}}` resolves to the `country.capital.name` keypath.
-> 
+>
 > If not, Ractive moves _up the context stack_ (in this case, to `country`, and then to the root `data` object) until it _does_ find a context with a `name` property. If no matching property is found, then the reference will resolve to the current context. Once a reference is resolved, its keypath is fixed.
 >
 > If you ever need to _force_ a reference to resolve in the current context, rather than potentially somewhere up the context stack, you can simply prefix the reference with a `.`. `.stats.area` will _always_ resolve to `country.capital.stats.area` in `{{#with country.capital}}{{.stats.area}}{{/with}}`, even if there is not already a `stats` property on `country.capital` and there is one on `country`. If/when `country.capital.stats` is set, any references will be ready to update.
