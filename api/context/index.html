@@ -476,6 +476,9 @@
             <li class="second-level"><a href="#contextractive">context.ractive</a></li>
             
         
+            <li class="second-level"><a href="#contextraise">context.raise()</a></li>
+            
+        
             <li class="second-level"><a href="#contextresolve">context.resolve()</a></li>
             
         
@@ -633,6 +636,23 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 <h2 id="contextractive">context.ractive</h2>
 <p><em>(Ractive)</em></p>
 <p>This property holds a reference to the Ractive instance that controls the node represented by this info object.</p>
+<hr />
+<h2 id="contextraise">context.raise()</h2>
+<p>Triggers the nearest matching event directive relative to the context. This is useful for decorators and other library constructs that want to be able to raise their own events that aren't necessarily tied to a DOM event. Raised events do not bubble.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>context.raise(eventName[, event[, ...args]])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>eventName (string)</code>: The name of the event to raise. For <code>&lt;div on-something="..."&gt;</code>, the event name would be <code>'something'</code>.</li>
+<li><code>[event] (context|object)</code>: The context for the event or an object of properties to assign to the context for the event. Defaults to <code>{}</code>.</li>
+<li><code>[args] (...any)</code>: Additional arguments to supply to the event handler.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
 <hr />
 <h2 id="contextresolve">context.resolve()</h2>
 <p>Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.</p>
