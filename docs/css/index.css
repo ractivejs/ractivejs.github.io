@@ -449,3 +449,29 @@ div.run-in-playground:hover {
 img {
   max-width: 100%;
 }
+
+h1, h2 {
+    font-weight: 100;
+}
+
+.bs-sidenav {
+    font-size: 14px;
+}
+
+a {
+    color: #222;
+}
+
+
+.bs-sidebar .nav > li > a:hover, .bs-sidebar .nav > li > a:focus {
+    border-color: #557526;
+}
+
+.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a{
+    border-right: 4px solid #557526;
+    border-radius: 2px;
+}
+
+a:hover, a:focus {
+    color: #384e19;
+}
