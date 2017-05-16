@@ -1,6 +1,6 @@
 # Context
 
-The context object is the type of object you receive when calling [getNodeInfo()](/api/static-methods.md#ractivegetnodeinfo). This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.
+The context object is the type of object you receive when calling [getContext()](/api/static-methods.md#ractivegetcontext). This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.
 
 The special `@context` reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.
 
@@ -25,6 +25,14 @@ See [ractive.animate()](./instance-methods.md#ractiveanimate).
 *(Object)*
 
 A map of decorator name to decorator return object for all of the decorators on the node associated with the context.
+
+---
+
+## context.event
+
+**(Event|undefined)**
+
+The original event for contexts supplied to event directives. This is `undefined` for contexts not associated with an event.
 
 ---
 
@@ -57,7 +65,7 @@ Returns the value of the binding if the node represented by this info object has
 ```
 
 ```js
-Ractive.getNodeInfo('#findMe').getBinding(); // returns value of foo.bar.baz
+Ractive.getContext('#findMe').getBinding(); // returns value of foo.bar.baz
 ```
 
 ## context.getBindingPath()
@@ -83,7 +91,7 @@ Returns the keypath of the binding if the node represented by this info object h
 ```
 
 ```js
-Ractive.getNodeInfo('#findMe').getBindingPath(); // Returns "foo.bar.baz"
+Ractive.getContext('#findMe').getBindingPath(); // Returns "foo.bar.baz"
 ```
 
 ---
@@ -114,8 +122,8 @@ Returns `true` if the node represented by this info object has a two-way binding
 ```
 
 ```js
-Ractive.getNodeInfo('#foo').isBound(); // Returns true
-Ractive.getNodeInfo('#bar').isBound(); // Returns false
+Ractive.getContext('#foo').isBound(); // Returns true
+Ractive.getContext('#bar').isBound(); // Returns false
 ```
 
 ---
@@ -130,7 +138,7 @@ See [ractive.link()](./instance-methods.md#ractivelink).
 
 _`(Node|undefined)`_
 
-The node the event originated from. Normally present when the event is a Ractive DOM. May be `undefined` on custom events or events from event plugins.
+The node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node `undefined`.
 
 ---
 
@@ -193,6 +201,12 @@ Triggers the nearest matching event directive relative to the context. This is u
 ```js
 // TODO
 ```
+
+---
+
+## context.readLink()
+
+See [ractive.readLink()](./instance-methods.md#ractivereadlink).
 
 ---
 

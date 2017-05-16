@@ -515,13 +515,13 @@ console.log(r.get('foo.bar.0'));
 
 ---
 
-## ractive.getNodeInfo()
+## ractive.getContext()
 
-This is an instance specific version of [`Ractive.getNodeInfo()`](../api/static-methods.md#ractivegetnodeinfo) that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.
+This is an instance specific version of [`Ractive.getContext()`](../api/static-methods.md#ractivegetcontext) that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.
 
 **Syntax**
 
-- `ractive.getNodeInfo(node)`
+- `ractive.getContext(node)`
 
 **Arguments**
 
@@ -862,6 +862,47 @@ If the given keypath does not exist (is `undefined`), an empty array will be sup
 
 ```js
 // TODO
+```
+
+---
+
+## ractive.readLink()
+
+Gets the source keypath and instance for a link.
+
+**Syntax**
+
+- `ractive.readLink(link[, options])`
+
+**Arguments**
+
+- `link (string)`: The keypath for the link that you would like to read.
+- `options (Object)`:
+    - `[canonical] (boolean)`: Whether or not to read through any intermediate links too. Pass `canonical: true` to read through links to links all the way to the canonical data keypath. Defaults to `false`.
+
+**Returns**
+
+- `(Object)`:
+    - `keypath (string)`: The source keypath to which the link points.
+    - `ractive (Ractive)`: The source Ractive instance that contains the keypath to which the link points.
+
+**Examples**
+
+```js
+const r = new Ractive({
+  data: {
+    items: [
+      { name: 'Apple' },
+      { name: 'Banana' },
+      { name: 'Orange' }
+    ]
+  }
+});
+
+r.link( 'items.0', 'currentItem' );
+
+r.readLink( 'currentItem' );
+// returns { ractive: r, keypath: 'items.0' }
 ```
 
 ---

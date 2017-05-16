@@ -162,7 +162,7 @@ The special `@global` reference is subject to interference from outside code, so
 
 ### Context
 
-Each block-level node in a Ractive template provides a special `@context` reference. This is the same object that is returned by `Ractive.getNodeInfo()` when called with the nearest parent DOM element. Contexts provided by the template are more precise than those acquired from a DOM element, because the template has access to the surrounding block scopes.
+Each block-level node in a Ractive template provides a special `@context` reference. This is the same object that is returned by `Ractive.getContext()` when called with the nearest parent DOM element. Contexts provided by the template are more precise than those acquired from a DOM element, because the template has access to the surrounding block scopes.
 
 When a `@context` is provided for an event directive, it will be extended with additional properties relevant to the event.
 

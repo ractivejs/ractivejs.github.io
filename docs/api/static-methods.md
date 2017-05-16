@@ -151,13 +151,13 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 ---
 
-## Ractive.getNodeInfo()
+## Ractive.getContext()
 
 Accepts a node and returns a [Context](./context.md) object containing details of the Ractive instance the node is associated to.
 
 **Syntax**
 
-- `Ractive.getNodeInfo(node)`
+- `Ractive.getContext(node)`
 
 **Arguments**
 
@@ -165,14 +165,14 @@ Accepts a node and returns a [Context](./context.md) object containing details o
 
 **Returns**
 
-- `(NodeInfo)`: An [Context](./context.md) object.
+- `(Context)`: A [context](./context.md) object.
 
 **Examples**
 
 ```js
-const info = Ractive.getNodeInfo(document.getElementById('some-node'));
+const info = Ractive.getContext(document.getElementById('some-node'));
 
-const info = Ractive.getNodeInfo('#some-node');
+const info = Ractive.getContext('#some-node');
 ```
 
 ---

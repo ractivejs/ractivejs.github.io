@@ -185,7 +185,7 @@ The resolution process for references requires a keypath and a `Fragment` as a s
   4. If the fragment belongs to a component, use the component's parent fragment and loop.
   5. Use the fragment's parent and loop.
 
-The resolution process is no longer happens strictly the vDOM, as the result of `Ractive.getNodeInfo` also uses the target `Element`'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.
+The resolution process no longer happens strictly within the vDOM, as the result of `Ractive.getContext` also uses the target `Element`'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.
 
 ## Updates
 
