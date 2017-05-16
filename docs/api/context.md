@@ -174,6 +174,28 @@ This property holds a reference to the Ractive instance that controls the node r
 
 ---
 
+## context.raise()
+
+Triggers the nearest matching event directive relative to the context. This is useful for decorators and other library constructs that want to be able to raise their own events that aren't necessarily tied to a DOM event. Raised events do not bubble.
+
+**Syntax**
+
+- `context.raise(eventName[, event[, ...args]])`
+
+**Arguments**
+
+- `eventName (string)`: The name of the event to raise. For `<div on-something="...">`, the event name would be `'something'`.
+- `[event] (context|object)`: The context for the event or an object of properties to assign to the context for the event. Defaults to `{}`.
+- `[args] (...any)`: Additional arguments to supply to the event handler.
+
+**Examples**
+
+```js
+// TODO
+```
+
+---
+
 ## context.resolve()
 
 Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.
