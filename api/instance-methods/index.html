@@ -226,7 +226,7 @@
                         
                             
 <li >
-    <a href="../node-info/">Node Info</a>
+    <a href="../context/">Context Object</a>
 </li>
 
                         
@@ -482,9 +482,6 @@
             <li class="second-level"><a href="#ractivelink">ractive.link()</a></li>
             
         
-            <li class="second-level"><a href="#ractivemerge">ractive.merge()</a></li>
-            
-        
             <li class="second-level"><a href="#ractiveobserve">ractive.observe()</a></li>
             
         
@@ -617,7 +614,7 @@ new SubComponent();
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Promise)</code>: A promise that resolves when the operation completes.</li>
+<li><code>(Promise)</code>: A promise that resolves when any transitions associated with the operation complete.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiQmJkzC-r1CmarNeY0ENDOEDQBzTPOvxZud0GD0eEzw9AAjMNoaCVAtlqt1lpNjtlHsDkcTj1zpdrrdtAMYBVIcNYeoDhhXu9Pj8-gD8aZgZNQfh6AAmaGk6a4IA"></div>
@@ -689,7 +686,7 @@ setTimeout(function() {
 
 <hr />
 <h2 id="ractiveattachchild">ractive.attachChild()</h2>
-<p>Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by <a href="../static-methods/#ractiveextend"><code>ractive.extend()</code></a>, but that is not a requirement, as children may be a plain Ractive instance created with <code>new Ractive()</code>.</p>
+<p>Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a>, but that is not a requirement, as children may be a plain Ractive instance created with <code>new Ractive()</code>.</p>
 <p><strong>Syntax</strong></p>
 <pre><code class="js">ractive.attachChild( child );
 ractive.attachChild( child, options );
@@ -777,7 +774,10 @@ setTimeout(function() {
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>selector (string)</code>: A CSS selector representing the element to find.</li>
-<li><code>[options] (Object)</code>:</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>remote (boolean}</code>: Include attached children that are not rendered in anchors when looking for matching elements. Defaults to <code>false</code>.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -799,7 +799,7 @@ setTimeout(function() {
 
 <hr />
 <h2 id="ractivefindall">ractive.findAll()</h2>
-<p>This method is similar to [<code>ractive.find()</code>]ractivefind), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a <em>live</em> list, which will stay in sync with the DOM as it continues to update.</p>
+<p>This method is similar to [<code>ractive.find()</code>]ractivefind), with an important difference - it returns a list of elements matching the selector, rather than a single node.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.findAll(selector[, options])</code></li>
@@ -807,8 +807,8 @@ setTimeout(function() {
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>selector (string)</code>: A CSS selector representing the elements to find.</li>
-<li><code>[options] (Object)</code><ul>
-<li><code>[live] (boolean)</code>: Whether to return a live list or a static one. Defaults to <code>false</code>.</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>remote (boolean)</code>: Include attached children that are not rendered in anchors when searching for elements. Defaults to <code>false</code>.</li>
 </ul>
 </li>
 </ul>
@@ -842,8 +842,8 @@ setTimeout(function() {
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>[name] (string)</code>: The name of the component to find.</li>
-<li><code>[options] (Object)</code><ul>
-<li><code>[live] (boolean)</code>: Whether to return a live list or a static one. Defaults to <code>false</code>.</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>remote (boolean)</code>: Include attached children that are not rendered in anchors when searching components. Defaults to <code>false</code>.</li>
 </ul>
 </li>
 </ul>
@@ -884,7 +884,10 @@ setTimeout(function() {
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>[name] (string)</code>: The name of the component to find.</li>
-<li><code>[options] (Object)</code>:</li>
+<li><code>[options] (Object)</code>:<ul>
+<li><code>remote (boolean)</code>: Include attached children that are not rendered in anchors when searching components. Defaults to <code>false</code>.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -954,11 +957,12 @@ setTimeout(function() {
 <p>Fires an event, which will be received by handlers that were bound using <a href="#ractiveon"><code>ractive.on</code></a>. In practical terms, you would mostly likely use this with <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a>, to allow applications to hook into your subclass.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>ractive.fire(eventName[, arg1[, ...argN])</code></li>
+<li><code>ractive.fire(eventName[, context [, arg1[, ...argN]]])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>name (string)</code>: The name of the event.</li>
+<li><code>[context] (context|object)</code>: A context object to reuse for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (<code>{}</code>) before the additional arguments.</li>
 <li><code>[arg] (any)</code>: The arguments that event handlers will be called with.</li>
 </ul>
 <p><strong>Returns</strong></p>
@@ -1019,7 +1023,7 @@ console.log(r.get('foo.bar.0'));
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(NodeInfo)</code>: Returns an <a href="../node-info/">NodeInfo</a> object with helper methods to interact with the Ractive instance and context associated with the given node.</li>
+<li><code>(Context)</code>: Returns an <a href="../context/">Context</a> object with helper methods to interact with the Ractive instance and context associated with the given node.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
@@ -1081,56 +1085,6 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 
 <p>Links can be removed using <a href="#ractiveunlink"><code>ractive.unlink()</code></a>.</p>
 <hr />
-<h2 id="ractivemerge">ractive.merge()</h2>
-<p>Sets the indicated keypath to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.</p>
-<p>This is an efficient way to (for example) handle data from a server. It also helps to control <code>intro</code> and <code>outro</code> <a href="../../extend/transitions/">transitions</a> which might not otherwise happen with a basic <a href="#ractiveset"><code>ractive.set()</code></a> operation.</p>
-<p>To determine whether the first item of <code>['foo', 'bar', 'baz']</code> is the same as the last item of <code>['bar', 'baz', 'foo']</code>, by default we do a strict equality (<code>===</code>) check.</p>
-<p>In some situations that won't work, because the arrays contain objects, which may <em>look</em> the same but not be identical. To deal with these, we use the <code>compare</code> option detailed below.</p>
-<p>Merge can also be used to created a context block that uses transitions when the context changes.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>ractive.merge(keypath, value[, options])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>keypath (string)</code>: The keypath of the array we're updating.</li>
-<li><code>value (Array)</code>: The new data to merge in.</li>
-<li><code>[options] (Object)</code><ul>
-<li><code>[compare] (boolean)</code>: If <code>true</code>, values will be stringified (with <code>JSON.stringify</code>) before comparison.</li>
-<li><code>[compare] (string)</code>: A property name that will be used to compare the array elements.</li>
-<li><code>[compare] (Function)</code>: A function that returns a value with which to compare array members.</li>
-</ul>
-</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(Promise)</code> - Returns a promise.</li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="html">{{#user}}
-&lt;div intro='fade'&gt;{{first}} {{last}}&lt;/div&gt;
-{{/}}
-</code></pre>
-
-<pre><code class="js">var r = new Ractive({
-    el: document.body,
-    template: '#template',
-    data: {
-        user: [{
-            first: 'sam',
-            last: 'smith'
-        }]
-    },
-    complete: function(){
-        this.merge('user', [{
-            first: 'jane',
-            last: 'johnson'
-        }])
-    }
-})
-</code></pre>
-
-<hr />
 <h2 id="ractiveobserve">ractive.observe()</h2>
 <p>Observes the data at a particular keypath. Unless specified otherwise, the callback will be fired immediately, with <code>undefined</code> as <code>oldValue</code>. Thereafter it will be called whenever the <em>observed keypath</em> changes.</p>
 <p><strong>Syntax</strong></p>
@@ -1154,6 +1108,8 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <li><code>[links] (boolean)</code>: Defaults to <code>false</code>.  Whether or not the observer should "follow through" any links created with <a href="#ractivelink"><code>ractive.link()</code></a>.</li>
 <li><code>[strict] (boolean)</code>: Defaults to <code>false</code>. <code>strict</code> uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with <code>{ data: { foo: { bar: 'baz' } } }</code>, <code>ractive.observe('foo', ..., { strict: true })</code> will not fire on <code>ractive.set('foo.bar', 'bat')</code> but will on <code>ractive.set('foo', { bar: 'bip' })</code>.</li>
 <li><code>[context] (any)</code>: Defaults to <code>ractive</code>. The context the observer is called in (i.e. the value of <code>this</code>)</li>
+<li><code>[array] (boolean)</code>: Defaults to <code>false</code>. Whether or not to observe the keypath as an array, meaning that change events will fire with a object containing two lists, <code>inserted</code> containing added elements, and <code>deleted</code> containing removed elements. There is also a <code>start</code> integer property indicating the index at which the replacements begin.</li>
+<li><code>[old] (function)</code>: Defaults to <code>undefined</code>. A function that can be used to modify the <code>old</code> value passed to the observer callback. This can be used to freeze the old value, create a deep clone of it for future firings, etc.</li>
 </ul>
 </li>
 </ul>
@@ -1251,7 +1207,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>eventName (String)</code>: The name of the event to subscribe to</li>
-<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../extend/events/">event bubbling</a>.</li>
+<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event, but the first argument is always a context object. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../extend/events/">event bubbling</a>.</li>
 <li><code>obj (Object)</code>: An object with keys named for each event to subscribe to. The value at each key is the handler function for that event.</li>
 </ul>
 <p><strong>Returns</strong></p>
@@ -1293,7 +1249,7 @@ ractive.on({
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>eventName (string)</code>: The name of the event to subscribe to.</li>
-<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../extend/events/">event bubbling</a>.</li>
+<li><code>handler (Function)</code>: The function that will be called, with <code>ractive</code> as <code>this</code>. The arguments depend on the event, but the first argument is always a context object. Returning <code>false</code> from the handler will stop propagation and prevent default of DOM events and cancel <a href="../../extend/events/">event bubbling</a>.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -1445,21 +1401,32 @@ ractive.resetPartial('foo', 'bar');
 <hr />
 <h2 id="ractiveset">ractive.set()</h2>
 <p>Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any observers of affected keypaths will be notified.</p>
-<p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../../extend/transitions/">transitions</a>. See <a href="#ractivemerge"><code>ractive.merge()</code></a> for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
+<p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../../extend/transitions/">transitions</a>. Use the <code>shuffle</code> option for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>ractive.set(keypath, value)</code></li>
-<li><code>ractive.set(map)</code></li>
+<li><code>ractive.set(keypath, value[, options])</code></li>
+<li><code>ractive.set(map[, options])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>keypath (string)</code>: The keypath of the data we're changing, e.g. <code>user</code> or <code>user.name</code> or <code>user.friends[1]</code> or <code>users.*.status</code>.</li>
 <li><code>value (any)</code>: The value we're changing it to. Can be a primitive or an object (or array), in which case dependants of <em>downstream keypaths</em> will also be re-rendered (if they have changed).</li>
 <li><code>map (Object)</code>: A map of <code>keypath: value</code> pairs, as above.</li>
+<li><code>[options] Object</code>:<ul>
+<li><code>deep (boolean)</code>: Whether or not to perform a deep set on with the data at the given keypath. A deep set recursively merges the given data into the data structure at the given keypath. Defaults to <code>false</code>.</li>
+<li><code>shuffle (boolean|string|Function)</code>: Whether or not to add/move/remove DOM associated with elements rather than just re-using the existing DOM. Defaults to <code>false</code>.<ul>
+<li><code>true</code>: Add/move/remove existing items to their new index using a strict equality comparison.</li>
+<li><code>string</code>: Add/move/remove existing items to their new index using a property comparison where the property compared is named by the given string.</li>
+<li><code>Function</code>: Add/move/remove existing items to their new index using the value returned by the given function for comparison.</li>
+</ul>
+</li>
+<li><code>keep (boolean)</code>: Whether or not to keep the virtual DOM that would be disposed by the <code>set</code> operation. This is useful for hiding components without completely tearing them down and recreating them. It's also a little bit faster, as the virtual DOM doesn't have to be recreated when it would reappear. This <em>may</em> try to keep the actual DOM around for reuse at some point in the future. Defaults to <code>false</code>.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Promise)</code>: Returns a promise that will be called after the set operation and any transitions are complete.</li>
+<li><code>(Promise)</code>: Returns a promise that will resolved after any transitions associated with the operation are complete.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
@@ -1729,15 +1696,19 @@ subclassInstance.toCSS();
 <p>This is useful when manipulating the instance's data without using the built in setter methods (i.e. <a href="#ractiveset"><code>ractive.set()</code></a>, <a href="#ractiveanimate"><code>ractive.animate()</code></a>).</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>ractive.update([keypath])</code></li>
+<li><code>ractive.update([keypath][, options])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>[keypath] (string)</code>: The keypath to treat as 'dirty'.</li>
+<li><code>[options] (Object&lt;string, any&gt;)</code>:<ul>
+<li><code>force (boolean)</code>: Force an update regardless of whether or not the internal change check determines that the keypath has <em>actually</em> changed. This is useful for forcing all expressions referencing a particular function to recompute.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Promise)</code>: A promise that resolves when the operation completes.</li>
+<li><code>(Promise)</code>: A promise that resolves when any transitions associated with the operation complete.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">ractive.observe( 'foo', function ( foo ) {

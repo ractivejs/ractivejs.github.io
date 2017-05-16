@@ -226,7 +226,7 @@
                         
                             
 <li >
-    <a href="../node-info/">Node Info</a>
+    <a href="../context/">Context Object</a>
 </li>
 
                         
@@ -440,6 +440,9 @@
             <li class="second-level"><a href="#append">append</a></li>
             
         
+            <li class="second-level"><a href="#attributes">attributes</a></li>
+            
+        
             <li class="second-level"><a href="#components">components</a></li>
             
         
@@ -456,6 +459,9 @@
             
         
             <li class="second-level"><a href="#decorators">decorators</a></li>
+            
+        
+            <li class="second-level"><a href="#delegate">delegate</a></li>
             
         
             <li class="second-level"><a href="#delimiters">delimiters</a></li>
@@ -482,10 +488,22 @@
             <li class="second-level"><a href="#lazy">lazy</a></li>
             
         
+            <li class="second-level"><a href="#nestedtransitions">nestedTransitions</a></li>
+            
+        
             <li class="second-level"><a href="#nocsstransform">noCSSTransform</a></li>
             
         
             <li class="second-level"><a href="#nointro">noIntro</a></li>
+            
+        
+            <li class="second-level"><a href="#nooutro">noOutro</a></li>
+            
+        
+            <li class="second-level"><a href="#observe">observe</a></li>
+            
+        
+            <li class="second-level"><a href="#on">on</a></li>
             
         
             <li class="second-level"><a href="#oncomplete">oncomplete</a></li>
@@ -524,6 +542,9 @@
             <li class="second-level"><a href="#preservewhitespace">preserveWhitespace</a></li>
             
         
+            <li class="second-level"><a href="#resolveinstancemembers">resolveInstanceMembers</a></li>
+            
+        
             <li class="second-level"><a href="#sanitize">sanitize</a></li>
             
         
@@ -534,6 +555,9 @@
             
         
             <li class="second-level"><a href="#stripcomments">stripComments</a></li>
+            
+        
+            <li class="second-level"><a href="#synccomputedchildren">syncComputedChildren</a></li>
             
         
             <li class="second-level"><a href="#target">target</a></li>
@@ -552,6 +576,9 @@
             
         
             <li class="second-level"><a href="#twoway">twoway</a></li>
+            
+        
+            <li class="second-level"><a href="#warnaboutambiguity">warnAboutAmbiguity</a></li>
             
         
     
@@ -675,6 +702,24 @@ template: '&lt;p&gt;grey&lt;/p&gt;'
 &lt;/div&gt;
 </code></pre>
 
+<hr />
+<h2 id="attributes">attributes</h2>
+<p><code>(Object&lt;string, [string]|Object&lt;string, [string]&gt;&gt;)</code></p>
+<p>An array of optional attributes or a map of optional and required attributes. Defaults to <code>undefined</code>.</p>
+<p>You can supply a list of optional attributes using an array. You can also supply an object with an <code>optional</code> array of attribute names and a <code>required</code> array of attribute names. At runtime, if a component is created missing a required attribute, Ractive will issue a warning about missing required attributes. Any attributes that are passed to the component that are <em>not</em> included in either of the <code>optional</code> or <code>required</code> lists of attributes will be collected into a partial named <code>extra-attributes</code> so that they can be included on a top-level element in the component template or split apart to be used in a component <code>init</code> event.</p>
+<pre><code class="js">const Component = Ractive.extend({
+  template: `&lt;div class-component-wrapper {{yield extra-attributes}}&gt;Fancy component doing something with list and type&lt;/div&gt;`,
+  attributes: {
+    required: [ 'list' ],
+    optional: [ 'type' ]
+  }
+});
+
+// &lt;Component type=&quot;foo&quot; /&gt; will issue a warning about missing list
+// &lt;Component list=&quot;{{things}}&quot; style-color=&quot;green&quot; /&gt; will not warn, but will include the style-color=&quot;green&quot; on the wrapper div
+</code></pre>
+
+<p>The extra attributes passed to a component are not limited to simple attributes - they can also include directives, but any mustache sections will not have their contents checked. By default, the <code>extra-attributes</code> will <em>not</em> be mapped, meaning that the values won't be available with <code>get</code> from the component, so the partial should be yielded. If you need the extra attributes to be mapped, include an additional setting in the attributes map <code>mapAll: true</code>.</p>
 <hr />
 <h2 id="components">components</h2>
 <p><code>(Object&lt;string, Function&gt;)</code></p>
@@ -816,6 +861,11 @@ Child().get();  // { foo: 'Goodbye', bar: 'World' }
 </code></pre>
 
 <hr />
+<h2 id="delegate">delegate</h2>
+<p><code>(boolean)</code></p>
+<p>Whether or not to enable automatic event delegation for iterative sections within an element. Defaults to <code>true</code>.</p>
+<p>When enabled, DOM events subscribed within iterative sections will not add a DOM event listener to each element. Instead, a single listener will be installed on the element containing the iterative section, and that listener will find appropriate event directives starting from the target element and working back to the containing element with the listener.</p>
+<hr />
 <h2 id="delimiters">delimiters</h2>
 <p><code>(Array[string])</code></p>
 <p>Sets the template delimiters. Defaults to <code>[ '{{', '}}' ]</code>.</p>
@@ -906,6 +956,25 @@ ractive.on('change', function(){
 </code></pre>
 
 <hr />
+<h2 id="nestedtransitions">nestedTransitions</h2>
+<p><code>(boolean)</code></p>
+<p>Whether or not to allow transitions to fire if they are already downstream from a transitioning element. Defaults to <code>true</code>.</p>
+<pre><code class="handlebars">{{#if outer}}
+  &lt;div fade-in='slow'&gt;
+    Outer text.
+    {{#if inner}}
+      &lt;div fly-in=&quot;fast&quot;&gt;Inner text.&lt;/div&gt;
+    {{/if}}
+  &lt;/div&gt;
+{{/if}}
+</code></pre>
+
+<p>In this example, if <code>inner</code> is <code>true</code> when <code>outer</code> becomes <code>true</code>, then all of the <code>div</code>s will render at the same time. If <code>nestedTransitions</code> is disabled, then the <code>fly</code> transition on inner <code>div</code> will not be run, since the <code>fade</code> will already be running on the outer <code>div</code>.</p>
+<p>This can also be controlled per transition using the <code>nested</code> boolean parameter for transitions:</p>
+<pre><code class="handlebars">&lt;div fade-in=&quot;{ duration: 'slow', nested: false }&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+<hr />
 <h2 id="nocsstransform">noCSSTransform</h2>
 <p><code>(boolean)</code></p>
 <p>Prevents component CSS from being transformed with scoping guids. Defaults to <code>false</code>.</p>
@@ -914,17 +983,98 @@ ractive.on('change', function(){
 <p><code>(boolean)</code></p>
 <p>Whether or not to skip intro transitions on initial render. Defaults to <code>false</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
-  template: '&lt;ul&gt;{{#items}}&lt;li intro=&quot;fade&quot;&gt;{{.}}&lt;/li&gt;{{/items}}&lt;/ul&gt;',
+  template: '&lt;ul&gt;{{#items}}&lt;li fade-in&gt;{{.}}&lt;/li&gt;{{/items}}&lt;/ul&gt;',
   data: { items: [ 'red', 'blue' ] },
   transitions: { fade: function ( t, params ) {...} },
   noIntro: true
 });
-// 'red' and 'blue' list items do not fade in on intro
+// 'red' and 'blue' list items do not fade in
 
-ractive.get('items').push( 'green' );
+ractive.push( 'items', 'green' );
 // 'green' list item will fade in
 </code></pre>
 
+<hr />
+<h2 id="nooutro">noOutro</h2>
+<p><code>(boolean)</code></p>
+<p>Whether or not to skip outro transitions during an instance unrender. Defaults to <code>false</code>.</p>
+<pre><code class="js">var ractive = new Ractive({
+  template: '&lt;ul&gt;{{#items}}&lt;li fade-out&gt;{{.}}&lt;/li&gt;{{/items}}&lt;/ul&gt;',
+  data: { items: [ 'red', 'blue' ] },
+  transitions: { fade: function ( t, params ) {...} },
+  noOutro: true
+});
+
+ractive.pop( 'items' );
+// 'blue' list item will fade out
+
+ractive.unrender();
+// 'red' list item will not fade out
+</code></pre>
+
+<hr />
+<h2 id="observe">observe</h2>
+<p><code>(Object&lt;string, Function|Object&gt;)</code></p>
+<p>A hash of observers to subscribe during initialization and unsubscribe during teardown. Defaults to <code>undefined</code>.</p>
+<p>The keys of the hash may be any string that is accepted by <a href="../instance-methods/#ractiveobserve"><code>ractive.observe()</code></a>, and the values may be either callback functions, as would be passed to <code>ractive.observe()</code>, or objects with a <code>handler</code> property that is a callback function. The object form also takes other options that control the behavior of the observer.</p>
+<pre><code class="js">new Ractive({
+  // ..
+  observe: {
+    show ( value ) {
+      console.log( `show changed to '${value}'` );
+    },
+    'users.*.name people.*.name': {
+      handler ( value, old, path, idx ) {
+        console.log( `${path} changed to '${value}' );
+      },
+      init: false,
+      strict: true
+    }
+  }
+});
+</code></pre>
+
+<p>The options that may be specified in the object form are (see the <a href="../../api/instance-methods#ractiveobserve"><code>ractive.observe()</code> docs</a> for more detailed option descriptions):</p>
+<ul>
+<li><code>handler (Function)</code>: The callback function for the observer.</li>
+<li><code>once (boolean)</code>: Use <a href="../../api/instance-methods#ractiveobserveonce"><code>ractive.observeOnce()</code></a> rather than <code>ractive.observe()</code> to install the observer, meaning the observer is implicitly <code>init: false</code>, will only fire for the first change to the observed path, and will by removed after the first change.</li>
+<li><code>strict (boolean)</code>: Use strict equality when determining whether or not a value has changed.</li>
+<li><code>array (boolean)</code>: Use an array observer rather than a plain observer.</li>
+<li><code>defer (boolean)</code>: Defer the observer until after the DOM is settled.</li>
+<li><code>init (boolean)</code>: Whether or not to fire an initial change event.</li>
+<li><code>links (boolean)</code>: Whether or not to follow links.</li>
+<li><code>context (any)</code>: Context for the callback function.</li>
+<li><code>old (Function)</code>: Modifier function for the <code>old</code> value passed to the callback function.</li>
+</ul>
+<p>When a sublcass created with <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a> is passed an <code>observe</code> hash, then any further subclasses or instances created with an <code>observe</code> hash will be combined. Any superclass observers are installed first following the inheritance hierarchy, and finally, any instance observers are installed.</p>
+<hr />
+<h2 id="on">on</h2>
+<p><code>(Object&lt;string, Function|Object&gt;)</code></p>
+<p>A hash of event listeners to subscribe during initialization and unsubscribe during teardown. Defaults to <code>undefined</code>.</p>
+<p>The keys of the hash may be any string that is accepted by <a href="../instance-methods/#on"><code>ractive.on()</code></a>, and the values may be either callback functions, as would be passed to <code>ractive.on()</code>, or objects with a <code>handler</code> property that is a callback function. The object form also takes other options that control the behavior of the event handler.</p>
+<pre><code class="js">new Ractive({
+  // ...
+  on: {
+    init () {
+      console.log('I will print during init');
+    },
+    '*.somethingHappened': {
+      handler ( ctx ) {
+        console.log('I will fire when this instance or any child component fires an instance event named &quot;somethingHappened&quot;');
+      },
+      once: true
+    }
+  },
+  // ...
+});
+</code></pre>
+
+<p>The options that may be specified in the object form are:</p>
+<ul>
+<li><code>handler (Function)</code>: The callback function for the event.</li>
+<li><code>once (boolean)</code>: Use <a href="../instance-methods/#once"><code>ractive.once()</code></a> rather than <code>ractive.on()</code> to subscribe the listener, meaning that the handler will only be called the first time the event is fired and then it will be unsubscribed.</li>
+</ul>
+<p><code>on</code> event listeners may subscribe to any instance event, including lifecycle events <em>after</em> <code>construct</code>. When a sublcass created with <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a> is passed an <code>on</code> hash, then any further subclasses or instances created with an <code>on</code> hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.</p>
 <hr />
 <h2 id="oncomplete">oncomplete</h2>
 <p><code>(Function)</code></p>
@@ -985,7 +1135,7 @@ ractive.get('items').push( 'green' );
 <h2 id="preservewhitespace">preserveWhitespace</h2>
 <p><code>(boolean)</code></p>
 <p>Whether or not to preserve whitespace in templates when parsing. Defaults to <code>false</code>.</p>
-<p>Whitespace in <code>&lt;pre&gt;</code> elements are always preserved. The browser will still deal with whitespace in the normal fashion.</p>
+<p>Whitespace in <code>&lt;pre&gt;</code> elements is always preserved. The browser will still deal with whitespace in the normal fashion.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
   preserveWhitespace: false //default
@@ -1005,6 +1155,14 @@ console.log( ractive.toHTML() );
 //  world   &lt;/p&gt;&quot;
 </code></pre>
 
+<hr />
+<h2 id="resolveinstancemembers">resolveInstanceMembers</h2>
+<p><code>(boolean)</code></p>
+<p>Whether or not to include members of the Ractive instance at the end of the reference resolution process. Defaults to <code>true</code>.</p>
+<pre><code class="handlebars">&lt;button on-click=&quot;toggle('show')&quot;&gt;Toggle&lt;/button&gt;
+</code></pre>
+
+<p>If there is no data member <code>toggle</code> in the context of the template, with <code>resolveInstanceMembers</code> enabled, the reference will resolve to the <a href="../instance-methods/#ractivetoggle"><code>ractive.toggle()</code></a> method of the instance.</p>
 <hr />
 <h2 id="sanitize">sanitize</h2>
 <p><code>(boolean|Object)</code></p>
@@ -1076,6 +1234,17 @@ stripComments: false
 </code></pre>
 
 <hr />
+<h2 id="synccomputedchildren">syncComputedChildren</h2>
+<p><code>(boolean)</code></p>
+<p>Whether or not to invalidate the dependencies of an expression when child keypaths of the expression are updated. Defaults to <code>false</code>. <em>Note</em>: setting this to <code>true</code> may cause performance issues for complex expressions involving large arrays.</p>
+<pre><code class="handlebars">&lt;input value=&quot;{{pattern}}&quot; /&gt;
+{{#each filter(users, pattern)}}
+  &lt;input value=&quot;{{.name}}&quot; /&gt;
+{{/each}}
+</code></pre>
+
+<p>In this example, the <code>input</code> inside the iteration is bound to a computation e.g. <code>filter(users, pattern).0.name</code> that isn't actually an addressable model. With <code>syncComputedChildren</code> enabled, when that virtual keypath is updated by a user changing the <code>input</code>, the expression will invalidate its dependencies (<code>filter</code>, <code>users</code>, and <code>pattern</code>), which will cause any other references to the <code>user</code> that happens to coincide with result of the expression to also update.</p>
+<hr />
 <h2 id="target">target</h2>
 <p><code>(string|HTMLElement|array-like)</code></p>
 <p>Alias for <a href="#el"><code>el</code></a>.</p>
@@ -1138,7 +1307,13 @@ console.log( ractive.get( 'foo' ) ); //logs &quot;bar&quot;
 ractive.set( 'foo', 'fizz' );
 
 // input now displays &quot;fizz&quot;
-</code></pre></div>
+</code></pre>
+
+<hr />
+<h2 id="warnaboutambiguity">warnAboutAmbiguity</h2>
+<p><code>(boolean)</code></p>
+<p>Whether or not to warn about references that don't resolve to their immediate context. Defaults to <code>false</code>.</p>
+<p>Ambiguous references can be the cause of some strange behavior when your data changes structure slightly. With <code>warnAboutAmbiguity</code> enabled, Ractive will warn you any time a reference isn't scoped and resolves in a context above the immediate context of the reference.</p></div>
             
         </div>
 

@@ -226,7 +226,7 @@
                         
                             
 <li >
-    <a href="../node-info/">Node Info</a>
+    <a href="../context/">Context Object</a>
 </li>
 
                         
@@ -452,9 +452,6 @@
             <li class="second-level"><a href="#ractiveinterpolators">ractive.interpolators</a></li>
             
         
-            <li class="second-level"><a href="#ractivenodes">ractive.nodes</a></li>
-            
-        
             <li class="second-level"><a href="#ractiveparent">ractive.parent</a></li>
             
         
@@ -503,40 +500,11 @@
 <hr />
 <h2 id="ractiveevents">ractive.events</h2>
 <p><code>(Object&lt;string, Function&gt;)</code></p>
-<p>The instance-only registry of <a href="../../extend/events/">events</a>.</p>
+<p>The instance-only registry of custom <a href="../../extend/events/">event</a> plugins.</p>
 <hr />
 <h2 id="ractiveinterpolators">ractive.interpolators</h2>
 <p><code>(Object&lt;string, Function&gt;)</code></p>
-<p>A key-value hash of interpolators use by <a href="../instance-methods/#ractiveanimate"><code>ractive.animate()</code></a>.</p>
-<hr />
-<h2 id="ractivenodes">ractive.nodes</h2>
-<p><code>(Object&lt;string, HTMLElement&gt;)</code></p>
-<p>An object containing all of the elements inside the instance that have an <code>id</code> attribute.</p>
-<pre><code class="js">const ractive = new Ractive({
-  el: body,
-  template: '&lt;div id=&quot;myDiv&quot;&gt;An unimaginatively named div.&lt;/div&gt;'
-});
-
-ractive.nodes.myDiv === document.getElementById( 'myDiv' ); // true
-</code></pre>
-
-<p>This will also reference dynamically created elements.</p>
-<pre><code class="js">const ractive = new Ractive({
-  el: myContainer,
-  template: `
-    &lt;ul&gt;
-        {{#items:i}}
-            &lt;li id='item_{{i}}'&gt;{{content}}&lt;/li&gt;
-        {{/items}}
-    &lt;/ul&gt;
-  `,
-  data: { items: myListOfItems }
-});
-
-// Get a reference to an arbitrary li element.
-ractive.nodes[ 'item_' + num ];
-</code></pre>
-
+<p>A key-value hash of interpolators use by <a href="../instance-methods/#ractiveanimate"><code>ractive.animate()</code></a> or non-CSS transitions.</p>
 <hr />
 <h2 id="ractiveparent">ractive.parent</h2>
 <p><code>(Ractive)</code></p>

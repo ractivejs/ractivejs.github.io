@@ -226,7 +226,7 @@
                         
                             
 <li >
-    <a href="../../api/node-info/">Node Info</a>
+    <a href="../../api/context/">Context Object</a>
 </li>
 
                         
@@ -662,7 +662,7 @@ Ractive Events will be automatically unsubscribed when the ractive instance or c
 </code></pre>
 
 <p>The <code>event</code> object is also available within body of the method call function as <code>this.event</code>. Note that methods on your Ractive instance that may handle your events are effectively part of your public API, and <code>this.event</code> will only be available during invocations triggered by an event.</p>
-<p>The <code>event</code> argument is also extended with contextual helper methods. See <a href="../../api/node-info/">helpers</a>.</p>
+<p>The <code>event</code> argument is also extended with contextual helper methods. See <a href="../../api/context/">context objects</a>.</p>
 <p>If you need to evaluate multiple expressions from an event directive, simply separate them with a <code>,</code>. For instance:</p>
 <pre><code class="html">{{#each someList as item}}
 &lt;div&gt;

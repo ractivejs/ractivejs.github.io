@@ -226,7 +226,7 @@
                         
                             
 <li >
-    <a href="../node-info/">Node Info</a>
+    <a href="../context/">Context Object</a>
 </li>
 
                         
@@ -437,6 +437,9 @@
             <li class="second-level"><a href="#ractiveextend">Ractive.extend()</a></li>
             
         
+            <li class="second-level"><a href="#ractiveextendwith">Ractive.extendWith()</a></li>
+            
+        
             <li class="second-level"><a href="#ractivegetcss">Ractive.getCSS()</a></li>
             
         
@@ -517,6 +520,42 @@ const instance2 = new SubClass({
 </code></pre>
 
 <hr />
+<h2 id="ractiveextendwith">Ractive.extendWith()</h2>
+<p>Creates a "subclass" of the Ractive constructor or a subclass constructor using an existing constructor. The constructor will be augmented with static methods like <code>extend</code>, and it will also process the given initialization options.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>Ractive.extendWith(constructor[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>constructor (Function)</code>: A class constructor - like an ES6 <code>class</code>, a plain JavaScript function with a prototpye, or another similarly constructed function (TypeScript, CoffeeScript, etc).</li>
+<li><code>options (Object)</code>: An object with initialization options as properties. See <a href="../initialization-options/">initialization options</a> for a list of possible options.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Function)</code>: The augmented constructor function.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">class Widget {
+  notify ( message ) {
+    this.push( 'messages', message );
+  }
+
+  show () {
+    this.set( 'visible', true );
+  }
+
+  hide () {
+    this.set( 'visible', false );
+  }
+}
+
+Ractive.extendWith( Widget, {
+  template: '{{#if visible}}&lt;ul&gt;{{#each messages}}&lt;li&gt;{{.}}&lt;/li&gt;{{/each}}&lt;/ul&gt;{{/if}}'
+});
+</code></pre>
+
+<hr />
 <h2 id="ractivegetcss">Ractive.getCSS()</h2>
 <p>Returns the scoped CSS from Ractive subclasses defined at the time of the call.</p>
 <p>If used without arguments, it will return the scoped CSS of all subclasses. If provided an array of scoping IDs, it will return the scoped CSS of all subclasses whose scoping ID is included in the array.</p>
@@ -557,7 +596,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 <hr />
 <h2 id="ractivegetnodeinfo">Ractive.getNodeInfo()</h2>
-<p>Accepts a node and returns an <a href="../node-info/">Node Info</a> object containing details of the Ractive instance the node is associated to.</p>
+<p>Accepts a node and returns a <a href="../context/">Context</a> object containing details of the Ractive instance the node is associated to.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>Ractive.getNodeInfo(node)</code></li>
@@ -568,7 +607,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(NodeInfo)</code>: An <a href="../node-info/">NodeInfo</a> object.</li>
+<li><code>(NodeInfo)</code>: An <a href="../context/">Context</a> object.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">const info = Ractive.getNodeInfo(document.getElementById('some-node'));
@@ -606,12 +645,23 @@ const info = Ractive.getNodeInfo('#some-node');
 <ul>
 <li><code>template (string)</code>: A Ractive-compliant HTML template.</li>
 <li><code>[options] (Object)</code>: Parser options.<ul>
+<li><code>[delimiters] ([string])</code>: Start and end delimiters for normal mustaches. Defaults to <code>['{{', '}}']</code>.</li>
+<li><code>[tripleDelimiters] ([string])</code>: Start and end delimiters for triple mustaches. Defaults to <code>['{{{', '}}}']</code>.</li>
+<li><code>[staticDelimiters] ([string])</code>: Start and end delimiters for static mustaches. Defaults to <code>['[[', ']]']</code>.</li>
+<li><code>[staticTripleDelimiters] ([string])</code>: Start and end delimiters for static triple mustaches. Defaults to <code>['[[[', ']]]']</code>.</li>
+<li><code>[contextLines] (integer)</code>: Additional lines above and below a line with a parse error to include in the error output. Defaults to <code>0</code>.</li>
+<li><code>[interpolate] (Object&lt;string, boolean&gt;)</code>: Map of elements that indicates whether or not to read mustaches within the element. Defaults to <code>{ script: false, textarea: true, template: false, style: false }</code>.</li>
+<li><code>[csp]</code>(boolean)<code>: When</code>true<code>includes pre-compiled expression functions in the template output so that</code>eval<code>is not needed at runtime. Defaults to</code>true`.</li>
 <li><code>[preserveWhitespace] (boolean)</code>: When <code>true</code>, preserves whitespace in templates. Whitespace inside the <code>&lt;pre&gt;</code> element is preserved regardless of the value of this option. Defaults to <code>false</code>.</li>
+<li><code>[stripComments] (boolean)</code>: When <code>false</code> will leave comments in the parsed template. Defaults to <code>true</code>.</li>
 <li><code>[sanitize] (boolean|Object)</code>: When <code>true</code>, strips inline event attributes and certain elements from the markup. Defaults to <code>false</code>.<ul>
 <li><code>[elements] (Array&lt;string&gt;)</code>: An array of element names to blacklist.</li>
 <li><code>[eventAttributes] (boolean)</code>: When <code>true</code>, strips off inline event attributes.</li>
 </ul>
 </li>
+<li><code>[includeLinePositions] (boolean)</code>: When <code>true</code> will include line positions on each node of the parser output. Defaults to <code>false</code>.</li>
+<li><code>[textOnlyMode] (boolean)</code>: When <code>true</code> parses elements as text rather than elements. This is useful for generating raw HTML from a template, more like a plain text templating processor. Defaults to <code>false</code>.</li>
+<li>[transforms|parserTransforms] ([Function])`: An array of post-parsing transforms to apply to the output parser AST.</li>
 </ul>
 </li>
 </ul>
@@ -643,21 +693,20 @@ const info = Ractive.getNodeInfo('#some-node');
 <p><strong>Examples</strong></p>
 <p>Assume the following markup.</p>
 <pre><code class="html">&lt;div class='gallery'&gt;
-  {{#items}}
+  {{#each items}}
     &lt;!-- comments get stripped out of the template --&gt;
-    &lt;figure proxy-tap='select' intro='staggered'&gt;
+    &lt;figure on-tap='select' staggered-in&gt;
       &lt;img class='thumbnail' src='assets/images/{{id}}.jpg'&gt;
-      &lt;figcaption&gt;{{( i+1 )}}: {{description}}&lt;/figcaption&gt;
+      &lt;figcaption&gt;{{( @index+1 )}}: {{description}}&lt;/figcaption&gt;
     &lt;/figure&gt;
-  {{/items}}
+  {{/each}}
 &lt;/div&gt;
 </code></pre>
 
 <p><code>Ractive.parse( template );</code> will yield the following output:</p>
-<pre><code class="json">[{&quot;t&quot;:7,&quot;e&quot;:&quot;div&quot;,&quot;a&quot;:{&quot;class&quot;:&quot;gallery&quot;},&quot;f&quot;:[{&quot;t&quot;:4,&quot;r&quot;:&quot;items&quot;,&quot;i&quot;:&quot;i&quot;,&quot;f&quot;:[&quot; &quot;,{&quot;t&quot;:7,&quot;e&quot;:&quot;figure&quot;,&quot;a&quot;:{&quot;intro&quot;:&quot;staggered&quot;},&quot;f&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;img&quot;,&quot;a&quot;:{&quot;class&quot;:&quot;thumbnail&quot;,&quot;src&quot;:[&quot;assets/images/&quot;,{&quot;t&quot;:2,&quot;r&quot;:&quot;id&quot;,&quot;p&quot;:4},&quot;.jpg&quot;]}},&quot; &quot;,{&quot;t&quot;:7,&quot;e&quot;:&quot;figcaption&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;x&quot;:{&quot;r&quot;:[&quot;i&quot;],&quot;s&quot;:&quot;❖0+1&quot;},&quot;p&quot;:4},&quot;: &quot;,{&quot;t&quot;:2,&quot;r&quot;:&quot;description&quot;,&quot;p&quot;:4}]}],&quot;v&quot;:{&quot;tap&quot;:&quot;select&quot;}},&quot; &quot;],&quot;p&quot;:1}]}]
+<pre><code class="js">{&quot;v&quot;:4,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;div&quot;,&quot;m&quot;:[{&quot;n&quot;:&quot;class&quot;,&quot;f&quot;:&quot;gallery&quot;,&quot;t&quot;:13}],&quot;f&quot;:[{&quot;t&quot;:4,&quot;f&quot;:[&quot; &quot;,{&quot;t&quot;:7,&quot;e&quot;:&quot;figure&quot;,&quot;m&quot;:[{&quot;n&quot;:[&quot;tap&quot;],&quot;t&quot;:70,&quot;f&quot;:&quot;select&quot;},{&quot;n&quot;:&quot;staggered&quot;,&quot;t&quot;:72,&quot;v&quot;:&quot;t1&quot;}],&quot;f&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;img&quot;,&quot;m&quot;:[{&quot;n&quot;:&quot;class&quot;,&quot;f&quot;:&quot;thumbnail&quot;,&quot;t&quot;:13},{&quot;n&quot;:&quot;src&quot;,&quot;f&quot;:[&quot;assets/images/&quot;,{&quot;t&quot;:2,&quot;r&quot;:&quot;id&quot;},&quot;.jpg&quot;],&quot;t&quot;:13}]},&quot; &quot;,{&quot;t&quot;:7,&quot;e&quot;:&quot;figcaption&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;x&quot;:{&quot;r&quot;:[&quot;@index&quot;],&quot;s&quot;:&quot;_0+1&quot;}},&quot;: &quot;,{&quot;t&quot;:2,&quot;r&quot;:&quot;description&quot;}]}]}],&quot;n&quot;:52,&quot;r&quot;:&quot;items&quot;}]}],&quot;e&quot;:{'_0+1': function(_0) { return _0+1; }}}
 </code></pre>
 
-<p>TODO: <code>Ractive.parse</code> has more options. Document them.</p>
 <hr />
 <h2 id="ractivesplitkeypath">Ractive.splitKeypath()</h2>
 <p>Splits the given keypath into an array of unescaped keys.</p>

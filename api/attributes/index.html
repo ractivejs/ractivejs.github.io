@@ -226,7 +226,7 @@
                         
                             
 <li >
-    <a href="../node-info/">Node Info</a>
+    <a href="../context/">Context Object</a>
 </li>
 
                         
@@ -459,10 +459,11 @@
 </code></pre>
 
 <h2 id="class-"><code>class-*</code></h2>
-<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions.</p>
+<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions. If there is no expression, the implicit value is <code>true</code>, which is useful for applying multiple classes to an element using component <code>extra-attributes</code>.</p>
 <pre><code class="html">&lt;div class-foo=&quot;isFoo&quot;&gt;Adds &quot;foo&quot; if isFoo is truthy&lt;/div&gt;
 &lt;div class-foo-bar=&quot;isFooBar&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar is truthy&lt;/div&gt;
 &lt;div class-fooBar=&quot;isFooBar&quot;&gt;Adds &quot;fooBar&quot; if isFooBar is truthy&lt;/div&gt;
+&lt;div class-baz&gt;Always has &quot;baz&quot;&lt;/div&gt;
 </code></pre>
 
 <h2 id="on-"><code>on-*</code></h2>
