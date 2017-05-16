@@ -440,6 +440,9 @@
             <li class="second-level"><a href="#contextdecorators">context.decorators</a></li>
             
         
+            <li class="second-level"><a href="#contextevent">context.event</a></li>
+            
+        
             <li class="second-level"><a href="#contextget">context.get()</a></li>
             
         
@@ -477,6 +480,9 @@
             
         
             <li class="second-level"><a href="#contextraise">context.raise()</a></li>
+            
+        
+            <li class="second-level"><a href="#contextreadlink">context.readLink()</a></li>
             
         
             <li class="second-level"><a href="#contextresolve">context.resolve()</a></li>
@@ -524,7 +530,7 @@
             <div class="col-md-9" role="main">
 
 <h1 id="context">Context</h1>
-<p>The context object is the type of object you receive when calling <a href="../static-methods/#ractivegetnodeinfo">getNodeInfo()</a>. This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.</p>
+<p>The context object is the type of object you receive when calling <a href="../static-methods/#ractivegetcontext">getContext()</a>. This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.</p>
 <p>The special <code>@context</code> reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.</p>
 <p>Helper methods that take a <a href="../../concepts/templates/#keypaths">keypath</a> will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported. If the method doesn't require a keypath, like <code>get</code>, then the keypath will implicitly be <code>.</code> rather than <code>~/</code>, as with regular instance methods.</p>
 <hr />
@@ -537,6 +543,10 @@
 <h2 id="contextdecorators">context.decorators</h2>
 <p><em>(Object)</em></p>
 <p>A map of decorator name to decorator return object for all of the decorators on the node associated with the context.</p>
+<hr />
+<h2 id="contextevent">context.event</h2>
+<p><strong>(Event|undefined)</strong></p>
+<p>The original event for contexts supplied to event directives. This is <code>undefined</code> for contexts not associated with an event.</p>
 <hr />
 <h2 id="contextget">context.get()</h2>
 <p>See <a href="../instance-methods/#ractiveget">ractive.get()</a>.</p>
@@ -559,7 +569,7 @@
 <pre><code class="html">{{#with foo.bar}}&lt;input id=&quot;findMe&quot; value=&quot;{{.baz}}&quot; /&gt;{{/with}}
 </code></pre>
 
-<pre><code class="js">Ractive.getNodeInfo('#findMe').getBinding(); // returns value of foo.bar.baz
+<pre><code class="js">Ractive.getContext('#findMe').getBinding(); // returns value of foo.bar.baz
 </code></pre>
 
 <h2 id="contextgetbindingpath">context.getBindingPath()</h2>
@@ -580,7 +590,7 @@
 <pre><code class="html">{{#with foo.bar}}&lt;input id=&quot;findMe&quot; value=&quot;{{.baz}}&quot; /&gt;{{/with}}
 </code></pre>
 
-<pre><code class="js">Ractive.getNodeInfo('#findMe').getBindingPath(); // Returns &quot;foo.bar.baz&quot;
+<pre><code class="js">Ractive.getContext('#findMe').getBindingPath(); // Returns &quot;foo.bar.baz&quot;
 </code></pre>
 
 <hr />
@@ -605,8 +615,8 @@
 {{/with}}
 </code></pre>
 
-<pre><code class="js">Ractive.getNodeInfo('#foo').isBound(); // Returns true
-Ractive.getNodeInfo('#bar').isBound(); // Returns false
+<pre><code class="js">Ractive.getContext('#foo').isBound(); // Returns true
+Ractive.getContext('#bar').isBound(); // Returns false
 </code></pre>
 
 <hr />
@@ -615,7 +625,7 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 <hr />
 <h2 id="contextnode">context.node</h2>
 <p><em><code>(Node|undefined)</code></em></p>
-<p>The node the event originated from. Normally present when the event is a Ractive DOM. May be <code>undefined</code> on custom events or events from event plugins.</p>
+<p>The node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node <code>undefined</code>.</p>
 <hr />
 <h2 id="contextobserve">context.observe()</h2>
 <p>See <a href="./instance-methdods.md#ractiveobserve">ractive.observe()</a>.</p>
@@ -653,6 +663,9 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 <pre><code class="js">// TODO
 </code></pre>
 
+<hr />
+<h2 id="contextreadlink">context.readLink()</h2>
+<p>See <a href="../instance-methods/#ractivereadlink">ractive.readLink()</a>.</p>
 <hr />
 <h2 id="contextresolve">context.resolve()</h2>
 <p>Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.</p>

@@ -620,7 +620,7 @@
 <li>If the fragment belongs to a component, use the component's parent fragment and loop.</li>
 <li>Use the fragment's parent and loop.</li>
 </ol>
-<p>The resolution process is no longer happens strictly the vDOM, as the result of <code>Ractive.getNodeInfo</code> also uses the target <code>Element</code>'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.</p>
+<p>The resolution process no longer happens strictly within the vDOM, as the result of <code>Ractive.getContext</code> also uses the target <code>Element</code>'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.</p>
 <h2 id="updates">Updates</h2>
 <p>The <code>runloop</code> controls when the DOM is actually updated and when transitions start in <code>batch</code>es. It also handles resolving promises when transitions have completed and the DOM is completely up to date.</p>
 <p>As changes propagate through the viewmodel, view items are notified of the change through their <code>handleChange</code> method. Most items just set a dirty flag and notify their parent, via their <code>bubble</code> method, that they will need to be updated at the completion of the runloop turn. The root fragment of each instance affected will then register with the runloop. Once the changes are ready to be flushed to the view, each fragment registered with the runloop is called on to update, where the process happens in reverse, with each parent fragment checking to see if there is a change it needs to respond to and propagating the update downward to its children.</p></div>

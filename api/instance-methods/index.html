@@ -473,7 +473,7 @@
             <li class="second-level"><a href="#ractiveget">ractive.get()</a></li>
             
         
-            <li class="second-level"><a href="#ractivegetnodeinfo">ractive.getNodeInfo()</a></li>
+            <li class="second-level"><a href="#ractivegetcontext">ractive.getContext()</a></li>
             
         
             <li class="second-level"><a href="#ractiveinsert">ractive.insert()</a></li>
@@ -501,6 +501,9 @@
             
         
             <li class="second-level"><a href="#ractivepush">ractive.push()</a></li>
+            
+        
+            <li class="second-level"><a href="#ractivereadlink">ractive.readLink()</a></li>
             
         
             <li class="second-level"><a href="#ractiverender">ractive.render()</a></li>
@@ -1011,11 +1014,11 @@ console.log(r.get('foo.bar.0'));
 </code></pre>
 
 <hr />
-<h2 id="ractivegetnodeinfo">ractive.getNodeInfo()</h2>
-<p>This is an instance specific version of <a href="../static-methods/#ractivegetnodeinfo"><code>Ractive.getNodeInfo()</code></a> that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.</p>
+<h2 id="ractivegetcontext">ractive.getContext()</h2>
+<p>This is an instance specific version of <a href="../static-methods/#ractivegetcontext"><code>Ractive.getContext()</code></a> that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>ractive.getNodeInfo(node)</code></li>
+<li><code>ractive.getContext(node)</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
@@ -1298,6 +1301,46 @@ ractive.on({
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
+</code></pre>
+
+<hr />
+<h2 id="ractivereadlink">ractive.readLink()</h2>
+<p>Gets the source keypath and instance for a link.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.readLink(link[, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>link (string)</code>: The keypath for the link that you would like to read.</li>
+<li><code>options (Object)</code>:<ul>
+<li><code>[canonical] (boolean)</code>: Whether or not to read through any intermediate links too. Pass <code>canonical: true</code> to read through links to links all the way to the canonical data keypath. Defaults to <code>false</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>:<ul>
+<li><code>keypath (string)</code>: The source keypath to which the link points.</li>
+<li><code>ractive (Ractive)</code>: The source Ractive instance that contains the keypath to which the link points.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">const r = new Ractive({
+  data: {
+    items: [
+      { name: 'Apple' },
+      { name: 'Banana' },
+      { name: 'Orange' }
+    ]
+  }
+});
+
+r.link( 'items.0', 'currentItem' );
+
+r.readLink( 'currentItem' );
+// returns { ractive: r, keypath: 'items.0' }
 </code></pre>
 
 <hr />

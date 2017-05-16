@@ -443,7 +443,7 @@
             <li class="second-level"><a href="#ractivegetcss">Ractive.getCSS()</a></li>
             
         
-            <li class="second-level"><a href="#ractivegetnodeinfo">Ractive.getNodeInfo()</a></li>
+            <li class="second-level"><a href="#ractivegetcontext">Ractive.getContext()</a></li>
             
         
             <li class="second-level"><a href="#ractivejoinkeys">Ractive.joinKeys()</a></li>
@@ -595,11 +595,11 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 </code></pre>
 
 <hr />
-<h2 id="ractivegetnodeinfo">Ractive.getNodeInfo()</h2>
+<h2 id="ractivegetcontext">Ractive.getContext()</h2>
 <p>Accepts a node and returns a <a href="../context/">Context</a> object containing details of the Ractive instance the node is associated to.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>Ractive.getNodeInfo(node)</code></li>
+<li><code>Ractive.getContext(node)</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
@@ -607,12 +607,12 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(NodeInfo)</code>: An <a href="../context/">Context</a> object.</li>
+<li><code>(Context)</code>: A <a href="../context/">context</a> object.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">const info = Ractive.getNodeInfo(document.getElementById('some-node'));
+<pre><code class="js">const info = Ractive.getContext(document.getElementById('some-node'));
 
-const info = Ractive.getNodeInfo('#some-node');
+const info = Ractive.getContext('#some-node');
 </code></pre>
 
 <hr />
