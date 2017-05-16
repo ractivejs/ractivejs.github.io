@@ -42,7 +42,7 @@ pages:
     - Attributes: api/attributes.md
     - Keypath Prefixes: api/keypath-prefixes.md
     - Special References: api/special-references.md
-    - Node Info: api/node-info.md
+    - Context Object: api/context.md
     - Parse: api/parse.md
     - Transition: api/transition.md
   - Extend:

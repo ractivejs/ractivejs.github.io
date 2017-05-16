@@ -56,7 +56,7 @@ Increments the selected keypath.
 
 **Returns**
 
-- `(Promise)`: A promise that resolves when the operation completes.
+- `(Promise)`: A promise that resolves when any transitions associated with the operation complete.
 
 **Examples**
 
@@ -140,7 +140,7 @@ setTimeout(function() {
 
 ## ractive.attachChild()
 
-Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [`ractive.extend()`](../api/static-methods.md#ractiveextend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
+Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by [`Ractive.extend()`](../api/static-methods.md#ractiveextend), but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
 
 **Syntax**
 ```js
@@ -249,6 +249,7 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 
 - `selector (string)`: A CSS selector representing the element to find.
 - `[options] (Object)`:
+    - `remote (boolean}`: Include attached children that are not rendered in anchors when looking for matching elements. Defaults to `false`.
 
 **Returns**
 
@@ -274,7 +275,7 @@ setTimeout(function() {
 
 ## ractive.findAll()
 
-This method is similar to [`ractive.find()`]ractivefind), with two important differences. Firstly, it returns a list of elements matching the selector, rather than a single node. Secondly, it can return a *live* list, which will stay in sync with the DOM as it continues to update.
+This method is similar to [`ractive.find()`]ractivefind), with an important difference - it returns a list of elements matching the selector, rather than a single node.
 
 **Syntax**
 
@@ -283,8 +284,8 @@ This method is similar to [`ractive.find()`]ractivefind), with two important dif
 **Arguments**
 
 - `selector (string)`: A CSS selector representing the elements to find.
-- `[options] (Object)`
-    - `[live] (boolean)`: Whether to return a live list or a static one. Defaults to `false`.
+- `[options] (Object)`:
+    - `remote (boolean)`: Include attached children that are not rendered in anchors when searching for elements. Defaults to `false`.
 
 **Returns**
 
@@ -321,8 +322,8 @@ Returns all components inside a given Ractive instance with the given `name` (or
 **Arguments**
 
 - `[name] (string)`: The name of the component to find.
-- `[options] (Object)`
-    - `[live] (boolean)`: Whether to return a live list or a static one. Defaults to `false`.
+- `[options] (Object)`:
+    - `remote (boolean)`: Include attached children that are not rendered in anchors when searching components. Defaults to `false`.
 
 **Returns**
 
@@ -367,6 +368,7 @@ Returns the first component inside a given Ractive instance with the given `name
 
 - `[name] (string)`: The name of the component to find.
 - `[options] (Object)`:
+    - `remote (boolean)`: Include attached children that are not rendered in anchors when searching components. Defaults to `false`.
 
 **Returns**
 
@@ -451,11 +453,12 @@ Fires an event, which will be received by handlers that were bound using [`racti
 
 **Syntax**
 
-- `ractive.fire(eventName[, arg1[, ...argN])`
+- `ractive.fire(eventName[, context [, arg1[, ...argN]]])`
 
 **Arguments**
 
 - `name (string)`: The name of the event.
+- `[context] (context|object)`: A context object to reuse for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (`{}`) before the additional arguments.
 - `[arg] (any)`: The arguments that event handlers will be called with.
 
 **Returns**
@@ -526,7 +529,7 @@ This is an instance specific version of [`Ractive.getNodeInfo()`](../api/static-
 
 **Returns**
 
-- `(NodeInfo)`: Returns an [NodeInfo](./node-info.md) object with helper methods to interact with the Ractive instance and context associated with the given node.
+- `(Context)`: Returns an [Context](./context.md) object with helper methods to interact with the Ractive instance and context associated with the given node.
 
 **Examples**
 
@@ -604,65 +607,6 @@ Links can be removed using [`ractive.unlink()`](#ractiveunlink).
 
 ---
 
-## ractive.merge()
-
-Sets the indicated keypath to the new array value, but "merges" the existing rendered nodes representing the data into the newly rendered array, inserting and removing nodes from the DOM as necessary. Where necessary, items are moved from their current location in the array (and, therefore, in the DOM) to their new location.
-
-This is an efficient way to (for example) handle data from a server. It also helps to control `intro` and `outro` [transitions](../extend/transitions.md) which might not otherwise happen with a basic [`ractive.set()`](#ractiveset) operation.
-
-To determine whether the first item of `['foo', 'bar', 'baz']` is the same as the last item of `['bar', 'baz', 'foo']`, by default we do a strict equality (`===`) check.
-
-In some situations that won't work, because the arrays contain objects, which may *look* the same but not be identical. To deal with these, we use the `compare` option detailed below.
-
-Merge can also be used to created a context block that uses transitions when the context changes.
-
-**Syntax**
-
-- `ractive.merge(keypath, value[, options])`
-
-**Arguments**
-
-- `keypath (string)`: The keypath of the array we're updating.
-- `value (Array)`: The new data to merge in.
-- `[options] (Object)`
-    - `[compare] (boolean)`: If `true`, values will be stringified (with `JSON.stringify`) before comparison.
-    - `[compare] (string)`: A property name that will be used to compare the array elements.
-    - `[compare] (Function)`: A function that returns a value with which to compare array members.
-
-**Returns**
-
-- `(Promise)` - Returns a promise.
-
-**Examples**
-
-
-```html
-{{#user}}
-<div intro='fade'>{{first}} {{last}}</div>
-{{/}}
-```
-
-```js
-var r = new Ractive({
-    el: document.body,
-    template: '#template',
-    data: {
-        user: [{
-            first: 'sam',
-            last: 'smith'
-        }]
-    },
-    complete: function(){
-        this.merge('user', [{
-            first: 'jane',
-            last: 'johnson'
-        }])
-    }
-})
-```
-
----
-
 ## ractive.observe()
 
 Observes the data at a particular keypath. Unless specified otherwise, the callback will be fired immediately, with `undefined` as `oldValue`. Thereafter it will be called whenever the *observed keypath* changes.
@@ -686,6 +630,8 @@ Observes the data at a particular keypath. Unless specified otherwise, the callb
     - `[links] (boolean)`: Defaults to `false`.  Whether or not the observer should "follow through" any links created with [`ractive.link()`](#ractivelink).
     - `[strict] (boolean)`: Defaults to `false`. `strict` uses object identity to determine if there was a change, meaning that unless the primary object changed, it won't trigger the observer. For example with `{ data: { foo: { bar: 'baz' } } }`, `ractive.observe('foo', ..., { strict: true })` will not fire on `ractive.set('foo.bar', 'bat')` but will on `ractive.set('foo', { bar: 'bip' })`.
     - `[context] (any)`: Defaults to `ractive`. The context the observer is called in (i.e. the value of `this`)
+    - `[array] (boolean)`: Defaults to `false`. Whether or not to observe the keypath as an array, meaning that change events will fire with a object containing two lists, `inserted` containing added elements, and `deleted` containing removed elements. There is also a `start` integer property indicating the index at which the replacements begin.
+    - `[old] (function)`: Defaults to `undefined`. A function that can be used to modify the `old` value passed to the observer callback. This can be used to freeze the old value, create a deep clone of it for future firings, etc.
 
 **Returns**
 
@@ -806,7 +752,7 @@ Subscribe to [events](../extend/events.md).
 **Arguments**
 
 - `eventName (String)`: The name of the event to subscribe to
-- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](../extend/events.md).
+- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event, but the first argument is always a context object. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](../extend/events.md).
 - `obj (Object)`: An object with keys named for each event to subscribe to. The value at each key is the handler function for that event.
 
 **Returns**
@@ -853,7 +799,7 @@ Subscribe to an event for a single firing. This is a convenience function on top
 **Arguments**
 
 - `eventName (string)`: The name of the event to subscribe to.
-- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](../extend/events.md).
+- `handler (Function)`: The function that will be called, with `ractive` as `this`. The arguments depend on the event, but the first argument is always a context object. Returning `false` from the handler will stop propagation and prevent default of DOM events and cancel [event bubbling](../extend/events.md).
 
 **Returns**
 
@@ -1045,22 +991,29 @@ If the given keypath does not resolve to an array, an error will be thrown.
 
 Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any observers of affected keypaths will be notified.
 
-When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with [transitions](../extend/transitions.md). See [`ractive.merge()`](#ractivemerge) for setting a new array value while retaining existing nodes corresponding to individual array item values.
+When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with [transitions](../extend/transitions.md). Use the `shuffle` option for setting a new array value while retaining existing nodes corresponding to individual array item values.
 
 **Syntax**
 
-- `ractive.set(keypath, value)`
-- `ractive.set(map)`
+- `ractive.set(keypath, value[, options])`
+- `ractive.set(map[, options])`
 
 **Arguments**
 
 - `keypath (string)`: The keypath of the data we're changing, e.g. `user` or `user.name` or `user.friends[1]` or `users.*.status`.
 - `value (any)`: The value we're changing it to. Can be a primitive or an object (or array), in which case dependants of *downstream keypaths* will also be re-rendered (if they have changed).
 - `map (Object)`: A map of `keypath: value` pairs, as above.
+- `[options] Object`:
+    - `deep (boolean)`: Whether or not to perform a deep set on with the data at the given keypath. A deep set recursively merges the given data into the data structure at the given keypath. Defaults to `false`.
+    - `shuffle (boolean|string|Function)`: Whether or not to add/move/remove DOM associated with elements rather than just re-using the existing DOM. Defaults to `false`.
+        - `true`: Add/move/remove existing items to their new index using a strict equality comparison.
+        - `string`: Add/move/remove existing items to their new index using a property comparison where the property compared is named by the given string.
+        - `Function`: Add/move/remove existing items to their new index using the value returned by the given function for comparison.
+    - `keep (boolean)`: Whether or not to keep the virtual DOM that would be disposed by the `set` operation. This is useful for hiding components without completely tearing them down and recreating them. It's also a little bit faster, as the virtual DOM doesn't have to be recreated when it would reappear. This _may_ try to keep the actual DOM around for reuse at some point in the future. Defaults to `false`.
 
 **Returns**
 
-- `(Promise)`: Returns a promise that will be called after the set operation and any transitions are complete.
+- `(Promise)`: Returns a promise that will resolved after any transitions associated with the operation are complete.
 
 **Examples**
 
@@ -1403,15 +1356,17 @@ This is useful when manipulating the instance's data without using the built in 
 
 **Syntax**
 
-- `ractive.update([keypath])`
+- `ractive.update([keypath][, options])`
 
 **Arguments**
 
 - `[keypath] (string)`: The keypath to treat as 'dirty'.
+- `[options] (Object<string, any>)`:
+    - `force (boolean)`: Force an update regardless of whether or not the internal change check determines that the keypath has _actually_ changed. This is useful for forcing all expressions referencing a particular function to recompute.
 
 **Returns**
 
-- `(Promise)`: A promise that resolves when the operation completes.
+- `(Promise)`: A promise that resolves when any transitions associated with the operation complete.
 
 **Examples**
 

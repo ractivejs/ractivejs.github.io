@@ -409,3 +409,33 @@ Ractive({
   }
 });
 ```
+
+---
+
+## `@shared`
+
+`@shared` is a Ractive-global model similar to `@global` but not subject to interference from outside of Ractive.
+
+---
+
+## `@context`
+
+The [context object](/api/context.md) associated with the current context.
+
+---
+
+## `@event`
+
+The DOM event that is triggering an event directive. This reference is only available to event directive expressions.
+
+---
+
+## `@node`
+
+The DOM node associated with an event directive. This reference is only available to event directive expressions.
+
+---
+
+## `@local`
+
+Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.

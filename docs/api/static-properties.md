@@ -97,7 +97,7 @@ The easing functions are used by the [`ractive.animate`](../api/instance-methods
 
 `(Object<string, Function>)`
 
-The global registry of [events](../extend/events.md).
+The global registry of custom [event](../extend/events.md) plugins.
 
 ---
 
@@ -105,7 +105,7 @@ The global registry of [events](../extend/events.md).
 
 `(Object<string, Function>)`
 
-A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-methods.md#ractive.animate()).
+A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-methods.md#ractiveanimate) or non-CSS transitions.
 
 ---
 

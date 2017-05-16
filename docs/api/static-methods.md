@@ -63,6 +63,46 @@ const instance2 = new SubClass({
     }
 });
 ```
+---
+
+## Ractive.extendWith()
+
+Creates a "subclass" of the Ractive constructor or a subclass constructor using an existing constructor. The constructor will be augmented with static methods like `extend`, and it will also process the given initialization options.
+
+**Syntax**
+
+- `Ractive.extendWith(constructor[, options])`
+
+**Arguments**
+
+- `constructor (Function)`: A class constructor - like an ES6 `class`, a plain JavaScript function with a prototpye, or another similarly constructed function (TypeScript, CoffeeScript, etc).
+- `options (Object)`: An object with initialization options as properties. See [initialization options](../api/initialization-options.md) for a list of possible options.
+
+**Returns**
+
+- `(Function)`: The augmented constructor function.
+
+**Examples**
+
+```js
+class Widget {
+  notify ( message ) {
+    this.push( 'messages', message );
+  }
+
+  show () {
+    this.set( 'visible', true );
+  }
+
+  hide () {
+    this.set( 'visible', false );
+  }
+}
+
+Ractive.extendWith( Widget, {
+  template: '{{#if visible}}<ul>{{#each messages}}<li>{{.}}</li>{{/each}}</ul>{{/if}}'
+});
+```
 
 ---
 
@@ -113,7 +153,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 ## Ractive.getNodeInfo()
 
-Accepts a node and returns an [Node Info](./node-info.md) object containing details of the Ractive instance the node is associated to.
+Accepts a node and returns a [Context](./context.md) object containing details of the Ractive instance the node is associated to.
 
 **Syntax**
 
@@ -125,7 +165,7 @@ Accepts a node and returns an [Node Info](./node-info.md) object containing deta
 
 **Returns**
 
-- `(NodeInfo)`: An [NodeInfo](./node-info.md) object.
+- `(NodeInfo)`: An [Context](./context.md) object.
 
 **Examples**
 
@@ -173,10 +213,22 @@ Parses the template into an abstract syntax tree that Ractive can work on.
 
 - `template (string)`: A Ractive-compliant HTML template.
 - `[options] (Object)`: Parser options.
+    - `[delimiters] ([string])`: Start and end delimiters for normal mustaches. Defaults to `['{{', '}}']`.
+    - `[tripleDelimiters] ([string])`: Start and end delimiters for triple mustaches. Defaults to `['{{{', '}}}']`.
+    - `[staticDelimiters] ([string])`: Start and end delimiters for static mustaches. Defaults to `['[[', ']]']`.
+    - `[staticTripleDelimiters] ([string])`: Start and end delimiters for static triple mustaches. Defaults to `['[[[', ']]]']`.
+    - `[contextLines] (integer)`: Additional lines above and below a line with a parse error to include in the error output. Defaults to `0`.
+    - `[interpolate] (Object<string, boolean>)`: Map of elements that indicates whether or not to read mustaches within the element. Defaults to `{ script: false, textarea: true, template: false, style: false }`.
+    - `[csp]`(boolean)`: When `true` includes pre-compiled expression functions in the template output so that `eval` is not needed at runtime. Defaults to `true`.
     - `[preserveWhitespace] (boolean)`: When `true`, preserves whitespace in templates. Whitespace inside the `<pre>` element is preserved regardless of the value of this option. Defaults to `false`.
+    - `[stripComments] (boolean)`: When `false` will leave comments in the parsed template. Defaults to `true`.
     - `[sanitize] (boolean|Object)`: When `true`, strips inline event attributes and certain elements from the markup. Defaults to `false`.
         - `[elements] (Array<string>)`: An array of element names to blacklist.
         - `[eventAttributes] (boolean)`: When `true`, strips off inline event attributes.
+    - `[includeLinePositions] (boolean)`: When `true` will include line positions on each node of the parser output. Defaults to `false`.
+    - `[textOnlyMode] (boolean)`: When `true` parses elements as text rather than elements. This is useful for generating raw HTML from a template, more like a plain text templating processor. Defaults to `false`.
+    - [transforms|parserTransforms] ([Function])`: An array of post-parsing transforms to apply to the output parser AST.
+
 
 When `sanitize` is `true`, the following elements are stripped:
 
@@ -209,23 +261,21 @@ Assume the following markup.
 
 ```html
 <div class='gallery'>
-  {{#items}}
+  {{#each items}}
     <!-- comments get stripped out of the template -->
-    <figure proxy-tap='select' intro='staggered'>
+    <figure on-tap='select' staggered-in>
       <img class='thumbnail' src='assets/images/{{id}}.jpg'>
-      <figcaption>{{( i+1 )}}: {{description}}</figcaption>
+      <figcaption>{{( @index+1 )}}: {{description}}</figcaption>
     </figure>
-  {{/items}}
+  {{/each}}
 </div>
 ```
 
 `Ractive.parse( template );` will yield the following output:
 
-```json
-[{"t":7,"e":"div","a":{"class":"gallery"},"f":[{"t":4,"r":"items","i":"i","f":[" ",{"t":7,"e":"figure","a":{"intro":"staggered"},"f":[{"t":7,"e":"img","a":{"class":"thumbnail","src":["assets/images/",{"t":2,"r":"id","p":4},".jpg"]}}," ",{"t":7,"e":"figcaption","f":[{"t":2,"x":{"r":["i"],"s":"❖0+1"},"p":4},": ",{"t":2,"r":"description","p":4}]}],"v":{"tap":"select"}}," "],"p":1}]}]
+```js
+{"v":4,"t":[{"t":7,"e":"div","m":[{"n":"class","f":"gallery","t":13}],"f":[{"t":4,"f":[" ",{"t":7,"e":"figure","m":[{"n":["tap"],"t":70,"f":"select"},{"n":"staggered","t":72,"v":"t1"}],"f":[{"t":7,"e":"img","m":[{"n":"class","f":"thumbnail","t":13},{"n":"src","f":["assets/images/",{"t":2,"r":"id"},".jpg"],"t":13}]}," ",{"t":7,"e":"figcaption","f":[{"t":2,"x":{"r":["@index"],"s":"_0+1"}},": ",{"t":2,"r":"description"}]}]}],"n":52,"r":"items"}]}],"e":{'_0+1': function(_0) { return _0+1; }}}
 ```
-
-TODO: `Ractive.parse` has more options. Document them.
 
 ---
 

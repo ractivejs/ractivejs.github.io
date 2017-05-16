@@ -11,12 +11,13 @@
 
 ## `class-*`
 
-`class-*` attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following `class-` will be used as the class name. `class-*` attribute values are processed as expressions.
+`class-*` attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following `class-` will be used as the class name. `class-*` attribute values are processed as expressions. If there is no expression, the implicit value is `true`, which is useful for applying multiple classes to an element using component `extra-attributes`.
 
 ```html
 <div class-foo="isFoo">Adds "foo" if isFoo is truthy</div>
 <div class-foo-bar="isFooBar">Adds "foo-bar" if isFooBar is truthy</div>
 <div class-fooBar="isFooBar">Adds "fooBar" if isFooBar is truthy</div>
+<div class-baz>Always has "baz"</div>
 ```
 
 ## `on-*`

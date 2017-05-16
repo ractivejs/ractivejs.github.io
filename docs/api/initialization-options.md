@@ -143,6 +143,31 @@ template: '<p>grey</p>'
 
 ---
 
+## attributes
+
+`(Object<string, [string]|Object<string, [string]>>)`
+
+An array of optional attributes or a map of optional and required attributes. Defaults to `undefined`.
+
+You can supply a list of optional attributes using an array. You can also supply an object with an `optional` array of attribute names and a `required` array of attribute names. At runtime, if a component is created missing a required attribute, Ractive will issue a warning about missing required attributes. Any attributes that are passed to the component that are _not_ included in either of the `optional` or `required` lists of attributes will be collected into a partial named `extra-attributes` so that they can be included on a top-level element in the component template or split apart to be used in a component `init` event.
+
+```js
+const Component = Ractive.extend({
+  template: `<div class-component-wrapper {{yield extra-attributes}}>Fancy component doing something with list and type</div>`,
+  attributes: {
+    required: [ 'list' ],
+    optional: [ 'type' ]
+  }
+});
+
+// <Component type="foo" /> will issue a warning about missing list
+// <Component list="{{things}}" style-color="green" /> will not warn, but will include the style-color="green" on the wrapper div
+```
+
+The extra attributes passed to a component are not limited to simple attributes - they can also include directives, but any mustache sections will not have their contents checked. By default, the `extra-attributes` will _not_ be mapped, meaning that the values won't be available with `get` from the component, so the partial should be yielded. If you need the extra attributes to be mapped, include an additional setting in the attributes map `mapAll: true`.
+
+---
+
 ## components
 
 `(Object<string, Function>)`
@@ -158,7 +183,7 @@ components: {
 }
 ```
 
-During a [`ractive.reset()`](../api/instance-methods.md#ractivereset), components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 
@@ -322,6 +347,16 @@ decorators: {
 
 ---
 
+## delegate
+
+`(boolean)`
+
+Whether or not to enable automatic event delegation for iterative sections within an element. Defaults to `true`.
+
+When enabled, DOM events subscribed within iterative sections will not add a DOM event listener to each element. Instead, a single listener will be installed on the element containing the iterative section, and that listener will find appropriate event directives starting from the target element and working back to the containing element with the listener.
+
+---
+
 ## delimiters
 
 `(Array[string])`
@@ -453,6 +488,33 @@ ractive.on('change', function(){
 
 ---
 
+## nestedTransitions
+
+`(boolean)`
+
+Whether or not to allow transitions to fire if they are already downstream from a transitioning element. Defaults to `true`.
+
+```handlebars
+{{#if outer}}
+  <div fade-in='slow'>
+    Outer text.
+    {{#if inner}}
+      <div fly-in="fast">Inner text.</div>
+    {{/if}}
+  </div>
+{{/if}}
+```
+
+In this example, if `inner` is `true` when `outer` becomes `true`, then all of the `div`s will render at the same time. If `nestedTransitions` is disabled, then the `fly` transition on inner `div` will not be run, since the `fade` will already be running on the outer `div`.
+
+This can also be controlled per transition using the `nested` boolean parameter for transitions:
+
+```handlebars
+<div fade-in="{ duration: 'slow', nested: false }">...</div>
+```
+
+---
+
 ## noCSSTransform
 
 `(boolean)`
@@ -469,16 +531,116 @@ Whether or not to skip intro transitions on initial render. Defaults to `false`.
 
 ```js
 var ractive = new Ractive({
-  template: '<ul>{{#items}}<li intro="fade">{{.}}</li>{{/items}}</ul>',
+  template: '<ul>{{#items}}<li fade-in>{{.}}</li>{{/items}}</ul>',
   data: { items: [ 'red', 'blue' ] },
   transitions: { fade: function ( t, params ) {...} },
   noIntro: true
 });
-// 'red' and 'blue' list items do not fade in on intro
+// 'red' and 'blue' list items do not fade in
 
-ractive.get('items').push( 'green' );
+ractive.push( 'items', 'green' );
 // 'green' list item will fade in
 ```
+
+---
+
+## noOutro
+
+`(boolean)`
+
+Whether or not to skip outro transitions during an instance unrender. Defaults to `false`.
+
+```js
+var ractive = new Ractive({
+  template: '<ul>{{#items}}<li fade-out>{{.}}</li>{{/items}}</ul>',
+  data: { items: [ 'red', 'blue' ] },
+  transitions: { fade: function ( t, params ) {...} },
+  noOutro: true
+});
+
+ractive.pop( 'items' );
+// 'blue' list item will fade out
+
+ractive.unrender();
+// 'red' list item will not fade out
+```
+
+---
+
+## observe
+
+`(Object<string, Function|Object>)`
+
+A hash of observers to subscribe during initialization and unsubscribe during teardown. Defaults to `undefined`.
+
+The keys of the hash may be any string that is accepted by [`ractive.observe()`](/api/instance-methods.md#ractiveobserve), and the values may be either callback functions, as would be passed to `ractive.observe()`, or objects with a `handler` property that is a callback function. The object form also takes other options that control the behavior of the observer.
+
+```js
+new Ractive({
+  // ..
+  observe: {
+    show ( value ) {
+      console.log( `show changed to '${value}'` );
+    },
+    'users.*.name people.*.name': {
+      handler ( value, old, path, idx ) {
+        console.log( `${path} changed to '${value}' );
+      },
+      init: false,
+      strict: true
+    }
+  }
+});
+```
+
+The options that may be specified in the object form are (see the [`ractive.observe()` docs](/api/instance-methods#ractiveobserve) for more detailed option descriptions):
+
+* `handler (Function)`: The callback function for the observer.
+* `once (boolean)`: Use [`ractive.observeOnce()`](/api/instance-methods#ractiveobserveonce) rather than `ractive.observe()` to install the observer, meaning the observer is implicitly `init: false`, will only fire for the first change to the observed path, and will by removed after the first change.
+* `strict (boolean)`: Use strict equality when determining whether or not a value has changed.
+* `array (boolean)`: Use an array observer rather than a plain observer.
+* `defer (boolean)`: Defer the observer until after the DOM is settled.
+* `init (boolean)`: Whether or not to fire an initial change event.
+* `links (boolean)`: Whether or not to follow links.
+* `context (any)`: Context for the callback function.
+* `old (Function)`: Modifier function for the `old` value passed to the callback function.
+
+When a sublcass created with [`Ractive.extend()`](/api/static-methods.md#ractiveextend) is passed an `observe` hash, then any further subclasses or instances created with an `observe` hash will be combined. Any superclass observers are installed first following the inheritance hierarchy, and finally, any instance observers are installed.
+
+---
+
+## on
+
+`(Object<string, Function|Object>)`
+
+A hash of event listeners to subscribe during initialization and unsubscribe during teardown. Defaults to `undefined`.
+
+The keys of the hash may be any string that is accepted by [`ractive.on()`](/api/instance-methods.md#on), and the values may be either callback functions, as would be passed to `ractive.on()`, or objects with a `handler` property that is a callback function. The object form also takes other options that control the behavior of the event handler.
+
+```js
+new Ractive({
+  // ...
+  on: {
+    init () {
+      console.log('I will print during init');
+    },
+    '*.somethingHappened': {
+      handler ( ctx ) {
+        console.log('I will fire when this instance or any child component fires an instance event named "somethingHappened"');
+      },
+      once: true
+    }
+  },
+  // ...
+});
+```
+
+The options that may be specified in the object form are:
+
+* `handler (Function)`: The callback function for the event.
+* `once (boolean)`: Use [`ractive.once()`](/api/instance-methods.md#once) rather than `ractive.on()` to subscribe the listener, meaning that the handler will only be called the first time the event is fired and then it will be unsubscribed.
+
+`on` event listeners may subscribe to any instance event, including lifecycle events _after_ `construct`. When a sublcass created with [`Ractive.extend()`](/api/static-methods.md#ractiveextend) is passed an `on` hash, then any further subclasses or instances created with an `on` hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.
 
 ---
 
@@ -582,7 +744,7 @@ partials: {
 }
 ```
 
-During a [`ractive.reset()`](../api/instance-methods.md#ractivereset), function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 
@@ -592,7 +754,7 @@ During a [`ractive.reset()`](../api/instance-methods.md#ractivereset), function 
 
 Whether or not to preserve whitespace in templates when parsing. Defaults to `false`.
 
-Whitespace in `<pre>` elements are always preserved. The browser will still deal with whitespace in the normal fashion.
+Whitespace in `<pre>` elements is always preserved. The browser will still deal with whitespace in the normal fashion.
 
 ```js
 var ractive = new Ractive({
@@ -613,6 +775,20 @@ console.log( ractive.toHTML() );
 //
 //  world   </p>"
 ```
+
+---
+
+## resolveInstanceMembers
+
+`(boolean)`
+
+Whether or not to include members of the Ractive instance at the end of the reference resolution process. Defaults to `true`.
+
+```handlebars
+<button on-click="toggle('show')">Toggle</button>
+```
+
+If there is no data member `toggle` in the context of the template, with `resolveInstanceMembers` enabled, the reference will resolve to the [`ractive.toggle()`](/api/instance-methods.md#ractivetoggle) method of the instance.
 
 ---
 
@@ -709,6 +885,23 @@ stripComments: false
 
 ---
 
+## syncComputedChildren
+
+`(boolean)`
+
+Whether or not to invalidate the dependencies of an expression when child keypaths of the expression are updated. Defaults to `false`. _Note_: setting this to `true` may cause performance issues for complex expressions involving large arrays.
+
+```handlebars
+<input value="{{pattern}}" />
+{{#each filter(users, pattern)}}
+  <input value="{{.name}}" />
+{{/each}}
+```
+
+In this example, the `input` inside the iteration is bound to a computation e.g. `filter(users, pattern).0.name` that isn't actually an addressable model. With `syncComputedChildren` enabled, when that virtual keypath is updated by a user changing the `input`, the expression will invalidate its dependencies (`filter`, `users`, and `pattern`), which will cause any other references to the `user` that happens to coincide with result of the expression to also update.
+
+---
+
 ## target
 
 `(string|HTMLElement|array-like)`
@@ -721,7 +914,7 @@ Alias for [`el`](#el).
 
 `(string|array|object|function)`
 
-The [template](../concepts/templates.md#overview) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`](../api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](./parse.md).
+The [template](../concepts/templates.md#overview) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`](/api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](./parse.md).
 
 ```js
 // Selector
@@ -739,7 +932,7 @@ template: function(data, p){
 },
 ```
 
-During a [`ractive.reset()`](../api/instance-methods.md#ractivereset), templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
+During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
 ---
 
@@ -799,3 +992,13 @@ ractive.set( 'foo', 'fizz' );
 
 // input now displays "fizz"
 ```
+
+---
+
+## warnAboutAmbiguity
+
+`(boolean)`
+
+Whether or not to warn about references that don't resolve to their immediate context. Defaults to `false`.
+
+Ambiguous references can be the cause of some strange behavior when your data changes structure slightly. With `warnAboutAmbiguity` enabled, Ractive will warn you any time a reference isn't scoped and resolves in a context above the immediate context of the reference.

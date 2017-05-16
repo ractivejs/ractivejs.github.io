@@ -54,7 +54,7 @@ The instance-only registry of [easing functions](../extend/easings.md).
 
 `(Object<string, Function>)`
 
-The instance-only registry of [events](../extend/events.md).
+The instance-only registry of custom [event](../extend/events.md) plugins.
 
 ---
 
@@ -62,43 +62,7 @@ The instance-only registry of [events](../extend/events.md).
 
 `(Object<string, Function>)`
 
-A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-methods.md#ractiveanimate).
-
----
-
-## ractive.nodes
-
-`(Object<string, HTMLElement>)`
-
-An object containing all of the elements inside the instance that have an `id` attribute.
-
-```js
-const ractive = new Ractive({
-  el: body,
-  template: '<div id="myDiv">An unimaginatively named div.</div>'
-});
-
-ractive.nodes.myDiv === document.getElementById( 'myDiv' ); // true
-```
-
-This will also reference dynamically created elements.
-
-```js
-const ractive = new Ractive({
-  el: myContainer,
-  template: `
-    <ul>
-        {{#items:i}}
-            <li id='item_{{i}}'>{{content}}</li>
-        {{/items}}
-    </ul>
-  `,
-  data: { items: myListOfItems }
-});
-
-// Get a reference to an arbitrary li element.
-ractive.nodes[ 'item_' + num ];
-```
+A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-methods.md#ractiveanimate) or non-CSS transitions.
 
 ---
 

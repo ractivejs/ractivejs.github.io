@@ -1,44 +1,46 @@
-# Node Info
+# Context
 
-The nodeinfo object is the type of object you receive when calling [Node Info](node-info.md). This object contains various properties and methods that allow you to obtain information about the Ractive instance, the node associated with it and the context surrounding it.
+The context object is the type of object you receive when calling [getNodeInfo()](/api/static-methods.md#ractivegetnodeinfo). This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.
 
-Helper methods that take a [keypath](../concepts/templates.md#keypaths) will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported.
+The special `@context` reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.
+
+Helper methods that take a [keypath](../concepts/templates.md#keypaths) will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported. If the method doesn't require a keypath, like `get`, then the keypath will implicitly be `.` rather than `~/`, as with regular instance methods.
 
 ---
 
-## nodeinfo.add()
+## context.add()
 
 See [ractive.add()](./instance-methods.md#ractiveadd).
 
 ---
 
-## nodeinfo.animate()
+## context.animate()
 
 See [ractive.animate()](./instance-methods.md#ractiveanimate).
 
 ---
 
-## nodeinfo.context
+## context.decorators
 
-_`(any)`_
+*(Object)*
 
-The data context of the node.
+A map of decorator name to decorator return object for all of the decorators on the node associated with the context.
 
 ---
 
-## nodeinfo.get()
+## context.get()
 
 See [ractive.get()](./instance-methods.md#ractiveget).
 
 ---
 
-## nodeinfo.getBinding()
+## context.getBinding()
 
 Returns the value of the binding if the node represented by this info object has a two-way binding.
 
 **Syntax**
 
-- `nodeinfo.getBinding()`
+- `context.getBinding()`
 
 **Arguments**
 
@@ -58,13 +60,13 @@ Returns the value of the binding if the node represented by this info object has
 Ractive.getNodeInfo('#findMe').getBinding(); // returns value of foo.bar.baz
 ```
 
-## nodeinfo.getBindingPath()
+## context.getBindingPath()
 
 Returns the keypath of the binding if the node represented by this info object has a two-way binding.
 
 **Syntax**
 
-- `nodeinfo.getBindingPath([ractive])`
+- `context.getBindingPath([ractive])`
 
 **Arguments**
 
@@ -86,21 +88,13 @@ Ractive.getNodeInfo('#findMe').getBindingPath(); // Returns "foo.bar.baz"
 
 ---
 
-## nodeinfo.index
-
-_`(number|undefined)`_
-
-The index of `context` if it's in an array. If not in an array, the value is `undefined`.
-
----
-
-## nodeinfo.isBound()
+## context.isBound()
 
 Returns `true` if the node represented by this info object has a two-way binding.
 
 **Syntax**
 
-- `nodeinfo.isBound()`
+- `context.isBound()`
 
 **Arguments**
 
@@ -126,27 +120,13 @@ Ractive.getNodeInfo('#bar').isBound(); // Returns false
 
 ---
 
-## nodeinfo.keypath
-
-_`(string)`_
-
-The keypath to `context`.
-
----
-
-## nodeinfo.link()
+## context.link()
 
 See [ractive.link()](./instance-methods.md#ractivelink).
 
 ---
 
-## nodeinfo.merge()
-
-See [ractive.merge()](./instance-methods.md#ractivemerge).
-
----
-
-## nodeinfo.node
+## context.node
 
 _`(Node|undefined)`_
 
@@ -154,7 +134,19 @@ The node the event originated from. Normally present when the event is a Ractive
 
 ---
 
-## nodeinfo.original
+## context.observe()
+
+See [ractive.observe()](./instance-methdods.md#ractiveobserve).
+
+---
+
+## context.observeOnce()
+
+See [ractive.observeOnce()](./instance-methods.md#ractiveobserveonce).
+
+---
+
+## context.original
 
 _`(Event|undefined)`_
 
@@ -162,19 +154,19 @@ The original DOM event object. Normally present when the event is a Ractive DOM 
 
 ---
 
-## nodeinfo.pop()
+## context.pop()
 
 See [ractive.pop()](./instance-methods.md#ractivepop).
 
 ---
 
-## nodeinfo.push()
+## context.push()
 
 See [ractive.push()](./instance-methods.md#ractivepush).
 
 ---
 
-## nodeinfo.ractive
+## context.ractive
 
 _(Ractive)_
 
@@ -182,13 +174,13 @@ This property holds a reference to the Ractive instance that controls the node r
 
 ---
 
-## nodeinfo.resolve()
+## context.resolve()
 
 Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.
 
 **Syntax**
 
-- `nodeinfo.resolve([keypath[, ractive]])`
+- `context.resolve([keypath[, ractive]])`
 
 **Arguments**
 
@@ -207,25 +199,25 @@ Resolves the given keypath to a full keypath. If a Ractive instance is supplied,
 
 ---
 
-## nodeinfo.reverse()
+## context.reverse()
 
 See [ractive.reverse()](./instance-methods.md#ractivereverse).
 
 ---
 
-## nodeinfo.set()
+## context.set()
 
 See [ractive.set()](./instance-methods.md#ractiveset).
 
 ---
 
-## nodeinfo.setBinding()
+## context.setBinding()
 
 Sets the binding of the node represented by this info object to the specified value.
 
 **Syntax**
 
-- `nodeinfo.setBinding(value)`
+- `context.setBinding(value)`
 
 **Arguments**
 
@@ -243,54 +235,54 @@ Sets the binding of the node represented by this info object to the specified va
 
 ---
 
-## nodeinfo.shift()
+## context.shift()
 
 See [ractive.shift()](./instance-methods.md#ractiveshift).
 
 ---
 
-## nodeinfo.splice()
+## context.splice()
 
 See [ractive.splice()](./instance-methods.md#ractivesplice).
 
 ---
 
-## nodeinfo.sort()
+## context.sort()
 
 See [ractive.sort()](./instance-methods.md#ractivesort).
 
 ---
 
-## nodeinfo.subtract()
+## context.subtract()
 
 See [ractive.subtract()](./instance-methods.md#ractivesubtract).
 
 ---
 
-## nodeinfo.toggle()
+## context.toggle()
 
 See [ractive.toggle()](./instance-methods.md#ractivetoggle).
 
 ---
 
-## nodeinfo.unlink()
+## context.unlink()
 
 See [ractive.unlink()](./instance-methods.md#ractiveunlink).
 
 ---
 
-## nodeinfo.unshift()
+## context.unshift()
 
 See [ractive.unshift()](./instance-methods.md#ractiveunshift).
 
 ---
 
-## nodeinfo.update()
+## context.update()
 
 See [ractive.update()](./instance-methods.md#ractiveupdate).
 
 ---
 
-## nodeinfo.updateModel()
+## context.updateModel()
 
 See [ractive.updateModel()](./instance-methods.md#ractiveupdatemodel).
