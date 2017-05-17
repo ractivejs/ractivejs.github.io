@@ -431,13 +431,78 @@
     
         <li class="first-level active"><a href="#svg">SVG</a></li>
         
+            <li class="second-level"><a href="#step-1">Step 1</a></li>
+            
+        
+            <li class="second-level"><a href="#step-2">Step 2</a></li>
+            
+        
+            <li class="second-level"><a href="#step-3">Step 3</a></li>
+            
+        
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
 <h1 id="svg">SVG</h1>
-<p>TODO</p></div>
+<p>Ractive.js works with SVG just as easily as with HTML. This makes it possible to create data-driven graphics using the same declarative structure as we use with the rest of the web.</p>
+<h2 id="step-1">Step 1</h2>
+<p><div class="tutorial">
+    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwjSKPoJnk7bggEIAtD-IA9gBmQcIIMgikCDDauGDE-CjkAEba5ADMAAxYWeTCAeQA7gjkogz8eQglcSVqyQgqwuR+Lvbk5ARJuOb8wkEBMIrUAOTd5cJqCgAUWTmZAJTDrW7tHu3t3n5aYCUwCJblKColLWvrBHuWRVRxIwCMmZnD5DvEKGC494-DnMtnG75-DVyEwEAxAkFtrt9rhDsdmj5lusOgoTKU1MJhCNQQxnkYRgBWJ7kbSEp5I5HkB6PTLkSRGABN-w6nFRuD+rmRmyBO2uSDiCIpGzZWh6fQGQ1GYsmCCm5CJWGaD3IiyF62pdKMzK4bI5bXOgKhLwQbw+gu1IrGvX6gxGVom6llSuy8tp80VMACsOmPgAnAslsz2hr6drWcZ2WcuM4PFxhE4XHHxFJ2SAcMJ4KQmORzJZrORqOR+AhCuQAEoWKxRKbAATtWHMcKQcjDADEDZYwywda0SlUjubbYUyhlwwEGHmAG40yBRPARbWKr2TD5yqIwANm4oqEhjpOewwVG9+IoEPxcD5kgwwkfi1ud3ue0FiCoVM3mMkpncFd-sr+p+Odj8JcMiLu0z6vu+KCfgATI8WDZAs+5LsI3QBAA1ggUGfgquFIYBgjnhGAB0OLkGB5D9OePhBAw24qNog4AGoBCosLEHswzIeBL5vkU8QKMhGCYEAA">Start</button>
+</div></p>
+<p>In the template, we've got some hard-coded values. Let's replace them with mustaches:</p>
+<pre><code class="handlebars">&lt;!-- the rectangle --&gt;
+&lt;rect width='{{width}}' height='{{height}}'/&gt;
+</code></pre>
+
+<p>We can use expressions to replace the other hard-coded values:</p>
+<pre><code class="handlebars">&lt;!-- the area of the rectangle --&gt;
+&lt;text class='area' x='{{ width / 2 }}' y='{{ height / 2 }}'&gt;
+  {{ Math.round( width * height ) }} px²
+&lt;/text&gt;
+</code></pre>
+
+<p>Note that we're using <code>Math.round()</code> to make the end result cleaner.</p>
+<p>Apply similar changes to the labels, then add some data:</p>
+<pre><code class="js">var ractive = new Ractive({
+  el: output,
+  template: template,
+  data: { width: 100, height: 100 }
+});
+``
+
+Execute this code. Now we can have some fun:
+
+```js
+var ractive.animate({ width: 300, height: 200 }, {
+  easing: 'easeOut',
+  duration: 800
+});
+</code></pre>
+
+<blockquote>
+<p>SVG is a big topic; bigger than can be accommodated here. It's well worth learning how to use it though. Unfortunately, the web is littered with bad SVG tutorials, but once you get your head round the basics it all makes a lot of sense.</p>
+<p>Since you're a better (and more charismatic) developer than most, I predict you'll pick it up easily.</p>
+</blockquote>
+<h2 id="step-2">Step 2</h2>
+<p><div class="tutorial">
+    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVxEy5UWuHDqAcgXKE53AFcYBGEPPkFWcPJyAgBCAFo48jAEBiRfcgZ+JHIAe2liHP5hcgSw+yjHChcGN09k1N9Quxko6LAAJjYAQVJfBjQk4hQwDKzyFRyAdy0lPT9AhC4Osojy1tiE8mFJ4lxREYAjBFxJhAR+ZwQVYWJ-YszsgDMGMCD+ZN2SuJXW6J5nVzuDzmEg5OIoGA5fySJqRX7RNRHFRsAANAGFosR+JJ-DIdHpPCCCh5yPwGIp9B5gMA0hCzgAVXQIDAYEmkBgqfyU0RXG53En7BCiADWyA4nERVx+8IIkuRKIAYpjsbitEzCaliaTyZTqbSgghGXoWWyOVzPM9XucPrhQlw5dKKtwyCtmr8NokkJDJEgphcKfx-F9HdFhFchTJ2ZzdcAwyoI8gAJJZYwmkNRakAYhS+2cu2IwUglBZbvhFTyVkK5Cj5qpwGIaepZIpLK4FYK-HT5GpnBzYBLcKdcYj0q4PFdcI9WmSzjATBkpVLlQBNSBByYcX289hawq-2qtQ8wlIKDik3MkjmoWi8US-DOaWyuBy5DSChgiixCC2xAAXt+ckecgAGUADUAHFyHDAMZCxcgFWIIJHhyIxg1Ld1jxQCddxlW9yAhTVzgXQZhnSbw5nUBZ7iCcggiQNIYCwcYpjI2Y+gCIJqO-A5oxgNDBxlNJHmELt3RUL8mHAokiNkTwCJIIiSSMdpPAABhJbQVI8ABGVTVIAUhJeSC34XAAFV+F2IE7l8YDJAsBAAHl+DMsMdxaMsMOfSRckeYTjjUwytm8zccgmGBCRQA4AAp2gAVjirBVKSgBKElOFEmVhG83z-NwTxdIMklsryULwsimLkuS+K4rS8gMvQzz7QkmApMI0zMrHBBhOwjzcM2MAcgkX9ClwDlxi-WiEEkTiiKxFByEeA1f3m-icLEyaDyBJazhW-gUCU7S1I0o663IbRgNEDkEGi1SUvIE1yGUzxqR2JBcH7Vlzq06lzsu67bvuk0GvCRrfizHYPq2cNLGQNFdm0Ad7DB-rEg+7iHjWvqywISQwu0FAq0eYgVBUTxAhUaLM2Moi6uyyFRXJmBKep6TTLqrbPHI9iFjidcshJPGsVwIFqUwgAFdRPo8EHkYEsssz7chFFGsBhCLBsMBRnG8KF0zlaYUUYGKZC+IYXpzAGMAhjVrHPJlBbOY8RRDcaLRzCKU3FC5j3hDUBRot+ox-vjaLiAAalUgA6WqHuwX6Lqu0PreGIGMDSzKcdERCXG-CKPHaGXM5lBQTHOzw4l00Jfq99RopTsA064UvcGLp0sOabXUfIPWZBdmAjZNoaMgt-pvwmSZikXeWmsdwFPH7o2SVwX2vZ9zI-fUG6g5Dm6I+j2OWSwBPd+iie04zrus5z+NaM8QvZex+3ohb8udLi6vgEWoaXdwM+pibpwFubdoicA7jPcGwBewWE+l3HskNYEzy4JhEMY4XSdwEsuJ2KtTJgDiHKEIXZFYwOVqrAAcjqdWmsu4iHshcbK2h4yeDeh9Isv1Cr1VIbgihFJhBR3jPtKGLJ9IAG5P4fWIMIVsnBhB0KIVAvsSM+poN4EuZ0qjwgqLCMg8QUhW4gBwMIeA7I+JGFeOQagpIEDTAABoAFkAAyAAJXAuBJAACUEAAEcuTZWiilERAgzEwCjqkJAABRXopkHGSIUPeGA0VyAeAmKkDwTFHj+H4JYDs5B-HdmaOYbJvQo5hj-sATuex8yFnIAAKWAo5MhUd7LGxutOSRUdOJ4yKIaYwMgUpYAqcOWGSBkxpCMEWVSzR06BP4NMoJrwo55HOIkjw4Fwn0jSUksBxw4jZXnMgIBuIhrEA5MIIBbF5icSjgAK2EIUEkAT5khLDFkfxMyBAmNohYKwvQLFWOmO4751hA4CCiGNZgxwiweEzOClgaTQUzGUP7BAUKYWzGRfCi45AEU5AOGGGAvQ2EIvsEMhQIyUzjPyVi5GH0HjxhgEWDJWTKwXESViMZ5B7rlOpawXlEi+GZGIL-VpR4YZkvhjoTZ-Ko4sBWdnKwwQo4knDpQClnKmLcqiDSmlKQbj7ShbqpyuJMVat5TSpAgR1AdiLAAZj0sSs1uA5k8vsFrHlbqojYGJVipA6gGBEqxVEWuuBGWZOyVWRJUZOVUrLMQICiTpWyqSfqBkTIHkWOoJYjwlo3g2nTZqzynBODOEKBbGQPJri3GKM+RaLxc0IF2AissUbLGRvGgAKnINpKOAAOaNKqbXtBmWWN1TbWhBA4hcKMUdnwISMMgRJ2l+1JJRB4YdrQvWBq4R9Hh1SADaSSambI8AqY9djj1dDPceo9TEPA3qSZe29wFj2OWPWQ49AAREkABdBFm6EWiByMoXEyAA2-CLeQekM4wKQXslDSRGQS3AbJdWM035aUyGhL6hQxRJjJHvBbMdEGrKvmmucNIWSCzFGimkaodFyAIPIAAA0TccfxTH7pbn2jYLdEspahuZTkvJBbfifOwwwP5rG-5JNJXDBGUccEfRCOqsdZZg5J2-JYqTKz1PXQeQMrdZZE7XUk9bPhSaPDGfjA895hn4QQfAscUYGQYDmG0L5HuORhbFCCDNYIc19rTm-MgNAxRAKqfs8W9GiKKIcQxlkKOiWIu-Abn8lg4svOmWECshu+nkutAnml44GXvMrInjZuwdmIOJdCWMa5mWguKC0DkFgyQYARYnYEC4Dco6AayXXZikwOkIAtmGPJKUbmZZWUkzltmyxMvDRcdLmWRa5JImARyMAHFTGjSJ+EnzOL+BUDISx4mFMMEkIkhbLK1uKbAExYgu38tRE6zAC4unQ6UHICqg+y60nKr+hpxJd2D0N029t6Y37Zv5edfliDXR6JBfIB+oUSgjh8RrN+OCS1RoeZqZkfwTBtBMUxtF-HgYieoejBkR4744fFpRzyRQ6OmI1uEINaY0XRDaBcMQJOCN8uHeO1HTJ7O43SY+60uIv37oqv+99wHANXx+oPWdgRKAoaJCXd+0HNtwc7ah-dR5dmXvBCO7gJpdwwCJMl4ktX5wNcjB+zHP7WAAdWdaeJvdqkdfrf15D6NxvBfHC61NYQ5v12-A9RugzRHi0AHV8NI5IAGG4hQwtAS56NBgX4+JcbQExU4VjkBx+a1NcQKQFBI-EveJgWx+eBeux2YQY7JcCcW7krlHWQ9vYmrXmAp8D3JS7e0cg36mJD9Z2ZmVbGkksLAOm79xuo8Gd+B79vN3hPd8nX3lIA+gcHsrsPgALKP8f5AD3aaSR8YYtpo2JHaMP+KY-l8br-QIWH-AIP8qmpO+4i0w0bsMN69rp-9MdFpIQmsGABAIMUBrALhfQXY4Ia0JM4CokvluMo5yAnF1A4grAfIa0P0bUBAm8qwa899d41tECc9+AmIPYBgu8sUxNVI-lqCsRvdz8YAWDLF6CEAOCmJFBzcpBxJ0hW0MC0A91tIodEguDo1i07cgMaDJDpDXwWCg8sVXsLhSDWVSR-AmtGDfhNDaIWCVVElElAwmtPQ1DyBO1BDjthCCw+JX8MAZlR0v9i0AAhIUBgGyBjBAYEb8O4VaGDQvb8e8ZAMvIIJOUQI7LeGA4tMQUAhjJPLPUyGg9ITiP8YIEgwAnJTI-8TvGNVDPic8C7OYP5QpH5BAKOYmV5JJEpE8M8C8K8aHQQDQoFYpUpEFLdefIsUoy8XwXrEQ0yePKgD6VfVoG-MAENBjZowY3nIiJxBtW-P9Y3FwyrHYLIKYUJeiSJIiGJbKc4XwFZfI-wug4ILI1o0pekIVBAKEaTU42bAxEAUQeAaYxQFQKlewKYmYwqUgMAVwyrA4HIJAdzblb45Y6YosQqURZoXortPSWE8IfuOA-gCZd5NxMJeaaEpQDE4EowXZP8bE8gYEmABiPmFCQEtomFJgFgL49GG2X4xEqkgQKOeoBiekvGG4FlIsBgPFMKEDDE38OIdlYwIsAANgxPhJhLxJQkJL2hQCLFJPJPxJZP4DZJSA5I6U1DBAhChB8nBLcRyG5OtQyH5M5AUAxO8nRIKUZJtNmUqxnQuUok4npJ+OhOZLhLGLAA9IMgxK5PzEKCLCCH9msDVKjnXBgE3DnBgBkENIDJ5KmlDN6AxPdIRL9OaHsnomJJtSUHIBYILNlIJJuAVKVKGhVMpI-0dMwiaLKN8CYkwnpOlM9PCDTJlKrLaKdJ8EuQQD5kxgLWJlJjiDyAsARgmSjhtXXXphyFFDPG9KLCHQ7NZJ2gQAVPpOnNFCLEzFEB3KnJXhnN7OlPDMXlYjLgLRbjiEyH2CGiLE-HonjHXWQlMjiGeE-BUG0ChSWJUF6CsCunIDIQQC5AvQkA5DXQRSfNwHlJRXzKjnFNxPAtGjPEhJmOBJUCQEfJJhUC3JtRwuPNdjzxvm-ENMHKwuSN2AQD3IZmgp4gsGFEooPLnPeh9K7WPNVnwT5N5C2DoSKIvI5CGDRMuFMl8EfJSRmPjFp3XRIFkTUA-JJImBFEfMQtfJJlko8C-J-L5wkwAqAtvS6BApUDAqxQgqgvHLgsUCpIwEwCAA">Start</button>
+</div></p>
+<p>In this example, we're using the same data as in the previous tutorial to draw a combination area range and line chart. It's more of a demo than a lesson.</p>
+<p>There are some points worth noting here. Firstly, we're mixing HTML and SVG together in the same ractive - the two languages are treated as equals.</p>
+<p>Secondly, we haven't had to write a <code>render</code> or <code>update</code> function – our intentions are expressed <em>declaratively</em>. There's some custom logic to create the shape of the temperature band polygon, for example, but we don't need to specify when that logic should be invoked – the system simply reacts to new data and internal changes in state. The temperature labels don't need an event handler to tell them when to switch from °C to °F.</p>
+<p>Thirdly, because this is based on a template, it's much easier to understand and extend than we've come to expect data visualisations to be. Ordinarily, you'd have to maintain a complex mental model of the <em>flow</em> of your application in order to understand which bits of code affected the result in which ways – here, the link between code and result is much more obvious.</p>
+<h2 id="step-3">Step 3</h2>
+<p><div class="tutorial">
+    <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwjSKPoJnk7bggEIAtD-IA9gBmQcIIMgikCDDauGDE-CjkAEba5ADMAAxYWeTCAeQA7gjkogz8eQglcSVqyQgqwuR+Lvbk5ARJuOb8wkEBMIrUAOTd5cJqCgAUWTmZAJTDrW7tHu3t3n5aYCUwCJblKColLWvrBHuWRVRxI8DAhTdgGBjD5DvEKGC4d8AfX7gXsNOMszhtfP4auQmAgGIEgttdvtcIdjs0fMt1h0FCZSmphMIRjCGG8jL9-t9yJxyAAmIHkbS-R5IOJU2lAzFY8j3ACy6jAADoYAEAK78JBTZmsgBU7wQn2+8xe5EkRgATWCOpwcbhQa4sZtITtriywOjORsdVoen0BkNRjbJggptyHk82XTsM0AIyZciLC3rXn8oWi8WSp5KjAqoyarg6vVtc4QxFyhUyU7685Wsa9fqDEa5ibqZ0+7KuqVm6me-1YcjClHTHwATgWS017WDcVDYolFNwUZjce1xl1Zy4zg8XGEThc0-EUl1IBwwngpCY9YsVii5Go5H4CEK5AASlvrFNgAJ2ijmOFIORhgBiG8sYZYK9aJSqEv3p8KZROm+H5IOoDD3peFTuLglb3r62QfvY-awZkmQfhgAgYPMADcy4gKI8BWhB16jj45SiGAAz3ooVBIMcWEfgwKifPwigIPwuA+MkDBhExB5UTRdEfkExAqCo97MMkUzegArNkMlybJ2EYXY-CXDIRHkMJoniSgkk0ihWDZAs9GQcI3QBAA1ggOmSbJWB2YpJnoYI7GjgKxLckJATsT4QQMNRKjaL+ABqAQqCixB7MMJntFpYlFPEChOZgQA">Start</button>
+    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwjSKPoJnk7bggEIAtD-IA9gBmQcIIMgikCDDauGDE-CjkAEba5ADMAAxYWeTCAeQA7gjkogz8eQglcSVqyQgqwuR+Lvbk5ARJuOb8wkEBMIrUAOTd5cJqCgAUWTmZAJTDrW7tHu3t3n5aYCUwCJblKColLWvrBHuWRVRxI8DAhTdgGBjD5DvEKGC4d8AfX7gXm8AvwfKIVMRRABrAwAAQAdOViIp1AgpsNHkg4sMsNcsWByNQieQAIyZTLkAD8pIALBTIKTybjgOQEAxhAkUAzhmywgB5ACuuDeGHmuIRSJR02G-2+OPeCE+30JxLJFOpJIAbPTGdlyCzeZzubyEABJfgi+b0TjLM4bXz+GrkJhswJBba7fa4Q7HZo+ZbrDoKEylNTCYQjF0MN5GX6ymSccgAJiB5G0v0xcXIiZTrwDgf1wAAsuowPCYAEBfwkFNMwSAFQKpW4eYvciSIwAJrtHU4wdwttcgc2jp2eKzpyH537Wh6fQGQ1Gc8maMLdezyZeuJ8ZPIi3zgfuJbi5cr1drT1bGHbRh7XH7g7a5wdHqbAL9B6DxhkY16-UGIy-hMqJTM0ZLMg8Twbrme64hW3rTD4ACcCxLD27RHqWp5VjW8ZXjed59t++ZcM4HhcMITguBR4hSAOIA4MI8CkEw5DmJY1iEuQ-AIIU5AAEoWFYURTMAAjtN6zDhNyADEkksDi4laEoqiorJCjKCuikVOQSDqAwDJiTp9h1gyapYEp9jxmZ5JKRgAiigA3AxICiPAM5GRJ34+OUohgAMDKKFQSDHI5SkMBCKD8IoCD8LgPjJOyDQJAggXBaFSlBMQKgqAyzDJFMJIAKzZMVpUlfMYX8PZgj8JcMieeQWU5XlKAFUmTLZAsVXtMI3QBFCqVsW1UwlVgY0VVVNUCP2iJ7Aw+qZSC8VBAwQUqNo3IAGoBCo3rEHsww9U12W5UU8QKFNmBAA">Fix Code</button>
+</div></p>
+<p>Since SVG gets along with the regular DOM pretty well, you can also interact with stuff <em>inside</em> an SVG just like you would with HTML. Using our simple square example from above, add a click event handler to the rectangle that makes it toggle back and forth between 100px sides and 140px by 160px sides.</p>
+<pre><code class="handlebars">&lt;rect on-click=&quot;@.animate('width', 140, { easing: 'easeOut' })&quot; /&gt;
+</code></pre>
+
+<p>If you like, you can add separate <code>animate</code> calls for width and height with different easings. Then your square will rectangle in an elastic-y way.</p></div>
             
         </div>
 
