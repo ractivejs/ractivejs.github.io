@@ -397,13 +397,23 @@
         }, 
         {
             "location": "/get-started/tutorials/decorators/", 
-            "text": "Decorators\n\n\nTODO", 
+            "text": "Decorators\n\n\nIf you've worked through the tutorials in order to this point, you may have wondered if there's some sort of hook to let you modify an element as it's created. Well, wonder no more!\n\n\nDecorators are plugins, somewhat like custom events and transitions, that are attached to individual elements using a decorator directive. A decorator typically adds some sort of behavior to an element - makes it act like something - the decorator directive begins with \nas-\n and the decorator name.\n\n\nStep 1\n\n\n\n  \nStart\n\n  \nFix Code\n\n\n\n\nStarting with something simple, let's make a decorator that tracks certain nodes to which we want a direct reference. First, here's what a decorator looks like:\n\n\nfunction tracked ( node, ...args ) {\n  // do stuff with node\n  // `this` is the Ractive instance\n\n  // return a control handle\n  return {\n    // called when decorator args change\n    function update () {},\n\n    // undo stuff with node\n    function teardown () {}\n  }\n}\n\n\n\n\nThere's not a \nwhole lot\n going on there. When the decorator is called, it can do whatever it needs to with the node and return a control handle that lets Ractive tell it when arguments change or tear it down when the node is being unrendered. All we need to do is take an \nid\n argument, create a \nnodes\n hash on the Ractive instance if there's not already once there, and store the \nnode\n at the given \nid\n. Fill in the missing code and then add decorator directive to the second \ndiv\n.\n\n\ndiv as-tracked=\n'special-div'\nI am the special div.\n/div\n\n\n\n\n\nThen throw a manual style setting at the end of the script just to show everything worked:\n\n\nractive.node['special-div'].style.color = 'blue';\n\n\n\n\nWhile that example is a bit contrived, you can probably see the benefit of using decorators when integrating with third party libraries that focus on adding functionality to a single node, like CodeMirror and Ace editor - in fact, the editors in the playground are handled by an Ace editor decorator.\n\n\nStep 2\n\n\n// TODO: formatting decorator", 
             "title": "Decorators"
         }, 
         {
             "location": "/get-started/tutorials/decorators/#decorators", 
-            "text": "TODO", 
+            "text": "If you've worked through the tutorials in order to this point, you may have wondered if there's some sort of hook to let you modify an element as it's created. Well, wonder no more!  Decorators are plugins, somewhat like custom events and transitions, that are attached to individual elements using a decorator directive. A decorator typically adds some sort of behavior to an element - makes it act like something - the decorator directive begins with  as-  and the decorator name.", 
             "title": "Decorators"
+        }, 
+        {
+            "location": "/get-started/tutorials/decorators/#step-1", 
+            "text": "Start \n   Fix Code   Starting with something simple, let's make a decorator that tracks certain nodes to which we want a direct reference. First, here's what a decorator looks like:  function tracked ( node, ...args ) {\n  // do stuff with node\n  // `this` is the Ractive instance\n\n  // return a control handle\n  return {\n    // called when decorator args change\n    function update () {},\n\n    // undo stuff with node\n    function teardown () {}\n  }\n}  There's not a  whole lot  going on there. When the decorator is called, it can do whatever it needs to with the node and return a control handle that lets Ractive tell it when arguments change or tear it down when the node is being unrendered. All we need to do is take an  id  argument, create a  nodes  hash on the Ractive instance if there's not already once there, and store the  node  at the given  id . Fill in the missing code and then add decorator directive to the second  div .  div as-tracked= 'special-div' I am the special div. /div   Then throw a manual style setting at the end of the script just to show everything worked:  ractive.node['special-div'].style.color = 'blue';  While that example is a bit contrived, you can probably see the benefit of using decorators when integrating with third party libraries that focus on adding functionality to a single node, like CodeMirror and Ace editor - in fact, the editors in the playground are handled by an Ace editor decorator.", 
+            "title": "Step 1"
+        }, 
+        {
+            "location": "/get-started/tutorials/decorators/#step-2", 
+            "text": "// TODO: formatting decorator", 
+            "title": "Step 2"
         }, 
         {
             "location": "/get-started/support/", 
