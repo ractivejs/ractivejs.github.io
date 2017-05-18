@@ -213,7 +213,7 @@ The last job is to add a sorted class to the header of the currently sorted colu
 </th>
 ```
 
-> The `class-` directive is similar to the `style-` directive - it gives you direct control ovthe presence of a single class. The `class-` directive exists in an expression context, so mustaches are not required. If the expression passed to the directive is truthy, Ractive.js will add the class to the element, and if it's false-y, it will remove it.
+> The `class-` directive is similar to the `style-` directive - it gives you direct control over the presence of a single class. The `class-` directive exists in an expression context, so mustaches are not required. If the expression passed to the directive is truthy, Ractive.js will add the class to the element, and if it's false-y, it will remove it.
 >
 > You could also add an additional expression within the existing `class` attribute using a ternary e.g. `class="sortable {{ sortColumn === 'name' ? 'sorted' : '' }}`.
 
