@@ -144,7 +144,7 @@ The node associated with the context. Note that it is possible to get a context 
 
 ## context.observe()
 
-See [ractive.observe()](./instance-methdods.md#ractiveobserve).
+See [ractive.observe()](./instance-methods.md#ractiveobserve).
 
 ---
 
