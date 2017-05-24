@@ -33,6 +33,7 @@ pages:
     - Transitions: get-started/tutorials/transitions.md
     - Decorators: get-started/tutorials/decorators.md
     - Support: get-started/support.md
+    - Migrating: get-started/migrating.md
   - API:
     - Initialization Options: api/initialization-options.md
     - Static Properties: api/static-properties.md
