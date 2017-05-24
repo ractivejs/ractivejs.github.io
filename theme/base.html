@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if config.site_description %}<meta name="description" content="{{ config.site_description }}">{% endif %}
+  {% if config.theme_color %}<meta name="theme-color" content="{{ config.theme_color }}">{% endif %}
+
+  {% if config.favicon %}<link rel="shortcut icon" href="{{ config.favicon }}">{% endif %}
+  {% if config.site_author %}<link rel="author" href="{{ config.site_author }}">{% endif %}
+  {% if config.site_url %}<link rel="canonical" href="{{ config.site_url }}">{% endif %}
+
+  <title>{{ config.site_name }}</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="{{ base_url }}/theme.css">
+
+  {% for path in config.extra_css %}<link rel="stylesheet" href="{{ path }}">{% endfor %}
+
+  {% if config.google_analytics %}
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '{{ config.google_analytics[0] }}', '{{ config.google_analytics[1] }}');
+    ga('send', 'pageview');
+    </script>
+  {% endif %}
+</head>
+
+<body>
+  <input class="menu-state menu-state--nav" type="checkbox" name="menu-state-nav" id="menu-state-nav">
+  <input class="menu-state menu-state--toc" type="checkbox" name="menu-state-toc" id="menu-state-toc">
+
+  <label class="menu-toggle menu-toggle--nav" for="menu-state-nav">
+    <img class="menu-toggle__logo" src="/static/img/avatar.png">
+  </label>
+
+  <label class="menu-toggle menu-toggle--toc" for="menu-state-toc">
+    <span class="menu-toggle__bar"></span>
+    <span class="menu-toggle__bar"></span>
+    <span class="menu-toggle__bar"></span>
+  </label>
+
+  {% include "nav-side.html" %}
+  {% include "toc-side.html" %}
+
+  <div class="main">
+    <div class="main__header">
+      {% include "nav-main.html" %}
+    </div>
+    <div class="main__page">
+      {% block page %}{% endblock %}
+    </div>
+    <div class="main__footer">
+      {% include "footer.html" %}
+    </div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  {% for path in extra_javascript %}<script src="{{ path }}"></script>{% endfor %}
+</body>
+
+</html>
