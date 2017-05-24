@@ -2,7 +2,7 @@
 
 The parse object is an object you receive as the second argument in [function templates](./initialization-options.md#template). This helper object provides you with essential functions to dissect markup before turning over the template for use.
 
----
+
 
 ## p.fromId()
 
@@ -26,7 +26,7 @@ Retrieves the template from the DOM `<script>` tag specified by `id`. Make sure 
 // TODO
 ```
 
----
+
 
 ## p.isParsed()
 
@@ -50,7 +50,7 @@ Test whether the supplied template is already parsed and is in its object form.
 // TODO
 ```
 
----
+
 
 ## p.parse()
 

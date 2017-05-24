@@ -39,7 +39,7 @@ var SubComponent = Component.extend({
 new SubComponent();
 ```
 
----
+
 
 ## ractive.add()
 
@@ -82,7 +82,7 @@ setTimeout(function() {
 }, 2000);
 ```
 
----
+
 
 ## ractive.animate()
 
@@ -136,7 +136,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
----
+
 
 ## ractive.attachChild()
 
@@ -175,7 +175,7 @@ Children can be detached using [`ractive.detachChild()`](#ractivedetachchild).
 // TODO
 ```
 
----
+
 
 ## ractive.detach()
 
@@ -213,7 +213,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
----
+
 
 ## ractive.detachChild()
 
@@ -235,7 +235,7 @@ When a child instance that was attached targeting an anchor is detached, its ins
 // TODO
 ```
 
----
+
 
 ## ractive.find()
 
@@ -271,7 +271,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
----
+
 
 ## ractive.findAll()
 
@@ -309,7 +309,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
----
+
 
 ## ractive.findAllComponents()
 
@@ -354,7 +354,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
----
+
 
 ## ractive.findComponent()
 
@@ -397,7 +397,7 @@ setTimeout(function() {
 }, 1000);
 ```
 
----
+
 
 ## ractive.findContainer()
 
@@ -421,7 +421,7 @@ Returns the first container of this component instance with the given `name`.
 // TODO
 ```
 
----
+
 
 ## ractive.findParent()
 
@@ -445,7 +445,7 @@ Returns the first parent of this component instance with the given `name`.
 // TODO
 ```
 
----
+
 
 ## ractive.fire()
 
@@ -479,7 +479,7 @@ r.on('foo', function() {
 r.fire('foo');
 ```
 
----
+
 
 ## ractive.get()
 
@@ -513,7 +513,7 @@ var r = new Ractive({
 console.log(r.get('foo.bar.0'));
 ```
 
----
+
 
 ## ractive.getContext()
 
@@ -537,7 +537,7 @@ This is an instance specific version of [`Ractive.getContext()`](../api/static-m
 // TODO
 ```
 
----
+
 
 ## ractive.insert()
 
@@ -562,7 +562,7 @@ Inserts the instance to a different location. If the instance is currently in th
 // TODO
 ```
 
----
+
 
 ## ractive.link()
 
@@ -605,7 +605,7 @@ Name: <input value="{{~/current.name}}" />
 
 Links can be removed using [`ractive.unlink()`](#ractiveunlink).
 
----
+
 
 ## ractive.observe()
 
@@ -662,7 +662,7 @@ ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
 
 See [Observers](../concepts/events.md#publish-subscribe) for more detail.
 
----
+
 
 ## ractive.observeOnce()
 
@@ -709,7 +709,7 @@ ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, keypath ) {
 
 See [Observers](../concepts/events.md#publish-subscribe) for more detail.
 
----
+
 
 ## ractive.off()
 
@@ -738,7 +738,7 @@ An alternative way to remove event handlers is to use the `cancel` method of the
 // TODO
 ```
 
----
+
 
 ## ractive.on()
 
@@ -786,7 +786,7 @@ ractive.on({
 });
 ```
 
----
+
 
 ## ractive.once()
 
@@ -811,7 +811,7 @@ Subscribe to an event for a single firing. This is a convenience function on top
 // TODO
 ```
 
----
+
 
 ## ractive.pop()
 
@@ -837,7 +837,7 @@ If the given keypath does not exist (is `undefined`), an empty array will be sup
 // TODO
 ```
 
----
+
 
 ## ractive.push()
 
@@ -864,7 +864,7 @@ If the given keypath does not exist (is `undefined`), an empty array will be sup
 // TODO
 ```
 
----
+
 
 ## ractive.readLink()
 
@@ -905,7 +905,7 @@ r.readLink( 'currentItem' );
 // returns { ractive: r, keypath: 'items.0' }
 ```
 
----
+
 
 ## ractive.render()
 
@@ -929,7 +929,7 @@ Renders the component into a DOM element.
 // TODO
 ```
 
----
+
 
 ## ractive.reset()
 
@@ -964,7 +964,7 @@ ractive.reset({ bar: 2 });
 console.log( ractive.get() ); // { bar: 2 }
 ```
 
----
+
 
 ## ractive.resetPartial()
 
@@ -1000,7 +1000,7 @@ ractive.resetPartial('foo', 'bar');
 // {{>foo}} will be replaced with 'bar'
 ```
 
----
+
 
 ## ractive.reverse()
 
@@ -1026,7 +1026,7 @@ If the given keypath does not resolve to an array, an error will be thrown.
 // TODO
 ```
 
----
+
 
 ## ractive.set()
 
@@ -1070,7 +1070,7 @@ ractive.on('selectAll', function(){
 })
 ```
 
----
+
 
 ## ractive.shift()
 
@@ -1096,7 +1096,7 @@ If the given keypath does not exist (is `undefined`), an empty array will be sup
 // TODO
 ```
 
----
+
 
 ## ractive.sort()
 
@@ -1122,7 +1122,7 @@ If the given keypath does not resolve to an array, an error will be thrown.
 // TODO
 ```
 
----
+
 
 ## ractive.splice()
 
@@ -1151,7 +1151,7 @@ If the given keypath does not exist (is `undefined`), an empty array will be sup
 // TODO
 ```
 
----
+
 
 ## ractive.subtract()
 
@@ -1176,7 +1176,7 @@ Decrements the selected keypath.
 // TODO
 ```
 
----
+
 
 ## ractive.teardown()
 
@@ -1202,7 +1202,7 @@ Calling `ractive.teardown()` causes a `teardown` [event](../extend/events.md) to
 // TODO
 ```
 
----
+
 
 ## ractive.toCSS()
 
@@ -1237,7 +1237,7 @@ const subclassInstance = new Subclass({...});
 subclassInstance.toCSS();
 ```
 
----
+
 
 ## ractive.toHTML()
 
@@ -1261,7 +1261,7 @@ Returns a chunk of HTML representing the current state of the instance. This is 
 // TODO
 ```
 
----
+
 
 ## ractive.toggle()
 
@@ -1285,7 +1285,7 @@ Toggles the selected keypath. In other words, if `foo` is [truthy](http://james.
 // TODO
 ```
 
----
+
 
 ## ractive.transition()
 
@@ -1311,7 +1311,7 @@ Triggers a transition on a node managed by this Ractive instance.
 // TODO
 ```
 
----
+
 
 ## ractive.unlink()
 
@@ -1335,9 +1335,9 @@ Removes a link set up by [`ractive.link()`](#ractivelink).
 // TODO
 ```
 
----
+
 ## ractive.unrender()
----
+
 
 Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to [`ractive.render()`](#ractiverender). The rest of the ractive instance is left intact, unlike [`ractive.teardown()`](#ractiveteardown).
 
@@ -1361,7 +1361,7 @@ Note that if the instance happens to be a component that is managed by another i
 // TODO
 ```
 
----
+
 ## ractive.unshift()
 
 The Ractive equivalent to ```Array.unshift``` that prepends one or more elements to the array at the given keypath and triggers an update event.
@@ -1387,7 +1387,7 @@ If the given keypath does not exist (is `undefined`), an empty array will be sup
 // TODO
 ```
 
----
+
 
 ## ractive.update()
 
@@ -1420,7 +1420,7 @@ model.foo = 'changed';   // Does not cause the instance to update.
 ractive.update( 'foo' ); // Informs the instance that foo was changed externally.
 ```
 
----
+
 
 ## ractive.updateModel()
 

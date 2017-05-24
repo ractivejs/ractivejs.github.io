@@ -6,7 +6,7 @@
 
 The instance-only registry of [adaptors](../extend/adaptors.md).
 
----
+
 
 ## ractive.components
 
@@ -14,7 +14,7 @@ The instance-only registry of [adaptors](../extend/adaptors.md).
 
 The instance-only registry of [components](../extend/components.md).
 
----
+
 
 ## ractive.container
 
@@ -32,7 +32,7 @@ Each component instance that is in a yielded fragment has a container instance t
 
 If `bar` `{{yield}}`s, then `baz`'s container will be the `foo` instance.
 
----
+
 
 ## ractive.decorators
 
@@ -40,7 +40,7 @@ If `bar` `{{yield}}`s, then `baz`'s container will be the `foo` instance.
 
 The instance-only registry of [decorators](../extend/decorators.md).
 
----
+
 
 ## ractive.easing
 
@@ -48,7 +48,7 @@ The instance-only registry of [decorators](../extend/decorators.md).
 
 The instance-only registry of [easing functions](../extend/easings.md).
 
----
+
 
 ## ractive.events
 
@@ -56,7 +56,7 @@ The instance-only registry of [easing functions](../extend/easings.md).
 
 The instance-only registry of custom [event](../extend/events.md) plugins.
 
----
+
 
 ## ractive.interpolators
 
@@ -64,7 +64,7 @@ The instance-only registry of custom [event](../extend/events.md) plugins.
 
 A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-methods.md#ractiveanimate) or non-CSS transitions.
 
----
+
 
 ## ractive.parent
 
@@ -82,7 +82,7 @@ Each component instance can access its parent using `this.parent`.
 
 `baz`'s parent is the `bar` instance, and `bar`'s parent is the `foo` instance.
 
----
+
 
 ## ractive.partials
 
@@ -90,7 +90,7 @@ Each component instance can access its parent using `this.parent`.
 
 The instance-only registry of [partials](../extend/partials.md).
 
----
+
 
 ## ractive.root
 
@@ -108,7 +108,7 @@ Each component instance can access its root Ractive instance using `this.root`.
 
 `foo`, `bar`, and `baz` will all have the Ractive instance with this template as their `root`.
 
----
+
 
 ## ractive.transitions
 

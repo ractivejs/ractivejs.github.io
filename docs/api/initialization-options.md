@@ -12,7 +12,7 @@ var ractive = new Ractive({
 ractive.myMethod(); // triggers the alert
 ```
 
----
+
 
 ## adapt
 
@@ -42,7 +42,7 @@ new Component({
 });
 ```
 
----
+
 
 ## adaptors
 
@@ -67,7 +67,7 @@ const instance = new Ractive({
 });
 ```
 
----
+
 
 ## append
 
@@ -141,7 +141,7 @@ template: '<p>grey</p>'
 </div>
 ```
 
----
+
 
 ## attributes
 
@@ -166,7 +166,7 @@ const Component = Ractive.extend({
 
 The extra attributes passed to a component are not limited to simple attributes - they can also include directives, but any mustache sections will not have their contents checked. By default, the `extra-attributes` will _not_ be mapped, meaning that the values won't be available with `get` from the component, so the partial should be yielded. If you need the extra attributes to be mapped, include an additional setting in the attributes map `mapAll: true`.
 
----
+
 
 ## components
 
@@ -185,7 +185,7 @@ components: {
 
 During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
----
+
 
 ## computed
 
@@ -216,7 +216,7 @@ computed: {
 }
 ```
 
----
+
 
 ## csp
 
@@ -226,7 +226,7 @@ Whether or not to add inline functions for expressions after parsing. Defaults t
 
 This can effectively eliminate `eval` caused by expressions in templates. It also makes the resulting template no longer JSON compatible, so the template will have to be served via `script` tag.
 
----
+
 
 ## css
 
@@ -254,7 +254,7 @@ new Ractive({
 });
 ```
 
----
+
 
 ## data
 
@@ -331,7 +331,7 @@ Parent().get(); // { foo: 'Hello', bar: 'World' }
 Child().get();  // { foo: 'Goodbye', bar: 'World' }
 ```
 
----
+
 
 ## decorators
 
@@ -345,7 +345,7 @@ decorators: {
 }
 ```
 
----
+
 
 ## delegate
 
@@ -355,7 +355,7 @@ Whether or not to enable automatic event delegation for iterative sections withi
 
 When enabled, DOM events subscribed within iterative sections will not add a DOM event listener to each element. Instead, a single listener will be installed on the element containing the iterative section, and that listener will find appropriate event directives starting from the target element and working back to the containing element with the listener.
 
----
+
 
 ## delimiters
 
@@ -372,7 +372,7 @@ data: { world: 'earth' }
 // hello earth
 ```
 
----
+
 
 ## easing
 
@@ -386,7 +386,7 @@ easing: {
 }
 ```
 
----
+
 
 ## el
 
@@ -401,7 +401,7 @@ el: document.getElementById('container')
 el: jQuery('#container')
 ```
 
----
+
 
 ## enhance
 
@@ -425,7 +425,7 @@ There are a few limitations to this feature:
 
     It has been suggested that Ractive could deal with merged text nodes, but that would lead to extra complexity as there are certain scenarios where the text node would have to split and rejoin. When `foo` is falsey, `left text` and `right text` could be merged. But when `foo` becomes truthy, that text node would have to split in order to accomodate `middle text`.
 
----
+
 
 ## events
 
@@ -439,7 +439,7 @@ events: {
 }
 ```
 
----
+
 
 ## interpolators
 
@@ -453,7 +453,7 @@ interpolators: {
 }
 ```
 
----
+
 
 ## isolated
 
@@ -463,7 +463,7 @@ Controls whether the component will try to [resolve data and plugins on its ance
 
 Relevant only to [Components](../extend/components.md).
 
----
+
 
 ## lazy
 
@@ -486,7 +486,7 @@ ractive.on('change', function(){
 })
 ```
 
----
+
 
 ## nestedTransitions
 
@@ -513,7 +513,7 @@ This can also be controlled per transition using the `nested` boolean parameter 
 <div fade-in="{ duration: 'slow', nested: false }">...</div>
 ```
 
----
+
 
 ## noCSSTransform
 
@@ -521,7 +521,7 @@ This can also be controlled per transition using the `nested` boolean parameter 
 
 Prevents component CSS from being transformed with scoping guids. Defaults to `false`.
 
----
+
 
 ## noIntro
 
@@ -542,7 +542,7 @@ ractive.push( 'items', 'green' );
 // 'green' list item will fade in
 ```
 
----
+
 
 ## noOutro
 
@@ -565,7 +565,7 @@ ractive.unrender();
 // 'red' list item will not fade out
 ```
 
----
+
 
 ## observe
 
@@ -607,7 +607,7 @@ The options that may be specified in the object form are (see the [`ractive.obse
 
 When a sublcass created with [`Ractive.extend()`](/api/static-methods.md#ractiveextend) is passed an `observe` hash, then any further subclasses or instances created with an `observe` hash will be combined. Any superclass observers are installed first following the inheritance hierarchy, and finally, any instance observers are installed.
 
----
+
 
 ## on
 
@@ -642,7 +642,7 @@ The options that may be specified in the object form are:
 
 `on` event listeners may subscribe to any instance event, including lifecycle events _after_ `construct`. When a sublcass created with [`Ractive.extend()`](/api/static-methods.md#ractiveextend) is passed an `on` hash, then any further subclasses or instances created with an `on` hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.
 
----
+
 
 ## oncomplete
 
@@ -650,7 +650,7 @@ The options that may be specified in the object form are:
 
 A lifecycle event that is called when the instance is rendered and all the transitions have completed.
 
----
+
 
 ## onconfig
 
@@ -658,7 +658,7 @@ A lifecycle event that is called when the instance is rendered and all the trans
 
 A lifecycle event that is called when an instance is constructed and all initialization options have been processed.
 
----
+
 
 ## onconstruct
 
@@ -668,7 +668,7 @@ A lifecycle event that is called when an instance is constructed but before any 
 
 Accepts the instance's initialization options as argument.
 
----
+
 
 ## ondetach
 
@@ -678,7 +678,7 @@ A lifecycle event that is called whenever `ractive.detach()` is called.
 
 Note that `ractive.insert()` implicitly calls `ractive.detach()` if needed.
 
----
+
 
 ## oninit
 
@@ -686,7 +686,7 @@ Note that `ractive.insert()` implicitly calls `ractive.detach()` if needed.
 
 A lifecycle event that is called when an instance is constructed and is ready to be rendered.
 
----
+
 
 ## oninsert
 
@@ -694,7 +694,7 @@ A lifecycle event that is called when an instance is constructed and is ready to
 
 A lifecycle event that is called when `ractive.insert()` is called.
 
----
+
 
 ## onrender
 
@@ -702,7 +702,7 @@ A lifecycle event that is called when `ractive.insert()` is called.
 
 A lifecycle event that is called when the instance is rendered but _before_ transitions start.
 
----
+
 
 ## onteardown
 
@@ -710,7 +710,7 @@ A lifecycle event that is called when the instance is rendered but _before_ tran
 
 A lifecycle event that is called when the instance is being torn down.
 
----
+
 
 ## onunrender
 
@@ -718,7 +718,7 @@ A lifecycle event that is called when the instance is being torn down.
 
 A lifecycle event that is called when the instance is being undrendered.
 
----
+
 
 ## onupdate
 
@@ -726,7 +726,7 @@ A lifecycle event that is called when the instance is being undrendered.
 
 A lifecycle event that is called when `ractive.update()` is called.
 
----
+
 
 ## partials
 
@@ -746,7 +746,7 @@ partials: {
 
 During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
----
+
 
 ## preserveWhitespace
 
@@ -776,7 +776,7 @@ console.log( ractive.toHTML() );
 //  world   </p>"
 ```
 
----
+
 
 ## resolveInstanceMembers
 
@@ -790,7 +790,7 @@ Whether or not to include members of the Ractive instance at the end of the refe
 
 If there is no data member `toggle` in the context of the template, with `resolveInstanceMembers` enabled, the reference will resolve to the [`ractive.toggle()`](/api/instance-methods.md#ractivetoggle) method of the instance.
 
----
+
 
 ## sanitize
 
@@ -827,7 +827,7 @@ sanitize: {
 // <div>the good stuff</div>
 ```
 
----
+
 
 ## staticDelimiters
 
@@ -847,7 +847,7 @@ ractive.set( 'foo', 'mars' );
 // still is: "hello world"
 ```
 
----
+
 
 ## staticTripleDelimiters
 
@@ -867,7 +867,7 @@ ractive.set( 'html', '<span>mars</span>' );
 // still is: "hello world"
 ```
 
----
+
 
 ## stripComments
 
@@ -883,7 +883,7 @@ stripComments: false
 // <!-- html comment -->hello world
 ```
 
----
+
 
 ## syncComputedChildren
 
@@ -900,7 +900,7 @@ Whether or not to invalidate the dependencies of an expression when child keypat
 
 In this example, the `input` inside the iteration is bound to a computation e.g. `filter(users, pattern).0.name` that isn't actually an addressable model. With `syncComputedChildren` enabled, when that virtual keypath is updated by a user changing the `input`, the expression will invalidate its dependencies (`filter`, `users`, and `pattern`), which will cause any other references to the `user` that happens to coincide with result of the expression to also update.
 
----
+
 
 ## target
 
@@ -908,7 +908,7 @@ In this example, the `input` inside the iteration is bound to a computation e.g.
 
 Alias for [`el`](#el).
 
----
+
 
 ## template
 
@@ -934,7 +934,7 @@ template: function(data, p){
 
 During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
----
+
 
 ## transitions
 
@@ -942,7 +942,7 @@ During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), templates p
 
 A map of [transitions](../extend/transitions.md) where the key is the name of the transition and the value is a transition definition.
 
----
+
 
 ## transitionsEnabled
 
@@ -950,7 +950,7 @@ A map of [transitions](../extend/transitions.md) where the key is the name of th
 
 Whether or not transitions are enabled. Defaults to `true`.
 
----
+
 
 ## tripleDelimiters
 
@@ -967,7 +967,7 @@ data: { html: '<span>world</span>' }
 // hello <span>world</span>
 ```
 
----
+
 
 ## twoway
 
@@ -993,7 +993,7 @@ ractive.set( 'foo', 'fizz' );
 // input now displays "fizz"
 ```
 
----
+
 
 ## warnAboutAmbiguity
 

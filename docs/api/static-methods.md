@@ -22,7 +22,7 @@ Escapes the given key so that it can be concatenated with a keypath string.
 Ractive.escapeKey('foo.bar'); // foo\.bar
 ```
 
----
+
 
 ## Ractive.extend()
 
@@ -63,7 +63,7 @@ const instance2 = new SubClass({
     }
 });
 ```
----
+
 
 ## Ractive.extendWith()
 
@@ -104,7 +104,7 @@ Ractive.extendWith( Widget, {
 });
 ```
 
----
+
 
 ## Ractive.getCSS()
 
@@ -149,7 +149,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 ```
 
----
+
 
 ## Ractive.getContext()
 
@@ -175,7 +175,7 @@ const info = Ractive.getContext(document.getElementById('some-node'));
 const info = Ractive.getContext('#some-node');
 ```
 
----
+
 
 ## Ractive.joinKeys()
 
@@ -199,7 +199,7 @@ Joins the given keys into a properly escaped keypath.
 Ractive.joinKeys( 'foo', 'bar.baz' ); // foo.bar\.baz
 ```
 
----
+
 
 ## Ractive.parse()
 
@@ -277,7 +277,7 @@ Assume the following markup.
 {"v":4,"t":[{"t":7,"e":"div","m":[{"n":"class","f":"gallery","t":13}],"f":[{"t":4,"f":[" ",{"t":7,"e":"figure","m":[{"n":["tap"],"t":70,"f":"select"},{"n":"staggered","t":72,"v":"t1"}],"f":[{"t":7,"e":"img","m":[{"n":"class","f":"thumbnail","t":13},{"n":"src","f":["assets/images/",{"t":2,"r":"id"},".jpg"],"t":13}]}," ",{"t":7,"e":"figcaption","f":[{"t":2,"x":{"r":["@index"],"s":"_0+1"}},": ",{"t":2,"r":"description"}]}]}],"n":52,"r":"items"}]}],"e":{'_0+1': function(_0) { return _0+1; }}}
 ```
 
----
+
 
 ## Ractive.splitKeypath()
 
@@ -301,7 +301,7 @@ Splits the given keypath into an array of unescaped keys.
 Ractive.splitKeypath( 'foo.bar\.baz' ); // [ 'foo', 'bar.baz' ]
 ```
 
----
+
 
 ## Ractive.unescapeKey()
 

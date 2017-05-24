@@ -6,7 +6,7 @@
 
 The registry of globally available [adaptors](../extend/adaptors.md).
 
----
+
 
 ## Ractive.components
 
@@ -14,7 +14,7 @@ The registry of globally available [adaptors](../extend/adaptors.md).
 
 The registry of globally available [component definitions](../extend/components.md).
 
----
+
 
 ## Ractive.DEBUG
 
@@ -22,7 +22,7 @@ The registry of globally available [component definitions](../extend/components.
 
 Tells Ractive if it's in debug mode or not. When set to `true`, non-fatal errors are logged. When set to `false`, non-fatal errors are suppressed. By default, this is set to `true`.
 
----
+
 
 ## Ractive.DEBUG_PROMISES
 
@@ -30,7 +30,7 @@ Tells Ractive if it's in debug mode or not. When set to `true`, non-fatal errors
 
 Tells Ractive to log errors thrown inside promises. When set to `true`, errors thrown in promises are logged. When set to `false`, errors inside promises are suppressed. By default, this is set to `true`.
 
----
+
 
 ## Ractive.decorators
 
@@ -38,7 +38,7 @@ Tells Ractive to log errors thrown inside promises. When set to `true`, errors t
 
 The registry of globally available [decorators](../extend/decorators.md).
 
----
+
 
 ## Ractive.defaults
 
@@ -81,7 +81,7 @@ new Ractive({
 });
 ```
 
----
+
 
 ## Ractive.easing
 
@@ -91,7 +91,7 @@ The global registry of [easing functions](../extend/easings.md).
 
 The easing functions are used by the [`ractive.animate`](../api/instance-methods.md#ractive.animate) method and by [transitions](../extend/transitions.md). Four are included by default: `linear`, `easeIn`, `easeOut` and `easeInOut`.
 
----
+
 
 ## Ractive.events
 
@@ -99,7 +99,7 @@ The easing functions are used by the [`ractive.animate`](../api/instance-methods
 
 The global registry of custom [event](../extend/events.md) plugins.
 
----
+
 
 ## Ractive.interpolators
 
@@ -107,7 +107,7 @@ The global registry of custom [event](../extend/events.md) plugins.
 
 A key-value hash of interpolators use by [`ractive.animate()`](../api/instance-methods.md#ractiveanimate) or non-CSS transitions.
 
----
+
 
 ## Ractive.partials
 
@@ -117,7 +117,7 @@ The global registry of [partial templates](../extend/partials.md).
 
 Like [templates](../concepts/templates.md#overview), partials are [parsed](../concepts/templates.md#parser) at the point of use. The parsed output is cached and utilized for future use.
 
----
+
 
 ## Ractive.svg
 
@@ -125,7 +125,7 @@ Like [templates](../concepts/templates.md#overview), partials are [parsed](../co
 
 Indicates whether or not the browser supports SVG.
 
----
+
 
 ## Ractive.transitions
 
@@ -133,7 +133,7 @@ Indicates whether or not the browser supports SVG.
 
 The global registry of [transition functions](../extend/transitions.md).
 
----
+
 
 ## Ractive.VERSION
 
