@@ -2,7 +2,7 @@
 
 The transition object is an object you receive when writing transitions. It has a few properties and methods designed to make creating transitions easier.
 
----
+
 
 ## t.animateStyle()
 
@@ -34,7 +34,7 @@ Animates CSS properties to a certain value.
 // TODO
 ```
 
----
+
 
 ## t.complete()
 
@@ -58,7 +58,7 @@ Signals Ractive that the transition is complete.
 // TODO
 ```
 
----
+
 
 ## t.getStyle()
 
@@ -84,7 +84,7 @@ Retrieve a CSS property value from `t.node`.
 // TODO
 ```
 
----
+
 
 ## t.isIntro
 
@@ -92,7 +92,7 @@ _(boolean)_
 
 Should be self-explanatory...
 
----
+
 
 ## t.name
 
@@ -100,7 +100,7 @@ _(string)_
 
 The name of the transition.
 
----
+
 
 ## t.node
 
@@ -109,7 +109,7 @@ _(Node)_
 
 The node that's entering or leaving the DOM
 
----
+
 
 ## t.processParams()
 
@@ -139,7 +139,7 @@ Builds a map of parameters whose values are taken from the provided arguments. W
 // TODO
 ```
 
----
+
 
 ## t.setStyle()
 
