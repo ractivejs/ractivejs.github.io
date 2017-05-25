@@ -1,6 +1,6 @@
 # Ractive vs React
 
-![react-v-ractive](../img/react-v-ractive.png)
+![react-v-ractive](../static/img/react-v-ractive.png)
 
 The last post on this blog attempted to [compare Ractive.js with Angular.js](ractive-vs-angular.md) - two very different projects with superficial similarities. This time, we'll be comparing Ractive with [React.js](http://facebook.github.io/react), which despite appearances is much closer to Ractive in terms of purpose and philosophy.
 

@@ -12,6 +12,11 @@ theme_color: "#729D34"
 
 favicon: /static/img/favicon.ico
 
+extra_css:
+  - /static/css/index.css
+extra_javascript:
+  - static/js/index.js
+
 pages:
   - Ractive.js: index.md
   - Get Started:

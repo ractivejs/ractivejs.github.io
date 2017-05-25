@@ -2,7 +2,7 @@
 
 *Originally posted on the [Guardian developer blog](http://www.theguardian.com/info/developer-blog/2013/jul/24/ractive-js-next-generation-dom-manipulation)*
 
-![Food game: how well do you know the world?](../img/foodgame.jpg)
+![Food game: how well do you know the world?](../static/img/foodgame.jpg)
 <small>Ractive.js is used to create guardian.co.uk interactives, such as [Food game: How well do you know the world?](http://www.theguardian.com/global-development/interactive/2013/jun/07/food-game-what-do-you-know)</small>
 
 Anyone with fond memories of the [sound of dial-up internet](http://www.youtube.com/watch?v=gsNaR6FRuO0) will understand how ridiculous it would have seemed, to the web's pioneers, that we would one day be using this geeky information exchange format to play games, do grocery shopping, collaborate on spreadsheets and even [build more webapps](https://c9.io/). Yet here we are.
@@ -174,7 +174,7 @@ So far, this all sounds fairly prosaic - handy, perhaps, but nothing you can't a
 
 But we're only getting started. While it's been used in production in several interactives, it's still an early-stage project which needs brave souls to try it out in projects and (if necessary!) submit bug reports. If you build something with it, we'd love to hear from you.
 
-![Interactive data visualisations are much easier to create with Ractive.js - no DOM event handling, no state management, no labyrinthine render methods](../img/animated-chart.jpg)
+![Interactive data visualisations are much easier to create with Ractive.js - no DOM event handling, no state management, no labyrinthine render methods](../static/img/animated-chart.jpg)
 
 <small>Interactive [data visualisations](../get-started/examples/animated-chart.md) are much easier to create with Ractive.js - no DOM event handling, no state management, no labyrinthine render methods</small>
 
