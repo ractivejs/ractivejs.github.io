@@ -1,5 +1,5 @@
 var playground = (function() {
-  var main = document.querySelector('#main');
+  var main = document.querySelector('.main');
   var div = document.createElement('div');
   div.id = 'playground-div';
   div.setAttribute('class', 'min');
@@ -111,40 +111,40 @@ var playground = (function() {
       }
     }
   }
-})();
-
-document.querySelectorAll('div[data-playground] ~ pre').forEach(function(el) {
-  var div = el.previousSibling.previousSibling;
-  if (div.nodeType === 1 && div.getAttribute('data-playground')) {
-    el.style.position = 'relative';
-    var btn = document.createElement('div');
-    btn.innerHTML = '\u21f2';
-    btn.setAttribute('class', 'run-in-playground');
-    btn.setAttribute('title', 'Click to open this example on the playground.');
-    btn.addEventListener('click', function(ev) {
-      playground(div);
-    });
-    el.appendChild(btn);
-  }
 });
 
-document.querySelectorAll('div[data-runtutorial] ~ pre').forEach(function(el) {
-  var div = el.previousSibling.previousSibling;
-  if (div.nodeType === 1 && div.getAttribute('data-runtutorial')) {
-    el.style.position = 'relative';
-    var btn = document.createElement('div');
-    btn.innerHTML = '\u25b6';
-    btn.setAttribute('class', 'run-in-playground');
-    btn.setAttribute('title', 'Click to execute this code in the playground.');
-    btn.addEventListener('click', function(ev) {
-      playground(div);
-    });
-    el.appendChild(btn);
-  }
-});
+$(function(){
 
-document.querySelectorAll('[data-tutorial]').forEach(function(el) {
-  el.addEventListener('click', function(ev) {
-    playground(el);
+  // Attach "Run It" link
+  $('[data-playground]').each(function(i, e){
+    var div = $(e);
+    var pre = div.nextAll("pre:first");
+
+    $('<button type="button" class="run-it">Run It</button>')
+      .appendTo(pre)
+      .on('click', playground.bind(null, div))
   });
+
 });
+
+
+// document.querySelectorAll('div[data-runtutorial] ~ pre').forEach(function(el) {
+//   var div = el.previousSibling.previousSibling;
+//   if (div.nodeType === 1 && div.getAttribute('data-runtutorial')) {
+//     el.style.position = 'relative';
+//     var btn = document.createElement('div');
+//     btn.innerHTML = '\u25b6';
+//     btn.setAttribute('class', 'run-in-playground');
+//     btn.setAttribute('title', 'Click to execute this code in the playground.');
+//     btn.addEventListener('click', function(ev) {
+//       playground(div);
+//     });
+//     el.appendChild(btn);
+//   }
+// });
+
+// document.querySelectorAll('[data-tutorial]').forEach(function(el) {
+//   el.addEventListener('click', function(ev) {
+//     playground(el);
+//   });
+// });

@@ -1,6 +1,6 @@
 # Ractive vs Angular
 
-![angular-v-ractive](../img/angular-v-ractive.png)
+![angular-v-ractive](../static/img/angular-v-ractive.png)
 
 Lots of people have asked what the difference is between Ractive and other libraries and frameworks. It's long been my intention to write a series of articles attempting to answer, but I've always put it off because a) I didn't have anywhere to post the articles, and b) I didn't feel qualified to compare Ractive to libraries that I'm not particularly familiar with.
 
@@ -18,7 +18,7 @@ But the question I've had more frequently - and [most recently](http://stackover
 You're kidding, right? Angular is a wildly successful project. Its [GitHub repo](https://github.com/angular/angular.js) has 18,579 stargazers (at the time of writing) - almost ten times Ractive's 1,950. Their [twitter account](http://twitter.com/angularjs) has 28,629 followers, and there are hundreds if not thousands of [Angular apps](http://builtwith.angularjs.org/) in the wild. Most days, an article or video or tutorial about Angular will show up on the Hacker News front page if not on dozens of other front end blogs.
 
 
-<img src='/img/anglebars.jpg' style='width: 5em; float: left; margin: 0 1em 0 0'>
+<img src='/static/img/anglebars.jpg' style='width: 5em; float: left; margin: 0 1em 0 0'>
 
 (Fun fact! Way back in the mists of time, Ractive was called Anglebars - because it was kind of halfway between Angular and Handlebars. I even ripped off the logo. In other words, Angular was a big inspiration for Ractive.)
 
