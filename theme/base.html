@@ -41,21 +41,10 @@
 </head>
 
 <body>
-  <input class="menu-state menu-state--nav" type="checkbox" name="menu-state-nav" id="menu-state-nav">
-  <input class="menu-state menu-state--toc" type="checkbox" name="menu-state-toc" id="menu-state-toc">
-
-  <label class="menu-toggle menu-toggle--nav" for="menu-state-nav">
-    <img class="menu-toggle__logo" src="/static/img/avatar.png">
-  </label>
-
-  <label class="menu-toggle menu-toggle--toc" for="menu-state-toc">
-    <span class="menu-toggle__bar"></span>
-    <span class="menu-toggle__bar"></span>
-    <span class="menu-toggle__bar"></span>
-  </label>
+  <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+  <label class="menu-toggle" for="menu-state"></label>
 
   {% include "nav-side.html" %}
-  {% include "toc-side.html" %}
 
   <div class="main">
     <div class="main__header">
