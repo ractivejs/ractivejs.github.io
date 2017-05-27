@@ -465,9 +465,9 @@
 <li><a href="https://gitter.im/ractivejs/ractive">Gitter</a></li>
 </ul>
 <h2 id="legacy-versions">Legacy versions</h2>
-<p>The current site only documents the latest version of Ractive. Legacy versions are <a href="https://github.com/ractivejs/ractivejs.github.io/tree/dev/legacy">currently stored in Github</a>.</p>
+<p>The site currently documents only the latest version of Ractive. Legacy versions are <a href="https://github.com/ractivejs/ractivejs.github.io/tree/dev/legacy">currently stored in Github</a>.</p>
 <h2 id="legacy-browsers">Legacy browsers</h2>
-<p>The core Ractive library requires the following APIs need to be present:</p>
+<p>The core Ractive library requires at least the following APIs need to be present:</p>
 <ul>
 <li><code>Array.isArray</code></li>
 <li><code>Array.prototype.every</code></li>
@@ -489,7 +489,8 @@
 <li><code>window.addEventListener</code></li>
 <li><code>window.getComputedStyle</code></li>
 </ul>
-<p><a href="https://kangax.github.io/compat-table">Most <em>modern</em> browsers already support these APIs</a>. Should you want to serve your app on older browsers, the Ractive package comes with an optional file called <a href="https://unpkg.com/ractive@0.9.0/polyfills.js"><code>polyfills.js</code></a> containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive.</p>
+<p><a href="https://kangax.github.io/compat-table">Most <em>modern</em> browsers already support these APIs</a>. Should you want to serve your app on older browsers, <a href="https://cdn.jsdelivr.net/npm/ractive/">the Ractive package</a> comes with an optional file called <a href="https://cdn.jsdelivr.net/npm/ractive@0.9.0/polyfills.js"><code>polyfills.js</code></a> containing these specific polyfills. Simply load it up before Ractive. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library.</p>
+<p>In addition, Ractive no longer serves the "legacy build". It is recommended that you integrate <code>polyfills.js</code> in your build should you need to support older browsers. However, if you're pulling the legacy build from a CDN, <a href="https://www.jsdelivr.com">jsDelivr</a> can combine files on the fly. Simply instruct jsDelivr to <a href="https://cdn.jsdelivr.net/combine/npm/ractive/polyfills.min.js,npm/ractive/ractive.min.js">combine <code>polyfills.js</code> with <code>ractive.js</code></a> to get a file similar to the former legacy build.</p>
 <h2 id="svgs">SVGs</h2>
 <p>Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) <em>do</em> care.</p>
 <blockquote>
