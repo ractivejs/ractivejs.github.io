@@ -248,12 +248,6 @@
 </li>
 
                         
-                            
-<li >
-    <a href="../input-binding/">Input Binding</a>
-</li>
-
-                        
                         </ul>
                     </li>
                 
@@ -441,7 +435,34 @@
             <div class="col-md-3" role="subnav"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="first-level active"><a href="#attributes">Attributes</a></li>
+        <li class="first-level active"><a href="#input-binding">Input binding</a></li>
+        
+            <li class="second-level"><a href="#text-inputs">Text inputs</a></li>
+            
+        
+            <li class="second-level"><a href="#number-inputs">Number inputs</a></li>
+            
+        
+            <li class="second-level"><a href="#file-inputs">File inputs</a></li>
+            
+        
+            <li class="second-level"><a href="#checkboxes">Checkboxes</a></li>
+            
+        
+            <li class="second-level"><a href="#radio-buttons">Radio buttons</a></li>
+            
+        
+            <li class="second-level"><a href="#text-areas">Text areas</a></li>
+            
+        
+            <li class="second-level"><a href="#select-lists">Select lists</a></li>
+            
+        
+            <li class="second-level"><a href="#contenteditable">contenteditable</a></li>
+            
+        
+    
+        <li class="first-level "><a href="#special-attributes">Special Attributes</a></li>
         
             <li class="second-level"><a href="#as-">as-*</a></li>
             
@@ -463,7 +484,174 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="attributes">Attributes</h1>
+<h1 id="input-binding">Input binding</h1>
+<h2 id="text-inputs">Text inputs</h2>
+<p>Data can be bound to text inputs via the <code>value</code> attribute. This includes text-like inputs such as password, email, color, tel, date, etc.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt;
+  `,
+  data: {
+    msg: 'Hello, World!'
+  }
+});
+</code></pre>
+
+<h2 id="number-inputs">Number inputs</h2>
+<p>Numeric data can be bound to number inputs via the <code>value</code> attribute. This includes number-like inputs such as range. The value from the input will automatically be converted into a number. When the input is blank, the value returned is <code>undefined</code>.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;input type=&quot;number&quot; value=&quot;{{ daysWithoutSleep }}&quot;&gt;
+  `,
+  data: {
+    daysWithoutSleep: 2
+  }
+});
+</code></pre>
+
+<h2 id="file-inputs">File inputs</h2>
+<p>File data can be bound to file inputs via the non-standard <code>value</code> attribute. The value from the input is a FileList object.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;input type=&quot;file&quot; value=&quot;{{ file }}&quot;&gt;
+  `,
+  data: {
+    file: /* FileList instance */
+  }
+});
+</code></pre>
+
+<h2 id="checkboxes">Checkboxes</h2>
+<p>Boolean data can be bound to checkboxes via the <code>checked</code> attribute. Note the non-standard usage of <code>checked</code>, which is a normally a boolean attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;input type=&quot;checkbox&quot; checked=&quot;{{ isChecked }}&quot;&gt;
+  `,
+  data: {
+    isChecked: true
+  }
+});
+</code></pre>
+
+<p>Array data can also be bound to checkboxes via the <code>name</code> attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;input type=&quot;checkbox&quot; name=&quot;{{ selectedItems }}&quot; value=&quot;1&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;{{ selectedItems }}&quot; value=&quot;2&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;{{ selectedItems }}&quot; value=&quot;3&quot;&gt;
+  `,
+  data: {
+    selectedItems: ['1', '2']
+  }
+});
+</code></pre>
+
+<p>When both <code>checked</code> and <code>name</code> bindings are present, the binding to <code>checked</code> will be honored and the binding to <code>name</code> will be treated as a regular interpolation.</p>
+<h2 id="radio-buttons">Radio buttons</h2>
+<p>Boolean data can be bound to radio buttons via the <code>checked</code> attribute. Note the non-standard usage of <code>checked</code>, which is a normally a boolean attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;input type=&quot;radio&quot; name=&quot;options&quot; checked=&quot;{{ option1 }}&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;options&quot; checked=&quot;{{ option2 }}&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;options&quot; checked=&quot;{{ option3 }}&quot;&gt;
+  `,
+  data: {
+    option1: false,
+    option2: true,
+    option3: false
+  }
+});
+</code></pre>
+
+<p>Data can also be bound to radio buttons via the <code>name</code> attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;input type=&quot;radio&quot; name=&quot;{{ selectedOption }}&quot; value=&quot;1&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;{{ selectedOption }}&quot; value=&quot;2&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;{{ selectedOption }}&quot; value=&quot;3&quot;&gt;
+  `,
+  data: {
+    selectedOption: '1'
+  }
+});
+</code></pre>
+
+<h2 id="text-areas">Text areas</h2>
+<p>Data can be bound to text inputs via the non-standard <code>value</code> attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;textarea value=&quot;{{ msg }}&quot;&gt;&lt;/textarea&gt;
+  `,
+  data: {
+    msg: 'Hello, World!'
+  }
+});
+</code></pre>
+
+<p>Data can also be bound to text via its contents.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;textarea&gt;{{ msg }}&lt;/textarea&gt;
+  `,
+  data: {
+    msg: 'Hello, World!'
+  }
+});
+</code></pre>
+
+<h2 id="select-lists">Select lists</h2>
+<p>Data can be bound to select lists via the non-standard <code>value</code> attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;select value=&quot;{{ selectedOption }}&quot;&gt;
+      &lt;option value=&quot;1&quot;&gt;Red&lt;/option&gt;
+      &lt;option value=&quot;2&quot;&gt;Green&lt;/option&gt;
+      &lt;option value=&quot;3&quot;&gt;Blue&lt;/option&gt;
+    &lt;/select&gt;
+  `,
+  data: {
+    selectedOption: '2'
+  }
+});
+</code></pre>
+
+<p>Array data can also be bound to select lists with the <code>multiple</code> attribute via the non-standard <code>value</code> attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;select multiple value=&quot;{{ selectedItems }}&quot;&gt;
+      &lt;option value=&quot;1&quot;&gt;Red&lt;/option&gt;
+      &lt;option value=&quot;2&quot;&gt;Green&lt;/option&gt;
+      &lt;option value=&quot;3&quot;&gt;Blue&lt;/option&gt;
+    &lt;/select&gt;
+  `,
+  data: {
+    selectedItems: [ '2', '3' ]
+  }
+});
+</code></pre>
+
+<h2 id="contenteditable">contenteditable</h2>
+<p>Data can be bound to elements that have the <code>contenteditable</code> attribute via the non-standard <code>value</code> attribute.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;div contenteditable=&quot;true&quot; value=&quot;{{ msg }}&quot;&gt;&lt;/div&gt;
+  `,
+  data: {
+    msg: 'Hello, World!'
+  }
+});
+
+// Rendered as:
+// &lt;div contenteditable=&quot;true&quot;&gt;Hello, World!&lt;/div&gt;
+</code></pre>
+
+<p>There are a few caveats when binding to an element with <code>contenteditable</code>:</p>
+<ul>
+<li>The returned string may or may not always be HTML.</li>
+<li>The returned string may be different from browser to browser.</li>
+<li>Any value set on the bound data will always be rendered as HTML.</li>
+</ul>
+<h1 id="special-attributes">Special Attributes</h1>
 <h2 id="as-"><code>as-*</code></h2>
 <p><code>as-*</code> attributes augment the element with <a href="../../extend/decorators/">decorators</a>. It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.</p>
 <pre><code class="html">&lt;div as-modal&gt;Div appearing as modal&lt;/div&gt;
