@@ -46,7 +46,6 @@ pages:
     - Context Object: api/context.md
     - Parse: api/parse.md
     - Transition: api/transition.md
-    - Input Binding: api/input-binding.md
   - Extend:
     - Adaptors: extend/adaptors.md
     - Components: extend/components.md
