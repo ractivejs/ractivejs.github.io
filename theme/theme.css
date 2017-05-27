@@ -100,6 +100,20 @@ a{
   padding-right: 15px;
 }
 
+.page-controls{
+  text-align: center;
+  margin: 15px 0;
+}
+
+.page-controls__link{
+  padding: 0 15px;
+  display: inline-block;
+}
+
+.page-controls__link + .page-controls__link{
+  border-left: 1px solid #eee;
+}
+
 .logo{
   margin: 50px auto 50px;
   display: table;

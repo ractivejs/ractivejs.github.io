@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% if config.site_description %}<meta name="description" content="{{ config.site_description }}">{% endif %}
-  {% if config.theme_color %}<meta name="theme-color" content="{{ config.theme_color }}">{% endif %}
+  {% if config.theme_color %}<meta name="theme-color" content="{{ extra.theme_color }}">{% endif %}
 
-  {% if config.favicon %}<link rel="shortcut icon" href="{{ config.favicon }}">{% endif %}
+  {% if config.favicon %}<link rel="shortcut icon" href="{{ extra.favicon }}">{% endif %}
   {% if config.site_author %}<link rel="author" href="{{ config.site_author }}">{% endif %}
   {% if config.site_url %}<link rel="canonical" href="{{ config.site_url }}">{% endif %}
 
