@@ -12,11 +12,11 @@ There are a lot of places to find help if you get stuck with Ractive:
 
 ## Legacy versions
 
-The current site only documents the latest version of Ractive. Legacy versions are [currently stored in Github](https://github.com/ractivejs/ractivejs.github.io/tree/dev/legacy).
+The site currently documents only the latest version of Ractive. Legacy versions are [currently stored in Github](https://github.com/ractivejs/ractivejs.github.io/tree/dev/legacy).
 
 ## Legacy browsers
 
-The core Ractive library requires the following APIs need to be present:
+The core Ractive library requires at least the following APIs need to be present:
 
 - `Array.isArray`
 - `Array.prototype.every`
@@ -38,7 +38,9 @@ The core Ractive library requires the following APIs need to be present:
 - `window.addEventListener`
 - `window.getComputedStyle`
 
-[Most _modern_ browsers already support these APIs](https://kangax.github.io/compat-table). Should you want to serve your app on older browsers, the Ractive package comes with an optional file called [`polyfills.js`](https://unpkg.com/ractive@0.9.0/polyfills.js) containing these specific polyfills. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library. Simply load it up before Ractive.
+[Most _modern_ browsers already support these APIs](https://kangax.github.io/compat-table). Should you want to serve your app on older browsers, [the Ractive package](https://cdn.jsdelivr.net/npm/ractive/) comes with an optional file called [`polyfills.js`](https://cdn.jsdelivr.net/npm/ractive@0.9.0/polyfills.js) containing these specific polyfills. Simply load it up before Ractive. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library.
+
+In addition, Ractive no longer serves the "legacy build". It is recommended that you integrate `polyfills.js` in your build should you need to support older browsers. However, if you're pulling the legacy build from a CDN, [jsDelivr](https://www.jsdelivr.com) can combine files on the fly. Simply instruct jsDelivr to [combine `polyfills.js` with `ractive.js`](https://cdn.jsdelivr.net/combine/npm/ractive/polyfills.min.js,npm/ractive/ractive.min.js) to get a file similar to the former legacy build.
 
 ## SVGs
 
