@@ -3,19 +3,23 @@ site_description: Next-generation DOM manipulation
 site_author: RactiveJS contributors
 site_url: https://ractive.js.org
 
-repo_url: https://github.com/ractivejs/ractive
+repo_url: https://github.com/ractivejs/ractivejs.github.io
+edit_uri: edit/dev/docs/
 
 copyright: ©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.
 
 theme_dir: theme
-theme_color: "#729D34"
 
-favicon: /static/img/favicon.ico
 
 extra_css:
   - /static/css/index.css
 extra_javascript:
   - static/js/index.js
+
+extra:
+  lib_url: https://github.com/ractivejs/ractive
+  favicon: /static/img/favicon.ico
+  theme_color: "#729D34"
 
 pages:
   - Ractive.js: index.md
