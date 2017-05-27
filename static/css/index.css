@@ -1,0 +1,259 @@
+/* playground pre should be relative */
+[data-playground] ~ pre{
+  position: relative
+}
+
+.run-it{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background: #777;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 15px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.run-it:active{
+  background: #555;
+}
+
+/* playground stuff */
+#playground-div {
+  transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  z-index: 10;
+}
+#playground-div.min {
+  overflow: hidden;
+}
+
+#playground-div > iframe {
+  border: 0;
+  position: absolute;
+  top: 1.5em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100% - 1.5em);
+}
+#playground-div.min > iframe {
+  display: none;
+}
+#playground-div > span {
+  margin-right: 1em;
+  cursor: pointer;
+  color: rgba(114, 157, 42, 0.5);
+  transition: color 0.2s ease-in-out;
+}
+#playground-div > span:hover {
+  color: #729d34;
+}
+#playground-div.max > span.up-btn,
+#playground-div.min > span.down-btn {
+  display: none;
+}
+#playground-div.min > span.up-btn {
+  margin-left: 0.75em;
+}
+
+#main {
+  transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
+  position: absolute;
+  height: calc(100% - 44px);
+  width: 100%;
+  overflow: auto;
+  top: 44px;
+}
+
+div.run-in-playground {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.3);
+  transition: color 0.2s ease-in-out;
+  font-size: 1.6em;
+  font-weight: 700;
+}
+div.run-in-playground:hover {
+  color: #000;
+}
+
+@media (min-width: 992px) {
+  .bs-sidebar.affix {
+    max-height: calc(100% - 200px);
+    overflow-y: auto;
+    height: auto;
+    top: 115px;
+  }
+  #main.mid .bs-sidebar.affix {
+    max-height: calc(50vh - 200px);
+    top: 115px;
+  }
+  #main.min .bs-sidebar.affix {
+    max-height: calc(15vh - 200px);
+    top: 115px;
+  }
+}
+
+@media (max-width: 991px) {
+  .bs-sidebar.affix {
+    max-height: calc(50vh - 3em);
+    overflow: auto;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 1199.99px) {
+  #playground-div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: right;
+  }
+  #playground-div.min {
+    height: 1.5em;
+    width: 2.5em;
+    left: calc(100% - 5em);
+    border-radius: 1em 1em 0 0;
+    transition: none;
+  }
+  #playground-div.mid {
+    height: 55vh;
+  }
+  #playground-div.max {
+    height: calc(100vh - 44px);
+  }
+
+  #main.max {
+  }
+  #main.mid {
+    height: calc(45vh - 44px);
+    overflow: auto;
+  }
+  #main.min {
+    height: 0;
+    overflow: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bs-sidebar.affix {
+    top: 69px;
+  }
+
+  #playground-div {
+    position: absolute;
+    right: 0;
+    height: calc(100% - 44px);
+    top: 44px;
+  }
+  #playground-div.max {
+    width: 50%;
+  }
+
+  #playground-div.mid {
+    width: 50%;
+  }
+  #playground-div.mid #expand-playground {
+    display: none;
+  }
+  #playground-div.mid #collapse-playground {
+    display: inline-block;
+    transform: rotate(-90deg);
+    margin-left: 0.5em;
+  }
+
+  #playground-div.min {
+    transition: none;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    right: 3em;
+    height: 1.5em;
+    width: 2.5em;
+    border-radius: 1em 1em 0 0;
+  }
+  #playground-div.min > span {
+    transform: rotate(-90deg);
+    display: inline-block;
+  }
+
+  #main {
+    height: calc(100% - 44px);
+  }
+
+  #main.max {
+  }
+
+  #main.mid {
+    width: 50%;
+  }
+
+  #main.mid .container {
+    width: 100%;
+  }
+  #main.mid [role=main] {
+    width: 100%;
+  }
+  #main.mid [role=subnav] {
+    display: none;
+  }
+
+  #main.min {
+  }
+}
+
+@media (min-width: 1600px) {
+  #playground-div.mid {
+    width: 60%;
+  }
+
+  #main.mid {
+    width: 40%;
+  }
+}
+
+@media (max-width: 1199.9px) and (min-width: 768px) {
+  #playground-div.max {
+    height: calc(100% - 90px);
+  }
+
+  #main {
+    height: calc(100% - 90px);
+    top: 90px;
+  }
+  #main.mid {
+    height: calc(45vh - 90px);
+  }
+  #main.min {
+    height: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #playground-div.max {
+    height: calc(100% - 44px);
+  }
+  #main {
+    height: calc(100% - 44px);
+    top: 44px;
+  }
+  #main.mid {
+    height: calc(45vh - 44px);
+  }
+  #main.min {
+    height: calc(15vh - 44px);
+  }
+}
+
+/* Not entirely sure why the built-in bootstrap doesn't have this */
+img {
+  max-width: 100%;
+}
