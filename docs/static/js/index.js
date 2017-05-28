@@ -2,8 +2,6 @@ $(function () {
 
   var isPlaygroundOpen = false;
   var main = $('.main');
-  var leftGutter = $('.main__left-gutter');
-  var centerContainer = $('.main__center-container');
   var sideBarContainer = $('.main__sidebar-container');
   var contentContainer = $('.main__content-container');
   var playgroundToggle = $('.playground-toggle');
@@ -27,9 +25,7 @@ $(function () {
   function openPlayground() {
     isPlaygroundOpen = true;
     main.addClass('main--split');
-    leftGutter.addClass('main__left-gutter--hidden');
     sideBarContainer.addClass('main__sidebar-container--hidden');
-    centerContainer.removeClass('pure-u-lg-2-3');
     contentContainer.removeClass('pure-u-md-3-4');
     playgroundContainer.addClass('playground-container--open');
     playgroundToggle.addClass('playground-toggle--open');
@@ -38,9 +34,7 @@ $(function () {
   function closePlayground() {
     isPlaygroundOpen = false;
     main.removeClass('main--split');
-    leftGutter.removeClass('main__left-gutter--hidden');
     sideBarContainer.removeClass('main__sidebar-container--hidden');
-    centerContainer.addClass('pure-u-lg-2-3');
     contentContainer.addClass('pure-u-md-3-4');
     playgroundContainer.removeClass('playground-container--open');
     playgroundToggle.removeClass('playground-toggle--open');

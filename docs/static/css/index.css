@@ -2,10 +2,6 @@
   margin-bottom: 50vh;
 }
 
-.main__left-gutter--hidden{
-  display: none;
-}
-
 .main__sidebar-container--hidden{
   display: none;
 }
