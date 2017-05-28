@@ -25,7 +25,126 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#plugins">Plugins</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#available-plugins">Available plugins</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#and-so-much-more">And so much more!</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="plugins">Plugins</h1>
+<p>It may not be apparent but Ractive is actually built with extreme extensibility in mind. Plugins allow you to augment Ractive with extra functionality. Whether you're a JavaScript developer, an interface designer or just trying to get away from your framework overlords, Ractive can accomodate one and all.</p>
+<h2 id="available-plugins">Available plugins</h2>
+<h3 id="adaptors"><a href="../../extend/adaptors/">Adaptors</a></h3>
+<p>Interface with different backends.</p>
+<ul>
+<li><a href="https://github.com/ractivejs/ractive-adaptors-backbone">Backbone</a></li>
+<li><a href="http://ractivejs.github.io/ractive-adaptors-bacon/">Bacon.js</a></li>
+<li><a href="https://github.com/staygrimm/ractive-adaptors-modella">Modella</a> by <a href="https://github.com/staygrimm">@staygrimm</a></li>
+<li><a href="http://lluchs.github.io/Ractive-adaptors-Promise/">Promises</a> by <a href="https://github.com/lluchs">@lluchs</a></li>
+<li><a href="https://github.com/rstacruz/ractive-promise-alt">Promise-alt</a> by <a href="https://github.com/rstacruz">@rstacruz</a></li>
+<li><a href="http://ractivejs.github.io/ractive-adaptors-rxjs/">RxJS</a></li>
+<li><a href="https://github.com/rstacruz/ractive-ractive">Ractive</a> by <a href="https://github.com/rstacruz">@rstacruz</a> - Synchronise several Ractive instances.</li>
+<li><a href="https://github.com/arxpoetica/ss-ractive">ss-ractive</a> by Robert Hall <a href="https://github.com/arxpoetica">@arxpoetica</a> - Ractive Template Engine wrapper for <a href="https://github.com/socketstream/socketstream">SocketStream</a>.</li>
+</ul>
+<h3 id="components"><a href="../../extend/components/">Components</a></h3>
+<p>Encapsulate functionality behind the guise of a custom element.</p>
+<ul>
+<li><a href="https://github.com/XavierBoubert/ractive-require">Ractive-Require</a></li>
+<li><a href="http://dagnelies.github.io/ractive-codemirror/">CodeMirror</a></li>
+<li><a href="http://dagnelies.github.io/ractive-bootstrap/">Bootstrap</a></li>
+<li><a href="https://github.com/JonDum/ractive-datatable">Datatable</a></li>
+<li><a href="https://github.com/JonDum/ractive-select">Select</a> - A <code>&lt;select&gt;</code> replacement component.</li>
+<li><a href="https://github.com/JonDum/ractive-stepper">Stepper</a> - A numeric stepper component.</li>
+<li><a href="https://dagnelies.github.io/ractive-split">Split</a></li>
+</ul>
+<h3 id="decorators"><a href="../../extend/decorators/">Decorators</a></h3>
+<p>Augment the DOM with more functionality.</p>
+<ul>
+<li><a href="http://kalcifer.github.io/ractive-decorators-chosen/">Chosen</a> by <a href="https://github.com/rahulcs">@rahulcs</a> (<a href="https://github.com/kalcifer">@kalcifer</a>)</li>
+<li><a href="https://github.com/cfenzo/Ractive-decorators-minmaxwidth">minmaxwidth</a> by <a href="https://github.com/cfenzo">@cfenzo</a></li>
+<li><a href="http://prezent.github.io/ractive-decorators-select2/">Select2</a> by <a href="https://github.com/sandermarechal">@sandermarechal</a> (<a href="https://github.com/Prezent">@Prezent</a>)</li>
+<li><a href="http://ractivejs.github.io/Ractive-decorators-sortable/">Sortable</a></li>
+<li><a href="http://github.com/JonDum/ractive-tooltip">Tooltip</a></li>
+</ul>
+<h3 id="easings"><a href="../../extend/easings/">Easings</a></h3>
+<p>Custom animation progressions.</p>
+<h3 id="events"><a href="../../extend/events/">Events</a></h3>
+<p>Augment the DOM with custom events beyond those supported by the browser.</p>
+<ul>
+<li><a href="https://github.com/Nijikokun/ractive.drag.drop.js">Drag and Drop (HTML5)</a> by <a href="https://github.com/Nijikokun">@Nijikokun</a></li>
+<li><a href="https://github.com/smallhadroncollider/ractive.events.drag">Drag and Drop (non-HTML5)</a> by <a href="https://github.com/smallhadroncollider">@smallhadroncollider</a></li>
+<li><a href="https://github.com/Nijikokun/ractive.sortable.js">Drag and Drop Sortable List</a> by <a href="https://github.com/Nijikokun">@Nijikokun</a></li>
+<li><a href="https://github.com/smallhadroncollider/ractive.events.resize">Resize</a> by <a href="https://github.com/smallhadroncollider">@smallhadroncollider</a></li>
+<li><a href="http://ractivejs.github.io/ractive-events-hover">Hover</a></li>
+<li><a href="http://ractivejs.github.io/ractive-events-keys">Keys</a></li>
+<li><a href="http://ractivejs.github.io/ractive-events-mousewheel">Mousewheel</a></li>
+<li><a href="http://ractivejs.github.io/ractive-events-tap">Tap</a></li>
+<li><a href="https://github.com/rstacruz/ractive-touch">Touch</a> by <a href="https://github.com/rstacruz/">@rstacruz</a></li>
+<li><a href="https://github.com/svapreddy/ractive-events-typing">Typing</a> by <a href="https://github.com/svapreddy">@svapreddy</a></li>
+<li><a href="https://github.com/svapreddy/ractive-event-viewport">Viewport</a> by <a href="https://github.com/svapreddy">@svapreddy</a></li>
+</ul>
+<h3 id="partials"><a href="../../extend/partials/">Partials</a></h3>
+<p>Reusable pieces of markup.</p>
+<h3 id="transitions"><a href="../../extend/transitions/">Transitions</a></h3>
+<p>Apply custom animation.</p>
+<ul>
+<li><a href="http://ractivejs.github.io/ractive-transitions-fade">Fade</a></li>
+<li><a href="http://ractivejs.github.io/ractive-transitions-fly">Fly</a></li>
+<li><a href="https://github.com/1N50MN14/Ractive-transitions-scale">Scale</a> by <a href="https://github.com/1N50MN14">@1N50MN14</a></li>
+<li><a href="http://ractivejs.github.io/ractive-transitions-slide">Slide</a></li>
+<li><a href="http://ractivejs.github.io/ractive-transitions-typewriter">Typewriter</a></li>
+</ul>
+<h2 id="and-so-much-more">And so much more!</h2>
+<p>Due to the nature of how easy it is to write and distribute plugins as well as how diverse the distribution channels are, we cannot possibly know what other Ractive plugins exist in the wild.</p>
+<p>To discover more, try searching your favorite package manager, search engine, or code hosting service for the keyword "ractive". I guarantee you'll be surprised.</p>
+<p><small>Note: Like any other open-source project, these plugins may not have been maintained for a while. Should bugs arise, we highly encourage reporting the issue to relevant parties so that it can be addressed.</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/integrations/plugins.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +374,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,120 +622,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#plugins">Plugins</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#available-plugins">Available plugins</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#and-so-much-more">And so much more!</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="plugins">Plugins</h1>
-<p>It may not be apparent but Ractive is actually built with extreme extensibility in mind. Plugins allow you to augment Ractive with extra functionality. Whether you're a JavaScript developer, an interface designer or just trying to get away from your framework overlords, Ractive can accomodate one and all.</p>
-<h2 id="available-plugins">Available plugins</h2>
-<h3 id="adaptors"><a href="../../extend/adaptors/">Adaptors</a></h3>
-<p>Interface with different backends.</p>
-<ul>
-<li><a href="https://github.com/ractivejs/ractive-adaptors-backbone">Backbone</a></li>
-<li><a href="http://ractivejs.github.io/ractive-adaptors-bacon/">Bacon.js</a></li>
-<li><a href="https://github.com/staygrimm/ractive-adaptors-modella">Modella</a> by <a href="https://github.com/staygrimm">@staygrimm</a></li>
-<li><a href="http://lluchs.github.io/Ractive-adaptors-Promise/">Promises</a> by <a href="https://github.com/lluchs">@lluchs</a></li>
-<li><a href="https://github.com/rstacruz/ractive-promise-alt">Promise-alt</a> by <a href="https://github.com/rstacruz">@rstacruz</a></li>
-<li><a href="http://ractivejs.github.io/ractive-adaptors-rxjs/">RxJS</a></li>
-<li><a href="https://github.com/rstacruz/ractive-ractive">Ractive</a> by <a href="https://github.com/rstacruz">@rstacruz</a> - Synchronise several Ractive instances.</li>
-<li><a href="https://github.com/arxpoetica/ss-ractive">ss-ractive</a> by Robert Hall <a href="https://github.com/arxpoetica">@arxpoetica</a> - Ractive Template Engine wrapper for <a href="https://github.com/socketstream/socketstream">SocketStream</a>.</li>
-</ul>
-<h3 id="components"><a href="../../extend/components/">Components</a></h3>
-<p>Encapsulate functionality behind the guise of a custom element.</p>
-<ul>
-<li><a href="https://github.com/XavierBoubert/ractive-require">Ractive-Require</a></li>
-<li><a href="http://dagnelies.github.io/ractive-codemirror/">CodeMirror</a></li>
-<li><a href="http://dagnelies.github.io/ractive-bootstrap/">Bootstrap</a></li>
-<li><a href="https://github.com/JonDum/ractive-datatable">Datatable</a></li>
-<li><a href="https://github.com/JonDum/ractive-select">Select</a> - A <code>&lt;select&gt;</code> replacement component.</li>
-<li><a href="https://github.com/JonDum/ractive-stepper">Stepper</a> - A numeric stepper component.</li>
-<li><a href="https://dagnelies.github.io/ractive-split">Split</a></li>
-</ul>
-<h3 id="decorators"><a href="../../extend/decorators/">Decorators</a></h3>
-<p>Augment the DOM with more functionality.</p>
-<ul>
-<li><a href="http://kalcifer.github.io/ractive-decorators-chosen/">Chosen</a> by <a href="https://github.com/rahulcs">@rahulcs</a> (<a href="https://github.com/kalcifer">@kalcifer</a>)</li>
-<li><a href="https://github.com/cfenzo/Ractive-decorators-minmaxwidth">minmaxwidth</a> by <a href="https://github.com/cfenzo">@cfenzo</a></li>
-<li><a href="http://prezent.github.io/ractive-decorators-select2/">Select2</a> by <a href="https://github.com/sandermarechal">@sandermarechal</a> (<a href="https://github.com/Prezent">@Prezent</a>)</li>
-<li><a href="http://ractivejs.github.io/Ractive-decorators-sortable/">Sortable</a></li>
-<li><a href="http://github.com/JonDum/ractive-tooltip">Tooltip</a></li>
-</ul>
-<h3 id="easings"><a href="../../extend/easings/">Easings</a></h3>
-<p>Custom animation progressions.</p>
-<h3 id="events"><a href="../../extend/events/">Events</a></h3>
-<p>Augment the DOM with custom events beyond those supported by the browser.</p>
-<ul>
-<li><a href="https://github.com/Nijikokun/ractive.drag.drop.js">Drag and Drop (HTML5)</a> by <a href="https://github.com/Nijikokun">@Nijikokun</a></li>
-<li><a href="https://github.com/smallhadroncollider/ractive.events.drag">Drag and Drop (non-HTML5)</a> by <a href="https://github.com/smallhadroncollider">@smallhadroncollider</a></li>
-<li><a href="https://github.com/Nijikokun/ractive.sortable.js">Drag and Drop Sortable List</a> by <a href="https://github.com/Nijikokun">@Nijikokun</a></li>
-<li><a href="https://github.com/smallhadroncollider/ractive.events.resize">Resize</a> by <a href="https://github.com/smallhadroncollider">@smallhadroncollider</a></li>
-<li><a href="http://ractivejs.github.io/ractive-events-hover">Hover</a></li>
-<li><a href="http://ractivejs.github.io/ractive-events-keys">Keys</a></li>
-<li><a href="http://ractivejs.github.io/ractive-events-mousewheel">Mousewheel</a></li>
-<li><a href="http://ractivejs.github.io/ractive-events-tap">Tap</a></li>
-<li><a href="https://github.com/rstacruz/ractive-touch">Touch</a> by <a href="https://github.com/rstacruz/">@rstacruz</a></li>
-<li><a href="https://github.com/svapreddy/ractive-events-typing">Typing</a> by <a href="https://github.com/svapreddy">@svapreddy</a></li>
-<li><a href="https://github.com/svapreddy/ractive-event-viewport">Viewport</a> by <a href="https://github.com/svapreddy">@svapreddy</a></li>
-</ul>
-<h3 id="partials"><a href="../../extend/partials/">Partials</a></h3>
-<p>Reusable pieces of markup.</p>
-<h3 id="transitions"><a href="../../extend/transitions/">Transitions</a></h3>
-<p>Apply custom animation.</p>
-<ul>
-<li><a href="http://ractivejs.github.io/ractive-transitions-fade">Fade</a></li>
-<li><a href="http://ractivejs.github.io/ractive-transitions-fly">Fly</a></li>
-<li><a href="https://github.com/1N50MN14/Ractive-transitions-scale">Scale</a> by <a href="https://github.com/1N50MN14">@1N50MN14</a></li>
-<li><a href="http://ractivejs.github.io/ractive-transitions-slide">Slide</a></li>
-<li><a href="http://ractivejs.github.io/ractive-transitions-typewriter">Typewriter</a></li>
-</ul>
-<h2 id="and-so-much-more">And so much more!</h2>
-<p>Due to the nature of how easy it is to write and distribute plugins as well as how diverse the distribution channels are, we cannot possibly know what other Ractive plugins exist in the wild.</p>
-<p>To discover more, try searching your favorite package manager, search engine, or code hosting service for the keyword "ractive". I guarantee you'll be surprised.</p>
-<p><small>Note: Like any other open-source project, these plugins may not have been maintained for a while. Should bugs arise, we highly encourage reporting the issue to relevant parties so that it can be addressed.</small></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/integrations/plugins.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

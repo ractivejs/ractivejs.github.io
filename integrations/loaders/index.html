@@ -25,7 +25,91 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#loaders">Loaders</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#available-loaders">Available loaders</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#looking-to-write-your-own-loader">Looking to write your own loader?</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="loaders">Loaders</h1>
+<p>By itself, neither Ractive nor your tools know what to do with a <a href="../../api/component-files/">component file</a>. You will need a <em>loader</em> to transform a component file into a representation that the target tool or environment can understand.</p>
+<h2 id="available-loaders">Available loaders</h2>
+<h3 id="vanilla">Vanilla</h3>
+<ul>
+<li><a href="https://github.com/ractivejs/ractive-load">ractive-load</a> - Uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XHR</a> to load your component files and creates component constructors at runtime.</li>
+</ul>
+<h3 id="requirejs"><a href="http://requirejs.org/">RequireJS</a></h3>
+<ul>
+<li><a href="https://github.com/ractivejs/rvc">rvc</a> - Converts component files into <a href="http://requirejs.org/docs/api.html">AMD modules</a>. Works with plain and <a href="http://requirejs.org/docs/optimization.html">optimized</a> AMD modules.</li>
+</ul>
+<h3 id="browserify"><a href="http://browserify.org/">Browserify</a></h3>
+<ul>
+<li><a href="https://github.com/marcello3d/node-ractify">ractify</a> - Converts component files into <a href="https://nodejs.org/api/modules.html">CJS modules</a>.</li>
+<li><a href="https://github.com/norcalli/ractiveify">ractiveify</a> - Similar to ractify, but supports JS/CSS compilation.</li>
+<li><a href="https://github.com/blackgate/ractive-componentify">ractive-componentify</a> - Similar to ractiveify, but supports <a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map">source maps</a> and partial imports.</li>
+</ul>
+<h3 id="broccoli"><a href="http://broccolijs.com/">Broccoli</a></h3>
+<ul>
+<li><a href="https://github.com/ractivejs/broccoli-ractive">broccoli-ractive</a> - Converts your component files into either AMD, CJS, or ES modules.</li>
+</ul>
+<h3 id="webpack"><a href="https://webpack.github.io/">Webpack</a></h3>
+<ul>
+<li><a href="https://github.com/thomsbg/ractive-component-loader">ractive-component-loader</a> - Allows you to load component files as constructors via Webpack.</li>
+</ul>
+<h2 id="looking-to-write-your-own-loader">Looking to write your own loader?</h2>
+<p>Head over to the <a href="https://github.com/ractivejs/component-spec">component file specifications</a> repo for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.</p>
+<p>Ractive also has a couple of handy modules to aid you in loader development:</p>
+<ul>
+<li><a href="https://github.com/ractivejs/rcu">rcu</a> - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.</li>
+<li><a href="https://github.com/ractivejs/rcu-builders">rcu-builders</a> - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.</li>
+</ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/integrations/loaders.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +339,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,85 +587,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#loaders">Loaders</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#available-loaders">Available loaders</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#looking-to-write-your-own-loader">Looking to write your own loader?</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="loaders">Loaders</h1>
-<p>By itself, neither Ractive nor your tools know what to do with a <a href="../../api/component-files/">component file</a>. You will need a <em>loader</em> to transform a component file into a representation that the target tool or environment can understand.</p>
-<h2 id="available-loaders">Available loaders</h2>
-<h3 id="vanilla">Vanilla</h3>
-<ul>
-<li><a href="https://github.com/ractivejs/ractive-load">ractive-load</a> - Uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XHR</a> to load your component files and creates component constructors at runtime.</li>
-</ul>
-<h3 id="requirejs"><a href="http://requirejs.org/">RequireJS</a></h3>
-<ul>
-<li><a href="https://github.com/ractivejs/rvc">rvc</a> - Converts component files into <a href="http://requirejs.org/docs/api.html">AMD modules</a>. Works with plain and <a href="http://requirejs.org/docs/optimization.html">optimized</a> AMD modules.</li>
-</ul>
-<h3 id="browserify"><a href="http://browserify.org/">Browserify</a></h3>
-<ul>
-<li><a href="https://github.com/marcello3d/node-ractify">ractify</a> - Converts component files into <a href="https://nodejs.org/api/modules.html">CJS modules</a>.</li>
-<li><a href="https://github.com/norcalli/ractiveify">ractiveify</a> - Similar to ractify, but supports JS/CSS compilation.</li>
-<li><a href="https://github.com/blackgate/ractive-componentify">ractive-componentify</a> - Similar to ractiveify, but supports <a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map">source maps</a> and partial imports.</li>
-</ul>
-<h3 id="broccoli"><a href="http://broccolijs.com/">Broccoli</a></h3>
-<ul>
-<li><a href="https://github.com/ractivejs/broccoli-ractive">broccoli-ractive</a> - Converts your component files into either AMD, CJS, or ES modules.</li>
-</ul>
-<h3 id="webpack"><a href="https://webpack.github.io/">Webpack</a></h3>
-<ul>
-<li><a href="https://github.com/thomsbg/ractive-component-loader">ractive-component-loader</a> - Allows you to load component files as constructors via Webpack.</li>
-</ul>
-<h2 id="looking-to-write-your-own-loader">Looking to write your own loader?</h2>
-<p>Head over to the <a href="https://github.com/ractivejs/component-spec">component file specifications</a> repo for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.</p>
-<p>Ractive also has a couple of handy modules to aid you in loader development:</p>
-<ul>
-<li><a href="https://github.com/ractivejs/rcu">rcu</a> - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.</li>
-<li><a href="https://github.com/ractivejs/rcu-builders">rcu-builders</a> - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.</li>
-</ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/integrations/loaders.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

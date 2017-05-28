@@ -25,7 +25,145 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#decorators">Decorators</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#writing">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#registering">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#using">Using</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#examples">Examples</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="decorators">Decorators</h1>
+<p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">const myDecorator = function(node[, ...args]) {
+  // Setup code
+  return {
+    teardown: function(){
+      // Cleanup code
+    },
+    update: function([...args]){
+      // Update code
+    }
+  };
+};
+</code></pre>
+
+<p>Decorators are simply functions that are called upon to setup the decorator once Ractive detects its use. It takes a <code>node</code> argument and returns an object with a <code>teardown</code> and <code>update</code> property.</p>
+<p><code>node</code> is the element to which the decorator is applied to.</p>
+<p><code>args</code> are optional arguments provided by the decorator directive.</p>
+<p><code>teardown</code> is a function that gets called when the decorator is torn down.</p>
+<p><code>update</code> is an optional function that gets called when the arguments update.</p>
+<p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register decorators:</p>
+<h3 id="globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</h3>
+<pre><code class="js">Ractive.decorators.myDecorator = myDecorator;
+</code></pre>
+
+<h3 id="per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  decorators: { myDecorator }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</h3>
+<pre><code class="js">const ractive = new Ractive({
+  decorators: { myDecorator }
+});
+</code></pre>
+
+<h2 id="using">Using</h2>
+<p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
+<pre><code class="html">&lt;!-- without arguments --&gt;
+&lt;div as-myDecorator&gt;...&lt;/div&gt;
+
+&lt;!-- with arguments --&gt;
+&lt;div as-myDecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<p>The following example builds a decorator that updates the time.</p>
+<pre><code class="js">Ractive.decorators.timer = function(node, time) {
+  node.innerHTML = 'Hello World!';
+
+  return {
+    teardown: function() {
+      node.innerHTML = '';
+    },
+    update: function(time) {
+      node.innerHTML = time;
+    }
+  }
+};
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;span as-timer=&quot;time&quot;&gt;&lt;/span&gt;
+  `,
+  data: {
+    time: 0
+  }
+});
+
+setInterval(function() {
+  ractive.set('time', Date.now())
+}, 1000);
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/decorators.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +393,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,139 +641,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#decorators">Decorators</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#writing">Writing</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#registering">Registering</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#using">Using</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#examples">Examples</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="decorators">Decorators</h1>
-<p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
-<h2 id="writing">Writing</h2>
-<pre><code class="js">const myDecorator = function(node[, ...args]) {
-  // Setup code
-  return {
-    teardown: function(){
-      // Cleanup code
-    },
-    update: function([...args]){
-      // Update code
-    }
-  };
-};
-</code></pre>
-
-<p>Decorators are simply functions that are called upon to setup the decorator once Ractive detects its use. It takes a <code>node</code> argument and returns an object with a <code>teardown</code> and <code>update</code> property.</p>
-<p><code>node</code> is the element to which the decorator is applied to.</p>
-<p><code>args</code> are optional arguments provided by the decorator directive.</p>
-<p><code>teardown</code> is a function that gets called when the decorator is torn down.</p>
-<p><code>update</code> is an optional function that gets called when the arguments update.</p>
-<p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
-<h2 id="registering">Registering</h2>
-<p>Like other plugins, there's 3 ways you can register decorators:</p>
-<h3 id="globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</h3>
-<pre><code class="js">Ractive.decorators.myDecorator = myDecorator;
-</code></pre>
-
-<h3 id="per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</h3>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  decorators: { myDecorator }
-});
-</code></pre>
-
-<h3 id="per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</h3>
-<pre><code class="js">const ractive = new Ractive({
-  decorators: { myDecorator }
-});
-</code></pre>
-
-<h2 id="using">Using</h2>
-<p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
-<pre><code class="html">&lt;!-- without arguments --&gt;
-&lt;div as-myDecorator&gt;...&lt;/div&gt;
-
-&lt;!-- with arguments --&gt;
-&lt;div as-myDecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
-</code></pre>
-
-<h2 id="examples">Examples</h2>
-<p>The following example builds a decorator that updates the time.</p>
-<pre><code class="js">Ractive.decorators.timer = function(node, time) {
-  node.innerHTML = 'Hello World!';
-
-  return {
-    teardown: function() {
-      node.innerHTML = '';
-    },
-    update: function(time) {
-      node.innerHTML = time;
-    }
-  }
-};
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;span as-timer=&quot;time&quot;&gt;&lt;/span&gt;
-  `,
-  data: {
-    time: 0
-  }
-});
-
-setInterval(function() {
-  ractive.set('time', Date.now())
-}, 1000);
-</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/decorators.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

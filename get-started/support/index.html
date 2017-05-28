@@ -25,7 +25,115 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#support">Support</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#getting-in-touch">Getting in touch</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#legacy-versions">Legacy versions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#legacy-browsers">Legacy browsers</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#svgs">SVGs</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="support">Support</h1>
+<h2 id="getting-in-touch">Getting in touch</h2>
+<p>There are a lot of places to find help if you get stuck with Ractive:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/tagged/ractivejs">StackOverflow</a></li>
+<li><a href="http://groups.google.com/forum/#!forum/ractive-js">Google Groups</a></li>
+<li><a href="https://github.com/ractivejs/ractive/issues">GitHub</a></li>
+<li><a href="http://twitter.com/RactiveJS">Twitter</a></li>
+<li><a href="https://gitter.im/ractivejs/ractive">Gitter</a></li>
+</ul>
+<h2 id="legacy-versions">Legacy versions</h2>
+<p>The site currently documents only the latest version of Ractive. Legacy versions are <a href="https://github.com/ractivejs/ractivejs.github.io/tree/dev/legacy">currently stored in Github</a>.</p>
+<h2 id="legacy-browsers">Legacy browsers</h2>
+<p>The core Ractive library requires at least the following APIs need to be present:</p>
+<ul>
+<li><code>Array.isArray</code></li>
+<li><code>Array.prototype.every</code></li>
+<li><code>Array.prototype.filter</code></li>
+<li><code>Array.prototype.forEach</code></li>
+<li><code>Array.prototype.indexOf</code></li>
+<li><code>Array.prototype.map</code></li>
+<li><code>Array.prototype.reduce</code></li>
+<li><code>Date.now</code></li>
+<li><code>Function.prototype.bind</code></li>
+<li><code>Node.prototype.contains</code></li>
+<li><code>Object.create</code></li>
+<li><code>Object.defineProperty</code></li>
+<li><code>Object.freeze</code></li>
+<li><code>Object.keys</code></li>
+<li><code>Promise</code></li>
+<li><code>requestAnimationFrame</code></li>
+<li><code>String.prototype.trim</code></li>
+<li><code>window.addEventListener</code></li>
+<li><code>window.getComputedStyle</code></li>
+</ul>
+<p><a href="https://kangax.github.io/compat-table">Most <em>modern</em> browsers already support these APIs</a>. Should you want to serve your app on older browsers, <a href="https://cdn.jsdelivr.net/npm/ractive/">the Ractive package</a> comes with an optional file called <a href="https://cdn.jsdelivr.net/npm/ractive@0.9.0/polyfills.js"><code>polyfills.js</code></a> containing these specific polyfills. Simply load it up before Ractive. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library.</p>
+<p>In addition, Ractive no longer serves the "legacy build". It is recommended that you integrate <code>polyfills.js</code> in your build should you need to support older browsers. However, if you're pulling the legacy build from a CDN, <a href="https://www.jsdelivr.com">jsDelivr</a> can combine files on the fly. Simply instruct jsDelivr to <a href="https://cdn.jsdelivr.net/combine/npm/ractive/polyfills.min.js,npm/ractive/ractive.min.js">combine <code>polyfills.js</code> with <code>ractive.js</code></a> to get a file similar to the former legacy build.</p>
+<h2 id="svgs">SVGs</h2>
+<p>Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) <em>do</em> care.</p>
+<blockquote>
+<p>This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information</p>
+</blockquote>
+<p>If your template includes SVG and these browsers throw an error along those lines, <a href="http://xkcd.com/601/">the only winning move is not to play</a>. You will need to provide an alternate fallback when SVG isn't supported. Ractive provides <a href="../../api/static-properties/#ractivesvg"><code>Ractive.svg</code></a> to indicate if the browser handles SVGs properly.</p>
+<pre><code class="js">new Ractive({
+  el: 'container',
+  template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent
+});
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/support.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +363,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,109 +611,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#support">Support</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#getting-in-touch">Getting in touch</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#legacy-versions">Legacy versions</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#legacy-browsers">Legacy browsers</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#svgs">SVGs</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="support">Support</h1>
-<h2 id="getting-in-touch">Getting in touch</h2>
-<p>There are a lot of places to find help if you get stuck with Ractive:</p>
-<ul>
-<li><a href="http://stackoverflow.com/questions/tagged/ractivejs">StackOverflow</a></li>
-<li><a href="http://groups.google.com/forum/#!forum/ractive-js">Google Groups</a></li>
-<li><a href="https://github.com/ractivejs/ractive/issues">GitHub</a></li>
-<li><a href="http://twitter.com/RactiveJS">Twitter</a></li>
-<li><a href="https://gitter.im/ractivejs/ractive">Gitter</a></li>
-</ul>
-<h2 id="legacy-versions">Legacy versions</h2>
-<p>The site currently documents only the latest version of Ractive. Legacy versions are <a href="https://github.com/ractivejs/ractivejs.github.io/tree/dev/legacy">currently stored in Github</a>.</p>
-<h2 id="legacy-browsers">Legacy browsers</h2>
-<p>The core Ractive library requires at least the following APIs need to be present:</p>
-<ul>
-<li><code>Array.isArray</code></li>
-<li><code>Array.prototype.every</code></li>
-<li><code>Array.prototype.filter</code></li>
-<li><code>Array.prototype.forEach</code></li>
-<li><code>Array.prototype.indexOf</code></li>
-<li><code>Array.prototype.map</code></li>
-<li><code>Array.prototype.reduce</code></li>
-<li><code>Date.now</code></li>
-<li><code>Function.prototype.bind</code></li>
-<li><code>Node.prototype.contains</code></li>
-<li><code>Object.create</code></li>
-<li><code>Object.defineProperty</code></li>
-<li><code>Object.freeze</code></li>
-<li><code>Object.keys</code></li>
-<li><code>Promise</code></li>
-<li><code>requestAnimationFrame</code></li>
-<li><code>String.prototype.trim</code></li>
-<li><code>window.addEventListener</code></li>
-<li><code>window.getComputedStyle</code></li>
-</ul>
-<p><a href="https://kangax.github.io/compat-table">Most <em>modern</em> browsers already support these APIs</a>. Should you want to serve your app on older browsers, <a href="https://cdn.jsdelivr.net/npm/ractive/">the Ractive package</a> comes with an optional file called <a href="https://cdn.jsdelivr.net/npm/ractive@0.9.0/polyfills.js"><code>polyfills.js</code></a> containing these specific polyfills. Simply load it up before Ractive. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library.</p>
-<p>In addition, Ractive no longer serves the "legacy build". It is recommended that you integrate <code>polyfills.js</code> in your build should you need to support older browsers. However, if you're pulling the legacy build from a CDN, <a href="https://www.jsdelivr.com">jsDelivr</a> can combine files on the fly. Simply instruct jsDelivr to <a href="https://cdn.jsdelivr.net/combine/npm/ractive/polyfills.min.js,npm/ractive/ractive.min.js">combine <code>polyfills.js</code> with <code>ractive.js</code></a> to get a file similar to the former legacy build.</p>
-<h2 id="svgs">SVGs</h2>
-<p>Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) <em>do</em> care.</p>
-<blockquote>
-<p>This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information</p>
-</blockquote>
-<p>If your template includes SVG and these browsers throw an error along those lines, <a href="http://xkcd.com/601/">the only winning move is not to play</a>. You will need to provide an alternate fallback when SVG isn't supported. Ractive provides <a href="../../api/static-properties/#ractivesvg"><code>Ractive.svg</code></a> to indicate if the browser handles SVGs properly.</p>
-<pre><code class="js">new Ractive({
-  el: 'container',
-  template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent
-});
-</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/support.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

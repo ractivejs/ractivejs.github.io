@@ -25,7 +25,150 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#transitions">Transitions</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#writing">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#registering">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#using">Using</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#examples">Examples</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="transitions">Transitions</h1>
+<p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">const myTransition = function ( t, params ) {
+  // Manipulate the DOM.
+  // Call t.complete() when completed.
+};
+</code></pre>
+
+<p>Transitions are simply functions that get called to animate a specified element.</p>
+<p><code>t</code> is a <a href="../../api/transition/">transition helper object</a> that aids in the implementation of the transition.</p>
+<p><code>params</code> is the parameters passed in via the transition directive.</p>
+<p>Transitions are expected to be asynchronous. In order to signal Ractive that the transition has completed, the transition must call the <code>t.complete()</code>.</p>
+<p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register transitions:</p>
+<h3 id="globally-via-the-ractivetransitions-static-property">Globally, via the <code>Ractive.transitions</code> static property.</h3>
+<pre><code class="js">Ractive.transitions.myTransition = myTransition;
+</code></pre>
+
+<h3 id="per-component-via-the-components-transitions-initialization-property">Per component, via the component's <code>transitions</code> initialization property.</h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  transitions: { myTransition }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</h3>
+<pre><code class="js">const ractive = new Ractive({
+  transitions: { myTransition }
+});
+</code></pre>
+
+<h2 id="using">Using</h2>
+<p>Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix <code>-in</code>, outro-only (upon removal) using the suffix <code>-out</code>, or both using the suffix <code>-in-out</code>.</p>
+<pre><code class="html">&lt;div myTransition-in&gt;Intro-only&lt;/div&gt;
+&lt;div myTransition-out&gt;Outro-only&lt;/div&gt;
+&lt;div myTransition-in-out&gt;Intro and outro&lt;/div&gt;
+</code></pre>
+
+<p>To pass arguments to the transition, simply provide an expression as the directive's value. This will be passed as the second argument of the transition function.</p>
+<pre><code class="html">&lt;div myTransition-in=&quot;{ /*params */ }&quot;&gt;Intro-only&lt;/div&gt;
+&lt;div myTransition-out=&quot;{ /*params */ }&quot;&gt;Outro-only&lt;/div&gt;
+&lt;div myTransition-in-out=&quot;{ /*params */ }&quot;&gt;Intro and outro&lt;/div&gt;
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<p>The following example demonstrates a "flash" transition which colors the element green upon attachment, and red prior to removal.</p>
+<pre><code class="js">Ractive.transitions.flash = function(t, params) {
+  // Process params and declaring defaults.
+  const options = t.processParams(params, {
+    color: t.isIntro ? '#0f0' : '#f00',
+    duration: 400
+  });
+
+  // The &quot;transition&quot;
+  t.setStyle('color', options.color);
+
+  // Signal Ractive that the transition is complete.
+  setTimeout(t.complete, options.duration);
+};
+
+new Ractive({
+  el: 'body',
+  template: `
+    &lt;button on-click='@this.insert()'&gt;Insert item&lt;/button&gt;
+    &lt;button on-click='@this.remove()'&gt;Remove item&lt;/button&gt;
+    &lt;ul&gt;
+      {{#items}}
+      &lt;li flash-in-out&gt;{{this}}&lt;/li&gt;
+      {{/items}}
+    &lt;/ul&gt;
+  `,
+  data: {
+    items: []
+  },
+  insert() {
+    this.push('items', Date.now());
+  },
+  remove() {
+    this.splice('items', 0, 1);
+  }
+});
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/transitions.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +398,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,144 +646,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#transitions">Transitions</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#writing">Writing</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#registering">Registering</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#using">Using</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#examples">Examples</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="transitions">Transitions</h1>
-<p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
-<h2 id="writing">Writing</h2>
-<pre><code class="js">const myTransition = function ( t, params ) {
-  // Manipulate the DOM.
-  // Call t.complete() when completed.
-};
-</code></pre>
-
-<p>Transitions are simply functions that get called to animate a specified element.</p>
-<p><code>t</code> is a <a href="../../api/transition/">transition helper object</a> that aids in the implementation of the transition.</p>
-<p><code>params</code> is the parameters passed in via the transition directive.</p>
-<p>Transitions are expected to be asynchronous. In order to signal Ractive that the transition has completed, the transition must call the <code>t.complete()</code>.</p>
-<p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
-<h2 id="registering">Registering</h2>
-<p>Like other plugins, there's 3 ways you can register transitions:</p>
-<h3 id="globally-via-the-ractivetransitions-static-property">Globally, via the <code>Ractive.transitions</code> static property.</h3>
-<pre><code class="js">Ractive.transitions.myTransition = myTransition;
-</code></pre>
-
-<h3 id="per-component-via-the-components-transitions-initialization-property">Per component, via the component's <code>transitions</code> initialization property.</h3>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  transitions: { myTransition }
-});
-</code></pre>
-
-<h3 id="per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</h3>
-<pre><code class="js">const ractive = new Ractive({
-  transitions: { myTransition }
-});
-</code></pre>
-
-<h2 id="using">Using</h2>
-<p>Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix <code>-in</code>, outro-only (upon removal) using the suffix <code>-out</code>, or both using the suffix <code>-in-out</code>.</p>
-<pre><code class="html">&lt;div myTransition-in&gt;Intro-only&lt;/div&gt;
-&lt;div myTransition-out&gt;Outro-only&lt;/div&gt;
-&lt;div myTransition-in-out&gt;Intro and outro&lt;/div&gt;
-</code></pre>
-
-<p>To pass arguments to the transition, simply provide an expression as the directive's value. This will be passed as the second argument of the transition function.</p>
-<pre><code class="html">&lt;div myTransition-in=&quot;{ /*params */ }&quot;&gt;Intro-only&lt;/div&gt;
-&lt;div myTransition-out=&quot;{ /*params */ }&quot;&gt;Outro-only&lt;/div&gt;
-&lt;div myTransition-in-out=&quot;{ /*params */ }&quot;&gt;Intro and outro&lt;/div&gt;
-</code></pre>
-
-<h2 id="examples">Examples</h2>
-<p>The following example demonstrates a "flash" transition which colors the element green upon attachment, and red prior to removal.</p>
-<pre><code class="js">Ractive.transitions.flash = function(t, params) {
-  // Process params and declaring defaults.
-  const options = t.processParams(params, {
-    color: t.isIntro ? '#0f0' : '#f00',
-    duration: 400
-  });
-
-  // The &quot;transition&quot;
-  t.setStyle('color', options.color);
-
-  // Signal Ractive that the transition is complete.
-  setTimeout(t.complete, options.duration);
-};
-
-new Ractive({
-  el: 'body',
-  template: `
-    &lt;button on-click='@this.insert()'&gt;Insert item&lt;/button&gt;
-    &lt;button on-click='@this.remove()'&gt;Remove item&lt;/button&gt;
-    &lt;ul&gt;
-      {{#items}}
-      &lt;li flash-in-out&gt;{{this}}&lt;/li&gt;
-      {{/items}}
-    &lt;/ul&gt;
-  `,
-  data: {
-    items: []
-  },
-  insert() {
-    this.push('items', Date.now());
-  },
-  remove() {
-    this.splice('items', 0, 1);
-  }
-});
-</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/transitions.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

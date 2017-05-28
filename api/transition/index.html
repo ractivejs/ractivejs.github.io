@@ -25,7 +25,204 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#transition">Transition</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tanimatestyle">t.animateStyle()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tcomplete">t.complete()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tgetstyle">t.getStyle()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tisintro">t.isIntro</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tname">t.name</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tnode">t.node</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tprocessparams">t.processParams()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#tsetstyle">t.setStyle()</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="transition">Transition</h1>
+<p>The transition object is an object you receive when writing transitions. It has a few properties and methods designed to make creating transitions easier.</p>
+<h2 id="tanimatestyle">t.animateStyle()</h2>
+<p>Animates CSS properties to a certain value.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.animateStyle(prop, value, options[, complete])</code></li>
+<li><code>t.animateStyle(props, options[, complete])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>props (Object)</code>: A map of animation properties and values.</li>
+<li><code>prop (string)</code>: The style to animate.</li>
+<li><code>value (any)</code>: The value to animate it to.</li>
+<li><code>options (Object)</code>: Animation options.</li>
+<li><code>duration (number)</code>: The duration of the animation.</li>
+<li><code>easing (string)</code>: The easing function of the animation.</li>
+<li><code>delay (number)</code>: The number of milliseconds before the animation starts.</li>
+<li><code>[complete] (Function)</code>: A function that is executed when the animation completes, or immediately if no changes were made.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise that resolves when the animation completes.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<h2 id="tcomplete">t.complete()</h2>
+<p>Signals Ractive that the transition is complete.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.complete[noReset])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>[noReset] (boolean)</code>: If <code>true</code>, <a href="#tresetstyle"><code>t.resetStyle()</code></a> is not called. Defaults to <code>false</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(undefined)</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<h2 id="tgetstyle">t.getStyle()</h2>
+<p>Retrieve a CSS property value from <code>t.node</code>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.getStyle(prop)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>prop (string)</code>: An unprefixed CSS property either in camelCase or kebab-case.</li>
+<li><code>prop (Array)</code>: An array of CSS properties.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(string)</code>: The value of the specified style property.</li>
+<li><code>(Object)</code>: A key-value pair of properties and their respective values.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<h2 id="tisintro">t.isIntro</h2>
+<p><em>(boolean)</em></p>
+<p>Should be self-explanatory...</p>
+<h2 id="tname">t.name</h2>
+<p><em>(string)</em></p>
+<p>The name of the transition.</p>
+<h2 id="tnode">t.node</h2>
+<p><em>(Node)</em></p>
+<p>The node that's entering or leaving the DOM</p>
+<h2 id="tprocessparams">t.processParams()</h2>
+<p>Builds a map of parameters whose values are taken from the provided arguments. When used with a single number or string argument, serves as a shorthand for creating a map with a <code>duration</code> property.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.processParams(params[, defaults])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>params (number)</code>: Numeric shorthand for the <code>duration</code> parameter. Expressed in milliseconds.</li>
+<li><code>params (string)</code>: String shorthand for the <code>duration</code> parameter. Valid values are:<ul>
+<li>"fast" - 200ms</li>
+<li>"slow" - 600ms</li>
+<li>Any other string - 400ms</li>
+</ul>
+</li>
+<li><code>params (Object)</code>: A map of parameters and their values.</li>
+<li><code>[defaults] (Object)</code>: A map of parameters and their default values.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>: A map of parameters and their values.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+
+<h2 id="tsetstyle">t.setStyle()</h2>
+<p>Sets a CSS property on <code>t.node</code> to a value.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>t.setStyle(prop, value)</code></li>
+<li><code>t.setStyle(props)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>prop (string)</code>: An unprefixed CSS property either in camelCase or kebab-case.</li>
+<li><code>props (Object)</code>: A key-value pair of CSS properties and their respective values.</li>
+<li><code>value (string)</code>: A valid value for the specified CSS property.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(undefined)</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">// TODO
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/transition.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +452,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,198 +700,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#transition">Transition</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tanimatestyle">t.animateStyle()</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tcomplete">t.complete()</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tgetstyle">t.getStyle()</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tisintro">t.isIntro</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tname">t.name</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tnode">t.node</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tprocessparams">t.processParams()</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#tsetstyle">t.setStyle()</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="transition">Transition</h1>
-<p>The transition object is an object you receive when writing transitions. It has a few properties and methods designed to make creating transitions easier.</p>
-<h2 id="tanimatestyle">t.animateStyle()</h2>
-<p>Animates CSS properties to a certain value.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>t.animateStyle(prop, value, options[, complete])</code></li>
-<li><code>t.animateStyle(props, options[, complete])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>props (Object)</code>: A map of animation properties and values.</li>
-<li><code>prop (string)</code>: The style to animate.</li>
-<li><code>value (any)</code>: The value to animate it to.</li>
-<li><code>options (Object)</code>: Animation options.</li>
-<li><code>duration (number)</code>: The duration of the animation.</li>
-<li><code>easing (string)</code>: The easing function of the animation.</li>
-<li><code>delay (number)</code>: The number of milliseconds before the animation starts.</li>
-<li><code>[complete] (Function)</code>: A function that is executed when the animation completes, or immediately if no changes were made.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(Promise)</code>: A promise that resolves when the animation completes.</li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="js">// TODO
-</code></pre>
-
-<h2 id="tcomplete">t.complete()</h2>
-<p>Signals Ractive that the transition is complete.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>t.complete[noReset])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>[noReset] (boolean)</code>: If <code>true</code>, <a href="#tresetstyle"><code>t.resetStyle()</code></a> is not called. Defaults to <code>false</code>.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(undefined)</code></li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="js">// TODO
-</code></pre>
-
-<h2 id="tgetstyle">t.getStyle()</h2>
-<p>Retrieve a CSS property value from <code>t.node</code>.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>t.getStyle(prop)</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>prop (string)</code>: An unprefixed CSS property either in camelCase or kebab-case.</li>
-<li><code>prop (Array)</code>: An array of CSS properties.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(string)</code>: The value of the specified style property.</li>
-<li><code>(Object)</code>: A key-value pair of properties and their respective values.</li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="js">// TODO
-</code></pre>
-
-<h2 id="tisintro">t.isIntro</h2>
-<p><em>(boolean)</em></p>
-<p>Should be self-explanatory...</p>
-<h2 id="tname">t.name</h2>
-<p><em>(string)</em></p>
-<p>The name of the transition.</p>
-<h2 id="tnode">t.node</h2>
-<p><em>(Node)</em></p>
-<p>The node that's entering or leaving the DOM</p>
-<h2 id="tprocessparams">t.processParams()</h2>
-<p>Builds a map of parameters whose values are taken from the provided arguments. When used with a single number or string argument, serves as a shorthand for creating a map with a <code>duration</code> property.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>t.processParams(params[, defaults])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>params (number)</code>: Numeric shorthand for the <code>duration</code> parameter. Expressed in milliseconds.</li>
-<li><code>params (string)</code>: String shorthand for the <code>duration</code> parameter. Valid values are:<ul>
-<li>"fast" - 200ms</li>
-<li>"slow" - 600ms</li>
-<li>Any other string - 400ms</li>
-</ul>
-</li>
-<li><code>params (Object)</code>: A map of parameters and their values.</li>
-<li><code>[defaults] (Object)</code>: A map of parameters and their default values.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(Object)</code>: A map of parameters and their values.</li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="js">// TODO
-</code></pre>
-
-<h2 id="tsetstyle">t.setStyle()</h2>
-<p>Sets a CSS property on <code>t.node</code> to a value.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>t.setStyle(prop, value)</code></li>
-<li><code>t.setStyle(props)</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>prop (string)</code>: An unprefixed CSS property either in camelCase or kebab-case.</li>
-<li><code>props (Object)</code>: A key-value pair of CSS properties and their respective values.</li>
-<li><code>value (string)</code>: A valid value for the specified CSS property.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(undefined)</code></li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="js">// TODO
-</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/transition.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

@@ -25,7 +25,158 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#events">Events</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#writing">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#registering">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#using">Using</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#examples">Examples</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="events">Events</h1>
+<p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">const myEvent = function(node, fire){
+  // Setup code
+  return {
+    teardown: function(){
+      // Cleanup code
+    }
+  };
+}
+</code></pre>
+
+<p>Events are simply functions that are called to set up the event on a DOM element. The event function accepts two arguments: <code>node</code> and <code>fire</code>, and returns an object containing a <code>teardown</code> property.</p>
+<p><code>node</code> is the element to which the event is being applied.</p>
+<p><code>fire</code> is the function that must be called when the event has taken place. <code>fire</code> takes a single argument, the event object received by handlers. The minimum requirement for the event object is a <code>node</code> property that references DOM node the event is attached to, and an <code>original</code> property which references the native DOM <code>event</code> object supplied by the native handler, if available.</p>
+<p>The event object will be augmented with <code>context</code>, <code>keypath</code> and <code>index</code> properties, whose values depend on the data context the node is in. <code>context</code> references the data context that surrounds the node, <code>keypath</code> is a string that leads to the current data context and <code>index</code> is a number that references the index number of the data, should the data context be in an array.</p>
+<p><code>teardown</code> is a function that gets called once the element is torn down. This allows the event to clean up after itself.</p>
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register events:</p>
+<h3 id="globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</h3>
+<pre><code class="js">Ractive.events.myEvent = myEvent;
+</code></pre>
+
+<h3 id="per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  events: { myEvent }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</h3>
+<pre><code class="js">const ractive = new Ractive({
+  events: { myEvent }
+});
+</code></pre>
+
+<h2 id="using">Using</h2>
+<p>Events use the same <code>on-*</code> attribute syntax as component and DOM events. When Ractive encounters an <code>on-*</code> attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.</p>
+<pre><code class="html">// This will apply the &quot;myEvent&quot; custom event if one is registered.
+// Otherwise, Ractive will think it's a DOM event. You have been warned!
+&lt;span on-myEvent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<p>Here's an example of a "long press" event which fires when the mouse is clicked and held for 1 second.</p>
+<pre><code class="js">// Definition
+Ractive.events.longpress = function(node, fire){
+  let timer = null;
+
+  function clearTimer(){
+    if(timer) clearTimeout(timer);
+    timer = null;
+  }
+
+  function mouseDownHandler(event){
+    clearTimer();
+
+    timer = setTimeout(function(){
+      fire({
+        node: node,
+        original: event
+      });
+    }, 1000);
+  }
+
+  function mouseUpHandler(){
+    clearTimer();
+  }
+
+  node.addEventListener('mousedown', mouseDownHandler);
+  node.addEventListener('mouseup', mouseUpHandler);
+
+  return {
+    teardown: function(){
+      node.removeEventListener('mousedown', mouseDownHandler);
+      node.removeEventListener('mouseup', mouseUpHandler);
+    }
+  };
+};
+
+// Usage:
+new Ractive({
+  el: 'body',
+  template: `
+    &lt;button type=&quot;button&quot; on-longpress=&quot;@this.greetz()&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  greetz: function(){
+    console.log('Hello World!');
+  }
+});
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/events.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +406,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,152 +654,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#events">Events</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#writing">Writing</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#registering">Registering</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#using">Using</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#examples">Examples</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="events">Events</h1>
-<p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
-<h2 id="writing">Writing</h2>
-<pre><code class="js">const myEvent = function(node, fire){
-  // Setup code
-  return {
-    teardown: function(){
-      // Cleanup code
-    }
-  };
-}
-</code></pre>
-
-<p>Events are simply functions that are called to set up the event on a DOM element. The event function accepts two arguments: <code>node</code> and <code>fire</code>, and returns an object containing a <code>teardown</code> property.</p>
-<p><code>node</code> is the element to which the event is being applied.</p>
-<p><code>fire</code> is the function that must be called when the event has taken place. <code>fire</code> takes a single argument, the event object received by handlers. The minimum requirement for the event object is a <code>node</code> property that references DOM node the event is attached to, and an <code>original</code> property which references the native DOM <code>event</code> object supplied by the native handler, if available.</p>
-<p>The event object will be augmented with <code>context</code>, <code>keypath</code> and <code>index</code> properties, whose values depend on the data context the node is in. <code>context</code> references the data context that surrounds the node, <code>keypath</code> is a string that leads to the current data context and <code>index</code> is a number that references the index number of the data, should the data context be in an array.</p>
-<p><code>teardown</code> is a function that gets called once the element is torn down. This allows the event to clean up after itself.</p>
-<h2 id="registering">Registering</h2>
-<p>Like other plugins, there's 3 ways you can register events:</p>
-<h3 id="globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</h3>
-<pre><code class="js">Ractive.events.myEvent = myEvent;
-</code></pre>
-
-<h3 id="per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</h3>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  events: { myEvent }
-});
-</code></pre>
-
-<h3 id="per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</h3>
-<pre><code class="js">const ractive = new Ractive({
-  events: { myEvent }
-});
-</code></pre>
-
-<h2 id="using">Using</h2>
-<p>Events use the same <code>on-*</code> attribute syntax as component and DOM events. When Ractive encounters an <code>on-*</code> attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.</p>
-<pre><code class="html">// This will apply the &quot;myEvent&quot; custom event if one is registered.
-// Otherwise, Ractive will think it's a DOM event. You have been warned!
-&lt;span on-myEvent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
-</code></pre>
-
-<h2 id="examples">Examples</h2>
-<p>Here's an example of a "long press" event which fires when the mouse is clicked and held for 1 second.</p>
-<pre><code class="js">// Definition
-Ractive.events.longpress = function(node, fire){
-  let timer = null;
-
-  function clearTimer(){
-    if(timer) clearTimeout(timer);
-    timer = null;
-  }
-
-  function mouseDownHandler(event){
-    clearTimer();
-
-    timer = setTimeout(function(){
-      fire({
-        node: node,
-        original: event
-      });
-    }, 1000);
-  }
-
-  function mouseUpHandler(){
-    clearTimer();
-  }
-
-  node.addEventListener('mousedown', mouseDownHandler);
-  node.addEventListener('mouseup', mouseUpHandler);
-
-  return {
-    teardown: function(){
-      node.removeEventListener('mousedown', mouseDownHandler);
-      node.removeEventListener('mouseup', mouseUpHandler);
-    }
-  };
-};
-
-// Usage:
-new Ractive({
-  el: 'body',
-  template: `
-    &lt;button type=&quot;button&quot; on-longpress=&quot;@this.greetz()&quot;&gt;Click Me!&lt;/button&gt;
-  `,
-  greetz: function(){
-    console.log('Hello World!');
-  }
-});
-</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/events.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

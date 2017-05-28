@@ -25,7 +25,124 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#hello-world">Hello, world!</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-1">Step 1</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-2">Step 2</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-3">Step 3</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="hello-world">Hello, world!</h1>
+<p>Welcome to the Ractive.js tutorials. This is a set of interactive tutorials which you can take at your own pace. Each tutorial consists of a number of steps – first up is step 1 of the 'Hello world!' tutorial.</p>
+<p>At any time you can start or reset a step by clicking its Start button.</p>
+<h2 id="step-1">Step 1</h2>
+<p><div class="tutorial">
+    <button data-tab="script" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbABIIVKgPZZyAdw8wVJABCLichTjEJaTYQHGF4Tk5yYwRRAFcFLTBiYXJRDyQEX2JcMCyi1QZtcgAjDNwPfkom0qKGyQBaCRQwGXyYfgQYcg8AMyyc8kkGQYFSJnJzS2tyanJBn3IAJQsrUgQACmABci0mFkhyAHIAYlxzhFwrrBOtJUqFS9uFZTUFK4EGAAlABuOz8RJZGAeNI9GEyVrCNoZfzEBgqYTeVowIqTGYjDKSDLkHjFUrkfFUEbjK73ZiPAEQpIzJAUt6-dRFSJSGQ+EplSmssbXH4fBCMyHaGF5fGjYj8VmtAm4IkyUks9li8jc6QjFpgIrOAAqAFkADJnGqYIA">Start</button>
+</div></p>
+<p>Try creating a new Ractive by executing the JavaScript in the script tab of the playground by hitting the &#9654; button on the top right-hand corner of the playground.</p>
+<blockquote>
+<p>In later steps, if you can't get it to work (or if you're just lazy!) you can click the Fix Code button, if there is one available, next to the Start button to insert working code as though you'd followed the instructions exactly.</p>
+<p>Throughout the tutorials, boxes like this will contain technical notes and asides, for the particularly nerdy or curious.</p>
+</blockquote>
+<h2 id="step-2">Step 2</h2>
+<p><div class="tutorial">
+    <button data-tab="html" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbABIIVKgPZZyAdw8wVJABCLichTjEJaTYQHGF4UiZyc0trcmpyfgQfcgAlCytSBAAKYAFyLSYWSHIAcgBiXCqEXFqscq0lVXUEGoaFZTUFWoEMAEoAbgFMIA">Start</button>
+    <button data-tab="script" data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA">Fix Code</button>
+</div></p>
+<p>That's not very exciting. Let's make our template more templatey – replace the hard-coded text in the template with some variables:</p>
+<pre><code class="handlebars">&lt;p&gt;{{greeting}} {{name}}!&lt;/p&gt;
+</code></pre>
+
+<p>Then, add some data to it, by adding a data initialisation option to our code on the script tab so that it looks like this:</p>
+<pre><code class="js">var ractive = new Ractive({
+  target: output,
+  template: template,
+  data: { greeting: 'Hello', name: 'world' }
+});
+</code></pre>
+
+<p>Execute the code (with the &#9654; button). It should look exactly as it did before.</p>
+<h2 id="step-3">Step 3</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA">Start</button>
+</div></p>
+<p>Here's where Ractive differs from other templating libraries. Normally, if you wanted to change the data, you would have to re-render the entire view, which would have the effect of discarding the DOM nodes you'd already created. That's wasteful.</p>
+<p>Instead, we can manipulate views we've already created. Try running this code - click the &#9654; button in the top-right corner:</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA" data-eval="E4QwxgLglgbgpgOgM5wgCgOQHNh1VAOywwBoACDAIQHsCAragV2AwEoBuIA"></div>
+
+<pre><code class="js">ractive.set('greeting', 'Bonjour');
+</code></pre>
+
+<p>And now this:</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA" data-eval="E4QwxgLglgbgpgOgM5wgCgOQHNh1VAOywwBoACDAIQHsCAragV2AwEoBuAKFElkRXQYCIALZxSFCEwhkANnDIjaAE3EcgA"></div>
+
+<pre><code class="js">ractive.set('name', 'tout le monde');
+</code></pre>
+
+<p>Ooh la la! Even better, we could set both properties in one go. Let's do it in Mandarin this time:</p>
+<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA" data-eval="E4QwxgLglgbgpgOgM5wgCgN4CgAEODmwcqUAdvgFw4DkgBvKC+mtQDS46kgC2cV1gaHKAyrtSwBfAJQBuIA"></div>
+
+<pre><code class="js">ractive.set({
+  greeting: '你好',
+  name: '世界'
+});
+</code></pre>
+
+<p>What's happening here is that the contents of the <code>&lt;p&gt;</code> element are split into four text nodes – one for <code>{{greeting}}</code>, one for the comma and space characters, one for <code>{{name}}</code>, and one for the <code>!</code>. Ractive stores references to the nodes that correspond to the variables, and updates them when the data changes, leaving everything else untouched.</p>
+<p>Surgically updating text nodes is much faster than replacing elements, particularly when you only need to change part of your ractive.</p>
+<blockquote>
+<p>Note that due to the way the tutorials interact with the playground, the eval blocks above are actually running after the entire example is reloaded in the output pane. That's why running the last eval before running the next to last eval doesn't leave the Mandarin greeting intact. Under normal circumstances, the entire example wouldn't need to be re-run, which <em>would</em> leave the Mandarin greeting intact.</p>
+</blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/tutorials/hello-world.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +372,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,118 +620,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#hello-world">Hello, world!</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-1">Step 1</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-2">Step 2</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-3">Step 3</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="hello-world">Hello, world!</h1>
-<p>Welcome to the Ractive.js tutorials. This is a set of interactive tutorials which you can take at your own pace. Each tutorial consists of a number of steps – first up is step 1 of the 'Hello world!' tutorial.</p>
-<p>At any time you can start or reset a step by clicking its Start button.</p>
-<h2 id="step-1">Step 1</h2>
-<p><div class="tutorial">
-    <button data-tab="script" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbABIIVKgPZZyAdw8wVJABCLichTjEJaTYQHGF4Tk5yYwRRAFcFLTBiYXJRDyQEX2JcMCyi1QZtcgAjDNwPfkom0qKGyQBaCRQwGXyYfgQYcg8AMyyc8kkGQYFSJnJzS2tyanJBn3IAJQsrUgQACmABci0mFkhyAHIAYlxzhFwrrBOtJUqFS9uFZTUFK4EGAAlABuOz8RJZGAeNI9GEyVrCNoZfzEBgqYTeVowIqTGYjDKSDLkHjFUrkfFUEbjK73ZiPAEQpIzJAUt6-dRFSJSGQ+EplSmssbXH4fBCMyHaGF5fGjYj8VmtAm4IkyUks9li8jc6QjFpgIrOAAqAFkADJnGqYIA">Start</button>
-</div></p>
-<p>Try creating a new Ractive by executing the JavaScript in the script tab of the playground by hitting the &#9654; button on the top right-hand corner of the playground.</p>
-<blockquote>
-<p>In later steps, if you can't get it to work (or if you're just lazy!) you can click the Fix Code button, if there is one available, next to the Start button to insert working code as though you'd followed the instructions exactly.</p>
-<p>Throughout the tutorials, boxes like this will contain technical notes and asides, for the particularly nerdy or curious.</p>
-</blockquote>
-<h2 id="step-2">Step 2</h2>
-<p><div class="tutorial">
-    <button data-tab="html" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbABIIVKgPZZyAdw8wVJABCLichTjEJaTYQHGF4UiZyc0trcmpyfgQfcgAlCytSBAAKYAFyLSYWSHIAcgBiXCqEXFqscq0lVXUEGoaFZTUFWoEMAEoAbgFMIA">Start</button>
-    <button data-tab="script" data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA">Fix Code</button>
-</div></p>
-<p>That's not very exciting. Let's make our template more templatey – replace the hard-coded text in the template with some variables:</p>
-<pre><code class="handlebars">&lt;p&gt;{{greeting}} {{name}}!&lt;/p&gt;
-</code></pre>
-
-<p>Then, add some data to it, by adding a data initialisation option to our code on the script tab so that it looks like this:</p>
-<pre><code class="js">var ractive = new Ractive({
-  target: output,
-  template: template,
-  data: { greeting: 'Hello', name: 'world' }
-});
-</code></pre>
-
-<p>Execute the code (with the &#9654; button). It should look exactly as it did before.</p>
-<h2 id="step-3">Step 3</h2>
-<p><div class="tutorial">
-  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA">Start</button>
-</div></p>
-<p>Here's where Ractive differs from other templating libraries. Normally, if you wanted to change the data, you would have to re-render the entire view, which would have the effect of discarding the DOM nodes you'd already created. That's wasteful.</p>
-<p>Instead, we can manipulate views we've already created. Try running this code - click the &#9654; button in the top-right corner:</p>
-<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA" data-eval="E4QwxgLglgbgpgOgM5wgCgOQHNh1VAOywwBoACDAIQHsCAragV2AwEoBuIA"></div>
-
-<pre><code class="js">ractive.set('greeting', 'Bonjour');
-</code></pre>
-
-<p>And now this:</p>
-<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA" data-eval="E4QwxgLglgbgpgOgM5wgCgOQHNh1VAOywwBoACDAIQHsCAragV2AwEoBuAKFElkRXQYCIALZxSFCEwhkANnDIjaAE3EcgA"></div>
-
-<pre><code class="js">ractive.set('name', 'tout le monde');
-</code></pre>
-
-<p>Ooh la la! Even better, we could set both properties in one go. Let's do it in Mandarin this time:</p>
-<div data-runtutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFJbYMBQwECK-xQZs5F-wMigi+AIRcTkKcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCAAUwALkWkwskOQA5ADEuHWejVjVWkqq6ggNLQrKagqd3UjqDA3A5G4eXiiDABIIKioA9p05QQNNeRswKkiN5BgCGACUANwCmEA" data-eval="E4QwxgLglgbgpgOgM5wgCgN4CgAEODmwcqUAdvgFw4DkgBvKC+mtQDS46kgC2cV1gaHKAyrtSwBfAJQBuIA"></div>
-
-<pre><code class="js">ractive.set({
-  greeting: '你好',
-  name: '世界'
-});
-</code></pre>
-
-<p>What's happening here is that the contents of the <code>&lt;p&gt;</code> element are split into four text nodes – one for <code>{{greeting}}</code>, one for the comma and space characters, one for <code>{{name}}</code>, and one for the <code>!</code>. Ractive stores references to the nodes that correspond to the variables, and updates them when the data changes, leaving everything else untouched.</p>
-<p>Surgically updating text nodes is much faster than replacing elements, particularly when you only need to change part of your ractive.</p>
-<blockquote>
-<p>Note that due to the way the tutorials interact with the playground, the eval blocks above are actually running after the entire example is reloaded in the output pane. That's why running the last eval before running the next to last eval doesn't leave the Mandarin greeting intact. Under normal circumstances, the entire example wouldn't need to be re-run, which <em>would</em> leave the Mandarin greeting intact.</p>
-</blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/tutorials/hello-world.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

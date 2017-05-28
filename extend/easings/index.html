@@ -25,7 +25,108 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#easings">Easings</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#writing">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#registering">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#using">Using</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#examples">Examples</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="easings">Easings</h1>
+<p>Easing functions are used by <code>ractive.animate</code> and some transitions. They describe the animation's progression from start to finish.</p>
+<h2 id="writing">Writing</h2>
+<pre><code class="js">const myEasing = function ( x ) {
+  // Calculation
+  return y;
+};
+</code></pre>
+
+<p>Easing functions are simply functions that accept one argument, a numeric value <code>x</code> between 0 and 1 representing progress along a timeline. The function must return a numeric <code>y</code> value to represent its progression.</p>
+<h2 id="registering">Registering</h2>
+<p>Like other plugins, there's 3 ways you can register an easing function:</p>
+<h3 id="globally-via-the-ractiveeasing-static-property">Globally via the <code>Ractive.easing</code> static property.</h3>
+<pre><code class="js">Ractive.easing.myEasing = myEasing;
+</code></pre>
+
+<h3 id="per-component-via-the-components-easing-initialization-property">Per component via the component's <code>easing</code> initialization property.</h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  easing: { myEasing }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-easing-initialization-property">Per instance, via the instance's <code>easing</code> initialization property.</h3>
+<pre><code class="js">const ractive = new Ractive({
+  easing: { myEasing }
+});
+</code></pre>
+
+<h2 id="using">Using</h2>
+<p>Easing functions don't work alone. They are utilized by <a href="../../api/instance-methods/#ractiveanimate">ractive.animate()</a> and <a href="../transitions/">Transitions</a> to dictate animations.</p>
+<pre><code class="js">ractive.animate('foo.bar', 1, {
+  easing: 'myEasing'
+});
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<p>Here's an <code>elastic</code> easing function taken from <a href="https://github.com/danro">danro</a>'s excellent <a href="https://github.com/danro/easing-js/blob/master/easing.js">easing.js</a> library.</p>
+<pre><code class="js">Ractive.easing.elastic = function ( x ) {
+  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1;
+};
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/easings.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +356,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,102 +604,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#easings">Easings</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#writing">Writing</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#registering">Registering</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#using">Using</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#examples">Examples</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="easings">Easings</h1>
-<p>Easing functions are used by <code>ractive.animate</code> and some transitions. They describe the animation's progression from start to finish.</p>
-<h2 id="writing">Writing</h2>
-<pre><code class="js">const myEasing = function ( x ) {
-  // Calculation
-  return y;
-};
-</code></pre>
-
-<p>Easing functions are simply functions that accept one argument, a numeric value <code>x</code> between 0 and 1 representing progress along a timeline. The function must return a numeric <code>y</code> value to represent its progression.</p>
-<h2 id="registering">Registering</h2>
-<p>Like other plugins, there's 3 ways you can register an easing function:</p>
-<h3 id="globally-via-the-ractiveeasing-static-property">Globally via the <code>Ractive.easing</code> static property.</h3>
-<pre><code class="js">Ractive.easing.myEasing = myEasing;
-</code></pre>
-
-<h3 id="per-component-via-the-components-easing-initialization-property">Per component via the component's <code>easing</code> initialization property.</h3>
-<pre><code class="js">const MyComponent = Ractive.extend({
-  easing: { myEasing }
-});
-</code></pre>
-
-<h3 id="per-instance-via-the-instances-easing-initialization-property">Per instance, via the instance's <code>easing</code> initialization property.</h3>
-<pre><code class="js">const ractive = new Ractive({
-  easing: { myEasing }
-});
-</code></pre>
-
-<h2 id="using">Using</h2>
-<p>Easing functions don't work alone. They are utilized by <a href="../../api/instance-methods/#ractiveanimate">ractive.animate()</a> and <a href="../transitions/">Transitions</a> to dictate animations.</p>
-<pre><code class="js">ractive.animate('foo.bar', 1, {
-  easing: 'myEasing'
-});
-</code></pre>
-
-<h2 id="examples">Examples</h2>
-<p>Here's an <code>elastic</code> easing function taken from <a href="https://github.com/danro">danro</a>'s excellent <a href="https://github.com/danro/easing-js/blob/master/easing.js">easing.js</a> library.</p>
-<pre><code class="js">Ractive.easing.elastic = function ( x ) {
-  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1;
-};
-</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/easings.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

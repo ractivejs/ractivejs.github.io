@@ -25,7 +25,94 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#decorators">Decorators</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-1">Step 1</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-2">Step 2</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="decorators">Decorators</h1>
+<p>If you've worked through the tutorials in order to this point, you may have wondered if there's some sort of hook to let you modify an element as it's created. Well, wonder no more!</p>
+<p>Decorators are plugins, somewhat like custom events and transitions, that are attached to individual elements using a decorator directive. A decorator typically adds some sort of behavior to an element - makes it act like something - the decorator directive begins with <code>as-</code> and the decorator name.</p>
+<h2 id="step-1">Step 1</h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVxEybAJIByReRgIGKldvL8APYyuGDqlMqBMLgM-LgAdFw8fIIOyW4eoQjkwnqixD7kPIncTnZpThnkPsKBAcE5dcSR0bEJSWX8XGIS0mwgOMLwAGYArvyWxIH8WuaiANbI5AAU9UgIWLLkAJTkwOWcnEV1wrijw8PkAO7EoWs2qeVeZzAz+4+4CkxIgVf8kOQxhMrNMVrt3vZIaYjuMfjkzhdrrcwPdyvYMOUMfwsQJSExPBYrKRstQAggruQAEqE6zLd7kLRMFgA1wAYhizAQuFcWAEDIUyjUChZ7KUqnUCB5fKKCFEUXUUWEAPp5HsuDmiyQAPVFk10qxGG2AG4BiBRPBMEA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVxEybAJIByReRgIGKldvL8APYyuGDqlMqBMLgM-LgAdFw8fIIOPOQMwgC0uOaiANbIBq7CeqLEPlk8ruxuHqEI5KUI5T7kPIncTnZpTnUZKsKBAcFNw8SR0bEJSd38XGIS0mwgOMLwAGYArvyWxIH8WnmFSOQAFCNICFiy5ACU5MA9xBvn5ACEocTC8UFXwvctGBvr9Av9yNRHhgANw9HpfH5-BDCADaVAAuhDLghYakel5cFsYIcnnjTJxKK9tIEtuQtsJkBlyAAjYj8Ej8FDkDZRcjUomyG788gAdxpKlO-AQjNidMkSHUjW2uysBzh5PIYECIoQpAQMBuLyB+oQJRGcoVCm5Oz2BxuDXaLSi6l5IuIvnIACt6awyZwKczGrgoockNrDrFTl5xN4FKcRWAEIcHUwUACtvLFer1QomGGRfxINaVftDmcHqT7FWrK8LgjQf80UhMdRW9jAVcVAgrfWkaiMbjqxgesP+KOBKQmJ4LFY9VipSLyAAlGfWM6k8haVPdouuADEMWY3dcWAEm4UyjUCl3B6UqkVJ7PjtEzuDMGERY35HsuQsJyLv4FMgT6jhgdyDvweSzggDbIiiJRlBUKhVGQrjovEwg6F28QviovKQq4zIqFsprQqsICiPAmBAA">Fix Code</button>
+</div></p>
+<p>Starting with something simple, let's make a decorator that tracks certain nodes to which we want a direct reference. First, here's what a decorator looks like:</p>
+<pre><code class="js">function tracked ( node, ...args ) {
+  // do stuff with node
+  // `this` is the Ractive instance
+
+  // return a control handle
+  return {
+    // called when decorator args change
+    function update () {},
+
+    // undo stuff with node
+    function teardown () {}
+  }
+}
+</code></pre>
+
+<p>There's not a <em>whole lot</em> going on there. When the decorator is called, it can do whatever it needs to with the node and return a control handle that lets Ractive tell it when arguments change or tear it down when the node is being unrendered. All we need to do is take an <code>id</code> argument, create a <code>nodes</code> hash on the Ractive instance if there's not already once there, and store the <code>node</code> at the given <code>id</code>. Fill in the missing code and then add decorator directive to the second <code>div</code>.</p>
+<pre><code class="handlebars">&lt;div as-tracked=&quot;'special-div'&quot;&gt;I am the special div.&lt;/div&gt;
+</code></pre>
+
+<p>Then throw a manual style setting at the end of the script just to show everything worked:</p>
+<pre><code class="js">ractive.node['special-div'].style.color = 'blue';
+</code></pre>
+
+<p>While that example is a bit contrived, you can probably see the benefit of using decorators when integrating with third party libraries that focus on adding functionality to a single node, like CodeMirror and Ace editor - in fact, the editors in the playground are handled by an Ace editor decorator.</p>
+<h2 id="step-2">Step 2</h2>
+<p>// TODO: formatting decorator</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/tutorials/decorators.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +342,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,88 +590,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#decorators">Decorators</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-1">Step 1</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-2">Step 2</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="decorators">Decorators</h1>
-<p>If you've worked through the tutorials in order to this point, you may have wondered if there's some sort of hook to let you modify an element as it's created. Well, wonder no more!</p>
-<p>Decorators are plugins, somewhat like custom events and transitions, that are attached to individual elements using a decorator directive. A decorator typically adds some sort of behavior to an element - makes it act like something - the decorator directive begins with <code>as-</code> and the decorator name.</p>
-<h2 id="step-1">Step 1</h2>
-<p><div class="tutorial">
-  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVxEybAJIByReRgIGKldvL8APYyuGDqlMqBMLgM-LgAdFw8fIIOyW4eoQjkwnqixD7kPIncTnZpThnkPsKBAcE5dcSR0bEJSWX8XGIS0mwgOMLwAGYArvyWxIH8WuaiANbI5AAU9UgIWLLkAJTkwOWcnEV1wrijw8PkAO7EoWs2qeVeZzAz+4+4CkxIgVf8kOQxhMrNMVrt3vZIaYjuMfjkzhdrrcwPdyvYMOUMfwsQJSExPBYrKRstQAggruQAEqE6zLd7kLRMFgA1wAYhizAQuFcWAEDIUyjUChZ7KUqnUCB5fKKCFEUXUUWEAPp5HsuDmiyQAPVFk10qxGG2AG4BiBRPBMEA">Start</button>
-  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVxEybAJIByReRgIGKldvL8APYyuGDqlMqBMLgM-LgAdFw8fIIOPOQMwgC0uOaiANbIBq7CeqLEPlk8ruxuHqEI5KUI5T7kPIncTnZpTnUZKsKBAcFNw8SR0bEJSd38XGIS0mwgOMLwAGYArvyWxIH8WnmFSOQAFCNICFiy5ACU5MA9xBvn5ACEocTC8UFXwvctGBvr9Av9yNRHhgANw9HpfH5-BDCADaVAAuhDLghYakel5cFsYIcnnjTJxKK9tIEtuQtsJkBlyAAjYj8Ej8FDkDZRcjUomyG788gAdxpKlO-AQjNidMkSHUjW2uysBzh5PIYECIoQpAQMBuLyB+oQJRGcoVCm5Oz2BxuDXaLSi6l5IuIvnIACt6awyZwKczGrgoockNrDrFTl5xN4FKcRWAEIcHUwUACtvLFer1QomGGRfxINaVftDmcHqT7FWrK8LgjQf80UhMdRW9jAVcVAgrfWkaiMbjqxgesP+KOBKQmJ4LFY9VipSLyAAlGfWM6k8haVPdouuADEMWY3dcWAEm4UyjUCl3B6UqkVJ7PjtEzuDMGERY35HsuQsJyLv4FMgT6jhgdyDvweSzggDbIiiJRlBUKhVGQrjovEwg6F28QviovKQq4zIqFsprQqsICiPAmBAA">Fix Code</button>
-</div></p>
-<p>Starting with something simple, let's make a decorator that tracks certain nodes to which we want a direct reference. First, here's what a decorator looks like:</p>
-<pre><code class="js">function tracked ( node, ...args ) {
-  // do stuff with node
-  // `this` is the Ractive instance
-
-  // return a control handle
-  return {
-    // called when decorator args change
-    function update () {},
-
-    // undo stuff with node
-    function teardown () {}
-  }
-}
-</code></pre>
-
-<p>There's not a <em>whole lot</em> going on there. When the decorator is called, it can do whatever it needs to with the node and return a control handle that lets Ractive tell it when arguments change or tear it down when the node is being unrendered. All we need to do is take an <code>id</code> argument, create a <code>nodes</code> hash on the Ractive instance if there's not already once there, and store the <code>node</code> at the given <code>id</code>. Fill in the missing code and then add decorator directive to the second <code>div</code>.</p>
-<pre><code class="handlebars">&lt;div as-tracked=&quot;'special-div'&quot;&gt;I am the special div.&lt;/div&gt;
-</code></pre>
-
-<p>Then throw a manual style setting at the end of the script just to show everything worked:</p>
-<pre><code class="js">ractive.node['special-div'].style.color = 'blue';
-</code></pre>
-
-<p>While that example is a bit contrived, you can probably see the benefit of using decorators when integrating with third party libraries that focus on adding functionality to a single node, like CodeMirror and Ace editor - in fact, the editors in the playground are handled by an Ace editor decorator.</p>
-<h2 id="step-2">Step 2</h2>
-<p>// TODO: formatting decorator</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/tutorials/decorators.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

@@ -25,7 +25,227 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#ractive-general-overview">Ractive General Overview</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#parser">Parser</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#mustaches">Mustaches</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#expressions">Expressions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#cleanup">Cleanup</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#models">Models</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#rootmodel">RootModel</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#keymodel">KeyModel</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#other-models">Other models</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#model-operations">Model operations</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#virtual-dom">Virtual DOM</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#states">States</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#virtual-dom-items">Virtual DOM Items</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#resolution">Resolution</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#updates">Updates</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="ractive-general-overview">Ractive General Overview</h1>
+<p>There are three major sections in the Ractive source code: The parser which handles template parsing, the models which handle data management and the views which handle the virtual DOM. This document aims to give a breakdown of just what exactly each of these sections do.</p>
+<h2 id="parser">Parser</h2>
+<p>Ractive's parser is reponsible for taking in Mustache-like/Handlebar-like templates. Unlike Mustache and Handlebars, however, it turns them into an <em>AST</em> for use by the runtime. In addition, it also supports a fair amount of ES syntax for use in expressions.</p>
+<p>Each item expressable in Ractive-flavored mustache has its own parsing function that may also be comprised of other parsing functions. Each bit of ES syntax that Ractive understands for expressions also has its own parsing function. The parser starts at the beginning of the template string and starts applying each parsing function in precedence order. Each function will then consume as much of the template as needed to return an item, like an element, a section, a partial, a bit of text, or an interpolator. It may also return nothing. Most items can also contain children, including items of the same type as themselves, and will thus recurse by trying to parse their content.</p>
+<h2 id="mustaches">Mustaches</h2>
+<p>Each type of mustache has its own reader that calls the appropriate expression or reference readers internally. For instance, the partial reader reads the current open mustache delimiter (defaults to <code>{{</code>) followed by a <code>&gt;</code>. It then expects to find a relaxed reference, meaning it may contain dashes and slashes among other usually-forbidden characters. It may then optionally read a context expression or series of alias definitions</p>
+<h2 id="expressions">Expressions</h2>
+<p>The expression readers are set arranged such that they can read valid ES expressions with the correct operator precedence by starting with ternary conditionals and trying different expression types from there. Once the expression tree has been parsed, it is flattened into an expression string and a list of references that are used within that string. If the parsing is done with <code>csp</code> (Content Security Policy) support enabled, then the expression strings are also turned into functions and attached to the output template structure so that the template can be used as-is from a script tag without <code>eval</code>ing.</p>
+<h2 id="cleanup">Cleanup</h2>
+<p>After all of the nodes have been parsed from the template, the template is cleaned up in a process that, among other things, merges adjacent text nodes and forms individual conditional sections out of <code>elseif</code>/<code>else</code> trees.</p>
+<h1 id="models">Models</h1>
+<p>Ractive wraps any data given to it into a tree-like hierarchy of <code>Model</code>. Any data that is rendered into a template will be bound to a <code>Model</code>. Access to read and write data in Ractive is handled through the model hierarchy based on keypaths, which are, generally, a list of object properties that one would need to follow to reach a leaf of the data tree starting from the root. Each key along the keypath has its own corresponding model.</p>
+<p>Models allow entities that depend upon them to register themeselves to receive change notifications when the model value changes. This is how Ractive keeps track of exactly which parts of the view need to be updated when values change.</p>
+<p>All of the data managed by Ractive is represented by its model hierarchy.</p>
+<p>Almost every type of Model is a subclass of <code>Model</code>, so it seems a good place to start. Each model typically has a parent model, a key that is used to access its value from its parent, and a value. Most models also have children of some sort, which are tracked by key such that <code>{ foo: { bar: 'baz' } }</code> would have a model with a <code>childByKey['foo']</code>, which would also have a model at <code>childByKey['bar']</code>. The value of each of the models listed there would be the object containing <code>foo: { bar:</code>baz<code>}</code>, its <code>foo</code> child would be the object <code>bar: 'baz'</code>, and its <code>bar</code> child would be the string <code>'baz'</code>. Where children of a model are other models, dependents (<code>deps</code>) of a model may be anything that wants to be notified of changes, and each model will typically have a number of dependents, too.</p>
+<p>Each model has a unique keypath that is assembled by taking its key and each of its parents keys up to the root and joining them with a <code>.</code>.</p>
+<p>Models are also inherently lazy, meaning their value is not necessarily available when the are created. A value is retrieved from a model using its <code>get</code> method which may have the side effect of computing the value. Once a value has been computed, it is generally cached until a change happens that would cause the cache to be invalidated. In most models, there isn't really an opportunity for that change outside of normal change propagation.</p>
+<h2 id="rootmodel">RootModel</h2>
+<p>Every tree needs a root, and <code>RootModel</code> serves that purpose here. Each Ractive instance gets its own <code>RootModel</code> that is stored at its <code>viewmodel</code> property. This special model is also the storage point for computations and mappings.</p>
+<h2 id="keymodel">KeyModel</h2>
+<p>The last major model remaining is the <code>KeyModel</code>. Instances of this represent indices of arrays and keys of objects during iteration. The key flavor never is immutable, becuase the keys of  objects never change (they may be removed, but that doesn't change the key itself). The index flavor <strong>does</strong> change, but only when the array represented by its parent model is shuffled.</p>
+<h2 id="other-models">Other models</h2>
+<p>There are a few other types of <code>Model</code> in the code, such as the <code>RactiveModel</code>, which represents a Ractive instance, and the <code>GlobalModel</code>, which represents the global object of the current environment a.k.a. <code>window</code> for browsers and <code>global</code> for Node.js.</p>
+<h2 id="model-operations">Model operations</h2>
+<h3 id="change-propagation">Change propagation</h3>
+<p>When a change is supplied to a model, its <code>set</code> method is called, which usually delegates to <code>applyValue</code>. <code>applyValue</code> checks to see that the value has actually changed in some way (hint: setting to the same object or array is considered a change because something may have changed further in), and if it has, it will start change notification for all of the model's children and dependents. If the model has resolvers registered with it trying to get an unresolved value, then this is where the unresolved value will be resolved and the resolver satisfied and cleared. Next, any children will be notified that their parent has had a value change and that they may need to update accordingly, which may trigger further cascades of resolution and change notification. Next, any dependents of the model will be notified that the model has had a value change as their <code>handleChange</code> methods are called. Finally, upstream models (parents) are notified that a change has taken place somewhere among its children.</p>
+<p>The child notification of the propagation is handled by the model's <code>mark</code> method. <code>mark</code> also checks to see that the value has actually changed, and if it has, will notify its children and dependents that it has had a value change. This is also the method called when the user signals that they have changed some data externally by calling <code>ractive.update()</code>.</p>
+<h3 id="shuffling">Shuffling</h3>
+<p>There is a special form of change wherein an array is modified without being swapped out, which is triggered by array methods like <code>splice</code>, <code>push</code>, and <code>pop</code>. When an array modification happens, change propagation takes a special path through the model that allows more precise DOM manipulation rather than throwing all of the DOM out and replacing it with a new result. This is achieved by having the special array method handlers compute which indexes are actually changed and having the array model's deps that can actally handle a shuffle ignore any untouched indices.</p>
+<p>The instance method <code>merge</code> does something similar, but instead of modifying the underlying array, it compares the members of the new supplied array against the model array to compute the index changes. It the swaps in the new array and triggers a shuffle based on the computed index changes.</p>
+<h3 id="adaptation">Adaptation</h3>
+<p>Between the change check and the change propagation during <code>applyValue</code>, there is a step that handles part of adaptation so that external objects with special behaviors, like backbone models, can be used as data sources. An adaptors takes the special object, wraps it up, and returns the wrapper that also has a value that represents the object for consumption by Ractive. Most adaptors also have methods to update values in their source data as well, and those methods are called when an update is applied to an adapted model.</p>
+<h3 id="computations">Computations</h3>
+<p>A computation is exactly what is sounds like: a getter and optional setter function that are used to provide read and optional write access to some non-fixed piece of data. Each computation is stored in the root model <code>computations</code> hash by its keypath. Computations can be created in two places:</p>
+<ol>
+<li>Explicitly when a <code>computed</code> map is passed to a Ractive instantiation or when an entry is later added to a instance's computed map. These may be read/write and have a keypath that mirrors their name.</li>
+<li>Implicitly when an expression is used in a template. These are read-only and have a keypath that is an expanded representation of their expression.</li>
+</ol>
+<p>A computation is also a form of model, so anything that depends on it will subscribe to it as if it were a regular model. Change propagation happens in the same way as a regular model as well.</p>
+<p>Since computations may depend on other bits of data controlled by Ractive, while they are being retrieved, any references to other models will cause the extra references to be <code>capture</code>d. When the computation is complete, the computation will register with each of its captured dependencies so that it will be notified when it needs to invalidate and notify its dependents of the change.</p>
+<h3 id="mappings">Mappings</h3>
+<p>When a Ractive instance has children, typically components, it may supply a handles to its own data to them in the form of mappings. The child instance stores a reference to the parent model at its mapped name and uses it when its dependents request access to keypaths that start with the mapped name. This allows child instances, which may be isolated, to stay in sync with portions of their parents data easily, because the parent still controls the data (single source of truth) and there is no syncing involved. So if a parent has a component <code>&lt;Component foo="{{bar.baz.bat.bippy}}" /&gt;</code>, then the component instance will get a mapping <code>foo</code> that references the parent model at <code>bar.baz.bat.bippy</code>.</p>
+<h1 id="virtual-dom">Virtual DOM</h1>
+<p>Every piece of DOM that Ractive can manage has a corresponding class in the virtual DOM to handle the DOM node, which generally end up being either Elements or Text Nodes. View items are grouped together as Fragments of view, which may then be owned by other fragments or items. At the root of every ractive instance is a Fragment instance that contains its entire virtual DOM tree. Each Ractive template construct has at least one analog in the virtual DOM. The bulk of Ractive's view functionality is implemented in the Section, Interpolator, and Element items, with there being a number of specialized element classes to handle special types of HTML element.</p>
+<p>All virtual DOM items go through roughly the same lifecycle: creation, binding, rendering, bubbling, updating, unrendering, and unbinding. Creation is basically just the constructor call and almost always is immediately followed by binding. Binding is the point at which the item resolves and registers with its data references. Rendering is the point at which the item inserts an actual DOM node into the DOM. Bubbling and updating are the two halves of the update process, which is discussed in the next section. Unrendering is the point at which the item should no longer be present in the DOM, and it often occurs at the same point as unbinding, which is the point at which the item unregisters with the viewmodel and is effectively destroyed.</p>
+<p>There a number of other members, such as events and decorators, and processes, such as change propagation, which are described in detail in the <a href="#virtual-dom">view overview</a>.</p>
+<p>Ractive views are structured virtual DOM trees that are assembled from template AST and manage DOM nodes on the page when they are rendered. Virtual DOM items are grouped together in <code>Fragment</code>s, which contain them, and they may also own <code>Fragment</code>s that contain other items. Each item may contain a reference to a DOM node when rendered, though every item doesn not have a DOM analog.</p>
+<h2 id="states">States</h2>
+<p>Items generally follow a fixed lifecycle.</p>
+<ol>
+<li>Construction - the item is created and knows about its parent and the template chunk from which it was created. Its template may also indicate what its children should look like if it has them.</li>
+<li><code>bind</code> - the item looks up any references is may have and registers with the model(s) that they represent. At this point, the item may create child items and bind them as well.</li>
+<li><code>render</code> - the item may create an actual DOM node and tell its children to create their DOM nodes as necessary. The resulting nodes will be inserted into the document.</li>
+<li><code>unrender</code> - thie item is no longer needed and will be removed from the document immediately or in the near future.</li>
+<li><code>unbind</code> - this typically goes along with <code>unrender</code> and tells the models on which this item depends that they should no longer send change notifications to it.</li>
+</ol>
+<p>There is a sixth floating step <code>rebind</code> that happens any time one dependency models shuffles (and in certain other very special circumstances) that causes the items to re-resolve their models and re-register if necessary.</p>
+<h2 id="virtual-dom-items">Virtual DOM Items</h2>
+<h3 id="text">Text</h3>
+<p>Text is the simplest item. It simply holds a string that it turns into a <code>TextNode</code> when rendered.</p>
+<h3 id="interpolator">Interpolator</h3>
+<p>This is the next simplest item. It resolves a model for its reference or expression and renders the value of the model as a text node if needed. Interpolators don't necessarily render directly, as they may be used for values by other items, such as attributes, mappings, and bindings.</p>
+<h3 id="element">Element</h3>
+<p>An <code>Element</code> represents a DOM element. It also contains a number of other items in the form of <code>Attribute</code>s, <code>Decorator</code>s, <code>Transition</code>s, <code>EventDirective</code>s, and its children in a <code>Fragment</code>.</p>
+<h3 id="attributes">Attributes</h3>
+<p>There are actually several different items that are treated as attributes for <code>Element</code>s, event though only two of them actually may render into the DOM.</p>
+<ul>
+<li><code>Attribute</code>s - maybe obvious, they these represent a DOM attribute on their parent element. There are a number of different handlers for updating attributes depending on the element and attribute name. The <code>updateDelegate</code> for a particular attribute can be found in <code>getUpdateDelegate.js</code>.</li>
+<li><code>ConditionalAttribute</code>s - render as a string and are parsed into actual DOM attributes using a <code>div</code> or an <code>svg</code> depending on their parent element.</li>
+<li><code>Mapping</code>s - when rendered add a mapping to their component, and when unrendered, remove it. These aren't attached to <code>Element</code>s, but instead, are attached to <code>Component</code>s (see below).</li>
+<li><code>EventDirective</code>s - when rendered attach an event listener to their parent, and when unrenedered, remove it. Event parameters are kept in sync with their bindings and are evaluated when the event fires.</li>
+<li><code>BindingDirective</code>s - when rendered and unrendered update their parent element's bindings, if they exist.</li>
+<li><code>Decorator</code>s - when rendered call the named decorator with their parent element, and when unrenedered, remove it. <code>Decorator</code>s also have an update cycle related to their parameters.</li>
+<li><code>Transition</code>s - are a sort of weird case. When rendered, they attach a transition handler to their element, and when the element renders or unrenders, if an appropriate transition handler is registered, will trigger the transition. Transition parameters are also kept in sync with their bindings.</li>
+</ul>
+<h3 id="bindings">Bindings</h3>
+<p>Certain attributes may also trigger a binding to be created on their parent element. For instance, if two-way binding is enabled on the parent element, and the parent element is an <code>input</code>, a <code>value</code> attribute with a single <code>Interpolator</code> as its content will cause a two-way binding to be created between the value of the <code>input</code> and the model of the <code>Interpolator</code>. This binding will handle updating the model when the input <code>value</code> has changed. There are a few other types of bindings for managing check values, content editables, name-bound lists of checkboxes, and other miscellaneous special values.</p>
+<p>A <code>lazy</code> binding directive will cause any associated two-way bindings to fire either after a timeout or on blur, depending on the value of the <code>lazy</code> directive.</p>
+<h3 id="section">Section</h3>
+<p><code>Section</code>s come in many flavors, depending on the chunk of template from which they are created. A section may provide context, be conditional (positive or negative), or be iterative. Generic sections (<code>{{#something}}...{{/}}</code> in template) will adjust their type, to a certain extent, based on the value of their model. A generic section will always provide context in the form of their model. An <code>if</code>-style conditional section, including <code>elseif</code>, <code>else</code>, and <code>unless</code> do not provide context. An <code>each</code> section will always provide context in the form of the current iteration. A <code>with</code> section will always provide context as its model, but it will only render if its model is considered truthy by Ractive, which is pretty much the same as JS truthy except <code>{}</code> and <code>[]</code> are falsey. A generic section will be context/conditional if it is anything other than an array, which will make it iterative.</p>
+<p>Sections that provide context do so by binding their <code>Fragment</code>s with their model so that the reference resolution process can find the appropriate contexts when resolving.</p>
+<h3 id="contextconditional">Context/Conditional</h3>
+<p>Context and conditional sections will render and unrender their child fragment as their model changes truthiness. Conditional sections always stand alone, even it they have <code>elseif</code> or <code>else</code> branches nested within them, because those branches are turned into independent sections during parsing.</p>
+<h3 id="iterative">Iterative</h3>
+<p>If section is designated iterative (<code>{{#each ...}}</code>) or is a general section with an array value resolution, the section will create a special form of fragment for each index or key in the value. The special form <code>RepeatedFragment</code> handles mapping of indices, keys, and references to those to a corresponding model. Iterative sections also have special handling for shuffles so that DOM is not wholesale destroyed and recreated when the array shuffles.</p>
+<p>Iterative sections may supply an alias for their context, so that referencing the iterated value is a little bit easier. See <code>Aliases</code> below for more info, as this is just a slightly specialized form of that.</p>
+<p>Iterative sections may also supply key and/or index aliases so that their keys and/or indices may be referenced by a name from within their child fragments.</p>
+<h3 id="alias">Alias</h3>
+<p>Alias sections simply resolve their models and act as a lookup endpoint for reference resolution. Aliasing happens entirely in the view.</p>
+<h3 id="component">Component</h3>
+<p>A component is a sort-of special form of <code>Element</code> that, instead of creating a DOM element, creates a new Ractive instance. The child instance will be rendered and unrendered in place of the component placeholder in the DOM.</p>
+<p>Any plain <code>Attribute</code>s with a single <code>Interpolator</code> as content in a component's template are turned into <code>Mapping</code>s.</p>
+<h2 id="resolution">Resolution</h2>
+<p>The resolution process for references requires a keypath and a <code>Fragment</code> as a starting point.</p>
+<ol>
+<li>If the reference is a special reference (<code>@index</code>, <code>@this</code>, etc), the appropriate model is looked up and returned.</li>
+<li>If the reference is relative (starts with <code>~/</code>, <code>.</code>, or <code>../</code>) the appropriate base model is retrieved and the rest of the keypath is joined onto it and the resulting model is returned.</li>
+<li>If the reference is non-relative and the base of the keypath is a member of the current context, then the context is joined to the keypath and the resulting model is returned.</li>
+<li>The reference is ambiguous, so the following loop until resolution or no fragments are left, starting with the given fragment:</li>
+<li>If the fragment is an iteration, check to see if there is an index or key alias that matches the root of the reference, and if so, return it.</li>
+<li>If the fragment has aliases, check to see if there is one that matches the root of the reference, and if so, return it.</li>
+<li>If the fragment has context:<ol>
+<li>If the fragment is the root of an instance, note it</li>
+<li>If the context has a child matching the root of the reference:</li>
+<li>If we crossed a component boundary, create an implicit mapping the to the newly discovered model in the current component.</li>
+<li>Return it</li>
+</ol>
+</li>
+<li>If the fragment belongs to a component, use the component's parent fragment and loop.</li>
+<li>Use the fragment's parent and loop.</li>
+</ol>
+<p>The resolution process no longer happens strictly within the vDOM, as the result of <code>Ractive.getContext</code> also uses the target <code>Element</code>'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.</p>
+<h2 id="updates">Updates</h2>
+<p>The <code>runloop</code> controls when the DOM is actually updated and when transitions start in <code>batch</code>es. It also handles resolving promises when transitions have completed and the DOM is completely up to date.</p>
+<p>As changes propagate through the viewmodel, view items are notified of the change through their <code>handleChange</code> method. Most items just set a dirty flag and notify their parent, via their <code>bubble</code> method, that they will need to be updated at the completion of the runloop turn. The root fragment of each instance affected will then register with the runloop. Once the changes are ready to be flushed to the view, each fragment registered with the runloop is called on to update, where the process happens in reverse, with each parent fragment checking to see if there is a change it needs to respond to and propagating the update downward to its children.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/concepts/architecture.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +475,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,221 +723,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#ractive-general-overview">Ractive General Overview</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#parser">Parser</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#mustaches">Mustaches</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#expressions">Expressions</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#cleanup">Cleanup</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item ">
-        <a class="pure-menu-link pure-menu-heading" href="#models">Models</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#rootmodel">RootModel</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#keymodel">KeyModel</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#other-models">Other models</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#model-operations">Model operations</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item ">
-        <a class="pure-menu-link pure-menu-heading" href="#virtual-dom">Virtual DOM</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#states">States</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#virtual-dom-items">Virtual DOM Items</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#resolution">Resolution</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#updates">Updates</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="ractive-general-overview">Ractive General Overview</h1>
-<p>There are three major sections in the Ractive source code: The parser which handles template parsing, the models which handle data management and the views which handle the virtual DOM. This document aims to give a breakdown of just what exactly each of these sections do.</p>
-<h2 id="parser">Parser</h2>
-<p>Ractive's parser is reponsible for taking in Mustache-like/Handlebar-like templates. Unlike Mustache and Handlebars, however, it turns them into an <em>AST</em> for use by the runtime. In addition, it also supports a fair amount of ES syntax for use in expressions.</p>
-<p>Each item expressable in Ractive-flavored mustache has its own parsing function that may also be comprised of other parsing functions. Each bit of ES syntax that Ractive understands for expressions also has its own parsing function. The parser starts at the beginning of the template string and starts applying each parsing function in precedence order. Each function will then consume as much of the template as needed to return an item, like an element, a section, a partial, a bit of text, or an interpolator. It may also return nothing. Most items can also contain children, including items of the same type as themselves, and will thus recurse by trying to parse their content.</p>
-<h2 id="mustaches">Mustaches</h2>
-<p>Each type of mustache has its own reader that calls the appropriate expression or reference readers internally. For instance, the partial reader reads the current open mustache delimiter (defaults to <code>{{</code>) followed by a <code>&gt;</code>. It then expects to find a relaxed reference, meaning it may contain dashes and slashes among other usually-forbidden characters. It may then optionally read a context expression or series of alias definitions</p>
-<h2 id="expressions">Expressions</h2>
-<p>The expression readers are set arranged such that they can read valid ES expressions with the correct operator precedence by starting with ternary conditionals and trying different expression types from there. Once the expression tree has been parsed, it is flattened into an expression string and a list of references that are used within that string. If the parsing is done with <code>csp</code> (Content Security Policy) support enabled, then the expression strings are also turned into functions and attached to the output template structure so that the template can be used as-is from a script tag without <code>eval</code>ing.</p>
-<h2 id="cleanup">Cleanup</h2>
-<p>After all of the nodes have been parsed from the template, the template is cleaned up in a process that, among other things, merges adjacent text nodes and forms individual conditional sections out of <code>elseif</code>/<code>else</code> trees.</p>
-<h1 id="models">Models</h1>
-<p>Ractive wraps any data given to it into a tree-like hierarchy of <code>Model</code>. Any data that is rendered into a template will be bound to a <code>Model</code>. Access to read and write data in Ractive is handled through the model hierarchy based on keypaths, which are, generally, a list of object properties that one would need to follow to reach a leaf of the data tree starting from the root. Each key along the keypath has its own corresponding model.</p>
-<p>Models allow entities that depend upon them to register themeselves to receive change notifications when the model value changes. This is how Ractive keeps track of exactly which parts of the view need to be updated when values change.</p>
-<p>All of the data managed by Ractive is represented by its model hierarchy.</p>
-<p>Almost every type of Model is a subclass of <code>Model</code>, so it seems a good place to start. Each model typically has a parent model, a key that is used to access its value from its parent, and a value. Most models also have children of some sort, which are tracked by key such that <code>{ foo: { bar: 'baz' } }</code> would have a model with a <code>childByKey['foo']</code>, which would also have a model at <code>childByKey['bar']</code>. The value of each of the models listed there would be the object containing <code>foo: { bar:</code>baz<code>}</code>, its <code>foo</code> child would be the object <code>bar: 'baz'</code>, and its <code>bar</code> child would be the string <code>'baz'</code>. Where children of a model are other models, dependents (<code>deps</code>) of a model may be anything that wants to be notified of changes, and each model will typically have a number of dependents, too.</p>
-<p>Each model has a unique keypath that is assembled by taking its key and each of its parents keys up to the root and joining them with a <code>.</code>.</p>
-<p>Models are also inherently lazy, meaning their value is not necessarily available when the are created. A value is retrieved from a model using its <code>get</code> method which may have the side effect of computing the value. Once a value has been computed, it is generally cached until a change happens that would cause the cache to be invalidated. In most models, there isn't really an opportunity for that change outside of normal change propagation.</p>
-<h2 id="rootmodel">RootModel</h2>
-<p>Every tree needs a root, and <code>RootModel</code> serves that purpose here. Each Ractive instance gets its own <code>RootModel</code> that is stored at its <code>viewmodel</code> property. This special model is also the storage point for computations and mappings.</p>
-<h2 id="keymodel">KeyModel</h2>
-<p>The last major model remaining is the <code>KeyModel</code>. Instances of this represent indices of arrays and keys of objects during iteration. The key flavor never is immutable, becuase the keys of  objects never change (they may be removed, but that doesn't change the key itself). The index flavor <strong>does</strong> change, but only when the array represented by its parent model is shuffled.</p>
-<h2 id="other-models">Other models</h2>
-<p>There are a few other types of <code>Model</code> in the code, such as the <code>RactiveModel</code>, which represents a Ractive instance, and the <code>GlobalModel</code>, which represents the global object of the current environment a.k.a. <code>window</code> for browsers and <code>global</code> for Node.js.</p>
-<h2 id="model-operations">Model operations</h2>
-<h3 id="change-propagation">Change propagation</h3>
-<p>When a change is supplied to a model, its <code>set</code> method is called, which usually delegates to <code>applyValue</code>. <code>applyValue</code> checks to see that the value has actually changed in some way (hint: setting to the same object or array is considered a change because something may have changed further in), and if it has, it will start change notification for all of the model's children and dependents. If the model has resolvers registered with it trying to get an unresolved value, then this is where the unresolved value will be resolved and the resolver satisfied and cleared. Next, any children will be notified that their parent has had a value change and that they may need to update accordingly, which may trigger further cascades of resolution and change notification. Next, any dependents of the model will be notified that the model has had a value change as their <code>handleChange</code> methods are called. Finally, upstream models (parents) are notified that a change has taken place somewhere among its children.</p>
-<p>The child notification of the propagation is handled by the model's <code>mark</code> method. <code>mark</code> also checks to see that the value has actually changed, and if it has, will notify its children and dependents that it has had a value change. This is also the method called when the user signals that they have changed some data externally by calling <code>ractive.update()</code>.</p>
-<h3 id="shuffling">Shuffling</h3>
-<p>There is a special form of change wherein an array is modified without being swapped out, which is triggered by array methods like <code>splice</code>, <code>push</code>, and <code>pop</code>. When an array modification happens, change propagation takes a special path through the model that allows more precise DOM manipulation rather than throwing all of the DOM out and replacing it with a new result. This is achieved by having the special array method handlers compute which indexes are actually changed and having the array model's deps that can actally handle a shuffle ignore any untouched indices.</p>
-<p>The instance method <code>merge</code> does something similar, but instead of modifying the underlying array, it compares the members of the new supplied array against the model array to compute the index changes. It the swaps in the new array and triggers a shuffle based on the computed index changes.</p>
-<h3 id="adaptation">Adaptation</h3>
-<p>Between the change check and the change propagation during <code>applyValue</code>, there is a step that handles part of adaptation so that external objects with special behaviors, like backbone models, can be used as data sources. An adaptors takes the special object, wraps it up, and returns the wrapper that also has a value that represents the object for consumption by Ractive. Most adaptors also have methods to update values in their source data as well, and those methods are called when an update is applied to an adapted model.</p>
-<h3 id="computations">Computations</h3>
-<p>A computation is exactly what is sounds like: a getter and optional setter function that are used to provide read and optional write access to some non-fixed piece of data. Each computation is stored in the root model <code>computations</code> hash by its keypath. Computations can be created in two places:</p>
-<ol>
-<li>Explicitly when a <code>computed</code> map is passed to a Ractive instantiation or when an entry is later added to a instance's computed map. These may be read/write and have a keypath that mirrors their name.</li>
-<li>Implicitly when an expression is used in a template. These are read-only and have a keypath that is an expanded representation of their expression.</li>
-</ol>
-<p>A computation is also a form of model, so anything that depends on it will subscribe to it as if it were a regular model. Change propagation happens in the same way as a regular model as well.</p>
-<p>Since computations may depend on other bits of data controlled by Ractive, while they are being retrieved, any references to other models will cause the extra references to be <code>capture</code>d. When the computation is complete, the computation will register with each of its captured dependencies so that it will be notified when it needs to invalidate and notify its dependents of the change.</p>
-<h3 id="mappings">Mappings</h3>
-<p>When a Ractive instance has children, typically components, it may supply a handles to its own data to them in the form of mappings. The child instance stores a reference to the parent model at its mapped name and uses it when its dependents request access to keypaths that start with the mapped name. This allows child instances, which may be isolated, to stay in sync with portions of their parents data easily, because the parent still controls the data (single source of truth) and there is no syncing involved. So if a parent has a component <code>&lt;Component foo="{{bar.baz.bat.bippy}}" /&gt;</code>, then the component instance will get a mapping <code>foo</code> that references the parent model at <code>bar.baz.bat.bippy</code>.</p>
-<h1 id="virtual-dom">Virtual DOM</h1>
-<p>Every piece of DOM that Ractive can manage has a corresponding class in the virtual DOM to handle the DOM node, which generally end up being either Elements or Text Nodes. View items are grouped together as Fragments of view, which may then be owned by other fragments or items. At the root of every ractive instance is a Fragment instance that contains its entire virtual DOM tree. Each Ractive template construct has at least one analog in the virtual DOM. The bulk of Ractive's view functionality is implemented in the Section, Interpolator, and Element items, with there being a number of specialized element classes to handle special types of HTML element.</p>
-<p>All virtual DOM items go through roughly the same lifecycle: creation, binding, rendering, bubbling, updating, unrendering, and unbinding. Creation is basically just the constructor call and almost always is immediately followed by binding. Binding is the point at which the item resolves and registers with its data references. Rendering is the point at which the item inserts an actual DOM node into the DOM. Bubbling and updating are the two halves of the update process, which is discussed in the next section. Unrendering is the point at which the item should no longer be present in the DOM, and it often occurs at the same point as unbinding, which is the point at which the item unregisters with the viewmodel and is effectively destroyed.</p>
-<p>There a number of other members, such as events and decorators, and processes, such as change propagation, which are described in detail in the <a href="#virtual-dom">view overview</a>.</p>
-<p>Ractive views are structured virtual DOM trees that are assembled from template AST and manage DOM nodes on the page when they are rendered. Virtual DOM items are grouped together in <code>Fragment</code>s, which contain them, and they may also own <code>Fragment</code>s that contain other items. Each item may contain a reference to a DOM node when rendered, though every item doesn not have a DOM analog.</p>
-<h2 id="states">States</h2>
-<p>Items generally follow a fixed lifecycle.</p>
-<ol>
-<li>Construction - the item is created and knows about its parent and the template chunk from which it was created. Its template may also indicate what its children should look like if it has them.</li>
-<li><code>bind</code> - the item looks up any references is may have and registers with the model(s) that they represent. At this point, the item may create child items and bind them as well.</li>
-<li><code>render</code> - the item may create an actual DOM node and tell its children to create their DOM nodes as necessary. The resulting nodes will be inserted into the document.</li>
-<li><code>unrender</code> - thie item is no longer needed and will be removed from the document immediately or in the near future.</li>
-<li><code>unbind</code> - this typically goes along with <code>unrender</code> and tells the models on which this item depends that they should no longer send change notifications to it.</li>
-</ol>
-<p>There is a sixth floating step <code>rebind</code> that happens any time one dependency models shuffles (and in certain other very special circumstances) that causes the items to re-resolve their models and re-register if necessary.</p>
-<h2 id="virtual-dom-items">Virtual DOM Items</h2>
-<h3 id="text">Text</h3>
-<p>Text is the simplest item. It simply holds a string that it turns into a <code>TextNode</code> when rendered.</p>
-<h3 id="interpolator">Interpolator</h3>
-<p>This is the next simplest item. It resolves a model for its reference or expression and renders the value of the model as a text node if needed. Interpolators don't necessarily render directly, as they may be used for values by other items, such as attributes, mappings, and bindings.</p>
-<h3 id="element">Element</h3>
-<p>An <code>Element</code> represents a DOM element. It also contains a number of other items in the form of <code>Attribute</code>s, <code>Decorator</code>s, <code>Transition</code>s, <code>EventDirective</code>s, and its children in a <code>Fragment</code>.</p>
-<h3 id="attributes">Attributes</h3>
-<p>There are actually several different items that are treated as attributes for <code>Element</code>s, event though only two of them actually may render into the DOM.</p>
-<ul>
-<li><code>Attribute</code>s - maybe obvious, they these represent a DOM attribute on their parent element. There are a number of different handlers for updating attributes depending on the element and attribute name. The <code>updateDelegate</code> for a particular attribute can be found in <code>getUpdateDelegate.js</code>.</li>
-<li><code>ConditionalAttribute</code>s - render as a string and are parsed into actual DOM attributes using a <code>div</code> or an <code>svg</code> depending on their parent element.</li>
-<li><code>Mapping</code>s - when rendered add a mapping to their component, and when unrendered, remove it. These aren't attached to <code>Element</code>s, but instead, are attached to <code>Component</code>s (see below).</li>
-<li><code>EventDirective</code>s - when rendered attach an event listener to their parent, and when unrenedered, remove it. Event parameters are kept in sync with their bindings and are evaluated when the event fires.</li>
-<li><code>BindingDirective</code>s - when rendered and unrendered update their parent element's bindings, if they exist.</li>
-<li><code>Decorator</code>s - when rendered call the named decorator with their parent element, and when unrenedered, remove it. <code>Decorator</code>s also have an update cycle related to their parameters.</li>
-<li><code>Transition</code>s - are a sort of weird case. When rendered, they attach a transition handler to their element, and when the element renders or unrenders, if an appropriate transition handler is registered, will trigger the transition. Transition parameters are also kept in sync with their bindings.</li>
-</ul>
-<h3 id="bindings">Bindings</h3>
-<p>Certain attributes may also trigger a binding to be created on their parent element. For instance, if two-way binding is enabled on the parent element, and the parent element is an <code>input</code>, a <code>value</code> attribute with a single <code>Interpolator</code> as its content will cause a two-way binding to be created between the value of the <code>input</code> and the model of the <code>Interpolator</code>. This binding will handle updating the model when the input <code>value</code> has changed. There are a few other types of bindings for managing check values, content editables, name-bound lists of checkboxes, and other miscellaneous special values.</p>
-<p>A <code>lazy</code> binding directive will cause any associated two-way bindings to fire either after a timeout or on blur, depending on the value of the <code>lazy</code> directive.</p>
-<h3 id="section">Section</h3>
-<p><code>Section</code>s come in many flavors, depending on the chunk of template from which they are created. A section may provide context, be conditional (positive or negative), or be iterative. Generic sections (<code>{{#something}}...{{/}}</code> in template) will adjust their type, to a certain extent, based on the value of their model. A generic section will always provide context in the form of their model. An <code>if</code>-style conditional section, including <code>elseif</code>, <code>else</code>, and <code>unless</code> do not provide context. An <code>each</code> section will always provide context in the form of the current iteration. A <code>with</code> section will always provide context as its model, but it will only render if its model is considered truthy by Ractive, which is pretty much the same as JS truthy except <code>{}</code> and <code>[]</code> are falsey. A generic section will be context/conditional if it is anything other than an array, which will make it iterative.</p>
-<p>Sections that provide context do so by binding their <code>Fragment</code>s with their model so that the reference resolution process can find the appropriate contexts when resolving.</p>
-<h3 id="contextconditional">Context/Conditional</h3>
-<p>Context and conditional sections will render and unrender their child fragment as their model changes truthiness. Conditional sections always stand alone, even it they have <code>elseif</code> or <code>else</code> branches nested within them, because those branches are turned into independent sections during parsing.</p>
-<h3 id="iterative">Iterative</h3>
-<p>If section is designated iterative (<code>{{#each ...}}</code>) or is a general section with an array value resolution, the section will create a special form of fragment for each index or key in the value. The special form <code>RepeatedFragment</code> handles mapping of indices, keys, and references to those to a corresponding model. Iterative sections also have special handling for shuffles so that DOM is not wholesale destroyed and recreated when the array shuffles.</p>
-<p>Iterative sections may supply an alias for their context, so that referencing the iterated value is a little bit easier. See <code>Aliases</code> below for more info, as this is just a slightly specialized form of that.</p>
-<p>Iterative sections may also supply key and/or index aliases so that their keys and/or indices may be referenced by a name from within their child fragments.</p>
-<h3 id="alias">Alias</h3>
-<p>Alias sections simply resolve their models and act as a lookup endpoint for reference resolution. Aliasing happens entirely in the view.</p>
-<h3 id="component">Component</h3>
-<p>A component is a sort-of special form of <code>Element</code> that, instead of creating a DOM element, creates a new Ractive instance. The child instance will be rendered and unrendered in place of the component placeholder in the DOM.</p>
-<p>Any plain <code>Attribute</code>s with a single <code>Interpolator</code> as content in a component's template are turned into <code>Mapping</code>s.</p>
-<h2 id="resolution">Resolution</h2>
-<p>The resolution process for references requires a keypath and a <code>Fragment</code> as a starting point.</p>
-<ol>
-<li>If the reference is a special reference (<code>@index</code>, <code>@this</code>, etc), the appropriate model is looked up and returned.</li>
-<li>If the reference is relative (starts with <code>~/</code>, <code>.</code>, or <code>../</code>) the appropriate base model is retrieved and the rest of the keypath is joined onto it and the resulting model is returned.</li>
-<li>If the reference is non-relative and the base of the keypath is a member of the current context, then the context is joined to the keypath and the resulting model is returned.</li>
-<li>The reference is ambiguous, so the following loop until resolution or no fragments are left, starting with the given fragment:</li>
-<li>If the fragment is an iteration, check to see if there is an index or key alias that matches the root of the reference, and if so, return it.</li>
-<li>If the fragment has aliases, check to see if there is one that matches the root of the reference, and if so, return it.</li>
-<li>If the fragment has context:<ol>
-<li>If the fragment is the root of an instance, note it</li>
-<li>If the context has a child matching the root of the reference:</li>
-<li>If we crossed a component boundary, create an implicit mapping the to the newly discovered model in the current component.</li>
-<li>Return it</li>
-</ol>
-</li>
-<li>If the fragment belongs to a component, use the component's parent fragment and loop.</li>
-<li>Use the fragment's parent and loop.</li>
-</ol>
-<p>The resolution process no longer happens strictly within the vDOM, as the result of <code>Ractive.getContext</code> also uses the target <code>Element</code>'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.</p>
-<h2 id="updates">Updates</h2>
-<p>The <code>runloop</code> controls when the DOM is actually updated and when transitions start in <code>batch</code>es. It also handles resolving promises when transitions have completed and the DOM is completely up to date.</p>
-<p>As changes propagate through the viewmodel, view items are notified of the change through their <code>handleChange</code> method. Most items just set a dirty flag and notify their parent, via their <code>bubble</code> method, that they will need to be updated at the completion of the runloop turn. The root fragment of each instance affected will then register with the runloop. Once the changes are ready to be flushed to the view, each fragment registered with the runloop is called on to update, where the process happens in reverse, with each parent fragment checking to see if there is a change it needs to respond to and propagating the update downward to its children.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/concepts/architecture.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

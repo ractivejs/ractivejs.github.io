@@ -25,7 +25,122 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#migrating-from-previous-versions">Migrating from previous versions</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#08-to-09">0.8 to 0.9</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#07-to-08">0.7 to 0.8</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="migrating-from-previous-versions">Migrating from previous versions</h1>
+<p>These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the <a href="https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md">changelog</a>.</p>
+<h2 id="08-to-09">0.8 to 0.9</h2>
+<h3 id="removed-deprecations">Removed deprecations</h3>
+<p>0.9 removes any of the remaining deprecations from 0.8, including:</p>
+<ul>
+<li><code>decorator="name:{{arg1}},{{arg2}}</code> directives, to be replaced with <code>as-name="arg1, arg2"</code></li>
+<li><code>intro="name:{{ { arg1: arg1, arg2, arg2 } }}"</code> and the same forms of <code>outro</code> and <code>intro-outro</code> to be replaced with <code>name-in="{ arg1, arg2 }"</code> and the same forms of <code>name-out</code> and <code>name-in-out</code></li>
+<li>The <code>ractive.data</code> getter, to be replaced with <code>ractive.get()</code>, which returns a computed object tree containing virtual keys like mappings, links, and computations. The optional form <code>ractive.get({ virtual: false })</code> will return the raw root object without any virtual keys.</li>
+<li>Lifecycle methods <code>init</code> and <code>beforeInit</code>, to be replaced with lifecycle events or equivalent instance methods. <code>beforeInit</code> corresponds to the <code>construct</code> lifecycle event.</li>
+<li>Partial comments in the form of <code>&lt;!-- {{&gt;myPartial}} --&gt;...&lt;!-- {{/myPartial}} --&gt;</code>, to be replaced with partial blocks <code>{{#partial myPartial}}...{{/partial}}</code></li>
+</ul>
+<h3 id="template-format">Template format</h3>
+<p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.9.</p>
+<h3 id="partial-context">Partial context</h3>
+<p>Any context provided to a partial <code>{{&gt;my-partial context}}</code> is no longer wrapped around the partial but is instead wrapped around the <em>content</em> of the partial. It's a subtle difference that only shows up when the partial name is an expression e.g. <code>{{&gt;.type ~/external.item}}</code>. Before this break, the <code>.type</code> would resolve to <code>~/external.item.type</code>, and now it will resolve to <code>.type</code> on the context in which the partial appears.</p>
+<h3 id="yielding">Yielding</h3>
+<p>Yielding is no longer restricted to inline partials, and each partial may be yielded more than once. You will no longer get a warning if you try to yield an instance or dynamic partial or if you yield the same partial multiple times.</p>
+<h3 id="nointro-inheritance"><code>noIntro</code> inheritance</h3>
+<p>The <code>noIntro</code> setting of an instance that contains components will now apply to the components too, unless those components have their own <code>noIntro</code> setting.</p>
+<h3 id="polyfills">Polyfills</h3>
+<p>There is no longer a <code>legacy</code> build of Ractive.js available. Instead, a separate <code>polyfills</code> library is available that can be included before Ractive.js is loaded, or you can supply your own polyfills, shims, or shams.</p>
+<h3 id="node-registry">Node registry</h3>
+<p>Elements with an <code>id</code> attribute are no longer collected into a <code>nodes</code> map on the Ractive.js instance. If you require similar functionality, it can be achieved in a much more flexible way with a decorator.</p>
+<h3 id="unresolved-references">Unresolved references</h3>
+<p>References that don't resolve are no longer kept in an unresolved state, waiting on an appropriate keypath to pop into existence somewhere in the context hierarchy. Instead, references that don't resolve are immediately resolved in the current context, which tends to be the desired behavior in most circumstances.</p>
+<h3 id="live-queries">Live queries</h3>
+<p>Element and component queries no longer support automatically keeping the resulting array up to date as new matching elements or components are rendered. If you require similar functionality, it can be achieved with a decorator for elements or bubbled lifecycle events for components.</p>
+<h3 id="change-event"><code>change</code> event</h3>
+<p>The <code>change</code> event has been removed and replaced by recursive observers, which are strictly opt-in and can be scoped to a deeper keypath than the root.</p>
+<h3 id="event-reference"><code>event</code> reference</h3>
+<p>The <code>event</code> special reference available to event directives has been deprecated and replaced with three special references:</p>
+<ul>
+<li><code>@context</code>, which is roughly equivalent to <code>event</code>, but with both an <code>event</code> and <code>original</code> key that point to the original event object. This is a <a href="../../api/context/">context object</a>.</li>
+<li><code>@event</code>, which is resolves to the original event that triggered the directive.</li>
+<li><code>@node</code>, which resolves to the element to which the event directive is attached.</li>
+</ul>
+<h3 id="ractivemerge"><code>ractive.merge</code></h3>
+<p><code>ractive.merge</code> has been removed and replaced by an option on <code>ractive.set</code>, <code>{ shuffle: true }</code>, which more accurately reflects what actually happens. <code>merge</code> did not merge data, but instead re-arranged any DOM associated with the elements in the given array to match the order of the array - hence <code>shuffle</code> rather than <code>merge</code>.</p>
+<h3 id="isolation">Isolation</h3>
+<p>Components are now <code>isolated</code> by default. If you need non-<code>isolated</code> components in order to create implicit mappings as data is accessed, you can pass <code>isolated: false</code> to <code>extend</code> when creating the component. If you prefer all components to be non-<code>isolated</code> by default, you can set <code>Ractive.defaults.isolated = false</code>.</p>
+<p>Further, non-<code>isolated</code> components will now create implicit mappings when necessary for <code>set</code> operations, including <code>add</code>, <code>subtract</code>, etc, in addition to <code>get</code> operations. To avoid creating an implicit mapping with a <code>set</code> operation from a non-<code>isolated</code> component, pass <code>{ isolated: true }</code> as an option to the <code>set</code> method.</p>
+<h3 id="magic-and-array-adaptors">Magic and array adaptors</h3>
+<p>The magic and array adaptors are no longer part of Ractive.js core. They may be reappear as independent plugins at some point in the future.</p>
+<h3 id="class-directives"><code>class-</code> directives</h3>
+<p><code>class-</code> directives are now parsed in an expression context like decorator, transition, and event directives, rather than in a string context like attributes and <code>style-</code> directives. This means that mustaches are no longer required for <code>class-</code> directive values, so you should use <code>class-selected=".selected"</code> rather than <code>class-selected="{{.selected}}"</code>.</p>
+<h3 id="getnodeinfo"><code>getNodeInfo</code></h3>
+<p><code>ractive.getNodeInfo</code> has been renamed to <code>ractive.getContext</code>, as has the static version of the function, to more accurately reflect its function. The <code>getNodeInfo</code> alias is deprecated and will be removed in a future version.</p>
+<h3 id="multiple-inheritance">Multiple inheritance</h3>
+<p>Components can no longer inherit from multiple other components at the same level, meaning that <code>Ractive.extend(FirstComponent, SecondComponent)</code> is no longer possible. You can still set up an inheritance hierachy multiple levels deep with <code>Ractive.extend(FirstComponent).extend(SecondComponent)</code>.</p>
+<h2 id="07-to-08">0.7 to 0.8</h2>
+<h3 id="template-format_1">Template format</h3>
+<p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.8.</p>
+<h3 id="ie8">IE8</h3>
+<p>IE8 is no longer supported. If you still need to support IE8, well, we're very, very sorry...</p>
+<h3 id="expressions-and-binding">Expressions and binding</h3>
+<p>Two-way bindings are no longer supported in computed contexts that don't have a <code>set</code>ter, including template expression contexts. This means that <code>{{#each filter(list)}}&lt;input value="{{.name}}" /&gt;{{/each}}</code> is no longer possible. The reasoning behind this change is that the original <code>list.${index}.name</code> is not updated when the binding within the computed context in the <code>each</code> expression is changed. 0.9 adds an instance flag <code>syncComputedChildren</code> that can address this.</p>
+<h3 id="relaxed-partial-names">Relaxed partial names</h3>
+<p>Partial names can now include <code>\</code> characters, which can be problematic if you happen to use division with no spaces arount the <code>/</code> in a partial expression.</p>
+<h3 id="integer-references">Integer references</h3>
+<p>Integers are no longer considered references, even in an array context, meaning that in <code>{{#with [1, 2, 3]}}{{0}}{{/with}}</code> will no longer result in <code>1</code> being rendered. Integers are now stricly considered to integer literals. If you need to reference a specific index in an array context, you can do so with a context specific reference like <code>{{this.0}}</code>.</p>
+<h3 id="array-modification">Array modification</h3>
+<p><code>modifyArrays</code> now defaults to <code>false</code>, so the array adaptor is not applied to arrays automatically as they are added to the instance data. The preferred method of performing array operations is using the <code>splice</code>, <code>push</code>, <code>pop</code>, etc methods on the Ractive.js instance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/migrating.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +370,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,116 +618,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#migrating-from-previous-versions">Migrating from previous versions</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#08-to-09">0.8 to 0.9</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#07-to-08">0.7 to 0.8</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="migrating-from-previous-versions">Migrating from previous versions</h1>
-<p>These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the <a href="https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md">changelog</a>.</p>
-<h2 id="08-to-09">0.8 to 0.9</h2>
-<h3 id="removed-deprecations">Removed deprecations</h3>
-<p>0.9 removes any of the remaining deprecations from 0.8, including:</p>
-<ul>
-<li><code>decorator="name:{{arg1}},{{arg2}}</code> directives, to be replaced with <code>as-name="arg1, arg2"</code></li>
-<li><code>intro="name:{{ { arg1: arg1, arg2, arg2 } }}"</code> and the same forms of <code>outro</code> and <code>intro-outro</code> to be replaced with <code>name-in="{ arg1, arg2 }"</code> and the same forms of <code>name-out</code> and <code>name-in-out</code></li>
-<li>The <code>ractive.data</code> getter, to be replaced with <code>ractive.get()</code>, which returns a computed object tree containing virtual keys like mappings, links, and computations. The optional form <code>ractive.get({ virtual: false })</code> will return the raw root object without any virtual keys.</li>
-<li>Lifecycle methods <code>init</code> and <code>beforeInit</code>, to be replaced with lifecycle events or equivalent instance methods. <code>beforeInit</code> corresponds to the <code>construct</code> lifecycle event.</li>
-<li>Partial comments in the form of <code>&lt;!-- {{&gt;myPartial}} --&gt;...&lt;!-- {{/myPartial}} --&gt;</code>, to be replaced with partial blocks <code>{{#partial myPartial}}...{{/partial}}</code></li>
-</ul>
-<h3 id="template-format">Template format</h3>
-<p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.9.</p>
-<h3 id="partial-context">Partial context</h3>
-<p>Any context provided to a partial <code>{{&gt;my-partial context}}</code> is no longer wrapped around the partial but is instead wrapped around the <em>content</em> of the partial. It's a subtle difference that only shows up when the partial name is an expression e.g. <code>{{&gt;.type ~/external.item}}</code>. Before this break, the <code>.type</code> would resolve to <code>~/external.item.type</code>, and now it will resolve to <code>.type</code> on the context in which the partial appears.</p>
-<h3 id="yielding">Yielding</h3>
-<p>Yielding is no longer restricted to inline partials, and each partial may be yielded more than once. You will no longer get a warning if you try to yield an instance or dynamic partial or if you yield the same partial multiple times.</p>
-<h3 id="nointro-inheritance"><code>noIntro</code> inheritance</h3>
-<p>The <code>noIntro</code> setting of an instance that contains components will now apply to the components too, unless those components have their own <code>noIntro</code> setting.</p>
-<h3 id="polyfills">Polyfills</h3>
-<p>There is no longer a <code>legacy</code> build of Ractive.js available. Instead, a separate <code>polyfills</code> library is available that can be included before Ractive.js is loaded, or you can supply your own polyfills, shims, or shams.</p>
-<h3 id="node-registry">Node registry</h3>
-<p>Elements with an <code>id</code> attribute are no longer collected into a <code>nodes</code> map on the Ractive.js instance. If you require similar functionality, it can be achieved in a much more flexible way with a decorator.</p>
-<h3 id="unresolved-references">Unresolved references</h3>
-<p>References that don't resolve are no longer kept in an unresolved state, waiting on an appropriate keypath to pop into existence somewhere in the context hierarchy. Instead, references that don't resolve are immediately resolved in the current context, which tends to be the desired behavior in most circumstances.</p>
-<h3 id="live-queries">Live queries</h3>
-<p>Element and component queries no longer support automatically keeping the resulting array up to date as new matching elements or components are rendered. If you require similar functionality, it can be achieved with a decorator for elements or bubbled lifecycle events for components.</p>
-<h3 id="change-event"><code>change</code> event</h3>
-<p>The <code>change</code> event has been removed and replaced by recursive observers, which are strictly opt-in and can be scoped to a deeper keypath than the root.</p>
-<h3 id="event-reference"><code>event</code> reference</h3>
-<p>The <code>event</code> special reference available to event directives has been deprecated and replaced with three special references:</p>
-<ul>
-<li><code>@context</code>, which is roughly equivalent to <code>event</code>, but with both an <code>event</code> and <code>original</code> key that point to the original event object. This is a <a href="../../api/context/">context object</a>.</li>
-<li><code>@event</code>, which is resolves to the original event that triggered the directive.</li>
-<li><code>@node</code>, which resolves to the element to which the event directive is attached.</li>
-</ul>
-<h3 id="ractivemerge"><code>ractive.merge</code></h3>
-<p><code>ractive.merge</code> has been removed and replaced by an option on <code>ractive.set</code>, <code>{ shuffle: true }</code>, which more accurately reflects what actually happens. <code>merge</code> did not merge data, but instead re-arranged any DOM associated with the elements in the given array to match the order of the array - hence <code>shuffle</code> rather than <code>merge</code>.</p>
-<h3 id="isolation">Isolation</h3>
-<p>Components are now <code>isolated</code> by default. If you need non-<code>isolated</code> components in order to create implicit mappings as data is accessed, you can pass <code>isolated: false</code> to <code>extend</code> when creating the component. If you prefer all components to be non-<code>isolated</code> by default, you can set <code>Ractive.defaults.isolated = false</code>.</p>
-<p>Further, non-<code>isolated</code> components will now create implicit mappings when necessary for <code>set</code> operations, including <code>add</code>, <code>subtract</code>, etc, in addition to <code>get</code> operations. To avoid creating an implicit mapping with a <code>set</code> operation from a non-<code>isolated</code> component, pass <code>{ isolated: true }</code> as an option to the <code>set</code> method.</p>
-<h3 id="magic-and-array-adaptors">Magic and array adaptors</h3>
-<p>The magic and array adaptors are no longer part of Ractive.js core. They may be reappear as independent plugins at some point in the future.</p>
-<h3 id="class-directives"><code>class-</code> directives</h3>
-<p><code>class-</code> directives are now parsed in an expression context like decorator, transition, and event directives, rather than in a string context like attributes and <code>style-</code> directives. This means that mustaches are no longer required for <code>class-</code> directive values, so you should use <code>class-selected=".selected"</code> rather than <code>class-selected="{{.selected}}"</code>.</p>
-<h3 id="getnodeinfo"><code>getNodeInfo</code></h3>
-<p><code>ractive.getNodeInfo</code> has been renamed to <code>ractive.getContext</code>, as has the static version of the function, to more accurately reflect its function. The <code>getNodeInfo</code> alias is deprecated and will be removed in a future version.</p>
-<h3 id="multiple-inheritance">Multiple inheritance</h3>
-<p>Components can no longer inherit from multiple other components at the same level, meaning that <code>Ractive.extend(FirstComponent, SecondComponent)</code> is no longer possible. You can still set up an inheritance hierachy multiple levels deep with <code>Ractive.extend(FirstComponent).extend(SecondComponent)</code>.</p>
-<h2 id="07-to-08">0.7 to 0.8</h2>
-<h3 id="template-format_1">Template format</h3>
-<p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.8.</p>
-<h3 id="ie8">IE8</h3>
-<p>IE8 is no longer supported. If you still need to support IE8, well, we're very, very sorry...</p>
-<h3 id="expressions-and-binding">Expressions and binding</h3>
-<p>Two-way bindings are no longer supported in computed contexts that don't have a <code>set</code>ter, including template expression contexts. This means that <code>{{#each filter(list)}}&lt;input value="{{.name}}" /&gt;{{/each}}</code> is no longer possible. The reasoning behind this change is that the original <code>list.${index}.name</code> is not updated when the binding within the computed context in the <code>each</code> expression is changed. 0.9 adds an instance flag <code>syncComputedChildren</code> that can address this.</p>
-<h3 id="relaxed-partial-names">Relaxed partial names</h3>
-<p>Partial names can now include <code>\</code> characters, which can be problematic if you happen to use division with no spaces arount the <code>/</code> in a partial expression.</p>
-<h3 id="integer-references">Integer references</h3>
-<p>Integers are no longer considered references, even in an array context, meaning that in <code>{{#with [1, 2, 3]}}{{0}}{{/with}}</code> will no longer result in <code>1</code> being rendered. Integers are now stricly considered to integer literals. If you need to reference a specific index in an array context, you can do so with a context specific reference like <code>{{this.0}}</code>.</p>
-<h3 id="array-modification">Array modification</h3>
-<p><code>modifyArrays</code> now defaults to <code>false</code>, so the array adaptor is not applied to arrays automatically as they are added to the instance data. The preferred method of performing array operations is using the <code>splice</code>, <code>push</code>, <code>pop</code>, etc methods on the Ractive.js instance.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/migrating.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

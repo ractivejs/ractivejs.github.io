@@ -1,150 +1,91 @@
-var playground = (function() {
-  var main = document.querySelector('.main');
-  var div = document.createElement('div');
-  div.id = 'playground-div';
-  div.setAttribute('class', 'min');
-  main.classList.add('max');
+$(function () {
 
-  // buttons
-  var down = document.createElement('span');
-  down.innerHTML = '\u25bc';
-  down.setAttribute('class', 'down-btn');
-  down.setAttribute('id', 'collapse-playground');
-  down.addEventListener('click', function() {
-    if (div.classList.contains('mid')) {
-      div.classList.remove('mid');
-      div.classList.add('min');
-      main.classList.add('max');
-      main.classList.remove('mid');
-    } else if (div.classList.contains('max')) {
-      div.classList.remove('max');
-      div.classList.add('mid');
-      main.classList.add('mid');
-      main.classList.remove('min');
+  var isPlaygroundOpen = false;
+  var main = $('.main');
+  var leftGutter = $('.main__left-gutter');
+  var centerContainer = $('.main__center-container');
+  var sideBarContainer = $('.main__sidebar-container');
+  var contentContainer = $('.main__content-container');
+  var playgroundToggle = $('.playground-toggle');
+  var playgroundContainer = $('.playground-container');
+  var buildFrame = frameBuilder();
+
+  function frameBuilder(){
+    var promise = null;
+    var frame = null;
+
+    return function(){
+      return promise || (promise = $.Deferred(function(deferred){
+        $('<iframe class="playground-frame" src="/playground/?env=docs">')
+          .on('load', function(){ deferred.resolve(this); })
+          .on('error', function(error){ deferred.reject(error); })
+          .appendTo(playgroundContainer)
+      }).promise());
     }
+  }
+
+  function openPlayground() {
+    isPlaygroundOpen = true;
+    main.addClass('main--split');
+    leftGutter.addClass('main__left-gutter--hidden');
+    sideBarContainer.addClass('main__sidebar-container--hidden');
+    centerContainer.removeClass('pure-u-lg-2-3');
+    contentContainer.removeClass('pure-u-md-3-4');
+    playgroundContainer.addClass('playground-container--open');
+    playgroundToggle.addClass('playground-toggle--open');
+  }
+
+  function closePlayground() {
+    isPlaygroundOpen = false;
+    main.removeClass('main--split');
+    leftGutter.removeClass('main__left-gutter--hidden');
+    sideBarContainer.removeClass('main__sidebar-container--hidden');
+    centerContainer.addClass('pure-u-lg-2-3');
+    contentContainer.addClass('pure-u-md-3-4');
+    playgroundContainer.removeClass('playground-container--open');
+    playgroundToggle.removeClass('playground-toggle--open');
+  }
+
+  function getDemoBlockData(el) {
+    return {
+      code: el.getAttribute('data-playground') || el.getAttribute('data-tutorial') || el.getAttribute('data-runtutorial'),
+      tab: el.getAttribute('data-tab'),
+      run: el.getAttribute('data-run'),
+      eval: el.getAttribute('data-eval'),
+    };
+  }
+
+  playgroundToggle.on('click', function () {
+    var action = isPlaygroundOpen ? closePlayground : openPlayground;
+    var result = action.call(null);
+    var promise = buildFrame();
   });
-
-  var up = document.createElement('span');
-  up.innerHTML = '\u25b2';
-  up.setAttribute('class', 'up-btn');
-  up.setAttribute('id', 'expand-playground');
-  up.addEventListener('click', function() {
-    if (!window.playgroundEl) initFrame();
-
-    if (div.classList.contains('mid')) {
-      div.classList.remove('mid');
-      div.classList.add('max');
-      main.classList.add('min');
-      main.classList.remove('mid');
-    } else if (div.classList.contains('min')) {
-      div.classList.remove('min');
-      div.classList.add('mid');
-      main.classList.add('mid');
-      main.classList.remove('max');
-    }
-  });
-  div.appendChild(down);
-  div.appendChild(up);
-
-  document.body.appendChild(div);
-
-  function initFrame(callback) {
-    // frame
-    var frame = document.createElement('iframe');
-    frame.src = '/playground/?env=docs';
-    frame.name = 'embedded playground';
-    if (callback) frame.onload = callback;
-    div.appendChild(frame);
-    window.playgroundEl = div;
-  }
-
-  function offsetTop(el, target) {
-    var y = 0;
-    while (el && el !== target) {
-      y += el.offsetTop;
-      el = el.offsetParent;
-    }
-    return y;
-  }
-
-  function ease(duration, cb) {
-    var start = Date.now();
-    function step() {
-      var t = (Date.now() - start) / duration;
-      cb(t * t * t);
-      if (t < 1) setTimeout(step, 16.667);
-      else cb(1);
-    }
-    step();
-  }
-
-  return function playground(el) {
-    if(!el) return;
-
-    if (!window.playgroundEl) {
-      initFrame(function() {
-        playground(el);
-      });
-    } else {
-      div.classList.remove('min', 'max');
-      div.classList.add('mid');
-      main.classList.remove('min', 'max');
-      main.classList.add('mid');
-
-      var pg = window.playgroundEl.querySelector('iframe').contentWindow;
-      var code = el.getAttribute('data-playground') || el.getAttribute('data-tutorial') || el.getAttribute('data-runtutorial');
-      var tab = el.getAttribute('data-tab');
-      var run = el.getAttribute('data-run');
-      var eval = el.getAttribute('data-eval');
-
-      if (code) pg.postMessage({ code: code, tab: tab, run: run, eval: eval }, '*');
-
-      if (el.getAttribute('data-tutorial')) {
-        setTimeout(function() {
-          var start = main.scrollTop;
-          var mid = start - offsetTop(el, main);
-          var distance = -(mid + 60)
-          ease(500, function(t) {
-            main.scrollTop = start + (t * distance);
-          });
-        }, 210);
-      }
-    }
-  }
-});
-
-$(function(){
 
   // Attach "Run It" link
-  $('[data-playground]').each(function(i, e){
-    var div = $(e);
-    var pre = div.nextAll("pre:first");
+  $('[data-playground], [data-runtutorial]').each(function (i, demoBlock) {
+    var pre = $(demoBlock).nextAll("pre:first");
+    var data = getDemoBlockData(demoBlock);
 
     $('<button type="button" class="run-it">Run It</button>')
       .appendTo(pre)
-      .on('click', playground.bind(null, div))
+      .on('click', function(){
+        var promise = buildFrame().then(function(frame){
+          frame.contentWindow.postMessage(data, '*');
+          openPlayground();
+        })
+      })
+  });
+
+  // Special case for data-tutorial since the data... is also the button.
+  $('[data-tutorial]').on('click', function(event){
+    buildFrame().then(function(frame){
+      frame.contentWindow.postMessage(getDemoBlockData(event.target), '*');
+      openPlayground();
+    });
+
+    $("html, body")
+      .delay( 600 )
+      .animate({ scrollTop: $(event.target).offset().top - 100 });
   });
 
 });
-
-
-// document.querySelectorAll('div[data-runtutorial] ~ pre').forEach(function(el) {
-//   var div = el.previousSibling.previousSibling;
-//   if (div.nodeType === 1 && div.getAttribute('data-runtutorial')) {
-//     el.style.position = 'relative';
-//     var btn = document.createElement('div');
-//     btn.innerHTML = '\u25b6';
-//     btn.setAttribute('class', 'run-in-playground');
-//     btn.setAttribute('title', 'Click to execute this code in the playground.');
-//     btn.addEventListener('click', function(ev) {
-//       playground(div);
-//     });
-//     el.appendChild(btn);
-//   }
-// });
-
-// document.querySelectorAll('[data-tutorial]').forEach(function(el) {
-//   el.addEventListener('click', function(ev) {
-//     playground(el);
-//   });
-// });

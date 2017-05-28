@@ -25,7 +25,217 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#keypath-prefixes">Keypath prefixes</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#current-context">Current context (.)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#parent-keypath">Parent keypath (../)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#parent-context">Parent context (^^/)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#instance-root-context">Instance root context (~/)</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="keypath-prefixes">Keypath prefixes</h1>
+<p>Normally, keypaths are resolved following a <a href="../../concepts/templates/#references">defined routine</a>. But there are times where you want to skip the normal resolution routine and resolve a keypath relative to a specific data context. Keypath prefixes allow you to specify which data context a keypath resolves to, regardless if it resolves to something or not.</p>
+<h2 id="current-context">Current context (<code>.</code>)</h2>
+<p>Resolves the keypath relative to the current data context.</p>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWuAA4CBTbjwDKABQDyegHJiJigLbSYFAB5zTbBjLRMymrWYpkwPe4oD0fiwAKmAIMAgsFLgsTAJKquq+GKbYpmQIZsoc0gjcAAa+ADxI1AB8egCuZLgUSBFeERZkVtZYLMICFSxgRDQswMDxaqwYGIV+JVSlvgMAxCxNLSyjvmzFZQCSTDV1LA0LljZtHV1eFEwA1u2d3b0RA0PqyxgAdOOT0wqKLOtTWyzhIgcTzCNoNcKRaKxfqDF5+FTDZ7vMozYB+FYKApMDAASgA3CAcGR4JggA"></div>
+
+<pre><code class="js">Ractive({
+  target: 'body',
+  data: {
+    spoon: 'SPOON',
+    matrix: {
+        agent: 'Smith'
+      // There is no spoon
+    }
+  },
+  template: `
+    &lt;div&gt;Outside the matrix, you have {{ spoon }}&lt;/div&gt;
+    {{# matrix }}
+      &lt;div&gt;Inside the matrix, you think you have {{ spoon }}.&lt;/div&gt;
+      &lt;div&gt;In reality, there is no {{ ./spoon }}&lt;/div&gt;
+    {{/}}
+  `
+});
+
+// Outside the matrix, you have SPOON
+// Inside the matrix, you think you have SPOON.
+// In reality, there is no
+</code></pre>
+
+<h2 id="parent-keypath">Parent keypath (<code>../</code>)</h2>
+<p>Resolves the keypath relative to the parent data. This prefix can be used more than once to reference ancestors.</p>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWFJNx4wERDhTKjxCyeqIBbORMUNKK3kkNGAjGLNsLNjSZbzFLCxeWrXxgBMjvreZC62pqE+4Zb+tgDMIV4xGE5haaGZbNhmZAhGAA4c0gjcAAbpADxI1AB8AJoCAK4sROpKrMDASkgsGBhVAPS1VHXp3QDELAFG-dlhFjX1Ta3tCJ0ePcrzw6PjTBZeUzO28+kxy2OrbR0UXdt9A3v16cfA07Pn0bFL+zfrTbdXq7EavH4xC6-MhXOoAUVwJCIhXuKAAdBiXmMoZd-i1bht7lsWBihjtnmDsRDYrCAXcHiS0UNSeTBpSDilobT8YCicDSQKmaysRzzLFukMBlCJVKFBYZQtKkwMABKADcIBwZHgmCAA"></div>
+
+<pre><code class="js">Ractive({
+  target: 'body',
+  data: {
+    id: 'reality',
+    dream: {
+        id: 'dream1',
+        dream: {
+            id: 'dream2',
+            dream: {
+                id: 'dream3',
+            }
+        }
+    }
+  },
+  template: `
+    &lt;div&gt;You are in {{ id }}&lt;/div&gt;
+    {{# dream }}
+      &lt;div&gt;You are in {{ id }}&lt;/div&gt;
+      {{# dream }}
+        &lt;div&gt;You are in {{ id }}&lt;/div&gt;
+        {{# dream }}
+          &lt;div&gt;You are in {{ id }}&lt;/div&gt;
+
+          &lt;div&gt;Escaping...&lt;/div&gt;
+          &lt;div&gt;You are in {{ ../id }}&lt;/div&gt;
+          &lt;div&gt;You are in {{ ../../id }}&lt;/div&gt;
+          &lt;div&gt;You are in {{ ../../../id }}&lt;/div&gt;
+        {{/}}
+      {{/}}
+    {{/}}
+  `
+});
+
+// You are in reality
+// You are in dream1
+// You are in dream2
+// You are in dream3
+// Escaping...
+// You are in dream2
+// You are in dream1
+// You are in reality
+</code></pre>
+
+<h2 id="parent-context">Parent context (<code>^^/</code>)</h2>
+<p>While parent keypaths and parent contexts are often the same thing, there are some scenarios in which they are very, very different. For instance, in this horribly contrived example:</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATOmEwDm1pkzA5ACMA9gBMAnvwxNWowuz6MWrZmGEBbaoMLZqimStaDE5ZKPLxOARkXN4hTX34B5AA7UY88sPjZ+zNANWTCDmbV1sPgBtUNYlQ0NjU3NLG2ZgOwc9AQBZamxsZgAJQlR-QOVDEMqVeISjEzMLa1t7R1zqc2JS5gAVanhSctiA0IBdA2rWUmp1V2R5bIADUOBgAGJqEjAwnXy0Cvq19YB3clIdgD8AejVNcOoDkdYAHnNKAD4L6lUNH4ewigUtZmORCmsAHRJJqpCFtR5oF7Xd4fZ7MN5UL5gH7ERAwGADUigmaeCg+Xa6QHJZpWUHg4AAPQZ1yhjWBVjhWQOSJRIzW1zOFyeNX5W2IYGFrBW8DQAEoANwgNBAA"></div>
+
+<pre><code class="js">Ractive({
+  target: 'body',
+  data: {
+    homebase: {
+      building1: { name: 'Operations' }
+    },
+    bases: [
+      {
+        building1: { name: 'Mess Hall' }
+      },
+      {
+        building1: { name: 'Medical Tent' }
+      }
+    ]
+  },
+  template: `
+    {{#each bases}}
+      {{#with ~/homebase}}
+        &lt;div&gt;the home base bulding1 is {{.building1.name}}&lt;/div&gt;
+        &lt;div&gt;the current iteration base building1 is {{^^/.building1.name}}&lt;/div&gt;
+      {{/with}}
+    {{/each}}
+  `
+});
+
+// the home base bulding1 is Operations
+// the current iteration base building1 is Mess Hall
+// the home base bulding1 is Operations
+// the current iteration base building1 is Medical Tent
+</code></pre>
+
+<h2 id="instance-root-context">Instance root context (<code>~/</code>)</h2>
+<p>Resolves the keypath relative to the instance's root data context.</p>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWMAQIC23HgEYxExQAcBMGVxbzFLBmWVqNAJh0K2lg0aImziy5evreAZgdzLzIXYzldJzJgnw0AFkDPKLIMCItk1JSFbF0yBFU9DmkEbgADVOBgAGIWULcWDEzLcwrq2o56zPNmqprDYw7U4K9HNOCAHiRqAD4AUSZcmAomFAA6NbGAekmqKcGkywnpgE0BAFcWIhgEFiWlFVVTYBYAPw2fDs3t3ZGhskOdk7nS7XW7vCovDZtFbvBqfaZ7cZfQEXK43Vhgp6vKFQmEYOE7BFJf5TZHAtF3NSPCHYvpuFY4+4fLbwn5JCobBp7dmchSWbmdFhlJgYACUAG4QDgyPBMEA"></div>
+
+<pre><code class="js">Ractive({
+  target: 'body',
+  data: {
+    room: '1',
+    portal: {
+        room: '2',
+        portal: {
+            room: '3',
+            portal: {
+                room: '4',
+            }
+        }
+    }
+  },
+  template: `
+    {{# portal }}
+        {{# portal }}
+        {{# portal }}
+                &lt;div&gt;Entering...&lt;/div&gt;
+                &lt;div&gt;You are in room {{ ~/room }}&lt;/div&gt;
+                &lt;div&gt;You are in room {{ ~/portal.room }}&lt;/div&gt;
+                &lt;div&gt;You are in room {{ ~/portal.portal.room }}&lt;/div&gt;
+                &lt;div&gt;You are in room {{ ~/portal.portal.portal.room }}&lt;/div&gt;
+            {{/}}
+        {{/}}
+    {{/}}
+  `
+});
+
+// Entering...
+// You are in room 1
+// You are in room 2
+// You are in room 3
+// You are in room 4
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/keypath-prefixes.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +465,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,211 +713,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#keypath-prefixes">Keypath prefixes</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#current-context">Current context (.)</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#parent-keypath">Parent keypath (../)</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#parent-context">Parent context (^^/)</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#instance-root-context">Instance root context (~/)</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="keypath-prefixes">Keypath prefixes</h1>
-<p>Normally, keypaths are resolved following a <a href="../../concepts/templates/#references">defined routine</a>. But there are times where you want to skip the normal resolution routine and resolve a keypath relative to a specific data context. Keypath prefixes allow you to specify which data context a keypath resolves to, regardless if it resolves to something or not.</p>
-<h2 id="current-context">Current context (<code>.</code>)</h2>
-<p>Resolves the keypath relative to the current data context.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWuAA4CBTbjwDKABQDyegHJiJigLbSYFAB5zTbBjLRMymrWYpkwPe4oD0fiwAKmAIMAgsFLgsTAJKquq+GKbYpmQIZsoc0gjcAAa+ADxI1AB8egCuZLgUSBFeERZkVtZYLMICFSxgRDQswMDxaqwYGIV+JVSlvgMAxCxNLSyjvmzFZQCSTDV1LA0LljZtHV1eFEwA1u2d3b0RA0PqyxgAdOOT0wqKLOtTWyzhIgcTzCNoNcKRaKxfqDF5+FTDZ7vMozYB+FYKApMDAASgA3CAcGR4JggA"></div>
-
-<pre><code class="js">Ractive({
-  target: 'body',
-  data: {
-    spoon: 'SPOON',
-    matrix: {
-        agent: 'Smith'
-      // There is no spoon
-    }
-  },
-  template: `
-    &lt;div&gt;Outside the matrix, you have {{ spoon }}&lt;/div&gt;
-    {{# matrix }}
-      &lt;div&gt;Inside the matrix, you think you have {{ spoon }}.&lt;/div&gt;
-      &lt;div&gt;In reality, there is no {{ ./spoon }}&lt;/div&gt;
-    {{/}}
-  `
-});
-
-// Outside the matrix, you have SPOON
-// Inside the matrix, you think you have SPOON.
-// In reality, there is no
-</code></pre>
-
-<h2 id="parent-keypath">Parent keypath (<code>../</code>)</h2>
-<p>Resolves the keypath relative to the parent data. This prefix can be used more than once to reference ancestors.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWFJNx4wERDhTKjxCyeqIBbORMUNKK3kkNGAjGLNsLNjSZbzFLCxeWrXxgBMjvreZC62pqE+4Zb+tgDMIV4xGE5haaGZbNhmZAhGAA4c0gjcAAbpADxI1AB8AJoCAK4sROpKrMDASkgsGBhVAPS1VHXp3QDELAFG-dlhFjX1Ta3tCJ0ePcrzw6PjTBZeUzO28+kxy2OrbR0UXdt9A3v16cfA07Pn0bFL+zfrTbdXq7EavH4xC6-MhXOoAUVwJCIhXuKAAdBiXmMoZd-i1bht7lsWBihjtnmDsRDYrCAXcHiS0UNSeTBpSDilobT8YCicDSQKmaysRzzLFukMBlCJVKFBYZQtKkwMABKADcIBwZHgmCAA"></div>
-
-<pre><code class="js">Ractive({
-  target: 'body',
-  data: {
-    id: 'reality',
-    dream: {
-        id: 'dream1',
-        dream: {
-            id: 'dream2',
-            dream: {
-                id: 'dream3',
-            }
-        }
-    }
-  },
-  template: `
-    &lt;div&gt;You are in {{ id }}&lt;/div&gt;
-    {{# dream }}
-      &lt;div&gt;You are in {{ id }}&lt;/div&gt;
-      {{# dream }}
-        &lt;div&gt;You are in {{ id }}&lt;/div&gt;
-        {{# dream }}
-          &lt;div&gt;You are in {{ id }}&lt;/div&gt;
-
-          &lt;div&gt;Escaping...&lt;/div&gt;
-          &lt;div&gt;You are in {{ ../id }}&lt;/div&gt;
-          &lt;div&gt;You are in {{ ../../id }}&lt;/div&gt;
-          &lt;div&gt;You are in {{ ../../../id }}&lt;/div&gt;
-        {{/}}
-      {{/}}
-    {{/}}
-  `
-});
-
-// You are in reality
-// You are in dream1
-// You are in dream2
-// You are in dream3
-// Escaping...
-// You are in dream2
-// You are in dream1
-// You are in reality
-</code></pre>
-
-<h2 id="parent-context">Parent context (<code>^^/</code>)</h2>
-<p>While parent keypaths and parent contexts are often the same thing, there are some scenarios in which they are very, very different. For instance, in this horribly contrived example:</p>
-<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATOmEwDm1pkzA5ACMA9gBMAnvwxNWowuz6MWrZmGEBbaoMLZqimStaDE5ZKPLxOARkXN4hTX34B5AA7UY88sPjZ+zNANWTCDmbV1sPgBtUNYlQ0NjU3NLG2ZgOwc9AQBZamxsZgAJQlR-QOVDEMqVeISjEzMLa1t7R1zqc2JS5gAVanhSctiA0IBdA2rWUmp1V2R5bIADUOBgAGJqEjAwnXy0Cvq19YB3clIdgD8AejVNcOoDkdYAHnNKAD4L6lUNH4ewigUtZmORCmsAHRJJqpCFtR5oF7Xd4fZ7MN5UL5gH7ERAwGADUigmaeCg+Xa6QHJZpWUHg4AAPQZ1yhjWBVjhWQOSJRIzW1zOFyeNX5W2IYGFrBW8DQAEoANwgNBAA"></div>
-
-<pre><code class="js">Ractive({
-  target: 'body',
-  data: {
-    homebase: {
-      building1: { name: 'Operations' }
-    },
-    bases: [
-      {
-        building1: { name: 'Mess Hall' }
-      },
-      {
-        building1: { name: 'Medical Tent' }
-      }
-    ]
-  },
-  template: `
-    {{#each bases}}
-      {{#with ~/homebase}}
-        &lt;div&gt;the home base bulding1 is {{.building1.name}}&lt;/div&gt;
-        &lt;div&gt;the current iteration base building1 is {{^^/.building1.name}}&lt;/div&gt;
-      {{/with}}
-    {{/each}}
-  `
-});
-
-// the home base bulding1 is Operations
-// the current iteration base building1 is Mess Hall
-// the home base bulding1 is Operations
-// the current iteration base building1 is Medical Tent
-</code></pre>
-
-<h2 id="instance-root-context">Instance root context (<code>~/</code>)</h2>
-<p>Resolves the keypath relative to the instance's root data context.</p>
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWMAQIC23HgEYxExQAcBMGVxbzFLBmWVqNAJh0K2lg0aImziy5evreAZgdzLzIXYzldJzJgnw0AFkDPKLIMCItk1JSFbF0yBFU9DmkEbgADVOBgAGIWULcWDEzLcwrq2o56zPNmqprDYw7U4K9HNOCAHiRqAD4AUSZcmAomFAA6NbGAekmqKcGkywnpgE0BAFcWIhgEFiWlFVVTYBYAPw2fDs3t3ZGhskOdk7nS7XW7vCovDZtFbvBqfaZ7cZfQEXK43Vhgp6vKFQmEYOE7BFJf5TZHAtF3NSPCHYvpuFY4+4fLbwn5JCobBp7dmchSWbmdFhlJgYACUAG4QDgyPBMEA"></div>
-
-<pre><code class="js">Ractive({
-  target: 'body',
-  data: {
-    room: '1',
-    portal: {
-        room: '2',
-        portal: {
-            room: '3',
-            portal: {
-                room: '4',
-            }
-        }
-    }
-  },
-  template: `
-    {{# portal }}
-        {{# portal }}
-        {{# portal }}
-                &lt;div&gt;Entering...&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/room }}&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/portal.room }}&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/portal.portal.room }}&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/portal.portal.portal.room }}&lt;/div&gt;
-            {{/}}
-        {{/}}
-    {{/}}
-  `
-});
-
-// Entering...
-// You are in room 1
-// You are in room 2
-// You are in room 3
-// You are in room 4
-</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/keypath-prefixes.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

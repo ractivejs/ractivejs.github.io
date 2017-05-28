@@ -25,7 +25,133 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="pure-g">
+    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
+    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
+      <div class="pure-g">
+        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+          <div class="main__sidebar">
+            <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#transitions">Transitions</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-1">Step 1</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-2">Step 2</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#step-3">Step 3</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+          </div>
+        </div>
+        <div class="main__content-container pure-u-1 pure-u-md-3-4">
+          <div class="main__content">
+            <h1 id="transitions">Transitions</h1>
+<p>Normally, when an element is rendered, it just sort of gets plonked on the page. With Ractive you have more control.</p>
+<h2 id="step-1">Step 1</h2>
+<div class="tutorial">
+    <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6TgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZuQAggIkFzefz1VZhT8xRLAcCwRCoTCjUrkTRUQKNQIcQI8Ry9ZSaXS4abHAA5Gk0bVE6187j++3In7cAGIor5EqOEA4IjwGQrGivfRQmiKak0ABK7X0AApgF5fctVkpIDQyb8O2s6W3riczhcEN3e8dTudjoPAzQkBctN3W-Ovq6ZRDu7Ch8qMABKADcnwEFc6QisTZ74cNNBs6IEyWxV90j3p1LAOrANH3NFXX1wT8iCEcVcCvMkN1lSMPy-H9jwEA9D0LEASHgPsVjWP9kWOZ4DC0aQUAEbsSAQARjhgeDlS8NNA3-XAbCsXADDMAAvcdGROeCvkoexZgEFBt045FQR0QkUBgCwHyQPELEkCwYG7X4AE4VK43ASFk+TFJsHS1NBeSJBgAxtFmdEuBoAAGIQABYhJVfSYEM7sBCsBA1JIdEYCILSaEoCxyDIhAKK8KiBBoyAqU6GAsPs0TxMky0ZLkhSaF+AB2DLKMwIA">Start</button>
+    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AEjgAwgTCTQ1AgAIQuDFYrnIn5SIgIAFAkHkcGQ6GMRkIpHTFFozG4bG4-HkImkilU2n0gDMLJAdGyhk5jgAggIkALhaKdVYdt9gNLZYDgWCIVCYeb1ciaKixbqBDiBHi+cbKTS6XCrTQbCMOVyAHI0mgGomukXcKOeyXAbgAxFFfIlRwgHBEeAyFY0V76KE0RTUmgAJXa+gAFMAvBHlqslJAaGTfuO1nTR9cTmcLggpzPjqdzscFzGaEgLlopyO918A4qIVPYYuNRgAJQAbk+AnbnSEVkH06TZvT6IEyWxT9dEeelqTAQ0wBoO8aBPL5cHAoghBlXBPzJc8lRTMCIKgp8BHvB8GxAEh4FnFY1hg5FjmeAwtGkFABCnEgEAEY4YFwjUvFLGNYNwGwrFwAwzAALzXRkTlwr5KHsWYBBQK9xORUEdEJFAYAsP8kDxCxJAsGAp1+ABOIyJNwEhtN0-SbCskzQV0iQYAMbRZnRLgaAABiEAAWBTNVsmB7KnAQrAQEySHRGAiAsmhKAsTlWPY58uMgKlOhgCjfOU1T1OdLSdL0mhfgAdmK9jMCAA">Fix Code</button>
+</div>
+
+<p>You can specify intro transitions:</p>
+<pre><code class="handlebars">&lt;div fade-in&gt;
+  This div will fade into view
+&lt;/div&gt;
+</code></pre>
+
+<p>Try adding intros to the three buttons in the template, choosing from <code>fade</code>, <code>slide</code> and <code>fly</code>, which have been included on this page.</p>
+<blockquote>
+<p>As with custom events, transitions are distributed as plugins, <a href="../../../integrations/plugins">which you can download here</a> to use in your project. You can <a href="../../../extend/transitions">create your own transitions</a>.</p>
+<p>Where possible, Ractive uses CSS transitions, but in older browsers it will fall back to timer-based animation.</p>
+</blockquote>
+<h2 id="step-2">Step 2</h2>
+<p><div class="tutorial">
+    <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AEjgAwgTCTQ1AgAIQuDFYrnIn5SIgIAFAkHkcGQ6GMRkIpHTFFozG4bG4-HkImkilU2n0gDMLJAdGyhk5jgAggIkALhaKdVYdt9gNLZYDgWCIVCYeb1ciaKixbqBDiBHi+cbKTS6XCrTQbCMOVyAHI0mgGomukXcKOeyXAbgAxFFfIlRwgHBEeAyFY0V76KE0RTUmgAJXa+gAFMAvBHlqslJAaGTfuO1nTR9cTmcLggpzPjqdzscFzGaEgLlopyO918A4qIVPYYuNRgAJQAbk+AnbnSEVkH06TZvT6IEyWxT9dEeelqTAQ0wBoO8aBPL5cHAoghBlXBPzJc8lRTMCIKgp8BHvB8GxAEh4FnFY1hg5FjmeAwtGkFABCnEgEAEY4YFwjUvFLGNYNwGwrFwAwzAALzXRkTlwr5KHsWYBBQK9xORUEdEJFAYAsP8kDxCxJAsGAp1+ABOIyJNwEhtN0-SbCskzQV0iQYAMbRZnRLgaAABiEAAWBTNVsmB7KnAQrAQEySHRGAiAsmhKAsTlWPY58uMgKlOhgCjfOU1T1OdLSdL0mhfgAdmK9jMCAA">Start</button>
+    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AENBsIwMFkxjgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZIDo2UMnO59kM-NwjgAggIkGLJdLjVZ5T8lSrAcCwRCoTC7XrkTRUTKTVyzSKrZSaXS4Y7uby3VkFp6BQA5Gk0c1EwNS7ip0PIn7cAGIor5EqOEA4IjwGQrGivfRQmiKak0ABK7X0AApgF5k8tVkpIDQyb8l2s6QvriczhcEKv18dTudjtuuTQkBctKv55evtGNRDV7Cd-qMABKADcnwEQ86IQrBnNds1tbl0QEZJsRA3RHnpakwAtMAaE-Gh7y+XAkKIIRlVwECySfTVcwEdFJEkVChCwhABBAmxIOgrkZzQjD1m6ZJALwgiiIhXNEOQ1DfwNL8hJE7sQBIeANxWNZ0ORY5ngMLRpBQARVxIGjjhgUS-wbLlWJsKxcAMMwAC9D0ZE4hK+Sh7FmAQUFfKzkVBHRCRQGB+X9PELEkCwYFXX4AE4Qus3ASF8-zApsGKwtBfyJBgAxtFmdEuBoAAGIQABZnINeKYES1cBCsBAwpIdEYCIKKaEoCxOS0nTpgEPTICpToYDk-K3I8rykB8vyApoX4AHYxtEzAgA">Fix Code</button>
+</div></p>
+<p>Similarly, we can specify outro transitions. When an element is no longer needed on the page, it will exit gracefully.</p>
+<p>Try adding outro transitions to the three buttons;</p>
+<pre><code class="handlebars">&lt;button fade-in fly-out on-click='[&quot;show&quot;, 2]'&gt;
+  Click me!
+&lt;/button&gt;
+</code></pre>
+
+<p>Execute the code. Aaargh! It looks horrible!</p>
+<p>That's because new elements are being rendered before the old ones get removed from the DOM. What we need to do is <em>chain</em> the transitions – trigger the removal, wait, and then trigger rendering of the new element.</p>
+<p>Calling <code>ractive.set()</code> returns a <code>Promise</code>, which resolves on completion of any transitions that are caused by the change. So you can do this:</p>
+<pre><code class="js">ractive.on({
+  show: function ( event, which ) {
+    ractive.set( 'visible', null ).then( function () {
+      ractive.set( 'visible', which );
+    });
+  }
+});
+</code></pre>
+
+<blockquote>
+<p>Several methods return a promise, not just <code>ractive.set()</code> – <code>ractive.update()</code>, <code>ractive.teardown()</code>, <code>ractive.render()</code>, and all of the array methods such as <code>ractive.push()</code>.</p>
+</blockquote>
+<h2 id="step-3">Step 3</h2>
+<p><div class="tutorial">
+    <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AENBsIwMFkxjgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZIDo2UMnO59kM-NwjgAggIkGLJdLjVZ5T8lSrAcCwRCoTC7XrkTRUTKTVyzSKrZSaXS4Y7uby3VkFp6BQA5Gk0c1EwNS7ip0PIn7cAGIor5EqOEA4IjwGQrGivfRQmiKak0ABK7X0AApgF5k8tVkpIDQyb8l2s6QvriczhcEKv18dTudjtuuTQkBctKv55evtGNRDV7Cd-qMABKADcnwEQ86IQrBnNds1tbl0QEZJsRA3RHnpakwAtMAaE-Gh7y+XAkKIIRlVwECySfTVcwEdFJEkVChCwhABBAmxIOgrkZzQjD1m6ZJALwgiiIhXNEOQ1DfwNL8hJE7sQBIeANxWNZ0ORY5ngMLRpBQARVxIGjjhgUS-wbLlWJsKxcAMMwAC9D0ZE4hK+Sh7FmAQUFfKzkVBHRCRQGB+X9PELEkCwYFXX4AE4Qus3ASF8-zApsGKwtBfyJBgAxtFmdEuBoAAGIQABZnINeKYES1cBCsBAwpIdEYCIKKaEoCxOS0nTpgEPTICpToYDk-K3I8rykB8vyApoX4AHYxtEzAgA">Start</button>
+    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AEjApkhpZJoNhGBgsmO5diIuDJjgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZIDo2UMnO5WT5AvshhFuG5sIADDGpQBBARIBXK1W2qyan46vWA4FgiFQmEei3ImiotV2gQ4gR4uUuyl8+mw70CoUBsnR2O+hZh0Xt2OOAByNJojqJyZV3HL6eRP24AMRRXyJUcIBwRHgMhWNFe+ihNEU1JoACV2voABTALyl5arJSQGhk343tZ0q-XE5nC4Ie+P46nc7HK+lY0EgFxaPel7AV8uZGhC96wm+loYAAlAA3J8Ag7p0QhWGeD71u6ArogIyTYnhuiPPS1JgE6YA0MhNCQV8uA0UQQi6rgeFkjBxp0vu6KSJI9FCCxCACHhNjEaRlZngxTHrN0yTYRxXE8RCfHUbR9HoVaKE6Xpq4gCQ8BPisayMcixzPAYWjSCgAj3iQYnHDA+kYVOlbyTYVi4AYZgAF7foyJw6V8lD2LMAgoPBIXIqCOiEigMAiomeIWLyMD3r8ACcuWhbgJDpRYmU0L8NjlfloLFRIMAGNoszolwNBRkIAAssVWlVMA1feAhWAg+UkOiMBEMV96UBYnIuW50wCB5kBUp0MAWZ1CVJSlSBpRlWUAOx7fpmBAA">Fix Code</button>
+</div></p>
+<p>You can pass in parameters to add fine-grained control over transitions:</p>
+<pre><code class="handlebars">&lt;button intro='fade:{duration:2000}'
+        outro='fly'
+        on-tap='show:2'&gt;
+  Click me!
+&lt;/button&gt;
+</code></pre>
+
+<p>The transition function will receive an argument corresponding to these parameters. In this case, the default <code>duration</code> property will be overridden, so the <code>fade</code> transition will take 2000 milliseconds (more popularly known as '2 seconds').</p>
+<p>By convention, if you pass in a number, it will be treated as the duration property:</p>
+<pre><code class="handlebars">&lt;button fade-in=&quot;2000&quot;
+        fly-out
+        on-click=&quot;['show', 2]&quot;&gt;
+  Click me!
+&lt;/button&gt;
+</code></pre>
+
+<p>In place of a number, you can use <code>fast</code> (200 milliseconds) or <code>slow</code> (600 milliseconds), just like jQuery.</p>
+<p>The parameters available to you depend on the transition. Visit the <a href="../../../integrations/plugins/">plugins page</a> to see which transitions are available or <a href="../../../extend/transitions/">create your own</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/tutorials/transitions.md" target="_blank">Edit this page</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
   <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -255,10 +381,7 @@
     </li>
   </ul>
 </div>
-
-  <div class="main">
-    <div class="main__header">
-      <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
   <div class="pure-g">
     <div class="pure-u-1 pure-u-lg-1-6"></div>
     <div class="pure-u-1 pure-u-lg-2-3">
@@ -506,127 +629,6 @@
     </div>
   </div>
 </div>
-    </div>
-    <div class="main__page">
-      
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
-  <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item pure-menu-selected">
-        <a class="pure-menu-link pure-menu-heading" href="#transitions">Transitions</a>
-      </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-1">Step 1</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-2">Step 2</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#step-3">Step 3</a>
-        </li>
-      
-      </li>
-    
-  </ul>
-</div>
-          </div>
-        </div>
-        <div class="pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="transitions">Transitions</h1>
-<p>Normally, when an element is rendered, it just sort of gets plonked on the page. With Ractive you have more control.</p>
-<h2 id="step-1">Step 1</h2>
-<div class="tutorial">
-    <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6TgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZuQAggIkFzefz1VZhT8xRLAcCwRCoTCjUrkTRUQKNQIcQI8Ry9ZSaXS4abHAA5Gk0bVE6187j++3In7cAGIor5EqOEA4IjwGQrGivfRQmiKak0ABK7X0AApgF5fctVkpIDQyb8O2s6W3riczhcEN3e8dTudjoPAzQkBctN3W-Ovq6ZRDu7Ch8qMABKADcnwEFc6QisTZ74cNNBs6IEyWxV90j3p1LAOrANH3NFXX1wT8iCEcVcCvMkN1lSMPy-H9jwEA9D0LEASHgPsVjWP9kWOZ4DC0aQUAEbsSAQARjhgeDlS8NNA3-XAbCsXADDMAAvcdGROeCvkoexZgEFBt045FQR0QkUBgCwHyQPELEkCwYG7X4AE4VK43ASFk+TFJsHS1NBeSJBgAxtFmdEuBoAAGIQABYhJVfSYEM7sBCsBA1JIdEYCILSaEoCxyDIhAKK8KiBBoyAqU6GAsPs0TxMky0ZLkhSaF+AB2DLKMwIA">Start</button>
-    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AEjgAwgTCTQ1AgAIQuDFYrnIn5SIgIAFAkHkcGQ6GMRkIpHTFFozG4bG4-HkImkilU2n0gDMLJAdGyhk5jgAggIkALhaKdVYdt9gNLZYDgWCIVCYeb1ciaKixbqBDiBHi+cbKTS6XCrTQbCMOVyAHI0mgGomukXcKOeyXAbgAxFFfIlRwgHBEeAyFY0V76KE0RTUmgAJXa+gAFMAvBHlqslJAaGTfuO1nTR9cTmcLggpzPjqdzscFzGaEgLlopyO918A4qIVPYYuNRgAJQAbk+AnbnSEVkH06TZvT6IEyWxT9dEeelqTAQ0wBoO8aBPL5cHAoghBlXBPzJc8lRTMCIKgp8BHvB8GxAEh4FnFY1hg5FjmeAwtGkFABCnEgEAEY4YFwjUvFLGNYNwGwrFwAwzAALzXRkTlwr5KHsWYBBQK9xORUEdEJFAYAsP8kDxCxJAsGAp1+ABOIyJNwEhtN0-SbCskzQV0iQYAMbRZnRLgaAABiEAAWBTNVsmB7KnAQrAQEySHRGAiAsmhKAsTlWPY58uMgKlOhgCjfOU1T1OdLSdL0mhfgAdmK9jMCAA">Fix Code</button>
-</div>
-
-<p>You can specify intro transitions:</p>
-<pre><code class="handlebars">&lt;div fade-in&gt;
-  This div will fade into view
-&lt;/div&gt;
-</code></pre>
-
-<p>Try adding intros to the three buttons in the template, choosing from <code>fade</code>, <code>slide</code> and <code>fly</code>, which have been included on this page.</p>
-<blockquote>
-<p>As with custom events, transitions are distributed as plugins, <a href="../../../integrations/plugins">which you can download here</a> to use in your project. You can <a href="../../../extend/transitions">create your own transitions</a>.</p>
-<p>Where possible, Ractive uses CSS transitions, but in older browsers it will fall back to timer-based animation.</p>
-</blockquote>
-<h2 id="step-2">Step 2</h2>
-<p><div class="tutorial">
-    <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AEjgAwgTCTQ1AgAIQuDFYrnIn5SIgIAFAkHkcGQ6GMRkIpHTFFozG4bG4-HkImkilU2n0gDMLJAdGyhk5jgAggIkALhaKdVYdt9gNLZYDgWCIVCYeb1ciaKixbqBDiBHi+cbKTS6XCrTQbCMOVyAHI0mgGomukXcKOeyXAbgAxFFfIlRwgHBEeAyFY0V76KE0RTUmgAJXa+gAFMAvBHlqslJAaGTfuO1nTR9cTmcLggpzPjqdzscFzGaEgLlopyO918A4qIVPYYuNRgAJQAbk+AnbnSEVkH06TZvT6IEyWxT9dEeelqTAQ0wBoO8aBPL5cHAoghBlXBPzJc8lRTMCIKgp8BHvB8GxAEh4FnFY1hg5FjmeAwtGkFABCnEgEAEY4YFwjUvFLGNYNwGwrFwAwzAALzXRkTlwr5KHsWYBBQK9xORUEdEJFAYAsP8kDxCxJAsGAp1+ABOIyJNwEhtN0-SbCskzQV0iQYAMbRZnRLgaAABiEAAWBTNVsmB7KnAQrAQEySHRGAiAsmhKAsTlWPY58uMgKlOhgCjfOU1T1OdLSdL0mhfgAdmK9jMCAA">Start</button>
-    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AENBsIwMFkxjgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZIDo2UMnO59kM-NwjgAggIkGLJdLjVZ5T8lSrAcCwRCoTC7XrkTRUTKTVyzSKrZSaXS4Y7uby3VkFp6BQA5Gk0c1EwNS7ip0PIn7cAGIor5EqOEA4IjwGQrGivfRQmiKak0ABK7X0AApgF5k8tVkpIDQyb8l2s6QvriczhcEKv18dTudjtuuTQkBctKv55evtGNRDV7Cd-qMABKADcnwEQ86IQrBnNds1tbl0QEZJsRA3RHnpakwAtMAaE-Gh7y+XAkKIIRlVwECySfTVcwEdFJEkVChCwhABBAmxIOgrkZzQjD1m6ZJALwgiiIhXNEOQ1DfwNL8hJE7sQBIeANxWNZ0ORY5ngMLRpBQARVxIGjjhgUS-wbLlWJsKxcAMMwAC9D0ZE4hK+Sh7FmAQUFfKzkVBHRCRQGB+X9PELEkCwYFXX4AE4Qus3ASF8-zApsGKwtBfyJBgAxtFmdEuBoAAGIQABZnINeKYES1cBCsBAwpIdEYCIKKaEoCxOS0nTpgEPTICpToYDk-K3I8rykB8vyApoX4AHYxtEzAgA">Fix Code</button>
-</div></p>
-<p>Similarly, we can specify outro transitions. When an element is no longer needed on the page, it will exit gracefully.</p>
-<p>Try adding outro transitions to the three buttons;</p>
-<pre><code class="handlebars">&lt;button fade-in fly-out on-click='[&quot;show&quot;, 2]'&gt;
-  Click me!
-&lt;/button&gt;
-</code></pre>
-
-<p>Execute the code. Aaargh! It looks horrible!</p>
-<p>That's because new elements are being rendered before the old ones get removed from the DOM. What we need to do is <em>chain</em> the transitions – trigger the removal, wait, and then trigger rendering of the new element.</p>
-<p>Calling <code>ractive.set()</code> returns a <code>Promise</code>, which resolves on completion of any transitions that are caused by the change. So you can do this:</p>
-<pre><code class="js">ractive.on({
-  show: function ( event, which ) {
-    ractive.set( 'visible', null ).then( function () {
-      ractive.set( 'visible', which );
-    });
-  }
-});
-</code></pre>
-
-<blockquote>
-<p>Several methods return a promise, not just <code>ractive.set()</code> – <code>ractive.update()</code>, <code>ractive.teardown()</code>, <code>ractive.render()</code>, and all of the array methods such as <code>ractive.push()</code>.</p>
-</blockquote>
-<h2 id="step-3">Step 3</h2>
-<p><div class="tutorial">
-    <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AENBsIwMFkxjgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZIDo2UMnO59kM-NwjgAggIkGLJdLjVZ5T8lSrAcCwRCoTC7XrkTRUTKTVyzSKrZSaXS4Y7uby3VkFp6BQA5Gk0c1EwNS7ip0PIn7cAGIor5EqOEA4IjwGQrGivfRQmiKak0ABK7X0AApgF5k8tVkpIDQyb8l2s6QvriczhcEKv18dTudjtuuTQkBctKv55evtGNRDV7Cd-qMABKADcnwEQ86IQrBnNds1tbl0QEZJsRA3RHnpakwAtMAaE-Gh7y+XAkKIIRlVwECySfTVcwEdFJEkVChCwhABBAmxIOgrkZzQjD1m6ZJALwgiiIhXNEOQ1DfwNL8hJE7sQBIeANxWNZ0ORY5ngMLRpBQARVxIGjjhgUS-wbLlWJsKxcAMMwAC9D0ZE4hK+Sh7FmAQUFfKzkVBHRCRQGB+X9PELEkCwYFXX4AE4Qus3ASF8-zApsGKwtBfyJBgAxtFmdEuBoAAGIQABZnINeKYES1cBCsBAwpIdEYCIKKaEoCxOS0nTpgEPTICpToYDk-K3I8rykB8vyApoX4AHYxtEzAgA">Start</button>
-    <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NyUgDsAdACsiSBABtyANxhCBCXNwGUAttxgBDErlkIAtLm0Ci5PQHtTBgGZaJrAHwFupCtUfMBxMlVr0mVjB2Th4+QVFxKVl5RWVVDW1dfSMTM0trImkHEGdXXw8vH3d-BhY2Di5efmExCWk5BSUVdU0dPRlDYy1Tc3IrIltJAE8nFzc-TwEipFkaciRy3C0YNFwx7lmZKaKJ6nnF1lwENUpJLWPWGlxhygQlhAAPZSSOhCcvZlxgYABichsNBk5DMACNJAgaIxoTQAIw0DAYT60GgEUEAV3YVhoVgMJGkJAA1uUANoAciIYAsAHcyVgaAAmAC6VzsEgM5AEjApkhpZJoNhGBgsmO5diIuDJjgAwgTCTQ1AgAIQuDFYgQ7b7AKREBAAoEg8jgyHQxiMhFI6YotGY3DY3H48hE0kUqm0+kAZhZIDo2UMnO5WT5AvshhFuG5sIADDGpQBBARIBXK1W2qyan46vWA4FgiFQmEei3ImiotV2gQ4gR4uUuyl8+mw70CoUBsnR2O+hZh0Xt2OOAByNJojqJyZV3HL6eRP24AMRRXyJUcIBwRHgMhWNFe+ihNEU1JoACV2voABTALyl5arJSQGhk343tZ0q-XE5nC4Ie+P46nc7HK+lY0EgFxaPel7AV8uZGhC96wm+loYAAlAA3J8Ag7p0QhWGeD71u6ArogIyTYnhuiPPS1JgE6YA0MhNCQV8uA0UQQi6rgeFkjBxp0vu6KSJI9FCCxCACHhNjEaRlZngxTHrN0yTYRxXE8RCfHUbR9HoVaKE6Xpq4gCQ8BPisayMcixzPAYWjSCgAj3iQYnHDA+kYVOlbyTYVi4AYZgAF7foyJw6V8lD2LMAgoPBIXIqCOiEigMAiomeIWLyMD3r8ACcuWhbgJDpRYmU0L8NjlfloLFRIMAGNoszolwNBRkIAAssVWlVMA1feAhWAg+UkOiMBEMV96UBYnIuW50wCB5kBUp0MAWZ1CVJSlSBpRlWUAOx7fpmBAA">Fix Code</button>
-</div></p>
-<p>You can pass in parameters to add fine-grained control over transitions:</p>
-<pre><code class="handlebars">&lt;button intro='fade:{duration:2000}'
-        outro='fly'
-        on-tap='show:2'&gt;
-  Click me!
-&lt;/button&gt;
-</code></pre>
-
-<p>The transition function will receive an argument corresponding to these parameters. In this case, the default <code>duration</code> property will be overridden, so the <code>fade</code> transition will take 2000 milliseconds (more popularly known as '2 seconds').</p>
-<p>By convention, if you pass in a number, it will be treated as the duration property:</p>
-<pre><code class="handlebars">&lt;button fade-in=&quot;2000&quot;
-        fly-out
-        on-click=&quot;['show', 2]&quot;&gt;
-  Click me!
-&lt;/button&gt;
-</code></pre>
-
-<p>In place of a number, you can use <code>fast</code> (200 milliseconds) or <code>slow</code> (600 milliseconds), just like jQuery.</p>
-<p>The parameters available to you depend on the transition. Visit the <a href="../../../integrations/plugins/">plugins page</a> to see which transitions are available or <a href="../../../extend/transitions/">create your own</a>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    </div>
-    <div class="main__footer">
-      <div class="page-controls">
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/get-started/tutorials/transitions.md" target="_blank">Edit this page</a>
-</div>
-
-<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
-    </div>
-  </div>
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

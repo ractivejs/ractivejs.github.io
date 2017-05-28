@@ -1,6 +1,13 @@
-/* playground pre should be relative */
-[data-playground] ~ pre{
-  position: relative
+.main--split{
+  margin-bottom: 50vh;
+}
+
+.main__left-gutter--hidden{
+  display: none;
+}
+
+.main__sidebar-container--hidden{
+  display: none;
 }
 
 .run-it{
@@ -20,240 +27,86 @@
   background: #555;
 }
 
-/* playground stuff */
-#playground-div {
-  transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  z-index: 10;
-}
-#playground-div.min {
-  overflow: hidden;
-}
-
-#playground-div > iframe {
-  border: 0;
-  position: absolute;
-  top: 1.5em;
+.playground-toggle{
+  position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: calc(100% - 1.5em);
-}
-#playground-div.min > iframe {
-  display: none;
-}
-#playground-div > span {
-  margin-right: 1em;
+  right: 15px;
+  padding: 5px 15px;
+  background: #729d34;
+  color: #fff;
+  border-radius: 5px 5px 0 0;
   cursor: pointer;
-  color: rgba(114, 157, 42, 0.5);
-  transition: color 0.2s ease-in-out;
-}
-#playground-div > span:hover {
-  color: #729d34;
-}
-#playground-div.max > span.up-btn,
-#playground-div.min > span.down-btn {
-  display: none;
-}
-#playground-div.min > span.up-btn {
-  margin-left: 0.75em;
+  transition: bottom 0.4s;
 }
 
-#main {
-  transition: height 0.2s ease-in-out, width 0.2s ease-in-out;
-  position: absolute;
-  height: calc(100% - 44px);
+.playground-toggle:hover{
+  color: #eee;
+}
+
+.playground-toggle--open{
+  bottom: 50%;
+}
+
+.playground-container{
+  top: 100%;
+  height: 50vh;
+  transition: top 0.4s;
+  position: fixed;
   width: 100%;
-  overflow: auto;
-  top: 44px;
 }
 
-div.run-in-playground {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.3);
-  transition: color 0.2s ease-in-out;
-  font-size: 1.6em;
-  font-weight: 700;
-}
-div.run-in-playground:hover {
-  color: #000;
+.playground-container--open{
+  transition: top 0.4s;
+  top: 50%;
+  box-shadow: 5px 5px 30px #777;
 }
 
-@media (min-width: 992px) {
-  .bs-sidebar.affix {
-    max-height: calc(100% - 200px);
-    overflow-y: auto;
-    height: auto;
-    top: 115px;
-  }
-  #main.mid .bs-sidebar.affix {
-    max-height: calc(50vh - 200px);
-    top: 115px;
-  }
-  #main.min .bs-sidebar.affix {
-    max-height: calc(15vh - 200px);
-    top: 115px;
-  }
+.playground-frame{
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
 }
 
-@media (max-width: 991px) {
-  .bs-sidebar.affix {
-    max-height: calc(50vh - 3em);
-    overflow: auto;
-    margin-top: 15px;
-  }
+/* playground pre should be relative */
+[data-playground] ~ pre,
+[data-runtutorial] ~ pre{
+  position: relative
 }
 
-@media (max-width: 1199.99px) {
-  #playground-div {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: right;
-  }
-  #playground-div.min {
-    height: 1.5em;
-    width: 2.5em;
-    left: calc(100% - 5em);
-    border-radius: 1em 1em 0 0;
-    transition: none;
-  }
-  #playground-div.mid {
-    height: 55vh;
-  }
-  #playground-div.max {
-    height: calc(100vh - 44px);
-  }
-
-  #main.max {
-  }
-  #main.mid {
-    height: calc(45vh - 44px);
-    overflow: auto;
-  }
-  #main.min {
-    height: 0;
-    overflow: auto;
-  }
-}
-
-@media (min-width: 1200px) {
-  .bs-sidebar.affix {
-    top: 69px;
-  }
-
-  #playground-div {
-    position: absolute;
-    right: 0;
-    height: calc(100% - 44px);
-    top: 44px;
-  }
-  #playground-div.max {
-    width: 50%;
-  }
-
-  #playground-div.mid {
-    width: 50%;
-  }
-  #playground-div.mid #expand-playground {
-    display: none;
-  }
-  #playground-div.mid #collapse-playground {
-    display: inline-block;
-    transform: rotate(-90deg);
-    margin-left: 0.5em;
-  }
-
-  #playground-div.min {
-    transition: none;
-    position: absolute;
-    top: auto;
-    bottom: 0;
-    right: 3em;
-    height: 1.5em;
-    width: 2.5em;
-    border-radius: 1em 1em 0 0;
-  }
-  #playground-div.min > span {
-    transform: rotate(-90deg);
-    display: inline-block;
-  }
-
-  #main {
-    height: calc(100% - 44px);
-  }
-
-  #main.max {
-  }
-
-  #main.mid {
-    width: 50%;
-  }
-
-  #main.mid .container {
+@media screen and (min-width: 768px){
+  .main{
+    transition: width 0.4s;
     width: 100%;
   }
-  #main.mid [role=main] {
-    width: 100%;
-  }
-  #main.mid [role=subnav] {
-    display: none;
+
+  .main--split{
+    width: 50%;
   }
 
-  #main.min {
-  }
-}
-
-@media (min-width: 1600px) {
-  #playground-div.mid {
-    width: 60%;
-  }
-
-  #main.mid {
-    width: 40%;
-  }
-}
-
-@media (max-width: 1199.9px) and (min-width: 768px) {
-  #playground-div.max {
-    height: calc(100% - 90px);
+  .playground-toggle{
+    transition: right 0.4s;
+    bottom: auto;
+    right: 0;
+    transform: rotate(-90deg);
+    transform-origin: 100% 100%;
+    top: 100px;
   }
 
-  #main {
-    height: calc(100% - 90px);
-    top: 90px;
+  .playground-toggle--open{
+    right: 50%;
   }
-  #main.mid {
-    height: calc(45vh - 90px);
-  }
-  #main.min {
-    height: 0;
-  }
-}
 
-@media (max-width: 768px) {
-  #playground-div.max {
-    height: calc(100% - 44px);
+  .playground-container{
+    position: fixed;
+    top: 40px;
+    left: 100%;
+    transition: left 0.4s;
+    width: 50%;
+    height: calc(100vh - 40px);
   }
-  #main {
-    height: calc(100% - 44px);
-    top: 44px;
-  }
-  #main.mid {
-    height: calc(45vh - 44px);
-  }
-  #main.min {
-    height: calc(15vh - 44px);
-  }
-}
 
-/* Not entirely sure why the built-in bootstrap doesn't have this */
-img {
-  max-width: 100%;
+  .playground-container--open{
+    left: 50%;
+  }
 }
