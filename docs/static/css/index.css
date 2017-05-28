@@ -106,3 +106,25 @@
     left: 50%;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1420px) {
+  .main{
+    padding-right: 1.5em;
+  }
+}
+
+@media screen and (min-width: 1449px) {
+  .main--split {
+    margin-right: 66.5%;
+    width: 33.5%;
+  }
+
+  .playground-toggle--open{
+    right: 66.5%;
+  }
+
+  .playground-container--open{
+    width: 66.5%;
+    left: 33.5%;
+  }
+}

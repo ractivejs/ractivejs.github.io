@@ -87,9 +87,7 @@ a{
 .main, .nav-container{
   max-width: 1360px;
   margin: 0 auto;
-}
-.main--split{
-  margin-right: 50%;
+  box-sizing: border-box;
 }
 
 .main__footer{
@@ -213,6 +211,10 @@ a{
   .toc{
     height: calc(100vh - 40px);
     overflow: auto;
+  }
+
+  .main--split{
+    margin-right: 50%;
   }
 
   /* Elements that are pure-menu-link regardless of element should be pointer */
