@@ -42,14 +42,8 @@
 
 <body>
   <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
-  <label class="menu-toggle" for="menu-state"></label>
-
-  {% include "nav-side.html" %}
 
   <div class="main">
-    <div class="main__header">
-      {% include "nav-main.html" %}
-    </div>
     <div class="main__page">
       {% block page %}{% endblock %}
     </div>
@@ -57,6 +51,14 @@
       {% include "footer.html" %}
     </div>
   </div>
+
+  <label class="menu-toggle" for="menu-state"></label>
+  <label class="playground-toggle">Ractive Playground</label>
+
+  <div class="playground-container"></div>
+
+  {% include "nav-side.html" %}
+  {% include "nav-main.html" %}
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>

@@ -1,7 +1,5 @@
 template: main-no-toc.html
 
-<div class="notification">Tutorials and inline demos are undergoing adjustments and are not functional at the moment. Thank you for your patience.</div>
-
 <div class="logo">
   <div class="logo__logo">
     <img class="logo__image" src="/static/img/avatar.png" alt="Ractive.js" />
