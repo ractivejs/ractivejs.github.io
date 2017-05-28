@@ -74,12 +74,15 @@ $(function () {
   $('[data-tutorial]').on('click', function(event){
     buildFrame().then(function(frame){
       frame.contentWindow.postMessage(getDemoBlockData(event.target), '*');
+      var delay = isPlaygroundOpen ? 0 : 500;
       openPlayground();
-    });
 
-    $("html, body")
-      .delay( 600 )
-      .animate({ scrollTop: $(event.target).offset().top - 100 });
+      // get the offset when the delay is up to avoid weird endpoint
+      setTimeout(function() {
+        $("html, body")
+          .animate({ scrollTop: $(event.target).offset().top - 50 });
+      }, delay);
+    });
   });
 
 });
