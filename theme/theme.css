@@ -84,6 +84,14 @@ a{
   display: none;
 }
 
+.main, .nav-container{
+  max-width: 1360px;
+  margin: 0 auto;
+}
+.main--split{
+  margin-right: 50%;
+}
+
 .main__footer{
   margin: 100px 0;
   text-align: center;
