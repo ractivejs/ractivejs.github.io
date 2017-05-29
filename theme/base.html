@@ -53,9 +53,13 @@
   </div>
 
   <label class="menu-toggle" for="menu-state"></label>
-  <label class="playground-toggle">Ractive Playground</label>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
 
-  <div class="playground-container"></div>
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+  </div>
 
   {% include "nav-side.html" %}
   {% include "nav-main.html" %}

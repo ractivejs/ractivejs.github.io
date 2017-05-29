@@ -5,6 +5,8 @@ $(function () {
   var sideBarContainer = $('.main__sidebar-container');
   var contentContainer = $('.main__content-container');
   var playgroundToggle = $('.playground-toggle');
+  var fullscreenToggle = $('.playground-fullscreen');
+  var fullscreenClose = $('.playground-container .close-fullscreen');
   var playgroundContainer = $('.playground-container');
   var buildFrame = frameBuilder();
 
@@ -53,6 +55,15 @@ $(function () {
     var action = isPlaygroundOpen ? closePlayground : openPlayground;
     var result = action.call(null);
     var promise = buildFrame();
+  });
+
+  fullscreenToggle.on('click', function () {
+    playgroundContainer.addClass('playground-container--fullscreen');
+    return false;
+  });
+
+  fullscreenClose.on('click', function () {
+    playgroundContainer.removeClass('playground-container--fullscreen');
   });
 
   // Attach "Run It" link
