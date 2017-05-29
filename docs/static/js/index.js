@@ -10,6 +10,8 @@ $(function () {
   var playgroundContainer = $('.playground-container');
   var buildFrame = frameBuilder();
 
+  var mobileToggles = $('input.menu-toggle')
+
   function frameBuilder(){
     var promise = null;
     var frame = null;
@@ -64,6 +66,20 @@ $(function () {
 
   fullscreenClose.on('click', function () {
     playgroundContainer.removeClass('playground-container--fullscreen');
+  });
+
+  document.body.addEventListener('click', function (event) {
+    var menu = false;
+
+    mobileToggles.each(function(i, e) {
+      if (e.checked) menu = true;
+    });
+
+    if (menu) {
+      mobileToggles.each(function(i, e) {
+        if (event.target !== e && event.target.tagName !== 'LABEL' && event.target.control !== e) e.checked = false;
+      });
+    }
   });
 
   // Attach "Run It" link

@@ -33,6 +33,10 @@ blockquote{
   color: #777;
 }
 
+code{
+  word-break: break-all;
+}
+
 :target::before{
   content: '';
   display: block;
@@ -50,7 +54,7 @@ blockquote{
   color: white;
 }
 
-.menu-state{
+.menu-state, .toc-state{
   display: none;
 }
 
@@ -59,16 +63,51 @@ blockquote{
   box-shadow: 5px 5px 30px #777;
 }
 
-.menu-toggle{
+.toc-state:checked ~ .toc-side{
+  transform: translate(0, 0);
+  box-shadow: -5px 5px 30px #777;
+}
+
+.nav-mobile{
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-toggle{
+  position: absolute;
   top: 5px;
   left: 5px;
   background-image: url(/static/img/avatar.png);
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  width: 35px;
+  background-position: center left;
+  background-size: contain;
   height: 35px;
+  line-height: 35px;
+  padding-left: 40px;
+  width: 40px;
+}
+
+.toc-toggle{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  line-height: 35px;
+  text-align: right;
+  width: 60px;
+  padding-right: 22px;
+}
+
+.hamburger{
+  position: absolute;
+  margin: 0 0.2em;
+  font-size: 1.7em;
+  display: inline-block;
+  top: 0;
 }
 
 .nav-side{
@@ -85,6 +124,8 @@ blockquote{
   background: #fff;
   transform: translate(-100%, 0);
   transition: transform 0.4s, box-shadow 0.4s;
+  min-width: 12em;
+  overflow-y: auto;
 }
 
 .nav-main{
@@ -195,9 +236,16 @@ blockquote{
   margin-left: 0.5em;
 }
 
+@media screen and (max-width: 768px){
+
+  div + pre > code.hljs {
+    padding-top: 24px;
+  }
+}
+
 @media screen and (min-width: 768px){
 
-  .menu-toggle{
+  .nav-mobile{
     display: none;
   }
 
