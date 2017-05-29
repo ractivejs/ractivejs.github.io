@@ -487,15 +487,17 @@ Returns the value at `keypath`. If the keypath is omitted, returns a shallow cop
 
 **Syntax**
 
-- `ractive.get([keypath])`
+- `ractive.get([keypath][, options])`
 
 **Arguments**
 
 - `[keypath] (string)`: The keypath of the data to retrieve.
+- `[options] (Object)`: An options hash that may contain:
+  - `virtual (boolean)`: Whether or not to include virtual keypaths (computations, links, etc) in the composed object for the given keypath. This defaults to `true` for the root keypath and `false` for any other keypaths. Use `ractive.get({ virtual: false })` to get the raw root object.
 
 **Returns**
 
-- `(any)`: Returns whatever data was on the keypath, or all if no keypath was provided.
+- `(any)`: Returns the data that exists at the given keypath, or the root data if no keypath is given.
 
 **Examples**
 
