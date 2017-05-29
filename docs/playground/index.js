@@ -105,7 +105,7 @@ var r = window.r = new Ractive({
       handler: function() {
         var self = this;
         setTimeout(function() {
-          this.findAll('.ace-editor').forEach(function(e) { self.getNodeInfo(e).decorators['ace-editor'].editor.resize(); });
+          self.findAll('.ace-editor').forEach(function(e) { self.getNodeInfo(e).decorators['ace-editor'].editor.resize(); });
         }, 210);
       },
       init: false
