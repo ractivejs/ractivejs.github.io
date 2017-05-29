@@ -69,6 +69,8 @@
 <li>Lifecycle methods <code>init</code> and <code>beforeInit</code>, to be replaced with lifecycle events or equivalent instance methods. <code>beforeInit</code> corresponds to the <code>construct</code> lifecycle event.</li>
 <li>Partial comments in the form of <code>&lt;!-- {{&gt;myPartial}} --&gt;...&lt;!-- {{/myPartial}} --&gt;</code>, to be replaced with partial blocks <code>{{#partial myPartial}}...{{/partial}}</code></li>
 </ul>
+<p>Part of removing directive deprecations allowed using the plain expression parser for attributes and directives, which means that directives that parse in an expression context are much more resilient to things like quote pileup with strings e.g. <code>as-target=""id as a string""</code>.</p>
+<p><strong>Note</strong>: this also means that directive values aren't processed as HTML before being parsed, so HTML entities are no longer automatically encoded within directive values.</p>
 <h3 id="template-format">Template format</h3>
 <p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.9.</p>
 <h3 id="partial-context">Partial context</h3>

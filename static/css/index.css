@@ -114,6 +114,7 @@
 
   .main--split{
     width: 50%;
+    padding-right: 35px;
   }
 
   .playground-toggle{
@@ -145,7 +146,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1420px) {
   .main{
-    padding-right: 1.5em;
+    padding-right: 35px;
   }
 }
 

@@ -633,15 +633,17 @@ r.fire('foo');
 <p>Returns the value at <code>keypath</code>. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, but excludes computed properties.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>ractive.get([keypath])</code></li>
+<li><code>ractive.get([keypath][, options])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>[keypath] (string)</code>: The keypath of the data to retrieve.</li>
+<li><code>[options] (Object)</code>: An options hash that may contain:</li>
+<li><code>virtual (boolean)</code>: Whether or not to include virtual keypaths (computations, links, etc) in the composed object for the given keypath. This defaults to <code>true</code> for the root keypath and <code>false</code> for any other keypaths. Use <code>ractive.get({ virtual: false })</code> to get the raw root object.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(any)</code>: Returns whatever data was on the keypath, or all if no keypath was provided.</li>
+<li><code>(any)</code>: Returns the data that exists at the given keypath, or the root data if no keypath is given.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAApgAHW4mUAE1RJIzU+ZQWAZp052HFrygBGsuwDazADkfgBewcwAumbeOLEo8dw4AJQA3LHcXLz8aAB0CJwA5oYweUVoKIbBrpx5fmUADMEp6bhAA"></div>
