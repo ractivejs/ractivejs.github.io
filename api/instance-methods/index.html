@@ -24,18 +24,17 @@
 </head>
 
 <body>
-  <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
 
   <div class="main">
     <div class="main__page">
       
-  <div class="pure-g">
-    <div class="main__left-gutter pure-u-1 pure-u-lg-1-6"></div>
-    <div class="main__center-container pure-u-1 pure-u-lg-2-3">
-      <div class="pure-g">
-        <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
-          <div class="main__sidebar">
-            <div class="toc pure-menu pure-menu-scrollable">
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          <div class="toc pure-menu pure-menu-scrollable">
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item pure-menu-selected">
@@ -222,11 +221,11 @@
     
   </ul>
 </div>
-          </div>
         </div>
-        <div class="main__content-container pure-u-1 pure-u-md-3-4">
-          <div class="main__content">
-            <h1 id="instance-methods">Instance Methods</h1>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          <h1 id="instance-methods">Instance Methods</h1>
 <h2 id="ractive_super">ractive._super()</h2>
 <p>Calls the parent method from a child method of the same name.</p>
 <p><code>ractive._super()</code> is not always available. Only when Ractive detects its use does it make this reference to the parent method.</p>
@@ -1405,7 +1404,6 @@ alert( ractive.get( 'name' ) ); // alerts 'Bob', not 'Jim'
 ractive.updateModel();
 alert( ractive.get( 'name' ) ); // alerts 'Jim'
 </code></pre>
-          </div>
         </div>
       </div>
     </div>
@@ -1414,17 +1412,28 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
     </div>
     <div class="main__footer">
       <div class="page-controls">
+  
   <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/instance-methods.md" target="_blank">Edit this page</a>
+  
 </div>
 
 <p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
     </div>
   </div>
 
-  <label class="menu-toggle" for="menu-state"></label>
-  <label class="playground-toggle">Ractive Playground</label>
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
 
-  <div class="playground-container"></div>
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+  </div>
 
   <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
@@ -1654,252 +1663,438 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
     </li>
   </ul>
 </div>
-  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-lg-1-6"></div>
-    <div class="pure-u-1 pure-u-lg-2-3">
-      <ul class="pure-menu-list">
-        
-          
-            <li class="pure-menu-item ">
-              <a class="pure-menu-link" href="../..">Ractive.js</a>
-            </li>
-          
-        
-          
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
-                <span class="pure-menu-link">Get Started</span>
-                <ul class="pure-menu-children">
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/hello-world/">Hello, world!</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/nested-properties/">Nested Properties</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/expressions/">Expressions</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/events/">Events</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/conditional-sections/">Conditional Sections</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/iterative-sections/">Iterative Sections</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/two-way-binding/">Two-way Binding</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/partials/">Partials</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/components/">Components</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/animation/">Animations</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/svg/">SVG</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/transitions/">Transitions</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/tutorials/decorators/">Decorators</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/support/">Support</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../get-started/migrating/">Migrating</a>
-                    </li>
-                  
-                </ul>
-            </li>
-          
-        
-          
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
-                <span class="pure-menu-link">API</span>
-                <ul class="pure-menu-children">
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../initialization-options/">Initialization Options</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../static-properties/">Static Properties</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../static-methods/">Static Methods</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../instance-properties/">Instance Properties</a>
-                    </li>
-                  
-                    <li class="pure-menu-item pure-menu-selected">
-                      <a class="pure-menu-link" href="./">Instance Methods</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../attributes/">Attributes</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../keypath-prefixes/">Keypath Prefixes</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../special-references/">Special References</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../context/">Context Object</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../parse/">Parse</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../transition/">Transition</a>
-                    </li>
-                  
-                </ul>
-            </li>
-          
-        
-          
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
-                <span class="pure-menu-link">Extend</span>
-                <ul class="pure-menu-children">
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/adaptors/">Adaptors</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/components/">Components</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/decorators/">Decorators</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/easings/">Easings</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/events/">Events</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/interpolators/">Interpolators</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/partials/">Partials</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../extend/transitions/">Transitions</a>
-                    </li>
-                  
-                </ul>
-            </li>
-          
-        
-          
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
-                <span class="pure-menu-link">Integrations</span>
-                <ul class="pure-menu-children">
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../component-files/">Component Files</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../integrations/loaders/">Loaders</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../integrations/plugins/">Plugins</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../integrations/tools/">Tools</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../integrations/libraries/">Libraries</a>
-                    </li>
-                  
-                </ul>
-            </li>
-          
-        
-          
-            <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
-                <span class="pure-menu-link">Concepts</span>
-                <ul class="pure-menu-children">
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../concepts/architecture/">Architecture</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../concepts/data-binding/">Data Binding</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../concepts/events/">Events</a>
-                    </li>
-                  
-                    <li class="pure-menu-item ">
-                      <a class="pure-menu-link" href="../../concepts/templates/">Templates</a>
-                    </li>
-                  
-                </ul>
-            </li>
-          
-        
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">Github</a>
+  
+  <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#instance-methods">Instance Methods</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractive_super">ractive._super()</a>
         </li>
-      </ul>
-    </div>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveadd">ractive.add()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveanimate">ractive.animate()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveattachchild">ractive.attachChild()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivedetach">ractive.detach()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivedetachchild">ractive.detachChild()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivefind">ractive.find()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivefindall">ractive.findAll()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivefindallcomponents">ractive.findAllComponents()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivefindcomponent">ractive.findComponent()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivefindcontainer">ractive.findContainer()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivefindparent">ractive.findParent()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivefire">ractive.fire()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveget">ractive.get()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivegetcontext">ractive.getContext()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveinsert">ractive.insert()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivelink">ractive.link()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveobserve">ractive.observe()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveobserveonce">ractive.observeOnce()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveoff">ractive.off()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveon">ractive.on()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveonce">ractive.once()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivepop">ractive.pop()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivepush">ractive.push()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivereadlink">ractive.readLink()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiverender">ractive.render()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivereset">ractive.reset()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveresetpartial">ractive.resetPartial()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivereverse">ractive.reverse()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveset">ractive.set()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveshift">ractive.shift()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivesort">ractive.sort()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivesplice">ractive.splice()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivesubtract">ractive.subtract()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveteardown">ractive.teardown()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivetocss">ractive.toCSS()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivetohtml">ractive.toHTML()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivetoggle">ractive.toggle()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractivetransition">ractive.transition()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveunlink">ractive.unlink()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveunrender">ractive.unrender()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveunshift">ractive.unshift()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveupdate">ractive.update()</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ractiveupdatemodel">ractive.updateModel()</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-container">
+    <ul class="pure-menu-list">
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../..">Ractive.js</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Get Started</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/hello-world/">Hello, world!</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/nested-properties/">Nested Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/expressions/">Expressions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/conditional-sections/">Conditional Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/iterative-sections/">Iterative Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/two-way-binding/">Two-way Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/animation/">Animations</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/svg/">SVG</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/transitions/">Transitions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/decorators/">Decorators</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/support/">Support</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/migrating/">Migrating</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
+              <span class="pure-menu-link">API</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../initialization-options/">Initialization Options</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../static-properties/">Static Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../static-methods/">Static Methods</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../instance-properties/">Instance Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">Instance Methods</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../attributes/">Attributes</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../keypath-prefixes/">Keypath Prefixes</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../special-references/">Special References</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../context/">Context Object</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../parse/">Parse</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../transition/">Transition</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Extend</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/adaptors/">Adaptors</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/decorators/">Decorators</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/easings/">Easings</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/interpolators/">Interpolators</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/transitions/">Transitions</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Integrations</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../component-files/">Component Files</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/loaders/">Loaders</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/plugins/">Plugins</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/tools/">Tools</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/libraries/">Libraries</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Concepts</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/architecture/">Architecture</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/security/">Security</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/data-binding/">Data Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/templates/">Templates</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">Github</a>
+      </li>
+    </ul>
   </div>
 </div>
 

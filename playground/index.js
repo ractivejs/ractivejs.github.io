@@ -104,7 +104,7 @@ var r = window.r = new Ractive({
     sheetPopped: {
       handler: function() {
         var self = this;
-        setTimeout(() => {
+        setTimeout(function() {
           this.findAll('.ace-editor').forEach(function(e) { self.getNodeInfo(e).decorators['ace-editor'].editor.resize(); });
         }, 210);
       },
