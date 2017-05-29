@@ -1,5 +1,7 @@
 <div class="page-controls">
+  {% if "tutorials" in page.canonical_url and previous_page and "tutorials" in previous_page.canonical_url %}<a class="page-controls__link" rel="previous" href="{{ previous_page.url }}">Previous</a>{% endif %}
   <a class="page-controls__link" rel="edit" href="{{ page.edit_url }}" target="_blank">Edit this page</a>
+  {% if "tutorials" in page.canonical_url and next_page and next_page.url.find('../') == 0 and next_page.url.find('../.') == -1 %}<a class="page-controls__link" rel="next" href="{{ next_page.url }}">Next</a>{% endif %}
 </div>
 
 {% if config.copyright %}<p class="credits">{{ config.copyright }}</p>{% endif %}
