@@ -41,7 +41,8 @@
 </head>
 
 <body>
-  <input class="menu-state" type="checkbox" name="menu-state" id="menu-state">
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
 
   <div class="main">
     <div class="main__page">
@@ -52,7 +53,10 @@
     </div>
   </div>
 
-  <label class="menu-toggle" for="menu-state"></label>
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    {% block mobile_toc_toggle %}{% endblock %}
+  </div>
   <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
 
   <div class="playground-container">
@@ -62,6 +66,7 @@
   </div>
 
   {% include "nav-side.html" %}
+  {% block mobile_toc %}{% endblock %}
   {% include "nav-main.html" %}
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>

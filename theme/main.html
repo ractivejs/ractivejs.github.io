@@ -16,3 +16,11 @@
     </div>
   </div>
 {% endblock %}
+
+{% block mobile_toc %}
+  {% include "toc-side.html" %}
+{% endblock %}
+
+{% block mobile_toc_toggle %}
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+{% endblock %}

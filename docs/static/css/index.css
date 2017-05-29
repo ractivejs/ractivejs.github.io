@@ -34,8 +34,9 @@
   cursor: pointer;
   transition: bottom 0.4s, width 0.4s;
   overflow: hidden;
-  width: 135px;
+  width: 131px;
   height: 24px;
+  white-space: nowrap;
 }
 
 .playground-toggle:hover{
@@ -44,17 +45,13 @@
 
 .playground-toggle--open{
   bottom: 50%;
-  width: 160px;
+  width: 163px;
 }
 
 .playground-toggle .playground-fullscreen {
-  display: none;
-  margin-left: 1em;
+  margin-left: 20px;
   transform: scale(1.5, 1.5);
   cursor: move;
-}
-
-.playground-toggle--open .playground-fullscreen {
   display: inline-block;
 }
 
