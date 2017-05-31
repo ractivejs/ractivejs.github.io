@@ -222,10 +222,10 @@ The element-specific attribute form of [`lazy`](./initialization-options.md#lazy
 
 ```html
 <!-- Editing the input updates foo on keypress. -->
-Two-way: <input type="text" value="{{ foo }}"> {{ foo }}
+Eager: <input type="text" value="{{ foo }}"> {{ foo }}
 
 <!-- Editing the input updates bar only when focus moves away from the input. -->
-One-way: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
+Lazy: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 ```
 
 # Special attributes
