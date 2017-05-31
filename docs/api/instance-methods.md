@@ -112,11 +112,11 @@ If an animation is started on a keypath which is *already* being animated, the f
     - `[duration] (number)`: How many milliseconds the animation should run for. Defaults to `400`.
     - `[easing] (string|Function)`: The name of an easing function or the easing function itself. Defaults to `linear`.
     - `[step] (Function)`: A function to be called on each step of the animation. Receives `t` and `value` as arguments, where `t` is the animation progress (between `0` and `1`, as determined by the easing function) and `value` is the intermediate value at `t`.
-    - `[complete] (Function)`: A function to be called when the animation completes, with the same argument signature as `step` (i.e. `t` is `1`, and `value` is the destination value)
+    - `[complete] (Function)`: A function to be called when the animation completes, with the `value` passed to `animate`.
 
 **Returns**
 
-- `(Promise)`: Returns a Promise with an additional `stop` method, which cancels the animation.
+- `(Promise)`: Returns a Promise which resolves with the target `value` and has an additional `stop` method, which cancels the animation.
 
 **Examples**
 
