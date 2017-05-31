@@ -230,7 +230,7 @@ One-way: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 
 # Special attributes
 
-## as-*
+## as-\*
 
 `as-*` attributes augment the element with [decorators](../extend/decorators.md). It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.
 
@@ -239,7 +239,7 @@ One-way: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 <div as-modal="true, true, true, false">Div appearing as modal</div>
 ```
 
-## class-*
+## class-\*
 
 `class-*` attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following `class-` will be used as the class name. `class-*` attribute values are processed as expressions. If there is no expression, the implicit value is `true`, which is useful for applying multiple classes to an element using component `extra-attributes`.
 
@@ -250,7 +250,7 @@ One-way: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 <div class-baz>Always has "baz"</div>
 ```
 
-## on-*
+## on-\*
 
 `on-*` attributes attach event handlers for both native and [custom events](../extend/events.md). They are designed to look similar to regular `on*` attributes for familiarity, the only difference being the hyphen. `on-*` can be used in two ways: proxy event syntax and expression syntax.
 
@@ -295,7 +295,7 @@ Ractive({
 });
 ```
 
-## *-in, *-out, *-in-out
+## \*-in, \*-out, \*-in-out
 
 `*-in`, `*-out`, and `*-in-out` attributes apply [transitions](../extend/transitions.md) to the element. `*-in` specifies intro-only, `*-out` specifies outro-only, and `*-in-out` for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.
 
@@ -306,7 +306,7 @@ Ractive({
 <div fade-in-out="{ duration: 500 }">Fades with 500ms duration</div>
 ```
 
-## style-*
+## style-\*
 
 `style-*` attributes update individual `style` properties of the element. The part of the attribute following `style-` will be used as the style property name. There are two forms of the syntax: `style-property-name` (CSS style) and `style-propertyName` (JS style). Style property names will be normalized.
 
