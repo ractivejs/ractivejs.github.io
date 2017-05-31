@@ -467,25 +467,39 @@ Relevant only to [Components](../extend/components.md).
 
 ## lazy
 
-`(boolean)`
+`(boolean|number)`
 
 Whether or not to update data using late-firing DOM events (i.e. `change`, `blur`) instead of events that fire immediately on interaction (i.e. `keyup`, `keydown`). Defaults to `false`.
 
-Only applicable if [`twoway`](#twoway) is `true`.
+```js
+var ractive = new Ractive({
+  lazy: true,
+  data: { foo: 'bar' },
+  template: `
+    <input value="{{foo}}">
+
+    <!-- Updates when the input loses focus -->
+    {{ foo }}
+  `
+});
+```
+
+`lazy` also accepts a number value, a millisecond value, that indicates the delay between the last UI interaction and Ractive updating the data. Losing element focus is not required for the update to kick in.
 
 ```js
 var ractive = new Ractive({
-  template: '<input value="{{foo}}">',
+  lazy: 1000,
   data: { foo: 'bar' },
-  lazy: true
-});
+  template: `
+    <input value="{{foo}}">
 
-// Only fires when input loses focus.
-ractive.on('change', function(){
-  console.log('changed!')
-})
+    <!-- Updates 1000ms after the last interaction on input -->
+    {{ foo }}
+  `
+});
 ```
 
+`lazy` is only applicable if [`twoway`](#twoway) is `true`.
 
 
 ## nestedTransitions
