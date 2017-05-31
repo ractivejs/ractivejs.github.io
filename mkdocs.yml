@@ -46,12 +46,11 @@ pages:
     - Static Methods: api/static-methods.md
     - Instance Properties: api/instance-properties.md
     - Instance Methods: api/instance-methods.md
-    - Attributes: api/attributes.md
-    - Keypath Prefixes: api/keypath-prefixes.md
-    - Special References: api/special-references.md
     - Context Object: api/context.md
     - Parse: api/parse.md
     - Transition: api/transition.md
+    - Attributes: api/attributes.md
+    - References: api/references.md
   - Extend:
     - Adaptors: extend/adaptors.md
     - Components: extend/components.md
