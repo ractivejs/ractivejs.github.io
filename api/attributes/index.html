@@ -76,7 +76,21 @@
       </li>
     
       <li class="pure-menu-item ">
-        <a class="pure-menu-link pure-menu-heading" href="#special-attributes">Special Attributes</a>
+        <a class="pure-menu-link pure-menu-heading" href="#input-behavior">Input behavior</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#twoway">twoway</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#lazy">lazy</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#special-attributes">Special attributes</a>
       </li>
       
         <li class="pure-menu-item ">
@@ -92,7 +106,7 @@
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#-in-out-in-out">*-in, *-out, *-in-out</a>
+          <a class="pure-menu-link" href="#-in-out-in-out">-in, -out, *-in-out</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -274,14 +288,36 @@
 <li>The returned string may be different from browser to browser.</li>
 <li>Any value set on the bound data will always be rendered as HTML.</li>
 </ul>
-<h1 id="special-attributes">Special Attributes</h1>
-<h2 id="as-"><code>as-*</code></h2>
+<h1 id="input-behavior">Input behavior</h1>
+<h2 id="twoway">twoway</h2>
+<p>The element-specific attribute form of <a href="../initialization-options/#twoway"><code>twoway</code></a> that toggles two-way binding on a specific element.</p>
+<pre><code class="html">&lt;!-- By default, two-way is enabled. Editing the input updates foo. --&gt;
+Two-way: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
+
+&lt;!-- With twoway=&quot;false&quot;, editing the input will not update bar. --&gt;
+One-way: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; twoway=&quot;false&quot;&gt; {{ bar }}
+
+&lt;!-- Updating bar via the data will update the UI --&gt;
+&lt;button type=&quot;button&quot; on-click=&quot;@this.set('bar', 'baz')&quot;&gt;Set value to bar&lt;/button&gt;
+</code></pre>
+
+<h2 id="lazy">lazy</h2>
+<p>The element-specific attribute form of <a href="../initialization-options/#lazy"><code>lazy</code></a> that toggles lazy updating on a specific element.</p>
+<pre><code class="html">&lt;!-- Editing the input updates foo on keypress. --&gt;
+Two-way: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
+
+&lt;!-- Editing the input updates bar only when focus moves away from the input. --&gt;
+One-way: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;true&quot;&gt; {{ bar }}
+</code></pre>
+
+<h1 id="special-attributes">Special attributes</h1>
+<h2 id="as-">as-*</h2>
 <p><code>as-*</code> attributes augment the element with <a href="../../extend/decorators/">decorators</a>. It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.</p>
 <pre><code class="html">&lt;div as-modal&gt;Div appearing as modal&lt;/div&gt;
 &lt;div as-modal=&quot;true, true, true, false&quot;&gt;Div appearing as modal&lt;/div&gt;
 </code></pre>
 
-<h2 id="class-"><code>class-*</code></h2>
+<h2 id="class-">class-*</h2>
 <p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions. If there is no expression, the implicit value is <code>true</code>, which is useful for applying multiple classes to an element using component <code>extra-attributes</code>.</p>
 <pre><code class="html">&lt;div class-foo=&quot;isFoo&quot;&gt;Adds &quot;foo&quot; if isFoo is truthy&lt;/div&gt;
 &lt;div class-foo-bar=&quot;isFooBar&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar is truthy&lt;/div&gt;
@@ -289,7 +325,7 @@
 &lt;div class-baz&gt;Always has &quot;baz&quot;&lt;/div&gt;
 </code></pre>
 
-<h2 id="on-"><code>on-*</code></h2>
+<h2 id="on-">on-*</h2>
 <p><code>on-*</code> attributes attach event handlers for both native and <a href="../../extend/events/">custom events</a>. They are designed to look similar to regular <code>on*</code> attributes for familiarity, the only difference being the hyphen. <code>on-*</code> can be used in two ways: proxy event syntax and expression syntax.</p>
 <p>Using the proxy event syntax, <code>on-*</code> accepts an event name as value. Events are handled by registering a function with <a href="../instance-methods/#ractiveon"><code>ractive.on</code></a> using the assigned event name.</p>
 <pre><code class="js">Ractive({
@@ -326,7 +362,7 @@
 });
 </code></pre>
 
-<h2 id="-in-out-in-out"><code>*-in</code>, <code>*-out</code>, <code>*-in-out</code></h2>
+<h2 id="-in-out-in-out"><em>-in, </em>-out, *-in-out</h2>
 <p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> attributes apply <a href="../../extend/transitions/">transitions</a> to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.</p>
 <pre><code class="html">&lt;div fade-in&gt;Fades on render&lt;/div&gt;
 &lt;div fade-out&gt;Fades before removal&lt;/div&gt;
@@ -334,7 +370,7 @@
 &lt;div fade-in-out=&quot;{ duration: 500 }&quot;&gt;Fades with 500ms duration&lt;/div&gt;
 </code></pre>
 
-<h2 id="style-"><code>style-*</code></h2>
+<h2 id="style-">style-*</h2>
 <p><code>style-*</code> attributes update individual <code>style</code> properties of the element. The part of the attribute following <code>style-</code> will be used as the style property name. There are two forms of the syntax: <code>style-property-name</code> (CSS style) and <code>style-propertyName</code> (JS style). Style property names will be normalized.</p>
 <pre><code class="html">&lt;div style-vertical-align=&quot;middle&quot;&gt;Applies style.verticalAlign&lt;/div&gt;
 &lt;div style-textAlign=&quot;center&quot;&gt;Applies style.textAlign&lt;/div&gt;
@@ -477,18 +513,6 @@
           <a class="pure-menu-link" href="../instance-methods/">Instance Methods</a>
         </li>
       
-        <li class="pure-menu-item pure-menu-selected">
-          <a class="pure-menu-link" href="./">Attributes</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../keypath-prefixes/">Keypath Prefixes</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../special-references/">Special References</a>
-        </li>
-      
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../context/">Context Object</a>
         </li>
@@ -499,6 +523,14 @@
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../transition/">Transition</a>
+        </li>
+      
+        <li class="pure-menu-item pure-menu-selected">
+          <a class="pure-menu-link" href="./">Attributes</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../references/">References</a>
         </li>
       
       </li>
@@ -645,7 +677,21 @@
       </li>
     
       <li class="pure-menu-item ">
-        <a class="pure-menu-link pure-menu-heading" href="#special-attributes">Special Attributes</a>
+        <a class="pure-menu-link pure-menu-heading" href="#input-behavior">Input behavior</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#twoway">twoway</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#lazy">lazy</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#special-attributes">Special attributes</a>
       </li>
       
         <li class="pure-menu-item ">
@@ -661,7 +707,7 @@
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#-in-out-in-out">*-in, *-out, *-in-out</a>
+          <a class="pure-menu-link" href="#-in-out-in-out">-in, -out, *-in-out</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -781,18 +827,6 @@
                     <a class="pure-menu-link" href="../instance-methods/">Instance Methods</a>
                   </li>
                 
-                  <li class="pure-menu-item pure-menu-selected">
-                    <a class="pure-menu-link" href="./">Attributes</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../keypath-prefixes/">Keypath Prefixes</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../special-references/">Special References</a>
-                  </li>
-                
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../context/">Context Object</a>
                   </li>
@@ -803,6 +837,14 @@
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../transition/">Transition</a>
+                  </li>
+                
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">Attributes</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../references/">References</a>
                   </li>
                 
               </ul>

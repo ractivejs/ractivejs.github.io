@@ -417,8 +417,8 @@ ractive.get( 'letters[0]' ); // returns undefined
 <h2 id="reference-resolution">Reference resolution</h2>
 <p>In order for a reference to be usable, it has to resolve to something. Ractive follows the following resolution algorithm to find the value of a reference:</p>
 <ol>
-<li>If the reference a <a href="../../api/special-references/">special reference</a>, resolve with that keypath.</li>
-<li>If the reference is <a href="../../api/keypath-prefixes/">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
+<li>If the reference a <a href="../api/special-references.md">special reference</a>, resolve with that keypath.</li>
+<li>If the reference is <a href="../api/keypath-prefixes.md">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
 <li>Grab the current virtual node from the template hierarchy.</li>
 <li>If the reference matches an <a href="#aliasing">alias</a>, section indexes, or keys, resolve with that keypath.</li>
 <li>If the reference matches any <a href="../../extend/components/#binding">mappings</a>, resolve with that keypath.</li>
@@ -1078,18 +1078,6 @@ ractive.set('admin', true);
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../api/keypath-prefixes/">Keypath Prefixes</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../api/special-references/">Special References</a>
-        </li>
-      
-        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../api/context/">Context Object</a>
         </li>
       
@@ -1099,6 +1087,14 @@ ractive.set('admin', true);
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../api/transition/">Transition</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/references/">References</a>
         </li>
       
       </li>
@@ -1442,18 +1438,6 @@ ractive.set('admin', true);
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../api/keypath-prefixes/">Keypath Prefixes</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../api/special-references/">Special References</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../api/context/">Context Object</a>
                   </li>
                 
@@ -1463,6 +1447,14 @@ ractive.set('admin', true);
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../api/transition/">Transition</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/references/">References</a>
                   </li>
                 
               </ul>

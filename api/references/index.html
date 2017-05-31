@@ -42,19 +42,73 @@
       </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#current-context">Current context (.)</a>
+          <a class="pure-menu-link" href="#current-context">Current context</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#parent-keypath">Parent keypath (../)</a>
+          <a class="pure-menu-link" href="#parent-keypath">Parent keypath</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#parent-context">Parent context (^^/)</a>
+          <a class="pure-menu-link" href="#parent-context">Parent context</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#instance-root-context">Instance root context (~/)</a>
+          <a class="pure-menu-link" href="#instance-root-context">Instance root context</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#special-references">Special references</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#this">this</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#this_1">@this</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#index">@index</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#key">@key</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#keypath">@keypath</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#rootpath">@rootpath</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#global">@global</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#shared">@shared</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#context">@context</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#event">@event</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#node">@node</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#local">@local</a>
         </li>
       
       </li>
@@ -67,7 +121,7 @@
         <div class="main__content">
           <h1 id="keypath-prefixes">Keypath prefixes</h1>
 <p>Normally, keypaths are resolved following a <a href="../../concepts/templates/#references">defined routine</a>. But there are times where you want to skip the normal resolution routine and resolve a keypath relative to a specific data context. Keypath prefixes allow you to specify which data context a keypath resolves to, regardless if it resolves to something or not.</p>
-<h2 id="current-context">Current context (<code>.</code>)</h2>
+<h2 id="current-context">Current context</h2>
 <p>Resolves the keypath relative to the current data context.</p>
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWuAA4CBTbjwDKABQDyegHJiJigLbSYFAB5zTbBjLRMymrWYpkwPe4oD0fiwAKmAIMAgsFLgsTAJKquq+GKbYpmQIZsoc0gjcAAa+ADxI1AB8egCuZLgUSBFeERZkVtZYLMICFSxgRDQswMDxaqwYGIV+JVSlvgMAxCxNLSyjvmzFZQCSTDV1LA0LljZtHV1eFEwA1u2d3b0RA0PqyxgAdOOT0wqKLOtTWyzhIgcTzCNoNcKRaKxfqDF5+FTDZ7vMozYB+FYKApMDAASgA3CAcGR4JggA"></div>
 
@@ -94,7 +148,7 @@
 // In reality, there is no
 </code></pre>
 
-<h2 id="parent-keypath">Parent keypath (<code>../</code>)</h2>
+<h2 id="parent-keypath">Parent keypath</h2>
 <p>Resolves the keypath relative to the parent data. This prefix can be used more than once to reference ancestors.</p>
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWFJNx4wERDhTKjxCyeqIBbORMUNKK3kkNGAjGLNsLNjSZbzFLCxeWrXxgBMjvreZC62pqE+4Zb+tgDMIV4xGE5haaGZbNhmZAhGAA4c0gjcAAbpADxI1AB8AJoCAK4sROpKrMDASkgsGBhVAPS1VHXp3QDELAFG-dlhFjX1Ta3tCJ0ePcrzw6PjTBZeUzO28+kxy2OrbR0UXdt9A3v16cfA07Pn0bFL+zfrTbdXq7EavH4xC6-MhXOoAUVwJCIhXuKAAdBiXmMoZd-i1bht7lsWBihjtnmDsRDYrCAXcHiS0UNSeTBpSDilobT8YCicDSQKmaysRzzLFukMBlCJVKFBYZQtKkwMABKADcIBwZHgmCAA"></div>
 
@@ -141,7 +195,7 @@
 // You are in reality
 </code></pre>
 
-<h2 id="parent-context">Parent context (<code>^^/</code>)</h2>
+<h2 id="parent-context">Parent context</h2>
 <p>While parent keypaths and parent contexts are often the same thing, there are some scenarios in which they are very, very different. For instance, in this horribly contrived example:</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATOmEwDm1pkzA5ACMA9gBMAnvwxNWowuz6MWrZmGEBbaoMLZqimStaDE5ZKPLxOARkXN4hTX34B5AA7UY88sPjZ+zNANWTCDmbV1sPgBtUNYlQ0NjU3NLG2ZgOwc9AQBZamxsZgAJQlR-QOVDEMqVeISjEzMLa1t7R1zqc2JS5gAVanhSctiA0IBdA2rWUmp1V2R5bIADUOBgAGJqEjAwnXy0Cvq19YB3clIdgD8AejVNcOoDkdYAHnNKAD4L6lUNH4ewigUtZmORCmsAHRJJqpCFtR5oF7Xd4fZ7MN5UL5gH7ERAwGADUigmaeCg+Xa6QHJZpWUHg4AAPQZ1yhjWBVjhWQOSJRIzW1zOFyeNX5W2IYGFrBW8DQAEoANwgNBAA"></div>
 
@@ -176,7 +230,7 @@
 // the current iteration base building1 is Medical Tent
 </code></pre>
 
-<h2 id="instance-root-context">Instance root context (<code>~/</code>)</h2>
+<h2 id="instance-root-context">Instance root context</h2>
 <p>Resolves the keypath relative to the instance's root data context.</p>
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWMAQIC23HgEYxExQAcBMGVxbzFLBmWVqNAJh0K2lg0aImziy5evreAZgdzLzIXYzldJzJgnw0AFkDPKLIMCItk1JSFbF0yBFU9DmkEbgADVOBgAGIWULcWDEzLcwrq2o56zPNmqprDYw7U4K9HNOCAHiRqAD4AUSZcmAomFAA6NbGAekmqKcGkywnpgE0BAFcWIhgEFiWlFVVTYBYAPw2fDs3t3ZGhskOdk7nS7XW7vCovDZtFbvBqfaZ7cZfQEXK43Vhgp6vKFQmEYOE7BFJf5TZHAtF3NSPCHYvpuFY4+4fLbwn5JCobBp7dmchSWbmdFhlJgYACUAG4QDgyPBMEA"></div>
 
@@ -215,6 +269,396 @@
 // You are in room 3
 // You are in room 4
 </code></pre>
+
+<h1 id="special-references">Special references</h1>
+<p>Special references are template keywords that act like data references but do not actually exist in your data. These references provide metadata regarding the current instance, context, environment, operation and more.</p>
+<h2 id="this"><code>this</code></h2>
+<p>The current data context.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3Y9ZbFkna1s7ajJ4ADNxUP8Iu0kVQkJZIRUnZwAJB2RxagB1cRhkDwBCXwTEqNj48MSklLSMrIAVMBVqAEdEMmIBalcYcQB3W1iADyqGxtq46jDGxuTU9MyXACtESQ5qcVUYamxO6mRZAC8vag9xIRnlmpiFpcfE1ZaN5w6gwmpZVDUWLIASEZzVR5oCGJKGzOywmEJTAJbAqXbnVFOAAGEPwHmU6hG4mwoWA1AAUgBlADyADkRIRsOR4EIyNEvBYTmRCABKahoNBafFKdQQ4DAADEkWe-IRjTxBPm1AAjKSKTT6Yzmaz2ZywNy+QKhQToYtJdLYrLTXYFSKlQAmNVUukMplRHUcrm82XGkXWs1SpUC-024XqJUAZidGtd2rZnv13qNXDDIYDFoKwbhj1t4ZlABZoy6te743qDT6Uybs4lxVws286w3Gk25XZWwksX54GgeQBuEBoIA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    info: {
+      message: 'Hello World!',
+      info: {
+        message: 'The quick brown fox',
+        info: {
+          message: 'jumps over the lazy dog',
+          info: {
+            message: 'Thats all folks'
+          }
+        }
+      }
+    }
+  },
+  template: `
+    &lt;div&gt;root: {{ JSON.stringify(this) }}&lt;/div&gt;
+    {{# info }}
+      &lt;div&gt;info 1: {{ JSON.stringify(this) }}&lt;/div&gt;
+      {{# info }}
+        &lt;div&gt;info 2: {{ JSON.stringify(this) }}&lt;/div&gt;
+        {{# info }}
+          &lt;div&gt;info 3: {{ JSON.stringify(this) }}&lt;/div&gt;
+          {{# info }}
+            &lt;div&gt;info 4: {{ JSON.stringify(this) }}&lt;/div&gt;
+          {{/}}
+        {{/}}
+      {{/}}
+    {{/}}
+  `,
+});
+
+// info 1: {&quot;info&quot;:{&quot;message&quot;:&quot;Hello World!&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;The quick brown fox&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;jumps over the lazy dog&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;Thats all folks&quot;}}}}}
+// info 2: {&quot;message&quot;:&quot;Hello World!&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;The quick brown fox&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;jumps over the lazy dog&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;Thats all folks&quot;}}}}
+// info 3: {&quot;message&quot;:&quot;The quick brown fox&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;jumps over the lazy dog&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;Thats all folks&quot;}}}
+// info 4: {&quot;message&quot;:&quot;jumps over the lazy dog&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;Thats all folks&quot;}}
+// info 5: {&quot;message&quot;:&quot;Thats all folks&quot;}
+</code></pre>
+
+<h2 id="this_1"><code>@this</code></h2>
+<p>The current Ractive instance.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3Y9ZbFkna1tqJmwJPmwnAEZ-akxE7BVJCmQglScAA0TI-A9ldQBhcRjQ4Gpo+Bo0NC0ipXV87HxXRDZxW2wvChVmEA6u+BZqboBaYmQyYgFBgAFsMDJCEVkPDwtnGuxnAEoNAEl4UjSVWq1h7G6W8Lt2zpuevoGWa+6xyenZ+ZYllZrSReACyKmWngshxA6gAMuIhNVypcuB94Hc7Dk-OFgWCIVt9mE7JEJPBCOJkCoRMgERYcsREDAYBcaLtqKtqAASYDLVYiITg7a7A5oHL7ADciTQNjQEpAaCAA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    count: 1
+  },
+  template: `
+    &lt;div&gt;Count: {{ count }}&lt;/div&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.add('count')&quot;&gt;Increment&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.myMethod()&quot;&gt;Log count&lt;/button&gt;
+  `,
+  myMethod(){
+    console.log(`current count is ${this.get('count')}`);
+  }
+});
+</code></pre>
+
+<h2 id="index"><code>@index</code></h2>
+<p>The current iteration index of the containing repeated section.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATPXKTMDkARgPYATAJ5cMTVgMKlCnRi1bNE2ajGycA2uIUNSwZvEIBbap158eXZpi2sdeg8dOFk5YtUvX5t3fqMnu1DQeYl7MALpanqyk1IYADshS-gAGNszAwADE1CRgisqqaGhMOgrMADwCVAB8AKoFzJkZzAAC5PAC1AAeVmjM2IRCaswAEuQAhMwAklyG6fZ+vePlAPRVlNVadsArOcRgRVqp8GgAlADcIFikeOXYxDDkcaT9MMQAvAzgpKRxaisrRDwOIAawA5gA6Yh8QwrGAkCg0L7VVb3R7PaogNBAA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    users: [
+      { name: 'bob' },
+      { name: 'alice' },
+      { name: 'eve' },
+    ]
+  },
+  template: `
+    {{#each users}}
+      &lt;div&gt;User #{{ @index }} says: Hi! I'm {{ name }}!&lt;/div&gt;
+    {{/each}}
+  `
+});
+
+// User #0 says: Hi! I'm bob!
+// User #1 says: Hi! I'm alice!
+// User #2 says: Hi! I'm eve!
+</code></pre>
+
+<p>For objects, <code>@index</code> is still the iteration index.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATPXKTMDkARgPYATAJ5cMTVgMKlCnRi1bNE2ajGyzxChqX49OXABLkAhMwCSzQgFtmOo6I2sthZOWLU9hk+asWXbu2LyjqTUNB7GZhbWodR2DsxoGpgaIZYADshS7swABvHAwADE1CRgisqqaInwWgrMADwCVAB8AKoVzIUFzAAC5PAC1AAeCWjM2IRCaszdpGDk2KP1APRNlM0aWgXLJcRgVRp58GgAlADcIFikePXYxDDkaaTjMMQAvAzgpKRpasvLiHgaQA1gBzAB0xD4lmWMBIFBon2aKzuDyezRAaCAA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    users: {
+      bob: 'Hi! I am bob!',
+      alice: 'Hi! I am alice!',
+      eve: 'Hi! I am eve!'
+    }
+  },
+  template: `
+    {{#each users}}
+      &lt;div&gt;User #{{ @index }} says: {{ this }}&lt;/div&gt;
+    {{/each}}
+  `
+});
+
+// User #0 says: Hi! I am bob!
+// User #1 says: Hi! I am alice!
+// User #2 says: Hi! I am eve!
+</code></pre>
+
+<h2 id="key"><code>@key</code></h2>
+<p>The current key name of the containing object iteration section.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATPXKTMDkARgPYATAJ5cMTVgMKlCnRi1bNE2ajGyzxChqX49OXABLkAhMwCSzQgFtmOo6I2sthZOWLU9hk+asWXbu2LyjqTUNB7GZhbWodR2DsxoGpgaIZYADshS7swABvHAwADE1CRgisqqaInwWgrMADwCVAB8AKoVzAXMAAIA1tRCCWjM2IRCap3AzKRg5NhD9QD0TZTNGloFiyXEYFUaefBoAJQA3CBYpHj12MQw5GmkIzDEALwM4KSkaWqLi4jwaV6AHMAHTEPiWRYwEgUGjvZpLG53B7NEBoIA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    users: {
+      bob: 'Hi! I am bob!',
+      alice: 'Hi! I am alice!',
+      eve: 'Hi! I am eve!'
+    }
+  },
+  template: `
+    {{#each users}}
+      &lt;div&gt;User {{ @key }} says: {{ this }}&lt;/div&gt;
+    {{/each}}
+  `
+});
+
+// User bob says: Hi! I am bob!
+// User alice says: Hi! I am alice!
+// User eve says: Hi! I am eve!
+</code></pre>
+
+<p>For arrays, <code>@key</code>'s value will be the iteration index.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATPXKTMDkARgPYATAJ5cMTVgMKlCnRi1bNE2ajGycA2uIUNSwZvEIBbap158eXZpi2sdeg8dOFk5YtUvX5t3fqMnu1DQeYl7MALpanqyk1IYADshS-gAGNszAwADE1CRgisqqaGhMOgrMADwCVAB8AKoFzJkZzAACANbUQlZozNiEQmrMABLkAITMAJJchun2ft2j5QD0VZTVWnbASznEYEVaqfBoAJQA3CBYpHjl2MQw5HGkvTDEALwM4KSkcWpLS4jwOJtADmADpiHxDEsYCQKDQPtVlrd7o9qiA0EA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    users: [
+      { name: 'bob' },
+      { name: 'alice' },
+      { name: 'eve' },
+    ]
+  },
+  template: `
+    {{#each users}}
+      &lt;div&gt;User #{{ @key }} says: Hi! I'm {{ name }}!&lt;/div&gt;
+    {{/each}}
+  `
+});
+
+// User #0 says: Hi! I'm bob!
+// User #1 says: Hi! I'm alice!
+// User #2 says: Hi! I'm eve!
+</code></pre>
+
+<h2 id="keypath"><code>@keypath</code></h2>
+<p>The keypath to the current data context relative to the instance's root data context.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3hNsK5JGoByAEbiAJgE9nGG3Y9ZbFkna1tsOwAzcXFQ-wiE11kYOPC7dOwkgC9UjLzsSRVCQlkhFSdnMAdkcWoAd3EYZA9nePy0NoSOtOxuu0x4+0kKZCDy6gADTvwPZXUAaRUvCiCwUOBqAAEBJZXsMGo0NC1ZpXVO4GAAYmpo2qPOuxm5xeXV9a2dt-3D465T849OyXG5JGC-R4JZ5nV57NbUS6fXarX4nOaQ4HXajZCFAhJPAGw94IjbbZE-I5os4Y7CXLgPPF0hkZJl9bBTeBoACUAG4QGggA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    foo: {
+      bar: {
+        baz: {
+          message: 'hello world'
+        }
+      }
+    }
+  },
+  template: `
+    &lt;div&gt;Keypath: {{ @keypath }}&lt;/div&gt;
+    {{# foo }}
+      &lt;div&gt;Keypath: {{ @keypath }}&lt;/div&gt;
+      {{# bar }}
+        &lt;div&gt;Keypath: {{ @keypath }}&lt;/div&gt;
+        {{# baz }}
+          &lt;div&gt;Keypath: {{ @keypath }}&lt;/div&gt;
+        {{/}}
+      {{/}}
+    {{/}}
+  `
+});
+
+// Keypath:
+// Keypath: foo
+// Keypath: foo.bar
+// Keypath: foo.bar.baz
+</code></pre>
+
+<p>If the keypath is a mapping, the keypath will remain relative to the instance.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtVipFcfBXxshEQFkVhQrKErqDaqYXKVERUAD2w7ABMACmAmeCZscNlsWUhqSIBKb3U0mLjseLJ4ADNxalTgTHjY+LR0jGq2FUkKZCSVVIADBvjgYABiakKS6jQ0bvzsfHDldQBlCJUYcuBqeFlJL1GtaaV1cfipmZc3D3bqXuoNk88RtG2Z-cmd9QBpFQBPCiSwZeoAAQEHy+2DAt3uu3GvS4owaXXgtQA3NV4H5zCpog0VMhUgByABG4nC7xx9TyiWS5XGklkZGx50ehQJwUpeSqEyu7k8nGoAG1cmyBdg1htcQS8STHmyOadcQAJMjUWTIMjEFQAQhxkuwmH5E0FwrO+PE4tJgqlrk5hvl1BUqg1WrQAF1HmNWdqGpU8mFmq0wp1If1LjTkCJGeJgiJpVzbo98MdLYNiuJmCALiCyIQYyBqFw9nq3VCYXk4bUQGggA"></div>
+
+<pre><code class="js">Ractive.components.Message = Ractive.extend({
+  data: () =&gt; ({
+    info : {},
+  }),
+  template: `
+    {{# info }}
+      &lt;div&gt;Sender: {{ name }}&lt;/div&gt;
+      &lt;div&gt;Message: {{ message }}&lt;/div&gt;
+      &lt;div&gt;Keypath: {{ @keypath }}&lt;/div&gt;
+    {{/}}
+  `
+});
+
+Ractive({
+  el: 'body',
+  data: {
+    mail: {
+      inbox: {
+        messages: [{
+          name: 'bob',
+          message: 'Hi alice!'
+        },{
+          name: 'bob',
+          message: 'Hi eve!'
+        }]
+      }
+    }
+  },
+  template: `
+    {{# mail.inbox.messages }}
+      &lt;Message info=&quot;{{ this }}&quot; /&gt;
+    {{/}}
+  `
+});
+
+// Sender: bob
+// Message: Hi alice!
+// Keypath: info
+// Sender: bob
+// Message: Hi eve!
+// Keypath: info
+</code></pre>
+
+<h2 id="rootpath"><code>@rootpath</code></h2>
+<p>The keypath to the current data context relative to the originating instance's root data context.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3hNsK5JGoByAEbiAJgE9nGG3Y9ZbFkna1tsOwAzcXFQ-wiE11kYOPC7dOwkgC9UjLzsSRVCQlkhFSdnMAdkcWoAd3EYZA9nePy0NoSOtOxuu0x4+0kKZCDy6gADTvwPZXUAaRUvCiCwUOBqAAEYGPZV6jQ0LVmldU7gYABiamjaw867GbnF5dX1rZ3xPewwA6OuE5nHp2C7XJIwP4PBJPU4vFY-d7bXbw36HY5zKEgq7UbKQ4EJR6AuFvagXD7I-ZogEY-FYrj3fEXel9BJMhl2KbwNAASgA3CA0EA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    foo: {
+      bar: {
+        baz: {
+          message: 'hello world'
+        }
+      }
+    }
+  },
+  template: `
+    &lt;div&gt;Keypath: {{ @rootpath }}&lt;/div&gt;
+    {{# foo }}
+      &lt;div&gt;Keypath: {{ @rootpath }}&lt;/div&gt;
+      {{# bar }}
+        &lt;div&gt;Keypath: {{ @rootpath }}&lt;/div&gt;
+        {{# baz }}
+          &lt;div&gt;Keypath: {{ @rootpath }}&lt;/div&gt;
+        {{/}}
+      {{/}}
+    {{/}}
+  `
+});
+
+// Keypath:
+// Keypath: foo
+// Keypath: foo.bar
+// Keypath: foo.bar.baz
+</code></pre>
+
+<p>If the keypath is a mapping, it will be adjusted relative to the originating instance's root data context. This is what primarily sets <code>@rootpath</code> apart from <code>@keypath</code>.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtVipFcfBXxshEQFkVhQrKErqDaqYXKVERUAD2w7ABMACmAmeCZscNlsWUhqSIBKb3U0mLjseLJ4ADNxalTgTFj4tHSMKrYVSQpkJJVUgAN6+OBgAGJqQpLqNDQu-Ox8cOV1AGUIlRhy4Gp4WUkvEa0ppXUx+MnplzcPNuoe6nXjz2G0Lem9ie31AGkVAE8KJLAl6gABGHE4nYXxudx2Yx6XBG9U68BqAG4qvA-OYVNF6ipkKkAOQAI3E4Te2LqeUSyXKY0ksjIWLOD0K+OCFLy8VZ2Eu7k8nGoAG1cmyBdhVuscfjccSHmyOSccQAJMjUWTIMjEFQAQmxkuwmH540FwtOePE4pJgqlrk5hvl1BUqg1WrQAF0HqMWdr6pU8mEmi0wh0IX0LtTkCIGeJgiJpVybg98EdLQNiuJmCBztgwGRCDGQNQuLs3ZDoXlYQiQGggA"></div>
+
+<pre><code class="js">Ractive.components.Message = Ractive.extend({
+  data: () =&gt; ({
+    info : {},
+  }),
+  template: `
+    {{# info }}
+      &lt;div&gt;Sender: {{ name }}&lt;/div&gt;
+      &lt;div&gt;Message: {{ message }}&lt;/div&gt;
+      &lt;div&gt;Keypath: {{ @rootpath }}&lt;/div&gt;
+    {{/}}
+  `
+});
+
+Ractive({
+  el: 'body',
+  data: {
+    mail: {
+      inbox: {
+        messages: [{
+          name: 'bob',
+          message: 'Hi alice!'
+        },{
+          name: 'bob',
+          message: 'Hi eve!'
+        }]
+      }
+    }
+  },
+  template: `
+    {{# mail.inbox.messages }}
+      &lt;Message info=&quot;{{ this }}&quot; /&gt;
+    {{/}}
+  `
+});
+
+// Sender: bob
+// Message: Hi alice!
+// Keypath: mail.inbox.messages.0
+// Sender: bob
+// Message: Hi eve!
+// Keypath: mail.inbox.messages.1
+</code></pre>
+
+<h2 id="global"><code>@global</code></h2>
+<p>The global object of the current environment. For browsers, it references the <code>window</code> object. For Node.js, it references the <code>global</code> object.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwB3MvAAm44yMkrChWUJXUG1AOQAJFanHUA6uIwyOYAhG5M8BEASvKKqgAUwBFM2N6Q7gBG4uYAnm4YyWwqkhTIsqnpAAaFKcDA1AACQsjiGbLINnYOTtRoaIXV8GgAlADcIGhAA"></div>
+
+<pre><code class="js">window.message = 'Hello World!'
+
+Ractive({
+  el: 'body',
+  template: `
+    {{ @global.message }}
+  `
+});
+
+// Hello World!
+</code></pre>
+
+<p>Ractive can automatically update properties on <code>@global</code> via two-way binding. However, for changes caused externally, <a href="../instance-methods#ractiveupdate"><code>ractive.update()</code></a> must be called to re-render the UI.</p>
+<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogO4CW8AJgPb4B0AtgKbbYCGA5rQAQC8bA5ABK2oybAOpkYyEgEJuAHXhyASowDGAF0IA3WgApgctmwGQeAIzIkAntwz62q2tQAOyRveMADWzNXBgbAALMyGQmjMg09EysbGhotgYAPMSOiKp2Fo60HDIg9gAeqjlsGmGIWTm+AUEhYREMLOyxOQB88WwJJqmqZPDpmdkgnard8iBsPQC0ysiEygDWA-6qYITYlMHMCrQAZrQwtPDKOgCULQAyZMxs+7v7h+wlyGUJAPRDI629Bu3vPX3lgy6PSKk2mswWOSWKzWGwA4sFQshtKcQM0LldqojiqVaK9fvBPt8fkDeqoMgD8SD4FMZvNFstVpRsLRVAAxMhkABCjBg3IAXsiWgBhMCMeDRbpsHLbDlsUIwOWMPlFEiEfZqZAWPEkwnfDok-4DSljUG0iEgKGMxCOEiuHTcQII2p0eqsbgo5pCs12ITW232bXDHqfNoJMjIXVEhIzT3enLo647PYHI7Yp60IpikhsYJkOZsVx2MDsZQ9bDh3EvGNtRIxr3gqUgBOYsJpsqZ0g5jn5wvLEtliuvatfKN10Xi9h9tjJVJt9hZxOZQvYeyObBsACMBc7ACYh4RI3q63GQCKxRKhNwZUJ5Yq+dw2Kr1apNTl94fawetku0ivaGvN23bMdyAth4DIdRU2WZdV0A-BGHXcC0kYeD9nGbYi3YJ9aDUNhlHHVh3xrdpjwbHJ63mH02D9O03yrA9iOjL9-1oGD-3XLcFxAhckNmSdRTSMxljYP8AJ5dhwPwAtUMrYcoxecNdXcGwvg2LZbhTE49BHPCB2QWh1kubQGTWVhVG0B0W3CF0olod1Ti+TBbDhJ0kWObSiVLeBy30wzmG0IhSAoOpbOOABuWwnK+Zk2Q5bleSVZEPO+QLyCoGyGk4Rtr0VBVQmVEBIrkNBwpALBVDwBJsGUGBCEcX8YGUAYwGGNdIBeF5EHgRw5mYShS2oF4YBUdQtBaV5qtq+rmhANAgA"></div>
+
+<pre><code class="js">window.message = 'Hello World!'
+
+Ractive({
+  el: 'body',
+  template: `
+    {{ @global.message }}
+    &lt;input type=&quot;text&quot; value=&quot;{{ @global.message }}&quot;&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.logReference()&quot;&gt;Log reference value&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.logGlobal()&quot;&gt;Log global value&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.setFooBarBaz()&quot;&gt;Change to &quot;foo bar baz&quot; directly&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.update('@global.message')&quot;&gt;Click to update&lt;/button&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;Click &quot;Log reference value&quot; and look at the console&lt;/li&gt;
+      &lt;li&gt;Click &quot;Log global value&quot; and look at the console&lt;/li&gt;
+      &lt;li&gt;Change the input value and repeat steps 1 and 2&lt;/li&gt;
+      &lt;li&gt;Click &quot;Change to 'foo bar baz' directly&quot;&lt;/li&gt;
+      &lt;li&gt;Repeat steps 1 and 2 and notice that step 1 was not aware of the direct change&lt;/li&gt;
+      &lt;li&gt;Click &quot;Click to update&quot;&lt;/li&gt;
+      &lt;li&gt;Repeat steps 1 and 2 and notice that both steps are now aware&lt;/li&gt;
+    &lt;/ol&gt;
+  `,
+  logReference(){
+    console.log(this.get('@global.message'))
+  },
+  logGlobal(){
+    console.log(window.message);
+  },
+  setFooBarBaz(){
+    window.message = &quot;foo bar baz&quot;
+  }
+});
+</code></pre>
+
+<h2 id="shared"><code>@shared</code></h2>
+<p><code>@shared</code> is a Ractive-global model similar to <code>@global</code> but not subject to interference from outside of Ractive.</p>
+<h2 id="context"><code>@context</code></h2>
+<p>The <a href="../context/">context object</a> associated with the current context.</p>
+<h2 id="event"><code>@event</code></h2>
+<p>The DOM event that is triggering an event directive. This reference is only available to event directive expressions.</p>
+<h2 id="node"><code>@node</code></h2>
+<p>The DOM node associated with an event directive. This reference is only available to event directive expressions.</p>
+<h2 id="local"><code>@local</code></h2>
+<p>Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.</p>
         </div>
       </div>
     </div>
@@ -224,7 +668,7 @@
     <div class="main__footer">
       <div class="page-controls">
   
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/keypath-prefixes.md" target="_blank">Edit this page</a>
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/references.md" target="_blank">Edit this page</a>
   
 </div>
 
@@ -350,18 +794,6 @@
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../attributes/">Attributes</a>
-        </li>
-      
-        <li class="pure-menu-item pure-menu-selected">
-          <a class="pure-menu-link" href="./">Keypath Prefixes</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../special-references/">Special References</a>
-        </li>
-      
-        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../context/">Context Object</a>
         </li>
       
@@ -371,6 +803,14 @@
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../transition/">Transition</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../attributes/">Attributes</a>
+        </li>
+      
+        <li class="pure-menu-item pure-menu-selected">
+          <a class="pure-menu-link" href="./">References</a>
         </li>
       
       </li>
@@ -483,19 +923,73 @@
       </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#current-context">Current context (.)</a>
+          <a class="pure-menu-link" href="#current-context">Current context</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#parent-keypath">Parent keypath (../)</a>
+          <a class="pure-menu-link" href="#parent-keypath">Parent keypath</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#parent-context">Parent context (^^/)</a>
+          <a class="pure-menu-link" href="#parent-context">Parent context</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="#instance-root-context">Instance root context (~/)</a>
+          <a class="pure-menu-link" href="#instance-root-context">Instance root context</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#special-references">Special references</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#this">this</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#this_1">@this</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#index">@index</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#key">@key</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#keypath">@keypath</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#rootpath">@rootpath</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#global">@global</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#shared">@shared</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#context">@context</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#event">@event</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#node">@node</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#local">@local</a>
         </li>
       
       </li>
@@ -612,18 +1106,6 @@
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../attributes/">Attributes</a>
-                  </li>
-                
-                  <li class="pure-menu-item pure-menu-selected">
-                    <a class="pure-menu-link" href="./">Keypath Prefixes</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../special-references/">Special References</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../context/">Context Object</a>
                   </li>
                 
@@ -633,6 +1115,14 @@
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../transition/">Transition</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../attributes/">Attributes</a>
+                  </li>
+                
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">References</a>
                   </li>
                 
               </ul>
