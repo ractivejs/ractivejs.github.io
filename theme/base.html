@@ -8,7 +8,7 @@
   {% if config.site_description %}<meta name="description" content="{{ config.site_description }}">{% endif %}
   {% if config.theme_color %}<meta name="theme-color" content="{{ extra.theme_color }}">{% endif %}
 
-  {% if config.favicon %}<link rel="shortcut icon" href="{{ extra.favicon }}">{% endif %}
+  {% if config.extra and config.extra.favicon %}<link rel="shortcut icon" href="{{ config.extra.favicon }}">{% endif %}
   {% if config.site_author %}<link rel="author" href="{{ config.site_author }}">{% endif %}
   {% if config.site_url %}<link rel="canonical" href="{{ config.site_url }}">{% endif %}
 
