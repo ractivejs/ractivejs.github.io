@@ -14,14 +14,17 @@ $(function () {
 
   function frameBuilder(){
     var promise = null;
-    var frame = null;
 
     return function(){
       return promise || (promise = $.Deferred(function(deferred){
-        $('<iframe class="playground-frame" src="/playground/?env=docs">')
-          .on('load', function(){ deferred.resolve(this); })
-          .on('error', function(error){ deferred.reject(error); })
-          .appendTo(playgroundContainer)
+        var frame = $('.playground-frame');
+
+        if ((frame[0].contentDocument || frame[0].contentWindow.document).readyState === 'complete') deferred.resolve(frame[0]);
+        else {
+          frame
+            .on('load', function(){ deferred.resolve(this); })
+            .on('error', function(error){ deferred.reject(error); });
+        }
       }).promise());
     }
   }
