@@ -68,8 +68,8 @@ pages:
     - Libraries: integrations/libraries.md
   - Concepts:
     - Architecture: concepts/architecture.md
+    - Data Management: concepts/data-management.md
     - Rendering: concepts/rendering.md
     - Security: concepts/security.md
-    - Data Binding: concepts/data-binding.md
     - Events: concepts/events.md
     - Templates: concepts/templates.md
