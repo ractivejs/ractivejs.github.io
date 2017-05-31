@@ -318,13 +318,13 @@ setTimeout(function() {
 <li><code>[duration] (number)</code>: How many milliseconds the animation should run for. Defaults to <code>400</code>.</li>
 <li><code>[easing] (string|Function)</code>: The name of an easing function or the easing function itself. Defaults to <code>linear</code>.</li>
 <li><code>[step] (Function)</code>: A function to be called on each step of the animation. Receives <code>t</code> and <code>value</code> as arguments, where <code>t</code> is the animation progress (between <code>0</code> and <code>1</code>, as determined by the easing function) and <code>value</code> is the intermediate value at <code>t</code>.</li>
-<li><code>[complete] (Function)</code>: A function to be called when the animation completes, with the same argument signature as <code>step</code> (i.e. <code>t</code> is <code>1</code>, and <code>value</code> is the destination value)</li>
+<li><code>[complete] (Function)</code>: A function to be called when the animation completes, with the <code>value</code> passed to <code>animate</code>.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Promise)</code>: Returns a Promise with an additional <code>stop</code> method, which cancels the animation.</li>
+<li><code>(Promise)</code>: Returns a Promise which resolves with the target <code>value</code> and has an additional <code>stop</code> method, which cancels the animation.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiRlVfrMwv69CvoAJmG8Q3omLRhUfeUDF+Gw3oU1mEzeAEZAcMZrggA"></div>
