@@ -304,10 +304,10 @@ One-way: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; twoway=&quo
 <h2 id="lazy">lazy</h2>
 <p>The element-specific attribute form of <a href="../initialization-options/#lazy"><code>lazy</code></a> that toggles lazy updating on a specific element.</p>
 <pre><code class="html">&lt;!-- Editing the input updates foo on keypress. --&gt;
-Two-way: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
+Eager: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
 
 &lt;!-- Editing the input updates bar only when focus moves away from the input. --&gt;
-One-way: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;true&quot;&gt; {{ bar }}
+Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;true&quot;&gt; {{ bar }}
 </code></pre>
 
 <h1 id="special-attributes">Special attributes</h1>

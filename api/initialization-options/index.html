@@ -584,21 +584,34 @@ el: jQuery('#container')
 <p>Controls whether the component will try to <a href="../../concepts/templates/#references">resolve data and plugins on its ancestors</a>. Defaults to <code>true</code>.</p>
 <p>Relevant only to <a href="../../extend/components/">Components</a>.</p>
 <h2 id="lazy">lazy</h2>
-<p><code>(boolean)</code></p>
+<p><code>(boolean|number)</code></p>
 <p>Whether or not to update data using late-firing DOM events (i.e. <code>change</code>, <code>blur</code>) instead of events that fire immediately on interaction (i.e. <code>keyup</code>, <code>keydown</code>). Defaults to <code>false</code>.</p>
-<p>Only applicable if <a href="#twoway"><code>twoway</code></a> is <code>true</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
-  template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
+  lazy: true,
   data: { foo: 'bar' },
-  lazy: true
-});
+  template: `
+    &lt;input value=&quot;{{foo}}&quot;&gt;
 
-// Only fires when input loses focus.
-ractive.on('change', function(){
-  console.log('changed!')
-})
+    &lt;!-- Updates when the input loses focus --&gt;
+    {{ foo }}
+  `
+});
 </code></pre>
 
+<p><code>lazy</code> also accepts a number value, a millisecond value, that indicates the delay between the last UI interaction and Ractive updating the data. Losing element focus is not required for the update to kick in.</p>
+<pre><code class="js">var ractive = new Ractive({
+  lazy: 1000,
+  data: { foo: 'bar' },
+  template: `
+    &lt;input value=&quot;{{foo}}&quot;&gt;
+
+    &lt;!-- Updates 1000ms after the last interaction on input --&gt;
+    {{ foo }}
+  `
+});
+</code></pre>
+
+<p><code>lazy</code> is only applicable if <a href="#twoway"><code>twoway</code></a> is <code>true</code>.</p>
 <h2 id="nestedtransitions">nestedTransitions</h2>
 <p><code>(boolean)</code></p>
 <p>Whether or not to allow transitions to fire if they are already downstream from a transitioning element. Defaults to <code>true</code>.</p>
