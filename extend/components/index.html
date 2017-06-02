@@ -153,111 +153,6 @@ const AnotherComponent = Ractive.extend({
 });
 </code></pre>
 
-<h3 id="isolation">Isolation</h3>
-<p>By default, components are "isolated". This means it can only bind data explicitely provided to it.
-In the following example, the instance of <code>ChildComponent</code> will not print anything.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: 'Message missing {{ message }}'
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: '&lt;ChildComponent /&gt;',
-  data: {
-    message: 'The ChildComponent will not know anything about this message'
-  }
-});
-</code></pre>
-
-<p>You have to pass data explicitely:</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: 'My message: {{ message }}'
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;ChildComponent message=&quot;Some static message&quot; /&gt;
-    &lt;ChildComponent message=&quot;{{myMessage}}&quot; /&gt;
-  `,
-  data: {
-    myMessage: 'Hello World!'
-  }
-});
-</code></pre>
-
-<p>This ensures the reusability of components in any context and avoids accidentally binding to wrong data.</p>
-<hr />
-<p>There is also a possibility to make components aware of the outer context by specifying <code>isolated: false</code> <a href="../../api/initialization-options/">initialization option</a>.
-In that case, it climbs to the parent component's data context if it does not resolve on the child data context.</p>
-<p>In the following example, the instance of <code>ChildComponent</code> prints "Hello World!" even when the data is set on the outer-most instance.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  isolated: false,
-  template: 'Child: {{ message }}'
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  isolated: false,
-  template: 'Nested &lt;ChildComponent /&gt;'
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: '&lt;ParentComponent /&gt;',
-  data: {
-    message: 'The nested component will find me!'
-  }
-});
-</code></pre>
-
-<h3 id="binding">Binding</h3>
-<p>Bindings connect a piece of data on the parent instance to data on the child instance. Changes on one side will reflect on the other. The syntax is similar to how one would write HTML element attributes.</p>
-<p>The following example binds <code>text</code> on the instance to <code>MyComponent</code>'s <code>message</code>. Updates on the value of <code>text</code> will update <code>message</code>. Typing on the <code>&lt;input&gt;</code> bound to <code>message</code> will update <code>text</code>.</p>
-<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
-  template: `
-    &lt;input type=&quot;text&quot; value=&quot;{{ message }}&quot;&gt;
-  `
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: '&lt;MyComponent message=&quot;{{ text }} /&gt;'
-});
-
-ractive.set('text', 'Hello World!');
-</code></pre>
-
-<h3 id="data-context">Data context</h3>
-<p>Each component instance comes with its own data context so that parameters don't pollute the primary data. Bindings will still update across both contexts.</p>
-<p>In the following example, we have an instance that has <code>name</code> and <code>colors</code>. We bind bind <code>colors</code> and set an <code>option1</code> to <code>MyComponent</code>. Upon inspection, the data context is just as described. <code>name</code> doesn't cross over to <code>MyComponent</code> nor does <code>option1</code> cross over to the instance. However, since we bound <code>colors</code> to <code>shades</code>, updating one updates the other.</p>
-<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({});
-
-const ractive = new Ractive({
-  template: `
-    &lt;MyComponent shades='{{colors}}' option1='A' /&gt;
-  `,
-  data: {
-    name: 'Colors',
-    colors: ['red', 'blue', 'yellow']
-  }
-});
-
-const widget = ractive.findComponent('MyComponent')
-
-ractive.get(); // {&quot;colors&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
-widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;option1&quot;:&quot;A&quot;}
-
-ractive.set('colors.1', 'green');
-
-ractive.get(); // {&quot;colors&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
-widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;option1&quot;:&quot;A&quot;}
-
-widget.set('colors.2', 'blue');
-
-ractive.get(); // {&quot;colors&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;], &quot;name&quot;:&quot;Colors&quot;}
-widget.get();  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;], &quot;option1&quot;:&quot;A&quot;}
-</code></pre>
-
 <h3 id="events">Events</h3>
 <p>Components can fire events like regular elements using <a href="../../api/instance-methods/#ractivefire">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
 <p>The first is using the method call syntax which is similar to how you would write inline JavaScript.</p>
@@ -829,15 +724,15 @@ const ractive = new Ractive({
         </li>
       
         <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../concepts/data-management/">Data Management</a>
+        </li>
+      
+        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
         </li>
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/data-binding/">Data Binding</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -1096,15 +991,15 @@ const ractive = new Ractive({
                   </li>
                 
                   <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/data-management/">Data Management</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
                   </li>
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/data-binding/">Data Binding</a>
                   </li>
                 
                   <li class="pure-menu-item ">

@@ -393,7 +393,7 @@ template: '&lt;p&gt;grey&lt;/p&gt;'
 <p>During a <a href="../instance-methods/#ractivereset"><code>ractive.reset()</code></a>, components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <h2 id="computed">computed</h2>
 <p><code>(Object&lt;string, function|Object&gt;)</code></p>
-<p>A map of <a href="../../concepts/data-binding/#computed-properties">computed properties</a> where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has <code>get</code> and <code>set</code> functions.</p>
+<p>A map of <a href="../concepts/data-binding.md#computed-properties">computed properties</a> where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has <code>get</code> and <code>set</code> functions.</p>
 <pre><code class="js">// Imagine a square...
 computed: {
   // Computed property expression
@@ -918,7 +918,7 @@ data: { html: '&lt;span&gt;world&lt;/span&gt;' }
 
 <h2 id="twoway">twoway</h2>
 <p><code>(boolean)</code></p>
-<p>Whether or not <a href="../../concepts/data-binding/#two-way-binding">two-way binding</a> is enabled. Defaults to <code>true</code>.</p>
+<p>Whether or not <a href="../concepts/data-binding.md#two-way-binding">two-way binding</a> is enabled. Defaults to <code>true</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
   data: { foo: 'bar' },
@@ -1170,15 +1170,15 @@ ractive.set( 'foo', 'fizz' );
         </li>
       
         <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../concepts/data-management/">Data Management</a>
+        </li>
+      
+        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
         </li>
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/data-binding/">Data Binding</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -1621,15 +1621,15 @@ ractive.set( 'foo', 'fizz' );
                   </li>
                 
                   <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/data-management/">Data Management</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
                   </li>
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/data-binding/">Data Binding</a>
                   </li>
                 
                   <li class="pure-menu-item ">

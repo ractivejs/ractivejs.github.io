@@ -86,6 +86,10 @@
       </li>
       
         <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#parallel-dom">Parallel DOM</a>
+        </li>
+      
+        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="#states">States</a>
         </li>
       
@@ -157,6 +161,19 @@
 <p>All virtual DOM items go through roughly the same lifecycle: creation, binding, rendering, bubbling, updating, unrendering, and unbinding. Creation is basically just the constructor call and almost always is immediately followed by binding. Binding is the point at which the item resolves and registers with its data references. Rendering is the point at which the item inserts an actual DOM node into the DOM. Bubbling and updating are the two halves of the update process, which is discussed in the next section. Unrendering is the point at which the item should no longer be present in the DOM, and it often occurs at the same point as unbinding, which is the point at which the item unregisters with the viewmodel and is effectively destroyed.</p>
 <p>There a number of other members, such as events and decorators, and processes, such as change propagation, which are described in detail in the <a href="#virtual-dom">view overview</a>.</p>
 <p>Ractive views are structured virtual DOM trees that are assembled from template AST and manage DOM nodes on the page when they are rendered. Virtual DOM items are grouped together in <code>Fragment</code>s, which contain them, and they may also own <code>Fragment</code>s that contain other items. Each item may contain a reference to a DOM node when rendered, though every item doesn not have a DOM analog.</p>
+<h2 id="parallel-dom">Parallel DOM</h2>
+<p>Ractive works by maintaining a simplified model of the part of the DOM that it's responsible for. This model contains all the information - about data-binding, event handling and so on - that it needs to keep things up-to-date.</p>
+<p>You can inspect the parallel DOM to understand what's going on under the hood, if you're into that sort of thing. Each Ractive instance, once rendered, has a <code>fragment</code> property. Each fragment has a number of properties:</p>
+<ul>
+<li><code>contextStack</code> - the context stack in which mustache <a href="">references</a> should be evaluated</li>
+<li><code>root</code> - a reference to the Ractive instance to which it belongs</li>
+<li><code>owner</code> - the <em>item</em> that owns this fragment (in the case of the root fragment, the same as <code>root</code>)</li>
+<li><code>items</code> - the items belonging to this fragment</li>
+</ul>
+<p><em>Items</em> means elements, text nodes, and mustaches. Elements may have fragments of their own (i.e. if they have children). A partial mustache will have a fragment, and a section mustache will have zero or more fragments depending on the value of its keypath.</p>
+<p>Elements may also have attributes, which have a different kind of fragment (a <em>text fragment</em> as opposed to a <em>DOM fragment</em>), containing text and mustaches.</p>
+<p>Each item has a <code>descriptor</code>, which is something like DNA. This comes straight from the <a href="">parsed template</a>.</p>
+<p>This is the briefest of overviews - if you want to gain a deeper understanding of what's going on under the hood, <a href="https://github.com/RactiveJS/Ractive/tree/master/src">use the source</a>.</p>
 <h2 id="states">States</h2>
 <p>Items generally follow a fixed lifecycle.</p>
 <ol>
@@ -455,15 +472,15 @@
         </li>
       
         <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../data-management/">Data Management</a>
+        </li>
+      
+        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../rendering/">Rendering</a>
         </li>
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../security/">Security</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../data-binding/">Data Binding</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -532,6 +549,10 @@
       <li class="pure-menu-item ">
         <a class="pure-menu-link pure-menu-heading" href="#virtual-dom">Virtual DOM</a>
       </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#parallel-dom">Parallel DOM</a>
+        </li>
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="#states">States</a>
@@ -766,15 +787,15 @@
                   </li>
                 
                   <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../data-management/">Data Management</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../rendering/">Rendering</a>
                   </li>
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../security/">Security</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../data-binding/">Data Binding</a>
                   </li>
                 
                   <li class="pure-menu-item ">

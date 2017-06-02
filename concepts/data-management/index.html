@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Next-generation DOM manipulation">
+  
+
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <link rel="author" href="RactiveJS contributors">
+  <link rel="canonical" href="https://ractive.js.org">
+
+  <title>Ractive.js</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="../../theme.css">
+
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  
+</head>
+
+<body>
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#dependents">Dependents</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#priority">Priority</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#indirect-dependencies">Indirect dependencies</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#expressions-with-multiple-dependencies">Expressions with multiple dependencies</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#two-way-binding">Two-way binding</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ambiguous-references">Ambiguous references</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#lazy-updates">Lazy updates</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#computed-properties">Computed Properties</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#compact-form">Compact form</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#accessor-form">Accessor form</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#observers">Observers</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#nested-properties">Nested properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#wildcards">Wildcards</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#space-delimited-observers">Space delimited observers</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#caveats">Caveats</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#components">Components</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#mappings">Mappings</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#data-context">Data context</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#isolation">Isolation</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+        </div>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          <h1 id="dependents">Dependents</h1>
+<p>Ractive maintains a dependency graph in order to do only the minimum amount of work necessary to keep the DOM up-to-date. If you inspect a Ractive instance, you'll see a property called <code>_deps</code>. This is where all dependants are listed, indexed by their dependency.</p>
+<h2 id="priority">Priority</h2>
+<p>Ractive runs updates based on priority. For instance, when a subtree of the DOM needs to be removed while at the same time updates are pending for that subtree. What Ractive does is prioritize the removal of the subtree over the updates. This causes the dependents on the subtree to unregister themselves, eliminating the need to update, resulting with only the removal operation being done.</p>
+<h2 id="indirect-dependencies">Indirect dependencies</h2>
+<p>If you have a mustache which depends on <code>foo.bar</code>, and <code>foo</code> changes, it's quite possible that the mustache needs to re-render. We say that the mustache has an <em>indirect dependency</em> on <code>foo</code>, or that it has a <em>direct dependency on a downstream keypath</em> of <code>foo</code>.</p>
+<p>This relationship is expressed through the <code>_depsMap</code> property of a Ractive instance - whenever <code>foo</code> changes, as well as dealing with direct <code>foo</code> dependants we check the map for those indirect dependants.</p>
+<p>In the case of <a href="../templates/#expressions">expressions</a> and <a href="#observers">observers</a>, we also need to consider dependants of <em>upstream keypaths</em>. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:</p>
+<pre><code class="html">{{#( sort( list, 'name' ) )}}
+  &lt;p&gt;{{name}}&lt;/p&gt;
+{{/()}}
+</code></pre>
+
+<pre><code class="js">ractive = Ractive({
+  el: myContainer,
+  template: myTemplate,
+  data: {
+    list: [{ name: 'Bob' }, { name: 'Charles' }, { name: 'Alice' }],
+    sort: function ( list, property ) {
+      return list.slice().sort( function ( a, b ) {
+        return a[ property ] &lt; b[ property ] ? -1 : 1;
+      })
+    }
+  }
+})
+
+// renders Alice, Bob, Charles
+
+ractive.set( 'list[0].name', 'Zebediah' )
+
+// updates to Alice, Charles, Zebediah
+</code></pre>
+
+<p>In the example, setting <code>list[0].name</code> causes dependants of <code>list</code> to be updated.</p>
+<p>As well as <a href="../templates/#expressions">expressions</a>, <a href="#observers">Observers</a> respond to both upstream and downstream changes.</p>
+<h2 id="expressions-with-multiple-dependencies">Expressions with multiple dependencies</h2>
+<p>The expression <code>{{ a + b }}</code> has two dependencies - <code>a</code> and <code>b</code> (or more accurately, whatever those <a href="../templates/#references">references</a> resolve to). The <code>_deps</code> graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.</p>
+<p>Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing <code>ractive.set({ a: 1, b: 2 })</code> will only trigger one update, not two.</p>
+<h1 id="two-way-binding">Two-way binding</h1>
+<p>Out of the box, Ractive supports two-way binding. This allows data to update bi-directionally, from data to the UI and vice versa.</p>
+<pre><code class="js">const instance = Ractive({
+  data: { msg: 'Hello, World!' },
+  template: `
+    &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt;
+    Ractive says: {{ msg }}
+  `
+})
+
+// Writing on the input updates msg and re-renders anything bound to it.
+
+// Updating msg updates and re-renders anything bound to it.
+instance.set('msg', 'Lorem ipsum')
+</code></pre>
+
+<p>Two-way binding can be disabled via the <a href="../../api/initialization-options/#twoway"><code>twoway</code></a> initialization option or the <a href="../../api/attributes/#twoway"><code>twoway</code></a> input attribute.</p>
+<h2 id="ambiguous-references">Ambiguous references</h2>
+<p>An ambiguous reference refers to a reference whose data does not exist at the time of construction.</p>
+<pre><code class="js">Ractive({
+  data: { foo: {} },
+  template: `
+    {{#foo}}
+      &lt;input value=&quot;{{bar}}&quot;&gt;
+    {{/foo}}
+  `,
+})
+</code></pre>
+
+<p>In the example above, <code>foo.bar</code> nor <code>bar</code> exists on the data. Ractive must make an assumption, following a <a href="../templates/#reference-resolution">resolution algorithm</a>, on what <code>bar</code> should be. Until any of those keypaths pop into existence, <code>bar</code> remains <code>undefined</code>.</p>
+<p>To prevent Ractive from making assumptions on ambiguous references, <a href="../../api/references/#keypath-prefixes">keypath prefixes</a> can be used to restrict resolution to a specific keypath.</p>
+<h2 id="lazy-updates">Lazy updates</h2>
+<p>By default, Ractive uses various events (i.e. <code>change</code>, <code>click</code>, <code>input</code>, <code>keypress</code>) to listen for changes on interactive elements and immediately update bound data. In cases where data updates should only take place after the element loses focus, Ractive also supports lazy updating.</p>
+<p>Lazy updates can be enabled via the <a href="../../api/initialization-options/#lazy"><code>lazy</code></a> initialization option or the <a href="../../api/attributes/#lazy"><code>lazy</code></a> input attribute.</p>
+<h1 id="computed-properties">Computed Properties</h1>
+<p>Computed properties are top-level pseudo-data references whose value is defined by a computation and which updates when its data dependencies update. They are useful for cases where a piece of data can be derived from other pieces of data as well as to avoid "watch-and-sync" boilerplate.</p>
+<pre><code class="js">Ractive({
+  data: {
+    width: 200,
+    height: 300,
+  },
+  computed: {
+    area(){ return this.get('width') * this.get('height') }
+  },
+  template: `
+    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&gt;
+    Height: &lt;input type=&quot;text&quot; value=&quot;{{ height }}&gt;
+    Area: {{ area }}
+  `
+})
+</code></pre>
+
+<p>In the example above, the instance keeps a rectangle's length, width, and specifically <em>its area</em>. If area was kept as a data property, there's the need for ungodly amounts of "watch-and-sync" code to keep it updated when either <code>width</code> or <code>length</code> change. With computed properties, you simply define <code>area</code> as a function of its <code>width</code> and <code>length</code>.</p>
+<h2 id="compact-form">Compact form</h2>
+<p>For simpler cases, computed properties support a compact syntax. It's a string containing a JavaScript expression. Anything inside a <code>${}</code> is replaced internally with a <code>ractive.get()</code>, using the contents as a keypath.</p>
+<pre><code class="js">Ractive({
+  data: {
+    width: 200,
+    height: 300,
+  },
+  computed: {
+    area: '${width} * ${height}'
+  },
+  template: `
+    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&gt;
+    Height: &lt;input type=&quot;text&quot; value=&quot;{{ height }}&gt;
+    Area: {{ area }}
+  `
+})
+</code></pre>
+
+<h2 id="accessor-form">Accessor form</h2>
+<p>By default, computed properties are read-only. To be able to set data bi-directionally on a computed property, computed properties support an accessor form. The accessor form defines a computed property as an object with a <code>get</code> and <code>set</code> method. <code>get</code> is called to retrieve its value and <code>set</code> is called when something updates its value.</p>
+<pre><code class="js">Ractive({
+  data: {
+    side: 200,
+  },
+  computed: {
+    area: {
+      get: 'Math.pow(${side}, 2)',
+      set: function(v){ this.set('side', Math.sqrt(v) }
+    }
+  },
+  template: `
+    Side: &lt;input type=&quot;text&quot; value=&quot;{{ side }}&gt;
+    Area: &lt;input type=&quot;text&quot; value=&quot;{{ area }}&gt;
+  `
+})
+</code></pre>
+
+<p>In the example above, updating <code>side</code> will recompute <code>area</code> while at the same time, setting a value on <code>area</code> will update <code>side</code>.</p>
+<h1 id="observers">Observers</h1>
+<h2 id="nested-properties">Nested properties</h2>
+<p>Ractive observers observe <em>upstream</em> and <em>downstream</em> keypaths. This allows observers to execute when data is updated indirectly, whether if it's the enclosing structure or a descendant property.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    foo: {
+      bar: 1
+    }
+  }
+})
+
+instance.observe('foo', function(newValue){
+  console.log('foo changed to', newValue)
+})
+instance.observe('foo.bar', function(newValue){
+  console.log('foo.bar changed to', newValue)
+})
+
+// Logs:
+// - foo.bar changed to 2
+// - foo changed to { bar: 2 }
+instance.set('foo.bar', 2 )
+
+// Logs:
+// - foo.bar changed to 3
+// - foo changed to { bar: 3 }
+instance.set('foo', { bar: 3 })
+</code></pre>
+
+<p>To bypass this behavior, observer methods accept a <a href="../../api/instance-methods/#observe"><code>strict</code></a> option which causes the observer to fire only when the specified keypath is updated.</p>
+<h2 id="wildcards">Wildcards</h2>
+<p>Wildcards allow observers to observe keypaths which have parts that cannot be determined in advance. This is useful when observing an array, observing objects within an array, or observing changes on object properties.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    people: [
+      {name: 'Rich Harris'},
+      {name: 'Marty Nelson'}
+    ]
+  }
+})
+
+// Observe changes on the array
+instance.observe('people.*', function(){
+  console.log(arguments)
+})
+
+// {name: 'Jason Brown'}, undefined, people.2, 2
+instance.push('people', {name: 'Jason Brown'})
+
+// {name: 'Jack Black'}, undefined, people.3, 3
+instance.set('people.3', {name: 'Jack Black'})
+</code></pre>
+
+<pre><code class="js">const instance = Ractive({
+  data: {
+    people: [
+      {name: 'Rich Harris'},
+      {name: 'Marty Nelson'}
+    ]
+  }
+})
+
+// Observe changes on the name property of any item on the array
+instance.observe('people.*.name', function(){
+  console.log(arguments)
+})
+
+// 'Jason Brown', undefined, people.2.name, 2
+instance.push('people', {name: 'Jason Brown'})
+
+// 'Jack Black', undefined, people.3.name, 3
+instance.set('people.3', {name: 'Jack Black'})
+</code></pre>
+
+<pre><code class="js">const instance = Ractive({
+  data: {
+    config: {
+      allowComments: true,
+      allowEdit: false
+    }
+  }
+})
+
+// Observe changes on the object properties
+instance.observe('config.*', function() {
+  console.log(arguments)
+})
+
+// true, false, 'config.allowEdit', 'allowEdit'
+instance.set('config.allowEdit', true)
+</code></pre>
+
+<h2 id="space-delimited-observers">Space delimited observers</h2>
+<p>Observers also support observing multiple keypaths. This can be done by simply defining the keypaths and separating them with spaces. This can be used for observing multiple specific keypaths on the data where observing an upstream keypath isn't viable.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    user: {username: 'browniefed'},
+    config: {isAdmin: false},
+    commentCount: 0
+  }
+})
+
+ractive.observe('user.username config.isAdmin commentCount', function(){
+  // executes when any of the 3 keypaths defined changes
+})
+</code></pre>
+
+<h2 id="caveats">Caveats</h2>
+<p>Ractive observers by default do not defensively clone the old and new values as identity of these values may be essential. Thus, observers on non-primitive values may result in having identically equal old and new values.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    config: {
+      allowComments: true,
+      allowEdit: false
+    }
+  }
+})
+
+instance.observe('config', function(newValue, oldValue) {
+  console.log(newValue === oldValue) // true
+})
+
+// Old and new values point to the same object since we only changed config's
+// properties but not change the config object itself.
+// { allowComments: true, allowEdit: true }, { allowComments: true, allowEdit: true }
+instance.set('config.allowEdit', true)
+</code></pre>
+
+<p>If the old value's original structure matters, observer methods provide an <a href="../../api/instance-methods/#ractiveobserve"><code>old</code></a> option. This could be used to define the old value as a deep-clone of the data before any mutations are done.</p>
+<h1 id="components">Components</h1>
+<h2 id="mappings">Mappings</h2>
+<p>Mappings connect pieces of data on the enclosing instance to data on enclosed instances. Changes on one side will reflect on the other.</p>
+<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
+  data: {
+    message: ''
+  },
+  template: `
+    &lt;input type=&quot;text&quot; value=&quot;{{ message }}&quot;&gt;
+  `
+})
+
+const instance = Ractive({
+  el: 'body',
+  data: {
+    text: ''
+  },
+  template: `
+    &lt;MyComponent message=&quot;{{ text }} /&gt;
+  `
+})
+
+ractive.set('text', 'Hello World!')
+</code></pre>
+
+<p>In the example above, <code>text</code> on the instance is mapped to <code>MyComponent</code>'s <code>message</code>. Updates on <code>text</code> will update <code>message</code> and any UI elements bound to it. Updates on <code>message</code>, like editing the <code>&lt;input&gt;</code> bound with it, will update <code>text</code>.</p>
+<h2 id="data-context">Data context</h2>
+<p>Each component instance comes with its own data context so that its data does not pollute the primary data. Any mapping between the component and the enclosing instance will still update across both contexts.</p>
+<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
+  data: {
+    shades: '',
+    option: ''
+  }
+})
+
+const instance = Ractive({
+  template: `
+    &lt;MyComponent shades='{{colors}}' option='A' /&gt;
+  `,
+  data: {
+    name: 'Colors',
+    colors: ['red', 'blue', 'yellow']
+  }
+})
+
+const widget = ractive.findComponent('MyComponent')
+
+ractive.get() // {&quot;colors&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
+widget.get()  // {&quot;shades&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;option&quot;:&quot;A&quot;}
+
+ractive.set('colors.1', 'green')
+
+ractive.get() // {&quot;colors&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
+widget.get()  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;option&quot;:&quot;A&quot;}
+</code></pre>
+
+<p>In the example above, the enclosing instance data holds <code>name</code> and <code>colors</code>. <code>colors</code> is mapped to <code>shades</code> and <code>option</code> is set on an instance of <code>MyComponent</code>. Upon inspection, <code>name</code> from the enclosing instance does not cross over to <code>MyComponent</code> nor does <code>option</code> cross over to the enclosing instance. However, since <code>colors</code> on the instance is mapped to <code>shades</code> on the component, any modifications on either side will reflect on the other.</p>
+<h2 id="isolation">Isolation</h2>
+<p>By default, components are "isolated". Descendant components can update ancestor data only when there is an explicit mapping between them. This avoids unintended mutation of ancestor data and ensures portability of components.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: 'Message missing {{ message }}'
+})
+
+const instance = Ractive({
+  el: 'body',
+  template: '&lt;ChildComponent /&gt;',
+  data: {
+    message: 'The ChildComponent will not know anything about this message'
+  }
+})
+</code></pre>
+
+<p>In the example above, <code>&lt;ChildComponent&gt;</code> will not print anything since <code>message</code> is not defined in the component and due to isolation, the component cannot see the instance's <code>message</code>.</p>
+<p>Isolation can be disabled via the <a href="../../api/initialization-options/#isolated"><code>isolated</code></a> initialization option.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/concepts/data-management.md" target="_blank">Edit this page</a>
+  
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+    <iframe class="playground-frame" src="/playground/?env=docs"></iframe>
+  </div>
+
+  <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../..">Ractive.js</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="">Get Started</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/hello-world/">Hello, world!</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/nested-properties/">Nested Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/expressions/">Expressions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/conditional-sections/">Conditional Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/iterative-sections/">Iterative Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/two-way-binding/">Two-way Binding</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/components/">Components</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/animation/">Animations</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/svg/">SVG</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/transitions/">Transitions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/tutorials/decorators/">Decorators</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/support/">Support</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../get-started/migrating/">Migrating</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="">API</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/initialization-options/">Initialization Options</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/static-properties/">Static Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/static-methods/">Static Methods</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/instance-properties/">Instance Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/instance-methods/">Instance Methods</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/context/">Context Object</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/parse/">Parse</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/transition/">Transition</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/references/">References</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="">Extend</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/adaptors/">Adaptors</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/components/">Components</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/decorators/">Decorators</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/easings/">Easings</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/interpolators/">Interpolators</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/transitions/">Transitions</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="">Integrations</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../api/component-files/">Component Files</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../integrations/loaders/">Loaders</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../integrations/plugins/">Plugins</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../integrations/tools/">Tools</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../integrations/libraries/">Libraries</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="">Concepts</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../architecture/">Architecture</a>
+        </li>
+      
+        <li class="pure-menu-item pure-menu-selected">
+          <a class="pure-menu-link" href="./">Data Management</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../rendering/">Rendering</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../security/">Security</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../templates/">Templates</a>
+        </li>
+      
+      </li>
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">Github</a>
+    </li>
+  </ul>
+</div>
+  
+  <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="#dependents">Dependents</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#priority">Priority</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#indirect-dependencies">Indirect dependencies</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#expressions-with-multiple-dependencies">Expressions with multiple dependencies</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#two-way-binding">Two-way binding</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#ambiguous-references">Ambiguous references</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#lazy-updates">Lazy updates</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#computed-properties">Computed Properties</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#compact-form">Compact form</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#accessor-form">Accessor form</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#observers">Observers</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#nested-properties">Nested properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#wildcards">Wildcards</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#space-delimited-observers">Space delimited observers</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#caveats">Caveats</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="#components">Components</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#mappings">Mappings</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#data-context">Data context</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="#isolation">Isolation</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-container">
+    <ul class="pure-menu-list">
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../..">Ractive.js</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Get Started</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/hello-world/">Hello, world!</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/nested-properties/">Nested Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/expressions/">Expressions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/conditional-sections/">Conditional Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/iterative-sections/">Iterative Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/two-way-binding/">Two-way Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/animation/">Animations</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/svg/">SVG</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/transitions/">Transitions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/tutorials/decorators/">Decorators</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/support/">Support</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../get-started/migrating/">Migrating</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">API</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/initialization-options/">Initialization Options</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/static-properties/">Static Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/static-methods/">Static Methods</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/instance-properties/">Instance Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/instance-methods/">Instance Methods</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/context/">Context Object</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/parse/">Parse</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/transition/">Transition</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/references/">References</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Extend</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/adaptors/">Adaptors</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/decorators/">Decorators</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/easings/">Easings</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/interpolators/">Interpolators</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/transitions/">Transitions</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Integrations</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../api/component-files/">Component Files</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/loaders/">Loaders</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/plugins/">Plugins</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/tools/">Tools</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../integrations/libraries/">Libraries</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
+              <span class="pure-menu-link">Concepts</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../architecture/">Architecture</a>
+                  </li>
+                
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">Data Management</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../rendering/">Rendering</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../security/">Security</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../templates/">Templates</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">Github</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../../static/js/index.js"></script>
+</body>
+
+</html>
