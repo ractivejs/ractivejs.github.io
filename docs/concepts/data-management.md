@@ -74,7 +74,7 @@ const instance = Ractive({
 instance.set('msg', 'Lorem ipsum')
 ```
 
-Two-way binding can be disabled via the [`twoway`](../api/initialization-options.md#twoway) initialization option or the [`twoway`](../api/attributes.md#twoway) input attribute.
+Two-way binding can be disabled via the [`twoway`](../api/initialization-options.md#twoway) initialization option or the [`twoway`](../api/directives.md#twoway) input directive.
 
 ### Ambiguous references
 
@@ -99,7 +99,7 @@ To prevent Ractive from making assumptions on ambiguous references, [keypath pre
 
 By default, Ractive uses various events (i.e. `change`, `click`, `input`, `keypress`) to listen for changes on interactive elements and immediately update bound data. In cases where data updates should only take place after the element loses focus, Ractive also supports lazy updating.
 
-Lazy updates can be enabled via the [`lazy`](../api/initialization-options.md#lazy) initialization option or the [`lazy`](../api/attributes.md#lazy) input attribute.
+Lazy updates can be enabled via the [`lazy`](../api/initialization-options.md#lazy) initialization option or the [`lazy`](../api/directives.md#lazy) input directive.
 
 ## Computed Properties
 

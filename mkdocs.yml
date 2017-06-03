@@ -49,7 +49,7 @@ pages:
     - Context Object: api/context.md
     - Parse: api/parse.md
     - Transition: api/transition.md
-    - Attributes: api/attributes.md
+    - Directives: api/directives.md
     - References: api/references.md
   - Extend:
     - Adaptors: extend/adaptors.md

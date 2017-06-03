@@ -1,8 +1,8 @@
-# Input binding
+# Binding directives
 
 ## Text inputs
 
-Data can be bound to text inputs via the `value` attribute. This includes text-like inputs such as password, email, color, tel, date, etc.
+Data can be bound to text inputs via the `value` directive. This includes text-like inputs such as password, email, color, tel, date, etc.
 
 ```js
 Ractive({
@@ -17,7 +17,7 @@ Ractive({
 
 ## Number inputs
 
-Numeric data can be bound to number inputs via the `value` attribute. This includes number-like inputs such as range. The value from the input will automatically be converted into a number. When the input is blank, the value returned is `undefined`.
+Numeric data can be bound to number inputs via the `value` directive. This includes number-like inputs such as range. The value from the input will automatically be converted into a number. When the input is blank, the value returned is `undefined`.
 
 ```js
 Ractive({
@@ -32,7 +32,7 @@ Ractive({
 
 ## File inputs
 
-File data can be bound to file inputs via the non-standard `value` attribute. The value from the input is a FileList object.
+File data can be bound to file inputs via the `value` directive. The value from the input is an instance of `FileList`.
 
 ```js
 Ractive({
@@ -47,7 +47,7 @@ Ractive({
 
 ## Checkboxes
 
-Boolean data can be bound to checkboxes via the `checked` attribute. Note the non-standard usage of `checked`, which is a normally a boolean attribute.
+Boolean data can be bound to checkboxes via the `checked` directive.
 
 ```js
 Ractive({
@@ -60,7 +60,7 @@ Ractive({
 });
 ```
 
-Array data can also be bound to checkboxes via the `name` attribute.
+Array data can also be bound to checkboxes via the `name` directive.
 
 ```js
 Ractive({
@@ -79,7 +79,7 @@ When both `checked` and `name` bindings are present, the binding to `checked` wi
 
 ## Radio buttons
 
-Boolean data can be bound to radio buttons via the `checked` attribute. Note the non-standard usage of `checked`, which is a normally a boolean attribute.
+Boolean data can be bound to radio buttons via the `checked` directive.
 
 ```js
 Ractive({
@@ -96,7 +96,7 @@ Ractive({
 });
 ```
 
-Data can also be bound to radio buttons via the `name` attribute.
+Data can also be bound to radio buttons via the `name` directive.
 
 ```js
 Ractive({
@@ -113,7 +113,7 @@ Ractive({
 
 ## Text areas
 
-Data can be bound to text inputs via the non-standard `value` attribute.
+Data can be bound to text areas via the `value` directive.
 
 ```js
 Ractive({
@@ -126,7 +126,7 @@ Ractive({
 });
 ```
 
-Data can also be bound to text via its contents.
+Data can also be bound to text areas via its contents.
 
 ```js
 Ractive({
@@ -141,7 +141,7 @@ Ractive({
 
 ## Select lists
 
-Data can be bound to select lists via the non-standard `value` attribute.
+Data can be bound to select lists via the `value` directive.
 
 ```js
 Ractive({
@@ -158,7 +158,7 @@ Ractive({
 });
 ```
 
-Array data can also be bound to select lists with the `multiple` attribute via the non-standard `value` attribute.
+Array data can also be bound to select lists with the `multiple` attribute via the `value` directive.
 
 ```js
 Ractive({
@@ -177,7 +177,7 @@ Ractive({
 
 ## contenteditable
 
-Data can be bound to elements that have the `contenteditable` attribute via the non-standard `value` attribute.
+Data can be bound to elements that have the `contenteditable` attribute via the `value` directive.
 
 ```js
 Ractive({
@@ -199,11 +199,11 @@ There are a few caveats when binding to an element with `contenteditable`:
 - The returned string may be different from browser to browser.
 - Any value set on the bound data will always be rendered as HTML.
 
-# Input behavior
+# Behavior directives
 
 ## twoway
 
-The element-specific attribute form of [`twoway`](./initialization-options.md#twoway) that toggles two-way binding on a specific element.
+The element-specific directive form of [`twoway`](./initialization-options.md#twoway).
 
 ```html
 <!-- By default, two-way is enabled. Editing the input updates foo. -->
@@ -218,7 +218,7 @@ One-way: <input type="text" value="{{ bar }}" twoway="false"> {{ bar }}
 
 ## lazy
 
-The element-specific attribute form of [`lazy`](./initialization-options.md#lazy) that toggles lazy updating on a specific element.
+The element-specific directive form of [`lazy`](./initialization-options.md#lazy).
 
 ```html
 <!-- Editing the input updates foo on keypress. -->
@@ -228,11 +228,11 @@ Eager: <input type="text" value="{{ foo }}"> {{ foo }}
 Lazy: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 ```
 
-# Special attributes
+# Other directives
 
 ## as-\*
 
-`as-*` attributes augment the element with [decorators](../extend/decorators.md). It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.
+`as-*` directives augment the element with [decorators](../extend/decorators.md). It accepts an optional, comma-separated list of expressions which are passed to the decorator function as arguments.
 
 ```html
 <div as-modal>Div appearing as modal</div>
@@ -241,7 +241,7 @@ Lazy: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 
 ## class-\*
 
-`class-*` attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following `class-` will be used as the class name. `class-*` attribute values are processed as expressions. If there is no expression, the implicit value is `true`, which is useful for applying multiple classes to an element using component `extra-attributes`.
+`class-*` directives toggle individual class names based on the truthiness of its value. The part of the directive name following `class-` will be used as the class name. `class-*` directive values are processed as expressions. If there is no expression, the implicit value is `true`, which is useful for applying multiple classes to an element using component `extra-attributes`.
 
 ```html
 <div class-foo="isFoo">Adds "foo" if isFoo is truthy</div>
@@ -252,37 +252,30 @@ Lazy: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 
 ## on-\*
 
-`on-*` attributes attach event handlers for both native and [custom events](../extend/events.md). They are designed to look similar to regular `on*` attributes for familiarity, the only difference being the hyphen. `on-*` can be used in two ways: proxy event syntax and expression syntax.
-
-Using the proxy event syntax, `on-*` accepts an event name as value. Events are handled by registering a function with [`ractive.on`](./instance-methods.md#ractiveon) using the assigned event name.
+`on-*` directives attach event handlers to DOM elements and components. `on-*` can be used in two ways: [proxy syntax](../concepts/event-management/#proxy-syntax) or the [expression syntax](../concepts/event-management/#expression-syntax).
 
 ```js
 Ractive({
   template: `
-    <button type="button" on-click="clicked">Push me!</button>
+    <button type="button" on-click="clickedproxy">Push me!</button>
+    <button type="button" on-click="['clickedArray', 'Hello, World!']">Push me!</button>
+    <button type="button" on-click="@this.clickedMethod('Hello, World!')">Push me!</button>
   `,
   oninit(){
-    this.on('clicked', event => {
-      console.log('clicked!');
+    this.on('clickedproxy', event => {
+      console.log('Hello, World!');
     });
+    this.on('clickedArray', (event, msg) => {
+      console.log(msg);
+    })
+  },
+  clickedMethod(msg){
+    console.log(msg);
   }
 });
 ```
 
-Using the expression syntax, `on-*` accepts expressions as value. This allows it to appear like regular inline scripts, similar to how it's done in inline event handlers.
-
-```js
-Ractive({
-  template: `
-    <button type="button" on-click="@this.someMethod()">Push me!</button>
-  `,
-  someMethod(){
-    console.log('clicked!');
-  }
-});
-```
-
-Multiple events can also be tied to the same handler by separating them with a hyphen:
+Multiple events can also be tied to the same handler by appending event names to the directive, separating them by hyphens:
 
 ```js
 Ractive({
@@ -297,25 +290,25 @@ Ractive({
 
 ## \*-in, \*-out, \*-in-out
 
-`*-in`, `*-out`, and `*-in-out` attributes apply [transitions](../extend/transitions.md) to the element. `*-in` specifies intro-only, `*-out` specifies outro-only, and `*-in-out` for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.
+`*-in`, `*-out`, and `*-in-out` directives apply [transitions](../extend/transitions.md) to the element. `*-in` specifies intro-only, `*-out` specifies outro-only, and `*-in-out` for both intro and outro. All three directives accept an optional, comma-separated list of expressions which are passed to the transition function as arguments.
 
 ```html
 <div fade-in>Fades on render</div>
 <div fade-out>Fades before removal</div>
 <div fade-in-out>Fades on render and before removal</div>
-<div fade-in-out="{ duration: 500 }">Fades with 500ms duration</div>
+<div fade-in-out="{ duration: 500 }, someOtherArg">Fades with 500ms duration</div>
 ```
 
 ## style-\*
 
-`style-*` attributes update individual `style` properties of the element. The part of the attribute following `style-` will be used as the style property name. There are two forms of the syntax: `style-property-name` (CSS style) and `style-propertyName` (JS style). Style property names will be normalized.
+`style-*` directives update individual `style` properties of the element. The part of the directive following `style-` will be used as the style property name. Style names can either be in kebab case or camel case, and will be normalized on application.
 
 ```html
 <div style-vertical-align="middle">Applies style.verticalAlign</div>
 <div style-textAlign="center">Applies style.textAlign</div>
 ```
 
-`style-*` attribute values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.
+`style-*` directive values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.
 
 ```html
 <div style-vertical-align="{{ vAlign }}" style-textAlign="{{ tAlign }}">...</div>
