@@ -1,4 +1,4 @@
-# Parse
+# Parse Object
 
 The parse object is an object you receive as the second argument in [function templates](./initialization-options.md#template). This helper object provides you with essential functions to dissect markup before turning over the template for use.
 

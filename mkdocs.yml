@@ -46,9 +46,9 @@ pages:
     - Static Methods: api/static-methods.md
     - Instance Properties: api/instance-properties.md
     - Instance Methods: api/instance-methods.md
-    - Context Object: api/context.md
-    - Parse: api/parse.md
-    - Transition: api/transition.md
+    - Context Object: api/context-object.md
+    - Parse Object: api/parse-object.md
+    - Transition Object: api/transition-object.md
     - Directives: api/directives.md
     - References: api/references.md
   - Extend:

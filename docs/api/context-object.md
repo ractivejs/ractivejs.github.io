@@ -1,4 +1,4 @@
-# Context
+# Context Object
 
 The context object is the type of object you receive when calling [getContext()](/api/static-methods.md#ractivegetcontext). This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.
 
