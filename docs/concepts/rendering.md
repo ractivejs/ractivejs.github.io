@@ -1,7 +1,9 @@
-# Progressive Enhancement
+#Rendering
+
+## Progressive Enhancement
 
 TODO
 
-# Server-side
+## Server-side
 
 TODO
