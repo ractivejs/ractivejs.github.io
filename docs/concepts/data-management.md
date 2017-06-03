@@ -1,12 +1,14 @@
-# Dependents
+# Data management
+
+## Dependents
 
 Ractive maintains a dependency graph in order to do only the minimum amount of work necessary to keep the DOM up-to-date. If you inspect a Ractive instance, you'll see a property called `_deps`. This is where all dependants are listed, indexed by their dependency.
 
-## Priority
+### Priority
 
 Ractive runs updates based on priority. For instance, when a subtree of the DOM needs to be removed while at the same time updates are pending for that subtree. What Ractive does is prioritize the removal of the subtree over the updates. This causes the dependents on the subtree to unregister themselves, eliminating the need to update, resulting with only the removal operation being done.
 
-## Indirect dependencies
+### Indirect dependencies
 
 If you have a mustache which depends on `foo.bar`, and `foo` changes, it's quite possible that the mustache needs to re-render. We say that the mustache has an *indirect dependency* on `foo`, or that it has a *direct dependency on a downstream keypath* of `foo`.
 
@@ -46,14 +48,14 @@ In the example, setting `list[0].name` causes dependants of `list` to be updated
 As well as [expressions](./templates.md#expressions), [Observers](#observers) respond to both upstream and downstream changes.
 
 
-## Expressions with multiple dependencies
+### Expressions with multiple dependencies
 
 The expression `{{ a + b }}` has two dependencies - `a` and `b` (or more accurately, whatever those [references](./templates.md#references) resolve to). The `_deps` graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.
 
 Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing `ractive.set({ a: 1, b: 2 })` will only trigger one update, not two.
 
 
-# Two-way binding
+## Two-way binding
 
 Out of the box, Ractive supports two-way binding. This allows data to update bi-directionally, from data to the UI and vice versa.
 
@@ -74,7 +76,7 @@ instance.set('msg', 'Lorem ipsum')
 
 Two-way binding can be disabled via the [`twoway`](../api/initialization-options.md#twoway) initialization option or the [`twoway`](../api/attributes.md#twoway) input attribute.
 
-## Ambiguous references
+### Ambiguous references
 
 An ambiguous reference refers to a reference whose data does not exist at the time of construction.
 
@@ -93,13 +95,13 @@ In the example above, `foo.bar` nor `bar` exists on the data. Ractive must make 
 
 To prevent Ractive from making assumptions on ambiguous references, [keypath prefixes](../api/references.md#keypath-prefixes) can be used to restrict resolution to a specific keypath.
 
-## Lazy updates
+### Lazy updates
 
 By default, Ractive uses various events (i.e. `change`, `click`, `input`, `keypress`) to listen for changes on interactive elements and immediately update bound data. In cases where data updates should only take place after the element loses focus, Ractive also supports lazy updating.
 
 Lazy updates can be enabled via the [`lazy`](../api/initialization-options.md#lazy) initialization option or the [`lazy`](../api/attributes.md#lazy) input attribute.
 
-# Computed Properties
+## Computed Properties
 
 Computed properties are top-level pseudo-data references whose value is defined by a computation and which updates when its data dependencies update. They are useful for cases where a piece of data can be derived from other pieces of data as well as to avoid "watch-and-sync" boilerplate.
 
@@ -122,7 +124,7 @@ Ractive({
 
 In the example above, the instance keeps a rectangle's length, width, and specifically _its area_. If area was kept as a data property, there's the need for ungodly amounts of "watch-and-sync" code to keep it updated when either `width` or `length` change. With computed properties, you simply define `area` as a function of its `width` and `length`.
 
-## Compact form
+### Compact form
 
 For simpler cases, computed properties support a compact syntax. It's a string containing a JavaScript expression. Anything inside a `${}` is replaced internally with a `ractive.get()`, using the contents as a keypath.
 
@@ -143,7 +145,7 @@ Ractive({
 })
 ```
 
-## Accessor form
+### Accessor form
 
 By default, computed properties are read-only. To be able to set data bi-directionally on a computed property, computed properties support an accessor form. The accessor form defines a computed property as an object with a `get` and `set` method. `get` is called to retrieve its value and `set` is called when something updates its value.
 
@@ -167,9 +169,9 @@ Ractive({
 
 In the example above, updating `side` will recompute `area` while at the same time, setting a value on `area` will update `side`.
 
-# Observers
+## Observers
 
-## Nested properties
+### Nested properties
 
 Ractive observers observe _upstream_ and _downstream_ keypaths. This allows observers to execute when data is updated indirectly, whether if it's the enclosing structure or a descendant property.
 
@@ -202,7 +204,7 @@ instance.set('foo', { bar: 3 })
 
 To bypass this behavior, observer methods accept a [`strict`](../api/instance-methods.md#observe) option which causes the observer to fire only when the specified keypath is updated.
 
-## Wildcards
+### Wildcards
 
 Wildcards allow observers to observe keypaths which have parts that cannot be determined in advance. This is useful when observing an array, observing objects within an array, or observing changes on object properties.
 
@@ -270,7 +272,7 @@ instance.observe('config.*', function() {
 instance.set('config.allowEdit', true)
 ```
 
-## Space delimited observers
+### Space delimited observers
 
 Observers also support observing multiple keypaths. This can be done by simply defining the keypaths and separating them with spaces. This can be used for observing multiple specific keypaths on the data where observing an upstream keypath isn't viable.
 
@@ -288,7 +290,7 @@ ractive.observe('user.username config.isAdmin commentCount', function(){
 })
 ```
 
-## Caveats
+### Caveats
 
 Ractive observers by default do not defensively clone the old and new values as identity of these values may be essential. Thus, observers on non-primitive values may result in having identically equal old and new values.
 
@@ -315,9 +317,9 @@ instance.set('config.allowEdit', true)
 If the old value's original structure matters, observer methods provide an [`old`](../api/instance-methods.md#ractiveobserve) option. This could be used to define the old value as a deep-clone of the data before any mutations are done.
 
 
-# Components
+## Components
 
-## Mappings
+### Mappings
 
 Mappings connect pieces of data on the enclosing instance to data on enclosed instances. Changes on one side will reflect on the other.
 
@@ -347,7 +349,7 @@ ractive.set('text', 'Hello World!')
 In the example above, `text` on the instance is mapped to `MyComponent`'s `message`. Updates on `text` will update `message` and any UI elements bound to it. Updates on `message`, like editing the `<input>` bound with it, will update `text`.
 
 
-## Data context
+### Data context
 
 Each component instance comes with its own data context so that its data does not pollute the primary data. Any mapping between the component and the enclosing instance will still update across both contexts.
 
@@ -382,7 +384,7 @@ widget.get()  // {"shades":["red","green","yellow"], "option":"A"}
 
 In the example above, the enclosing instance data holds `name` and `colors`. `colors` is mapped to `shades` and `option` is set on an instance of `MyComponent`. Upon inspection, `name` from the enclosing instance does not cross over to `MyComponent` nor does `option` cross over to the enclosing instance. However, since `colors` on the instance is mapped to `shades` on the component, any modifications on either side will reflect on the other.
 
-## Isolation
+### Isolation
 
 By default, components are "isolated". Descendant components can update ancestor data only when there is an explicit mapping between them. This avoids unintended mutation of ancestor data and ensures portability of components.
 
