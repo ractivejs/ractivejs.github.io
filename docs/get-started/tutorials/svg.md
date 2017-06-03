@@ -33,7 +33,7 @@ var ractive = new Ractive({
   template: template,
   data: { width: 100, height: 100 }
 });
-``
+```
 
 Execute this code. Now we can have some fun:
 
