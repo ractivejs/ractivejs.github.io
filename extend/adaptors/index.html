@@ -66,7 +66,7 @@
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
           <h1 id="adaptors">Adaptors</h1>
-<p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. <a href="./">Adaptors</a> allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
+<p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. Adaptors allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
 <h2 id="writing">Writing</h2>
 <pre><code class="js">const myAdaptor = {
   filter: function ( object, keypath, ractive ) {
@@ -92,7 +92,7 @@
 };
 </code></pre>
 
-<p>Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an <a href="./">adaptor</a> is as follows:</p>
+<p>Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an adaptor is as follows:</p>
 <ol>
 <li>Provides an POJO version of your data source to Ractive.</li>
 <li>Captures data changes on your data source and mirror them to the data in Ractive.</li>
@@ -103,21 +103,21 @@
 <p><code>object</code> is the data source to adapt.</p>
 <p><code>keypath</code> is the keypath to <code>object</code>.</p>
 <p><code>ractive</code> is the ractive instance that is currently using the adaptor.</p>
-<p><code>wrap</code> is a function that gets called to set up the <a href="./">adaptor</a> on <code>object</code>.</p>
+<p><code>wrap</code> is a function that gets called to set up the adaptor on <code>object</code>.</p>
 <p><code>prefixer</code> is a helper function that accepts an object and automatically prefixes <code>keypath</code> to the object's keys.</p>
 <p><code>get</code> is a function that gets called when Ractive needs the adapted representation of the <code>object</code>.</p>
 <p><code>set</code> is a function that is called when <code>ractive.set()</code> updates a keypath to a property of the adapted data. This function allows you to update the same property on <code>object</code>.</p>
 <p><code>property</code> is the keypath to the property being updated, relative to <code>keypath</code>.</p>
 <p><code>value</code> is the value being passed into <code>ractive.set()</code>.</p>
 <p><code>reset</code> is a function that is called when <code>ractive.set()</code> updates a keypath to the adapted data. This function allows you to either update <code>object</code> or tear down the adaptor.</p>
-<p><code>teardown</code> is a function called when the <a href="./">adaptor</a> is being removed. This function allows you to do cleanup work on anything that was done during the <a href="./">adaptor</a> setup.</p>
-<h3 id="adaptors-only-adapt-one-level"><a href="./">Adaptors</a> only adapt one level</h3>
-<p>An <a href="./">adaptor</a> only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.</p>
+<p><code>teardown</code> is a function called when the adaptor is being removed. This function allows you to do cleanup work on anything that was done during the adaptor setup.</p>
+<h3 id="adaptors-only-adapt-one-level">Adaptors only adapt one level</h3>
+<p>An adaptor only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.</p>
 <h3 id="no-built-in-infinite-loop-detection">No built-in infinite loop detection</h3>
-<p>There is no built-in mechanism for avoiding infinite loops. If your <a href="./">adaptor</a> calls <code>ractive.set()</code> on adapted data, which in turn will call the adaptor's <code>set()</code> method, which may directly or indirectly trigger another <code>ractive.set()</code> on the same adapted data, a stack overflow error might occur.</p>
+<p>There is no built-in mechanism for avoiding infinite loops. If your adaptor calls <code>ractive.set()</code> on adapted data, which in turn will call the adaptor's <code>set()</code> method, which may directly or indirectly trigger another <code>ractive.set()</code> on the same adapted data, a stack overflow error might occur.</p>
 <p>This isn't a problem with primitive values since Ractive doesn't bother calling <code>set()</code> if a value hasn't changed. But with objects and arrays, there's no easy and performant way to tell if the contents have changed. So <code>set()</code> gets called <em>in case something changed</em> rather than <em>because something changed</em>.</p>
 <h3 id="different-for-every-back-end">Different for every back-end</h3>
-<p>The <a href="./">adaptor</a> structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an <a href="./">adaptor</a> for a certain back-end. For instance, an <a href="./">adaptor</a> for a constructor-based object may be written differently from an <a href="./">adaptor</a> meant to interact with a socket server.</p>
+<p>The adaptor structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an adaptor for a certain back-end. For instance, an adaptor for a constructor-based object may be written differently from an adaptor meant to interact with a socket server.</p>
 <h2 id="registering">Registering</h2>
 <p>Like other plugins, there's 3 ways you can register adaptors:</p>
 <h3 id="globally-via-the-ractiveadaptors-static-property">Globally, via the <code>Ractive.adaptors</code> static property.</h3>
@@ -156,7 +156,7 @@
 }
 </code></pre>
 
-<p>In order for Ractive to properly use a <code>Box</code> instance, we build an <a href="./">adaptor</a> for <code>Box</code>.</p>
+<p>In order for Ractive to properly use a <code>Box</code> instance, we build an adaptor for <code>Box</code>.</p>
 <pre><code class="js">Ractive.adaptors.boxAdaptor = {
   filter: function ( object ) {
     // Checks if the piece of data is an instance of Box.
@@ -388,7 +388,7 @@ ractive.set('box.height', 11);
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
+          <a class="pure-menu-link" href="../../api/directives/">Directives</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -646,7 +646,7 @@ ractive.set('box.height', 11);
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../api/attributes/">Attributes</a>
+                    <a class="pure-menu-link" href="../../api/directives/">Directives</a>
                   </li>
                 
                   <li class="pure-menu-item ">

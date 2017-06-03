@@ -38,7 +38,7 @@
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#input-binding">Input binding</a>
+        <a class="pure-menu-link pure-menu-heading" href="#binding-directives">Binding directives</a>
       </li>
       
         <li class="pure-menu-item">
@@ -76,7 +76,7 @@
       </li>
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#input-behavior">Input behavior</a>
+        <a class="pure-menu-link pure-menu-heading" href="#behavior-directives">Behavior directives</a>
       </li>
       
         <li class="pure-menu-item">
@@ -90,7 +90,7 @@
       </li>
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#special-attributes">Special attributes</a>
+        <a class="pure-menu-link pure-menu-heading" href="#other-directives">Other directives</a>
       </li>
       
         <li class="pure-menu-item">
@@ -121,9 +121,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="input-binding">Input binding</h1>
+          <h1 id="binding-directives">Binding directives</h1>
 <h2 id="text-inputs">Text inputs</h2>
-<p>Data can be bound to text inputs via the <code>value</code> attribute. This includes text-like inputs such as password, email, color, tel, date, etc.</p>
+<p>Data can be bound to text inputs via the <code>value</code> directive. This includes text-like inputs such as password, email, color, tel, date, etc.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt;
@@ -135,7 +135,7 @@
 </code></pre>
 
 <h2 id="number-inputs">Number inputs</h2>
-<p>Numeric data can be bound to number inputs via the <code>value</code> attribute. This includes number-like inputs such as range. The value from the input will automatically be converted into a number. When the input is blank, the value returned is <code>undefined</code>.</p>
+<p>Numeric data can be bound to number inputs via the <code>value</code> directive. This includes number-like inputs such as range. The value from the input will automatically be converted into a number. When the input is blank, the value returned is <code>undefined</code>.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;input type=&quot;number&quot; value=&quot;{{ daysWithoutSleep }}&quot;&gt;
@@ -147,7 +147,7 @@
 </code></pre>
 
 <h2 id="file-inputs">File inputs</h2>
-<p>File data can be bound to file inputs via the non-standard <code>value</code> attribute. The value from the input is a FileList object.</p>
+<p>File data can be bound to file inputs via the <code>value</code> directive. The value from the input is an instance of <code>FileList</code>.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;input type=&quot;file&quot; value=&quot;{{ file }}&quot;&gt;
@@ -159,7 +159,7 @@
 </code></pre>
 
 <h2 id="checkboxes">Checkboxes</h2>
-<p>Boolean data can be bound to checkboxes via the <code>checked</code> attribute. Note the non-standard usage of <code>checked</code>, which is a normally a boolean attribute.</p>
+<p>Boolean data can be bound to checkboxes via the <code>checked</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;input type=&quot;checkbox&quot; checked=&quot;{{ isChecked }}&quot;&gt;
@@ -170,7 +170,7 @@
 });
 </code></pre>
 
-<p>Array data can also be bound to checkboxes via the <code>name</code> attribute.</p>
+<p>Array data can also be bound to checkboxes via the <code>name</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;input type=&quot;checkbox&quot; name=&quot;{{ selectedItems }}&quot; value=&quot;1&quot;&gt;
@@ -185,7 +185,7 @@
 
 <p>When both <code>checked</code> and <code>name</code> bindings are present, the binding to <code>checked</code> will be honored and the binding to <code>name</code> will be treated as a regular interpolation.</p>
 <h2 id="radio-buttons">Radio buttons</h2>
-<p>Boolean data can be bound to radio buttons via the <code>checked</code> attribute. Note the non-standard usage of <code>checked</code>, which is a normally a boolean attribute.</p>
+<p>Boolean data can be bound to radio buttons via the <code>checked</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;input type=&quot;radio&quot; name=&quot;options&quot; checked=&quot;{{ option1 }}&quot;&gt;
@@ -200,7 +200,7 @@
 });
 </code></pre>
 
-<p>Data can also be bound to radio buttons via the <code>name</code> attribute.</p>
+<p>Data can also be bound to radio buttons via the <code>name</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;input type=&quot;radio&quot; name=&quot;{{ selectedOption }}&quot; value=&quot;1&quot;&gt;
@@ -214,7 +214,7 @@
 </code></pre>
 
 <h2 id="text-areas">Text areas</h2>
-<p>Data can be bound to text inputs via the non-standard <code>value</code> attribute.</p>
+<p>Data can be bound to text areas via the <code>value</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;textarea value=&quot;{{ msg }}&quot;&gt;&lt;/textarea&gt;
@@ -225,7 +225,7 @@
 });
 </code></pre>
 
-<p>Data can also be bound to text via its contents.</p>
+<p>Data can also be bound to text areas via its contents.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;textarea&gt;{{ msg }}&lt;/textarea&gt;
@@ -237,7 +237,7 @@
 </code></pre>
 
 <h2 id="select-lists">Select lists</h2>
-<p>Data can be bound to select lists via the non-standard <code>value</code> attribute.</p>
+<p>Data can be bound to select lists via the <code>value</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;select value=&quot;{{ selectedOption }}&quot;&gt;
@@ -252,7 +252,7 @@
 });
 </code></pre>
 
-<p>Array data can also be bound to select lists with the <code>multiple</code> attribute via the non-standard <code>value</code> attribute.</p>
+<p>Array data can also be bound to select lists with the <code>multiple</code> attribute via the <code>value</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;select multiple value=&quot;{{ selectedItems }}&quot;&gt;
@@ -268,7 +268,7 @@
 </code></pre>
 
 <h2 id="contenteditable">contenteditable</h2>
-<p>Data can be bound to elements that have the <code>contenteditable</code> attribute via the non-standard <code>value</code> attribute.</p>
+<p>Data can be bound to elements that have the <code>contenteditable</code> attribute via the <code>value</code> directive.</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;div contenteditable=&quot;true&quot; value=&quot;{{ msg }}&quot;&gt;&lt;/div&gt;
@@ -288,9 +288,9 @@
 <li>The returned string may be different from browser to browser.</li>
 <li>Any value set on the bound data will always be rendered as HTML.</li>
 </ul>
-<h1 id="input-behavior">Input behavior</h1>
+<h1 id="behavior-directives">Behavior directives</h1>
 <h2 id="twoway">twoway</h2>
-<p>The element-specific attribute form of <a href="../initialization-options/#twoway"><code>twoway</code></a> that toggles two-way binding on a specific element.</p>
+<p>The element-specific directive form of <a href="../initialization-options/#twoway"><code>twoway</code></a>.</p>
 <pre><code class="html">&lt;!-- By default, two-way is enabled. Editing the input updates foo. --&gt;
 Two-way: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
 
@@ -302,7 +302,7 @@ One-way: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; twoway=&quo
 </code></pre>
 
 <h2 id="lazy">lazy</h2>
-<p>The element-specific attribute form of <a href="../initialization-options/#lazy"><code>lazy</code></a> that toggles lazy updating on a specific element.</p>
+<p>The element-specific directive form of <a href="../initialization-options/#lazy"><code>lazy</code></a>.</p>
 <pre><code class="html">&lt;!-- Editing the input updates foo on keypress. --&gt;
 Eager: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
 
@@ -310,15 +310,15 @@ Eager: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
 Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;true&quot;&gt; {{ bar }}
 </code></pre>
 
-<h1 id="special-attributes">Special attributes</h1>
+<h1 id="other-directives">Other directives</h1>
 <h2 id="as-42">as-*</h2>
-<p><code>as-*</code> attributes augment the element with <a href="../../extend/decorators/">decorators</a>. It accepts an optional, comma-separated list of expressions which are handed over as arguments to the decorator function.</p>
+<p><code>as-*</code> directives augment the element with <a href="../../extend/decorators/">decorators</a>. It accepts an optional, comma-separated list of expressions which are passed to the decorator function as arguments.</p>
 <pre><code class="html">&lt;div as-modal&gt;Div appearing as modal&lt;/div&gt;
 &lt;div as-modal=&quot;true, true, true, false&quot;&gt;Div appearing as modal&lt;/div&gt;
 </code></pre>
 
 <h2 id="class-42">class-*</h2>
-<p><code>class-*</code> attributes toggle individual class names based on the truthiness of its value. The part of the attribute name following <code>class-</code> will be used as the class name. <code>class-*</code> attribute values are processed as expressions. If there is no expression, the implicit value is <code>true</code>, which is useful for applying multiple classes to an element using component <code>extra-attributes</code>.</p>
+<p><code>class-*</code> directives toggle individual class names based on the truthiness of its value. The part of the directive name following <code>class-</code> will be used as the class name. <code>class-*</code> directive values are processed as expressions. If there is no expression, the implicit value is <code>true</code>, which is useful for applying multiple classes to an element using component <code>extra-attributes</code>.</p>
 <pre><code class="html">&lt;div class-foo=&quot;isFoo&quot;&gt;Adds &quot;foo&quot; if isFoo is truthy&lt;/div&gt;
 &lt;div class-foo-bar=&quot;isFooBar&quot;&gt;Adds &quot;foo-bar&quot; if isFooBar is truthy&lt;/div&gt;
 &lt;div class-fooBar=&quot;isFooBar&quot;&gt;Adds &quot;fooBar&quot; if isFooBar is truthy&lt;/div&gt;
@@ -326,32 +326,28 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
 </code></pre>
 
 <h2 id="on-42">on-*</h2>
-<p><code>on-*</code> attributes attach event handlers for both native and <a href="../../extend/events/">custom events</a>. They are designed to look similar to regular <code>on*</code> attributes for familiarity, the only difference being the hyphen. <code>on-*</code> can be used in two ways: proxy event syntax and expression syntax.</p>
-<p>Using the proxy event syntax, <code>on-*</code> accepts an event name as value. Events are handled by registering a function with <a href="../instance-methods/#ractiveon"><code>ractive.on</code></a> using the assigned event name.</p>
+<p><code>on-*</code> directives attach event handlers to DOM elements and components. <code>on-*</code> can be used in two ways: <a href="../../concepts/event-management/#proxy-syntax">proxy syntax</a> or the <a href="../../concepts/event-management/#expression-syntax">expression syntax</a>.</p>
 <pre><code class="js">Ractive({
   template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;clicked&quot;&gt;Push me!&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;clickedproxy&quot;&gt;Push me!&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;['clickedArray', 'Hello, World!']&quot;&gt;Push me!&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@this.clickedMethod('Hello, World!')&quot;&gt;Push me!&lt;/button&gt;
   `,
   oninit(){
-    this.on('clicked', event =&gt; {
-      console.log('clicked!');
+    this.on('clickedproxy', event =&gt; {
+      console.log('Hello, World!');
     });
+    this.on('clickedArray', (event, msg) =&gt; {
+      console.log(msg);
+    })
+  },
+  clickedMethod(msg){
+    console.log(msg);
   }
 });
 </code></pre>
 
-<p>Using the expression syntax, <code>on-*</code> accepts expressions as value. This allows it to appear like regular inline scripts, similar to how it's done in inline event handlers.</p>
-<pre><code class="js">Ractive({
-  template: `
-    &lt;button type=&quot;button&quot; on-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
-  `,
-  someMethod(){
-    console.log('clicked!');
-  }
-});
-</code></pre>
-
-<p>Multiple events can also be tied to the same handler by separating them with a hyphen:</p>
+<p>Multiple events can also be tied to the same handler by appending event names to the directive, separating them by hyphens:</p>
 <pre><code class="js">Ractive({
   template: `
     &lt;button type=&quot;button&quot; on-hover-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
@@ -363,20 +359,20 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
 </code></pre>
 
 <h2 id="42-in-42-out-42-in-out">*-in, *-out, *-in-out</h2>
-<p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> attributes apply <a href="../../extend/transitions/">transitions</a> to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three accept an optional value, an expression in the form of an object which is handed over as arguments to the transition function.</p>
+<p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> directives apply <a href="../../extend/transitions/">transitions</a> to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three directives accept an optional, comma-separated list of expressions which are passed to the transition function as arguments.</p>
 <pre><code class="html">&lt;div fade-in&gt;Fades on render&lt;/div&gt;
 &lt;div fade-out&gt;Fades before removal&lt;/div&gt;
 &lt;div fade-in-out&gt;Fades on render and before removal&lt;/div&gt;
-&lt;div fade-in-out=&quot;{ duration: 500 }&quot;&gt;Fades with 500ms duration&lt;/div&gt;
+&lt;div fade-in-out=&quot;{ duration: 500 }, someOtherArg&quot;&gt;Fades with 500ms duration&lt;/div&gt;
 </code></pre>
 
 <h2 id="style-42">style-*</h2>
-<p><code>style-*</code> attributes update individual <code>style</code> properties of the element. The part of the attribute following <code>style-</code> will be used as the style property name. There are two forms of the syntax: <code>style-property-name</code> (CSS style) and <code>style-propertyName</code> (JS style). Style property names will be normalized.</p>
+<p><code>style-*</code> directives update individual <code>style</code> properties of the element. The part of the directive following <code>style-</code> will be used as the style property name. Style names can either be in kebab case or camel case, and will be normalized on application.</p>
 <pre><code class="html">&lt;div style-vertical-align=&quot;middle&quot;&gt;Applies style.verticalAlign&lt;/div&gt;
 &lt;div style-textAlign=&quot;center&quot;&gt;Applies style.textAlign&lt;/div&gt;
 </code></pre>
 
-<p><code>style-*</code> attribute values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.</p>
+<p><code>style-*</code> directive values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.</p>
 <pre><code class="html">&lt;div style-vertical-align=&quot;{{ vAlign }}&quot; style-textAlign=&quot;{{ tAlign }}&quot;&gt;...&lt;/div&gt;
 </code></pre>
         </div>
@@ -388,7 +384,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
     <div class="main__footer">
       <div class="page-controls">
   
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/attributes.md" target="_blank">Edit this page</a>
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/directives.md" target="_blank">Edit this page</a>
   
 </div>
 
@@ -527,7 +523,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
         </li>
       
         <li class="pure-menu-item pure-menu-selected">
-          <a class="pure-menu-link" href="./">Attributes</a>
+          <a class="pure-menu-link" href="./">Directives</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -640,7 +636,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#input-binding">Input binding</a>
+        <a class="pure-menu-link pure-menu-heading" href="#binding-directives">Binding directives</a>
       </li>
       
         <li class="pure-menu-item">
@@ -678,7 +674,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       </li>
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#input-behavior">Input behavior</a>
+        <a class="pure-menu-link pure-menu-heading" href="#behavior-directives">Behavior directives</a>
       </li>
       
         <li class="pure-menu-item">
@@ -692,7 +688,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       </li>
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#special-attributes">Special attributes</a>
+        <a class="pure-menu-link pure-menu-heading" href="#other-directives">Other directives</a>
       </li>
       
         <li class="pure-menu-item">
@@ -841,7 +837,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
                   </li>
                 
                   <li class="pure-menu-item pure-menu-selected">
-                    <a class="pure-menu-link" href="./">Attributes</a>
+                    <a class="pure-menu-link" href="./">Directives</a>
                   </li>
                 
                   <li class="pure-menu-item ">
