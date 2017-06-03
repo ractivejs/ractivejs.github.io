@@ -22,7 +22,7 @@ See [ractive.animate()](./instance-methods.md#ractiveanimate).
 
 ## context.decorators
 
-*(Object)*
+`(Object)`
 
 A map of decorator name to decorator return object for all of the decorators on the node associated with the context.
 
@@ -30,7 +30,7 @@ A map of decorator name to decorator return object for all of the decorators on 
 
 ## context.event
 
-**(Event|undefined)**
+`(Event|undefined)`
 
 The original event for contexts supplied to event directives. This is `undefined` for contexts not associated with an event.
 
@@ -136,7 +136,7 @@ See [ractive.link()](./instance-methods.md#ractivelink).
 
 ## context.node
 
-_`(Node|undefined)`_
+`(Node|undefined)`
 
 The node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node `undefined`.
 
@@ -156,7 +156,7 @@ See [ractive.observeOnce()](./instance-methods.md#ractiveobserveonce).
 
 ## context.original
 
-_`(Event|undefined)`_
+`(Event|undefined)`
 
 The original DOM event object. Normally present when the event is a Ractive DOM event. May be `undefined` on custom events or events from event plugins.
 
@@ -176,7 +176,7 @@ See [ractive.push()](./instance-methods.md#ractivepush).
 
 ## context.ractive
 
-_(Ractive)_
+`(Ractive)`
 
 This property holds a reference to the Ractive instance that controls the node represented by this info object.
 
