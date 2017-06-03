@@ -84,32 +84,23 @@ Retrieve a CSS property value from `t.node`.
 // TODO
 ```
 
-
-
 ## t.isIntro
 
-_(boolean)_
+`(boolean)`
 
 Should be self-explanatory...
 
-
-
 ## t.name
 
-_(string)_
+`(string)`
 
 The name of the transition.
 
-
-
 ## t.node
 
-_(Node)_
-
+`(Node)`
 
 The node that's entering or leaving the DOM
-
-
 
 ## t.processParams()
 
