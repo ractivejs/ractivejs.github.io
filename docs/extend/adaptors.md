@@ -1,6 +1,6 @@
 # Adaptors
 
-In some cases you want to write your UI in Ractive but have a custom back-end manage the data. [Adaptors](../extend/adaptors.md) allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.
+In some cases you want to write your UI in Ractive but have a custom back-end manage the data. Adaptors allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.
 
 ## Writing
 
@@ -29,7 +29,7 @@ const myAdaptor = {
 };
 ```
 
-Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an [adaptor](../extend/adaptors.md) is as follows:
+Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an adaptor is as follows:
 
 1. Provides an POJO version of your data source to Ractive.
 2. Captures data changes on your data source and mirror them to the data in Ractive.
@@ -45,7 +45,7 @@ Whether it's a third-party data modelling library, a RESTful service, a socket s
 
 `ractive` is the ractive instance that is currently using the adaptor.
 
-`wrap` is a function that gets called to set up the [adaptor](../extend/adaptors.md) on `object`.
+`wrap` is a function that gets called to set up the adaptor on `object`.
 
 `prefixer` is a helper function that accepts an object and automatically prefixes `keypath` to the object's keys.
 
@@ -59,21 +59,21 @@ Whether it's a third-party data modelling library, a RESTful service, a socket s
 
 `reset` is a function that is called when `ractive.set()` updates a keypath to the adapted data. This function allows you to either update `object` or tear down the adaptor.
 
-`teardown` is a function called when the [adaptor](../extend/adaptors.md) is being removed. This function allows you to do cleanup work on anything that was done during the [adaptor](../extend/adaptors.md) setup.
+`teardown` is a function called when the adaptor is being removed. This function allows you to do cleanup work on anything that was done during the adaptor setup.
 
-### [Adaptors](../extend/adaptors.md) only adapt one level
+### Adaptors only adapt one level
 
-An [adaptor](../extend/adaptors.md) only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.
+An adaptor only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.
 
 ### No built-in infinite loop detection
 
-There is no built-in mechanism for avoiding infinite loops. If your [adaptor](../extend/adaptors.md) calls `ractive.set()` on adapted data, which in turn will call the adaptor's `set()` method, which may directly or indirectly trigger another `ractive.set()` on the same adapted data, a stack overflow error might occur.
+There is no built-in mechanism for avoiding infinite loops. If your adaptor calls `ractive.set()` on adapted data, which in turn will call the adaptor's `set()` method, which may directly or indirectly trigger another `ractive.set()` on the same adapted data, a stack overflow error might occur.
 
 This isn't a problem with primitive values since Ractive doesn't bother calling `set()` if a value hasn't changed. But with objects and arrays, there's no easy and performant way to tell if the contents have changed. So `set()` gets called *in case something changed* rather than *because something changed*.
 
 ### Different for every back-end
 
-The [adaptor](../extend/adaptors.md) structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an [adaptor](../extend/adaptors.md) for a certain back-end. For instance, an [adaptor](../extend/adaptors.md) for a constructor-based object may be written differently from an [adaptor](../extend/adaptors.md) meant to interact with a socket server.
+The adaptor structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an adaptor for a certain back-end. For instance, an adaptor for a constructor-based object may be written differently from an adaptor meant to interact with a socket server.
 
 ## Registering
 
@@ -127,7 +127,7 @@ function Box(width, height){
 }
 ```
 
-In order for Ractive to properly use a `Box` instance, we build an [adaptor](../extend/adaptors.md) for `Box`.
+In order for Ractive to properly use a `Box` instance, we build an adaptor for `Box`.
 
 ```js
 Ractive.adaptors.boxAdaptor = {
