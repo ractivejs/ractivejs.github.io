@@ -274,6 +274,12 @@
     </url>
         
     <url>
+     <loc>https://ractive.js.org/concepts/event-management/</loc>
+     <lastmod>2017-06-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>https://ractive.js.org/concepts/rendering/</loc>
      <lastmod>2017-06-03</lastmod>
      <changefreq>daily</changefreq>
@@ -281,12 +287,6 @@
         
     <url>
      <loc>https://ractive.js.org/concepts/security/</loc>
-     <lastmod>2017-06-03</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>https://ractive.js.org/concepts/events/</loc>
      <lastmod>2017-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>

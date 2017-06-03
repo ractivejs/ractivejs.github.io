@@ -37,23 +37,23 @@
           <div class="toc pure-menu pure-menu-scrollable">
   <ul class="pure-menu-list">
     
-      <li class="pure-menu-item pure-menu-selected">
+      <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#components">Components</a>
       </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#writing">Writing</a>
         </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#registering">Registering</a>
         </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#using">Using</a>
         </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#examples">Examples</a>
         </li>
       
@@ -150,236 +150,6 @@ const AnotherComponent = Ractive.extend({
       &lt;MyComponentOtherName /&gt; &lt;!-- Using MyComponent's other name --&gt;
     &lt;/div&gt;
   `
-});
-</code></pre>
-
-<h3 id="events">Events</h3>
-<p>Components can fire events like regular elements using <a href="../../api/instance-methods/#ractivefire">ractive.fire()</a>. Enclosing instances can listen for events using the same <code>on-*</code> event notation. There are two ways to handle component events.</p>
-<p>The first is using the method call syntax which is similar to how you would write inline JavaScript.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: `
-    &lt;div&gt;&lt;/div&gt;
-  `,
-  oncomplete: function(){
-    this.fire('boringeventname');
-  }
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent on-boringeventname=&quot;@this.greetz()&quot; /&gt;
-  `,
-  greetz: function(){
-    console.log('Hello World');
-  }
-});
-</code></pre>
-
-<p>The other is using the proxy event syntax. It's called "proxy" in the sense that the component event is assigned another name which is actually listened to by the enclosing instance.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: `
-    &lt;div&gt;&lt;/div&gt;
-  `,
-  oncomplete: function(){
-    this.fire('boringeventname');
-  }
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent on-boringeventname=&quot;greetz&quot; /&gt;
-  `,
-  oninit: function(){
-    this.on('greetz', function(){
-      console.log('Hello World')
-    });
-  }
-});
-</code></pre>
-
-<h3 id="bubbling">Bubbling</h3>
-<p>Events fired from within components will also "bubble" up the component hierarchy with their component name attached as a namespace. This can be used to avoid having to re-fire events at each level in a deeply nested component hierarchy.</p>
-<p>In the following example, the event from the <code>ChildComponent</code> instance can be listened to from the outer Ractive instance.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: `
-    &lt;div&gt;&lt;/div&gt;
-  `,
-  oncomplete: function(){
-    this.fire('childevent');
-  }
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent /&gt;
-  `
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;ParentComponent /&gt;
-  `
-});
-
-ractive.on('ChildComponent.childevent', function(){
-  console.log('Hello World!');
-});
-</code></pre>
-
-<p>To listen to the same event name regardless of the component that's firing the event, an <code>*</code> can be used as the namespace.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: `
-    &lt;div&gt;&lt;/div&gt;
-  `,
-  oncomplete: function(){
-    this.fire('sameevent');
-  }
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent /&gt;
-  `,
-  oncomplete: function(){
-    this.fire('sameevent');
-  }
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;ParentComponent /&gt;
-  `
-});
-
-ractive.on('*.sameevent', function(){
-  console.log('This will fire two times, one for each component.');
-});
-</code></pre>
-
-<p>The namespace is not bound to the component definition but rather to the name of the component.</p>
-<p>In the following example, <code>ChildComponent</code> is registered onto the <code>ParentComponent</code> as <code>ChildComponent1</code> and <code>ChildComponent2</code>. Even with the same definition, there will be two namespaces, one for <code>ChildComponent1</code> and <code>ChildComponent2</code>.</p>
-<pre><code class="js">const ChildComponent = Ractive.extend({
-  template: `
-    &lt;div&gt;&lt;/div&gt;
-  `,
-  oncomplete: function(){
-    this.fire('sameevent');
-  }
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent1 /&gt;
-    &lt;ChildComponent2 /&gt;
-  `,
-  components: {
-    ChildComponent1: ChildComponent,
-    ChildComponent2: ChildComponent
-  }
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;ParentComponent /&gt;
-  `
-});
-
-ractive.on('ChildComponent1.sameevent', function(){
-  console.log('Same component definition, instance with name 1.');
-});
-
-ractive.on('ChildComponent2.sameevent', function(){
-  console.log('Same component definition, instance with name 2.');
-});
-</code></pre>
-
-<h3 id="stopping-propagation">Stopping propagation</h3>
-<p>In order to stop bubbling, simply return <code>false</code> from an event handler. Should the event come from a DOM event, it will call <code>stopPropagation()</code> and <code>preventDefault()</code> automatically.</p>
-<p>In the following example, <code>ParentComponent</code> listens to <code>childevent</code> and returns false to in its handler. This prevents the outer instance from receiving the event.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: `
-    &lt;div&gt;&lt;/div&gt;
-  `,
-  oncomplete: function(){
-    this.fire('childevent');
-  }
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent /&gt;
-  `,
-  oninit: function(){
-    this.on('ChildComponent.childevent', function(){
-      return false;
-    });
-  }
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;ParentComponent /&gt;
-  `
-});
-
-ractive.on('ChildComponent.childevent', function(){
-  console.log('This will not fire');
-});
-</code></pre>
-
-<p>Events that have been assigned a handler using <code>on-*</code> will also prevent the bubbling of the original event. A proxy event is assigned, will bubble in its place.</p>
-<p>In the following example, <code>childevent1</code> is prevented by not assigning a handle. <code>childevent2</code> is prevented by having a proxy event <code>childevent2proxy</code> assigned to it, which will also bubble in its place. <code>childevent3</code> is prevented by a method call.</p>
-<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
-  template: `
-    &lt;div&gt;&lt;/div&gt;
-  `,
-  oncomplete: function() {
-    this.fire('childevent1');
-    this.fire('childevent2');
-    this.fire('childevent3');
-  }
-});
-
-Ractive.components.ParentComponent = Ractive.extend({
-  template: `
-    &lt;ChildComponent on-childevent1=&quot;&quot; on-childevent2=&quot;childevent2proxy&quot; on-childevent3=&quot;@this.parentMethod()&quot; /&gt;
-  `,
-  oninit: function() {
-    this.on('childevent2proxy', function() {
-      console.log('childevent2 handled and will no longer bubble.');
-      console.log('childevent2proxy will take its place.');
-    });
-  },
-  parentMethod: function(){
-    console.log('childevent3 handled by a method')
-  }
-});
-
-const ractive = new Ractive({
-  el: 'body',
-  template: `
-    &lt;ParentComponent /&gt;
-  `
-});
-
-ractive.on('ChildComponent.childevent1', function() {
-  console.log('childevent1 stopped');
-});
-
-ractive.on('ChildComponent.childevent2', function() {
-  console.log('childevent2 stopped');
-});
-
-ractive.on('ParentComponent.childevent2proxy', function() {
-  console.log('childevent2proxy fired');
-});
-
-ractive.on('ChildComponent.childevent3', function() {
-  console.log('childevent3 fired');
 });
 </code></pre>
 
@@ -728,15 +498,15 @@ const ractive = new Ractive({
         </li>
       
         <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../concepts/event-management/">Event Management</a>
+        </li>
+      
+        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
         </li>
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/events/">Events</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -754,23 +524,23 @@ const ractive = new Ractive({
   <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
     
-      <li class="pure-menu-item pure-menu-selected">
+      <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#components">Components</a>
       </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#writing">Writing</a>
         </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#registering">Registering</a>
         </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#using">Using</a>
         </li>
       
-        <li class="pure-menu-item ">
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#examples">Examples</a>
         </li>
       
@@ -995,15 +765,15 @@ const ractive = new Ractive({
                   </li>
                 
                   <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../concepts/event-management/">Event Management</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
                   </li>
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/events/">Events</a>
                   </li>
                 
                   <li class="pure-menu-item ">

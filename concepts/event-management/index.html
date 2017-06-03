@@ -38,23 +38,27 @@
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#interpolators">Interpolators</a>
+        <a class="pure-menu-link pure-menu-heading" href="#event-management">Event Management</a>
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#writing">Writing</a>
+          <a class="pure-menu-link" href="#sources">Sources</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#registering">Registering</a>
+          <a class="pure-menu-link" href="#handling">Handling</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#using">Using</a>
+          <a class="pure-menu-link" href="#event-context">Event context</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#examples">Examples</a>
+          <a class="pure-menu-link" href="#namespacing">Namespacing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#propagation">Propagation</a>
         </li>
       
       </li>
@@ -65,16 +69,312 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="interpolators">Interpolators</h1>
-<p>TODO</p>
-<h2 id="writing">Writing</h2>
-<p>TODO</p>
-<h2 id="registering">Registering</h2>
-<p>TODO</p>
-<h2 id="using">Using</h2>
-<p>TODO</p>
-<h2 id="examples">Examples</h2>
-<p>TODO</p>
+          <h1 id="event-management">Event Management</h1>
+<p>Like many other libraries, Ractive implements its own <a href="https://en.wikipedia.org/wiki/Publish–subscribe_pattern">publish/subscribe</a> mechanism for triggering and responding to particular events. One of the advantages of using Ractive-managed events is that events are automatically unsubscribed and unreferenced once the instance is torn down, avoiding the need to do manual housekeeping.</p>
+<h2 id="sources">Sources</h2>
+<h3 id="event-api">Event API</h3>
+<p>Events that are published as a result of using the event APIs directly (i.e. <a href="../../api/instance-methods/#ractivefire"><code>ractive.fire</code></a>). Most of the other event sources use the event APIs to publish events at some point in their operation.</p>
+<pre><code class="js">instance.fire('someevent', 'Hello, World!')
+</code></pre>
+
+<h3 id="lifecycle-events">Lifecycle events</h3>
+<p>Lifecycle events are events that are published by an instance during the different phases of its existence. Ractive instances publish the following lifecycle events:</p>
+<ul>
+<li><a href="../../api/initialization-options/#onconstruct"><code>construct</code></a></li>
+<li><a href="../../api/initialization-options/#onconfig"><code>config</code></a></li>
+<li><a href="../../api/initialization-options/#oninit"><code>init</code></a></li>
+<li><a href="../../api/initialization-options/#onrender"><code>render</code></a></li>
+<li><a href="../../api/initialization-options/#oncomplete"><code>complete</code></a></li>
+<li><a href="../../api/initialization-options/#onupdate"><code>update</code></a></li>
+<li><a href="../../api/initialization-options/#oninsert"><code>insert</code></a></li>
+<li><a href="../../api/initialization-options/#ondetach"><code>detach</code></a></li>
+<li><a href="../../api/initialization-options/#onunrender"><code>unrender</code></a></li>
+<li><a href="../../api/initialization-options/#onteardown"><code>teardown</code></a></li>
+<li><a href="../../api/initialization-options/#ondestruct"><code>destruct</code></a></li>
+</ul>
+<p>Lifecycle event names are reserved. They should not be used as names of other events.</p>
+<h3 id="dom-events">DOM events</h3>
+<p>DOM events are events that are published by the DOM.</p>
+<pre><code class="html">&lt;button on-click=&quot;...&quot;&gt;
+</code></pre>
+
+<h3 id="custom-events">Custom events</h3>
+<p>Custom events are events that are published by <a href="../../extend/events/">event plugins</a>.</p>
+<pre><code class="html">&lt;img on-tap=&quot;...&quot;&gt;
+</code></pre>
+
+<h3 id="component-events">Component events</h3>
+<p>Component events are events that are published by <a href="../../extend/components/">components</a>.</p>
+<pre><code class="html">&lt;MyModal on-close=&quot;...&quot; /&gt;
+</code></pre>
+
+<h2 id="handling">Handling</h2>
+<h3 id="event-api_1">Event API</h3>
+<p>Events published from the direct use of the event APIs are also handled by directly using the event APIs (i.e. <a href="../../api/instance-methods/#ractiveon"><code>ractive.on</code></a>, <a href="../../api/instance-methods/#ractiveonce"><code>ractive.once</code></a>). Most of the other handling methods use the event APIs to handle events at some point in their operation.</p>
+<pre><code class="js">instance.on('someevent', (event, message) =&gt; {
+  console.log(message)
+})
+</code></pre>
+
+<h3 id="lifecycle-events_1">Lifecycle events</h3>
+<p>Lifecycle events are handled by assigning a function to the appropriate lifecycle event initialization option.</p>
+<pre><code class="js">Ractive({
+  onrender(){
+    console.log('instance has been rendered')
+  }
+})
+</code></pre>
+
+<p>The event APIs can also subscribe to lifecycle events. However, the handler must subscribe prior to the event publishing. Using the lifecycle event initialization options is the safer option to ensure the correct timing of subscriptions.</p>
+<h3 id="proxy-syntax">Proxy syntax</h3>
+<p>Ractive instances do not immediately subscribe to template-based events (DOM events, component events, custom events). The proxy syntax "proxies" template-based events into events that the current instance can subscribe to. From there, the events are handled by event APIs. Arguments are not supported in this syntax.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', event =&gt; {
+      console.log('button clicked')
+    })
+  }
+})
+</code></pre>
+
+<h3 id="expression-syntax">Expression syntax</h3>
+<p>A more powerful form of template-based event handling is the expression syntax, which allows the use of expressions as their values. This form acts very similar to inline scripts plus some useful additions. The expression syntax also has full, unmustached access to data and <a href="../../api/references/#special-references">special references</a>.</p>
+<p>The first form is a special form of the proxy syntax. It accepts an array whose first item is the event name, and the rest are its arguments.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;button on-click=&quot;['buttonclicked', 'foo', 'bar']&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', (event, foo, bar) =&gt; {
+      console.log('button clicked passing', foo, bar)
+    })
+  }
+})
+</code></pre>
+
+<p>The second form uses expressions directly. This allows unrestricted access to almost anything, from calling instance methods, custom methods, or even firing a proxy event manually.</p>
+<pre><code class="js">Ractive({
+  data: { msg: '' },
+  template: `
+    &lt;button on-click=&quot;@this.set('msg', 'Hello, World!')&quot;&gt;Set message&lt;/button&gt;
+    &lt;button on-click=&quot;@this.greetz(msg)&quot;&gt;Print message&lt;/button&gt;
+    &lt;button on-click=&quot;@this.fire('manualproxy', msg)&quot;&gt;Print message via proxy&lt;/button&gt;
+    &lt;button on-click=&quot;@this.set('foo', 1), @this.set('bar', 2)&quot;&gt;Cccombo!!!&lt;/button&gt;
+  `,
+  greetz(message){
+    console.log(`${message}`)
+  },
+  oninit(){
+    this.on('manualproxy', (event, message) =&gt; {
+      console.log(`${message}`)
+    })
+  }
+})
+</code></pre>
+
+<h2 id="event-context">Event context</h2>
+<p>Event handlers, regardless of event source, receive an <code>event</code> object as first argument. The <code>event</code> object is a special instance of a <a href="../../api/context/">context object</a> augmented with additional event-related properties where applicable.</p>
+<ul>
+<li><code>name</code> - The name of the published event.</li>
+<li><code>node</code> - A reference to the DOM node publishing the event. Only available on DOM events.</li>
+<li><code>event</code> - A reference to the DOM event. Only available on DOM</li>
+<li><code>original</code> - A reference to the DOM event. Only available on DOM</li>
+<li><code>component</code> - A reference to the component that published the event. Only available on propagated events.</li>
+</ul>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', event =&gt; {
+      console.log(event.node.type) // submit
+    })
+  }
+})
+</code></pre>
+
+<h2 id="namespacing">Namespacing</h2>
+<p>Pattern-matching is supported on any type of event, allowing a form of event namespacing. This is done by using a keypath-like event name and using wildcards (<code>*</code>) on segments during subscription.</p>
+<pre><code class="js">Ractive({
+  el: 'body',
+  append: true,
+  template: `
+    &lt;button on-click=&quot;foo.bar&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;foo.baz&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;foo.bam&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;qux.bar&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;qux.baz&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;qux.bam&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('*.bar', event =&gt; {
+      console.log('A bar event was published')
+    })
+    this.on('qux.*', event =&gt; {
+      console.log('A qux event was published')
+    })
+  }
+})
+</code></pre>
+
+<p>Be aware that handlers subscribing to just <code>*</code> will fire for <em>all</em> events.</p>
+<h2 id="propagation">Propagation</h2>
+<h3 id="dom-event-propagation">DOM event propagation</h3>
+<p>Native DOM event propagation is preserved, allowing things such as delegation.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;div on-click=&quot;buttonclicked&quot;&gt;
+      &lt;button type=&quot;button&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', event =&gt; {
+      console.log('button clicked')
+    })
+  }
+})
+</code></pre>
+
+<h3 id="component-propagation">Component propagation</h3>
+<p>Propagation across component boundaries is also supported. Propagating events are namespaced using the publishing component's name as prefix. This applies to component, proxy, and even lifecycle events.</p>
+<pre><code class="js">const ChildComponent = Ractive.extend({
+  template: '&lt;div&gt;&lt;/div&gt;',
+  oncomplete(){
+    this.fire('childevent')
+  }
+})
+
+const ParentComponent = Ractive.extend({
+  components: { ChildComponent },
+  template: '&lt;ChildComponent /&gt;'
+})
+
+const instance = Ractive({
+  components: { ParentComponent },
+  template: '&lt;ParentComponent /&gt;'
+})
+
+instance.on('ChildComponent.childevent', function(){
+  console.log('Hello World!')
+})
+</code></pre>
+
+<h3 id="stopping-propagation">Stopping propagation</h3>
+<p>Propagation can be stopped by simply returning <code>false</code> from an event handler. If the event is a DOM event, <code>event.stopPropagation()</code> and <code>event.preventDefault()</code> are automatically called.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;div on-click=&quot;ancestorbuttonclick&quot;&gt;
+      &lt;button on-click=&quot;descendantbuttonclick&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  oninit(){
+    this.on('ancestorbuttonclick', event =&gt; {
+      console.log('This will not run')
+    })
+    this.on('descendantbuttonclick', event =&gt; {
+      console.log('This will run')
+      return false;
+    })
+  }
+})
+</code></pre>
+
+<p>Returning <code>false</code> also stops propagation across components.</p>
+<pre><code class="js">const ChildComponent = Ractive.extend({
+  template: '&lt;div&gt;&lt;/div&gt;',
+  oncomplete: function(){
+    this.fire('childevent')
+  }
+})
+
+const ParentComponent = Ractive.extend({
+  components: { ChildComponent },
+  template: '&lt;ChildComponent /&gt;',
+  oninit: function(){
+    this.on('ChildComponent.childevent', function(){
+      return false;
+    })
+  }
+})
+
+const instance = Ractive({
+  components: { ParentComponent },
+  template: '&lt;ParentComponent /&gt;'
+})
+
+instance.on('ChildComponent.childevent', function(){
+  console.log('This will not run')
+})
+</code></pre>
+
+<p>Assigning a handler using <code>on-*</code> will also stop propagation. However, if <code>on-*</code> is assigned a proxy event and not stopped, that proxy event will propagate in place of the stopped event.</p>
+<pre><code class="js">const ChildComponent = Ractive.extend({
+  template: '&lt;div&gt;&lt;/div&gt;',
+  oncomplete: function() {
+    this.fire('childevent1')
+    this.fire('childevent2')
+    this.fire('childevent3')
+    this.fire('childevent4')
+  }
+})
+
+const ParentComponent = Ractive.extend({
+  components: { ChildComponent },
+  template: `
+    &lt;ChildComponent
+      on-childevent1=&quot;&quot;
+      on-childevent2=&quot;childevent2proxy&quot;
+      on-childevent3=&quot;childevent3proxy&quot;
+      on-childevent4=&quot;@this.parentMethod()&quot;
+    /&gt;
+  `,
+  oninit: function() {
+    this.on('childevent2proxy', function() {
+      // childevent2proxy replaces childevent2
+    })
+    this.on('childevent3proxy', function() {
+      // childevent3proxy replaces childevent3 but stopped
+      return false
+    })
+  },
+  parentMethod: function(){
+    // childevent4 handled by a method
+  }
+})
+
+const instance = Ractive({
+  components: { ParentComponent },
+  template: '&lt;ParentComponent /&gt;'
+})
+
+instance.on('ChildComponent.childevent1', function() {
+  console.log('childevent1 stopped by a blank handler')
+})
+
+instance.on('ChildComponent.childevent2', function() {
+  console.log('childevent2 stopped by a proxy event')
+})
+
+instance.on('ChildComponent.childevent3', function() {
+  console.log('childevent3 stopped by a proxy event')
+})
+
+instance.on('ChildComponent.childevent4', function() {
+  console.log('childevent4 stopped by a method call')
+})
+
+instance.on('ParentComponent.childevent3proxy', function() {
+  console.log('childevent3proxy stopped by returning false')
+})
+
+// This one gets through since its proxy event was left to propagate
+instance.on('ParentComponent.childevent2proxy', function() {
+  console.log('childevent2proxy fired')
+})
+</code></pre>
         </div>
       </div>
     </div>
@@ -84,7 +384,7 @@
     <div class="main__footer">
       <div class="page-controls">
   
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/extend/interpolators.md" target="_blank">Edit this page</a>
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/concepts/event-management.md" target="_blank">Edit this page</a>
   
 </div>
 
@@ -232,40 +532,40 @@
       
       </li>
     
-      <li class="pure-menu-item pure-menu-selected">
+      <li class="pure-menu-item ">
         <a class="pure-menu-link pure-menu-heading" href="">Extend</a>
       </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../adaptors/">Adaptors</a>
+          <a class="pure-menu-link" href="../../extend/adaptors/">Adaptors</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../components/">Components</a>
+          <a class="pure-menu-link" href="../../extend/components/">Components</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../decorators/">Decorators</a>
+          <a class="pure-menu-link" href="../../extend/decorators/">Decorators</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../easings/">Easings</a>
+          <a class="pure-menu-link" href="../../extend/easings/">Easings</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../events/">Events</a>
-        </li>
-      
-        <li class="pure-menu-item pure-menu-selected">
-          <a class="pure-menu-link" href="./">Interpolators</a>
+          <a class="pure-menu-link" href="../../extend/events/">Events</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../partials/">Partials</a>
+          <a class="pure-menu-link" href="../../extend/interpolators/">Interpolators</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../transitions/">Transitions</a>
+          <a class="pure-menu-link" href="../../extend/partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../../extend/transitions/">Transitions</a>
         </li>
       
       </li>
@@ -296,32 +596,32 @@
       
       </li>
     
-      <li class="pure-menu-item ">
+      <li class="pure-menu-item pure-menu-selected">
         <a class="pure-menu-link pure-menu-heading" href="">Concepts</a>
       </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/architecture/">Architecture</a>
+          <a class="pure-menu-link" href="../architecture/">Architecture</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/data-management/">Data Management</a>
+          <a class="pure-menu-link" href="../data-management/">Data Management</a>
+        </li>
+      
+        <li class="pure-menu-item pure-menu-selected">
+          <a class="pure-menu-link" href="./">Event Management</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/event-management/">Event Management</a>
+          <a class="pure-menu-link" href="../rendering/">Rendering</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
+          <a class="pure-menu-link" href="../security/">Security</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../../concepts/templates/">Templates</a>
+          <a class="pure-menu-link" href="../templates/">Templates</a>
         </li>
       
       </li>
@@ -336,23 +636,27 @@
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#interpolators">Interpolators</a>
+        <a class="pure-menu-link pure-menu-heading" href="#event-management">Event Management</a>
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#writing">Writing</a>
+          <a class="pure-menu-link" href="#sources">Sources</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#registering">Registering</a>
+          <a class="pure-menu-link" href="#handling">Handling</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#using">Using</a>
+          <a class="pure-menu-link" href="#event-context">Event context</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#examples">Examples</a>
+          <a class="pure-menu-link" href="#namespacing">Namespacing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#propagation">Propagation</a>
         </li>
       
       </li>
@@ -493,40 +797,40 @@
         
       
         
-          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
               <span class="pure-menu-link">Extend</span>
               <ul class="pure-menu-children">
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../adaptors/">Adaptors</a>
+                    <a class="pure-menu-link" href="../../extend/adaptors/">Adaptors</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../components/">Components</a>
+                    <a class="pure-menu-link" href="../../extend/components/">Components</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../decorators/">Decorators</a>
+                    <a class="pure-menu-link" href="../../extend/decorators/">Decorators</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../easings/">Easings</a>
+                    <a class="pure-menu-link" href="../../extend/easings/">Easings</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../events/">Events</a>
-                  </li>
-                
-                  <li class="pure-menu-item pure-menu-selected">
-                    <a class="pure-menu-link" href="./">Interpolators</a>
+                    <a class="pure-menu-link" href="../../extend/events/">Events</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../partials/">Partials</a>
+                    <a class="pure-menu-link" href="../../extend/interpolators/">Interpolators</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../transitions/">Transitions</a>
+                    <a class="pure-menu-link" href="../../extend/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../../extend/transitions/">Transitions</a>
                   </li>
                 
               </ul>
@@ -563,32 +867,32 @@
         
       
         
-          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
               <span class="pure-menu-link">Concepts</span>
               <ul class="pure-menu-children">
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/architecture/">Architecture</a>
+                    <a class="pure-menu-link" href="../architecture/">Architecture</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/data-management/">Data Management</a>
+                    <a class="pure-menu-link" href="../data-management/">Data Management</a>
+                  </li>
+                
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">Event Management</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/event-management/">Event Management</a>
+                    <a class="pure-menu-link" href="../rendering/">Rendering</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/rendering/">Rendering</a>
+                    <a class="pure-menu-link" href="../security/">Security</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/security/">Security</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../../concepts/templates/">Templates</a>
+                    <a class="pure-menu-link" href="../templates/">Templates</a>
                   </li>
                 
               </ul>
