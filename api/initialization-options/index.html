@@ -760,7 +760,7 @@ ractive.unrender();
 <p>A lifecycle event that is called when <code>ractive.update()</code> is called.</p>
 <h2 id="partials">partials</h2>
 <p><code>(Object&lt;string, string|Object|Function&gt;)</code></p>
-<p>A map of <a href="../../extend/partials/">partials</a> where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and  <a href="../parse/">Parse Object</a> as arguments.</p>
+<p>A map of <a href="../../extend/partials/">partials</a> where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and  <a href="./parse.md">Parse Object</a> as arguments.</p>
 <pre><code class="js">partials: {
   stringPartial: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
   parsedPartial: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
@@ -882,7 +882,7 @@ stripComments: false
 <p>Alias for <a href="#el"><code>el</code></a>.</p>
 <h2 id="template">template</h2>
 <p><code>(string|array|object|function)</code></p>
-<p>The <a href="../../concepts/templates/#overview">template</a> to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from <a href="../static-methods/#ractiveparse"><code>Ractive.parse()</code></a> or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and a <a href="../parse/">Parse Object</a>.</p>
+<p>The <a href="../../concepts/templates/#overview">template</a> to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from <a href="../static-methods/#ractiveparse"><code>Ractive.parse()</code></a> or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and a <a href="./parse.md">Parse Object</a>.</p>
 <pre><code class="js">// Selector
 template: '#my-template',
 
@@ -1076,15 +1076,15 @@ ractive.set( 'foo', 'fizz' );
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../context/">Context Object</a>
+          <a class="pure-menu-link" href="../context-object/">Context Object</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../parse/">Parse</a>
+          <a class="pure-menu-link" href="../parse-object/">Parse Object</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../transition/">Transition</a>
+          <a class="pure-menu-link" href="../transition-object/">Transition Object</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -1518,15 +1518,15 @@ ractive.set( 'foo', 'fizz' );
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../context/">Context Object</a>
+                    <a class="pure-menu-link" href="../context-object/">Context Object</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../parse/">Parse</a>
+                    <a class="pure-menu-link" href="../parse-object/">Parse Object</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../transition/">Transition</a>
+                    <a class="pure-menu-link" href="../transition-object/">Transition Object</a>
                   </li>
                 
                   <li class="pure-menu-item ">

@@ -142,19 +142,19 @@
     </url>
         
     <url>
-     <loc>https://ractive.js.org/api/context/</loc>
+     <loc>https://ractive.js.org/api/context-object/</loc>
      <lastmod>2017-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org/api/parse/</loc>
+     <loc>https://ractive.js.org/api/parse-object/</loc>
      <lastmod>2017-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://ractive.js.org/api/transition/</loc>
+     <loc>https://ractive.js.org/api/transition-object/</loc>
      <lastmod>2017-06-03</lastmod>
      <changefreq>daily</changefreq>
     </url>

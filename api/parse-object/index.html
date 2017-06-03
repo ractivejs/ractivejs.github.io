@@ -38,131 +38,19 @@
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#context">Context</a>
+        <a class="pure-menu-link pure-menu-heading" href="#parse-object">Parse Object</a>
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextadd">context.add()</a>
+          <a class="pure-menu-link" href="#pfromid">p.fromId()</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextanimate">context.animate()</a>
+          <a class="pure-menu-link" href="#pisparsed">p.isParsed()</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextdecorators">context.decorators</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextevent">context.event</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextget">context.get()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextgetbinding">context.getBinding()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextgetbindingpath">context.getBindingPath()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextisbound">context.isBound()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextlink">context.link()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextnode">context.node</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextobserve">context.observe()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextobserveonce">context.observeOnce()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextoriginal">context.original</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextpop">context.pop()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextpush">context.push()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextractive">context.ractive</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextraise">context.raise()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextreadlink">context.readLink()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextresolve">context.resolve()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextreverse">context.reverse()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextset">context.set()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsetbinding">context.setBinding()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextshift">context.shift()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsplice">context.splice()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsort">context.sort()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsubtract">context.subtract()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contexttoggle">context.toggle()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextunlink">context.unlink()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextunshift">context.unshift()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextupdate">context.update()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextupdatemodel">context.updateModel()</a>
+          <a class="pure-menu-link" href="#pparse">p.parse()</a>
         </li>
       
       </li>
@@ -173,185 +61,62 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="context">Context</h1>
-<p>The context object is the type of object you receive when calling <a href="../static-methods/#ractivegetcontext">getContext()</a>. This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.</p>
-<p>The special <code>@context</code> reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.</p>
-<p>Helper methods that take a <a href="../../concepts/templates/#keypaths">keypath</a> will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported. If the method doesn't require a keypath, like <code>get</code>, then the keypath will implicitly be <code>.</code> rather than <code>~/</code>, as with regular instance methods.</p>
-<h2 id="contextadd">context.add()</h2>
-<p>See <a href="../instance-methods/#ractiveadd">ractive.add()</a>.</p>
-<h2 id="contextanimate">context.animate()</h2>
-<p>See <a href="../instance-methods/#ractiveanimate">ractive.animate()</a>.</p>
-<h2 id="contextdecorators">context.decorators</h2>
-<p><code>(Object)</code></p>
-<p>A map of decorator name to decorator return object for all of the decorators on the node associated with the context.</p>
-<h2 id="contextevent">context.event</h2>
-<p><code>(Event|undefined)</code></p>
-<p>The original event for contexts supplied to event directives. This is <code>undefined</code> for contexts not associated with an event.</p>
-<h2 id="contextget">context.get()</h2>
-<p>See <a href="../instance-methods/#ractiveget">ractive.get()</a>.</p>
-<h2 id="contextgetbinding">context.getBinding()</h2>
-<p>Returns the value of the binding if the node represented by this info object has a two-way binding.</p>
+          <h1 id="parse-object">Parse Object</h1>
+<p>The parse object is an object you receive as the second argument in <a href="../initialization-options/#template">function templates</a>. This helper object provides you with essential functions to dissect markup before turning over the template for use.</p>
+<h2 id="pfromid">p.fromId()</h2>
+<p>Retrieves the template from the DOM <code>&lt;script&gt;</code> tag specified by <code>id</code>. Make sure to set <code>type='text/ractive'</code> on the <code>&lt;script&gt;</code> tag to prevent the browser from running the template as a script.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>context.getBinding()</code></li>
+<li><code>p.fromId(id)</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li>None</li>
+<li><code>id (string)</code>: The id of the <code>&lt;script&gt;</code> tag containing the template. The leading <code>#</code> is optional.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(any)</code>: The value of the binding.</li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="html">{{#with foo.bar}}&lt;input id=&quot;findMe&quot; value=&quot;{{.baz}}&quot; /&gt;{{/with}}
-</code></pre>
-
-<pre><code class="js">Ractive.getContext('#findMe').getBinding(); // returns value of foo.bar.baz
-</code></pre>
-
-<h2 id="contextgetbindingpath">context.getBindingPath()</h2>
-<p>Returns the keypath of the binding if the node represented by this info object has a two-way binding.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>context.getBindingPath([ractive])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>[ractive] (Ractive)</code>: The instance to resolve the keypath against.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(string)</code>: The keypath of the node binding.</li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="html">{{#with foo.bar}}&lt;input id=&quot;findMe&quot; value=&quot;{{.baz}}&quot; /&gt;{{/with}}
-</code></pre>
-
-<pre><code class="js">Ractive.getContext('#findMe').getBindingPath(); // Returns &quot;foo.bar.baz&quot;
-</code></pre>
-
-<h2 id="contextisbound">context.isBound()</h2>
-<p>Returns <code>true</code> if the node represented by this info object has a two-way binding.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>context.isBound()</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li>None</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(boolean)</code>: <code>true</code> if the node represented has a two-way binding.</li>
-</ul>
-<p><strong>Examples</strong></p>
-<pre><code class="html">{{#with foo.bar}}
-  &lt;input id=&quot;foo&quot; value=&quot;{{.baz}}&quot; /&gt;
-  &lt;input id=&quot;bar&quot; value=&quot;&quot; /&gt;
-{{/with}}
-</code></pre>
-
-<pre><code class="js">Ractive.getContext('#foo').isBound(); // Returns true
-Ractive.getContext('#bar').isBound(); // Returns false
-</code></pre>
-
-<h2 id="contextlink">context.link()</h2>
-<p>See <a href="../instance-methods/#ractivelink">ractive.link()</a>.</p>
-<h2 id="contextnode">context.node</h2>
-<p><code>(Node|undefined)</code></p>
-<p>The node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node <code>undefined</code>.</p>
-<h2 id="contextobserve">context.observe()</h2>
-<p>See <a href="../instance-methods/#ractiveobserve">ractive.observe()</a>.</p>
-<h2 id="contextobserveonce">context.observeOnce()</h2>
-<p>See <a href="../instance-methods/#ractiveobserveonce">ractive.observeOnce()</a>.</p>
-<h2 id="contextoriginal">context.original</h2>
-<p><code>(Event|undefined)</code></p>
-<p>The original DOM event object. Normally present when the event is a Ractive DOM event. May be <code>undefined</code> on custom events or events from event plugins.</p>
-<h2 id="contextpop">context.pop()</h2>
-<p>See <a href="../instance-methods/#ractivepop">ractive.pop()</a>.</p>
-<h2 id="contextpush">context.push()</h2>
-<p>See <a href="../instance-methods/#ractivepush">ractive.push()</a>.</p>
-<h2 id="contextractive">context.ractive</h2>
-<p><code>(Ractive)</code></p>
-<p>This property holds a reference to the Ractive instance that controls the node represented by this info object.</p>
-<h2 id="contextraise">context.raise()</h2>
-<p>Triggers the nearest matching event directive relative to the context. This is useful for decorators and other library constructs that want to be able to raise their own events that aren't necessarily tied to a DOM event. Raised events do not bubble.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>context.raise(eventName[, event[, ...args]])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>eventName (string)</code>: The name of the event to raise. For <code>&lt;div on-something="..."&gt;</code>, the event name would be <code>'something'</code>.</li>
-<li><code>[event] (context|object)</code>: The context for the event or an object of properties to assign to the context for the event. Defaults to <code>{}</code>.</li>
-<li><code>[args] (...any)</code>: Additional arguments to supply to the event handler.</li>
+<li><code>(string)</code>: The template inside the specified element.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="contextreadlink">context.readLink()</h2>
-<p>See <a href="../instance-methods/#ractivereadlink">ractive.readLink()</a>.</p>
-<h2 id="contextresolve">context.resolve()</h2>
-<p>Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.</p>
+<h2 id="pisparsed">p.isParsed()</h2>
+<p>Test whether the supplied template is already parsed and is in its object form.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>context.resolve([keypath[, ractive]])</code></li>
+<li><code>p.isParsed(template)</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>[keypath] (string)</code>: The keypath to resolve.</li>
-<li><code>[ractive] (Ractive)</code>: The instance to resolve the keypath against.</li>
+<li><code>template (string|Object)</code>: The template, either in its string form or object form.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(string)</code>: The resolved keypath.</li>
+<li><code>(boolean)</code>: Returns <code>true</code> if the template is already parsed, <code>false</code> if otherwise.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="contextreverse">context.reverse()</h2>
-<p>See <a href="../instance-methods/#ractivereverse">ractive.reverse()</a>.</p>
-<h2 id="contextset">context.set()</h2>
-<p>See <a href="../instance-methods/#ractiveset">ractive.set()</a>.</p>
-<h2 id="contextsetbinding">context.setBinding()</h2>
-<p>Sets the binding of the node represented by this info object to the specified value.</p>
+<h2 id="pparse">p.parse()</h2>
+<p>Parses the template using <a href="../static-methods/#ractiveparse">Ractive.parse()</a>. Full Ractive runtime must be loaded.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>context.setBinding(value)</code></li>
+<li><code>p.parse(template[, parseOptions])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>value (any)</code>. The value to set.</li>
+<li><code>template (string|Object)</code>: The template in its string form or object form.</li>
+<li><code>[parseOptions] (Object)</code>: Template parser options. See <a href="../static-methods/#ractiveparse">Ractive.parse()</a> for all available options. If <code>parseOptions</code> is not specified, it defaults to those of the current instance.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Promise)</code></li>
+<li><code>(Object)</code>: The parsed template.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
 </code></pre>
-
-<h2 id="contextshift">context.shift()</h2>
-<p>See <a href="../instance-methods/#ractiveshift">ractive.shift()</a>.</p>
-<h2 id="contextsplice">context.splice()</h2>
-<p>See <a href="../instance-methods/#ractivesplice">ractive.splice()</a>.</p>
-<h2 id="contextsort">context.sort()</h2>
-<p>See <a href="../instance-methods/#ractivesort">ractive.sort()</a>.</p>
-<h2 id="contextsubtract">context.subtract()</h2>
-<p>See <a href="../instance-methods/#ractivesubtract">ractive.subtract()</a>.</p>
-<h2 id="contexttoggle">context.toggle()</h2>
-<p>See <a href="../instance-methods/#ractivetoggle">ractive.toggle()</a>.</p>
-<h2 id="contextunlink">context.unlink()</h2>
-<p>See <a href="../instance-methods/#ractiveunlink">ractive.unlink()</a>.</p>
-<h2 id="contextunshift">context.unshift()</h2>
-<p>See <a href="../instance-methods/#ractiveunshift">ractive.unshift()</a>.</p>
-<h2 id="contextupdate">context.update()</h2>
-<p>See <a href="../instance-methods/#ractiveupdate">ractive.update()</a>.</p>
-<h2 id="contextupdatemodel">context.updateModel()</h2>
-<p>See <a href="../instance-methods/#ractiveupdatemodel">ractive.updateModel()</a>.</p>
         </div>
       </div>
     </div>
@@ -361,7 +126,7 @@ Ractive.getContext('#bar').isBound(); // Returns false
     <div class="main__footer">
       <div class="page-controls">
   
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/context.md" target="_blank">Edit this page</a>
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api/parse-object.md" target="_blank">Edit this page</a>
   
 </div>
 
@@ -487,16 +252,16 @@ Ractive.getContext('#bar').isBound(); // Returns false
           <a class="pure-menu-link" href="../instance-methods/">Instance Methods</a>
         </li>
       
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../context-object/">Context Object</a>
+        </li>
+      
         <li class="pure-menu-item pure-menu-selected">
-          <a class="pure-menu-link" href="./">Context Object</a>
+          <a class="pure-menu-link" href="./">Parse Object</a>
         </li>
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../parse/">Parse</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../transition/">Transition</a>
+          <a class="pure-menu-link" href="../transition-object/">Transition Object</a>
         </li>
       
         <li class="pure-menu-item ">
@@ -613,131 +378,19 @@ Ractive.getContext('#bar').isBound(); // Returns false
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#context">Context</a>
+        <a class="pure-menu-link pure-menu-heading" href="#parse-object">Parse Object</a>
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextadd">context.add()</a>
+          <a class="pure-menu-link" href="#pfromid">p.fromId()</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextanimate">context.animate()</a>
+          <a class="pure-menu-link" href="#pisparsed">p.isParsed()</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextdecorators">context.decorators</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextevent">context.event</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextget">context.get()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextgetbinding">context.getBinding()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextgetbindingpath">context.getBindingPath()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextisbound">context.isBound()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextlink">context.link()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextnode">context.node</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextobserve">context.observe()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextobserveonce">context.observeOnce()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextoriginal">context.original</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextpop">context.pop()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextpush">context.push()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextractive">context.ractive</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextraise">context.raise()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextreadlink">context.readLink()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextresolve">context.resolve()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextreverse">context.reverse()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextset">context.set()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsetbinding">context.setBinding()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextshift">context.shift()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsplice">context.splice()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsort">context.sort()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextsubtract">context.subtract()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contexttoggle">context.toggle()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextunlink">context.unlink()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextunshift">context.unshift()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextupdate">context.update()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#contextupdatemodel">context.updateModel()</a>
+          <a class="pure-menu-link" href="#pparse">p.parse()</a>
         </li>
       
       </li>
@@ -853,16 +506,16 @@ Ractive.getContext('#bar').isBound(); // Returns false
                     <a class="pure-menu-link" href="../instance-methods/">Instance Methods</a>
                   </li>
                 
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../context-object/">Context Object</a>
+                  </li>
+                
                   <li class="pure-menu-item pure-menu-selected">
-                    <a class="pure-menu-link" href="./">Context Object</a>
+                    <a class="pure-menu-link" href="./">Parse Object</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../parse/">Parse</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../transition/">Transition</a>
+                    <a class="pure-menu-link" href="../transition-object/">Transition Object</a>
                   </li>
                 
                   <li class="pure-menu-item ">

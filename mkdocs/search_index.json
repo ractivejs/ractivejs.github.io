@@ -1251,242 +1251,242 @@
             "title": "ractive.updateModel()"
         }, 
         {
-            "location": "/api/context/", 
-            "text": "Context\n\n\nThe context object is the type of object you receive when calling \ngetContext()\n. This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.\n\n\nThe special \n@context\n reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.\n\n\nHelper methods that take a \nkeypath\n will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported. If the method doesn't require a keypath, like \nget\n, then the keypath will implicitly be \n.\n rather than \n~/\n, as with regular instance methods.\n\n\ncontext.add()\n\n\nSee \nractive.add()\n.\n\n\ncontext.animate()\n\n\nSee \nractive.animate()\n.\n\n\ncontext.decorators\n\n\n(Object)\n\n\nA map of decorator name to decorator return object for all of the decorators on the node associated with the context.\n\n\ncontext.event\n\n\n(Event|undefined)\n\n\nThe original event for contexts supplied to event directives. This is \nundefined\n for contexts not associated with an event.\n\n\ncontext.get()\n\n\nSee \nractive.get()\n.\n\n\ncontext.getBinding()\n\n\nReturns the value of the binding if the node represented by this info object has a two-way binding.\n\n\nSyntax\n\n\n\n\ncontext.getBinding()\n\n\n\n\nArguments\n\n\n\n\nNone\n\n\n\n\nReturns\n\n\n\n\n(any)\n: The value of the binding.\n\n\n\n\nExamples\n\n\n{{#with foo.bar}}\ninput id=\nfindMe\n value=\n{{.baz}}\n /\n{{/with}}\n\n\n\n\nRactive.getContext('#findMe').getBinding(); // returns value of foo.bar.baz\n\n\n\n\ncontext.getBindingPath()\n\n\nReturns the keypath of the binding if the node represented by this info object has a two-way binding.\n\n\nSyntax\n\n\n\n\ncontext.getBindingPath([ractive])\n\n\n\n\nArguments\n\n\n\n\n[ractive] (Ractive)\n: The instance to resolve the keypath against.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The keypath of the node binding.\n\n\n\n\nExamples\n\n\n{{#with foo.bar}}\ninput id=\nfindMe\n value=\n{{.baz}}\n /\n{{/with}}\n\n\n\n\nRactive.getContext('#findMe').getBindingPath(); // Returns \nfoo.bar.baz\n\n\n\n\n\ncontext.isBound()\n\n\nReturns \ntrue\n if the node represented by this info object has a two-way binding.\n\n\nSyntax\n\n\n\n\ncontext.isBound()\n\n\n\n\nArguments\n\n\n\n\nNone\n\n\n\n\nReturns\n\n\n\n\n(boolean)\n: \ntrue\n if the node represented has a two-way binding.\n\n\n\n\nExamples\n\n\n{{#with foo.bar}}\n  \ninput id=\nfoo\n value=\n{{.baz}}\n /\n\n  \ninput id=\nbar\n value=\n /\n\n{{/with}}\n\n\n\n\nRactive.getContext('#foo').isBound(); // Returns true\nRactive.getContext('#bar').isBound(); // Returns false\n\n\n\n\ncontext.link()\n\n\nSee \nractive.link()\n.\n\n\ncontext.node\n\n\n(Node|undefined)\n\n\nThe node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node \nundefined\n.\n\n\ncontext.observe()\n\n\nSee \nractive.observe()\n.\n\n\ncontext.observeOnce()\n\n\nSee \nractive.observeOnce()\n.\n\n\ncontext.original\n\n\n(Event|undefined)\n\n\nThe original DOM event object. Normally present when the event is a Ractive DOM event. May be \nundefined\n on custom events or events from event plugins.\n\n\ncontext.pop()\n\n\nSee \nractive.pop()\n.\n\n\ncontext.push()\n\n\nSee \nractive.push()\n.\n\n\ncontext.ractive\n\n\n(Ractive)\n\n\nThis property holds a reference to the Ractive instance that controls the node represented by this info object.\n\n\ncontext.raise()\n\n\nTriggers the nearest matching event directive relative to the context. This is useful for decorators and other library constructs that want to be able to raise their own events that aren't necessarily tied to a DOM event. Raised events do not bubble.\n\n\nSyntax\n\n\n\n\ncontext.raise(eventName[, event[, ...args]])\n\n\n\n\nArguments\n\n\n\n\neventName (string)\n: The name of the event to raise. For \ndiv on-something=\"...\"\n, the event name would be \n'something'\n.\n\n\n[event] (context|object)\n: The context for the event or an object of properties to assign to the context for the event. Defaults to \n{}\n.\n\n\n[args] (...any)\n: Additional arguments to supply to the event handler.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\ncontext.readLink()\n\n\nSee \nractive.readLink()\n.\n\n\ncontext.resolve()\n\n\nResolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.\n\n\nSyntax\n\n\n\n\ncontext.resolve([keypath[, ractive]])\n\n\n\n\nArguments\n\n\n\n\n[keypath] (string)\n: The keypath to resolve.\n\n\n[ractive] (Ractive)\n: The instance to resolve the keypath against.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The resolved keypath.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\ncontext.reverse()\n\n\nSee \nractive.reverse()\n.\n\n\ncontext.set()\n\n\nSee \nractive.set()\n.\n\n\ncontext.setBinding()\n\n\nSets the binding of the node represented by this info object to the specified value.\n\n\nSyntax\n\n\n\n\ncontext.setBinding(value)\n\n\n\n\nArguments\n\n\n\n\nvalue (any)\n. The value to set.\n\n\n\n\nReturns\n\n\n\n\n(Promise)\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\ncontext.shift()\n\n\nSee \nractive.shift()\n.\n\n\ncontext.splice()\n\n\nSee \nractive.splice()\n.\n\n\ncontext.sort()\n\n\nSee \nractive.sort()\n.\n\n\ncontext.subtract()\n\n\nSee \nractive.subtract()\n.\n\n\ncontext.toggle()\n\n\nSee \nractive.toggle()\n.\n\n\ncontext.unlink()\n\n\nSee \nractive.unlink()\n.\n\n\ncontext.unshift()\n\n\nSee \nractive.unshift()\n.\n\n\ncontext.update()\n\n\nSee \nractive.update()\n.\n\n\ncontext.updateModel()\n\n\nSee \nractive.updateModel()\n.", 
+            "location": "/api/context-object/", 
+            "text": "Context Object\n\n\nThe context object is the type of object you receive when calling \ngetContext()\n. This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.\n\n\nThe special \n@context\n reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.\n\n\nHelper methods that take a \nkeypath\n will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported. If the method doesn't require a keypath, like \nget\n, then the keypath will implicitly be \n.\n rather than \n~/\n, as with regular instance methods.\n\n\ncontext.add()\n\n\nSee \nractive.add()\n.\n\n\ncontext.animate()\n\n\nSee \nractive.animate()\n.\n\n\ncontext.decorators\n\n\n(Object)\n\n\nA map of decorator name to decorator return object for all of the decorators on the node associated with the context.\n\n\ncontext.event\n\n\n(Event|undefined)\n\n\nThe original event for contexts supplied to event directives. This is \nundefined\n for contexts not associated with an event.\n\n\ncontext.get()\n\n\nSee \nractive.get()\n.\n\n\ncontext.getBinding()\n\n\nReturns the value of the binding if the node represented by this info object has a two-way binding.\n\n\nSyntax\n\n\n\n\ncontext.getBinding()\n\n\n\n\nArguments\n\n\n\n\nNone\n\n\n\n\nReturns\n\n\n\n\n(any)\n: The value of the binding.\n\n\n\n\nExamples\n\n\n{{#with foo.bar}}\ninput id=\nfindMe\n value=\n{{.baz}}\n /\n{{/with}}\n\n\n\n\nRactive.getContext('#findMe').getBinding(); // returns value of foo.bar.baz\n\n\n\n\ncontext.getBindingPath()\n\n\nReturns the keypath of the binding if the node represented by this info object has a two-way binding.\n\n\nSyntax\n\n\n\n\ncontext.getBindingPath([ractive])\n\n\n\n\nArguments\n\n\n\n\n[ractive] (Ractive)\n: The instance to resolve the keypath against.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The keypath of the node binding.\n\n\n\n\nExamples\n\n\n{{#with foo.bar}}\ninput id=\nfindMe\n value=\n{{.baz}}\n /\n{{/with}}\n\n\n\n\nRactive.getContext('#findMe').getBindingPath(); // Returns \nfoo.bar.baz\n\n\n\n\n\ncontext.isBound()\n\n\nReturns \ntrue\n if the node represented by this info object has a two-way binding.\n\n\nSyntax\n\n\n\n\ncontext.isBound()\n\n\n\n\nArguments\n\n\n\n\nNone\n\n\n\n\nReturns\n\n\n\n\n(boolean)\n: \ntrue\n if the node represented has a two-way binding.\n\n\n\n\nExamples\n\n\n{{#with foo.bar}}\n  \ninput id=\nfoo\n value=\n{{.baz}}\n /\n\n  \ninput id=\nbar\n value=\n /\n\n{{/with}}\n\n\n\n\nRactive.getContext('#foo').isBound(); // Returns true\nRactive.getContext('#bar').isBound(); // Returns false\n\n\n\n\ncontext.link()\n\n\nSee \nractive.link()\n.\n\n\ncontext.node\n\n\n(Node|undefined)\n\n\nThe node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node \nundefined\n.\n\n\ncontext.observe()\n\n\nSee \nractive.observe()\n.\n\n\ncontext.observeOnce()\n\n\nSee \nractive.observeOnce()\n.\n\n\ncontext.original\n\n\n(Event|undefined)\n\n\nThe original DOM event object. Normally present when the event is a Ractive DOM event. May be \nundefined\n on custom events or events from event plugins.\n\n\ncontext.pop()\n\n\nSee \nractive.pop()\n.\n\n\ncontext.push()\n\n\nSee \nractive.push()\n.\n\n\ncontext.ractive\n\n\n(Ractive)\n\n\nThis property holds a reference to the Ractive instance that controls the node represented by this info object.\n\n\ncontext.raise()\n\n\nTriggers the nearest matching event directive relative to the context. This is useful for decorators and other library constructs that want to be able to raise their own events that aren't necessarily tied to a DOM event. Raised events do not bubble.\n\n\nSyntax\n\n\n\n\ncontext.raise(eventName[, event[, ...args]])\n\n\n\n\nArguments\n\n\n\n\neventName (string)\n: The name of the event to raise. For \ndiv on-something=\"...\"\n, the event name would be \n'something'\n.\n\n\n[event] (context|object)\n: The context for the event or an object of properties to assign to the context for the event. Defaults to \n{}\n.\n\n\n[args] (...any)\n: Additional arguments to supply to the event handler.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\ncontext.readLink()\n\n\nSee \nractive.readLink()\n.\n\n\ncontext.resolve()\n\n\nResolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.\n\n\nSyntax\n\n\n\n\ncontext.resolve([keypath[, ractive]])\n\n\n\n\nArguments\n\n\n\n\n[keypath] (string)\n: The keypath to resolve.\n\n\n[ractive] (Ractive)\n: The instance to resolve the keypath against.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The resolved keypath.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\ncontext.reverse()\n\n\nSee \nractive.reverse()\n.\n\n\ncontext.set()\n\n\nSee \nractive.set()\n.\n\n\ncontext.setBinding()\n\n\nSets the binding of the node represented by this info object to the specified value.\n\n\nSyntax\n\n\n\n\ncontext.setBinding(value)\n\n\n\n\nArguments\n\n\n\n\nvalue (any)\n. The value to set.\n\n\n\n\nReturns\n\n\n\n\n(Promise)\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\ncontext.shift()\n\n\nSee \nractive.shift()\n.\n\n\ncontext.splice()\n\n\nSee \nractive.splice()\n.\n\n\ncontext.sort()\n\n\nSee \nractive.sort()\n.\n\n\ncontext.subtract()\n\n\nSee \nractive.subtract()\n.\n\n\ncontext.toggle()\n\n\nSee \nractive.toggle()\n.\n\n\ncontext.unlink()\n\n\nSee \nractive.unlink()\n.\n\n\ncontext.unshift()\n\n\nSee \nractive.unshift()\n.\n\n\ncontext.update()\n\n\nSee \nractive.update()\n.\n\n\ncontext.updateModel()\n\n\nSee \nractive.updateModel()\n.", 
             "title": "Context Object"
         }, 
         {
-            "location": "/api/context/#context", 
+            "location": "/api/context-object/#context-object", 
             "text": "The context object is the type of object you receive when calling  getContext() . This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.  The special  @context  reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.  Helper methods that take a  keypath  will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported. If the method doesn't require a keypath, like  get , then the keypath will implicitly be  .  rather than  ~/ , as with regular instance methods.", 
-            "title": "Context"
+            "title": "Context Object"
         }, 
         {
-            "location": "/api/context/#contextadd", 
+            "location": "/api/context-object/#contextadd", 
             "text": "See  ractive.add() .", 
             "title": "context.add()"
         }, 
         {
-            "location": "/api/context/#contextanimate", 
+            "location": "/api/context-object/#contextanimate", 
             "text": "See  ractive.animate() .", 
             "title": "context.animate()"
         }, 
         {
-            "location": "/api/context/#contextdecorators", 
+            "location": "/api/context-object/#contextdecorators", 
             "text": "(Object)  A map of decorator name to decorator return object for all of the decorators on the node associated with the context.", 
             "title": "context.decorators"
         }, 
         {
-            "location": "/api/context/#contextevent", 
+            "location": "/api/context-object/#contextevent", 
             "text": "(Event|undefined)  The original event for contexts supplied to event directives. This is  undefined  for contexts not associated with an event.", 
             "title": "context.event"
         }, 
         {
-            "location": "/api/context/#contextget", 
+            "location": "/api/context-object/#contextget", 
             "text": "See  ractive.get() .", 
             "title": "context.get()"
         }, 
         {
-            "location": "/api/context/#contextgetbinding", 
+            "location": "/api/context-object/#contextgetbinding", 
             "text": "Returns the value of the binding if the node represented by this info object has a two-way binding.  Syntax   context.getBinding()   Arguments   None   Returns   (any) : The value of the binding.   Examples  {{#with foo.bar}} input id= findMe  value= {{.baz}}  / {{/with}}  Ractive.getContext('#findMe').getBinding(); // returns value of foo.bar.baz", 
             "title": "context.getBinding()"
         }, 
         {
-            "location": "/api/context/#contextgetbindingpath", 
+            "location": "/api/context-object/#contextgetbindingpath", 
             "text": "Returns the keypath of the binding if the node represented by this info object has a two-way binding.  Syntax   context.getBindingPath([ractive])   Arguments   [ractive] (Ractive) : The instance to resolve the keypath against.   Returns   (string) : The keypath of the node binding.   Examples  {{#with foo.bar}} input id= findMe  value= {{.baz}}  / {{/with}}  Ractive.getContext('#findMe').getBindingPath(); // Returns  foo.bar.baz", 
             "title": "context.getBindingPath()"
         }, 
         {
-            "location": "/api/context/#contextisbound", 
+            "location": "/api/context-object/#contextisbound", 
             "text": "Returns  true  if the node represented by this info object has a two-way binding.  Syntax   context.isBound()   Arguments   None   Returns   (boolean) :  true  if the node represented has a two-way binding.   Examples  {{#with foo.bar}}\n   input id= foo  value= {{.baz}}  / \n   input id= bar  value=  / \n{{/with}}  Ractive.getContext('#foo').isBound(); // Returns true\nRactive.getContext('#bar').isBound(); // Returns false", 
             "title": "context.isBound()"
         }, 
         {
-            "location": "/api/context/#contextlink", 
+            "location": "/api/context-object/#contextlink", 
             "text": "See  ractive.link() .", 
             "title": "context.link()"
         }, 
         {
-            "location": "/api/context/#contextnode", 
+            "location": "/api/context-object/#contextnode", 
             "text": "(Node|undefined)  The node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node  undefined .", 
             "title": "context.node"
         }, 
         {
-            "location": "/api/context/#contextobserve", 
+            "location": "/api/context-object/#contextobserve", 
             "text": "See  ractive.observe() .", 
             "title": "context.observe()"
         }, 
         {
-            "location": "/api/context/#contextobserveonce", 
+            "location": "/api/context-object/#contextobserveonce", 
             "text": "See  ractive.observeOnce() .", 
             "title": "context.observeOnce()"
         }, 
         {
-            "location": "/api/context/#contextoriginal", 
+            "location": "/api/context-object/#contextoriginal", 
             "text": "(Event|undefined)  The original DOM event object. Normally present when the event is a Ractive DOM event. May be  undefined  on custom events or events from event plugins.", 
             "title": "context.original"
         }, 
         {
-            "location": "/api/context/#contextpop", 
+            "location": "/api/context-object/#contextpop", 
             "text": "See  ractive.pop() .", 
             "title": "context.pop()"
         }, 
         {
-            "location": "/api/context/#contextpush", 
+            "location": "/api/context-object/#contextpush", 
             "text": "See  ractive.push() .", 
             "title": "context.push()"
         }, 
         {
-            "location": "/api/context/#contextractive", 
+            "location": "/api/context-object/#contextractive", 
             "text": "(Ractive)  This property holds a reference to the Ractive instance that controls the node represented by this info object.", 
             "title": "context.ractive"
         }, 
         {
-            "location": "/api/context/#contextraise", 
+            "location": "/api/context-object/#contextraise", 
             "text": "Triggers the nearest matching event directive relative to the context. This is useful for decorators and other library constructs that want to be able to raise their own events that aren't necessarily tied to a DOM event. Raised events do not bubble.  Syntax   context.raise(eventName[, event[, ...args]])   Arguments   eventName (string) : The name of the event to raise. For  div on-something=\"...\" , the event name would be  'something' .  [event] (context|object) : The context for the event or an object of properties to assign to the context for the event. Defaults to  {} .  [args] (...any) : Additional arguments to supply to the event handler.   Examples  // TODO", 
             "title": "context.raise()"
         }, 
         {
-            "location": "/api/context/#contextreadlink", 
+            "location": "/api/context-object/#contextreadlink", 
             "text": "See  ractive.readLink() .", 
             "title": "context.readLink()"
         }, 
         {
-            "location": "/api/context/#contextresolve", 
+            "location": "/api/context-object/#contextresolve", 
             "text": "Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.  Syntax   context.resolve([keypath[, ractive]])   Arguments   [keypath] (string) : The keypath to resolve.  [ractive] (Ractive) : The instance to resolve the keypath against.   Returns   (string) : The resolved keypath.   Examples  // TODO", 
             "title": "context.resolve()"
         }, 
         {
-            "location": "/api/context/#contextreverse", 
+            "location": "/api/context-object/#contextreverse", 
             "text": "See  ractive.reverse() .", 
             "title": "context.reverse()"
         }, 
         {
-            "location": "/api/context/#contextset", 
+            "location": "/api/context-object/#contextset", 
             "text": "See  ractive.set() .", 
             "title": "context.set()"
         }, 
         {
-            "location": "/api/context/#contextsetbinding", 
+            "location": "/api/context-object/#contextsetbinding", 
             "text": "Sets the binding of the node represented by this info object to the specified value.  Syntax   context.setBinding(value)   Arguments   value (any) . The value to set.   Returns   (Promise)   Examples  // TODO", 
             "title": "context.setBinding()"
         }, 
         {
-            "location": "/api/context/#contextshift", 
+            "location": "/api/context-object/#contextshift", 
             "text": "See  ractive.shift() .", 
             "title": "context.shift()"
         }, 
         {
-            "location": "/api/context/#contextsplice", 
+            "location": "/api/context-object/#contextsplice", 
             "text": "See  ractive.splice() .", 
             "title": "context.splice()"
         }, 
         {
-            "location": "/api/context/#contextsort", 
+            "location": "/api/context-object/#contextsort", 
             "text": "See  ractive.sort() .", 
             "title": "context.sort()"
         }, 
         {
-            "location": "/api/context/#contextsubtract", 
+            "location": "/api/context-object/#contextsubtract", 
             "text": "See  ractive.subtract() .", 
             "title": "context.subtract()"
         }, 
         {
-            "location": "/api/context/#contexttoggle", 
+            "location": "/api/context-object/#contexttoggle", 
             "text": "See  ractive.toggle() .", 
             "title": "context.toggle()"
         }, 
         {
-            "location": "/api/context/#contextunlink", 
+            "location": "/api/context-object/#contextunlink", 
             "text": "See  ractive.unlink() .", 
             "title": "context.unlink()"
         }, 
         {
-            "location": "/api/context/#contextunshift", 
+            "location": "/api/context-object/#contextunshift", 
             "text": "See  ractive.unshift() .", 
             "title": "context.unshift()"
         }, 
         {
-            "location": "/api/context/#contextupdate", 
+            "location": "/api/context-object/#contextupdate", 
             "text": "See  ractive.update() .", 
             "title": "context.update()"
         }, 
         {
-            "location": "/api/context/#contextupdatemodel", 
+            "location": "/api/context-object/#contextupdatemodel", 
             "text": "See  ractive.updateModel() .", 
             "title": "context.updateModel()"
         }, 
         {
-            "location": "/api/parse/", 
-            "text": "Parse\n\n\nThe parse object is an object you receive as the second argument in \nfunction templates\n. This helper object provides you with essential functions to dissect markup before turning over the template for use.\n\n\np.fromId()\n\n\nRetrieves the template from the DOM \nscript\n tag specified by \nid\n. Make sure to set \ntype='text/ractive'\n on the \nscript\n tag to prevent the browser from running the template as a script.\n\n\nSyntax\n\n\n\n\np.fromId(id)\n\n\n\n\nArguments\n\n\n\n\nid (string)\n: The id of the \nscript\n tag containing the template. The leading \n#\n is optional.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The template inside the specified element.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\np.isParsed()\n\n\nTest whether the supplied template is already parsed and is in its object form.\n\n\nSyntax\n\n\n\n\np.isParsed(template)\n\n\n\n\nArguments\n\n\n\n\ntemplate (string|Object)\n: The template, either in its string form or object form.\n\n\n\n\nReturns\n\n\n\n\n(boolean)\n: Returns \ntrue\n if the template is already parsed, \nfalse\n if otherwise.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\np.parse()\n\n\nParses the template using \nRactive.parse()\n. Full Ractive runtime must be loaded.\n\n\nSyntax\n\n\n\n\np.parse(template[, parseOptions])\n\n\n\n\nArguments\n\n\n\n\ntemplate (string|Object)\n: The template in its string form or object form.\n\n\n[parseOptions] (Object)\n: Template parser options. See \nRactive.parse()\n for all available options. If \nparseOptions\n is not specified, it defaults to those of the current instance.\n\n\n\n\nReturns\n\n\n\n\n(Object)\n: The parsed template.\n\n\n\n\nExamples\n\n\n// TODO", 
-            "title": "Parse"
+            "location": "/api/parse-object/", 
+            "text": "Parse Object\n\n\nThe parse object is an object you receive as the second argument in \nfunction templates\n. This helper object provides you with essential functions to dissect markup before turning over the template for use.\n\n\np.fromId()\n\n\nRetrieves the template from the DOM \nscript\n tag specified by \nid\n. Make sure to set \ntype='text/ractive'\n on the \nscript\n tag to prevent the browser from running the template as a script.\n\n\nSyntax\n\n\n\n\np.fromId(id)\n\n\n\n\nArguments\n\n\n\n\nid (string)\n: The id of the \nscript\n tag containing the template. The leading \n#\n is optional.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The template inside the specified element.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\np.isParsed()\n\n\nTest whether the supplied template is already parsed and is in its object form.\n\n\nSyntax\n\n\n\n\np.isParsed(template)\n\n\n\n\nArguments\n\n\n\n\ntemplate (string|Object)\n: The template, either in its string form or object form.\n\n\n\n\nReturns\n\n\n\n\n(boolean)\n: Returns \ntrue\n if the template is already parsed, \nfalse\n if otherwise.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\np.parse()\n\n\nParses the template using \nRactive.parse()\n. Full Ractive runtime must be loaded.\n\n\nSyntax\n\n\n\n\np.parse(template[, parseOptions])\n\n\n\n\nArguments\n\n\n\n\ntemplate (string|Object)\n: The template in its string form or object form.\n\n\n[parseOptions] (Object)\n: Template parser options. See \nRactive.parse()\n for all available options. If \nparseOptions\n is not specified, it defaults to those of the current instance.\n\n\n\n\nReturns\n\n\n\n\n(Object)\n: The parsed template.\n\n\n\n\nExamples\n\n\n// TODO", 
+            "title": "Parse Object"
         }, 
         {
-            "location": "/api/parse/#parse", 
+            "location": "/api/parse-object/#parse-object", 
             "text": "The parse object is an object you receive as the second argument in  function templates . This helper object provides you with essential functions to dissect markup before turning over the template for use.", 
-            "title": "Parse"
+            "title": "Parse Object"
         }, 
         {
-            "location": "/api/parse/#pfromid", 
+            "location": "/api/parse-object/#pfromid", 
             "text": "Retrieves the template from the DOM  script  tag specified by  id . Make sure to set  type='text/ractive'  on the  script  tag to prevent the browser from running the template as a script.  Syntax   p.fromId(id)   Arguments   id (string) : The id of the  script  tag containing the template. The leading  #  is optional.   Returns   (string) : The template inside the specified element.   Examples  // TODO", 
             "title": "p.fromId()"
         }, 
         {
-            "location": "/api/parse/#pisparsed", 
+            "location": "/api/parse-object/#pisparsed", 
             "text": "Test whether the supplied template is already parsed and is in its object form.  Syntax   p.isParsed(template)   Arguments   template (string|Object) : The template, either in its string form or object form.   Returns   (boolean) : Returns  true  if the template is already parsed,  false  if otherwise.   Examples  // TODO", 
             "title": "p.isParsed()"
         }, 
         {
-            "location": "/api/parse/#pparse", 
+            "location": "/api/parse-object/#pparse", 
             "text": "Parses the template using  Ractive.parse() . Full Ractive runtime must be loaded.  Syntax   p.parse(template[, parseOptions])   Arguments   template (string|Object) : The template in its string form or object form.  [parseOptions] (Object) : Template parser options. See  Ractive.parse()  for all available options. If  parseOptions  is not specified, it defaults to those of the current instance.   Returns   (Object) : The parsed template.   Examples  // TODO", 
             "title": "p.parse()"
         }, 
         {
-            "location": "/api/transition/", 
-            "text": "Transition\n\n\nThe transition object is an object you receive when writing transitions. It has a few properties and methods designed to make creating transitions easier.\n\n\nt.animateStyle()\n\n\nAnimates CSS properties to a certain value.\n\n\nSyntax\n\n\n\n\nt.animateStyle(prop, value, options[, complete])\n\n\nt.animateStyle(props, options[, complete])\n\n\n\n\nArguments\n\n\n\n\nprops (Object)\n: A map of animation properties and values.\n\n\nprop (string)\n: The style to animate.\n\n\nvalue (any)\n: The value to animate it to.\n\n\noptions (Object)\n: Animation options.\n\n\nduration (number)\n: The duration of the animation.\n\n\neasing (string)\n: The easing function of the animation.\n\n\ndelay (number)\n: The number of milliseconds before the animation starts.\n\n\n[complete] (Function)\n: A function that is executed when the animation completes, or immediately if no changes were made.\n\n\n\n\nReturns\n\n\n\n\n(Promise)\n: A promise that resolves when the animation completes.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.complete()\n\n\nSignals Ractive that the transition is complete.\n\n\nSyntax\n\n\n\n\nt.complete[noReset])\n\n\n\n\nArguments\n\n\n\n\n[noReset] (boolean)\n: If \ntrue\n, \nt.resetStyle()\n is not called. Defaults to \nfalse\n.\n\n\n\n\nReturns\n\n\n\n\n(undefined)\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.getStyle()\n\n\nRetrieve a CSS property value from \nt.node\n.\n\n\nSyntax\n\n\n\n\nt.getStyle(prop)\n\n\n\n\nArguments\n\n\n\n\nprop (string)\n: An unprefixed CSS property either in camelCase or kebab-case.\n\n\nprop (Array)\n: An array of CSS properties.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The value of the specified style property.\n\n\n(Object)\n: A key-value pair of properties and their respective values.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.isIntro\n\n\n(boolean)\n\n\nShould be self-explanatory...\n\n\nt.name\n\n\n(string)\n\n\nThe name of the transition.\n\n\nt.node\n\n\n(Node)\n\n\nThe node that's entering or leaving the DOM\n\n\nt.processParams()\n\n\nBuilds a map of parameters whose values are taken from the provided arguments. When used with a single number or string argument, serves as a shorthand for creating a map with a \nduration\n property.\n\n\nSyntax\n\n\n\n\nt.processParams(params[, defaults])\n\n\n\n\nArguments\n\n\n\n\nparams (number)\n: Numeric shorthand for the \nduration\n parameter. Expressed in milliseconds.\n\n\nparams (string)\n: String shorthand for the \nduration\n parameter. Valid values are:\n\n\n\"fast\" - 200ms\n\n\n\"slow\" - 600ms\n\n\nAny other string - 400ms\n\n\n\n\n\n\nparams (Object)\n: A map of parameters and their values.\n\n\n[defaults] (Object)\n: A map of parameters and their default values.\n\n\n\n\nReturns\n\n\n\n\n(Object)\n: A map of parameters and their values.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.setStyle()\n\n\nSets a CSS property on \nt.node\n to a value.\n\n\nSyntax\n\n\n\n\nt.setStyle(prop, value)\n\n\nt.setStyle(props)\n\n\n\n\nArguments\n\n\n\n\nprop (string)\n: An unprefixed CSS property either in camelCase or kebab-case.\n\n\nprops (Object)\n: A key-value pair of CSS properties and their respective values.\n\n\nvalue (string)\n: A valid value for the specified CSS property.\n\n\n\n\nReturns\n\n\n\n\n(undefined)\n\n\n\n\nExamples\n\n\n// TODO", 
-            "title": "Transition"
+            "location": "/api/transition-object/", 
+            "text": "Transition Object\n\n\nThe transition object is an object you receive when writing transitions. It has a few properties and methods designed to make creating transitions easier.\n\n\nt.animateStyle()\n\n\nAnimates CSS properties to a certain value.\n\n\nSyntax\n\n\n\n\nt.animateStyle(prop, value, options[, complete])\n\n\nt.animateStyle(props, options[, complete])\n\n\n\n\nArguments\n\n\n\n\nprops (Object)\n: A map of animation properties and values.\n\n\nprop (string)\n: The style to animate.\n\n\nvalue (any)\n: The value to animate it to.\n\n\noptions (Object)\n: Animation options.\n\n\nduration (number)\n: The duration of the animation.\n\n\neasing (string)\n: The easing function of the animation.\n\n\ndelay (number)\n: The number of milliseconds before the animation starts.\n\n\n[complete] (Function)\n: A function that is executed when the animation completes, or immediately if no changes were made.\n\n\n\n\nReturns\n\n\n\n\n(Promise)\n: A promise that resolves when the animation completes.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.complete()\n\n\nSignals Ractive that the transition is complete.\n\n\nSyntax\n\n\n\n\nt.complete[noReset])\n\n\n\n\nArguments\n\n\n\n\n[noReset] (boolean)\n: If \ntrue\n, \nt.resetStyle()\n is not called. Defaults to \nfalse\n.\n\n\n\n\nReturns\n\n\n\n\n(undefined)\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.getStyle()\n\n\nRetrieve a CSS property value from \nt.node\n.\n\n\nSyntax\n\n\n\n\nt.getStyle(prop)\n\n\n\n\nArguments\n\n\n\n\nprop (string)\n: An unprefixed CSS property either in camelCase or kebab-case.\n\n\nprop (Array)\n: An array of CSS properties.\n\n\n\n\nReturns\n\n\n\n\n(string)\n: The value of the specified style property.\n\n\n(Object)\n: A key-value pair of properties and their respective values.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.isIntro\n\n\n(boolean)\n\n\nShould be self-explanatory...\n\n\nt.name\n\n\n(string)\n\n\nThe name of the transition.\n\n\nt.node\n\n\n(Node)\n\n\nThe node that's entering or leaving the DOM\n\n\nt.processParams()\n\n\nBuilds a map of parameters whose values are taken from the provided arguments. When used with a single number or string argument, serves as a shorthand for creating a map with a \nduration\n property.\n\n\nSyntax\n\n\n\n\nt.processParams(params[, defaults])\n\n\n\n\nArguments\n\n\n\n\nparams (number)\n: Numeric shorthand for the \nduration\n parameter. Expressed in milliseconds.\n\n\nparams (string)\n: String shorthand for the \nduration\n parameter. Valid values are:\n\n\n\"fast\" - 200ms\n\n\n\"slow\" - 600ms\n\n\nAny other string - 400ms\n\n\n\n\n\n\nparams (Object)\n: A map of parameters and their values.\n\n\n[defaults] (Object)\n: A map of parameters and their default values.\n\n\n\n\nReturns\n\n\n\n\n(Object)\n: A map of parameters and their values.\n\n\n\n\nExamples\n\n\n// TODO\n\n\n\n\nt.setStyle()\n\n\nSets a CSS property on \nt.node\n to a value.\n\n\nSyntax\n\n\n\n\nt.setStyle(prop, value)\n\n\nt.setStyle(props)\n\n\n\n\nArguments\n\n\n\n\nprop (string)\n: An unprefixed CSS property either in camelCase or kebab-case.\n\n\nprops (Object)\n: A key-value pair of CSS properties and their respective values.\n\n\nvalue (string)\n: A valid value for the specified CSS property.\n\n\n\n\nReturns\n\n\n\n\n(undefined)\n\n\n\n\nExamples\n\n\n// TODO", 
+            "title": "Transition Object"
         }, 
         {
-            "location": "/api/transition/#transition", 
+            "location": "/api/transition-object/#transition-object", 
             "text": "The transition object is an object you receive when writing transitions. It has a few properties and methods designed to make creating transitions easier.", 
-            "title": "Transition"
+            "title": "Transition Object"
         }, 
         {
-            "location": "/api/transition/#tanimatestyle", 
+            "location": "/api/transition-object/#tanimatestyle", 
             "text": "Animates CSS properties to a certain value.  Syntax   t.animateStyle(prop, value, options[, complete])  t.animateStyle(props, options[, complete])   Arguments   props (Object) : A map of animation properties and values.  prop (string) : The style to animate.  value (any) : The value to animate it to.  options (Object) : Animation options.  duration (number) : The duration of the animation.  easing (string) : The easing function of the animation.  delay (number) : The number of milliseconds before the animation starts.  [complete] (Function) : A function that is executed when the animation completes, or immediately if no changes were made.   Returns   (Promise) : A promise that resolves when the animation completes.   Examples  // TODO", 
             "title": "t.animateStyle()"
         }, 
         {
-            "location": "/api/transition/#tcomplete", 
+            "location": "/api/transition-object/#tcomplete", 
             "text": "Signals Ractive that the transition is complete.  Syntax   t.complete[noReset])   Arguments   [noReset] (boolean) : If  true ,  t.resetStyle()  is not called. Defaults to  false .   Returns   (undefined)   Examples  // TODO", 
             "title": "t.complete()"
         }, 
         {
-            "location": "/api/transition/#tgetstyle", 
+            "location": "/api/transition-object/#tgetstyle", 
             "text": "Retrieve a CSS property value from  t.node .  Syntax   t.getStyle(prop)   Arguments   prop (string) : An unprefixed CSS property either in camelCase or kebab-case.  prop (Array) : An array of CSS properties.   Returns   (string) : The value of the specified style property.  (Object) : A key-value pair of properties and their respective values.   Examples  // TODO", 
             "title": "t.getStyle()"
         }, 
         {
-            "location": "/api/transition/#tisintro", 
+            "location": "/api/transition-object/#tisintro", 
             "text": "(boolean)  Should be self-explanatory...", 
             "title": "t.isIntro"
         }, 
         {
-            "location": "/api/transition/#tname", 
+            "location": "/api/transition-object/#tname", 
             "text": "(string)  The name of the transition.", 
             "title": "t.name"
         }, 
         {
-            "location": "/api/transition/#tnode", 
+            "location": "/api/transition-object/#tnode", 
             "text": "(Node)  The node that's entering or leaving the DOM", 
             "title": "t.node"
         }, 
         {
-            "location": "/api/transition/#tprocessparams", 
+            "location": "/api/transition-object/#tprocessparams", 
             "text": "Builds a map of parameters whose values are taken from the provided arguments. When used with a single number or string argument, serves as a shorthand for creating a map with a  duration  property.  Syntax   t.processParams(params[, defaults])   Arguments   params (number) : Numeric shorthand for the  duration  parameter. Expressed in milliseconds.  params (string) : String shorthand for the  duration  parameter. Valid values are:  \"fast\" - 200ms  \"slow\" - 600ms  Any other string - 400ms    params (Object) : A map of parameters and their values.  [defaults] (Object) : A map of parameters and their default values.   Returns   (Object) : A map of parameters and their values.   Examples  // TODO", 
             "title": "t.processParams()"
         }, 
         {
-            "location": "/api/transition/#tsetstyle", 
+            "location": "/api/transition-object/#tsetstyle", 
             "text": "Sets a CSS property on  t.node  to a value.  Syntax   t.setStyle(prop, value)  t.setStyle(props)   Arguments   prop (string) : An unprefixed CSS property either in camelCase or kebab-case.  props (Object) : A key-value pair of CSS properties and their respective values.  value (string) : A valid value for the specified CSS property.   Returns   (undefined)   Examples  // TODO", 
             "title": "t.setStyle()"
         }, 
