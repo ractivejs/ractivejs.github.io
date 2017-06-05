@@ -928,7 +928,7 @@ Alias for [`el`](#el).
 
 `(string|array|object|function)`
 
-The [template](../concepts/templates.md#overview) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`](/api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](./parse.md).
+The [template](../concepts/templates.md#overview) to use. Must either be a CSS selector string pointing to an element on the page containing the template, an HTML string, an object resulting from [`Ractive.parse()`](/api/static-methods.md#ractiveparse) or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and a [Parse Object](/api/parse-object.md).
 
 ```js
 // Selector
