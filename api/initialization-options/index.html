@@ -393,7 +393,7 @@ template: '&lt;p&gt;grey&lt;/p&gt;'
 <p>During a <a href="../instance-methods/#ractivereset"><code>ractive.reset()</code></a>, components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <h2 id="computed">computed</h2>
 <p><code>(Object&lt;string, function|Object&gt;)</code></p>
-<p>A map of <a href="../concepts/data-binding.md#computed-properties">computed properties</a> where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has <code>get</code> and <code>set</code> functions.</p>
+<p>A map of <a href="../../concepts/data-management/#computed-properties">computed properties</a> where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has <code>get</code> and <code>set</code> functions.</p>
 <pre><code class="js">// Imagine a square...
 computed: {
   // Computed property expression
@@ -760,7 +760,7 @@ ractive.unrender();
 <p>A lifecycle event that is called when <code>ractive.update()</code> is called.</p>
 <h2 id="partials">partials</h2>
 <p><code>(Object&lt;string, string|Object|Function&gt;)</code></p>
-<p>A map of <a href="../../extend/partials/">partials</a> where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and  <a href="./parse.md">Parse Object</a> as arguments.</p>
+<p>A map of <a href="../../extend/partials/">partials</a> where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed <a href="#data"><code>data</code></a> and  <a href="../parse-object/">Parse Object</a> as arguments.</p>
 <pre><code class="js">partials: {
   stringPartial: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
   parsedPartial: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
@@ -918,7 +918,7 @@ data: { html: '&lt;span&gt;world&lt;/span&gt;' }
 
 <h2 id="twoway">twoway</h2>
 <p><code>(boolean)</code></p>
-<p>Whether or not <a href="../concepts/data-binding.md#two-way-binding">two-way binding</a> is enabled. Defaults to <code>true</code>.</p>
+<p>Whether or not <a href="../../concepts/data-management/#two-way-binding">two-way binding</a> is enabled. Defaults to <code>true</code>.</p>
 <pre><code class="js">var ractive = new Ractive({
   template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
   data: { foo: 'bar' },

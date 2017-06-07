@@ -487,8 +487,8 @@ ractive.get( 'letters[0]' ) // undefined
 <h3 id="reference-resolution">Reference resolution</h3>
 <p>Ractive follows the following resolution algorithm to find the value of a reference:</p>
 <ol>
-<li>If the reference a <a href="../api/special-references.md">special reference</a>, resolve with that keypath.</li>
-<li>If the reference is <a href="../api/keypath-prefixes.md">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
+<li>If the reference a <a href="../../api/references/">special reference</a>, resolve with that keypath.</li>
+<li>If the reference is <a href="../../api/references/">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
 <li>Grab the current virtual node from the template hierarchy.</li>
 <li>If the reference matches an <a href="#aliasing">alias</a>, section indexes, or keys, resolve with that keypath.</li>
 <li>If the reference matches any <a href="../../extend/components/#binding">mappings</a>, resolve with that keypath.</li>

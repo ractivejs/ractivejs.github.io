@@ -671,7 +671,7 @@ console.log(r.get('foo.bar.0'));
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Context)</code>: Returns an <a href="./context.md">Context</a> object with helper methods to interact with the Ractive instance and context associated with the given node.</li>
+<li><code>(Context)</code>: Returns an <a href="../context-object/">Context</a> object with helper methods to interact with the Ractive instance and context associated with the given node.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
@@ -744,7 +744,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <p>The difference between <code>*</code> and <code>**</code> is that <code>*</code> provides your callback function <code>value</code> and <code>keypath</code> arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.</p>
 </li>
 <li>
-<p><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../concepts/events.md#publish-subscribe">Observers</a> for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.</p>
+<p><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../../concepts/event-management/#publish-subscribe">Observers</a> for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.</p>
 </li>
 <li><code>map (Object)</code>: A map of keypath-observer pairs.</li>
 <li><code>[options] (Object)</code>:<ul>
@@ -779,7 +779,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 });
 </code></pre>
 
-<p>See <a href="../concepts/events.md#publish-subscribe">Observers</a> for more detail.</p>
+<p>See <a href="../../concepts/event-management/#publish-subscribe">Observers</a> for more detail.</p>
 <h2 id="ractiveobserveonce">ractive.observeOnce()</h2>
 <p>Observes the data at a particular keypath until the first change. After the handler has been called, it will be unsubscribed from any future changes.</p>
 <p><strong>Syntax</strong></p>
@@ -789,7 +789,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>keypath (string)</code>: The keypath to observe, or a group of space-separated keypaths. Any of the keys can be a `` character, which is treated as a wildcard.</li>
-<li><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../concepts/events.md#publish-subscribe">Observers</a> for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.</li>
+<li><code>callback (Function)</code>: The function that will be called, with <code>newValue</code>, <code>oldValue</code> and <code>keypath</code> as arguments (see <a href="../../concepts/event-management/#publish-subscribe">Observers</a> for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with <code>ractive</code> as <code>this</code>. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.</li>
 <li><code>[options] (Object)</code>:<ul>
 <li><code>[defer] (boolean)</code>: Defaults to <code>false</code>, in which case observers will fire before any DOM changes take place. If <code>true</code>, the observer will fire once the DOM has been updated.</li>
 <li><code>[context] (any)</code>: Defaults to <code>ractive</code>. The context the observer is called in (i.e. the value of <code>this</code>)</li>
@@ -817,7 +817,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 });
 </code></pre>
 
-<p>See <a href="../concepts/events.md#publish-subscribe">Observers</a> for more detail.</p>
+<p>See <a href="../../concepts/event-management/#publish-subscribe">Observers</a> for more detail.</p>
 <h2 id="ractiveoff">ractive.off()</h2>
 <p>Removes an event handler, several event handlers, or all event handlers.</p>
 <p>To remove a single handler, you must specify both the event name and the handler. If you only specify the event name, all handlers bound to that event name will be removed. If you specify neither event name nor handler, <strong>all</strong> event handlers will be removed.</p>
@@ -1105,7 +1105,7 @@ ractive.resetPartial('foo', 'bar');
 <pre><code class="js">// TODO
 </code></pre>
 
-<p>The <code>keypath</code> can also contain wildcards <a href="../concepts/events.md#publish-subscribe">pattern-observers</a>. All matching keypaths will be set with the supplied values:</p>
+<p>The <code>keypath</code> can also contain wildcards <a href="../../concepts/event-management/#publish-subscribe">pattern-observers</a>. All matching keypaths will be set with the supplied values:</p>
 <pre><code class="js">ractive.on('selectAll', function(){
     ractive.set('items.*.selected', true);
 })
@@ -1379,7 +1379,7 @@ ractive.update( 'foo' ); // Informs the instance that foo was changed externally
 </code></pre>
 
 <h2 id="ractiveupdatemodel">ractive.updateModel()</h2>
-<p>If you programmatically manipulate inputs and other elements that have <a href="../concepts/data-binding.md#two-way-binding">two‐way binding</a> set up, your model can get out of sync. In these cases, we need to force a resync with <code>ractive.updateModel()</code>:</p>
+<p>If you programmatically manipulate inputs and other elements that have <a href="../../concepts/data-management/#two-way-binding">two‐way binding</a> set up, your model can get out of sync. In these cases, we need to force a resync with <code>ractive.updateModel()</code>:</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.updateModel([keypath[, cascade]])</code></li>
