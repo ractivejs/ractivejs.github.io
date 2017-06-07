@@ -4,6 +4,43 @@
 
 Ractive maintains a dependency graph in order to do only the minimum amount of work necessary to keep the DOM up-to-date. If you inspect a Ractive instance, you'll see a property called `_deps`. This is where all dependants are listed, indexed by their dependency.
 
+### Expression dependencies
+
+Ractive uses dynamic analysis to determine dependencies. Depedendencies are determined by capturing references in the viewmodel while the function is executing. Dependencies for functions are re-captured each time the function is executed.
+
+```html
+<p>{{ formattedName() }}</p>
+```
+
+```js
+var ractive = Ractive({
+  template: template,
+  el: output,
+  data: {
+    user: { firstName: 'John', lastName: 'Public' },
+    formattedName: function() {
+      return this.get('user.lastName') + ', ' + this.get('user.firstName')
+    }
+  }
+};
+```
+
+Result:
+```html
+<p>Public, John</p>
+```
+
+In this example, the function ```formattedName``` will depend on both ```user.firstName``` and ```user.lastName```, and updating either (or ```user```) will cause any expressions referencing ```formattedName``` to be re-evaluated as well.
+
+```js
+ractive.set('user.firstName', 'Jane')
+```
+
+Result:
+```html
+<p>Public, Jane</p>
+```
+
 ### Priority
 
 Ractive runs updates based on priority. For instance, when a subtree of the DOM needs to be removed while at the same time updates are pending for that subtree. What Ractive does is prioritize the removal of the subtree over the updates. This causes the dependents on the subtree to unregister themselves, eliminating the need to update, resulting with only the removal operation being done.

@@ -70,6 +70,6 @@ pages:
     - Architecture: concepts/architecture.md
     - Data Management: concepts/data-management.md
     - Event Management: concepts/event-management.md
+    - Templates: concepts/templates.md
     - Rendering: concepts/rendering.md
     - Security: concepts/security.md
-    - Templates: concepts/templates.md
