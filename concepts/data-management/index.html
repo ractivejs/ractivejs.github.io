@@ -72,6 +72,35 @@
           <h1 id="data-management">Data management</h1>
 <h2 id="dependents">Dependents</h2>
 <p>Ractive maintains a dependency graph in order to do only the minimum amount of work necessary to keep the DOM up-to-date. If you inspect a Ractive instance, you'll see a property called <code>_deps</code>. This is where all dependants are listed, indexed by their dependency.</p>
+<h3 id="expression-dependencies">Expression dependencies</h3>
+<p>Ractive uses dynamic analysis to determine dependencies. Depedendencies are determined by capturing references in the viewmodel while the function is executing. Dependencies for functions are re-captured each time the function is executed.</p>
+<pre><code class="html">&lt;p&gt;{{ formattedName() }}&lt;/p&gt;
+</code></pre>
+
+<pre><code class="js">var ractive = Ractive({
+  template: template,
+  el: output,
+  data: {
+    user: { firstName: 'John', lastName: 'Public' },
+    formattedName: function() {
+      return this.get('user.lastName') + ', ' + this.get('user.firstName')
+    }
+  }
+};
+</code></pre>
+
+<p>Result:</p>
+<pre><code class="html">&lt;p&gt;Public, John&lt;/p&gt;
+</code></pre>
+
+<p>In this example, the function <code>formattedName</code> will depend on both <code>user.firstName</code> and <code>user.lastName</code>, and updating either (or <code>user</code>) will cause any expressions referencing <code>formattedName</code> to be re-evaluated as well.</p>
+<pre><code class="js">ractive.set('user.firstName', 'Jane')
+</code></pre>
+
+<p>Result:</p>
+<pre><code class="html">&lt;p&gt;Public, Jane&lt;/p&gt;
+</code></pre>
+
 <h3 id="priority">Priority</h3>
 <p>Ractive runs updates based on priority. For instance, when a subtree of the DOM needs to be removed while at the same time updates are pending for that subtree. What Ractive does is prioritize the removal of the subtree over the updates. This causes the dependents on the subtree to unregister themselves, eliminating the need to update, resulting with only the removal operation being done.</p>
 <h3 id="indirect-dependencies">Indirect dependencies</h3>
@@ -640,15 +669,15 @@ const instance = Ractive({
         </li>
       
         <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../templates/">Templates</a>
+        </li>
+      
+        <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../rendering/">Rendering</a>
         </li>
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../security/">Security</a>
-        </li>
-      
-        <li class="pure-menu-item ">
-          <a class="pure-menu-link" href="../templates/">Templates</a>
         </li>
       
       </li>
@@ -911,15 +940,15 @@ const instance = Ractive({
                   </li>
                 
                   <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../templates/">Templates</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../rendering/">Rendering</a>
                   </li>
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../security/">Security</a>
-                  </li>
-                
-                  <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../templates/">Templates</a>
                   </li>
                 
               </ul>

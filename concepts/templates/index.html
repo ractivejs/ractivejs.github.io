@@ -38,125 +38,31 @@
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#elements">Elements</a>
+        <a class="pure-menu-link pure-menu-heading" href="#templates">Templates</a>
       </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#mustaches">Mustaches</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#keypaths">Keypaths</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#references">References</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#expressions_1">Expressions</a>
+        </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#conditional-attributes">Conditional attributes</a>
         </li>
       
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#expressions">Expressions</a>
-      </li>
-      
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#frequently-used-expressions">Frequently Used Expressions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#valid-expressions">Valid expressions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#does-this-use-eval">Does this use eval?</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#a-note-about-efficiency">A note about efficiency</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#the-this-reference">The this reference</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#supported-global-objects">Supported global objects</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#functions">Functions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#functions-on-helper-objects-and-third-party-libraries">Functions on helper objects and third-party libraries</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#keypaths">Keypaths</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#upstream-and-downstream-keypaths">Upstream and downstream keypaths</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#array-versus-dot-notation">Array versus dot notation</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#missing-properties">Missing properties</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#escaping">Escaping</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#parsing">Parsing</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#pre-parsing">Pre-parsing</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#references">References</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#reference-resolution">Reference resolution</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#context-stack">Context stack</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#arrays">Arrays</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#mustaches">Mustaches</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#what-is-mustache">What is Mustache?</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#what-are-mustaches">What are mustaches?</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#mustache-basics">Mustache basics</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#extensions">Extensions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#footnote">Footnote</a>
+          <a class="pure-menu-link" href="#optimization">Optimization</a>
         </li>
       
       </li>
@@ -167,255 +73,419 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="elements">Elements</h1>
-<p>Strictly speaking, Ractive templates are are not HTML. It has a few special directives and other constructs built into its element representation to make DOM manipulation a bit easier. You can think of them as "HTML-like" - they look like HTML for ease of authoring but are not really HTML nor even a superset of HTML. However, when rendered, they are emitted as perfectly valid HTML.</p>
-<p>In addition, Ractive's template parser is not quite as forgiving as the browser's HTML parser either and may throw parser errors where it sees ambiguity. However, it does allow things like implicitly closed elements.</p>
-<h2 id="conditional-attributes">Conditional attributes</h2>
-<p>You can wrap one or more attributes inside an element tag in a conditional section, and Ractive will add and remove those attributes as the conditional section is rendered and unrendered. For instance:</p>
-<pre><code class="html">&lt;div {{#if highlighted}}class=&quot;highlighted&quot;{{/if}}&gt;Highlightable element&lt;/div&gt;
-</code></pre>
-
-<p>Any number of attributes can be used in a section, and other <a href="#mustaches">Mustache</a> constructs can be used to supply attributes.</p>
-<pre><code class="html">&lt;div {{#if highlighted}}class=&quot;highlighted {{ anotherClass }}&quot; title=&quot;I'm highlighted&quot;{{/if}}&gt;Highlightable element&lt;/div&gt;
-</code></pre>
-
-<h1 id="expressions">Expressions</h1>
-<p>Expressions allow you to use logic within a template. At their simplest, that may just mean a basic arithmetic operation, such as converting to percentages, or making your <a href="">index references</a> start at 1 rather than 0:</p>
-<pre><code class="html">&lt;div class='bar-chart'&gt;
-  {{#bars:i}}
-    &lt;div style='width: {{ value * 100 }}%;'&gt;{{ i + 1 }}&lt;/div&gt;
-  {{/bars}}
-&lt;/div&gt;
-</code></pre>
-
-<p>Or it could mean formatting a currency so that <code>1.79</code> renders as <code>£1.79p</code>:</p>
-<pre><code class="html">&lt;p&gt;Price: &lt;strong&gt;{{ format( price ) }}&lt;/strong&gt;&lt;/p&gt;
-</code></pre>
-
-<p>Or it could mean adding a class based on some condition:</p>
-<pre><code class="html">&lt;a class='button {{ active ? &quot;on&quot; : &quot;off&quot; }}'&gt;switch&lt;/a&gt;
-</code></pre>
-
-<p>Or it could mean filtering a list to exclude certain records:</p>
-<pre><code class="html">&lt;ul&gt;
-{{# exclude( list, 'N/A' ) }}
-  &lt;li&gt;{{author}}: {{title}}&lt;/li&gt;
-{{/ end of filter }}
-&lt;/ul&gt;
-</code></pre>
-
-<p>These are all examples casually plucked from the air - whether they would be useful or not in real life depends on what you're trying to do. The point is that you can include more of your view logic at the declarative layer - the template - where it's easier to <em>reason about</em>.</p>
-<h2 id="frequently-used-expressions">Frequently Used Expressions</h2>
-<p>If you use a particular expression frequently, you can save time by adding it Ractive's default data. This way you won't have to set up the expressions on each individual <code>ractive</code> instance.</p>
-<p>The example below adds expressions for some frequenlty used parts of <a href="http://momentjs.com/">moment.js</a> to the default data:</p>
-<pre><code class="js">var helpers = Ractive.defaults.data;
-helpers.fromNow = function(timeString){
-    return moment(timeString).fromNow()
-}
-helpers.formatTime = function(timeString){
-    return moment(timeString).format(&quot;ddd, h:mmA&quot;);
-}
-helpers.humanizeTime = function(timeString){
-    return moment.duration(timeString).humanize();
-}
-</code></pre>
-
-<h2 id="valid-expressions">Valid expressions</h2>
-<p>These are, of course, JavaScript expressions. Almost any valid JavaScript expression can be used, with a few exceptions:</p>
-<ul>
-<li>No assignment operators (i.e. <code>a = b</code>, <code>a += 1</code>, <code>a--</code> and so on)</li>
-<li>No <code>new</code>, <code>delete</code>, or <code>void</code> operators</li>
-<li>No function literals (i.e. anything that involves the <code>function</code> keyword)</li>
-</ul>
-<p>Aside from a subset of global objects (e.g. <code>Math</code>, <code>Array</code>, <code>parseInt</code>, <code>encodeURIComponent</code> - full list below), any references must be to properties (however deeply nested) of the Ractive instance's data, rather than arbitrary variables. Reference resolution follows the <a href="">normal process</a>.</p>
-<h2 id="does-this-use-eval">Does this use <code>eval</code>?</h2>
-<p>Yes and no. You've probably read that 'eval is evil', or some other such nonsense. The truth is that while it does get abused, and can theoretically introduce security risks when user input gets involved, there are some situations where it's both necessary and sensible.</p>
-<p>But repeatedly <code>eval</code>ing the same code is a performance disaster. Instead, we use the <code>Function</code> constructor, which is a form of <code>eval</code>, except that the code gets compiled once instead of every time it executes.</p>
-<h2 id="a-note-about-efficiency">A note about efficiency</h2>
-<p>Using the <code>Function</code> constructor instead of <code>eval</code> is just one way that Ractive optimises expressions. Consider a case like this:</p>
-<pre><code class="html">{{a}} + {{b}} = {{ a + b }}
-{{c}} + {{d}} = {{ c+d }}
-</code></pre>
-
-<p>At <em>parse time</em>, Ractive generates an <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</a> (AST) from these expressions, to verify that it's a valid expression and to extract any references that are used. It then 'stringifies' the AST, so that the expression can later be compiled into a function.</p>
-<p>As anyone who has seen minified JavaScript can attest, JavaScript cares not one fig what your variables are called. It also doesn't care about whitespace. So both of the expressions can be stringified the same way:</p>
-<pre><code class="js">&quot;_0+_1&quot;
-</code></pre>
-
-<p>When we <em>evaluate</em> <code>{{ a + b }}</code> or <code>{{ c+d }}</code>, we can therefore use the same function but with different arguments. Recognising this, the function only gets compiled once, after which it is cached. (The cache is shared between all Ractive instances on the page.) Further, the result of the evaluation is itself cached (until one or more of the dependencies change), so you can repeat expressions as often as you like without creating unnecessary work.</p>
-<p>All of this means that you could have an expression within a list section that was repeated 10,000 times, and the corresponding function would be created once <em>at most</em>, and only called when necessary.</p>
-<h2 id="the-this-reference">The <code>this</code> reference</h2>
-<p>Within an expression, you can use <code>this</code> to refer to the current <em>context</em>:</p>
-<pre><code class="html">&lt;ul&gt;
-  {{#items}}
-    &lt;!-- here, `this` means 'the current array member' --&gt;
-    &lt;li&gt;{{this.toUpperCase()}}&lt;/li&gt;
-  {{/items}}
-&lt;/ul&gt;
-</code></pre>
-
-<p>In regular mustache, we have something called the <em>implicit iterator</em> - <code>{{.}}</code> - which does the same thing. Ractive allows you to use <code>this</code> in place of <code>.</code> for purely aesthetic reasons.</p>
-<h2 id="supported-global-objects">Supported global objects</h2>
-<ul>
-<li><code>Array</code></li>
-<li><code>Date</code></li>
-<li><code>JSON</code></li>
-<li><code>Math</code></li>
-<li><code>NaN</code></li>
-<li><code>RegExp</code></li>
-<li><code>decodeURI</code></li>
-<li><code>decodeURIComponent</code></li>
-<li><code>encodeURI</code></li>
-<li><code>encodeURIComponent</code></li>
-<li><code>isFinite</code></li>
-<li><code>isNaN</code></li>
-<li><code>null</code></li>
-<li><code>parseFloat</code></li>
-<li><code>parseInt</code></li>
-<li><code>undefined</code></li>
-</ul>
-<h2 id="functions">Functions</h2>
-<p>Any functions that you want to call, outside of the available globals above, must be properties of the Ractive instance's data as well. Functions can also depend on other references and will be re-evaulated when one of their dependencies is changed.</p>
-<p>Depedendencies are determined by capturing references in the viewmodel while the function is executing. Dependencies for functions are re-captured each time the function is executed.</p>
-<pre><code class="html">&lt;p&gt;{{ formattedName() }}&lt;/p&gt;
-</code></pre>
-
-<pre><code class="js">var ractive = new Ractive({
-  template: template,
-  el: output,
-  data: {
-    user: { firstName: 'John', lastName: 'Public' },
-    formattedName: function() {
-      return this.get('user.lastName') + ', ' + this.get('user.firstName');
-    }
-  }
-};
-</code></pre>
-
-<p>Result:</p>
-<pre><code class="html">&lt;p&gt;Public, John&lt;/p&gt;
-</code></pre>
-
-<p>In this example, the function <code>formattedName</code> will depend on both <code>user.firstName</code> and <code>user.lastName</code>, and updating either (or <code>user</code>) will cause any expressions referencing <code>formattedName</code> to be re-evaluated as well.</p>
-<pre><code class="js">ractive.set('user.firstName', 'Jane')
-</code></pre>
-
-<p>Result:</p>
-<pre><code class="html">&lt;p&gt;Public, Jane&lt;/p&gt;
-</code></pre>
-
-<h2 id="functions-on-helper-objects-and-third-party-libraries">Functions on helper objects and third-party libraries</h2>
-<p>You can also add helper objects to your data and call functions on those objects in expressions. For example, you could add a reference to <a href="http://underscorejs.org/">underscore.js</a>:</p>
-<pre><code class="js">var ractive = new Ractive({
-  template: template,
-  el: output,
-  data: {
-    items: [ 2, 10, 200, 3, 1, 4],
-    _: _
-  }
-};
-</code></pre>
-
-<p>And use that to sort an array in your template:</p>
-<pre><code class="html">{{# _.sortBy(items) }}{{.}}, {{/}}
-
-&lt;!-- Result: --&gt;
-1, 2, 3, 4, 10, 200,
-</code></pre>
-
-<h1 id="keypaths">Keypaths</h1>
-<p>The main way to interact with a Ractive instance is by setting <em>keypaths</em>. A keypath is a string representing the location of a piece of data:</p>
-<pre><code class="js">ractive = new Ractive({
-  el: myContainer,
-  template: myTemplate,
-  data: {
-    foo: {
-      bar: 'baz'
-    }
-  }
-});
-
-// Simple keypath
-ractive.get( 'foo' ); // returns { bar: 'baz' }
-
-// Compound keypath
-ractive.get( 'foo.bar' ); // returns 'baz'
-</code></pre>
-
-<h2 id="upstream-and-downstream-keypaths">Upstream and downstream keypaths</h2>
-<p>In the example above, we say that <code>'foo.bar'</code> is a <em>downstream keypath</em> of <code>'foo'</code>, while <code>'foo'</code> is an <em>upstream keypath</em> of <code>'foo.bar'</code>.</p>
-<h2 id="array-versus-dot-notation">Array versus dot notation</h2>
-<p>The <code>'foo.bar'</code> keypath is an example of <em>dot notation</em>. With arrays, you can use dot notation or <em>array notation</em>, which may feel more familiar (internally, it gets converted to dot notation):</p>
-<pre><code class="js">ractive = new Ractive({
-  el: myContainer,
-  template: myTemplate,
-  data: {
-    list: [ 'a', 'b', 'c' ]
-  }
-});
-
-// Array notation
-ractive.get( 'list[0]' ); // returns 'a'
-
-// Dot notation
-ractive.get( 'list.0' ); // also returns 'a'
-</code></pre>
-
-<h2 id="missing-properties">Missing properties</h2>
-<p>Ordinarily in JavaScript, trying to access a child property of an object that didn't exist would cause an error:</p>
-<pre><code class="js">data = { numbers: [ 1, 2, 3 ]};
-data.letters[0]; // throws an error - cannot read property '0' of undefined
-</code></pre>
-
-<p>Within Ractive, this will simply return <code>undefined</code>:</p>
-<pre><code class="js">ractive = new Ractive({
-  el: myContainer,
-  template: myTemplate,
-  data: {
-    numbers: [ 1, 2, 3 ]
-  }
-});
-
-ractive.get( 'letters[0]' ); // returns undefined
-</code></pre>
-
-<h2 id="escaping">Escaping</h2>
-<p>While not ideal, sometimes properties of objects have <code>.</code>s in name e.g. <code>foo['bar.baz']</code>. Note that while numbers are supported in array notation, strings are not. To access a peypath with a literal <code>.</code> in one of the keys, you can escape it with a <code>\</code> e.g. <code>foo.bar\.baz</code>. Any keys accessible in the template will be unescaped, so if you're trying to use them with simple string concatenation to access a keypath with a <code>.</code> in it, you'll need to make sure you escape it first.</p>
-<h1 id="parsing">Parsing</h1>
-<p>In order for Ractive to utilize templates, it first parses the templates into a tree-like data structure, much like how a browser's HTML parser would process HTML. This data structure contains everything Ractive needs to know to construct an instance's DOM, data bindings, events and transitions etc.</p>
-<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwT4hGhVkxCKgCYAVFZIrJZ2FdQbUASvMWqRFlYqABQA5Pg2ytTELoSEzCCSKnGyQmog6gASKqji1ADq4jDINgCEWpFK6qEAlADcTPAmhOLIKiLI4kLBAFIAygDyAHIiZuTwQmQAZgCewYHW9o7Orio19SBoQA"></div>
-
-<pre><code>Ractive.parse('&lt;div class=&quot;message&quot;&gt;Hello World!&lt;/div&gt;');
+          <h1 id="templates">Templates</h1>
+<p>Strictly speaking, Ractive templates are not HTML. They are markup representations of objects that are used to construct HTML. Simply put, templates are <em>HTML-like</em>. Ractive parses templates into ASTs which contain everything Ractive needs to know to construct an instance's DOM, data bindings, events and transitions etc.</p>
+<pre><code class="js">Ractive.parse('&lt;div class=&quot;message&quot;&gt;Hello World!&lt;/div&gt;')
 
 // {&quot;v&quot;:4,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;div&quot;,&quot;m&quot;:[{&quot;n&quot;:&quot;class&quot;,&quot;f&quot;:&quot;message&quot;,&quot;t&quot;:13}],&quot;f&quot;:[&quot;Hello World!&quot;]}]}
 </code></pre>
 
-<p>Normally, parsing is done automatically. Ractive will use <a href="../../api/static-methods/#ractiveparse"><code>Ractive.parse()</code></a> under the hood if a string template is provided to the <a href="../../api/initialization-options/#template"><code>template</code></a> initialization option.</p>
-<p>The parsed template is not designed to be readable nor editable by a human. It is meant to represent the template structure as an object in a way Ractive understands with as few bytes as possible. Where the template doesn't use Ractive-specific features, these parts will be represented as plain HTML in the data structure.</p>
-<h2 id="pre-parsing">Pre-parsing</h2>
-<p>Parsing templates can be a very slow operation, particularly for very large apps, very complex templates, or intricate SVGs. As an optimization option, templates can be pre-parsed into their object form outside of runtime. This would allow Ractive to skip parsing during runtime and speed up app initialization. Typically, a parsed template is only about 30-40% larger than the string version, making pre-parsing a trade-off between space and processing.</p>
-<p>Pre-parsing can be done in many different ways as long as Ractive receives the parsed template during runtime. One way would be to simply serve the pre-parsed template separately from the component or instance and load it via AJAX. Another would be to extract and replace the template on the file with the parsed version during compile time - an approach that works well with <a href="../../api/component-files/">component files</a>. Read more about <a href="../../integrations/loaders/">loaders</a> to know more about how loaders do pre-parsing on compile time.</p>
-<h1 id="references">References</h1>
-<p>A reference is a string that refers to a piece of data. They may look like a regular <a href="#keypaths">keypath</a>, like <code>{{ foo.bar.baz }}</code> or may contain special keywords and glyphs, like <code>{{ @this.sayHello() }}</code>.</p>
-<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYExhN41aiuSRqAcgBG4gCYBPVxhs7By9ZbFkXa1t7B2oAM3FxFw9ZGH9A6Mx0h2wVSQpkUJUXAAMsmPwvZXUASWoYFViVevhiFTiE6gB3MmwwallqJVlkRCLqYGB28Wo0NC1KpXUyh3x3RDZxe2wfChVmEDWN+BZqTYBaYmQyYgF9gAFeskIRQlkfAAknZHELAEoNADCVxu1AAsiotIdsJsllEHMUAnDaG9Pqgfr9IkEYhJ4IRxMgVCJvkILK4AcMCV44jApP17CpVPAaL1QtREIQVFSBvVGs1WtRof1qJIVL1vK5-ki0Ok0L8ANwgNBAA"></div>
-
+<h2 id="mustaches">Mustaches</h2>
+<p><a href="http://mustache.github.io/">Mustache</a> is one of the most popular HTML templating languages. It has a very lightweight, readable syntax with a <a href="https://mustache.github.io/mustache.5.html">comprehensive specification</a>. If you've used <a href="http://handlebarsjs.com">Handlebars</a> or <a href="http://angularjs.org">Angular</a>, you'll also find mustaches familiar. Ractive implements a subset of the Mustache specification and adds a few extensions to the language.</p>
+<h3 id="variables">Variables</h3>
+<p><code>{{ }}</code>, <code>{{&amp; }}</code> and <code>{{{ }}}</code> render a reference. They are also used for binding when used on <a href="../../api/directives/">directives</a>. <code>{{ }}</code> escapes the reference while <code>{{&amp; }}</code> and <code>{{{ }}}</code> do not.</p>
 <pre><code class="js">Ractive({
-  el: 'body',
   data: {
-    foo: 'bar',
+    name: &quot;Chris&quot;,
+    company: &quot;&lt;b&gt;GitHub&lt;/b&gt;&quot;
   },
   template: `
-    &lt;div&gt;I reference foo with a value: {{ foo }}&lt;/div&gt;
-    &lt;button type=&quot;button&quot; on-click=&quot;@this.sayHello()&quot;&gt;Click Me&lt;/button&gt;
-  `,
-  sayHello(){
-    console.log('Called from an event that used a reference to a method')
-  }
-});
+    {{name}}      &lt;!-- Chris --&gt;
+    {{age}}       &lt;!--  --&gt;
+    {{company}}   &lt;!-- &amp;lt;b&amp;gt;GitHub&amp;lt;/b&amp;gt; --&gt;
+    {{&amp;company}}  &lt;!-- &lt;b&gt;GitHub&lt;/b&gt; --&gt;
+    {{{company}}} &lt;!-- &lt;b&gt;GitHub&lt;/b&gt; --&gt;
+  `
+})
 </code></pre>
 
-<h2 id="reference-resolution">Reference resolution</h2>
-<p>In order for a reference to be usable, it has to resolve to something. Ractive follows the following resolution algorithm to find the value of a reference:</p>
+<h3 id="sections">Sections</h3>
+<p>Sections render a block of markup depending on the value referenced.</p>
+<p>If the reference is an array, it renders the block of markup for each item in the array. The context of the section is the value of the currently iterated item. The iteration index is made available by adding a <code>:</code> after the array reference followed by the index reference.</p>
+<pre><code class="js">Ractive({
+  data: {
+    people: [{name: 'Alice'},{name: 'Bob'},{name: 'Eve'}]
+  },
+  template: `
+    {{#people}} {{name}} {{/people}}
+    {{#people:i}} {{i}} {{name}} {{/people}}
+  `
+})
+</code></pre>
+
+<p>If the reference is an object <em>and the key reference is provided</em>, the section iterates through the object properties. The context of the section is the value of the currently iterated property. The iteration key is made available by adding a <code>:</code> after the object reference followed by the key reference.</p>
+<pre><code class="js">Ractive({
+  data: {
+    places: { loc1: 'server room', loc2: 'networking lab', loc3: 'pantry'}
+  },
+  template: `
+    {{#places:key}}
+      {{ key }} {{ this }}
+    {{/places}}
+  `
+})
+</code></pre>
+
+<p>If the reference is some other truthy value or an object but not providing the iteration key reference, it renders the block of markup using the reference as context.</p>
+<pre><code class="js">Ractive({
+  data: {
+    isAdmin: true,
+    foo: {
+      bar: {
+        baz: {
+          qux: 'Hello, World!'
+        }
+      }
+    }
+  },
+  template: `
+    {{#isAdmin}} Hello Admin! {{/isAdmin}}
+
+    {{#foo.bar.baz}} {{qux}} {{/foo.bar.baz}}
+  `
+})
+</code></pre>
+
+<h3 id="inverted-sections">Inverted Sections</h3>
+<p><code>{{^ }}</code> renders a block of markup if the reference is falsy or is an empty iterable.</p>
+<pre><code class="js">Ractive({
+  data: {
+    real: false,
+    people: []
+  },
+  template: `
+    {{^real}} Nope, not real {{/real}}
+
+    {{^people}} There's no people {{/people}}
+  `
+})
+</code></pre>
+
+<h3 id="optional-section-closing-text">Optional section closing text</h3>
+<p>Regular (<code>{{# }}</code>) and inverted (<code>{{^ }}</code>) sections can be closed with optional closing text. If the closing text is provided and the section is opened with a reference, the closing text must match the opening text. Otherwise, a warning will be issued for the mismatch. If the section is opened with an expression, the closing text will always be ignored.</p>
+<pre><code class="js">Ractive({
+  data: {
+    items: [1,2,3]
+  },
+  template: `
+    {{#items}}
+      {{this}}
+    {{/items}}
+
+    {{#items}}
+      {{this}}
+    {{/}}
+
+    {{# a.concat(b) }}
+      {{this}}
+    {{/ I'm actually ignored but should be something meaningful like a.concat(b) }}
+  `
+})
+</code></pre>
+
+<h3 id="if-sections">If sections</h3>
+<p><code>{{#if }}</code> renders a block of markup if the reference is truthy or a non-empty iterable. <code>{{else}}</code> and <code>{{elseif}}</code> are supported and render if the previous condition failed.</p>
+<pre><code class="js">Ractive({
+  data: {
+    foo: false,
+    bar: false
+  },
+  template: `
+    {{#if foo}}
+      foo
+    {{elseif bar}}
+      bar
+    {{else}}
+      baz
+    {{/if}}
+  `
+})
+</code></pre>
+
+<h3 id="unless-sections">Unless sections</h3>
+<p><code>{{#unless }}</code> renders a block of markup if the reference is falsy or is an empty iterable. Unlike <code>{{#if }}</code>, the <code>{{#unless }}</code> section does not support <code>{{else}}</code> nor <code>{{elseif}}</code>.</p>
+<pre><code class="js">Ractive({
+  data: {
+    real: false,
+  },
+  template: `
+    {{#unless real}} Fake {{/unless}}
+  `
+})
+</code></pre>
+
+<h3 id="each-sections">Each sections</h3>
+<p><code>{{#each }}</code> renders the block of markup for each item in the iterable. The context of the section is the value of the currently iterated item. <code>{{else}}</code> and <code>{{elseif}}</code> are supported and render if the iterable is empty.</p>
+<pre><code class="js">Ractive({
+  data: {
+    people: [{name: 'Alice'},{name: 'Bob'},{name: 'Eve'}]
+  },
+  template: `
+    {{#each people}}
+      Hi! I'm {{name}}!
+    {{else}}
+      There's nobody here
+    {{/each}}
+  `
+})
+</code></pre>
+
+<h3 id="with-sections">With sections</h3>
+<p><code>{{#with }}</code> alters the current section's context by sticking a reference in front of the resolution order. This causes everything within the section to resolve to that reference's context and data hierarchy first before the original section's.</p>
+<pre><code class="js">Ractive({
+  el: 'body',
+  append: true,
+  data: {
+    foo: {
+      qux: 2,
+      bar: {
+        baz: 1
+      }
+    },
+    fee: {
+      baz: 'a'
+    }
+  },
+  template: `
+    &lt;!-- context becomes foo --&gt;
+    {{#foo}}
+
+      &lt;!-- context becomes foo.bar --&gt;
+      {{#bar}}
+
+        &lt;!-- resolution order: [foo.bar.baz], foo.baz, baz --&gt;
+        {{baz}}
+
+        &lt;!-- resolution order: foo.bar.qux, [foo.qux], baz --&gt;
+        {{qux}}
+
+        &lt;!-- sticks fee in front of foo.bar on the resolution order --&gt;
+        {{#with ~/fee}}
+
+          &lt;!-- resolution order: [fee.baz], foo.bar.baz, foo.baz, baz --&gt;
+          {{baz}}
+
+          &lt;!-- resolution order: fee.qux, foo.bar.qux, [foo.qux], qux --&gt;
+          {{qux}}
+        {{/with}}
+
+      {{/}}
+    {{/}}
+  `
+})
+</code></pre>
+
+<p><code>{{else}}</code> and <code>{{elseif}}</code> are supported and render when the context reference does not exist.</p>
+<pre><code class="js">Ractive({
+  data: {},
+  template: `
+    {{#with people}}
+      {{joe}}
+    {{/else}}
+      Context missing
+    {{/with}}
+  `
+})
+</code></pre>
+
+<p><code>{{#with }}</code> also allows aliasing of references, including <a href="../../api/references/#special-references">special references</a>. Aliasing is in the form of <code>reference as alias</code> pairs. Multiple alias pairs can be done by separating each with a comma. In this mode, the context within the block is not altered.</p>
+<pre><code class="js">Ractive({
+  el: 'body',
+  append: true,
+  data: {
+    foo: 1,
+    bar: {
+      foo: 2,
+      baz: 3
+    }
+  },
+  template: `
+    {{foo}} &lt;!-- 1 --&gt;
+
+    {{#with foo as qux, @global as world}}
+      {{#bar}}
+        {{qux}} &lt;!-- 1 --&gt;
+        {{foo}} &lt;!-- 2 --&gt;
+        {{baz}} &lt;!-- 3 --&gt;
+      {{/}}
+    {{/with}}
+  `
+})
+</code></pre>
+
+<h3 id="in-template-partials">In-template partials</h3>
+<p><code>{{#partial }}</code> defines a partial that is scoped to the nearest enclosing element or the containing component if defined at the top level of the template.</p>
+<pre><code class="js">Ractive({
+  data: {
+    people: [{name: 'Alice'},{name: 'Bob'},{name: 'Eve'}],
+    places: [{name: 'server room'},{name: 'networking lab'},{name: 'pantry'}]
+  },
+  template: `
+    {{#partial item}}
+      &lt;li class=&quot;item&quot;&gt;{{this}}!&lt;/li&gt;
+    {{/partial}}
+
+    &lt;ul&gt;
+      {{#each people}}
+        {{&gt; item }}
+      {{/each}}
+    &lt;/ul&gt;
+
+    &lt;ul&gt;
+      {{#each places}}
+        {{&gt; item }}
+      {{/each}}
+    &lt;/ul&gt;
+
+    &lt;div&gt;
+      {{#partial scopedPartial}}
+        Usage of {{this}} partial is only available to the descendants of the div
+      {{/partial}}
+    &lt;/div&gt;
+  `
+})
+</code></pre>
+
+<h3 id="static-mustaches">Static mustaches</h3>
+<p><code>[[ ]]</code>, <code>[[&amp; ]]</code> and <code>[[[ ]]]</code> render the reference only during the initial render. After the initial render, any changes to the referece will not update the UI, nor does any change on bound UI elements cause the reference to change. They are the one-time render counterparts of <code>{{ }}</code>, <code>{{&amp; }}</code> and <code>{{{ }}}</code>, respectively.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    msg: 'Hello, World!',
+    admin: false
+  },
+  template: `
+    Will change when updated: {{ msg }}     &lt;!-- changes to &quot;Me, Hungry!&quot; after the change --&gt;
+    Will not change when updated: [[ msg ]] &lt;!-- remains &quot;Hello, World!&quot; after the change --&gt;
+
+    [[# if admin ]]
+      Hello, admin
+    [[else]]
+      Hello, normal user
+    [[/if]]
+  `
+})
+
+instance.set({ msg: 'Me, Hungry!' })
+instance.set('admin', true) // rendering remains 'Hello, normal user'
+</code></pre>
+
+<h3 id="expressions">Expressions</h3>
+<p>Expressions in mustaches are evaluated, and its result is used as the referenced value. Any changes to the expression's dependencies will re-evaluate the expression and update the rendered value.</p>
+<pre><code class="js">Ractive({
+  data: {
+    num1: 2,
+    num2: 3,
+    a: [1,2,3],
+    b: [4,5,6],
+    fn: () =&gt; true
+  },
+  template: `
+    {{ num1 + num2 }}
+
+    {{# a.concat(b) }} {{this}} {{/}}
+    {{#each a.concat(b) }} {{this}} {{/each}}
+
+    {{# fn() }} Yasss!!! {{/}}
+    {{#if fn() }} Yasss!!! {{/if}}
+  `
+})
+</code></pre>
+
+<h3 id="comments">Comments</h3>
+<p><code>{{! }}</code> defines a template comment. Comments are ignored by the parser and never make it to the AST.</p>
+<pre><code class="html">&lt;h1&gt;Today{{! ignore me }}.&lt;/h1&gt;
+</code></pre>
+
+<h3 id="custom-delimiters">Custom delimiters</h3>
+<p><code>{{= =}}</code> defines custom delimiters. Custom delimiters should not contain whitespace or the equals sign.</p>
+<pre><code class="html">{{foo}}
+
+{{=&lt;% %&gt;=}}
+&lt;% foo %&gt;
+</code></pre>
+
+<h3 id="escaping-mustaches">Escaping mustaches</h3>
+<p><code>\</code> prepended on a mustache interprets the mustache as literal text.</p>
+<pre><code class="html">{{ ref }} \{{ ref }} &lt;!-- value {{ ref }} --&gt;
+</code></pre>
+
+<p>For multi-mustache structures, <code>\</code> must be prepended on all involved mustaches.</p>
+<pre><code class="html">\{{#if foo }} \{{ bar }} \{{/if}} &lt;!-- {{#if foo }} {{ bar }} {{/if}} --&gt;
+</code></pre>
+
+<p>To interpret a <code>\</code> as a literal slash before a mustache, simply prepend another <code>\</code>. Any further <code>\</code> prepended will be treated in this manner.</p>
+<pre><code class="html">\\{{ ref }}   &lt;!-- \value --&gt;
+\\\{{ ref }}  &lt;!-- \\value --&gt;
+\\\\{{ ref }} &lt;!-- \\\value --&gt;
+</code></pre>
+
+<h2 id="keypaths">Keypaths</h2>
+<p>A keypath is a kind of reference that represents the location of a piece of data.</p>
+<pre><code class="js">Ractive({
+  data: {
+    foo: {
+      bar: {
+        baz: {
+          qux: 'Hello, World!'
+        }
+      }
+    }
+  },
+  template: `
+    {{ foo.bar.baz.qux }}
+  `
+})
+</code></pre>
+
+<h3 id="dot-and-bracket-notations">Dot and bracket notations</h3>
+<p>Dot and bracket notation rules for keypaths are similar to vanilla JS. The only addition to this is that the dot notation can also be used to access arrays, by using the index directly on the segment.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    items: [1, 2, 3],
+    foo: {
+      bar: {
+        baz: {
+          qux: 'Hello, World!',
+          'dotted.key': 'Me, Hungry!'
+        }
+      }
+    },
+    dynamicKey: 'bar'
+  },
+  template: `
+    {{ foo['bar']['baz']['qux'] }} &lt;!-- bracket notation object access --&gt;
+    {{ foo.bar.baz.qux }}          &lt;!-- dot notation object access --&gt;
+
+    {{ items[0] }} &lt;!-- bracket notation array access --&gt;
+    {{ items.0 }}  &lt;!-- dot notation array access --&gt;
+
+    {{ foo.bar.baz['dotted.key'] }} &lt;!-- dotted key access --&gt;
+
+    {{ foo[dynamicKey].baz.qux }} &lt;!-- dynamic key access --&gt;
+  `
+})
+</code></pre>
+
+<h3 id="missing-properties">Missing properties</h3>
+<p>In JavaScript, trying to access a child property of an object that does not exist would throw an error. In Ractive, it would simply return <code>undefined</code> or render nothing.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    numbers: [ 1, 2, 3 ]
+  },
+  template: `
+    {{ letters[0] }}
+  `
+})
+
+ractive.get( 'letters[0]' ) // undefined
+</code></pre>
+
+<h3 id="upstream-and-downstream-keypaths">Upstream and downstream keypaths</h3>
+<p>Ractive has this concept of "upstream" and "downstream" keypaths. Upstream keypaths are ancestor keypaths. For the keypath <code>foo.bar.baz.qux</code>, it's upstream keypaths are <code>foo</code>, <code>foo.bar</code> and <code>foo.bar.baz</code>. Downstream keypaths are descendant keypaths. For the <code>foo</code> keypath, it's downstream keypaths would be <code>foo.bar</code>, <code>foo.bar.baz</code> and <code>foo.bar.baz.qux</code>.</p>
+<h2 id="references">References</h2>
+<p>A reference is a string that refers to a piece of data. A <a href="#keypaths">keypath</a> is an example of a reference, one that points to a specific location in the data. <a href="../../api/references/#special-references">Special references</a> are also a form of reference, one that provides to a certain value.</p>
+<h3 id="reference-resolution">Reference resolution</h3>
+<p>Ractive follows the following resolution algorithm to find the value of a reference:</p>
 <ol>
 <li>If the reference a <a href="../api/special-references.md">special reference</a>, resolve with that keypath.</li>
 <li>If the reference is <a href="../api/keypath-prefixes.md">explicit</a> or matches a path in the current context exactly, resolve with that keypath.</li>
@@ -427,7 +497,7 @@ ractive.get( 'letters[0]' ); // returns undefined
 <li>If the reference is a valid keypath by itself, resolve with that keypath.</li>
 <li>If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.</li>
 </ol>
-<h2 id="context-stack">Context stack</h2>
+<h3 id="context-stack">Context stack</h3>
 <p>Steps 6 and 7 of the <a href="#reference-resolution">resolution algorithm</a> defines the ability of Ractive to "climb" contexts when a reference does not resolve in the current context. This is similar to how JavaScript climbs to the global scope to resolve a variable.</p>
 <p>To do this, whenever Ractive encounters <a href="#sections">section mustaches</a> or similar constructs, it stores the context in a <em>context stack</em>. Ractive then resolves references starting with the context on the top of the stack, and popping off contexts until the reference resolves to a keypath.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3ewVSQpkWUCnAAN-O2pgYABiREIVGDQ0aJjqfAp1AHUHCUkVald5AQxY4HhZIrSAQgzMyviiwkJZIRVCNMam6gBNcURqMFlVSr4YFVkPNOpJ6Y9qcQAzSuxxbFl0NGoNreRqVvbOwhFepsHh0MIaZHEhTqWyW3FbOJvsABkHl7Tz2x9SpcY4dLo9QGZLQ5RpxXjJVLpQERPyAjxhWROayQ+YIrEXapFJzOABSZEkvguoNO+JxmX22ycAEYAAyooHzeBTGZOADMF0wF0+PyEL2J+Q88C66J8jSRdiRaAAlABuEBoIA"></div>
@@ -454,7 +524,7 @@ ractive.get( 'letters[0]' ); // returns undefined
       lastLogin: 'Wednesday'
     }
   }
-});
+})
 
 // Welcome back, Jim! You have 3 unread of 10 total messages. You last logged in on Wednesday.
 </code></pre>
@@ -483,466 +553,89 @@ ractive.get( 'letters[0]' ); // returns undefined
 <li><code>user.lastLogin</code> (resolved here)</li>
 <li><code>lastLogin</code></li>
 </ol>
-<h2 id="arrays">Arrays</h2>
-<p>Unlike objects where the section uses the object as context, the context of a section that goes over an array are the items of that array.</p>
-<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3Y9ZbFkna1s7ajJsFUlOagBtfwi7YGoJeGiMp2cALxUYcWdqTCTk1PTM7GzxeBUikvCytJrK7OwAd0Li0uoAXSSGu2jJCmQglScAAyTgYABiKJjCNDQe2YqVDJWZ4C5F2O3w6fg0AEoAbhA0IA"></div>
-
-<pre><code class="js">Ractive({
-  el: 'body',
-  data: {
-    items: [
-      { content: 'zero' },
-      { content: 'one' },
-      { content: 'two' }
-    ]
-  },
-  template: `
-  {{#items}}
-    {{content}}
-  {{/items}}
-  `
-});
-
-// zeroonetwo
-</code></pre>
-
-<p>In the example above, context is created for each item on the array. The first time it is <code>items.0</code>, then <code>items.1</code>, then <code>items.2</code>. <code>content</code> will be resolved for relative to each, doing <code>items.0.content</code>, then <code>items.1.content</code> and finally <code>items.2.content</code>.</p>
-<h1 id="mustaches">Mustaches</h1>
-<h2 id="what-is-mustache">What is Mustache?</h2>
-<p><a href="http://mustache.github.io/">Mustache</a> is one of the most popular templating languages. It's a very lightweight, readable syntax with a comprehensive specification - which means that implementations (such as Ractive) can test that they're doing things correctly.</p>
-<p>If you've used <a href="http://handlebarsjs.com">Handlebars</a> or <a href="http://angularjs.org">Angular</a> you'll also find mustaches familiar.</p>
+<h2 id="expressions_1">Expressions</h2>
+<h3 id="valid-expressions">Valid expressions</h3>
+<p>These are, of course, JavaScript expressions. Almost any valid JavaScript expression can be used, with a few exceptions:</p>
 <ul>
-<li><a href="">What are mustaches?</a></li>
-<li><a href="">Mustache basics</a></li>
-<li><a href="">Variables</a></li>
-<li><a href="">Sections</a></li>
-<li><a href="">Comments</a></li>
-<li><a href="">Partials</a></li>
-<li><a href="">Custom delimiters</a></li>
-<li><a href="">Extensions</a></li>
-<li><a href="">Array indices</a></li>
-<li><a href="">Object iteration</a></li>
-<li><a href="">Special references</a></li>
-<li><a href="">Restricted references</a></li>
-<li><a href="">Expressions</a></li>
-<li><a href="">Handlebars-style sections</a></li>
-<li><a href="">Aliasing</a></li>
-<li><a href="">Static mustaches</a></li>
-<li><a href=""><code>{{else}}</code> and <code>{{elseif}}</code></a></li>
-<li><a href="">Escaping Mustaches</a></li>
+<li>No assignment operators (i.e. <code>a = b</code>, <code>a += 1</code>, <code>a--</code> and so on)</li>
+<li>No <code>new</code>, <code>delete</code>, or <code>void</code> operators</li>
+<li>No function literals (i.e. anything that involves the <code>function</code> keyword)</li>
 </ul>
-<h2 id="what-are-mustaches">What are mustaches?</h2>
-<p>Within this documentation, and within Ractive's code, 'mustache' means two things - a snippet of a template which uses mustache delimiters, such as <code>{{name}}</code>, and the object within our <a href="">parallel DOM</a> that is responsible for listening to data changes and updating the (real) DOM.</p>
-<p>We say that the <code>{{name}}</code> mustache has a <em><a href="">reference</a></em> of <code>name</code>. When it gets rendered, and we create the object whose job it is to represent <code>name</code> in the DOM, we attempt to <em>resolve the reference according to the current context stack</em>. For example if we're in the <code>user</code> context, and <code>user</code> has a property of <code>name</code>, <code>name</code> will resolve to a <a href="">keypath</a> of <code>user.name</code>.</p>
-<p>As soon as the mustache knows what its keypath is (which may not be at render time, if data has not yet been set), it registers itself as a <em><a href="">dependant</a></em> of the keypath. Then, whenever data changes, Ractive scans the dependency graph to see which mustaches need to update, and notifies them accordingly.</p>
-<h2 id="mustache-basics">Mustache basics</h2>
-<p>If you already know Mustache, Ractive supports all the Mustache features - basic Mustache variables like <code>{{name}}</code>, as well as sections, partials, and even delimiter changes. If you're already familiar with Mustache, skip to the Extensions section below.</p>
-<p>You can also check out the <a href="http://learn.ractivejs.org">tutorials</a>.</p>
-<h3 id="variables">Variables</h3>
-<p>The most basic mustache type is the variable. A <code>{{name}}</code> tag in a template will try to find the <code>name</code> key in the current context. If there is no <code>name</code> key in the current context, the parent contexts will be checked recursively. If the top context is reached and the name key is still not found, nothing will be rendered.</p>
-<p>All variables are HTML escaped by default. If you want to return unescaped HTML, use the triple mustache: <code>{{{name}}}</code>.</p>
-<p>You can also use <code>&amp;</code> to unescape a variable: <code>{{&amp; name}}</code>. This may be useful when changing delimiters (see "Set Delimiter" below).</p>
-<p>Template:</p>
-<pre><code class="html"> * {{name}}
- * {{age}}
- * {{company}}
- * {{{company}}}
+<p>Aside from a subset of global objects (e.g. <code>Math</code>, <code>Array</code>, <code>parseInt</code>, <code>encodeURIComponent</code> - full list below), any references must be to properties (however deeply nested) of the Ractive instance's data, rather than arbitrary variables. Reference resolution follows the <a href="">normal process</a>.</p>
+<h3 id="does-this-use-eval">Does this use <code>eval</code>?</h3>
+<p>Yes and no. You've probably read that 'eval is evil', or some other such nonsense. The truth is that while it does get abused, and can theoretically introduce security risks when user input gets involved, there are some situations where it's both necessary and sensible.</p>
+<p>But repeatedly <code>eval</code>ing the same code is a performance disaster. Instead, we use the <code>Function</code> constructor, which is a form of <code>eval</code>, except that the code gets compiled once instead of every time it executes.</p>
+<h3 id="a-note-about-efficiency">A note about efficiency</h3>
+<p>Using the <code>Function</code> constructor instead of <code>eval</code> is just one way that Ractive optimises expressions. Consider a case like this:</p>
+<pre><code class="html">{{a}} + {{b}} = {{ a + b }}
+{{c}} + {{d}} = {{ c+d }}
 </code></pre>
 
-<p>With the following data:</p>
-<pre><code class="javascript">{
-  &quot;name&quot;: &quot;Chris&quot;,
-  &quot;company&quot;: &quot;&lt;b&gt;GitHub&lt;/b&gt;&quot;
-}
+<p>At <em>parse time</em>, Ractive generates an <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</a> (AST) from these expressions, to verify that it's a valid expression and to extract any references that are used. It then 'stringifies' the AST, so that the expression can later be compiled into a function.</p>
+<p>As anyone who has seen minified JavaScript can attest, JavaScript cares not one fig what your variables are called. It also doesn't care about whitespace. So both of the expressions can be stringified the same way:</p>
+<pre><code class="js">&quot;_0+_1&quot;
 </code></pre>
 
-<p>Will generate the following output:</p>
-<pre><code> * Chris
- *
- * &amp;lt;b&amp;gt;GitHub&amp;lt;/b&amp;gt;
- * &lt;b&gt;GitHub&lt;/b&gt;
+<p>When we <em>evaluate</em> <code>{{ a + b }}</code> or <code>{{ c+d }}</code>, we can therefore use the same function but with different arguments. Recognising this, the function only gets compiled once, after which it is cached. (The cache is shared between all Ractive instances on the page.) Further, the result of the evaluation is itself cached (until one or more of the dependencies change), so you can repeat expressions as often as you like without creating unnecessary work.</p>
+<p>All of this means that you could have an expression within a list section that was repeated 10,000 times, and the corresponding function would be created once <em>at most</em>, and only called when necessary.</p>
+<h3 id="supported-global-objects">Supported global objects</h3>
+<ul>
+<li><code>Array</code></li>
+<li><code>Date</code></li>
+<li><code>JSON</code></li>
+<li><code>Math</code></li>
+<li><code>NaN</code></li>
+<li><code>RegExp</code></li>
+<li><code>decodeURI</code></li>
+<li><code>decodeURIComponent</code></li>
+<li><code>encodeURI</code></li>
+<li><code>encodeURIComponent</code></li>
+<li><code>isFinite</code></li>
+<li><code>isNaN</code></li>
+<li><code>null</code></li>
+<li><code>parseFloat</code></li>
+<li><code>parseInt</code></li>
+<li><code>undefined</code></li>
+</ul>
+<h2 id="conditional-attributes">Conditional attributes</h2>
+<p>Sections can toggle attributes, whether it's one attribute, multiple attributes or specific values of the attribute.</p>
+<pre><code class="html">&lt;!-- one attribute --&gt;
+&lt;a href=&quot;/&quot; {{#if currentPage}}class=&quot;active&quot;{{/if}}&gt;Home&lt;/a&gt;
+
+&lt;!-- multiple attributes --&gt;
+&lt;a href=&quot;/&quot; {{#if currentPage}}class=&quot;active&quot; title=&quot;Current page&quot;{{/if}}&gt;Home&lt;/a&gt;
+
+&lt;!-- specific attribute value --&gt;
+&lt;a href=&quot;/&quot; class=&quot;nav-link {{#if currentPage}}nav-link--active{{/if}}&quot;&gt;Home&lt;/a&gt;
 </code></pre>
 
-<h3 id="sections">Sections</h3>
-<p>Sections render blocks of text one or more times, depending on the value of the key in the current context.</p>
-<p>A section begins with a pound and ends with a slash. That is, <code>{{#person}}</code> begins a "person" section while <code>{{/person}}</code> ends it.</p>
-<p>The behavior of the section is determined by the value of the key.</p>
-<h3 id="false-values-or-empty-lists">False Values or Empty Lists</h3>
-<p>If the person key exists and has a value of false or an empty list, the HTML between the pound and slash will not be displayed.</p>
-<p>Template:</p>
-<pre><code class="html">Shown.
-{{#person}}
-  Never shown!
-{{/person}}
+<h2 id="optimization">Optimization</h2>
+<h3 id="pre-parsing">Pre-parsing</h3>
+<p>Parsing templates can be a very slow operation. As an optimization option, templates can be pre-parsed outside of runtime, speeding up app initialization. Most <a href="../../integrations/loaders/">loaders</a> do pre-parsing of templates as part of their build process. A parsed template is approximately 30-40% larger than the markup version, making it a trade-off between space and processing.</p>
+<h3 id="limiting-template-expressions">Limiting template expressions</h3>
+<p>While expressions provide power and convenience when building templates, it incurs a performance penalty as Ractive sets up each one on a per-instance level. To avoid this overhead, there are several places where logic can move to, trimming down expressions into mere function calls.</p>
+<h4 id="data-functions">Data functions</h4>
+<p>These functions can be set on the data globally via <code>Ractive.defaults.data</code>.</p>
+<pre><code class="js">Ractive.defaults.data.customLogic = function(){ ... }
+
+Ractive({
+  template: `
+    {{ customLogic() }}
+  `
+})
 </code></pre>
 
-<p>Data:</p>
-<pre><code class="javascript">{
-  &quot;person&quot;: false
-}
-</code></pre>
-
-<p>Output:</p>
-<pre><code class="html">Shown.
-</code></pre>
-
-<h3 id="non-empty-lists">Non-Empty Lists</h3>
-<p>If the person key exists and has a non-false value, the HTML between the pound and slash will be rendered and displayed one or more times.</p>
-<p>When the value is a non-empty list, the text in the block will be displayed once for each item in the list. The context of the block will be set to the current item for each iteration. In this way we can loop over collections.</p>
-<p>Template:</p>
-<pre><code class="html">{{#repo}}
-  &lt;b&gt;{{name}}&lt;/b&gt;
-{{/repo}}
-</code></pre>
-
-<p>Data:</p>
-<pre><code class="javascript">{
-  &quot;repo&quot;: [
-    { &quot;name&quot;: &quot;resque&quot; },
-    { &quot;name&quot;: &quot;hub&quot; },
-    { &quot;name&quot;: &quot;rip&quot; }
-  ]
-}
-</code></pre>
-
-<p>Output:</p>
-<pre><code class="html">&lt;b&gt;resque&lt;/b&gt;
-&lt;b&gt;hub&lt;/b&gt;
-&lt;b&gt;rip&lt;/b&gt;
-</code></pre>
-
-<h3 id="non-false-values">Non-False Values</h3>
-<p>When the value is non-false but not a list, it will be used as the context for a single rendering of the block.</p>
-<p>Template:</p>
-<pre><code class="html">{{#person?}}
-  Hi {{name}}!
-{{/person?}}
-</code></pre>
-
-<p>Data:</p>
-<pre><code class="javascript">{
-  &quot;person?&quot;: { &quot;name&quot;: &quot;Jon&quot; }
-}
-</code></pre>
-
-<p>Output:</p>
-<pre><code class="html">Hi Jon!
-</code></pre>
-
-<h3 id="inverted-sections">Inverted Sections</h3>
-<p>An inverted section begins with a caret (hat) and ends with a slash. That is  <code>{{^person}}</code> begins a "person" inverted section while <code>{{/person}}</code> ends it.</p>
-<p>While sections can be used to render text one or more times based on the value of the key, inverted sections may render text once based on the inverse value of the key. That is, they will be rendered if the key doesn't exist, is false, or is an empty list.</p>
-<p>Template:</p>
-<pre><code class="html">{{#repo}}
-  &lt;b&gt;{{name}}&lt;/b&gt;
-{{/repo}}
-{{^repo}}
-  No repos :(
-{{/repo}}
-</code></pre>
-
-<h3 id="attributes">Attributes</h3>
-<p>Sections may also be used within attribute values and around attribute values. Using a conditional section around an attribute or group of attributes will exclude those attributes from the DOM when the conditional is <code>false</code> and include them when it is <code>true</code>. Using a conditional section within an attribute only affects the value of the attribute, and there may be multiple sections within an attribute value.</p>
-<p>In the following terribly contrived example, if <code>big</code> is truthy, then the button will have a class <code>big</code> in addition to the fixed class <code>button</code>. If <code>planetsAligned</code> is truthy, the button will also get an annoying <code>onmousemove</code> attribute. <strong>Note</strong> that ractive directives cannot currently be placed within a section, but that may change in the future.</p>
-<pre><code class="html">&lt;button class=&quot;{{#big}}big {{/}}button&quot; {{#planetsAligned}}onmousemove=&quot;alert('I am annoying...')&quot;{{/}}&gt;I sure hope the planets aren't aligned...&lt;/button&gt;
-</code></pre>
-
-<h3 id="comments">Comments</h3>
-<p>Comments begin with a bang and are ignored. The following template:</p>
-<pre><code class="html">&lt;h1&gt;Today{{! ignore me }}.&lt;/h1&gt;
-</code></pre>
-
-<p>Will render as follows:</p>
-<pre><code class="html">&lt;h1&gt;Today.&lt;/h1&gt;
-</code></pre>
-
-<p>If you'd like the comments to show up, just use html comments and set <a href="">stripComments</a> to <code>false</code>.
-Comments may contain newlines.</p>
-<h3 id="partials">Partials</h3>
-<p>Partials begin with a greater than sign:</p>
-<pre><code class="html">{{&gt; box}}
-</code></pre>
-
-<p>Recursive partials are possible. Just avoid infinite loops.</p>
-<p>They also inherit the calling context. For example:</p>
-<pre><code class="html">{{&gt; next_more}}
-</code></pre>
-
-<p>In this case, <code>next_more.mustache</code> file will inherit the size and start methods from the calling context.</p>
-<p>In this way you may want to think of partials as includes, or template expansion:</p>
-<p>For example, this template and partial:</p>
-<p>base.mustache:</p>
-<pre><code class="html">&lt;h2&gt;Names&lt;/h2&gt;
-{{#names}}
-  {{&gt; user}}
-{{/names}}
-</code></pre>
-
-<p>With <code>user.mustache</code> containing:</p>
-<pre><code class="html">&lt;strong&gt;{{name}}&lt;/strong&gt;
-</code></pre>
-
-<p>Can be thought of as a single, expanded template:</p>
-<pre><code class="html">&lt;h2&gt;Names&lt;/h2&gt;
-{{#names}}
-  &lt;strong&gt;{{name}}&lt;/strong&gt;
-{{/names}}
-</code></pre>
-
-<p>Partials are a very useful construct, and you can find out more about them on the <a href="">partials</a> page.</p>
-<h3 id="custom-delimiters">Custom delimiters</h3>
-<p>Custom delimiters are set with a 'Set delimiter' tag. Set delimiter tags start with an equal sign and change the tag delimiters from <code>{{</code> and <code>}}</code> to custom strings.</p>
-<pre><code class="html">{{foo}}
-  {{=[[ ]]=}}
-[[bar]]
-</code></pre>
-
-<p>Custom delimiters may not contain whitespace or the equals sign.</p>
-<p>You can also set custom delimiters using the <code>delimiters</code> and <code>tripleDelimiters</code> options in your Ractive instance.</p>
-<pre><code class="javascript">var ractive = new Ractive({
-  el: whatever,
-  template: myTemplate,
-  data: {
-    greeting: 'Hello',
-    greeted: 'world',
-    triple: '&lt;strong&gt;This is a triple-stache&lt;/strong&gt;'
-  },
-  delimiters: [ '[[', ']]' ],
-  tripleDelimiters: [ '[[[', ']]]' ]
-});
-</code></pre>
-
-<h2 id="extensions">Extensions</h2>
-<p>Ractive is 99% backwards-compatible with Mustache, but adds several additional features.</p>
-<h3 id="array-index-references">Array index references</h3>
-<p>Index references are a way of determining where we are within a list section. It's best explained with an example:</p>
-<pre><code class="html">{{#items:i}}
-  &lt;!-- within here, {{i}} refers to the current index --&gt;
-  &lt;p&gt;Item {{i}}: {{content}}&lt;/p&gt;
-{{/items}}
-</code></pre>
-
-<p>If you then set <code>items</code> to <code>[{content: 'zero'}, {content: 'one'}, {content: 'two'}]</code>, the result would be</p>
-<pre><code class="html">&lt;p&gt;Item 0: zero&lt;/p&gt;
-&lt;p&gt;Item 1: one&lt;/p&gt;
-&lt;p&gt;Item 2: two&lt;/p&gt;
-</code></pre>
-
-<p>This is particularly useful when you need to respond to user interaction. For example you could add a <code>data-index='{{i}}'</code> attribute, then easily find which item a user clicked on.</p>
-<h3 id="object-iteration">Object iteration</h3>
-<p>Mustache can also iterate over objects, rather than array. The syntax is the same as for Array indices. Given the following ractive:</p>
-<pre><code class="javascript">ractive = new Ractive({
-  el: container,
-  template: template,
-  data: {
-    users: {
-      'Joe': { email: 'joe@example.com' },
-      'Jane': { email: 'jane@example.com' },
-      'Mary': { email: 'mary@example.com' }
-    }
+<h4 id="component-methods">Component methods</h4>
+<p>Functions can also be defined on a component level using methods.</p>
+<pre><code class="js">const Component = Ractive.extend({
+  template: `
+    {{ @this.customLogic() }}
+  `,
+  customLogic(){
+    ...
   }
-});
+})
 </code></pre>
-
-<p>We can iterate over the users object with the following:</p>
-<pre><code class="html">&lt;ul&gt;
-  {{#users:name}}
-    &lt;li&gt;{{name}}: {{email}}&lt;/li&gt;
-  {{/users}}
-&lt;/ul&gt;
-</code></pre>
-
-<p>to create:</p>
-<pre><code class="html">&lt;ul&gt;
-  &lt;li&gt;Joe: joe@example.com&lt;/li&gt;
-  &lt;li&gt;Jane: jane@example.com&lt;/li&gt;
-  &lt;li&gt;Mary: mary@example.com&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-
-<p>In previous versions of Ractive it was required to close a section with the opening keypath. In the example above <code>{{#users}}</code> is closed by <code>{{/users}}</code>. This is no longer the case, you can now simply close an iterator with <code>{{/}}</code>. Ractive will attempt to warn you in the event of a mismatch, <code>{{#users}}</code> cannot be closed by <code>{{/comments}}</code>. This will not effect <a href="">Expressions</a> as they have always been able to be closed by <code>{{/}}</code>.</p>
-<pre><code class="html">&lt;!--- valid markup --&gt;
-{{#users}}
-
-{{/users}}
-
-{{#users:i}}
-
-{{/users}}
-
-{{#users}}
-
-{{/}}
-
-{{#users.topUsers}}
-&lt;!-- still matches the first part of the keypath, thus a valid closing tag --&gt;
-{{/users}}
-
-&lt;!-- invalid markup --&gt;
-{{#users}}
-
-{{/comments}}
-</code></pre>
-
-<h3 id="expressions_1">Expressions</h3>
-<p>Expressions are a big topic, so they have a <a href="">page of their own</a>. But this section is about explaining the difference between vanilla Mustache and Ractive Mustache, so they deserve a mention here.</p>
-<p>Expressions look like any normal mustache. For example this expression converts <code>num</code> to a percentage:</p>
-<pre><code class="html">&lt;p&gt;{{ num * 100 }}%&lt;/p&gt;
-</code></pre>
-
-<p>The neat part is that this expression will recognise it has a dependency on whatever keypath <code>num</code> resolves to, and will re-evaluate whenever the value of <code>num</code> changes.</p>
-<p>Mustache fans may bristle at expressions - after all, the whole point is that mustache templates are <em>logic-less</em>, right? But what that really means is that the logic is <em>embedded in the syntax</em> (what are conditionals and iterators if not forms of logic?) rather than being language dependent. Expressions just allow you to add a little more, and in so doing make complex tasks simple.</p>
-<h3 id="handlebars-style-sections">Handlebars-style sections</h3>
-<p>In addition to Mustache-style conditional and iterative sections, Ractive adds Handlebars-style <code>if</code>, <code>unless</code>, <code>each</code>, and <code>with</code> to handle branching, iteration, and context control. For <code>if</code>, <code>with</code>, and <code>each</code>, <a href="#else"><code>{{elseif}}</code> and <code>{{else}}</code></a> may be used to provide alternate branches for false conditions, missing contexts, or empty iterables.</p>
-<pre><code class="html">&lt;button on-click=&quot;flip&quot;&gt;Flip Coin&lt;/button&gt;
-&lt;p&gt;Coin flip result: {{#if heads}}heads{{else}}tails{{/if}}&lt;/p&gt;
-&lt;ul&gt;
-  {{#each result}}
-    &lt;li&gt;{{.}}&lt;/li&gt;
-  {{else}}
-    &lt;li&gt;No results yet...&lt;/li&gt;
-  {{/each}}
-&lt;/ul&gt;
-&lt;p&gt;Here is a {{#with some.nested.value}}{{.}}{{/with}} value.&lt;/p&gt;
-</code></pre>
-
-<pre><code class="js">var ractive = new Ractive({
-  el: document.body,
-  template: myTemplate,
-  data: {
-    results: [],
-    heads: true,
-    some: { nested: { value: 'nested' } }
-  }
-});
-
-ractive.on('flip', function() {
-  var sadRandom = Math.floor(Math.random() * 2) === 1;
-  this.set('heads', sadRandom);
-  this.unshift('results', sadRandom ? 'heads' : 'tails');
-});
-</code></pre>
-
-<p>In this example, clicking the button gets a "random" coin flip result, sets it in an <code>if</code> conditional section, and prepends it in an <code>each</code> iterative section. There is also a <code>with</code> context section throw in for good measure.</p>
-<h3 id="aliasing">Aliasing</h3>
-<p>Any section (or <code>{{#with}}</code> section) provides its own context to the template that falls within it, and any references within the section will be resolved against the section context. Ambiguous references are resolved up the model hierarchy <em>and</em> the context hierarchy. Given a data structure that looks like</p>
-<pre><code class="js">{
-  foo: {
-    baz: 99,
-    bar: {
-      baz: 42
-    }
-  },
-  list: [
-    baz: 198,
-    bar: {
-      baz: 84
-    }
-  ]
-}
-</code></pre>
-
-<p>and a template</p>
-<pre><code class="html">{{#each list}}
-  explicit 1: {{.bar.baz}}
-  {{#with .bar}}
-    implicit 1: {{baz}}
-    {{#with ~/foo}}
-      explicit 2: {{.bar.baz}}
-      implicit 2: {{baz}}
-    {{/with}}
-  {{/with}}
-{{/each}}
-</code></pre>
-
-<p>there is no way to reference <code>~/list.0.baz</code> from the second implicit site because the site has a different context (<code>~/foo</code>) and using an ambiguous reference (<code>baz</code>) results in <code>~/foo.baz</code>  being used. Aliasing offers an escape hatch for similarly complex scenarios where ambiguity can cause the wrong reference to be used or performance issues to arise, because ambiguity is expensive.</p>
-<p>Alias block use the existing <code>{{#with}}</code> mustache, but instead of setting a context, they set names for one or more keypaths. Aliases follow the form <code>destination as alias</code>, where destination is any valid reference at that point in the template e.g. <code>{{#with .foo as myFoo, @key as someKey, 10 * @index + ~/offset as someCalculation, .baz.bat as lastOne}}</code>. Because plain reference aliases, like the <code>myFoo</code> and <code>lastOne</code> aliases in the example, refer to exactly one non-computed keypath, they can also be used for two-way binding deeper in the template. For example, <code>&lt;input value="{{myFoo}}" /&gt;</code> as a child of the alias block would bind to <code>.foo</code> in the context where the alias block is defined.</p>
-<p>Aliasing is also extended to <code>{{#each}}</code> blocks so that the iterated item can be named rather than just referred to as <code>this</code> or <code>.</code>. For instance, <code>{{#each list as item}}</code> would make <code>item</code> equivalent to <code>this</code> directly within the <code>each</code> block, but <code>item</code> would still refer to same value in further nested contexts. Index and key aliases can still be used with an aliased iteration e.g. <code>{{#each object as item: key, index}}</code>.</p>
-<p>Finally, partials can also be used with alias shorthand in much the same way that they can be passed context e.g. <code>{{&gt;somePartial .foo.bar as myBar, 20 * @index + baz as myComp}}</code>.</p>
-<h3 id="static-mustaches">Static mustaches</h3>
-<p>Sometimes it is useful to have portions of a template render once and stay the same even if their references change. A static mustache will be updated only when its template is rendered and not when its keypath is updated. So, if a static mustache is a child of a section or partial that get re-rendered, the mustache will also be re-rendered using the current value of its keypath.</p>
-<p>The default static mustache delimiters are <code>[[ ]]</code> for escaped values and <code>[[[ ]]]</code> for unescaped values.</p>
-<pre><code class="html">[[ foo ]] {{ foo }}
-{{^flag}}
-  [[ foo ]]
-{{/}}
-</code></pre>
-
-<pre><code class="js">var ractive = new Ractive({
-  data: { foo: 'bar' },
-  ...
-});
-ractive.set('foo', 'bippy');
-ractive.set('flag', true);
-ractive.set('flag', false);
-</code></pre>
-
-<p>Output:</p>
-<pre><code class="html">bar bippy bippy
-</code></pre>
-
-<p>Static mustaches may also be used for sections that should only be updated on render.</p>
-<pre><code class="html">[[# if admin ]]
-Hello, admin
-[[else]]
-Hello, normal user
-[[/if]]
-</code></pre>
-
-<pre><code class="js">var ractive = new Ractive({
-  data: { admin: false },
-  ...
-});
-ractive.set('admin', true);
-</code></pre>
-
-<p>Output:</p>
-<pre><code>Hello, normal user
-</code></pre>
-
-<h3 id="else-and-elseif">{{else}} and {{elseif}}</h3>
-<p>Ractive borrows a trick from Handlebars here and lets you perform:</p>
-<pre><code class="html">{{#repo}}
-  &lt;b&gt;{{name}}&lt;/b&gt;
-{{else}}
-  No repos :(
-{{/repo}}
-</code></pre>
-
-<p>Data:</p>
-<pre><code class="javascript">{
-  &quot;repo&quot;: []
-}
-</code></pre>
-
-<p>Output:</p>
-<pre><code class="html">No repos :(
-</code></pre>
-
-<p>Ractive takes it a step further and also allows you to use <code>{{elseif otherCondition}}</code> for alternate cases.</p>
-<pre><code class="html">{{#if foo}}
-  foo
-{{elseif bar}}
-  bar but not foo
-{{else}}
-  neither foo nor bar
-{{/if}}
-</code></pre>
-
-<p>In this case, the output would be what you would expect. If <code>foo</code> is true, then the output will be <code>foo</code>. If <code>foo</code> is false and <code>bar</code> is true, the the output will be <code>bar but not foo</code>. If neither <code>foo</code> nor <code>bar</code> is true, the the output will be <code>neither foo nor bar</code>.</p>
-<p>Further, <code>{{else}}</code> and <code>{{elseif}}</code> clauses can be used with <code>{{#with}}</code> and <code>{{#each}}</code> sections too. If the context for the <code>{{#with}}</code> section doesn't exist, then any else clauses will be processed as if the entire section were a conditional with a false first branch. If the array for the <code>{{#each}}</code> (or regular iterative section) is empty or the object has no keys, then any else clauses will be processed as if the entire section were a conditional with a false first branch.</p>
-<h3 id="escaping-mustaches">Escaping mustaches</h3>
-<p>If you need to have Ractive ignore some mustaches in your template, you can escape them with a '\'.</p>
-<pre><code class="html">{{ interpolated }} {{backslash}}{{ left alone }}
-</code></pre>
-
-<p>If you need to have a backslash before an interpolated mustache, you can escape the backslash with another '\'. Any additional mustaches will be exported into the template.</p>
-<pre><code class="html">{{backslash}}{{backslash}}{{ interpolated }} and preceeded by a single slash.
-{{backslash}}{{backslash}}{{backslash}}{{ interpolated }} and preceeded by two slashes.
-</code></pre>
-
-<h2 id="footnote">Footnote</h2>
-<p>*Ractive implements the Mustache specification as closely as possible. 100% compliance is impossible, because it's unlike other templating libraries - rather than turning a string into a string, Ractive turns a string into DOM, which has to be restringified so we can test compliance. Some things, like lambdas, get lost in translation - it's unavoidable, and unimportant.</p>
         </div>
       </div>
     </div>
@@ -1180,16 +873,16 @@ ractive.set('admin', true);
           <a class="pure-menu-link" href="../event-management/">Event Management</a>
         </li>
       
+        <li class="pure-menu-item pure-menu-selected">
+          <a class="pure-menu-link" href="./">Templates</a>
+        </li>
+      
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../rendering/">Rendering</a>
         </li>
       
         <li class="pure-menu-item ">
           <a class="pure-menu-link" href="../security/">Security</a>
-        </li>
-      
-        <li class="pure-menu-item pure-menu-selected">
-          <a class="pure-menu-link" href="./">Templates</a>
         </li>
       
       </li>
@@ -1204,125 +897,31 @@ ractive.set('admin', true);
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#elements">Elements</a>
+        <a class="pure-menu-link pure-menu-heading" href="#templates">Templates</a>
       </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#mustaches">Mustaches</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#keypaths">Keypaths</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#references">References</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#expressions_1">Expressions</a>
+        </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#conditional-attributes">Conditional attributes</a>
         </li>
       
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#expressions">Expressions</a>
-      </li>
-      
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#frequently-used-expressions">Frequently Used Expressions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#valid-expressions">Valid expressions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#does-this-use-eval">Does this use eval?</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#a-note-about-efficiency">A note about efficiency</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#the-this-reference">The this reference</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#supported-global-objects">Supported global objects</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#functions">Functions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#functions-on-helper-objects-and-third-party-libraries">Functions on helper objects and third-party libraries</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#keypaths">Keypaths</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#upstream-and-downstream-keypaths">Upstream and downstream keypaths</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#array-versus-dot-notation">Array versus dot notation</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#missing-properties">Missing properties</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#escaping">Escaping</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#parsing">Parsing</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#pre-parsing">Pre-parsing</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#references">References</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#reference-resolution">Reference resolution</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#context-stack">Context stack</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#arrays">Arrays</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#mustaches">Mustaches</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#what-is-mustache">What is Mustache?</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#what-are-mustaches">What are mustaches?</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#mustache-basics">Mustache basics</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#extensions">Extensions</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#footnote">Footnote</a>
+          <a class="pure-menu-link" href="#optimization">Optimization</a>
         </li>
       
       </li>
@@ -1549,16 +1148,16 @@ ractive.set('admin', true);
                     <a class="pure-menu-link" href="../event-management/">Event Management</a>
                   </li>
                 
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">Templates</a>
+                  </li>
+                
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../rendering/">Rendering</a>
                   </li>
                 
                   <li class="pure-menu-item ">
                     <a class="pure-menu-link" href="../security/">Security</a>
-                  </li>
-                
-                  <li class="pure-menu-item pure-menu-selected">
-                    <a class="pure-menu-link" href="./">Templates</a>
                   </li>
                 
               </ul>
