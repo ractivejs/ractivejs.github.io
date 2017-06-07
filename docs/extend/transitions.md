@@ -13,7 +13,7 @@ const myTransition = function ( t, params ) {
 
 Transitions are simply functions that get called to animate a specified element.
 
-`t` is a [transition helper object](../api/transition.md) that aids in the implementation of the transition.
+`t` is a [transition helper object](../api/transition-object.md) that aids in the implementation of the transition.
 
 `params` is the parameters passed in via the transition directive.
 

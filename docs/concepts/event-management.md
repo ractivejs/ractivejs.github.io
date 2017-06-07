@@ -140,7 +140,7 @@ Ractive({
 
 ## Event context
 
-Event handlers, regardless of event source, receive an `event` object as first argument. The `event` object is a special instance of a [context object](../api/context.md) augmented with additional event-related properties where applicable.
+Event handlers, regardless of event source, receive an `event` object as first argument. The `event` object is a special instance of a [context object](../api/context-object.md) augmented with additional event-related properties where applicable.
 
 - `name` - The name of the published event.
 - `node` - A reference to the DOM node publishing the event. Only available on DOM events.

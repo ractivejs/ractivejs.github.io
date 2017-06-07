@@ -153,7 +153,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 ## Ractive.getContext()
 
-Accepts a node and returns a [Context](./context.md) object containing details of the Ractive instance the node is associated to.
+Accepts a node and returns a [Context](./context-object.md) object containing details of the Ractive instance the node is associated to.
 
 **Syntax**
 
@@ -165,7 +165,7 @@ Accepts a node and returns a [Context](./context.md) object containing details o
 
 **Returns**
 
-- `(Context)`: A [context](./context.md) object.
+- `(Context)`: A [context](./context-object.md) object.
 
 **Examples**
 

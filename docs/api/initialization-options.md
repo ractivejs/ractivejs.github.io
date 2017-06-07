@@ -191,7 +191,7 @@ During a [`ractive.reset()`](/api/instance-methods.md#ractivereset), components 
 
 `(Object<string, function|Object>)`
 
-A map of [computed properties](../concepts/data-binding.md#computed-properties) where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has `get` and `set` functions.
+A map of [computed properties](../concepts/data-management.md#computed-properties) where the key is the name of the computed property and the value is either a computed property expression, a function that returns a value, or an object that has `get` and `set` functions.
 
 ```js
 // Imagine a square...
@@ -746,7 +746,7 @@ A lifecycle event that is called when `ractive.update()` is called.
 
 `(Object<string, string|Object|Function>)`
 
-A map of [partials](../extend/partials.md) where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and  [Parse Object](./parse.md) as arguments.
+A map of [partials](../extend/partials.md) where the key is the partial name and the value is either a template string, a parsed template object or a function that returns any of the previous options. The function form accepts processed [`data`](#data) and  [Parse Object](./parse-object.md) as arguments.
 
 ```js
 partials: {
@@ -987,7 +987,7 @@ data: { html: '<span>world</span>' }
 
 `(boolean)`
 
-Whether or not [two-way binding](../concepts/data-binding.md#two-way-binding) is enabled. Defaults to `true`.
+Whether or not [two-way binding](../concepts/data-management.md#two-way-binding) is enabled. Defaults to `true`.
 
 ```js
 var ractive = new Ractive({

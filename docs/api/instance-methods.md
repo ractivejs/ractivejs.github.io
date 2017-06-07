@@ -531,7 +531,7 @@ This is an instance specific version of [`Ractive.getContext()`](../api/static-m
 
 **Returns**
 
-- `(Context)`: Returns an [Context](./context.md) object with helper methods to interact with the Ractive instance and context associated with the given node.
+- `(Context)`: Returns an [Context](./context-object.md) object with helper methods to interact with the Ractive instance and context associated with the given node.
 
 **Examples**
 
@@ -624,7 +624,7 @@ Observes the data at a particular keypath. Unless specified otherwise, the callb
 
     The difference between `*` and `**` is that `*` provides your callback function `value` and `keypath` arguments containing the path of the what actually changed, at any level of the keypath. So instead of getting the same parent value on every change, you get the changed value from whatever arbitrarily deep keypath changed.
 
-- `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../concepts/events.md#publish-subscribe) for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.
+- `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../concepts/event-management.md#publish-subscribe) for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.
 - `map (Object)`: A map of keypath-observer pairs.
 - `[options] (Object)`:
     - `[init] (boolean)`: Defaults to `true`. Whether or not to initialise the observer, i.e. call the function with the current value of `keypath` as the first argument and `undefined` as the second.
@@ -662,7 +662,7 @@ ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
 });
 ```
 
-See [Observers](../concepts/events.md#publish-subscribe) for more detail.
+See [Observers](../concepts/event-management.md#publish-subscribe) for more detail.
 
 
 
@@ -677,7 +677,7 @@ Observes the data at a particular keypath until the first change. After the hand
 **Arguments**
 
 - `keypath (string)`: The keypath to observe, or a group of space-separated keypaths. Any of the keys can be a `` character, which is treated as a wildcard.
-- `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../concepts/events.md#publish-subscribe) for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.
+- `callback (Function)`: The function that will be called, with `newValue`, `oldValue` and `keypath` as arguments (see [Observers](../concepts/event-management.md#publish-subscribe) for more nuance regarding these arguments), whenever the observed keypath changes value. By default the function will be called with `ractive` as `this`. Any wildcards in the keypath will have their matches passed to the callback at the end of the arguments list as well.
 - `[options] (Object)`:
     - `[defer] (boolean)`: Defaults to `false`, in which case observers will fire before any DOM changes take place. If `true`, the observer will fire once the DOM has been updated.
     - `[context] (any)`: Defaults to `ractive`. The context the observer is called in (i.e. the value of `this`)
@@ -709,7 +709,7 @@ ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, keypath ) {
 });
 ```
 
-See [Observers](../concepts/events.md#publish-subscribe) for more detail.
+See [Observers](../concepts/event-management.md#publish-subscribe) for more detail.
 
 
 
@@ -1064,7 +1064,7 @@ When setting an array value, ractive will reuse the existing DOM nodes for the n
 // TODO
 ```
 
-The `keypath` can also contain wildcards [pattern-observers](../concepts/events.md#publish-subscribe). All matching keypaths will be set with the supplied values:
+The `keypath` can also contain wildcards [pattern-observers](../concepts/event-management.md#publish-subscribe). All matching keypaths will be set with the supplied values:
 
 ```js
 ractive.on('selectAll', function(){
@@ -1426,7 +1426,7 @@ ractive.update( 'foo' ); // Informs the instance that foo was changed externally
 
 ## ractive.updateModel()
 
-If you programmatically manipulate inputs and other elements that have [two‐way binding](../concepts/data-binding.md#two-way-binding) set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
+If you programmatically manipulate inputs and other elements that have [two‐way binding](../concepts/data-management.md#two-way-binding) set up, your model can get out of sync. In these cases, we need to force a resync with `ractive.updateModel()`:
 
 **Syntax**
 

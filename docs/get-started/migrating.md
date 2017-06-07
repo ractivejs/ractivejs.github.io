@@ -58,7 +58,7 @@ The `change` event has been removed and replaced by recursive observers, which a
 
 The `event` special reference available to event directives has been deprecated and replaced with three special references:
 
-* `@context`, which is roughly equivalent to `event`, but with both an `event` and `original` key that point to the original event object. This is a [context object](/api/context.md).
+* `@context`, which is roughly equivalent to `event`, but with both an `event` and `original` key that point to the original event object. This is a [context object](/api/context-object.md).
 * `@event`, which is resolves to the original event that triggered the directive.
 * `@node`, which resolves to the element to which the event directive is attached.
 

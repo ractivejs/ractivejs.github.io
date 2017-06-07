@@ -581,7 +581,7 @@ Ractive({
 
 ## `@context`
 
-The [context object](/api/context.md) associated with the current context.
+The [context object](/api/context-object.md) associated with the current context.
 
 ## `@event`
 
