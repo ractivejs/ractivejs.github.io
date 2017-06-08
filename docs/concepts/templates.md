@@ -1,6 +1,6 @@
 # Templates
 
-Strictly speaking, Ractive templates are not HTML. They are markup representations of objects that are used to construct HTML. Simply put, templates are _HTML-like_. Ractive parses templates into ASTs which contain everything Ractive needs to know to construct an instance's DOM, data bindings, events and transitions etc.
+Strictly speaking, Ractive templates are not HTML. They are markup representations of objects that are used to construct HTML. Simply put, templates are _HTML-like_. Ractive parses templates into [AST](http://en.wikipedia.org/wiki/Abstract_syntax_tree)s which contain everything Ractive needs to know to construct an instance's DOM, data bindings, events and transitions etc.
 
 ```js
 Ractive.parse('<div class="message">Hello World!</div>')
@@ -340,7 +340,7 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 
 ### Expressions
 
-Expressions in mustaches are evaluated, and its result is used as the referenced value. Any changes to the expression's dependencies will re-evaluate the expression and update the rendered value.
+Expressions in mustaches are evaluated, and its result is used as the referenced value. Any changes to the expression's dependencies will re-evaluate the expression and update the rendered value. References to variables are taken from the current context and follow the regular [reference resolution](#reference-resolution) routine.
 
 ```js
 Ractive({
@@ -362,6 +362,31 @@ Ractive({
   `
 })
 ```
+
+Almost any valid JavaScript expression can be used, with a few exceptions:
+
+- No assignment operators (i.e. `a = b`, `a += 1`, `a--` and so on).
+- No `new`, `delete`, or `void` operators.
+- No function literals (i.e. anything that involves the `function` keyword).
+
+Expressions support only a subset of globals:
+
+- `Array`
+- `Date`
+- `JSON`
+- `Math`
+- `NaN`
+- `RegExp`
+- `decodeURI`
+- `decodeURIComponent`
+- `encodeURI`
+- `encodeURIComponent`
+- `isFinite`
+- `isNaN`
+- `null`
+- `parseFloat`
+- `parseInt`
+- `undefined`
 
 ### Comments
 
@@ -498,129 +523,29 @@ Ractive follows the following resolution algorithm to find the value of a refere
 
 ### Context stack
 
-Steps 6 and 7 of the [resolution algorithm](#reference-resolution) defines the ability of Ractive to "climb" contexts when a reference does not resolve in the current context. This is similar to how JavaScript climbs to the global scope to resolve a variable.
-
-To do this, whenever Ractive encounters [section mustaches](#sections) or similar constructs, it stores the context in a *context stack*. Ractive then resolves references starting with the context on the top of the stack, and popping off contexts until the reference resolves to a keypath.
-
-<div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3ewVSQpkWUCnAAN-O2pgYABiREIVGDQ0aJjqfAp1AHUHCUkVald5AQxY4HhZIrSAQgzMyviiwkJZIRVCNMam6gBNcURqMFlVSr4YFVkPNOpJ6Y9qcQAzSuxxbFl0NGoNreRqVvbOwhFepsHh0MIaZHEhTqWyW3FbOJvsABkHl7Tz2x9SpcY4dLo9QGZLQ5RpxXjJVLpQERPyAjxhWROayQ+YIrEXapFJzOABSZEkvguoNO+JxmX22ycAEYAAyooHzeBTGZOADMF0wF0+PyEL2J+Q88C66J8jSRdiRaAAlABuEBoIA"></div>
+Whenever Ractive encounters [section mustaches](#sections) or similar constructs, it stores the context in a *context stack*. Ractive then resolves references relative to the top of the stack, and popping off contexts until the reference resolves to a keypath.
 
 ```js
 Ractive({
-  el: 'body',
-  template: `
-    {{#user}}
-      <p>Welcome back, {{name}}!
-        {{#messages}}
-          You have {{unread}} unread of {{total}} total messages.
-          You last logged in on {{lastLogin}}.
-        {{/messages}}
-      </p>
-    {{/user}}
-  `,
   data: {
-    user: {
-      name: 'Jim',
-      messages: {
-        total: 10,
-        unread: 3
-      },
-      lastLogin: 'Wednesday'
+    qux: 'Me, Hungry!',
+    foo: {
+      bar: {
+        baz: 'Hello, World!'
+      }
     }
-  }
+  },
+  template: `
+                <!-- context is the root of the data -->
+    {{#foo}}    <!-- context is now foo -->
+      {{#bar}}  <!-- context is now foo.bar -->
+        {{baz}} <!-- Resolution order: foo.bar.baz, foo.baz, baz. Resolved at foo.bar.baz. -->
+        {{qux}} <!-- Resolution order: foo.bar.quz, foo.qux, qux. Resolved at qux. -->
+      {{/}}
+    {{/}}
+  `,
 })
-
-// Welcome back, Jim! You have 3 unread of 10 total messages. You last logged in on Wednesday.
 ```
-
-`{{# user }}` creates a context and the context stack becomes `['user']`. To resolve `name`, the following context resolution order is followed, where `name` resolves with the `user.name` keypath:
-
-1. `user.name` (resolved here)
-2. `name`
-
-In the same way, `{{# messages }}` also creates a context. Since the `messages` section under the `user` section, the context stack becomes `['user', 'user.messages']`. To resolve `unread` and `total`, the following resolution order is followed:
-
-`unread`
-
-1. `user.messages.unread` (resolved here)
-2. `user.unread`
-3. `unread`
-
-`total`
-
-1. `user.messages.total` (resolved here)
-2. `user.total`
-3. `total`
-
-In the case of `lastLogin`, the `user.messages.lastLogin` keypath does not exist. What Ractive does is pop off `user.messages` from the context stack and tries to resolve `lastLogin` using `user.lastLogin`. Since `user.lastLogin` is a valid keypath, `lastLogin` resolves as `user.lastLogin`.
-
-1. `user.messages.lastLogin`
-2. `user.lastLogin` (resolved here)
-3. `lastLogin`
-
-
-
-## Expressions
-
-### Valid expressions
-
-These are, of course, JavaScript expressions. Almost any valid JavaScript expression can be used, with a few exceptions:
-
-* No assignment operators (i.e. `a = b`, `a += 1`, `a--` and so on)
-* No `new`, `delete`, or `void` operators
-* No function literals (i.e. anything that involves the `function` keyword)
-
-Aside from a subset of global objects (e.g. `Math`, `Array`, `parseInt`, `encodeURIComponent` - full list below), any references must be to properties (however deeply nested) of the Ractive instance's data, rather than arbitrary variables. Reference resolution follows the [normal process]().
-
-
-### Does this use `eval`?
-
-Yes and no. You've probably read that 'eval is evil', or some other such nonsense. The truth is that while it does get abused, and can theoretically introduce security risks when user input gets involved, there are some situations where it's both necessary and sensible.
-
-But repeatedly `eval`ing the same code is a performance disaster. Instead, we use the `Function` constructor, which is a form of `eval`, except that the code gets compiled once instead of every time it executes.
-
-
-### A note about efficiency
-
-Using the `Function` constructor instead of `eval` is just one way that Ractive optimises expressions. Consider a case like this:
-
-```html
-{{a}} + {{b}} = {{ a + b }}
-{{c}} + {{d}} = {{ c+d }}
-```
-
-At *parse time*, Ractive generates an [abstract syntax tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST) from these expressions, to verify that it's a valid expression and to extract any references that are used. It then 'stringifies' the AST, so that the expression can later be compiled into a function.
-
-As anyone who has seen minified JavaScript can attest, JavaScript cares not one fig what your variables are called. It also doesn't care about whitespace. So both of the expressions can be stringified the same way:
-
-```js
-"_0+_1"
-```
-
-When we *evaluate* `{{ a + b }}` or `{{ c+d }}`, we can therefore use the same function but with different arguments. Recognising this, the function only gets compiled once, after which it is cached. (The cache is shared between all Ractive instances on the page.) Further, the result of the evaluation is itself cached (until one or more of the dependencies change), so you can repeat expressions as often as you like without creating unnecessary work.
-
-All of this means that you could have an expression within a list section that was repeated 10,000 times, and the corresponding function would be created once *at most*, and only called when necessary.
-
-
-
-
-### Supported global objects
-
-* `Array`
-* `Date`
-* `JSON`
-* `Math`
-* `NaN`
-* `RegExp`
-* `decodeURI`
-* `decodeURIComponent`
-* `encodeURI`
-* `encodeURIComponent`
-* `isFinite`
-* `isNaN`
-* `null`
-* `parseFloat`
-* `parseInt`
-* `undefined`
 
 ## Conditional attributes
 
@@ -647,9 +572,7 @@ Parsing templates can be a very slow operation. As an optimization option, templ
 
 While expressions provide power and convenience when building templates, it incurs a performance penalty as Ractive sets up each one on a per-instance level. To avoid this overhead, there are several places where logic can move to, trimming down expressions into mere function calls.
 
-#### Data functions
-
-These functions can be set on the data globally via `Ractive.defaults.data`.
+Functions can be set on the data globally via `Ractive.defaults.data`.
 
 ```js
 Ractive.defaults.data.customLogic = function(){ ... }
@@ -660,8 +583,6 @@ Ractive({
   `
 })
 ```
-
-#### Component methods
 
 Functions can also be defined on a component level using methods.
 
@@ -675,3 +596,53 @@ const Component = Ractive.extend({
   }
 })
 ```
+
+### Expression processing
+
+When Ractive parses a template, it creates a string representation of the expression structure and keeps track of its dependencies. Then Ractive converts these expression strings into a function which can be called to generate the expression's value.
+
+Ractive optimizes this routine starting by generating the same expression string for structurally-identical expressions. Then a value-generating function is created for each _distinct_ expression string, cached globally and shared to all instances. Furthermore, Ractive caches the generated values and only updates them when the expression's dependencies update.
+
+```js
+// Expression parsing
+Ractive.parse('{{ a + b }}{{ c + d }}');
+
+// {
+//   "v": 4,
+//   "t": [
+//     {
+//       "t": 2,
+//       "x": {
+//         "r": ["a","b"], <-- dependencies here
+//         "s": "_0+_1"    <-- expression string here
+//       }
+//     },
+//     {
+//       "t": 2,
+//       "x": {
+//         "r": ["c","d"], <-- dependencies here
+//         "s": "_0+_1"    <-- expression string here
+//       }
+//     }
+//   ],
+//   "e": {}
+// }
+
+// Building and caching of the expression resolver of `_0+_1`
+const expressionFunctionsCache = {};
+expressionFunctionsCache['_0+_1'] = new Function('_0', '_1', 'return _0+_1');
+
+// Evaluate {{ a + b }}
+const dep = ['a', 'b'];
+const exp = '_0+_1'
+const arg = dep.map(instance.get);
+const val = expressionFunctionsCache[exp].apply(instance, arg);
+
+// Evaluate {{ c + d }}
+const dep = ['c', 'd'];
+const exp = '_0+_1'
+const arg = dep.map(instance.get);
+const val = expressionFunctionsCache[exp].apply(instance, arg);
+```
+
+The `Function` constructor was chosen over `eval` because it allows Ractive to compile the expression string _once_ as well as _cache_ the resulting function, instead of evaluating the string every time the value is needed.
