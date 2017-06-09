@@ -26,6 +26,7 @@
 <body>
   <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
   <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+  <input class="search-state" type="checkbox" name="search-state" id="search-state">
 
   <div class="main">
     <div class="main__page">
@@ -136,6 +137,7 @@
 
   <div class="nav-mobile">
     <label class="menu-toggle" for="menu-state">Menu</label>
+    <label class="search-toggle" for="search-state">Search</label>
     
   <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
 
@@ -636,13 +638,24 @@
       <li class="pure-menu-item">
         <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">Github</a>
       </li>
+      <li class="pure-menu-item">
+        <label class="pure-menu-link search-toggle" for="search-state">Search</label>
+      </li>
     </ul>
   </div>
 </div>
 
+  <div class="search-modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <label class="close-search" for="search-state" aria-role="close">&times;</label>
+    <input type="text" class="search-field" placeholder="Search..." id="mkdocs-search-query">
+    <div id="mkdocs-search-results"></div>
+  </div>
+
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script src="../../static/js/index.js"></script>
+  <script>var base_url = '../..';</script>
+  <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
 </body>
 
 </html>

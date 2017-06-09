@@ -54,7 +54,7 @@ code{
   color: white;
 }
 
-.menu-state, .toc-state{
+.menu-state, .toc-state, .search-state{
   display: none;
 }
 
@@ -68,6 +68,11 @@ code{
   box-shadow: -5px 5px 30px #777;
 }
 
+.search-state:checked ~ .search-modal{
+  top: 41px;
+  transform: translate(0, 0);
+}
+
 .nav-mobile{
   position: fixed;
   top: 0;
@@ -76,6 +81,7 @@ code{
   height: 45px;
   background-color: #fff;
   border-bottom: 1px solid #eee;
+  z-index: 20;
 }
 
 .menu-toggle{
@@ -110,6 +116,13 @@ code{
   top: 0;
 }
 
+.nav-mobile .search-toggle{
+  display: block;
+  margin: 5px auto;
+  width: 48px;
+  line-height: 35px;
+}
+
 .nav-side{
   left: auto;
   right: 0;
@@ -126,6 +139,40 @@ code{
   transition: transform 0.4s, box-shadow 0.4s;
   min-width: 12em;
   overflow-y: auto;
+}
+
+.search-modal{
+  position: fixed;
+  transform: translate(0, -100%);
+  transition: transform 0.4s;
+  box-shadow: -5px -5px 30px #777;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  overflow-y: auto;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+.close-search{
+  display: block;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  cursor: pointer;
+  transform: scale(2, 2);
+}
+
+.search-field {
+  width: 20em;
+  display: block;
+  margin: 0 auto;
+  padding: 0.2em 1em;
+  border-radius: 1em;
+  border: 1px solid #777;
 }
 
 .nav-main{
@@ -236,10 +283,14 @@ code{
   margin-left: 0.5em;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 
   div + pre > code.hljs {
     padding-top: 24px;
+  }
+
+  .search-state:checked ~ .search-modal {
+    top: 46px;
   }
 }
 
