@@ -761,11 +761,13 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Object)</code>: A handle object for controlling any observers created by the call to <code>observe</code></li>
+<li><code>(Object)</code>: A handle object for controlling any observers created by the call to <code>observe</code><ul>
 <li><code>cancel</code>: Permanently stops observers controlled by the handle.</li>
 <li><code>isSilenced</code>: Returns <code>true</code> if this handle is currently silenced.</li>
 <li><code>silence</code>: Stop calling callbacks associated with this handle. The observers are still processed by Ractive, so the old value will still be updated. This means that setting a new value on an observer while it is silenced, resuming the observer, and then setting the same value again will <em>not</em> result in the callback being fired if it would not be fired by the same sequence without silencing.</li>
 <li><code>resume</code>: Resume calling callbacks associated with this handle.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// TODO
@@ -859,11 +861,13 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
-<li><code>(Object)</code>: A handle object for controlling any listners created by the call to <code>on</code></li>
+<li><code>(Object)</code>: A handle object for controlling any listners created by the call to <code>on</code><ul>
 <li><code>cancel</code>: Permanently stops listeners controlled by the handle.</li>
 <li><code>isSilenced</code>: Returns <code>true</code> if this handle is currently silenced.</li>
 <li><code>silence</code>: Stop calling callbacks associated with this handle.</li>
 <li><code>resume</code>: Resume calling callbacks associated with this handle.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// single handler to function
