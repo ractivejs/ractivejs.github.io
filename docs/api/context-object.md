@@ -134,6 +134,25 @@ See [ractive.link()](./instance-methods.md#ractivelink).
 
 
 
+## context.listen()
+
+Subscribes an event listener either directly on the node associated with the context or as a delegate if appropriate. This is not like the [`on`](./instance-methods#ractiveon) method, but is instead basically an `addEventListener` helper that is delegation-aware.
+
+**Syntax**
+
+`context.listen( event, callback )`
+
+**Arguments**
+
+- `event (string)`: The name of the event to subscribe.
+- `callback (function)`: The callback function to be called when the event fires.
+
+**Returns**
+
+- `(Object)`: An object with a `cancel` method to [unlisten](#contextunlisten) the event.
+
+
+
 ## context.node
 
 `(Node|undefined)`
@@ -304,6 +323,21 @@ See [ractive.toggle()](./instance-methods.md#ractivetoggle).
 ## context.unlink()
 
 See [ractive.unlink()](./instance-methods.md#ractiveunlink).
+
+
+
+## context.unlisten()
+
+Unsubscribe an event listener that was subscribed with [`listen`](#contextlisten). This is basically a `removeEventListener` helper that is delegation-aware.
+
+**Syntax**
+
+`context.unlisten( event, callback )`
+
+**Arguments**
+
+- `event (string)`: The name of the event to unsubscribe.
+- `callback (function)`: The callback that was previously subscribed.
 
 
 
