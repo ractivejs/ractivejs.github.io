@@ -79,6 +79,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contextlisten">context.listen()</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextnode">context.node</a>
         </li>
       
@@ -152,6 +156,10 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextunlink">context.unlink()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contextunlisten">context.unlisten()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -259,6 +267,19 @@ Ractive.getContext('#bar').isBound(); // Returns false
 
 <h2 id="contextlink">context.link()</h2>
 <p>See <a href="../instance-methods/#ractivelink">ractive.link()</a>.</p>
+<h2 id="contextlisten">context.listen()</h2>
+<p>Subscribes an event listener either directly on the node associated with the context or as a delegate if appropriate. This is not like the <a href="../instance-methods#ractiveon"><code>on</code></a> method, but is instead basically an <code>addEventListener</code> helper that is delegation-aware.</p>
+<p><strong>Syntax</strong></p>
+<p><code>context.listen( event, callback )</code></p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>event (string)</code>: The name of the event to subscribe.</li>
+<li><code>callback (function)</code>: The callback function to be called when the event fires.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Object)</code>: An object with a <code>cancel</code> method to <a href="#contextunlisten">unlisten</a> the event.</li>
+</ul>
 <h2 id="contextnode">context.node</h2>
 <p><code>(Node|undefined)</code></p>
 <p>The node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node <code>undefined</code>.</p>
@@ -347,6 +368,15 @@ Ractive.getContext('#bar').isBound(); // Returns false
 <p>See <a href="../instance-methods/#ractivetoggle">ractive.toggle()</a>.</p>
 <h2 id="contextunlink">context.unlink()</h2>
 <p>See <a href="../instance-methods/#ractiveunlink">ractive.unlink()</a>.</p>
+<h2 id="contextunlisten">context.unlisten()</h2>
+<p>Unsubscribe an event listener that was subscribed with <a href="#contextlisten"><code>listen</code></a>. This is basically a <code>removeEventListener</code> helper that is delegation-aware.</p>
+<p><strong>Syntax</strong></p>
+<p><code>context.unlisten( event, callback )</code></p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>event (string)</code>: The name of the event to unsubscribe.</li>
+<li><code>callback (function)</code>: The callback that was previously subscribed.</li>
+</ul>
 <h2 id="contextunshift">context.unshift()</h2>
 <p>See <a href="../instance-methods/#ractiveunshift">ractive.unshift()</a>.</p>
 <h2 id="contextupdate">context.update()</h2>
@@ -655,6 +685,10 @@ Ractive.getContext('#bar').isBound(); // Returns false
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contextlisten">context.listen()</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextnode">context.node</a>
         </li>
       
@@ -728,6 +762,10 @@ Ractive.getContext('#bar').isBound(); // Returns false
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextunlink">context.unlink()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contextunlisten">context.unlisten()</a>
         </li>
       
         <li class="pure-menu-item">

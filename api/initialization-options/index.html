@@ -155,6 +155,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ondestruct">ondestruct</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ondetach">ondetach</a>
         </li>
       
@@ -737,6 +741,9 @@ ractive.unrender();
 <p><code>(Function)</code></p>
 <p>A lifecycle event that is called when an instance is constructed but before any initialization option has been processed.</p>
 <p>Accepts the instance's initialization options as argument.</p>
+<h2 id="ondestruct">ondestruct</h2>
+<p><code>(Function)</code></p>
+<p>A lifecycle event that is called when an instance is torn down and any associated transitions are complete.</p>
 <h2 id="ondetach">ondetach</h2>
 <p><code>(Function)</code></p>
 <p>A lifecycle event that is called whenever <code>ractive.detach()</code> is called.</p>
@@ -1316,6 +1323,10 @@ ractive.set( 'foo', 'fizz' );
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#onconstruct">onconstruct</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ondestruct">ondestruct</a>
         </li>
       
         <li class="pure-menu-item">
