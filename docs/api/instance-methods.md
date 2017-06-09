@@ -637,7 +637,11 @@ Observes the data at a particular keypath. Unless specified otherwise, the callb
 
 **Returns**
 
-- `(Object)`: An object with a `cancel` method, for cancelling all observers
+- `(Object)`: A handle object for controlling any observers created by the call to `observe`
+  - `cancel`: Permanently stops observers controlled by the handle.
+  - `isSilenced`: Returns `true` if this handle is currently silenced.
+  - `silence`: Stop calling callbacks associated with this handle. The observers are still processed by Ractive, so the old value will still be updated. This means that setting a new value on an observer while it is silenced, resuming the observer, and then setting the same value again will _not_ result in the callback being fired if it would not be fired by the same sequence without silencing.
+  - `resume`: Resume calling callbacks associated with this handle.
 
 **Examples**
 
@@ -759,8 +763,11 @@ Subscribe to [events](../extend/events.md).
 
 **Returns**
 
-- `(Object)` - An `Object` with a `cancel` method, which removes the handler.
-- `(Object)` - An `Object` with a `cancel` method, which removes all handlers in the passed-in `obj`.
+- `(Object)`: A handle object for controlling any listners created by the call to `on`
+  - `cancel`: Permanently stops listeners controlled by the handle.
+  - `isSilenced`: Returns `true` if this handle is currently silenced.
+  - `silence`: Stop calling callbacks associated with this handle.
+  - `resume`: Resume calling callbacks associated with this handle.
 
 **Examples**
 
