@@ -684,6 +684,14 @@ Accepts the instance's initialization options as argument.
 
 
 
+## ondestruct
+
+`(Function)`
+
+A lifecycle event that is called when an instance is torn down and any associated transitions are complete.
+
+
+
 ## ondetach
 
 `(Function)`
