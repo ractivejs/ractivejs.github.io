@@ -21,6 +21,10 @@ extra:
   favicon: /static/img/favicon.ico
   theme_color: "#729D34"
 
+markdown_extensions:
+    - toc:
+        anchorlink: true
+
 pages:
   - Ractive.js: index.md
   - Get Started:
