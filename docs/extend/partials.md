@@ -28,8 +28,6 @@ Ractive.partials.myPartial = MyPartial;
 </script>
 ```
 
-`text/html` is another good choice for `type` because many editors will highlight the content of the tag as HTML. Anything other than `text/javascript`, `application/javascript`, or no `type` at all will do.
-
 ### Per component, via the component's `partials` initialization property.
 
 ```js
@@ -46,10 +44,7 @@ const ractive = new Ractive({
 });
 ```
 
-### Inline, using the `{{#partial}}` mustache.
-
-Availability depends on whoever uses the template containing the inline partial, whether it's a component, an instance or another partial. Inline partials are scoped to the nearest tag, be it component or element, and are available to any child of that element.
-
+### In-template, using the `{{#partial}}` mustache.
 
 ```
 {{#partial myPartial}}
@@ -59,12 +54,12 @@ Availability depends on whoever uses the template containing the inline partial,
 
 ## Using
 
-Partials can be used using the `{{>partialName}}` syntax. Partials work where any template would work. It works as if the partial template is manually put into where the partial mustache is positioned.
+Partials can be used using `{{>partialName}}`. Partials work where any template would work and takes on its surrounding context.
 
 ```html
 {{#partial myPartial}}
   <div class="message">{{message}}</div>
-{{/}}
+{{/partial}}
 
 <div class="app">
   {{>myPartial}}
@@ -77,50 +72,42 @@ Partials may be named with the same rules as any other identifier in Ractive or 
 
 Partial names may also contain `-` and `/` characters as long as they are surrounded by other valid characters e.g. `templates/some-partial-template`.
 
-### Partial context
+### Context
 
-By default, a partial's context is the context of wherever it is positioned.
+Partials be given an explicit context. Simply supply a reference to the context following the partial name on usage.
 
-In the following example, the context of the partial is the current item in the list.
+```js
+Ractive({
+  data: {
+    foo:{
+      bar: 'Hello, World!'
+    }
+  },
+  template: `
+    {{#partial myPartial}}{{bar}}{{/partial}}
 
-```html
-{{#partial myPartial}}
-  {{this}}
-{{/}}
-
-{{# list }}
-  {{>myPartial}}
-{{/}}
-
+    {{>myPartial foo}}
+  `
+})
 ```
 
-However, partials may be given explicit context using the `{{>[name expression] [context expression]}}` syntax. It's similar to wrapping the partial with a `{{#with}}` mustache. Ancestor references, members, object literals, and any other expressions that resolve to an object may be used as a context expression.
+### Aliases
 
-In the following example, context of the partial is the current item's `foo.bar` value.
+References can also be aliased in partials. Simply define aliases as `reference as alias` pairs following the partial name on usage.
 
-```html
-{{#partial myPartial}}
-  {{this}}
-{{/}}
+```js
+Ractive({
+  data: {
+    foo:{
+      bar: 'Hello, World!'
+    }
+  },
+  template: `
+    {{#partial myPartial}}{{msg}}{{/partial}}
 
-{{# list }}
-  {{>myPartial .foo.bar}}
-{{/}}
-```
-
-Explicit contexts can also be aliased. In the case of plain refereces, it can be used for two-way binding.
-
-In the following example, the current item's `foo.bar` path is aliased with `item`. In the partial, `.label` refers to the current item's `label` property. However, `item` is essentially the current item's `{{.foo.bar.item}}`. The `item` binds two-way and updates the current item's `.foo.bar`.
-
-```html
-{{#partial myPartial}}
-  <label>{{.label}}</label>
-  <input type="text" value="{{item}}">
-{{/}}
-
-{{# list }}
-  {{>myPartial .foo.bar as item}}
-{{/}}
+    {{>myPartial foo.bar as msg}}
+  `
+})
 ```
 
 ### Recursive partials
