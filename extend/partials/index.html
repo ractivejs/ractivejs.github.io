@@ -85,7 +85,6 @@
 &lt;/script&gt;
 </code></pre>
 
-<p><code>text/html</code> is another good choice for <code>type</code> because many editors will highlight the content of the tag as HTML. Anything other than <code>text/javascript</code>, <code>application/javascript</code>, or no <code>type</code> at all will do.</p>
 <h3 id="per-component-via-the-components-partials-initialization-property">Per component, via the component's <code>partials</code> initialization property.</h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   partials: { myPartial }
@@ -98,18 +97,17 @@
 });
 </code></pre>
 
-<h3 id="inline-using-the-partial-mustache">Inline, using the <code>{{#partial}}</code> mustache.</h3>
-<p>Availability depends on whoever uses the template containing the inline partial, whether it's a component, an instance or another partial. Inline partials are scoped to the nearest tag, be it component or element, and are available to any child of that element.</p>
+<h3 id="in-template-using-the-partial-mustache">In-template, using the <code>{{#partial}}</code> mustache.</h3>
 <pre><code>{{#partial myPartial}}
   ...
 {{/}}
 </code></pre>
 
 <h2 id="using">Using</h2>
-<p>Partials can be used using the <code>{{&gt;partialName}}</code> syntax. Partials work where any template would work. It works as if the partial template is manually put into where the partial mustache is positioned.</p>
+<p>Partials can be used using <code>{{&gt;partialName}}</code>. Partials work where any template would work and takes on its surrounding context.</p>
 <pre><code class="html">{{#partial myPartial}}
   &lt;div class=&quot;message&quot;&gt;{{message}}&lt;/div&gt;
-{{/}}
+{{/partial}}
 
 &lt;div class=&quot;app&quot;&gt;
   {{&gt;myPartial}}
@@ -119,40 +117,36 @@
 <h3 id="valid-names">Valid names</h3>
 <p>Partials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.</p>
 <p>Partial names may also contain <code>-</code> and <code>/</code> characters as long as they are surrounded by other valid characters e.g. <code>templates/some-partial-template</code>.</p>
-<h3 id="partial-context">Partial context</h3>
-<p>By default, a partial's context is the context of wherever it is positioned.</p>
-<p>In the following example, the context of the partial is the current item in the list.</p>
-<pre><code class="html">{{#partial myPartial}}
-  {{this}}
-{{/}}
+<h3 id="context">Context</h3>
+<p>Partials be given an explicit context. Simply supply a reference to the context following the partial name on usage.</p>
+<pre><code class="js">Ractive({
+  data: {
+    foo:{
+      bar: 'Hello, World!'
+    }
+  },
+  template: `
+    {{#partial myPartial}}{{bar}}{{/partial}}
 
-{{# list }}
-  {{&gt;myPartial}}
-{{/}}
-
+    {{&gt;myPartial foo}}
+  `
+})
 </code></pre>
 
-<p>However, partials may be given explicit context using the <code>{{&gt;[name expression] [context expression]}}</code> syntax. It's similar to wrapping the partial with a <code>{{#with}}</code> mustache. Ancestor references, members, object literals, and any other expressions that resolve to an object may be used as a context expression.</p>
-<p>In the following example, context of the partial is the current item's <code>foo.bar</code> value.</p>
-<pre><code class="html">{{#partial myPartial}}
-  {{this}}
-{{/}}
+<h3 id="aliases">Aliases</h3>
+<p>References can also be aliased in partials. Simply define aliases as <code>reference as alias</code> pairs following the partial name on usage.</p>
+<pre><code class="js">Ractive({
+  data: {
+    foo:{
+      bar: 'Hello, World!'
+    }
+  },
+  template: `
+    {{#partial myPartial}}{{msg}}{{/partial}}
 
-{{# list }}
-  {{&gt;myPartial .foo.bar}}
-{{/}}
-</code></pre>
-
-<p>Explicit contexts can also be aliased. In the case of plain refereces, it can be used for two-way binding.</p>
-<p>In the following example, the current item's <code>foo.bar</code> path is aliased with <code>item</code>. In the partial, <code>.label</code> refers to the current item's <code>label</code> property. However, <code>item</code> is essentially the current item's <code>{{.foo.bar.item}}</code>. The <code>item</code> binds two-way and updates the current item's <code>.foo.bar</code>.</p>
-<pre><code class="html">{{#partial myPartial}}
-  &lt;label&gt;{{.label}}&lt;/label&gt;
-  &lt;input type=&quot;text&quot; value=&quot;{{item}}&quot;&gt;
-{{/}}
-
-{{# list }}
-  {{&gt;myPartial .foo.bar as item}}
-{{/}}
+    {{&gt;myPartial foo.bar as msg}}
+  `
+})
 </code></pre>
 
 <h3 id="recursive-partials">Recursive partials</h3>
