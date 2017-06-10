@@ -66,44 +66,44 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="partials">Partials</h1>
+          <h1 id="partials"><a class="toclink" href="#partials">Partials</a></h1>
 <p>A partial is a template snippet which can be reused in templates or in other partials. They help to keep templates uncluttered, non-repetetive and easy to read.</p>
-<h2 id="writing">Writing</h2>
+<h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
 <pre><code class="js">const myPartial = '&lt;!-- template --&gt;';
 </code></pre>
 
 <p>Partials are simply Ractive templates.</p>
-<h2 id="registering">Registering</h2>
+<h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
 <p>Unlike other plugins, partials have more than 3 registration options.</p>
-<h3 id="globally-via-the-ractivepartials-static-property">Globally via the <code>Ractive.partials</code> static property.</h3>
+<h3 id="globally-via-the-ractivepartials-static-property"><a class="toclink" href="#globally-via-the-ractivepartials-static-property">Globally via the <code>Ractive.partials</code> static property.</a></h3>
 <pre><code class="js">Ractive.partials.myPartial = MyPartial;
 </code></pre>
 
-<h3 id="globally-via-a-non-executing-script-tag-on-the-current-page">Globally, via a non-executing script tag on the current page.</h3>
+<h3 id="globally-via-a-non-executing-script-tag-on-the-current-page"><a class="toclink" href="#globally-via-a-non-executing-script-tag-on-the-current-page">Globally, via a non-executing script tag on the current page.</a></h3>
 <pre><code class="html">&lt;script type=&quot;ractive/template&quot; id=&quot;myPartial&quot;&gt;
   ...
 &lt;/script&gt;
 </code></pre>
 
-<h3 id="per-component-via-the-components-partials-initialization-property">Per component, via the component's <code>partials</code> initialization property.</h3>
+<h3 id="per-component-via-the-components-partials-initialization-property"><a class="toclink" href="#per-component-via-the-components-partials-initialization-property">Per component, via the component's <code>partials</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   partials: { myPartial }
 });
 </code></pre>
 
-<h3 id="per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's <code>partials</code> initialization property.</h3>
+<h3 id="per-instance-via-the-instances-partials-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's <code>partials</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = new Ractive({
   partials: { myPartial }
 });
 </code></pre>
 
-<h3 id="in-template-using-the-partial-mustache">In-template, using the <code>{{#partial}}</code> mustache.</h3>
+<h3 id="in-template-using-the-partial-mustache"><a class="toclink" href="#in-template-using-the-partial-mustache">In-template, using the <code>{{#partial}}</code> mustache.</a></h3>
 <pre><code>{{#partial myPartial}}
   ...
 {{/}}
 </code></pre>
 
-<h2 id="using">Using</h2>
+<h2 id="using"><a class="toclink" href="#using">Using</a></h2>
 <p>Partials can be used using <code>{{&gt;partialName}}</code>. Partials work where any template would work and takes on its surrounding context.</p>
 <pre><code class="html">{{#partial myPartial}}
   &lt;div class=&quot;message&quot;&gt;{{message}}&lt;/div&gt;
@@ -114,10 +114,10 @@
 &lt;/div&gt;
 </code></pre>
 
-<h3 id="valid-names">Valid names</h3>
+<h3 id="valid-names"><a class="toclink" href="#valid-names">Valid names</a></h3>
 <p>Partials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.</p>
 <p>Partial names may also contain <code>-</code> and <code>/</code> characters as long as they are surrounded by other valid characters e.g. <code>templates/some-partial-template</code>.</p>
-<h3 id="context">Context</h3>
+<h3 id="context"><a class="toclink" href="#context">Context</a></h3>
 <p>Partials be given an explicit context. Simply supply a reference to the context following the partial name on usage.</p>
 <pre><code class="js">Ractive({
   data: {
@@ -133,7 +133,7 @@
 })
 </code></pre>
 
-<h3 id="aliases">Aliases</h3>
+<h3 id="aliases"><a class="toclink" href="#aliases">Aliases</a></h3>
 <p>References can also be aliased in partials. Simply define aliases as comma-separated <code>reference as alias</code> pairs following the partial name on usage.</p>
 <pre><code class="js">Ractive({
   data: {
@@ -150,7 +150,7 @@
 })
 </code></pre>
 
-<h3 id="recursive-partials">Recursive partials</h3>
+<h3 id="recursive-partials"><a class="toclink" href="#recursive-partials">Recursive partials</a></h3>
 <p>Partials can be used recursively. A common use case for this is when reusing partials on a tree-like structure, like a directory listing.</p>
 <pre><code class="html">&lt;div class='fileSystem'&gt;
   {{#root}}
@@ -201,7 +201,7 @@
 
 <p>In the example above, subfolders use the <code>{{&gt;folder}}</code> partial, which uses the <code>{{&gt;file}}</code> partial for each file, and if any of those files are folders, the <code>{{&gt;folder}}</code> partial will be invoked again, and so on until there are no more files.</p>
 <p>Beware of cyclical data structures! Ractive makes no attempt to detect cyclicality, and will happily continue rendering partials until the <a href="http://en.wikipedia.org/wiki/Big_Crunch">Big Crunch</a> (or your browser exceeds its maximum call stack size. Whichever is sooner).</p>
-<h3 id="injecting-partials">Injecting partials</h3>
+<h3 id="injecting-partials"><a class="toclink" href="#injecting-partials">Injecting partials</a></h3>
 <p>One good use of partials is to vary the shape of a template according to some condition, the same way you might use <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a> elsewhere in your code.</p>
 <p>For example, you might offer a different view to mobile users:</p>
 <pre><code class="html">&lt;div class='main'&gt;
@@ -273,7 +273,7 @@ helloModal.on( 'close', function () {
 });
 </code></pre>
 
-<h3 id="partial-expressions">Partial expressions</h3>
+<h3 id="partial-expressions"><a class="toclink" href="#partial-expressions">Partial expressions</a></h3>
 <p>Expressions can also be used to reference a partial instead of fixed partial names. Ractive will evaluate the expression and use its return value to select a partial. This is useful when you want the data to indicate what type of partial it should render with.</p>
 <p>In the following example, <code>organisms</code> contains a list of organisms whose <code>type</code> can either be <code>person</code> or <code>animal</code>. Partials for each type is defined and the list uses the <code>type</code> of each item to determine which partial to use.</p>
 <pre><code class="html">{{#partial person}}Hi! I am {{.name}} and I have {{.fingerCount}} fingers!{{/}}
@@ -335,7 +335,7 @@ helloModal.on( 'close', function () {
 });
 </code></pre>
 
-<h3 id="updating-partials">Updating Partials</h3>
+<h3 id="updating-partials"><a class="toclink" href="#updating-partials">Updating Partials</a></h3>
 <p>Partials may be reset after they are rendered using <a href="../../api/instance-methods/#ractiveresetpartial"><code>ractive.resetPartial()</code></a>. A reset partial will update everywhere it is referenced, so if it is used multiple times or inherited by a component, those instances will be updated as well. If a component has a partial with the same name as a parent partial, partial resets will not affect it since it is a different partial.</p>
 <p>It should be noted that partials evaluate lazily, so it is possible to cause a single partial to update by wrapping it in a conditional section and causing the section to be hidden and re-shown.</p>
 <pre><code class="html">{{^toggle}}{{&gt;rickroll}}{{/}}
@@ -346,7 +346,7 @@ ractive.set('toggle', true);
 ractive.set('toggle', false);
 </code></pre>
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <p>Here's an example of a gallery using a partial for its thumbnail information:</p>
 <pre><code class="html">&lt;!-- The partial called &quot;thumbnail&quot; --&gt;
 &lt;figure class='thumbnail'&gt;

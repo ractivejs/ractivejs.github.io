@@ -70,15 +70,15 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="event-management">Event Management</h1>
+          <h1 id="event-management"><a class="toclink" href="#event-management">Event Management</a></h1>
 <p>Like many other libraries, Ractive implements its own <a href="https://en.wikipedia.org/wiki/Publish–subscribe_pattern">publish/subscribe</a> mechanism for triggering and responding to particular events. One of the advantages of using Ractive-managed events is that events are automatically unsubscribed and unreferenced once the instance is torn down, avoiding the need to do manual housekeeping.</p>
-<h2 id="sources">Sources</h2>
-<h3 id="event-api">Event API</h3>
+<h2 id="sources"><a class="toclink" href="#sources">Sources</a></h2>
+<h3 id="event-api"><a class="toclink" href="#event-api">Event API</a></h3>
 <p>Events that are published as a result of using the event APIs directly (i.e. <a href="../../api/instance-methods/#ractivefire"><code>ractive.fire</code></a>). Most of the other event sources use the event APIs to publish events at some point in their operation.</p>
 <pre><code class="js">instance.fire('someevent', 'Hello, World!')
 </code></pre>
 
-<h3 id="lifecycle-events">Lifecycle events</h3>
+<h3 id="lifecycle-events"><a class="toclink" href="#lifecycle-events">Lifecycle events</a></h3>
 <p>Lifecycle events are events that are published by an instance during the different phases of its existence. Ractive instances publish the following lifecycle events:</p>
 <ul>
 <li><a href="../../api/initialization-options/#onconstruct"><code>construct</code></a></li>
@@ -94,30 +94,30 @@
 <li><a href="../../api/initialization-options/#ondestruct"><code>destruct</code></a></li>
 </ul>
 <p>Lifecycle event names are reserved. They should not be used as names of other events.</p>
-<h3 id="dom-events">DOM events</h3>
+<h3 id="dom-events"><a class="toclink" href="#dom-events">DOM events</a></h3>
 <p>DOM events are events that are published by the DOM.</p>
 <pre><code class="html">&lt;button on-click=&quot;...&quot;&gt;
 </code></pre>
 
-<h3 id="custom-events">Custom events</h3>
+<h3 id="custom-events"><a class="toclink" href="#custom-events">Custom events</a></h3>
 <p>Custom events are events that are published by <a href="../../extend/events/">event plugins</a>.</p>
 <pre><code class="html">&lt;img on-tap=&quot;...&quot;&gt;
 </code></pre>
 
-<h3 id="component-events">Component events</h3>
+<h3 id="component-events"><a class="toclink" href="#component-events">Component events</a></h3>
 <p>Component events are events that are published by <a href="../../extend/components/">components</a>.</p>
 <pre><code class="html">&lt;MyModal on-close=&quot;...&quot; /&gt;
 </code></pre>
 
-<h2 id="handling">Handling</h2>
-<h3 id="event-api_1">Event API</h3>
+<h2 id="handling"><a class="toclink" href="#handling">Handling</a></h2>
+<h3 id="event-api_1"><a class="toclink" href="#event-api_1">Event API</a></h3>
 <p>Events published from the direct use of the event APIs are also handled by directly using the event APIs (i.e. <a href="../../api/instance-methods/#ractiveon"><code>ractive.on</code></a>, <a href="../../api/instance-methods/#ractiveonce"><code>ractive.once</code></a>). Most of the other handling methods use the event APIs to handle events at some point in their operation.</p>
 <pre><code class="js">instance.on('someevent', (event, message) =&gt; {
   console.log(message)
 })
 </code></pre>
 
-<h3 id="lifecycle-events_1">Lifecycle events</h3>
+<h3 id="lifecycle-events_1"><a class="toclink" href="#lifecycle-events_1">Lifecycle events</a></h3>
 <p>Lifecycle events are handled by assigning a function to the appropriate lifecycle event initialization option.</p>
 <pre><code class="js">Ractive({
   onrender(){
@@ -127,7 +127,7 @@
 </code></pre>
 
 <p>The event APIs can also subscribe to lifecycle events. However, the handler must subscribe prior to the event publishing. Using the lifecycle event initialization options is the safer option to ensure the correct timing of subscriptions.</p>
-<h3 id="proxy-syntax">Proxy syntax</h3>
+<h3 id="proxy-syntax"><a class="toclink" href="#proxy-syntax">Proxy syntax</a></h3>
 <p>Ractive instances do not immediately subscribe to template-based events (DOM events, component events, custom events). The proxy syntax "proxies" template-based events into events that the current instance can subscribe to. From there, the events are handled by event APIs. Arguments are not supported in this syntax.</p>
 <pre><code class="js">Ractive({
   template: `
@@ -141,7 +141,7 @@
 })
 </code></pre>
 
-<h3 id="expression-syntax">Expression syntax</h3>
+<h3 id="expression-syntax"><a class="toclink" href="#expression-syntax">Expression syntax</a></h3>
 <p>A more powerful form of template-based event handling is the expression syntax, which allows the use of expressions as their values. This form acts very similar to inline scripts plus some useful additions. The expression syntax also has full, unmustached access to data and <a href="../../api/references/#special-references">special references</a>.</p>
 <p>The first form is a special form of the proxy syntax. It accepts an array whose first item is the event name, and the rest are its arguments.</p>
 <pre><code class="js">Ractive({
@@ -176,7 +176,7 @@
 })
 </code></pre>
 
-<h2 id="event-context">Event context</h2>
+<h2 id="event-context"><a class="toclink" href="#event-context">Event context</a></h2>
 <p>Event handlers, regardless of event source, receive an <code>event</code> object as first argument. The <code>event</code> object is a special instance of a <a href="../../api/context-object/">context object</a> augmented with additional event-related properties where applicable.</p>
 <ul>
 <li><code>name</code> - The name of the published event.</li>
@@ -197,7 +197,7 @@
 })
 </code></pre>
 
-<h2 id="namespacing">Namespacing</h2>
+<h2 id="namespacing"><a class="toclink" href="#namespacing">Namespacing</a></h2>
 <p>Pattern-matching is supported on any type of event, allowing a form of event namespacing. This is done by using a keypath-like event name and using wildcards (<code>*</code>) on segments during subscription.</p>
 <pre><code class="js">Ractive({
   el: 'body',
@@ -222,8 +222,8 @@
 </code></pre>
 
 <p>Be aware that handlers subscribing to just <code>*</code> will fire for <em>all</em> events.</p>
-<h2 id="propagation">Propagation</h2>
-<h3 id="dom-event-propagation">DOM event propagation</h3>
+<h2 id="propagation"><a class="toclink" href="#propagation">Propagation</a></h2>
+<h3 id="dom-event-propagation"><a class="toclink" href="#dom-event-propagation">DOM event propagation</a></h3>
 <p>Native DOM event propagation is preserved, allowing things such as delegation.</p>
 <pre><code class="js">Ractive({
   template: `
@@ -239,7 +239,7 @@
 })
 </code></pre>
 
-<h3 id="component-propagation">Component propagation</h3>
+<h3 id="component-propagation"><a class="toclink" href="#component-propagation">Component propagation</a></h3>
 <p>Propagation across component boundaries is also supported. Propagating events are namespaced using the publishing component's name as prefix. This applies to component, proxy, and even lifecycle events.</p>
 <pre><code class="js">const ChildComponent = Ractive.extend({
   template: '&lt;div&gt;&lt;/div&gt;',
@@ -263,7 +263,7 @@ instance.on('ChildComponent.childevent', function(){
 })
 </code></pre>
 
-<h3 id="stopping-propagation">Stopping propagation</h3>
+<h3 id="stopping-propagation"><a class="toclink" href="#stopping-propagation">Stopping propagation</a></h3>
 <p>Propagation can be stopped by simply returning <code>false</code> from an event handler. If the event is a DOM event, <code>event.stopPropagation()</code> and <code>event.preventDefault()</code> are automatically called.</p>
 <pre><code class="js">Ractive({
   template: `

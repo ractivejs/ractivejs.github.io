@@ -120,9 +120,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="keypath-prefixes">Keypath prefixes</h1>
+          <h1 id="keypath-prefixes"><a class="toclink" href="#keypath-prefixes">Keypath prefixes</a></h1>
 <p>Normally, keypaths are resolved following a <a href="../../concepts/templates/#references">defined routine</a>. But there are times where you want to skip the normal resolution routine and resolve a keypath relative to a specific data context. Keypath prefixes allow you to specify which data context a keypath resolves to, regardless if it resolves to something or not.</p>
-<h2 id="current-context">Current context</h2>
+<h2 id="current-context"><a class="toclink" href="#current-context">Current context</a></h2>
 <p>Resolves the keypath relative to the current data context.</p>
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWuAA4CBTbjwDKABQDyegHJiJigLbSYFAB5zTbBjLRMymrWYpkwPe4oD0fiwAKmAIMAgsFLgsTAJKquq+GKbYpmQIZsoc0gjcAAa+ADxI1AB8egCuZLgUSBFeERZkVtZYLMICFSxgRDQswMDxaqwYGIV+JVSlvgMAxCxNLSyjvmzFZQCSTDV1LA0LljZtHV1eFEwA1u2d3b0RA0PqyxgAdOOT0wqKLOtTWyzhIgcTzCNoNcKRaKxfqDF5+FTDZ7vMozYB+FYKApMDAASgA3CAcGR4JggA"></div>
 
@@ -149,7 +149,7 @@
 // In reality, there is no
 </code></pre>
 
-<h2 id="parent-keypath">Parent keypath</h2>
+<h2 id="parent-keypath"><a class="toclink" href="#parent-keypath">Parent keypath</a></h2>
 <p>Resolves the keypath relative to the parent data. This prefix can be used more than once to reference ancestors.</p>
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWFJNx4wERDhTKjxCyeqIBbORMUNKK3kkNGAjGLNsLNjSZbzFLCxeWrXxgBMjvreZC62pqE+4Zb+tgDMIV4xGE5haaGZbNhmZAhGAA4c0gjcAAbpADxI1AB8AJoCAK4sROpKrMDASkgsGBhVAPS1VHXp3QDELAFG-dlhFjX1Ta3tCJ0ePcrzw6PjTBZeUzO28+kxy2OrbR0UXdt9A3v16cfA07Pn0bFL+zfrTbdXq7EavH4xC6-MhXOoAUVwJCIhXuKAAdBiXmMoZd-i1bht7lsWBihjtnmDsRDYrCAXcHiS0UNSeTBpSDilobT8YCicDSQKmaysRzzLFukMBlCJVKFBYZQtKkwMABKADcIBwZHgmCAA"></div>
 
@@ -196,7 +196,7 @@
 // You are in reality
 </code></pre>
 
-<h2 id="parent-context">Parent context</h2>
+<h2 id="parent-context"><a class="toclink" href="#parent-context">Parent context</a></h2>
 <p>While parent keypaths and parent contexts are often the same thing, there are some scenarios in which they are very, very different. For instance, in this horribly contrived example:</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATOmEwDm1pkzA5ACMA9gBMAnvwxNWowuz6MWrZmGEBbaoMLZqimStaDE5ZKPLxOARkXN4hTX34B5AA7UY88sPjZ+zNANWTCDmbV1sPgBtUNYlQ0NjU3NLG2ZgOwc9AQBZamxsZgAJQlR-QOVDEMqVeISjEzMLa1t7R1zqc2JS5gAVanhSctiA0IBdA2rWUmp1V2R5bIADUOBgAGJqEjAwnXy0Cvq19YB3clIdgD8AejVNcOoDkdYAHnNKAD4L6lUNH4ewigUtZmORCmsAHRJJqpCFtR5oF7Xd4fZ7MN5UL5gH7ERAwGADUigmaeCg+Xa6QHJZpWUHg4AAPQZ1yhjWBVjhWQOSJRIzW1zOFyeNX5W2IYGFrBW8DQAEoANwgNBAA"></div>
 
@@ -231,7 +231,7 @@
 // the current iteration base building1 is Medical Tent
 </code></pre>
 
-<h2 id="instance-root-context">Instance root context</h2>
+<h2 id="instance-root-context"><a class="toclink" href="#instance-root-context">Instance root context</a></h2>
 <p>Resolves the keypath relative to the instance's root data context.</p>
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6AdgAQsIA2kLA5AEYB7JAE8eWZmyREyRbo1ZsWMAQIC23HgEYxExQAcBMGVxbzFLBmWVqNAJh0K2lg0aImziy5evreAZgdzLzIXYzldJzJgnw0AFkDPKLIMCItk1JSFbF0yBFU9DmkEbgADVOBgAGIWULcWDEzLcwrq2o56zPNmqprDYw7U4K9HNOCAHiRqAD4AUSZcmAomFAA6NbGAekmqKcGkywnpgE0BAFcWIhgEFiWlFVVTYBYAPw2fDs3t3ZGhskOdk7nS7XW7vCovDZtFbvBqfaZ7cZfQEXK43Vhgp6vKFQmEYOE7BFJf5TZHAtF3NSPCHYvpuFY4+4fLbwn5JCobBp7dmchSWbmdFhlJgYACUAG4QDgyPBMEA"></div>
 
@@ -271,9 +271,9 @@
 // You are in room 4
 </code></pre>
 
-<h1 id="special-references">Special references</h1>
+<h1 id="special-references"><a class="toclink" href="#special-references">Special references</a></h1>
 <p>Special references are template keywords that act like data references but do not actually exist in your data. These references provide metadata regarding the current instance, context, environment, operation and more.</p>
-<h2 id="this"><code>this</code></h2>
+<h2 id="this"><a class="toclink" href="#this"><code>this</code></a></h2>
 <p>The current data context.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3Y9ZbFkna1s7ajJ4ADNxUP8Iu0kVQkJZIRUnZwAJB2RxagB1cRhkDwBCXwTEqNj48MSklLSMrIAVMBVqAEdEMmIBalcYcQB3W1iADyqGxtq46jDGxuTU9MyXACtESQ5qcVUYamxO6mRZAC8vag9xIRnlmpiFpcfE1ZaN5w6gwmpZVDUWLIASEZzVR5oCGJKGzOywmEJTAJbAqXbnVFOAAGEPwHmU6hG4mwoWA1AAUgBlADyADkRIRsOR4EIyNEvBYTmRCABKahoNBafFKdQQ4DAADEkWe-IRjTxBPm1AAjKSKTT6Yzmaz2ZywNy+QKhQToYtJdLYrLTXYFSKlQAmNVUukMplRHUcrm82XGkXWs1SpUC-024XqJUAZidGtd2rZnv13qNXDDIYDFoKwbhj1t4ZlABZoy6te743qDT6Uybs4lxVws286w3Gk25XZWwksX54GgeQBuEBoIA"></div>
 
@@ -317,7 +317,7 @@
 // info 5: {&quot;message&quot;:&quot;Thats all folks&quot;}
 </code></pre>
 
-<h2 id="this_1"><code>@this</code></h2>
+<h2 id="this_1"><a class="toclink" href="#this_1"><code>@this</code></a></h2>
 <p>The current Ractive instance.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3jVqK5JGoByAEbiAJgE9nGG3Y9ZbFkna1tqJmwJPmwnAEZ-akxE7BVJCmQglScAA0TI-A9ldQBhcRjQ4Gpo+Bo0NC0ipXV87HxXRDZxW2wvChVmEA6u+BZqboBaYmQyYgFBgAFsMDJCEVkPDwtnGuxnAEoNAEl4UjSVWq1h7G6W8Lt2zpuevoGWa+6xyenZ+ZYllZrSReACyKmWngshxA6gAMuIhNVypcuB94Hc7Dk-OFgWCIVt9mE7JEJPBCOJkCoRMgERYcsREDAYBcaLtqKtqAASYDLVYiITg7a7A5oHL7ADciTQNjQEpAaCAA"></div>
 
@@ -337,7 +337,7 @@
 });
 </code></pre>
 
-<h2 id="index"><code>@index</code></h2>
+<h2 id="index"><a class="toclink" href="#index"><code>@index</code></a></h2>
 <p>The current iteration index of the containing repeated section.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATPXKTMDkARgPYATAJ5cMTVgMKlCnRi1bNE2ajGycA2uIUNSwZvEIBbap158eXZpi2sdeg8dOFk5YtUvX5t3fqMnu1DQeYl7MALpanqyk1IYADshS-gAGNszAwADE1CRgisqqaGhMOgrMADwCVAB8AKoFzJkZzAAC5PAC1AAeVmjM2IRCaswAEuQAhMwAklyG6fZ+vePlAPRVlNVadsArOcRgRVqp8GgAlADcIFikeOXYxDDkcaT9MMQAvAzgpKRxaisrRDwOIAawA5gA6Yh8QwrGAkCg0L7VVb3R7PaogNBAA"></div>
 
@@ -386,7 +386,7 @@
 // User #2 says: Hi! I am eve!
 </code></pre>
 
-<h2 id="key"><code>@key</code></h2>
+<h2 id="key"><a class="toclink" href="#key"><code>@key</code></a></h2>
 <p>The current key name of the containing object iteration section.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATPXKTMDkARgPYATAJ5cMTVgMKlCnRi1bNE2ajGyzxChqX49OXABLkAhMwCSzQgFtmOo6I2sthZOWLU9hk+asWXbu2LyjqTUNB7GZhbWodR2DsxoGpgaIZYADshS7swABvHAwADE1CRgisqqaInwWgrMADwCVAB8AKoVzAXMAAIA1tRCCWjM2IRCap3AzKRg5NhD9QD0TZTNGloFiyXEYFUaefBoAJQA3CBYpHj12MQw5GmkIzDEALwM4KSkaWqLi4jwaV6AHMAHTEPiWRYwEgUGjvZpLG53B7NEBoIA"></div>
 
@@ -435,7 +435,7 @@
 // User #2 says: Hi! I'm eve!
 </code></pre>
 
-<h2 id="keypath"><code>@keypath</code></h2>
+<h2 id="keypath"><a class="toclink" href="#keypath"><code>@keypath</code></a></h2>
 <p>The keypath to the current data context relative to the instance's root data context.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3hNsK5JGoByAEbiAJgE9nGG3Y9ZbFkna1tsOwAzcXFQ-wiE11kYOPC7dOwkgC9UjLzsSRVCQlkhFSdnMAdkcWoAd3EYZA9nePy0NoSOtOxuu0x4+0kKZCDy6gADTvwPZXUAaRUvCiCwUOBqAAEBJZXsMGo0NC1ZpXVO4GAAYmpo2qPOuxm5xeXV9a2dt-3D465T849OyXG5JGC-R4JZ5nV57NbUS6fXarX4nOaQ4HXajZCFAhJPAGw94IjbbZE-I5os4Y7CXLgPPF0hkZJl9bBTeBoACUAG4QGggA"></div>
 
@@ -516,7 +516,7 @@ Ractive({
 // Keypath: info
 </code></pre>
 
-<h2 id="rootpath"><code>@rootpath</code></h2>
+<h2 id="rootpath"><a class="toclink" href="#rootpath"><code>@rootpath</code></a></h2>
 <p>The keypath to the current data context relative to the originating instance's root data context.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3hNsK5JGoByAEbiAJgE9nGG3Y9ZbFkna1tsOwAzcXFQ-wiE11kYOPC7dOwkgC9UjLzsSRVCQlkhFSdnMAdkcWoAd3EYZA9nePy0NoSOtOxuu0x4+0kKZCDy6gADTvwPZXUAaRUvCiCwUOBqAAEYGPZV6jQ0LVmldU7gYABiamjaw867GbnF5dX1rZ3xPewwA6OuE5nHp2C7XJIwP4PBJPU4vFY-d7bXbw36HY5zKEgq7UbKQ4EJR6AuFvagXD7I-ZogEY-FYrj3fEXel9BJMhl2KbwNAASgA3CA0EA"></div>
 
@@ -597,7 +597,7 @@ Ractive({
 // Keypath: mail.inbox.messages.1
 </code></pre>
 
-<h2 id="global"><code>@global</code></h2>
+<h2 id="global"><a class="toclink" href="#global"><code>@global</code></a></h2>
 <p>The global object of the current environment. For browsers, it references the <code>window</code> object. For Node.js, it references the <code>global</code> object.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwB3MvAAm44yMkrChWUJXUG1AOQAJFanHUA6uIwyOYAhG5M8BEASvKKqgAUwBFM2N6Q7gBG4uYAnm4YyWwqkhTIsqnpAAaFKcDA1AACQsjiGbLINnYOTtRoaIXV8GgAlADcIGhAA"></div>
 
@@ -650,15 +650,15 @@ Ractive({
 });
 </code></pre>
 
-<h2 id="shared"><code>@shared</code></h2>
+<h2 id="shared"><a class="toclink" href="#shared"><code>@shared</code></a></h2>
 <p><code>@shared</code> is a Ractive-global model similar to <code>@global</code> but not subject to interference from outside of Ractive.</p>
-<h2 id="context"><code>@context</code></h2>
+<h2 id="context"><a class="toclink" href="#context"><code>@context</code></a></h2>
 <p>The <a href="../context-object/">context object</a> associated with the current context.</p>
-<h2 id="event"><code>@event</code></h2>
+<h2 id="event"><a class="toclink" href="#event"><code>@event</code></a></h2>
 <p>The DOM event that is triggering an event directive. This reference is only available to event directive expressions.</p>
-<h2 id="node"><code>@node</code></h2>
+<h2 id="node"><a class="toclink" href="#node"><code>@node</code></a></h2>
 <p>The DOM node associated with an event directive. This reference is only available to event directive expressions.</p>
-<h2 id="local"><code>@local</code></h2>
+<h2 id="local"><a class="toclink" href="#local"><code>@local</code></a></h2>
 <p>Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.</p>
         </div>
       </div>

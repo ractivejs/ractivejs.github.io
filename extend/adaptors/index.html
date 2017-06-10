@@ -66,9 +66,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="adaptors">Adaptors</h1>
+          <h1 id="adaptors"><a class="toclink" href="#adaptors">Adaptors</a></h1>
 <p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. Adaptors allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
-<h2 id="writing">Writing</h2>
+<h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
 <pre><code class="js">const myAdaptor = {
   filter: function ( object, keypath, ractive ) {
     // return `true` if a particular object is of the type we want to adapt.
@@ -112,39 +112,39 @@
 <p><code>value</code> is the value being passed into <code>ractive.set()</code>.</p>
 <p><code>reset</code> is a function that is called when <code>ractive.set()</code> updates a keypath to the adapted data. This function allows you to either update <code>object</code> or tear down the adaptor.</p>
 <p><code>teardown</code> is a function called when the adaptor is being removed. This function allows you to do cleanup work on anything that was done during the adaptor setup.</p>
-<h3 id="adaptors-only-adapt-one-level">Adaptors only adapt one level</h3>
+<h3 id="adaptors-only-adapt-one-level"><a class="toclink" href="#adaptors-only-adapt-one-level">Adaptors only adapt one level</a></h3>
 <p>An adaptor only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.</p>
-<h3 id="no-built-in-infinite-loop-detection">No built-in infinite loop detection</h3>
+<h3 id="no-built-in-infinite-loop-detection"><a class="toclink" href="#no-built-in-infinite-loop-detection">No built-in infinite loop detection</a></h3>
 <p>There is no built-in mechanism for avoiding infinite loops. If your adaptor calls <code>ractive.set()</code> on adapted data, which in turn will call the adaptor's <code>set()</code> method, which may directly or indirectly trigger another <code>ractive.set()</code> on the same adapted data, a stack overflow error might occur.</p>
 <p>This isn't a problem with primitive values since Ractive doesn't bother calling <code>set()</code> if a value hasn't changed. But with objects and arrays, there's no easy and performant way to tell if the contents have changed. So <code>set()</code> gets called <em>in case something changed</em> rather than <em>because something changed</em>.</p>
-<h3 id="different-for-every-back-end">Different for every back-end</h3>
+<h3 id="different-for-every-back-end"><a class="toclink" href="#different-for-every-back-end">Different for every back-end</a></h3>
 <p>The adaptor structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an adaptor for a certain back-end. For instance, an adaptor for a constructor-based object may be written differently from an adaptor meant to interact with a socket server.</p>
-<h2 id="registering">Registering</h2>
+<h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register adaptors:</p>
-<h3 id="globally-via-the-ractiveadaptors-static-property">Globally, via the <code>Ractive.adaptors</code> static property.</h3>
+<h3 id="globally-via-the-ractiveadaptors-static-property"><a class="toclink" href="#globally-via-the-ractiveadaptors-static-property">Globally, via the <code>Ractive.adaptors</code> static property.</a></h3>
 <pre><code class="js">Ractive.adaptors.myAdaptor = myAdaptor;
 </code></pre>
 
-<h3 id="per-component-via-the-components-adaptors-initialization-property">Per component, via the component's <code>adaptors</code> initialization property.</h3>
+<h3 id="per-component-via-the-components-adaptors-initialization-property"><a class="toclink" href="#per-component-via-the-components-adaptors-initialization-property">Per component, via the component's <code>adaptors</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   adaptors: { myAdaptor }
 });
 </code></pre>
 
-<h3 id="per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</h3>
+<h3 id="per-instance-via-the-instances-adaptors-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = new Ractive({
   adaptors: { myAdaptor }
 });
 </code></pre>
 
-<h2 id="using">Using</h2>
+<h2 id="using"><a class="toclink" href="#using">Using</a></h2>
 <p>In order to use an adaptor, you must tell the component or an instance to use it using the <code>adapt</code> <a href="../../api/initialization-options/">initialization option</a>.</p>
 <pre><code class="js">const ractive = new Ractive({
   adapt: [ 'myAdaptor' ]
 })
 </code></pre>
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <p>In the following example, we have a <code>Box</code> constructor that uses accessors to get and set its <code>width</code> and <code>height</code> properties. Since an instance of <code>Box</code> will have no publicly visible properties, Ractive cannot bind to them directly.</p>
 <pre><code class="js">function Box(width, height){
   var _width = width;

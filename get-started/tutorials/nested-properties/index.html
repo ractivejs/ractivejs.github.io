@@ -62,9 +62,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="nested-properties">Nested Properties</h1>
+          <h1 id="nested-properties"><a class="toclink" href="#nested-properties">Nested Properties</a></h1>
 <p>Ractive uses the <a href="../../../concepts/templates/#mustaches">mustache syntax</a>, which supports nested properties – in JavaScript-land, that means properties that are objects with their own properties (which might be objects with their own properties...).</p>
-<h2 id="step-1">Step 1</h2>
+<h2 id="step-1"><a class="toclink" href="#step-1">Step 1</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEwAJjYBhAPYBXfrhjbykjDuAGbEKghcznyCrDEEkmwAcgCCALIAogD6ABLpAErplMLkDOQAKumpAAr5yWUAqgU5+YWiXj5+5ADuxLhg5HnJAJKJAGLJADITzQXk5sT8wQwqKiX8SCUB7pKealbu-OQh5FUA8lX1E3VDp4kz6QB0XAl2sfbxbGVgCOSiDJK9Za-Xr+YjFVzJKpDMqTTIpDL3cgACgIpTAMAQwWoAHIwLhcJJhJBOJxFP9hA8UO53Chwg82g9PABrUnkziqCwITgQqEw6bwrK5AqcAACVzK0PqABFBS0sBNbgBxSUy+5YACMTgAXtitEwWDjMgAjNT8JnYtjCBA-MmSLgMNgASie7OiXDEEmkbBAOGE8FITDmFispB+1HI-AQXQGwesSOAAnIeuYCFwkHI2IAxLh9ansVhE1olByFOmswplHsEPnC0h1Ax0wnDknfu1fNpGxhyCTyAQALR9uYIDmiH59H7ALs9Pqt7zt8h1nOFjACDCOgDcmCAA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEwAJjYBhAPYBXfrhjbykjDuAGbEKghcznyCrDEEkmzAwKJePn4AdPwMiggYGJTC5AzkSSnevtrpoirEiuoI6QrKCOa4njC5+WVp-gDuxLhgJcmpFVU1dQrp5sT8wQwqKnnkM3MLKkX8SEUB7pKealbu-OQhw91jknsH6sTHeelcCXax9vFsACpgCOSiDJIDBa-Ab+YiFUqjDJ-AG4BaZbKdcgACgIxTAHWC1AA5GBcLhJMJIJxOHUCekUO53ChwlV3OlPABrEn-YScVQWBCcCHlKH-QEqeE5PKcAAC3J6VT5sIFhzyWHFY2h-PSKnu2AAjE4AF5YrRMFjYgD6ACM1PwGVi2MIED9SVwGGwAJSPNnRLhiCTSNggHDCeCkJgrCxWUg-ajkfgIXrkABKwesSOAAnIeuYCFwkHIWIAxLC07gsVhk1olOyFJmc00ywhC8WkOoGJmkycU79Idom8XWxGERWvj8AKoAaVrLe71Vq9SbJearXaCArKRUSELQdm80WFeMogQwmE1l12C7rau+0Od34mYAbABmJw3gAMT4fRbHraV0unWRyFYAMsckGOVdDkzABWdV0nAgB2dUsHIVVL3IABaB90nVB8ryccgMGPHCWzwjBHQAbgETAgA">Fix Code</button>
@@ -93,7 +93,7 @@ ractive.set( 'country', {
 });
 </code></pre>
 
-<h2 id="step-2">Step 2</h2>
+<h2 id="step-2"><a class="toclink" href="#step-2">Step 2</a></h2>
 <p><div class="tutorial">
     <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEwAJjYBhAPYBXfrhjbykjDuAGbEKghcznyCrDEEkmzAwKJePn4AdPwMiggYGJTC5AzkSSnevtrpoirEiuoI6QrKCOa4njC5+WVp-gDuxLhgJcmpFVU1dQrp5sT8wQwqKnnkM3MLKkX8SEUB7pKealbu-OQhw91jknsH6sTHeelcCXax9vFsACpgCOSiDJIDBa-Ab+YiFUqjDJ-AG4BaZbKdcgACgIxTAHWC1AA5GBcLhJMJIJxOHUCekUO53ChwlV3OlPABrEn-YScVQWBCcCHlKH-QEqeE5PKcAAC3J6VT5sIFhzyWHFY2h-PSKnu2AAjE4AF5YrRMFjYgD6ACM1PwGVi2MIED9SVwGGwAJSPNnRLhiCTSNggHDCeCkJgrCxWUg-ajkfgIXrkABKwesSOAAnIeuYCFwkHIWIAxLC07gsVhk1olOyFJmc00ywhC8WkOoGJmkycU79Idom8XWxGERWvj8AKoAaVrLe71Vq9SbJearXaCArKRUSELQdm80WFeMogQwmE1l12C7rau+0Od34mYAbABmJw3gAMT4fRbHraV0unWRyFYAMsckGOVdDkzABWdV0nAgB2dUsHIVVL3IABaB90nVB8ryccgMGPHCWzwjBHQAbkwIA">Start</button>
     <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEwAJjYBhAPYBXfrhjbykjDuAGbEKghcznyCrDHAwADEAO7EuGDkol4+fhgYdjLkBJJs8fwMigi5lMLkDOTxoirEiuoIAHQKygjmuJ4wlRgZWb7+KWn1wI3NrW3mxPzBDCoqVXMLSyq1-Ei1Ae6SnmpW7vzkIROS+4fqxCe5bVzF+fnkE8mp6aIMkqlLuS+vQrFAAqYAQGW+v02olS-mINVK5QG5AAFAQ6mB+sFqAByMC4XCSYSQTicFpEtoodzuFDhNqZNqeADWZO+wk4qgsCE4iIquU4AAF4kdclhhXdsABGJwALxxWiYLFxAH0AEZqfhMnFsYQIcHkrgMNgASgeHOi9le8U4YzA-xi+WttvtXDEEmkbBAOGE8FITHI5ks1nI1HI-AQSXIACULFZSAgUcABK9cIqELhIOQcQlU8x0zisMmtEpOQpM9nOqWEAWi0h1AxM0nToDMt4Ro2i4Cw0jy6DwQBVADSNebXamLTL9WLXR6fQQ5cyKiQBYDDHmi2W5eMogQwmE1nl2E7gMuByOt34mYAbABmJw3gAMT4fhdHLchqZUje7FXLABkTiQE4VyOTMAFZJTaCCAHZJSwcgVBOTMAFoHzaSUHyvJxyDyN9cNeXCMGNABuTAgA">Fix Code</button>
@@ -126,7 +126,7 @@ ractive.set( 'country', {
 <p>If you ever need to <em>force</em> a reference to resolve in the current context, rather than potentially somewhere up the context stack, you can simply prefix the reference with a <code>.</code>. <code>.stats.area</code> will <em>always</em> resolve to <code>country.capital.stats.area</code> in <code>{{#with country.capital}}{{.stats.area}}{{/with}}</code>, even if there is not already a <code>stats</code> property on <code>country.capital</code> and there is one on <code>country</code>. If/when <code>country.capital.stats</code> is set, any references will be ready to update.</p>
 </blockquote>
 <p>If you get stuck, hit the <strong>Fix Code</strong> button.</p>
-<h2 id="step-3">Step 3</h2>
+<h2 id="step-3"><a class="toclink" href="#step-3">Step 3</a></h2>
 <p><div class="tutorial">
     <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEwAJjYBhAPYBXfrhjbykjDuAGbEKghcznyCrDEEkmzAwKJePn4AdPwMiggYGJTC5AzkSSnevtrpoirEiuoI6QrKCOa4njC5+WVp-gDuxLhgJcmpFVU1dQrp5sT8wQwqKnnkM3MLKkX8SEUB7pKealbu-OQhw91jknsH6sTHeelcCXax9vFsACpgCOSiDJIDBa-Ab+YiFUqjDJ-AG4BaZbKdcgACgIxTAHWC1AA5GBcLhJMJIJxOHUCekUO53ChwlV3OlPABrEn-YScVQWBCcCHlKH-QEqeE5PKcAAC3J6VT5sIFhzyWHFY2h-PSKnu2AAjE4AF5YrRMFjYgD6ACM1PwGVi2MIED9SVwGGwAJSPNnRLhiCTSNggHDCeCkJgrCxWUg-ajkfgIXrkABKwesSOAAnIeuYCFwkHIWIAxLC07gsVhk1olOyFJmc00ywhC8WkOoGJmkycU79Idom8XWxGERWvj8AKoAaVrLe71Vq9SbJearXaCArKRUSELQdm80WFeMogQwmE1l12C7rau+0Od34mYAbABmJw3gAMT4fRbHraV0unWRyFYAMsckGOVdDkzABWdV0nAgB2dUsHIVVL3IABaB90nVB8ryccgMGPHCWzwjBHQAbkwIA">Start</button>
 </div></p>

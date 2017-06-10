@@ -86,9 +86,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="events">Events</h1>
+          <h1 id="events"><a class="toclink" href="#events">Events</a></h1>
 <p>DOM events are central to anything interactive on the web. You've probably written <code>element.addEventListener('click', handler)</code> or <code>$('#button').on('click', handler)</code>, or similar code, a thousand times.</p>
-<h2 id="step-1">Step 1</h2>
+<h2 id="step-1"><a class="toclink" href="#step-1">Step 1</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYAAigq7o4MKgB0MQgwuAAU5ADkAIKWZOrE-CgAhGnkAJTsWVak6ggFXC5unnz8XGIS0mwgOMLwVTDk5tmkCOTU5PwIAO7kAEoWlQjJwALk5AgqkOkAxLhMLGlYy1pKqtUbadvHagr7AhglANydIKLwmEA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYAAigq7o4MKgB0MQgwuAAU5ADkAIKWZOrE-CgAhGnkAJRYdjLkVdXkop7C7ioIsZEoqWkJSeQA7gzC5BZB-O7dTajIxSXsWVak6ggFXC5unnz8XGIS0mwgOMLwczDk5tmkCOTU5PwI3eQAShazCMnAAlUIKpDpAMS4TCxpcpeLRKVTzL5pX6gtQKQECDAlADcuxAongmCAA">Fix Code</button>
@@ -108,7 +108,7 @@
 <p><code>console</code> is one of the globals that is exposed to Ractive.js templates, but if you want to get to <code>alert</code>, you have to go through the <code>@global</code> special reference.</p>
 <p>The playground watches for console messages in the output pane and displays them on the <code>Console</code> tab, so if you happen to be reading through this in a browser that doesn't have Dev Tools, you can still see most console messages.</p>
 </blockquote>
-<h2 id="step-2">Step 2</h2>
+<h2 id="step-2"><a class="toclink" href="#step-2">Step 2</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBg-AK6KARghgYM5Am+e4uAD2-OQhALSiKsSiANYGAAK4YMTCAHQMSEgAFOQA5C7unnnkAJTsANRc-oEhfPxcYhLSbCA4wvCkTOTmltbk1OT8CADu5ABKFlakCNnAAuTkCCqQ+QDEuEwseVgLWkqq6gireRsHago7e0jqDKvzoeT2hR4wqwAMexgCGKUA3G0QKJ4JggA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBg-AK6KARghgYMd3ATfOuLgA9vzkoQC0oirEogDWBgACuGDEwgB0ws5uuOaWABTkAOQu7p5F5ACU7BFcAUGhfIJ+9SFhkdGxCfTJqRkMSEiFJa4eMBXVIGwA1HWBbU1cYhLSbCA4wvCkTOR5VqQI5NTk-AgA7uQAShb7CPnAAuTkCCqQxQDEuEwsRViPWkpVOoEG8ip9AWoFL9-kh1Aw3g8wuR7KUxm8AAz-Hz8DCVADc6xAongmCAA">Fix Code</button>
@@ -121,7 +121,7 @@
 <p><code>@this</code> is a reference to the Ractive.js instance that is controlling the template, so you can call any methods on the Ractive.js API with the <code>@this</code> special reference. Since <code>@this</code> is a <em>very</em> common reference, it also has an ever so slightly shorter shorthand <code>@</code>. <code>@this.toggle('visible')</code> and <code>@.toggle('visible')</code> are equivalent.</p>
 </blockquote>
 <p>Given that there is a <code>subtract</code> method in the Ractive.js API, can you add a decrement button to the example as well?</p>
-<h2 id="step-3">Step 3</h2>
+<h2 id="step-3"><a class="toclink" href="#step-3">Step 3</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++QDvXDA2AFkELmCOKIBlYldifhRIkLsvSN80gJ8-L2zcJFzAwOBgAGIAd2Jg8kUEDAws4pLgADpRAHsK4Qam5u9nAFdcXA7+NgBqLiGRsaLm0s4q4N7PYsjCvqDNtYXy5bByYXiVRJRV-37yUvaunsbd-oIZ0fGpzhe5rYDFg4u87ycArzDK5SIuNweLhiCTSNggHDCeCkJjkcyWazkajkfgICrkABKFispAQAApgAIAggVJByAByMpOZgIXD0rBUrRKVTqBB0xkKZRqBTszlIdQMOmU-gBex1KXkTrdOkABnI2CaxwSSQVSuEqvVnIeGAAlABuBEgUTwTBAA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++QDvXDA2AFkELmCOKIBlYldifhRIkLsvSN80gJ8-L2zcJFzAwOBgAGIAd2Jg8kUEDAws4pLgADpRAHsK4Qam5u9nAFdcXA7+cjGAWlEVYlEAawMAAU7+BRNWhiQkAApyAHJ2ruF98gBKdgBqLiGRsY5nGE4i-oHh0fGpmbnF+hWx9a4VrCBC4PaHTrdfZYcgABnO7AAkvsVCpasRhMJyNoOoMYZDhDd3vc+i1OFVgr1PMVIoVSY46dTmqVKtUwORhPFZkkqf5XqUjt1eXlmgRbh8JvxprMFstVoDNttwYKTgiQGxrpxxfcxU8Xv0xcTPlLvrK-vLjECQWCDiroXC1WwABIMMAAQnIAE1ceQVB1hDIcYMYOQCUS7vx9WSKWBhTTOAUXhlcpEXG4PFwxBJpGwQDhhPBSExyOZLNZyNRyPwEBVyAAlCxWUgIHbAAQBBAqSAHMpOZig6HtrRKVTqBDd-a9kdqBSD8bkJDqBjdtvz+x1Feh47d+HYJqchJJTcEnfkRrz88YM4AbjzIFE8EwQA">Fix Code</button>
@@ -160,7 +160,7 @@
 </code></pre>
 
 <p>To complete the rules of the game, when you pass a cemetery on your side of the car, you lose all of your cows. It's a weird game, I know, but I didn't make it up. What would be the easiest way to reset a person's cow count?</p>
-<h2 id="step-4">Step 4</h2>
+<h2 id="step-4"><a class="toclink" href="#step-4">Step 4</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVxEysg7nOiA1ghiaA9vwC0ij4ArsJKPqT69AACAHRhuAAUwORGkOTRCJH8uLGiKsQIOQAaWOTa6ZnZufmFOQCa5BgAlL4BtR4Gon7CPioIsSo+KIkABgBmxBL8KOTq5IkAJMBVRTUFa8XY5MurOXkbDS0AhKOtIHyCMgvAwEYY27faD61XXDyX9nYOxPySwTJSAwVMEoogjAxlP02v5xj5RKEDNF+D4kAMwv1LIlzuROJcuGIJNI2CAcMJ4ECYOQ3FZIuRqOR+AgAO7kABKFlpCGSAnI5AQKnSAHIAMS4JgsIVYXlaJSqdQIYViuVqBRCgQtADcpJAongYrcnipwG+zKouDA6QAHAAGUjMzXfMAIYgoMC4a12sCOq4AIws7hQMBC-CQ-m6Qxg6RFCFjPowmCAA">Start</button>
 </div></p>
@@ -179,7 +179,7 @@
 <pre><code>&lt;a href="/nope" on-click="doSomething(), false"&gt;This will do something rather than /nope.&lt;/a&gt;
 </code></pre>
 </blockquote>
-<h2 id="step-5">Step 5</h2>
+<h2 id="step-5"><a class="toclink" href="#step-5">Step 5</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb82AQUtl1CACEXC5unnz8XGIS0mwgOMLwpEzk5n6kCOTU5PwIAO7kAEoWVhkAFMB2bkwskOQA5ADEuDUIuPVYVQrKagp1Td2qAfUCGACUANzxIKLwmEA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYAAgB0AGbEMAgAFOQA5BZWpOoIieQAlOwAgpZk6QCEXC5unnz8XGIS0mwgOMLwaTDk5gWkCOTU5PwIAO7kAEop1nHAdm5MLJBJAMS40wi4iViTCspqCrOJC0qq6YkCGFkA3Hb87akI4Z4JyR2HWOSRzvwFnuQJop4KJtnkCaCUyccgAA1wYGIwjBlGEWjAXSu1ko-GEi3eNi85E4oLBP34f1wsOh5AY5AJRO8jgAVghLAJyDjQQx+NoyUgSFZPAwVOQEJ1CWTmM5FAhCfD+u5nCokC93CoVO5BvjfsZic9iJFyMJnJJVMRkIyySoEDBcPd8ql1MR+Cgipkzsczg0QKJ4JggA">Fix Code</button>
@@ -203,7 +203,7 @@ ractive.fire( 'activate' );
 <blockquote>
 <p>A Ractive.js instance doesn't need to be rendered to update data or fire and handle events.</p>
 </blockquote>
-<h2 id="step-6">Step 6</h2>
+<h2 id="step-6"><a class="toclink" href="#step-6">Step 6</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYAAgB0AGbEMAgAFOQA5BZWpOoIieQAlOwAgpZk6QCEXC5unnz8XGIS0mwgOMLwaTDk5gWkCOTU5PwIAO7kAEop1nHAdm5MLJBJAMS40wi4iViTCspqCrOJC0qq6YkCGFkA3Hb87akI4Z4JyR2HWOSRzvwFnuQJop4KJtnkCaCRYqBAwXD3fKpdTEfgoIqZM7HM4NECieCYIA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYAAgB0AGbEMAgAFOQA5BZWpOoIieQAlOwAgpZk6QCEXC5unnyCDmUeXr7+gSH0EdGxCYlICCmFCpk5IGwAIl0FaQolnDUVQpxiEtJsIDjC8Gkw5OajCOTU5PwIAO7kAErdpPHAdm5MLJBJAMS4Nwi4iVhXCspqCneJj0qqdKJAQYLIAbjs-E2qQQ4U8cUuVTO6TukWc-AK8Ky5GA5AYKgQMFw7XyqXUxH4KCKiXB5GwV06yJ+5DRGKsWJxeIJRPawyZFKpNLBdJB4KWIFE8EwQA">Fix Code</button>
@@ -220,7 +220,7 @@ ractive.fire( 'activate' );
 </code></pre>
 
 <p>Add a 'deactivate' button and wire it up.</p>
-<h2 id="step-7">Step 7</h2>
+<h2 id="step-7"><a class="toclink" href="#step-7">Step 7</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYA2gDkFlak6gjhWOTOwggwALrsAIKWZLEAhFwubp58-FxiEtJsIDjC8DEw5ObZpAjk1OT8CADu5ABKUdYAFMB2bkwskOThAMS44wi48aMKymoKkzMrqrFLgrhI6gyTI3v2SSnHo-b2-AyKCBsAUu5xV7gYox-8GACUANx2fhNaIIAB0nkGUwGMQU8XIADNnPxshDyJYjAlzg0fuQTvYGCoUrhIeEstF1MR+CgpuQANSJZIwUG3e50qa5cLkf4CX5-aogUTwTBAA">Start</button>
 </div></p>
@@ -234,7 +234,7 @@ ractive.fire( 'activate' );
 <p>Depending on your editor and personal tastes, it might be convenient to use an unquoted attribute for your proxied events: <code>&lt;button on-click=['activate', user]&gt;Activate!&lt;/button&gt;</code>. There is nothing special going on there - Ractive.js supports just about everything that HTML does, and HTML supports unquoted attributes e.g. <code>&lt;input value=green /&gt;</code>.</p>
 </blockquote>
 <p>As with regular event expressions, if a handler for a proxied event returns <code>false</code>, it will cancel the event.</p>
-<h2 id="step-8">Step 8</h2>
+<h2 id="step-8"><a class="toclink" href="#step-8">Step 8</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYA2gDkFlak6gjhALrsAIKWZLEAhFwubp58gg7ZHl6+-oEh9BFICFFpCgnsACLVqTEKmZyFuUKcYhLSbCA4wvAxMOTmLQjk1OT8CADu5ABKNaQIABTAdm5MLJDk4QDEuLsIuOFY2wrKagr7R9eqseECGACUANx2-BPRCAB0nk221WsX2ADNnPxUp5yOs3uQtvl7AwVAgYLh1gcUtF1MR+Ch0uFPttsNsqqC7uRIdCrLD4Yjtii0RiseEmpT8YTiV98hhXp9BiBRPBMEA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEARgFdcuAPb9yngLSiVxKIA1gYA2gDkFlak6gjhALrsAIKWZLEAhFwubp58gg7ZHl6+-oEh9BFICFFpCgnsACLVqTEKmZyFuXYFrkXe-H4BwWHhHigoKnGJIGzAwOTCxJP8osjkAPzk4QBKCMLOigjp4eSQWwDKSwgrRycYGFm9XflOT8UDpcMV4cIekvUzc5-dqdfh5LhiCTSNggHDCeAxGDkcwtBDkajkfgIADu5G2NVICAAFMBurgmCwzuEAMTk5gIXDhLBkpSqWJU2mstR1AQYACUAG47PxEeQAr9rggkRiUdEEAA6Twk7oE9nkABmzhWVk85CJfPIpPy9gYkxguCJWxS0XUxH4KGOgu62G6VVVCjOmu1xF1+sN3RNZotWya7rtDvCTvyLvyv3ckk9WtSvoNRvsgalwfCADl3ORFO4YGjTZnhMdyFH07hxQosTB5aIGDcVPqhdHeZX+LLrIr+Mr8mMJghE96U-7jVZ1XqxcQJXX5bPLstVkg-amA6xq7Pa1L5UX9odWxv7LgwLP5cIGZaflcbkgmRrTZeK22qxhyAgVM+05v7DXJfWizLsSla-m4Z7CBeV5bEB1wrg+uAwM4aKgfYGDOh2AqwiAojwJgQA">Fix Code</button>
@@ -292,7 +292,7 @@ ractive.fire( 'select' );
 <blockquote>
 <p>If you remove your ractive from the DOM with <code>ractive.teardown()</code>, any event handlers will be automatically cleaned up.</p>
 </blockquote>
-<h2 id="step-9">Step 9</h2>
+<h2 id="step-9"><a class="toclink" href="#step-9">Step 9</a></h2>
 <p><div class="tutorial">
   <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA6IA9GwK4B2lA1igB0JAPYBbNjACGJXOQBuCALQJF3XESW4plVgD4CbUhWp7m3cwSQKa5JCzxSYaXPsPX5Zi92JkqtOwdcBDFKABspYNYaXABPSgQghAAPXEkZOUV9c2ZcAgAjTlxcEW4aUqUSMPISPgcAbQByDIVIhEaAXX0AQVlW4IBCQ0Li0q9cgqKSsoqqmrrWJqQEFvk2zv0AERW+tcHhqbGcvJHp8u5K6tqGxpKUFDD2rpA9YGA6ckfuEmQaAH4aI0AEoIIicMQIAaNGiQQEAZU+CG+kOhGAwB1G3HGJ0OMwuc2ui0aRBKlA2LzhpKGbFORx8Rj8phAOCI8DWMBo0l2CBojBo3AQAHcaEDVggABTAY7aZwIXCwxoAYhlLkaWGlIXCbQVys1EWCjXMGAAlABuHLcdk0aokpEIDl8rmZBCCUqS46rbU0ABmPD6pRo4uNNClFlc2keMFw4sBvUykXI3BQULNx2wx2WnuCsN93zkAaDIeOuSkkejgO2WcTycaqbD6bDJJElBzfvzZULodyJbLMcaADkRDQxCIYDzS-aNFCaHXu7gbcEBTBhFJkWEg+b60bZ9wnQoXW6u6N7o9W3nyAXg0fcuRvYHreRbUvBI+EV8fkhC1fi+GF3bl2OYIQhuP65LgYCPoIRByn2RCIsiSBqj6pbQTOm5zhgNAIGEqHXr+j6LvaUHwT8IFhnO4GQdB5bEiRyBIbgMCcDys7hhgabbqazIgCQ8CYEAA">Start</button>
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA6IA9GwK4B2lA1igB0JAPYBbNjACGJXOQBuCALQJF3XESW4plVgD4CbUhWp7m3cwSQKa5JCzxSYaXPsPX5Zi92JkqtOwdcBDFKABspYNYaXABPSgQghAAPXEkZOUV9c2ZcAgAjTlxcEW4aUq0dBwBtAHIMhUiEWoBdfQBBWUbggEJDQuLSr1yCopKyiu1KGtqkBAb5Jtb9ABF5rsXe-rGhnLyB8fLuSunWOpKUFDDmtpA9YGA6cmvuEmQaAH4aWoAlBCJOGIED1ajRIN8AMrPBCvYGgjAYbaDbjDfY7CbHKYzIglSjLO4Q3F9NgHXY+Ix+UwgHBEeCLGA0aQbBA0Rg0bgIADuNB+CwQAApgHttM4ELhwbUAMQily1LDCkLhJoS6WKiLBWrmDAASgA3DluPSaGFyDiYQgGWymZkEIJSoK9gtlTQAGY8LqlGj87U0IUWVzaa4wXD876dTKRcjcFAgvV7bB7OZO4Lgt2vOSe72+va5KRBkPfNbJqMx2px-0J-04kSUVPujNlLN+3K5-Oh2oAORENDEIhgLLzFo0IJo5ZbuBNZo5MGEUlhYW9+orWrH3GtClt9ubg0u1zr6fImZ929y5BdXuNpuC08EpqhLzeSCzx5zAcn14tgn7AKBi9fuVwMBTUEIgxXbIhoVhJA5VdPNQNHJdxwwGgEDCeCTzfK9zRnCCHwFMcAwAoCiBAsDvlwmFHxg3AYE4FkCNyDB4xXXVqRAEh4EwIA">Fix Code</button>

@@ -226,8 +226,8 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="instance-methods">Instance Methods</h1>
-<h2 id="ractive_super">ractive._super()</h2>
+          <h1 id="instance-methods"><a class="toclink" href="#instance-methods">Instance Methods</a></h1>
+<h2 id="ractive_super"><a class="toclink" href="#ractive_super">ractive._super()</a></h2>
 <p>Calls the parent method from a child method of the same name.</p>
 <p><code>ractive._super()</code> is not always available. Only when Ractive detects its use does it make this reference to the parent method.</p>
 <p><strong>Syntax</strong></p>
@@ -261,7 +261,7 @@ var SubComponent = Component.extend({
 new SubComponent();
 </code></pre>
 
-<h2 id="ractiveadd">ractive.add()</h2>
+<h2 id="ractiveadd"><a class="toclink" href="#ractiveadd">ractive.add()</a></h2>
 <p>Increments the selected keypath.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -298,7 +298,7 @@ setTimeout(function() {
 }, 2000);
 </code></pre>
 
-<h2 id="ractiveanimate">ractive.animate()</h2>
+<h2 id="ractiveanimate"><a class="toclink" href="#ractiveanimate">ractive.animate()</a></h2>
 <p>Similar to <a href="#ractiveset"><code>ractive.set()</code></a>, this will update the data and re-render any affected mustaches and notify observers.</p>
 <p>All animations are handled by a global timer that is shared between Ractive instances (and which only runs if there are one or more animations still in progress), so you can trigger as many separate animations as you like without worrying about timer congestion. Where possible, <code>requestAnimationFrame</code> is used rather than <code>setTimeout</code>.</p>
 <p>Numeric values and strings that can be parsed as numeric values can be interpolated. Objects and arrays containing numeric values (or other objects and arrays which themselves contain numeric values, and so on recursively) are also interpolated.</p>
@@ -343,7 +343,7 @@ setTimeout(function() {
 }, 1000);
 </code></pre>
 
-<h2 id="ractiveattachchild">ractive.attachChild()</h2>
+<h2 id="ractiveattachchild"><a class="toclink" href="#ractiveattachchild">ractive.attachChild()</a></h2>
 <p>Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a>, but that is not a requirement, as children may be a plain Ractive instance created with <code>new Ractive()</code>.</p>
 <p><strong>Syntax</strong></p>
 <pre><code class="js">ractive.attachChild( child );
@@ -373,7 +373,7 @@ ractive.attachChild( child, options );
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivedetach">ractive.detach()</h2>
+<h2 id="ractivedetach"><a class="toclink" href="#ractivedetach">ractive.detach()</a></h2>
 <p>Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with <a href="#ractiveinsert"><code>ractive.insert()</code></a> (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -405,7 +405,7 @@ setTimeout(function() {
 }, 1000);
 </code></pre>
 
-<h2 id="ractivedetachchild">ractive.detachChild()</h2>
+<h2 id="ractivedetachchild"><a class="toclink" href="#ractivedetachchild">ractive.detachChild()</a></h2>
 <p>Detaches a child from an instance when it was previously attached with <a href="#ractiveattachchild"><code>ractive.attachChild()</code></a>.</p>
 <p>When a child instance that was attached targeting an anchor is detached, its instance is spliced out of the <code>@this.children.byName.anchorName</code> array so that subsequent children move forward to fill the void.</p>
 <p><strong>Syntax</strong></p>
@@ -420,7 +420,7 @@ setTimeout(function() {
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivefind">ractive.find()</h2>
+<h2 id="ractivefind"><a class="toclink" href="#ractivefind">ractive.find()</a></h2>
 <p>Returns the first element inside a given Ractive instance matching a CSS selector. This is similar to doing <code>this.el.querySelector(selector)</code> (though it doesn't actually use <code>querySelector()</code>).</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -452,7 +452,7 @@ setTimeout(function() {
 }, 1000);
 </code></pre>
 
-<h2 id="ractivefindall">ractive.findAll()</h2>
+<h2 id="ractivefindall"><a class="toclink" href="#ractivefindall">ractive.findAll()</a></h2>
 <p>This method is similar to [<code>ractive.find()</code>]ractivefind), with an important difference - it returns a list of elements matching the selector, rather than a single node.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -486,7 +486,7 @@ setTimeout(function() {
 }, 1000);
 </code></pre>
 
-<h2 id="ractivefindallcomponents">ractive.findAllComponents()</h2>
+<h2 id="ractivefindallcomponents"><a class="toclink" href="#ractivefindallcomponents">ractive.findAllComponents()</a></h2>
 <p>Returns all components inside a given Ractive instance with the given <code>name</code> (or all components of any kind if no name is given).</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -527,7 +527,7 @@ setTimeout(function() {
 }, 1000);
 </code></pre>
 
-<h2 id="ractivefindcomponent">ractive.findComponent()</h2>
+<h2 id="ractivefindcomponent"><a class="toclink" href="#ractivefindcomponent">ractive.findComponent()</a></h2>
 <p>Returns the first component inside a given Ractive instance with the given <code>name</code> (or the first component of any kind if no name is given).</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -566,7 +566,7 @@ setTimeout(function() {
 }, 1000);
 </code></pre>
 
-<h2 id="ractivefindcontainer">ractive.findContainer()</h2>
+<h2 id="ractivefindcontainer"><a class="toclink" href="#ractivefindcontainer">ractive.findContainer()</a></h2>
 <p>Returns the first container of this component instance with the given <code>name</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -584,7 +584,7 @@ setTimeout(function() {
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivefindparent">ractive.findParent()</h2>
+<h2 id="ractivefindparent"><a class="toclink" href="#ractivefindparent">ractive.findParent()</a></h2>
 <p>Returns the first parent of this component instance with the given <code>name</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -602,7 +602,7 @@ setTimeout(function() {
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivefire">ractive.fire()</h2>
+<h2 id="ractivefire"><a class="toclink" href="#ractivefire">ractive.fire()</a></h2>
 <p>Fires an event, which will be received by handlers that were bound using <a href="#ractiveon"><code>ractive.on</code></a>. In practical terms, you would mostly likely use this with <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a>, to allow applications to hook into your subclass.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -630,7 +630,7 @@ r.on('foo', function() {
 r.fire('foo');
 </code></pre>
 
-<h2 id="ractiveget">ractive.get()</h2>
+<h2 id="ractiveget"><a class="toclink" href="#ractiveget">ractive.get()</a></h2>
 <p>Returns the value at <code>keypath</code>. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, but excludes computed properties.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -660,7 +660,7 @@ r.fire('foo');
 console.log(r.get('foo.bar.0'));
 </code></pre>
 
-<h2 id="ractivegetcontext">ractive.getContext()</h2>
+<h2 id="ractivegetcontext"><a class="toclink" href="#ractivegetcontext">ractive.getContext()</a></h2>
 <p>This is an instance specific version of <a href="../static-methods/#ractivegetcontext"><code>Ractive.getContext()</code></a> that will only search the local instance DOM for a matching node when a selector is given. If the given value is not a string, then it is passed directly through to the static version of this method.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -678,7 +678,7 @@ console.log(r.get('foo.bar.0'));
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveinsert">ractive.insert()</h2>
+<h2 id="ractiveinsert"><a class="toclink" href="#ractiveinsert">ractive.insert()</a></h2>
 <p>Inserts the instance to a different location. If the instance is currently in the DOM, it will be detached first. See also <a href="#ractivedetach"><code>ractive.detach()</code></a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -697,7 +697,7 @@ console.log(r.get('foo.bar.0'));
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivelink">ractive.link()</h2>
+<h2 id="ractivelink"><a class="toclink" href="#ractivelink">ractive.link()</a></h2>
 <p>Creates a link between two keypaths that keeps them in sync. Since Ractive can't always watch the contents of objects, copying an object to two different keypaths in your data usually leads to one or both of them getting out of sync. <code>link</code> creates a sort of symlink between the two paths so that Ractive knows they are actually the same object. This is particularly useful for master/detail scenarios where you have a complex list of data and you want to be able to select an item to edit in a detail form.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -731,7 +731,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </code></pre>
 
 <p>Links can be removed using <a href="#ractiveunlink"><code>ractive.unlink()</code></a>.</p>
-<h2 id="ractiveobserve">ractive.observe()</h2>
+<h2 id="ractiveobserve"><a class="toclink" href="#ractiveobserve">ractive.observe()</a></h2>
 <p>Observes the data at a particular keypath. Unless specified otherwise, the callback will be fired immediately, with <code>undefined</code> as <code>oldValue</code>. Thereafter it will be called whenever the <em>observed keypath</em> changes.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -787,7 +787,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </code></pre>
 
 <p>See <a href="../../concepts/event-management/#publish-subscribe">Observers</a> for more detail.</p>
-<h2 id="ractiveobserveonce">ractive.observeOnce()</h2>
+<h2 id="ractiveobserveonce"><a class="toclink" href="#ractiveobserveonce">ractive.observeOnce()</a></h2>
 <p>Observes the data at a particular keypath until the first change. After the handler has been called, it will be unsubscribed from any future changes.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -825,7 +825,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </code></pre>
 
 <p>See <a href="../../concepts/event-management/#publish-subscribe">Observers</a> for more detail.</p>
-<h2 id="ractiveoff">ractive.off()</h2>
+<h2 id="ractiveoff"><a class="toclink" href="#ractiveoff">ractive.off()</a></h2>
 <p>Removes an event handler, several event handlers, or all event handlers.</p>
 <p>To remove a single handler, you must specify both the event name and the handler. If you only specify the event name, all handlers bound to that event name will be removed. If you specify neither event name nor handler, <strong>all</strong> event handlers will be removed.</p>
 <p>An alternative way to remove event handlers is to use the <code>cancel</code> method of the return value of a call to <code>ractive.on()</code>.</p>
@@ -846,7 +846,7 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveon">ractive.on()</h2>
+<h2 id="ractiveon"><a class="toclink" href="#ractiveon">ractive.on()</a></h2>
 <p>Subscribe to <a href="../../extend/events/">events</a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -893,7 +893,7 @@ ractive.on({
 });
 </code></pre>
 
-<h2 id="ractiveonce">ractive.once()</h2>
+<h2 id="ractiveonce"><a class="toclink" href="#ractiveonce">ractive.once()</a></h2>
 <p>Subscribe to an event for a single firing. This is a convenience function on top of <a href="#ractiveon"><code>ractive.on()</code></a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -912,7 +912,7 @@ ractive.on({
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivepop">ractive.pop()</h2>
+<h2 id="ractivepop"><a class="toclink" href="#ractivepop">ractive.pop()</a></h2>
 <p>The Ractive equivalent to <code>Array.pop</code> that removes an element from the end of the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
@@ -931,7 +931,7 @@ ractive.on({
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivepush">ractive.push()</h2>
+<h2 id="ractivepush"><a class="toclink" href="#ractivepush">ractive.push()</a></h2>
 <p>The Ractive equivalent to <code>Array.push</code> that appends one or more elements to the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
@@ -951,7 +951,7 @@ ractive.on({
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivereadlink">ractive.readLink()</h2>
+<h2 id="ractivereadlink"><a class="toclink" href="#ractivereadlink">ractive.readLink()</a></h2>
 <p>Gets the source keypath and instance for a link.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -990,7 +990,7 @@ r.readLink( 'currentItem' );
 // returns { ractive: r, keypath: 'items.0' }
 </code></pre>
 
-<h2 id="ractiverender">ractive.render()</h2>
+<h2 id="ractiverender"><a class="toclink" href="#ractiverender">ractive.render()</a></h2>
 <p>Renders the component into a DOM element.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -1008,7 +1008,7 @@ r.readLink( 'currentItem' );
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivereset">ractive.reset()</h2>
+<h2 id="ractivereset"><a class="toclink" href="#ractivereset">ractive.reset()</a></h2>
 <p>Resets the entire <code>ractive.data</code> object and updates the DOM.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -1036,7 +1036,7 @@ ractive.reset({ bar: 2 });
 console.log( ractive.get() ); // { bar: 2 }
 </code></pre>
 
-<h2 id="ractiveresetpartial">ractive.resetPartial()</h2>
+<h2 id="ractiveresetpartial"><a class="toclink" href="#ractiveresetpartial">ractive.resetPartial()</a></h2>
 <p>Resets a partial and re-renders all of its use-sites, including in any components that have inherited it. If a component has a partial with a same name that is its own, that partial will not be affected.</p>
 <p>Inline partials that don't belong directly to a Ractive instance aren't affected by <code>resetPartial</code>.</p>
 <p><strong>Syntax</strong></p>
@@ -1065,7 +1065,7 @@ ractive.resetPartial('foo', 'bar');
 // {{&gt;foo}} will be replaced with 'bar'
 </code></pre>
 
-<h2 id="ractivereverse">ractive.reverse()</h2>
+<h2 id="ractivereverse"><a class="toclink" href="#ractivereverse">ractive.reverse()</a></h2>
 <p>The Ractive equivalent to <code>Array.reverse</code> reverses the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
@@ -1084,7 +1084,7 @@ ractive.resetPartial('foo', 'bar');
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveset">ractive.set()</h2>
+<h2 id="ractiveset"><a class="toclink" href="#ractiveset">ractive.set()</a></h2>
 <p>Updates data and triggers a re-render of any mustaches that are affected (directly or indirectly) by the change. Any observers of affected keypaths will be notified.</p>
 <p>When setting an array value, ractive will reuse the existing DOM nodes for the new array, adding or removing nodes as necessary. This can impact nodes with <a href="../../extend/transitions/">transitions</a>. Use the <code>shuffle</code> option for setting a new array value while retaining existing nodes corresponding to individual array item values.</p>
 <p><strong>Syntax</strong></p>
@@ -1123,7 +1123,7 @@ ractive.resetPartial('foo', 'bar');
 })
 </code></pre>
 
-<h2 id="ractiveshift">ractive.shift()</h2>
+<h2 id="ractiveshift"><a class="toclink" href="#ractiveshift">ractive.shift()</a></h2>
 <p>The Ractive equivalent to <code>Array.shift</code> that removes an element from the beginning of the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
@@ -1142,7 +1142,7 @@ ractive.resetPartial('foo', 'bar');
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivesort">ractive.sort()</h2>
+<h2 id="ractivesort"><a class="toclink" href="#ractivesort">ractive.sort()</a></h2>
 <p>The Ractive equivalent to <code>Array.sort</code> sorts the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
@@ -1161,7 +1161,7 @@ ractive.resetPartial('foo', 'bar');
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivesplice">ractive.splice()</h2>
+<h2 id="ractivesplice"><a class="toclink" href="#ractivesplice">ractive.splice()</a></h2>
 <p>The Ractive equivalent to <code>Array.splice</code> that can add new elements to the array while removing existing elements.</p>
 <p>If the given keypath does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
@@ -1183,7 +1183,7 @@ ractive.resetPartial('foo', 'bar');
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivesubtract">ractive.subtract()</h2>
+<h2 id="ractivesubtract"><a class="toclink" href="#ractivesubtract">ractive.subtract()</a></h2>
 <p>Decrements the selected keypath.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -1202,7 +1202,7 @@ ractive.resetPartial('foo', 'bar');
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveteardown">ractive.teardown()</h2>
+<h2 id="ractiveteardown"><a class="toclink" href="#ractiveteardown">ractive.teardown()</a></h2>
 <p>Unrenders this Ractive instance, removing any event handlers that were bound automatically by Ractive.</p>
 <p>Calling <code>ractive.teardown()</code> causes a <code>teardown</code> <a href="../../extend/events/">event</a> to be fired - this is most useful with <a href="../static-methods/#ractiveextend"><code>Ractive.extend()</code></a> as it allows you to clean up anything else (event listeners and other bindings) that are part of the subclass.</p>
 <p><strong>Syntax</strong></p>
@@ -1221,7 +1221,7 @@ ractive.resetPartial('foo', 'bar');
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivetocss">ractive.toCSS()</h2>
+<h2 id="ractivetocss"><a class="toclink" href="#ractivetocss">ractive.toCSS()</a></h2>
 <p>Returns the scoped CSS of the current instance and its descendants.</p>
 <p>At the moment, this will not work on a direct instance of Ractive and will log a warning. You can only use this method on an instance of a subclass.</p>
 <p><strong>Syntax</strong></p>
@@ -1249,7 +1249,7 @@ const subclassInstance = new Subclass({...});
 subclassInstance.toCSS();
 </code></pre>
 
-<h2 id="ractivetohtml">ractive.toHTML()</h2>
+<h2 id="ractivetohtml"><a class="toclink" href="#ractivetohtml">ractive.toHTML()</a></h2>
 <p>Returns a chunk of HTML representing the current state of the instance. This is most useful when you're using Ractive in node.js, as it allows you to serve fully-rendered pages (good for SEO and initial pageload performance) to the client.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -1267,7 +1267,7 @@ subclassInstance.toCSS();
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivetoggle">ractive.toggle()</h2>
+<h2 id="ractivetoggle"><a class="toclink" href="#ractivetoggle">ractive.toggle()</a></h2>
 <p>Toggles the selected keypath. In other words, if <code>foo</code> is <a href="http://james.padolsey.com/javascript/truthy-falsey/">truthy</a>, then <code>ractive.toggle('foo')</code> will make it <code>false</code>, and vice-versa.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -1285,7 +1285,7 @@ subclassInstance.toCSS();
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractivetransition">ractive.transition()</h2>
+<h2 id="ractivetransition"><a class="toclink" href="#ractivetransition">ractive.transition()</a></h2>
 <p>Triggers a transition on a node managed by this Ractive instance.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -1305,7 +1305,7 @@ subclassInstance.toCSS();
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveunlink">ractive.unlink()</h2>
+<h2 id="ractiveunlink"><a class="toclink" href="#ractiveunlink">ractive.unlink()</a></h2>
 <p>Removes a link set up by <a href="#ractivelink"><code>ractive.link()</code></a>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -1323,7 +1323,7 @@ subclassInstance.toCSS();
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveunrender">ractive.unrender()</h2>
+<h2 id="ractiveunrender"><a class="toclink" href="#ractiveunrender">ractive.unrender()</a></h2>
 <p>Unrenders this Ractive instance, throwing away any DOM nodes associated with this instance. This is the counterpart to <a href="#ractiverender"><code>ractive.render()</code></a>. The rest of the ractive instance is left intact, unlike <a href="#ractiveteardown"><code>ractive.teardown()</code></a>.</p>
 <p>Note that if the instance happens to be a component that is managed by another instance, the owning instance may veto the call to <code>unrender</code>. If you need more precise control over component rendering, you should probably use an anchor and <a href="#ractiveattachchild"><code>ractive.attachChild()</code></a> instead.</p>
 <p><strong>Syntax</strong></p>
@@ -1342,7 +1342,7 @@ subclassInstance.toCSS();
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveunshift">ractive.unshift()</h2>
+<h2 id="ractiveunshift"><a class="toclink" href="#ractiveunshift">ractive.unshift()</a></h2>
 <p>The Ractive equivalent to <code>Array.unshift</code> that prepends one or more elements to the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
@@ -1362,7 +1362,7 @@ subclassInstance.toCSS();
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="ractiveupdate">ractive.update()</h2>
+<h2 id="ractiveupdate"><a class="toclink" href="#ractiveupdate">ractive.update()</a></h2>
 <p>"Dirty checks" everything that depends directly or indirectly on the specified keypath. If no <code>keypath</code> is specified, all keypaths will be checked. Keypaths that involve special references (i.e. <code>@global</code>) require the keypath to be supplied.</p>
 <p>This is useful when manipulating the instance's data without using the built in setter methods (i.e. <a href="#ractiveset"><code>ractive.set()</code></a>, <a href="#ractiveanimate"><code>ractive.animate()</code></a>).</p>
 <p><strong>Syntax</strong></p>
@@ -1390,7 +1390,7 @@ model.foo = 'changed';   // Does not cause the instance to update.
 ractive.update( 'foo' ); // Informs the instance that foo was changed externally.
 </code></pre>
 
-<h2 id="ractiveupdatemodel">ractive.updateModel()</h2>
+<h2 id="ractiveupdatemodel"><a class="toclink" href="#ractiveupdatemodel">ractive.updateModel()</a></h2>
 <p>If you programmatically manipulate inputs and other elements that have <a href="../../concepts/data-management/#two-way-binding">two‐way binding</a> set up, your model can get out of sync. In these cases, we need to force a resync with <code>ractive.updateModel()</code>:</p>
 <p><strong>Syntax</strong></p>
 <ul>

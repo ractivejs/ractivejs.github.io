@@ -66,9 +66,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="decorators">Decorators</h1>
+          <h1 id="decorators"><a class="toclink" href="#decorators">Decorators</a></h1>
 <p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
-<h2 id="writing">Writing</h2>
+<h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
 <pre><code class="js">const myDecorator = function(node[, ...args]) {
   // Setup code
   return {
@@ -88,25 +88,25 @@
 <p><code>teardown</code> is a function that gets called when the decorator is torn down.</p>
 <p><code>update</code> is an optional function that gets called when the arguments update.</p>
 <p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
-<h2 id="registering">Registering</h2>
+<h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register decorators:</p>
-<h3 id="globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</h3>
+<h3 id="globally-via-the-ractivedecorators-static-property"><a class="toclink" href="#globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</a></h3>
 <pre><code class="js">Ractive.decorators.myDecorator = myDecorator;
 </code></pre>
 
-<h3 id="per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</h3>
+<h3 id="per-component-via-the-components-decorators-initialization-property"><a class="toclink" href="#per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   decorators: { myDecorator }
 });
 </code></pre>
 
-<h3 id="per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</h3>
+<h3 id="per-instance-via-the-instances-decorators-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = new Ractive({
   decorators: { myDecorator }
 });
 </code></pre>
 
-<h2 id="using">Using</h2>
+<h2 id="using"><a class="toclink" href="#using">Using</a></h2>
 <p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
 <pre><code class="html">&lt;!-- without arguments --&gt;
 &lt;div as-myDecorator&gt;...&lt;/div&gt;
@@ -115,7 +115,7 @@
 &lt;div as-myDecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
 </code></pre>
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <p>The following example builds a decorator that updates the time.</p>
 <pre><code class="js">Ractive.decorators.timer = function(node, time) {
   node.innerHTML = 'Hello World!';

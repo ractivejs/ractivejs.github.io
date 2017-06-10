@@ -66,9 +66,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="transitions">Transitions</h1>
+          <h1 id="transitions"><a class="toclink" href="#transitions">Transitions</a></h1>
 <p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
-<h2 id="writing">Writing</h2>
+<h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
 <pre><code class="js">const myTransition = function ( t, params ) {
   // Manipulate the DOM.
   // Call t.complete() when completed.
@@ -80,25 +80,25 @@
 <p><code>params</code> is the parameters passed in via the transition directive.</p>
 <p>Transitions are expected to be asynchronous. In order to signal Ractive that the transition has completed, the transition must call the <code>t.complete()</code>.</p>
 <p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
-<h2 id="registering">Registering</h2>
+<h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register transitions:</p>
-<h3 id="globally-via-the-ractivetransitions-static-property">Globally, via the <code>Ractive.transitions</code> static property.</h3>
+<h3 id="globally-via-the-ractivetransitions-static-property"><a class="toclink" href="#globally-via-the-ractivetransitions-static-property">Globally, via the <code>Ractive.transitions</code> static property.</a></h3>
 <pre><code class="js">Ractive.transitions.myTransition = myTransition;
 </code></pre>
 
-<h3 id="per-component-via-the-components-transitions-initialization-property">Per component, via the component's <code>transitions</code> initialization property.</h3>
+<h3 id="per-component-via-the-components-transitions-initialization-property"><a class="toclink" href="#per-component-via-the-components-transitions-initialization-property">Per component, via the component's <code>transitions</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   transitions: { myTransition }
 });
 </code></pre>
 
-<h3 id="per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</h3>
+<h3 id="per-instance-via-the-instances-transitions-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = new Ractive({
   transitions: { myTransition }
 });
 </code></pre>
 
-<h2 id="using">Using</h2>
+<h2 id="using"><a class="toclink" href="#using">Using</a></h2>
 <p>Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix <code>-in</code>, outro-only (upon removal) using the suffix <code>-out</code>, or both using the suffix <code>-in-out</code>.</p>
 <pre><code class="html">&lt;div myTransition-in&gt;Intro-only&lt;/div&gt;
 &lt;div myTransition-out&gt;Outro-only&lt;/div&gt;
@@ -111,7 +111,7 @@
 &lt;div myTransition-in-out=&quot;{ /*params */ }&quot;&gt;Intro and outro&lt;/div&gt;
 </code></pre>
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <p>The following example demonstrates a "flash" transition which colors the element green upon attachment, and red prior to removal.</p>
 <pre><code class="js">Ractive.transitions.flash = function(t, params) {
   // Process params and declaring defaults.

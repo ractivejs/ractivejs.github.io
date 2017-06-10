@@ -70,8 +70,8 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="tools">Tools</h1>
-<h2 id="browserify">Browserify</h2>
+          <h1 id="tools"><a class="toclink" href="#tools">Tools</a></h1>
+<h2 id="browserify"><a class="toclink" href="#browserify">Browserify</a></h2>
 <p><a href="http://browserify.org/">Browserify</a> is a way of using <a href="http://nodejs.org/">node-style</a> requires in the browser, bundling your scripts into a single file for efficient deployment.</p>
 <p>There are three Browserify transforms available that you can use for Ractive.js:</p>
 <ul>
@@ -80,12 +80,12 @@
 <li><a href="https://npmjs.org/package/ractiveify">Ractiveify</a>, a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by <a href="https://github.com/norcalli">norcalli</a>. <a href="https://github.com/norcalli/ractiveify">(Github repository)</a></li>
 </ul>
 <p>A <a href="https://github.com/alienscience/gulp-ractive-starter">starter project</a> is available for using Ractivate with <a href="http://gulpjs.com/">gulp.js</a> build system.</p>
-<h3 id="using-plugins-with-ractive-and-browserify">Using plugins with Ractive and Browserify</h3>
+<h3 id="using-plugins-with-ractive-and-browserify"><a class="toclink" href="#using-plugins-with-ractive-and-browserify">Using plugins with Ractive and Browserify</a></h3>
 <p><a href="../plugins/">Plugins</a> typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls <code>require('ractive')</code>. If you want to be explicit about <em>which</em> version of Ractive gets loaded, you can do it when you configure browserify like so:</p>
 <pre><code class="js">browserify.require('./my-copy-of-ractive.js', { expose: 'ractive' });
 </code></pre>
 
-<h2 id="requirejs">RequireJS</h2>
+<h2 id="requirejs"><a class="toclink" href="#requirejs">RequireJS</a></h2>
 <p><em>Psst! Looking for the <a href="https://github.com/RactiveJS/requirejs-ractive/tree/master/sample">Ractive + RequireJS sample application</a>?</em></p>
 <p>If Ractive detects that you're using an <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a> module loader (in other words, if <code>typeof define !== 'undefined' &amp;&amp; define.amd</code>) such as <a href="http://requirejs.org/">RequireJS</a>, it will register itself as an AMD module rather than as a browser global.</p>
 <p>You'd then use Ractive the same as you'd use any other module, such as in this (contrived, oversimple) example:</p>
@@ -115,7 +115,7 @@ define([ 'jquery', 'Ractive' ], function ( $, Ractive ) {
 });
 </code></pre>
 
-<h3 id="loading-templates-without-ajax">Loading templates without AJAX</h3>
+<h3 id="loading-templates-without-ajax"><a class="toclink" href="#loading-templates-without-ajax">Loading templates without AJAX</a></h3>
 <p>We can do one better than that. Rather than stuffing our code full of asynchronous logic, we can use AMD to do the donkey work for us.</p>
 <p>Include the <a href="https://github.com/requirejs/text">RequireJS text loader plugin</a> in the root of your project (or whatever you've specified as the RequireJS <code>baseUrl</code>) - you can now do this (note we no longer require jQuery):</p>
 <pre><code class="js">// define our main application, with an 'init' method to call when
@@ -164,7 +164,7 @@ define([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {
 });
 </code></pre>
 
-<h3 id="using-the-requirejs-optimiser">Using the RequireJS optimiser</h3>
+<h3 id="using-the-requirejs-optimiser"><a class="toclink" href="#using-the-requirejs-optimiser">Using the RequireJS optimiser</a></h3>
 <p>You might wonder why the third example is better than the second - after all, we've basically just added another middleman, right?</p>
 <p>The answer is that you can now use the <a href="http://requirejs.org/docs/optimization.html">RequireJS optimiser</a> to parse your template as part of your build process. The optimiser converts your project into a single minified file, which in most cases makes your app much quicker to load for the end user (because the browser only needs to make one HTTP request, and the total file size is reduced).</p>
 <p>By pre-parsing templates, we save browsers having to do it, which shaves a few milliseconds off at render time.</p>
@@ -177,11 +177,11 @@ define([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {
 
 <p>(This assumes you're using a <code>build.js</code> file, or a build system like Grunt. If you're using the optimiser on the command line it will be different - consult the <a href="http://requirejs.org/docs/optimization.html">documentation</a> for more info.)</p>
 <p>Getting to grips with AMD and RequireJS can be tricky at first, but it's worth the effort. Good luck!</p>
-<h2 id="yeoman">Yeoman</h2>
+<h2 id="yeoman"><a class="toclink" href="#yeoman">Yeoman</a></h2>
 <p><a href="http://yeoman.io/">Yeoman</a> is a tool for scaffolding webapps. <a href="http://colindres.me/">Jorge Colindres</a> has created <a href="https://github.com/colindresj/generator-ractive">generator-ractive</a>, a Yeoman generator to quickly set up a Ractive application.</p>
-<h2 id="rollup">Rollup</h2>
+<h2 id="rollup"><a class="toclink" href="#rollup">Rollup</a></h2>
 <p>TODO</p>
-<h2 id="babel">Babel</h2>
+<h2 id="babel"><a class="toclink" href="#babel">Babel</a></h2>
 <p>TODO</p>
         </div>
       </div>

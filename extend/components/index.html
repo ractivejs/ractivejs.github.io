@@ -66,9 +66,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="components">Components</h1>
+          <h1 id="components"><a class="toclink" href="#components">Components</a></h1>
 <p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications. Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect).</p>
-<h2 id="writing">Writing</h2>
+<h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
 <p>There are several ways to write Ractive components. Standard <a href="../../api/initialization-options/">initialization options</a> apply for configuration unless where changes are explicitly mentioned.</p>
 <p>The most common way to define a component is by using <a href="../../api/static-methods/#ractiveextend"><code>Ractive.extend()</code></a>.</p>
 <pre><code class="js">// A subclass of Ractive
@@ -101,28 +101,28 @@ component.exports = {
 &lt;/script&gt;
 </code></pre>
 
-<h2 id="registering">Registering</h2>
+<h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register components:</p>
-<h3 id="globally-via-the-ractivecomponents-static-property">Globally, via the <code>Ractive.components</code> static property:</h3>
+<h3 id="globally-via-the-ractivecomponents-static-property"><a class="toclink" href="#globally-via-the-ractivecomponents-static-property">Globally, via the <code>Ractive.components</code> static property:</a></h3>
 <pre><code class="js">// Available to all instances of Ractive.
 Ractive.components.MyComponent = Ractive.extend({ ... });
 </code></pre>
 
-<h3 id="per-component-via-the-components-components-initialization-property">Per component, via the component's <code>components</code> initialization property.</h3>
+<h3 id="per-component-via-the-components-components-initialization-property"><a class="toclink" href="#per-component-via-the-components-components-initialization-property">Per component, via the component's <code>components</code> initialization property.</a></h3>
 <pre><code class="js">// Only available for instances of AnotherComponent.
 const AnotherComponent = Ractive.extend({
   components: { MyComponent }
 });
 </code></pre>
 
-<h3 id="per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's <code>components</code> initialization property.</h3>
+<h3 id="per-instance-via-the-instances-components-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's <code>components</code> initialization property.</a></h3>
 <pre><code class="js">// Only available to this specific instance.
 const ractive = new Ractive({
   components: { MyComponent }
 });
 </code></pre>
 
-<h2 id="using">Using</h2>
+<h2 id="using"><a class="toclink" href="#using">Using</a></h2>
 <p>Components are simply subclasses of Ractive, which means the are instatiable via the <code>new</code> keyword.</p>
 <pre><code class="js">const ractive = new MyComponent({ ... });
 </code></pre>
@@ -154,7 +154,7 @@ const AnotherComponent = Ractive.extend({
 });
 </code></pre>
 
-<h3 id="content">{{&gt;content}}</h3>
+<h3 id="content"><a class="toclink" href="#content">{{&gt;content}}</a></h3>
 <p><code>{{&gt;content}}</code> renders the inner HTML in the context of the component. Partials, components, and any other valid template items can be used as inner HTML. <code>{{&gt;content}}</code> can be thought of as a special partial.</p>
 <p>In the following example, the result will print "Lorem Ipsum" because the inner HTML's context is the component, whose <code>message</code> is set to "Lorem Ipsum".</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -210,7 +210,7 @@ const ractive = new Ractive({
 });
 </code></pre>
 
-<h3 id="yield">{{yield}}</h3>
+<h3 id="yield"><a class="toclink" href="#yield">{{yield}}</a></h3>
 <p><code>{{yield}}</code> renders the inner HTML in the context of the parent component. Partials, components, and any other valid template items can be used as inner HTML. A common use case of <code>{{yield}}</code> is to provide wrapper markup transparently.</p>
 <p>In the following example, the result will print "Hello World!" because the inner HTML's context is the parent component's, whose <code>message</code> is "Hello World!".</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
@@ -263,7 +263,7 @@ const ractive = new Ractive({
 });
 </code></pre>
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <pre><code></code></pre>
         </div>
       </div>

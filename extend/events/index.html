@@ -66,9 +66,9 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="events">Events</h1>
+          <h1 id="events"><a class="toclink" href="#events">Events</a></h1>
 <p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
-<h2 id="writing">Writing</h2>
+<h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
 <pre><code class="js">const myEvent = function(node, fire){
   // Setup code
   return {
@@ -84,32 +84,32 @@
 <p><code>fire</code> is the function that must be called when the event has taken place. <code>fire</code> takes a single argument, the event object received by handlers. The minimum requirement for the event object is a <code>node</code> property that references DOM node the event is attached to, and an <code>original</code> property which references the native DOM <code>event</code> object supplied by the native handler, if available.</p>
 <p>The event object will be augmented with <code>context</code>, <code>keypath</code> and <code>index</code> properties, whose values depend on the data context the node is in. <code>context</code> references the data context that surrounds the node, <code>keypath</code> is a string that leads to the current data context and <code>index</code> is a number that references the index number of the data, should the data context be in an array.</p>
 <p><code>teardown</code> is a function that gets called once the element is torn down. This allows the event to clean up after itself.</p>
-<h2 id="registering">Registering</h2>
+<h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register events:</p>
-<h3 id="globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</h3>
+<h3 id="globally-via-the-ractiveevents-static-property"><a class="toclink" href="#globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</a></h3>
 <pre><code class="js">Ractive.events.myEvent = myEvent;
 </code></pre>
 
-<h3 id="per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</h3>
+<h3 id="per-component-via-the-components-events-initialization-property"><a class="toclink" href="#per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   events: { myEvent }
 });
 </code></pre>
 
-<h3 id="per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</h3>
+<h3 id="per-instance-via-the-instances-events-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = new Ractive({
   events: { myEvent }
 });
 </code></pre>
 
-<h2 id="using">Using</h2>
+<h2 id="using"><a class="toclink" href="#using">Using</a></h2>
 <p>Events use the same <code>on-*</code> attribute syntax as component and DOM events. When Ractive encounters an <code>on-*</code> attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.</p>
 <pre><code class="html">// This will apply the &quot;myEvent&quot; custom event if one is registered.
 // Otherwise, Ractive will think it's a DOM event. You have been warned!
 &lt;span on-myEvent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
 </code></pre>
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <p>Here's an example of a "long press" event which fires when the mouse is clicked and held for 1 second.</p>
 <pre><code class="js">// Definition
 Ractive.events.longpress = function(node, fire){

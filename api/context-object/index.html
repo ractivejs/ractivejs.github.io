@@ -182,23 +182,23 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="context-object">Context Object</h1>
+          <h1 id="context-object"><a class="toclink" href="#context-object">Context Object</a></h1>
 <p>The context object is the type of object you receive when calling <a href="../static-methods/#ractivegetcontext">getContext()</a>. This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.</p>
 <p>The special <code>@context</code> reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.</p>
 <p>Helper methods that take a <a href="../../concepts/templates/#keypaths">keypath</a> will resolve relative to that node's context. Special references, template aliases, and key and index aliases are supported. If the method doesn't require a keypath, like <code>get</code>, then the keypath will implicitly be <code>.</code> rather than <code>~/</code>, as with regular instance methods.</p>
-<h2 id="contextadd">context.add()</h2>
+<h2 id="contextadd"><a class="toclink" href="#contextadd">context.add()</a></h2>
 <p>See <a href="../instance-methods/#ractiveadd">ractive.add()</a>.</p>
-<h2 id="contextanimate">context.animate()</h2>
+<h2 id="contextanimate"><a class="toclink" href="#contextanimate">context.animate()</a></h2>
 <p>See <a href="../instance-methods/#ractiveanimate">ractive.animate()</a>.</p>
-<h2 id="contextdecorators">context.decorators</h2>
+<h2 id="contextdecorators"><a class="toclink" href="#contextdecorators">context.decorators</a></h2>
 <p><code>(Object)</code></p>
 <p>A map of decorator name to decorator return object for all of the decorators on the node associated with the context.</p>
-<h2 id="contextevent">context.event</h2>
+<h2 id="contextevent"><a class="toclink" href="#contextevent">context.event</a></h2>
 <p><code>(Event|undefined)</code></p>
 <p>The original event for contexts supplied to event directives. This is <code>undefined</code> for contexts not associated with an event.</p>
-<h2 id="contextget">context.get()</h2>
+<h2 id="contextget"><a class="toclink" href="#contextget">context.get()</a></h2>
 <p>See <a href="../instance-methods/#ractiveget">ractive.get()</a>.</p>
-<h2 id="contextgetbinding">context.getBinding()</h2>
+<h2 id="contextgetbinding"><a class="toclink" href="#contextgetbinding">context.getBinding()</a></h2>
 <p>Returns the value of the binding if the node represented by this info object has a two-way binding.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -219,7 +219,7 @@
 <pre><code class="js">Ractive.getContext('#findMe').getBinding(); // returns value of foo.bar.baz
 </code></pre>
 
-<h2 id="contextgetbindingpath">context.getBindingPath()</h2>
+<h2 id="contextgetbindingpath"><a class="toclink" href="#contextgetbindingpath">context.getBindingPath()</a></h2>
 <p>Returns the keypath of the binding if the node represented by this info object has a two-way binding.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -240,7 +240,7 @@
 <pre><code class="js">Ractive.getContext('#findMe').getBindingPath(); // Returns &quot;foo.bar.baz&quot;
 </code></pre>
 
-<h2 id="contextisbound">context.isBound()</h2>
+<h2 id="contextisbound"><a class="toclink" href="#contextisbound">context.isBound()</a></h2>
 <p>Returns <code>true</code> if the node represented by this info object has a two-way binding.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -265,9 +265,9 @@
 Ractive.getContext('#bar').isBound(); // Returns false
 </code></pre>
 
-<h2 id="contextlink">context.link()</h2>
+<h2 id="contextlink"><a class="toclink" href="#contextlink">context.link()</a></h2>
 <p>See <a href="../instance-methods/#ractivelink">ractive.link()</a>.</p>
-<h2 id="contextlisten">context.listen()</h2>
+<h2 id="contextlisten"><a class="toclink" href="#contextlisten">context.listen()</a></h2>
 <p>Subscribes an event listener either directly on the node associated with the context or as a delegate if appropriate. This is not like the <a href="../instance-methods#ractiveon"><code>on</code></a> method, but is instead basically an <code>addEventListener</code> helper that is delegation-aware.</p>
 <p><strong>Syntax</strong></p>
 <p><code>context.listen( event, callback )</code></p>
@@ -280,24 +280,24 @@ Ractive.getContext('#bar').isBound(); // Returns false
 <ul>
 <li><code>(Object)</code>: An object with a <code>cancel</code> method to <a href="#contextunlisten">unlisten</a> the event.</li>
 </ul>
-<h2 id="contextnode">context.node</h2>
+<h2 id="contextnode"><a class="toclink" href="#contextnode">context.node</a></h2>
 <p><code>(Node|undefined)</code></p>
 <p>The node associated with the context. Note that it is possible to get a context that is not associated with an element, which will leave the node <code>undefined</code>.</p>
-<h2 id="contextobserve">context.observe()</h2>
+<h2 id="contextobserve"><a class="toclink" href="#contextobserve">context.observe()</a></h2>
 <p>See <a href="../instance-methods/#ractiveobserve">ractive.observe()</a>.</p>
-<h2 id="contextobserveonce">context.observeOnce()</h2>
+<h2 id="contextobserveonce"><a class="toclink" href="#contextobserveonce">context.observeOnce()</a></h2>
 <p>See <a href="../instance-methods/#ractiveobserveonce">ractive.observeOnce()</a>.</p>
-<h2 id="contextoriginal">context.original</h2>
+<h2 id="contextoriginal"><a class="toclink" href="#contextoriginal">context.original</a></h2>
 <p><code>(Event|undefined)</code></p>
 <p>The original DOM event object. Normally present when the event is a Ractive DOM event. May be <code>undefined</code> on custom events or events from event plugins.</p>
-<h2 id="contextpop">context.pop()</h2>
+<h2 id="contextpop"><a class="toclink" href="#contextpop">context.pop()</a></h2>
 <p>See <a href="../instance-methods/#ractivepop">ractive.pop()</a>.</p>
-<h2 id="contextpush">context.push()</h2>
+<h2 id="contextpush"><a class="toclink" href="#contextpush">context.push()</a></h2>
 <p>See <a href="../instance-methods/#ractivepush">ractive.push()</a>.</p>
-<h2 id="contextractive">context.ractive</h2>
+<h2 id="contextractive"><a class="toclink" href="#contextractive">context.ractive</a></h2>
 <p><code>(Ractive)</code></p>
 <p>This property holds a reference to the Ractive instance that controls the node represented by this info object.</p>
-<h2 id="contextraise">context.raise()</h2>
+<h2 id="contextraise"><a class="toclink" href="#contextraise">context.raise()</a></h2>
 <p>Triggers the nearest matching event directive relative to the context. This is useful for decorators and other library constructs that want to be able to raise their own events that aren't necessarily tied to a DOM event. Raised events do not bubble.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -313,9 +313,9 @@ Ractive.getContext('#bar').isBound(); // Returns false
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="contextreadlink">context.readLink()</h2>
+<h2 id="contextreadlink"><a class="toclink" href="#contextreadlink">context.readLink()</a></h2>
 <p>See <a href="../instance-methods/#ractivereadlink">ractive.readLink()</a>.</p>
-<h2 id="contextresolve">context.resolve()</h2>
+<h2 id="contextresolve"><a class="toclink" href="#contextresolve">context.resolve()</a></h2>
 <p>Resolves the given keypath to a full keypath. If a Ractive instance is supplied, the resolved path will also account for any mappings defined for the instance.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -334,11 +334,11 @@ Ractive.getContext('#bar').isBound(); // Returns false
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="contextreverse">context.reverse()</h2>
+<h2 id="contextreverse"><a class="toclink" href="#contextreverse">context.reverse()</a></h2>
 <p>See <a href="../instance-methods/#ractivereverse">ractive.reverse()</a>.</p>
-<h2 id="contextset">context.set()</h2>
+<h2 id="contextset"><a class="toclink" href="#contextset">context.set()</a></h2>
 <p>See <a href="../instance-methods/#ractiveset">ractive.set()</a>.</p>
-<h2 id="contextsetbinding">context.setBinding()</h2>
+<h2 id="contextsetbinding"><a class="toclink" href="#contextsetbinding">context.setBinding()</a></h2>
 <p>Sets the binding of the node represented by this info object to the specified value.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -356,19 +356,19 @@ Ractive.getContext('#bar').isBound(); // Returns false
 <pre><code class="js">// TODO
 </code></pre>
 
-<h2 id="contextshift">context.shift()</h2>
+<h2 id="contextshift"><a class="toclink" href="#contextshift">context.shift()</a></h2>
 <p>See <a href="../instance-methods/#ractiveshift">ractive.shift()</a>.</p>
-<h2 id="contextsplice">context.splice()</h2>
+<h2 id="contextsplice"><a class="toclink" href="#contextsplice">context.splice()</a></h2>
 <p>See <a href="../instance-methods/#ractivesplice">ractive.splice()</a>.</p>
-<h2 id="contextsort">context.sort()</h2>
+<h2 id="contextsort"><a class="toclink" href="#contextsort">context.sort()</a></h2>
 <p>See <a href="../instance-methods/#ractivesort">ractive.sort()</a>.</p>
-<h2 id="contextsubtract">context.subtract()</h2>
+<h2 id="contextsubtract"><a class="toclink" href="#contextsubtract">context.subtract()</a></h2>
 <p>See <a href="../instance-methods/#ractivesubtract">ractive.subtract()</a>.</p>
-<h2 id="contexttoggle">context.toggle()</h2>
+<h2 id="contexttoggle"><a class="toclink" href="#contexttoggle">context.toggle()</a></h2>
 <p>See <a href="../instance-methods/#ractivetoggle">ractive.toggle()</a>.</p>
-<h2 id="contextunlink">context.unlink()</h2>
+<h2 id="contextunlink"><a class="toclink" href="#contextunlink">context.unlink()</a></h2>
 <p>See <a href="../instance-methods/#ractiveunlink">ractive.unlink()</a>.</p>
-<h2 id="contextunlisten">context.unlisten()</h2>
+<h2 id="contextunlisten"><a class="toclink" href="#contextunlisten">context.unlisten()</a></h2>
 <p>Unsubscribe an event listener that was subscribed with <a href="#contextlisten"><code>listen</code></a>. This is basically a <code>removeEventListener</code> helper that is delegation-aware.</p>
 <p><strong>Syntax</strong></p>
 <p><code>context.unlisten( event, callback )</code></p>
@@ -377,11 +377,11 @@ Ractive.getContext('#bar').isBound(); // Returns false
 <li><code>event (string)</code>: The name of the event to unsubscribe.</li>
 <li><code>callback (function)</code>: The callback that was previously subscribed.</li>
 </ul>
-<h2 id="contextunshift">context.unshift()</h2>
+<h2 id="contextunshift"><a class="toclink" href="#contextunshift">context.unshift()</a></h2>
 <p>See <a href="../instance-methods/#ractiveunshift">ractive.unshift()</a>.</p>
-<h2 id="contextupdate">context.update()</h2>
+<h2 id="contextupdate"><a class="toclink" href="#contextupdate">context.update()</a></h2>
 <p>See <a href="../instance-methods/#ractiveupdate">ractive.update()</a>.</p>
-<h2 id="contextupdatemodel">context.updateModel()</h2>
+<h2 id="contextupdatemodel"><a class="toclink" href="#contextupdatemodel">context.updateModel()</a></h2>
 <p>See <a href="../instance-methods/#ractiveupdatemodel">ractive.updateModel()</a>.</p>
         </div>
       </div>

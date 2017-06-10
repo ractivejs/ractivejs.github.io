@@ -70,10 +70,10 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="data-management">Data management</h1>
-<h2 id="dependents">Dependents</h2>
+          <h1 id="data-management"><a class="toclink" href="#data-management">Data management</a></h1>
+<h2 id="dependents"><a class="toclink" href="#dependents">Dependents</a></h2>
 <p>Ractive maintains a dependency graph in order to do only the minimum amount of work necessary to keep the DOM up-to-date. If you inspect a Ractive instance, you'll see a property called <code>_deps</code>. This is where all dependants are listed, indexed by their dependency.</p>
-<h3 id="expression-dependencies">Expression dependencies</h3>
+<h3 id="expression-dependencies"><a class="toclink" href="#expression-dependencies">Expression dependencies</a></h3>
 <p>Ractive uses dynamic analysis to determine dependencies. Depedendencies are determined by capturing references in the viewmodel while the function is executing. Dependencies for functions are re-captured each time the function is executed.</p>
 <pre><code class="html">&lt;p&gt;{{ formattedName() }}&lt;/p&gt;
 </code></pre>
@@ -102,9 +102,9 @@
 <pre><code class="html">&lt;p&gt;Public, Jane&lt;/p&gt;
 </code></pre>
 
-<h3 id="priority">Priority</h3>
+<h3 id="priority"><a class="toclink" href="#priority">Priority</a></h3>
 <p>Ractive runs updates based on priority. For instance, when a subtree of the DOM needs to be removed while at the same time updates are pending for that subtree. What Ractive does is prioritize the removal of the subtree over the updates. This causes the dependents on the subtree to unregister themselves, eliminating the need to update, resulting with only the removal operation being done.</p>
-<h3 id="indirect-dependencies">Indirect dependencies</h3>
+<h3 id="indirect-dependencies"><a class="toclink" href="#indirect-dependencies">Indirect dependencies</a></h3>
 <p>If you have a mustache which depends on <code>foo.bar</code>, and <code>foo</code> changes, it's quite possible that the mustache needs to re-render. We say that the mustache has an <em>indirect dependency</em> on <code>foo</code>, or that it has a <em>direct dependency on a downstream keypath</em> of <code>foo</code>.</p>
 <p>This relationship is expressed through the <code>_depsMap</code> property of a Ractive instance - whenever <code>foo</code> changes, as well as dealing with direct <code>foo</code> dependants we check the map for those indirect dependants.</p>
 <p>In the case of <a href="../templates/#expressions">expressions</a> and <a href="#observers">observers</a>, we also need to consider dependants of <em>upstream keypaths</em>. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:</p>
@@ -135,10 +135,10 @@ ractive.set( 'list[0].name', 'Zebediah' )
 
 <p>In the example, setting <code>list[0].name</code> causes dependants of <code>list</code> to be updated.</p>
 <p>As well as <a href="../templates/#expressions">expressions</a>, <a href="#observers">Observers</a> respond to both upstream and downstream changes.</p>
-<h3 id="expressions-with-multiple-dependencies">Expressions with multiple dependencies</h3>
+<h3 id="expressions-with-multiple-dependencies"><a class="toclink" href="#expressions-with-multiple-dependencies">Expressions with multiple dependencies</a></h3>
 <p>The expression <code>{{ a + b }}</code> has two dependencies - <code>a</code> and <code>b</code> (or more accurately, whatever those <a href="../templates/#references">references</a> resolve to). The <code>_deps</code> graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.</p>
 <p>Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing <code>ractive.set({ a: 1, b: 2 })</code> will only trigger one update, not two.</p>
-<h2 id="two-way-binding">Two-way binding</h2>
+<h2 id="two-way-binding"><a class="toclink" href="#two-way-binding">Two-way binding</a></h2>
 <p>Out of the box, Ractive supports two-way binding. This allows data to update bi-directionally, from data to the UI and vice versa.</p>
 <pre><code class="js">const instance = Ractive({
   data: { msg: 'Hello, World!' },
@@ -155,7 +155,7 @@ instance.set('msg', 'Lorem ipsum')
 </code></pre>
 
 <p>Two-way binding can be disabled via the <a href="../../api/initialization-options/#twoway"><code>twoway</code></a> initialization option or the <a href="../../api/directives/#twoway"><code>twoway</code></a> input directive.</p>
-<h3 id="ambiguous-references">Ambiguous references</h3>
+<h3 id="ambiguous-references"><a class="toclink" href="#ambiguous-references">Ambiguous references</a></h3>
 <p>An ambiguous reference refers to a reference whose data does not exist at the time of construction.</p>
 <pre><code class="js">Ractive({
   data: { foo: {} },
@@ -169,10 +169,10 @@ instance.set('msg', 'Lorem ipsum')
 
 <p>In the example above, <code>foo.bar</code> nor <code>bar</code> exists on the data. Ractive must make an assumption, following a <a href="../templates/#reference-resolution">resolution algorithm</a>, on what <code>bar</code> should be. Until any of those keypaths pop into existence, <code>bar</code> remains <code>undefined</code>.</p>
 <p>To prevent Ractive from making assumptions on ambiguous references, <a href="../../api/references/#keypath-prefixes">keypath prefixes</a> can be used to restrict resolution to a specific keypath.</p>
-<h3 id="lazy-updates">Lazy updates</h3>
+<h3 id="lazy-updates"><a class="toclink" href="#lazy-updates">Lazy updates</a></h3>
 <p>By default, Ractive uses various events (i.e. <code>change</code>, <code>click</code>, <code>input</code>, <code>keypress</code>) to listen for changes on interactive elements and immediately update bound data. In cases where data updates should only take place after the element loses focus, Ractive also supports lazy updating.</p>
 <p>Lazy updates can be enabled via the <a href="../../api/initialization-options/#lazy"><code>lazy</code></a> initialization option or the <a href="../../api/directives/#lazy"><code>lazy</code></a> input directive.</p>
-<h2 id="computed-properties">Computed Properties</h2>
+<h2 id="computed-properties"><a class="toclink" href="#computed-properties">Computed Properties</a></h2>
 <p>Computed properties are top-level pseudo-data references whose value is defined by a computation and which updates when its data dependencies update. They are useful for cases where a piece of data can be derived from other pieces of data as well as to avoid "watch-and-sync" boilerplate.</p>
 <pre><code class="js">Ractive({
   data: {
@@ -191,7 +191,7 @@ instance.set('msg', 'Lorem ipsum')
 </code></pre>
 
 <p>In the example above, the instance keeps a rectangle's length, width, and specifically <em>its area</em>. If area was kept as a data property, there's the need for ungodly amounts of "watch-and-sync" code to keep it updated when either <code>width</code> or <code>length</code> change. With computed properties, you simply define <code>area</code> as a function of its <code>width</code> and <code>length</code>.</p>
-<h3 id="compact-form">Compact form</h3>
+<h3 id="compact-form"><a class="toclink" href="#compact-form">Compact form</a></h3>
 <p>For simpler cases, computed properties support a compact syntax. It's a string containing a JavaScript expression. Anything inside a <code>${}</code> is replaced internally with a <code>ractive.get()</code>, using the contents as a keypath.</p>
 <pre><code class="js">Ractive({
   data: {
@@ -209,7 +209,7 @@ instance.set('msg', 'Lorem ipsum')
 })
 </code></pre>
 
-<h3 id="accessor-form">Accessor form</h3>
+<h3 id="accessor-form"><a class="toclink" href="#accessor-form">Accessor form</a></h3>
 <p>By default, computed properties are read-only. To be able to set data bi-directionally on a computed property, computed properties support an accessor form. The accessor form defines a computed property as an object with a <code>get</code> and <code>set</code> method. <code>get</code> is called to retrieve its value and <code>set</code> is called when something updates its value.</p>
 <pre><code class="js">Ractive({
   data: {
@@ -229,8 +229,8 @@ instance.set('msg', 'Lorem ipsum')
 </code></pre>
 
 <p>In the example above, updating <code>side</code> will recompute <code>area</code> while at the same time, setting a value on <code>area</code> will update <code>side</code>.</p>
-<h2 id="observers">Observers</h2>
-<h3 id="nested-properties">Nested properties</h3>
+<h2 id="observers"><a class="toclink" href="#observers">Observers</a></h2>
+<h3 id="nested-properties"><a class="toclink" href="#nested-properties">Nested properties</a></h3>
 <p>Ractive observers observe <em>upstream</em> and <em>downstream</em> keypaths. This allows observers to execute when data is updated indirectly, whether if it's the enclosing structure or a descendant property.</p>
 <pre><code class="js">const instance = Ractive({
   data: {
@@ -259,7 +259,7 @@ instance.set('foo', { bar: 3 })
 </code></pre>
 
 <p>To bypass this behavior, observer methods accept a <a href="../../api/instance-methods/#observe"><code>strict</code></a> option which causes the observer to fire only when the specified keypath is updated.</p>
-<h3 id="wildcards">Wildcards</h3>
+<h3 id="wildcards"><a class="toclink" href="#wildcards">Wildcards</a></h3>
 <p>Wildcards allow observers to observe keypaths which have parts that cannot be determined in advance. This is useful when observing an array, observing objects within an array, or observing changes on object properties.</p>
 <pre><code class="js">const instance = Ractive({
   data: {
@@ -321,7 +321,7 @@ instance.observe('config.*', function() {
 instance.set('config.allowEdit', true)
 </code></pre>
 
-<h3 id="space-delimited-observers">Space delimited observers</h3>
+<h3 id="space-delimited-observers"><a class="toclink" href="#space-delimited-observers">Space delimited observers</a></h3>
 <p>Observers also support observing multiple keypaths. This can be done by simply defining the keypaths and separating them with spaces. This can be used for observing multiple specific keypaths on the data where observing an upstream keypath isn't viable.</p>
 <pre><code class="js">const instance = Ractive({
   data: {
@@ -336,7 +336,7 @@ ractive.observe('user.username config.isAdmin commentCount', function(){
 })
 </code></pre>
 
-<h3 id="caveats">Caveats</h3>
+<h3 id="caveats"><a class="toclink" href="#caveats">Caveats</a></h3>
 <p>Ractive observers by default do not defensively clone the old and new values as identity of these values may be essential. Thus, observers on non-primitive values may result in having identically equal old and new values.</p>
 <pre><code class="js">const instance = Ractive({
   data: {
@@ -358,8 +358,8 @@ instance.set('config.allowEdit', true)
 </code></pre>
 
 <p>If the old value's original structure matters, observer methods provide an <a href="../../api/instance-methods/#ractiveobserve"><code>old</code></a> option. This could be used to define the old value as a deep-clone of the data before any mutations are done.</p>
-<h2 id="components">Components</h2>
-<h3 id="mappings">Mappings</h3>
+<h2 id="components"><a class="toclink" href="#components">Components</a></h2>
+<h3 id="mappings"><a class="toclink" href="#mappings">Mappings</a></h3>
 <p>Mappings connect pieces of data on the enclosing instance to data on enclosed instances. Changes on one side will reflect on the other.</p>
 <pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
   data: {
@@ -384,7 +384,7 @@ ractive.set('text', 'Hello World!')
 </code></pre>
 
 <p>In the example above, <code>text</code> on the instance is mapped to <code>MyComponent</code>'s <code>message</code>. Updates on <code>text</code> will update <code>message</code> and any UI elements bound to it. Updates on <code>message</code>, like editing the <code>&lt;input&gt;</code> bound with it, will update <code>text</code>.</p>
-<h3 id="data-context">Data context</h3>
+<h3 id="data-context"><a class="toclink" href="#data-context">Data context</a></h3>
 <p>Each component instance comes with its own data context so that its data does not pollute the primary data. Any mapping between the component and the enclosing instance will still update across both contexts.</p>
 <pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
   data: {
@@ -415,7 +415,7 @@ widget.get()  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;ye
 </code></pre>
 
 <p>In the example above, the enclosing instance data holds <code>name</code> and <code>colors</code>. <code>colors</code> is mapped to <code>shades</code> and <code>option</code> is set on an instance of <code>MyComponent</code>. Upon inspection, <code>name</code> from the enclosing instance does not cross over to <code>MyComponent</code> nor does <code>option</code> cross over to the enclosing instance. However, since <code>colors</code> on the instance is mapped to <code>shades</code> on the component, any modifications on either side will reflect on the other.</p>
-<h3 id="isolation">Isolation</h3>
+<h3 id="isolation"><a class="toclink" href="#isolation">Isolation</a></h3>
 <p>By default, components are "isolated". Descendant components can update ancestor data only when there is an explicit mapping between them. This avoids unintended mutation of ancestor data and ensures portability of components.</p>
 <pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
   template: 'Message missing {{ message }}'

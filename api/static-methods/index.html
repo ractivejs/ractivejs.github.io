@@ -86,8 +86,8 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="static-methods">Static Methods</h1>
-<h2 id="ractiveescapekey">Ractive.escapeKey()</h2>
+          <h1 id="static-methods"><a class="toclink" href="#static-methods">Static Methods</a></h1>
+<h2 id="ractiveescapekey"><a class="toclink" href="#ractiveescapekey">Ractive.escapeKey()</a></h2>
 <p>Escapes the given key so that it can be concatenated with a keypath string.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -105,7 +105,7 @@
 <pre><code class="js">Ractive.escapeKey('foo.bar'); // foo\.bar
 </code></pre>
 
-<h2 id="ractiveextend">Ractive.extend()</h2>
+<h2 id="ractiveextend"><a class="toclink" href="#ractiveextend">Ractive.extend()</a></h2>
 <p>Creates a "subclass" of the Ractive constructor or a subclass constructor. See <a href="../../extend/components/"><code>Components</code></a> for an in-depth discussion on the use of <code>Ractive.extend</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -141,7 +141,7 @@ const instance2 = new SubClass({
 });
 </code></pre>
 
-<h2 id="ractiveextendwith">Ractive.extendWith()</h2>
+<h2 id="ractiveextendwith"><a class="toclink" href="#ractiveextendwith">Ractive.extendWith()</a></h2>
 <p>Creates a "subclass" of the Ractive constructor or a subclass constructor using an existing constructor. The constructor will be augmented with static methods like <code>extend</code>, and it will also process the given initialization options.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -176,7 +176,7 @@ Ractive.extendWith( Widget, {
 });
 </code></pre>
 
-<h2 id="ractivegetcss">Ractive.getCSS()</h2>
+<h2 id="ractivegetcss"><a class="toclink" href="#ractivegetcss">Ractive.getCSS()</a></h2>
 <p>Returns the scoped CSS from Ractive subclasses defined at the time of the call.</p>
 <p>If used without arguments, it will return the scoped CSS of all subclasses. If provided an array of scoping IDs, it will return the scoped CSS of all subclasses whose scoping ID is included in the array.</p>
 <p><strong>Syntax</strong></p>
@@ -214,7 +214,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 
 </code></pre>
 
-<h2 id="ractivegetcontext">Ractive.getContext()</h2>
+<h2 id="ractivegetcontext"><a class="toclink" href="#ractivegetcontext">Ractive.getContext()</a></h2>
 <p>Accepts a node and returns a <a href="../context-object/">Context</a> object containing details of the Ractive instance the node is associated to.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -234,7 +234,7 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 const info = Ractive.getContext('#some-node');
 </code></pre>
 
-<h2 id="ractivejoinkeys">Ractive.joinKeys()</h2>
+<h2 id="ractivejoinkeys"><a class="toclink" href="#ractivejoinkeys">Ractive.joinKeys()</a></h2>
 <p>Joins the given keys into a properly escaped keypath.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -252,7 +252,7 @@ const info = Ractive.getContext('#some-node');
 <pre><code class="js">Ractive.joinKeys( 'foo', 'bar.baz' ); // foo.bar\.baz
 </code></pre>
 
-<h2 id="ractiveparse">Ractive.parse()</h2>
+<h2 id="ractiveparse"><a class="toclink" href="#ractiveparse">Ractive.parse()</a></h2>
 <p>Parses the template into an abstract syntax tree that Ractive can work on.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -324,7 +324,7 @@ const info = Ractive.getContext('#some-node');
 <pre><code class="js">{&quot;v&quot;:4,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;div&quot;,&quot;m&quot;:[{&quot;n&quot;:&quot;class&quot;,&quot;f&quot;:&quot;gallery&quot;,&quot;t&quot;:13}],&quot;f&quot;:[{&quot;t&quot;:4,&quot;f&quot;:[&quot; &quot;,{&quot;t&quot;:7,&quot;e&quot;:&quot;figure&quot;,&quot;m&quot;:[{&quot;n&quot;:[&quot;tap&quot;],&quot;t&quot;:70,&quot;f&quot;:&quot;select&quot;},{&quot;n&quot;:&quot;staggered&quot;,&quot;t&quot;:72,&quot;v&quot;:&quot;t1&quot;}],&quot;f&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;img&quot;,&quot;m&quot;:[{&quot;n&quot;:&quot;class&quot;,&quot;f&quot;:&quot;thumbnail&quot;,&quot;t&quot;:13},{&quot;n&quot;:&quot;src&quot;,&quot;f&quot;:[&quot;assets/images/&quot;,{&quot;t&quot;:2,&quot;r&quot;:&quot;id&quot;},&quot;.jpg&quot;],&quot;t&quot;:13}]},&quot; &quot;,{&quot;t&quot;:7,&quot;e&quot;:&quot;figcaption&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;x&quot;:{&quot;r&quot;:[&quot;@index&quot;],&quot;s&quot;:&quot;_0+1&quot;}},&quot;: &quot;,{&quot;t&quot;:2,&quot;r&quot;:&quot;description&quot;}]}]}],&quot;n&quot;:52,&quot;r&quot;:&quot;items&quot;}]}],&quot;e&quot;:{'_0+1': function(_0) { return _0+1; }}}
 </code></pre>
 
-<h2 id="ractivesplitkeypath">Ractive.splitKeypath()</h2>
+<h2 id="ractivesplitkeypath"><a class="toclink" href="#ractivesplitkeypath">Ractive.splitKeypath()</a></h2>
 <p>Splits the given keypath into an array of unescaped keys.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -342,7 +342,7 @@ const info = Ractive.getContext('#some-node');
 <pre><code class="js">Ractive.splitKeypath( 'foo.bar\.baz' ); // [ 'foo', 'bar.baz' ]
 </code></pre>
 
-<h2 id="ractiveunescapekey">Ractive.unescapeKey()</h2>
+<h2 id="ractiveunescapekey"><a class="toclink" href="#ractiveunescapekey">Ractive.unescapeKey()</a></h2>
 <p>Unescapes the given key e.g. <code>foo\.bar</code> =&gt; <code>foo.bar</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
