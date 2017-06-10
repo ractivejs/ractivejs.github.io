@@ -93,19 +93,20 @@ Ractive({
 
 ### Aliases
 
-References can also be aliased in partials. Simply define aliases as `reference as alias` pairs following the partial name on usage.
+References can also be aliased in partials. Simply define aliases as comma-separated `reference as alias` pairs following the partial name on usage.
 
 ```js
 Ractive({
   data: {
+    status: 'Me, Hungry!,
     foo:{
       bar: 'Hello, World!'
     }
   },
   template: `
-    {{#partial myPartial}}{{msg}}{{/partial}}
+    {{#partial myPartial}}{{msg}} {{state}}{{/partial}}
 
-    {{>myPartial foo.bar as msg}}
+    {{>myPartial foo.bar as msg, status as state}}
   `
 })
 ```
