@@ -98,7 +98,7 @@ References can also be aliased in partials. Simply define aliases as comma-separ
 ```js
 Ractive({
   data: {
-    status: 'Me, Hungry!,
+    status: 'Me, Hungry!',
     foo:{
       bar: 'Hello, World!'
     }
