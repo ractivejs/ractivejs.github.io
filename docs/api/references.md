@@ -237,6 +237,27 @@ Ractive({
 });
 ```
 
+`@this` can also be referenced by using its shorthand `@`.
+
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NwK4A7SgGsUAOhIB7ALbcYAQxK5yANwSsAfAW6kK1DSBxF4AJUXK1ACmDMBNGggA2kGgHIARpKQBPV1lv2SPK48i42djTMuFKCuC4AjAE02Em4CNKUjsEILgAGSVEESKoaAMKSsWHANDECtBgY2sUqGgW4BO587JJ2uN6UCCwgnd0CrDQ9ALQkjuQkwkMAAmLySEiWrrW4rgCUmgCSAmTpCHXaI7g9rRH2HV2Xvf2DrBc941Mzcwusy9LeALIIXBgLyWPYgDQAGUkKBqFTO3FeAmu9ly-gif0BwNBO3C9iiUgEREkjgQYkcMMsuRIfBgMFOtC2NHIRBoABJgMCWWI0LgNltdhhcjsANxJDC2DCizBAA"></div>
+
+```js
+Ractive({
+  el: 'body',
+  data: {
+    count: 1
+  },
+  template: `
+    <div>Count: {{ count }}</div>
+    <button type="button" on-click="@.add('count')">Increment</button>
+    <button type="button" on-click="@.myMethod()">Log count</button>
+  `,
+  myMethod(){
+    console.log(`current count is ${this.get('count')}`);
+  }
+});
+```
+
 ## `@index`
 
 The current iteration index of the containing repeated section.
