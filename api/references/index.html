@@ -337,6 +337,25 @@
 });
 </code></pre>
 
+<p><code>@this</code> can also be referenced by using its shorthand <code>@</code>.</p>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDwDOAxjAJYAOuABETCQLwA64uulRkA9NwK4A7SgGsUAOhIB7ALbcYAQxK5yANwSsAfAW6kK1DSBxF4AJUXK1ACmDMBNGggA2kGgHIARpKQBPV1lv2SPK48i42djTMuFKCuC4AjAE02Em4CNKUjsEILgAGSVEESKoaAMKSsWHANDECtBgY2sUqGgW4BO587JJ2uN6UCCwgnd0CrDQ9ALQkjuQkwkMAAmLySEiWrrW4rgCUmgCSAmTpCHXaI7g9rRH2HV2Xvf2DrBc941Mzcwusy9LeALIIXBgLyWPYgDQAGUkKBqFTO3FeAmu9ly-gif0BwNBO3C9iiUgEREkjgQYkcMMsuRIfBgMFOtC2NHIRBoABJgMCWWI0LgNltdhhcjsANxJDC2DCizBAA"></div>
+
+<pre><code class="js">Ractive({
+  el: 'body',
+  data: {
+    count: 1
+  },
+  template: `
+    &lt;div&gt;Count: {{ count }}&lt;/div&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@.add('count')&quot;&gt;Increment&lt;/button&gt;
+    &lt;button type=&quot;button&quot; on-click=&quot;@.myMethod()&quot;&gt;Log count&lt;/button&gt;
+  `,
+  myMethod(){
+    console.log(`current count is ${this.get('count')}`);
+  }
+});
+</code></pre>
+
 <h2 id="index"><a class="toclink" href="#index"><code>@index</code></a></h2>
 <p>The current iteration index of the containing repeated section.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQGcogEoCGAxgC4CWAbgKYAUwAOvAATPXKTMDkARgPYATAJ5cMTVgMKlCnRi1bNE2ajGycA2uIUNSwZvEIBbap158eXZpi2sdeg8dOFk5YtUvX5t3fqMnu1DQeYl7MALpanqyk1IYADshS-gAGNszAwADE1CRgisqqaGhMOgrMADwCVAB8AKoFzJkZzAAC5PAC1AAeVmjM2IRCaswAEuQAhMwAklyG6fZ+vePlAPRVlNVadsArOcRgRVqp8GgAlADcIFikeOXYxDDkcaT9MMQAvAzgpKRxaisrRDwOIAawA5gA6Yh8QwrGAkCg0L7VVb3R7PaogNBAA"></div>
