@@ -43,6 +43,10 @@
       </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#scoped-css">Scoped CSS</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#progressive-enhancement">Progressive Enhancement</a>
         </li>
       
@@ -59,6 +63,49 @@
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
           <h1 id="rendering"><a class="toclink" href="#rendering">Rendering</a></h1>
+<h2 id="scoped-css"><a class="toclink" href="#scoped-css">Scoped CSS</a></h2>
+<p>CSS provided via the <a href="../../api/initialization-options/#css"><code>css</code></a> initialization option is scoped to the component.</p>
+<pre><code class="js">const Component = Ractive.extend({
+  template: `
+  &lt;span&gt;I'm red&lt;/span&gt;
+  &lt;div&gt;
+    &lt;span&gt;I'm also red&lt;/span&gt;
+  &lt;/div&gt;
+  `,
+  css: `
+    span { color: red }
+  `
+});
+
+Ractive({
+  components: { Component },
+  el: 'body',
+  template: `
+    &lt;Component /&gt;
+    &lt;span&gt;I'm not red&lt;/span&gt;
+  `
+})
+</code></pre>
+
+<p>This is done by generating a unique id for each component definition. That ID is then added to each selector defined in <code>css</code> and to each top-level element in the component's DOM.</p>
+<pre><code class="css">span[data-ractive-css~=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;],
+[data-ractive-css~=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;] span {
+  color: red
+}
+</code></pre>
+
+<pre><code class="html">&lt;span data-ractive-css=&quot;{3ba5b228-5f37-4344-5da6-5c4b4a7a20f8}&quot;&gt;I'm red&lt;/span&gt;
+&lt;div data-ractive-css=&quot;{3ba5b228-5f37-4344-5da6-5c4b4a7a20f8}&quot;&gt;
+  &lt;span&gt;I'm also red&lt;/span&gt;
+&lt;/div&gt;
+&lt;span&gt;I'm not red&lt;/span&gt;
+</code></pre>
+
+<p>There are a few limitations to this feature:</p>
+<ul>
+<li>ID-based scoping is not true component scoping. Scoped CSS will affect elements of descendant components.</li>
+<li><code>css</code> can only be used with components and not on direct Ractive instances. This may change in the future.</li>
+</ul>
 <h2 id="progressive-enhancement"><a class="toclink" href="#progressive-enhancement">Progressive Enhancement</a></h2>
 <p>TODO</p>
 <h2 id="server-side"><a class="toclink" href="#server-side">Server-side</a></h2>
@@ -327,6 +374,10 @@
       <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#rendering">Rendering</a>
       </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#scoped-css">Scoped CSS</a>
+        </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#progressive-enhancement">Progressive Enhancement</a>
