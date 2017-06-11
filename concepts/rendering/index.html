@@ -67,10 +67,10 @@
 <p>CSS provided via the <a href="../../api/initialization-options/#css"><code>css</code></a> initialization option is scoped to the component.</p>
 <pre><code class="js">const Component = Ractive.extend({
   template: `
-  &lt;span&gt;I'm red&lt;/span&gt;
-  &lt;div&gt;
-    &lt;span&gt;I'm also red&lt;/span&gt;
-  &lt;/div&gt;
+    &lt;span&gt;I'm red&lt;/span&gt;
+    &lt;div&gt;
+      &lt;span&gt;I'm also red&lt;/span&gt;
+    &lt;/div&gt;
   `,
   css: `
     span { color: red }
@@ -103,7 +103,7 @@ Ractive({
 
 <p>There are a few limitations to this feature:</p>
 <ul>
-<li>ID-based scoping is not true component scoping. Scoped CSS will affect elements of descendant components.</li>
+<li>ID-based scoping is not true component scoping and will affect elements of descendant components.</li>
 <li><code>css</code> can only be used with components and not on direct Ractive instances. This may change in the future.</li>
 </ul>
 <h2 id="progressive-enhancement"><a class="toclink" href="#progressive-enhancement">Progressive Enhancement</a></h2>
