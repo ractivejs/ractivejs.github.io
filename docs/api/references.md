@@ -615,3 +615,34 @@ The DOM node associated with an event directive. This reference is only availabl
 ## `@local`
 
 Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.
+
+## `$n`
+
+`$n` is a reference to a specific event argument when handing events using the [expression syntax](../concepts/event-management.md#expression-syntax). Argument positions are referened by an integer, where the first argument is `1`.
+
+```js
+const CustomButton = Ractive.extend({
+  template: `
+    <button on-click="@this.fire('buttonevent', 'foo', 'bar')">Click Me</button>
+  `
+})
+
+Ractive({
+  components: { CustomButton },
+  template: `
+    <!-- Use with proxy expression syntax -->
+    <CustomButton on-buttonevent="['proxy', $1, $2]" />
+
+    <!-- Use with method call -->
+    <CustomButton on-buttonevent="@this.method($1, $2)" />
+  `,
+  observe: {
+    proxy(event, foo, bar){
+      console.log(foo, bar);
+    }
+  },
+  method(foo,bar){
+    console.log(foo, bar);
+  }
+})
+```
