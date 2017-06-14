@@ -112,6 +112,10 @@
           <a class="pure-menu-link" href="#local">@local</a>
         </li>
       
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#n">$n</a>
+        </li>
+      
       </li>
     
   </ul>
@@ -679,6 +683,33 @@ Ractive({
 <p>The DOM node associated with an event directive. This reference is only available to event directive expressions.</p>
 <h2 id="local"><a class="toclink" href="#local"><code>@local</code></a></h2>
 <p>Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.</p>
+<h2 id="n"><a class="toclink" href="#n"><code>$n</code></a></h2>
+<p><code>$n</code> is a reference to a specific event argument when handing events using the <a href="../../concepts/event-management/#expression-syntax">expression syntax</a>. Argument positions are referened by an integer, where the first argument is <code>1</code>.</p>
+<pre><code class="js">const CustomButton = Ractive.extend({
+  template: `
+    &lt;button on-click=&quot;@this.fire('buttonevent', 'foo', 'bar')&quot;&gt;Click Me&lt;/button&gt;
+  `
+})
+
+Ractive({
+  components: { CustomButton },
+  template: `
+    &lt;!-- Use with proxy expression syntax --&gt;
+    &lt;CustomButton on-buttonevent=&quot;['proxy', $1, $2]&quot; /&gt;
+
+    &lt;!-- Use with method call --&gt;
+    &lt;CustomButton on-buttonevent=&quot;@this.method($1, $2)&quot; /&gt;
+  `,
+  observe: {
+    proxy(event, foo, bar){
+      console.log(foo, bar);
+    }
+  },
+  method(foo,bar){
+    console.log(foo, bar);
+  }
+})
+</code></pre>
         </div>
       </div>
     </div>
@@ -1012,6 +1043,10 @@ Ractive({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#local">@local</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#n">$n</a>
         </li>
       
       </li>

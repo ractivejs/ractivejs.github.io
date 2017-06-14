@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://ractive.js.org/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,97 +13,97 @@
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/hello-world/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/nested-properties/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/expressions/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/events/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/conditional-sections/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/iterative-sections/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/two-way-binding/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/partials/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/triples-embedded-html/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/components/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/animation/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/svg/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/transitions/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/tutorials/decorators/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/support/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/get-started/migrating/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -113,61 +113,61 @@
         
     <url>
      <loc>https://ractive.js.org/api/initialization-options/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/static-properties/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/static-methods/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/instance-properties/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/instance-methods/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/context-object/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/parse-object/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/transition-object/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/directives/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/api/references/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -177,49 +177,49 @@
         
     <url>
      <loc>https://ractive.js.org/extend/adaptors/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/components/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/decorators/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/easings/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/events/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/interpolators/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/partials/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/extend/transitions/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -229,31 +229,31 @@
         
     <url>
      <loc>https://ractive.js.org/api/component-files/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/integrations/loaders/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/integrations/plugins/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/integrations/tools/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/integrations/libraries/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -263,37 +263,37 @@
         
     <url>
      <loc>https://ractive.js.org/concepts/architecture/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/concepts/data-management/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/concepts/event-management/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/concepts/templates/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/concepts/rendering/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://ractive.js.org/concepts/security/</loc>
-     <lastmod>2017-06-11</lastmod>
+     <lastmod>2017-06-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
