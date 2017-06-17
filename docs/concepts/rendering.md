@@ -55,4 +55,56 @@ TODO
 
 ## Server-side
 
-TODO
+Server-side rendering can be achieved using [`ractive.toHTML()`](../api/instance-methods.md#ractivetohtml) and [`ractive.toCSS()`](../api/instance-methods.md#ractivetocss). Both methods render the instance and its descendants at their current state to HTML and CSS, respectively.
+
+```js
+const Component1 = Ractive.extend({
+  data: {
+    message: '';
+  },
+  template: `
+    <div class="component1">{{message}}</div>
+  `,
+  css: `
+    .component1 { color: red }
+  `
+})
+
+const Component2 = Ractive.extend({
+  data: {
+    greeting: '';
+  },
+  template: `
+    <div class="component2">{{greeting}}</div>
+  `,
+  css: `
+    .component2 { color: green }
+  `
+})
+
+const App = Ractive.extend({
+  components: {
+    Component1,
+    Component2
+  },
+  data: {
+    greet: '',
+    msg: ''
+  },
+  template: `
+    <Component1 message="{{ msg }}" />
+    <Component2 greeting="{{ greet }}" />
+  `
+})
+
+const state = { greet: 'Good Morning!', msg: 'Hello, World!' }
+const app = App({ data: state })
+const html = app.toHTML()
+const css = app.toCSS()
+```
+
+Currently, there are a few limitations to this feature:
+
+- `ractive.toHTML()` prints HTML without component IDs while `ractive.toCSS()` prints out selectors with component IDs, which causes the HTML and CSS to not match up.
+    - A workaround is to render the CSS as is by setting [`noCSSTransform`](../api/initialization-options.md#nocsstransform) to `true` and to use a CSS naming convention (i.e BEM, OOCSS, SMACSS) to match up selectors with their elements.
+- `ractive.toHTML()` does not automatically insert the document CSS when rendering a component that represents a full document. This must be done manually.
