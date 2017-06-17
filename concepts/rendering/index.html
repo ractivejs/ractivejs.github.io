@@ -94,14 +94,14 @@ Ractive({
 }
 </code></pre>
 
-<pre><code class="html">&lt;span data-ractive-css=&quot;{3ba5b228-5f37-4344-5da6-5c4b4a7a20f8}&quot;&gt;I'm red&lt;/span&gt;
-&lt;div data-ractive-css=&quot;{3ba5b228-5f37-4344-5da6-5c4b4a7a20f8}&quot;&gt;
+<pre><code class="html">&lt;span data-ractive-css=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;&gt;I'm red&lt;/span&gt;
+&lt;div data-ractive-css=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;&gt;
   &lt;span&gt;I'm also red&lt;/span&gt;
 &lt;/div&gt;
 &lt;span&gt;I'm not red&lt;/span&gt;
 </code></pre>
 
-<p>There are a few limitations to this feature:</p>
+<p>Currently, there are a few limitations to this feature:</p>
 <ul>
 <li>ID-based scoping is not true component scoping and will affect elements of descendant components.</li>
 <li><code>css</code> can only be used with components and not on direct Ractive instances. This may change in the future.</li>
@@ -109,7 +109,60 @@ Ractive({
 <h2 id="progressive-enhancement"><a class="toclink" href="#progressive-enhancement">Progressive Enhancement</a></h2>
 <p>TODO</p>
 <h2 id="server-side"><a class="toclink" href="#server-side">Server-side</a></h2>
-<p>TODO</p>
+<p>Server-side rendering can be achieved using <a href="../../api/instance-methods/#ractivetohtml"><code>ractive.toHTML()</code></a> and <a href="../../api/instance-methods/#ractivetocss"><code>ractive.toCSS()</code></a>. Both methods render the instance and its descendants at their current state to HTML and CSS, respectively.</p>
+<pre><code class="js">const Component1 = Ractive.extend({
+  data: {
+    message: '';
+  },
+  template: `
+    &lt;div class=&quot;component1&quot;&gt;{{message}}&lt;/div&gt;
+  `,
+  css: `
+    .component1 { color: red }
+  `
+})
+
+const Component2 = Ractive.extend({
+  data: {
+    greeting: '';
+  },
+  template: `
+    &lt;div class=&quot;component2&quot;&gt;{{greeting}}&lt;/div&gt;
+  `,
+  css: `
+    .component2 { color: green }
+  `
+})
+
+const App = Ractive.extend({
+  components: {
+    Component1,
+    Component2
+  },
+  data: {
+    greet: '',
+    msg: ''
+  },
+  template: `
+    &lt;Component1 message=&quot;{{ msg }}&quot; /&gt;
+    &lt;Component2 greeting=&quot;{{ greet }}&quot; /&gt;
+  `
+})
+
+const state = { greet: 'Good Morning!', msg: 'Hello, World!' }
+const app = App({ data: state })
+const html = app.toHTML()
+const css = app.toCSS()
+</code></pre>
+
+<p>Currently, there are a few limitations to this feature:</p>
+<ul>
+<li><code>ractive.toHTML()</code> prints HTML without component IDs while <code>ractive.toCSS()</code> prints out selectors with component IDs, which causes the HTML and CSS to not match up.<ul>
+<li>A workaround is to render the CSS as is by setting <a href="../../api/initialization-options/#nocsstransform"><code>noCSSTransform</code></a> to <code>true</code> and to use a CSS naming convention (i.e BEM, OOCSS, SMACSS) to match up selectors with their elements.</li>
+</ul>
+</li>
+<li><code>ractive.toHTML()</code> does not automatically insert the document CSS when rendering a component that represents a full document. This must be done manually.</li>
+</ul>
         </div>
       </div>
     </div>
