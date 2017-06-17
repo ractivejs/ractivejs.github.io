@@ -37,14 +37,14 @@ span[data-ractive-css~="{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}"],
 ```
 
 ```html
-<span data-ractive-css="{3ba5b228-5f37-4344-5da6-5c4b4a7a20f8}">I'm red</span>
-<div data-ractive-css="{3ba5b228-5f37-4344-5da6-5c4b4a7a20f8}">
+<span data-ractive-css="{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}">I'm red</span>
+<div data-ractive-css="{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}">
   <span>I'm also red</span>
 </div>
 <span>I'm not red</span>
 ```
 
-There are a few limitations to this feature:
+Currently, there are a few limitations to this feature:
 
 - ID-based scoping is not true component scoping and will affect elements of descendant components.
 - `css` can only be used with components and not on direct Ractive instances. This may change in the future.
