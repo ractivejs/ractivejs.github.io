@@ -12,7 +12,7 @@ There are a lot of places to find help if you get stuck with Ractive:
 
 ## Legacy versions
 
-The site currently documents only the latest version of Ractive. Legacy versions are [currently stored in Github](https://github.com/ractivejs/ractivejs.github.io/tree/dev/legacy).
+Legacy versions are found at [https://ractive.js.org/v0.x](https://ractive.js.org/v0.x).
 
 ## Legacy browsers
 
