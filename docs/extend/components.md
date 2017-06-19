@@ -238,7 +238,7 @@ The solution is for the child to communicate to it's parent, by firing events, t
 
 This is illustrated in the following diagram:
 
-![one-way-data-flow](component-one-way-data-flow.png)
+![one-way-data-flow](../static/img/component-one-way-data-flow.png)
 
 Breaking the dependency between components is great for reusability, but comes at a cost since firing and responding to events is more involved than simply calling methods on the parent.
 
