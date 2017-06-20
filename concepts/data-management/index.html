@@ -139,96 +139,122 @@ ractive.set( 'list[0].name', 'Zebediah' )
 <p>The expression <code>{{ a + b }}</code> has two dependencies - <code>a</code> and <code>b</code> (or more accurately, whatever those <a href="../templates/#references">references</a> resolve to). The <code>_deps</code> graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.</p>
 <p>Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing <code>ractive.set({ a: 1, b: 2 })</code> will only trigger one update, not two.</p>
 <h2 id="two-way-binding"><a class="toclink" href="#two-way-binding">Two-way binding</a></h2>
-<p>Out of the box, Ractive supports two-way binding. This allows data to update bi-directionally, from data to the UI and vice versa.</p>
-<pre><code class="js">const instance = Ractive({
-  data: { msg: 'Hello, World!' },
+<p>Two-way binding allows data to update bi-directionally, from data to the UI and vice versa.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSAtrhS8+ACQQAbXUKw8A6kJi6kAQj5Se2W2QQqADrrkJeAA1vSAPBSZnAFcyHjJRZwQAXgYQRwAPMlieKiJdIOjY4GAeNRQ7DFiAPh5s3PUC5h8eXwEQsiElRoBaEl0KEgBrGJAAATIwClwAOlwEMlo+PIl+ABkzJx4ASWdcIJU+AEpigBUhHnbV9d8Aejq2RqLbbyYMTcwgA"></div>
+
+<pre><code class="js">Ractive({
+  data: {
+    msg: 'Hello, World!'
+  },
   template: `
-    &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt;
-    Ractive says: {{ msg }}
+    &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt; {{ msg }}
+
+    &lt;button on-click=&quot;@this.set('msg', 'Lorem Ipsum')&quot;&gt;To lipsum&lt;/button&gt;
   `
 })
-
-// Writing on the input updates msg and re-renders anything bound to it.
-
-// Updating msg updates and re-renders anything bound to it.
-instance.set('msg', 'Lorem ipsum')
 </code></pre>
 
 <p>Two-way binding can be disabled via the <a href="../../api/initialization-options/#twoway"><code>twoway</code></a> initialization option or the <a href="../../api/directives/#twoway"><code>twoway</code></a> input directive.</p>
 <h3 id="ambiguous-references"><a class="toclink" href="#ambiguous-references">Ambiguous references</a></h3>
-<p>An ambiguous reference refers to a reference whose data does not exist at the time of construction.</p>
+<p>An ambiguous reference refers to a reference whose data does not exist at the time of construction. Ractive must make an assumption, following a <a href="../templates/#reference-resolution">resolution algorithm</a>, on what ambiguous references resolve to. Until a suitable keypath pops into existence, ambiguous references resolve to <code>undefined</code>.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vYNik8yCALYAHADZyEvAAbLpAHgpMNAVzI8qRLRYQBeBiGDAeAjjwwYXAPh43Dy8fZX1JJgwASkwgA"></div>
+
 <pre><code class="js">Ractive({
-  data: { foo: {} },
+  data: {},
   template: `
-    {{#foo}}
-      &lt;input value=&quot;{{bar}}&quot;&gt;
-    {{/foo}}
+    &lt;input value=&quot;{{ msg }}&quot;&gt; {{ msg }}
   `,
 })
 </code></pre>
 
-<p>In the example above, <code>foo.bar</code> nor <code>bar</code> exists on the data. Ractive must make an assumption, following a <a href="../templates/#reference-resolution">resolution algorithm</a>, on what <code>bar</code> should be. Until any of those keypaths pop into existence, <code>bar</code> remains <code>undefined</code>.</p>
-<p>To prevent Ractive from making assumptions on ambiguous references, <a href="../../api/references/#keypath-prefixes">keypath prefixes</a> can be used to restrict resolution to a specific keypath.</p>
+<p>Ambiguous references can be locked to a specific keypath, skipping the whole resolution process, using <a href="../../api/references/#keypath-prefixes">keypath prefixes</a>.</p>
 <h3 id="lazy-updates"><a class="toclink" href="#lazy-updates">Lazy updates</a></h3>
 <p>By default, Ractive uses various events (i.e. <code>change</code>, <code>click</code>, <code>input</code>, <code>keypress</code>) to listen for changes on interactive elements and immediately update bound data. In cases where data updates should only take place after the element loses focus, Ractive also supports lazy updating.</p>
-<p>Lazy updates can be enabled via the <a href="../../api/initialization-options/#lazy"><code>lazy</code></a> initialization option or the <a href="../../api/directives/#lazy"><code>lazy</code></a> input directive.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjwA2RAF6jeZGAFcEkptKRF2vRluk8AtrhS8+fKT2zWyCYwAc593gANr0gDxJqAPgAVUUcEHiImJB4SGQoSAGseIVUyXAokULIwUIomR2SvAHpfKj9PHi8cvLIeMmCEAF4GEHsADzImnioiGXVGkGBgEzMbDCa-HgGhlBHrDyYMAEpMIA"></div>
+
+<pre><code class="js">Ractive({
+  lazy: true,
+  data: {
+    msg: ''
+  },
+  template: `
+    &lt;div&gt;Type and click outside the input&lt;/div&gt;
+    &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt; {{ msg }}
+  `
+})
+</code></pre>
+
+<p>Lazy updates can be enabled via the <a href="../../api/initialization-options/#lazy"><code>lazy</code></a> initialization option or the <a href="../../api/directives/#lazy"><code>lazy</code></a> directive.</p>
 <h2 id="computed-properties"><a class="toclink" href="#computed-properties">Computed Properties</a></h2>
-<p>Computed properties are top-level pseudo-data references whose value is defined by a computation and which updates when its data dependencies update. They are useful for cases where a piece of data can be derived from other pieces of data as well as to avoid "watch-and-sync" boilerplate.</p>
+<p>Computed properties are top-level pseudo-data references whose value is defined by a computation and which automatically update when its dependencies update.</p>
+<h3 id="function-syntax"><a class="toclink" href="#function-syntax">Function syntax</a></h3>
+<p>The function syntax defines a computed property as a function that returns the computed value. The context of the function is the current instance.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSA7hSRkwvAEwAGXZKXKANgiYpNvAMz6pPbHZJCAtgAcArmWQK70jgiJaAEpFZWUYBDJ3GCVNClwAOi5aPjUNMD4gngAqHjjE5L5Tc01M33s7ByMvN2M5BF4AA3KAdXVLHgAeCiYPMjzRVwQAXgYQLwAPMjGeKiJjdxGx4GAeNM17DDGAPnKAGTMLLS6evoGh0fGEKZm5haWQFZ5io82d8oBBCKIFVf8iN5GZpMDBBTBAA"></div>
+
 <pre><code class="js">Ractive({
   data: {
     width: 200,
-    height: 300,
+    length: 300
   },
   computed: {
-    area(){ return this.get('width') * this.get('height') }
-  },
-  template: `
-    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&gt;
-    Height: &lt;input type=&quot;text&quot; value=&quot;{{ height }}&gt;
-    Area: {{ area }}
-  `
-})
-</code></pre>
-
-<p>In the example above, the instance keeps a rectangle's length, width, and specifically <em>its area</em>. If area was kept as a data property, there's the need for ungodly amounts of "watch-and-sync" code to keep it updated when either <code>width</code> or <code>length</code> change. With computed properties, you simply define <code>area</code> as a function of its <code>width</code> and <code>length</code>.</p>
-<h3 id="compact-form"><a class="toclink" href="#compact-form">Compact form</a></h3>
-<p>For simpler cases, computed properties support a compact syntax. It's a string containing a JavaScript expression. Anything inside a <code>${}</code> is replaced internally with a <code>ractive.get()</code>, using the contents as a keypath.</p>
-<pre><code class="js">Ractive({
-  data: {
-    width: 200,
-    height: 300,
-  },
-  computed: {
-    area: '${width} * ${height}'
-  },
-  template: `
-    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&gt;
-    Height: &lt;input type=&quot;text&quot; value=&quot;{{ height }}&gt;
-    Area: {{ area }}
-  `
-})
-</code></pre>
-
-<h3 id="accessor-form"><a class="toclink" href="#accessor-form">Accessor form</a></h3>
-<p>By default, computed properties are read-only. To be able to set data bi-directionally on a computed property, computed properties support an accessor form. The accessor form defines a computed property as an object with a <code>get</code> and <code>set</code> method. <code>get</code> is called to retrieve its value and <code>set</code> is called when something updates its value.</p>
-<pre><code class="js">Ractive({
-  data: {
-    side: 200,
-  },
-  computed: {
-    area: {
-      get: 'Math.pow(${side}, 2)',
-      set: function(v){ this.set('side', Math.sqrt(v) }
+    area(){
+      return this.get('width') * this.get('length')
     }
   },
   template: `
-    Side: &lt;input type=&quot;text&quot; value=&quot;{{ side }}&gt;
-    Area: &lt;input type=&quot;text&quot; value=&quot;{{ area }}&gt;
+    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&quot;&gt;
+    Length: &lt;input type=&quot;text&quot; value=&quot;{{ length }}&quot;&gt;
+    Area: {{ area }}
   `
 })
 </code></pre>
 
-<p>In the example above, updating <code>side</code> will recompute <code>area</code> while at the same time, setting a value on <code>area</code> will update <code>side</code>.</p>
+<h3 id="expression-syntax"><a class="toclink" href="#expression-syntax">Expression syntax</a></h3>
+<p>The expression syntax defines a computed property as a string containing a JavaScript expression. <code>${}</code> is replaced internally with a <code>ractive.get()</code>, using its contents as a keypath.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSA7hSRkwvAEwAGXZKXKANgiYpNvAMz6pPbHZJCAtgAcArmWQK70jgiJePgASYDUNMAweACoeUNNzTQw+OwcjLzdjOQReAANfHgB1dUseAB4KJg8yHjJRVwQAXgYQLwAPMhaeKiJjdyaW4GAecM17DBaAPgKAGTMLLXLK6tr6gdaEDq6evvWhngSF8amCgEEYAIVh-yJjo3ymDABKTCA"></div>
+
+<pre><code class="js">Ractive({
+  data: {
+    width: 200,
+    length: 300
+  },
+  computed: {
+    area: '${width} * ${length}'
+  },
+  template: `
+    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&quot;&gt;
+    Length: &lt;input type=&quot;text&quot; value=&quot;{{ length }}&quot;&gt;
+    Area: {{ area }}
+  `
+})
+</code></pre>
+
+<h3 id="accessor-syntax"><a class="toclink" href="#accessor-syntax">Accessor syntax</a></h3>
+<p>Both function and expression syntaxes only describe retrieval of the computed property's value, and therefore makes the computed property read-only. The accessor syntax defines a computed property by providing <code>get</code> and <code>set</code> methods. <code>get</code> is called to retrieve its value and <code>set</code> is called when something updates its value.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nTcFJAl4AmAAzapPbPpJCAtgAcArmWQL90jgiK2ly6V1oBKRa9cwEZCxglAFk5MAA6MyEAd1oyMApccPc+VXU+DyweTQ87ZUMXV1x-WiovPNd4xPDislpUtQQJHlD4moBHGDqy3ML8vIx9AulrcwAbOQ0eAAM8gGVG3gAeCiZLMh4yUTMEAF4GEGsADzIDnioiMYs9g+BgHjSEA0GQAD48gEE-Jx4VtatNtsbocECczhcrsC7jwHERngd3i5ZkwMB5MEA"></div>
+
+<pre><code class="js">Ractive({
+  data: {
+    side: 200
+  },
+  computed: {
+    area: {
+      get(){
+        return Math.pow(this.get('side'), 2)
+      },
+      set(v){
+        this.set('side', Math.sqrt(v))
+      }
+    }
+  },
+  template: `
+    Side: &lt;input type=&quot;text&quot; value=&quot;{{ side }}&quot;&gt;
+    Area: &lt;input type=&quot;text&quot; value=&quot;{{ area }}&quot;&gt;
+  `
+})
+</code></pre>
+
+<p>Both function and expression syntaxes are supported for the <code>get</code> method.</p>
 <h2 id="observers"><a class="toclink" href="#observers">Observers</a></h2>
 <h3 id="nested-properties"><a class="toclink" href="#nested-properties">Nested properties</a></h3>
 <p>Ractive observers observe <em>upstream</em> and <em>downstream</em> keypaths. This allows observers to execute when data is updated indirectly, whether if it's the enclosing structure or a descendant property.</p>
