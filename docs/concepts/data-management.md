@@ -238,7 +238,9 @@ Both function and expression syntaxes are supported for the `get` method.
 
 ### Nested properties
 
-Ractive observers observe _upstream_ and _downstream_ keypaths. This allows observers to execute when data is updated indirectly, whether if it's the enclosing structure or a descendant property.
+Observers observe [_upstream_ and _downstream_ keypaths](../concepts/templates.md#upstream-and-downstream-keypaths). This allows observers to execute when data is updated indirectly, whether if it's the enclosing structure or a descendant structure.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKAMyJFZ8xYoBG9GLICMYzRiOVspoltwIYA9aYkByFUUeylAVya9SgkggB3ADV6ABsPBABKDU1KYjIiUIQAOlCiFEFnVTiwRjQkSnJXLEp-YLCIyIczLGqsomSdGDdlLx5qXzKQ8KiYzXjcRJS0jPrG3Ry85ELi0sDuyuqTBWWMKpIxWgpGZmTrckyXceaSgCZ1rYYmFP3D1UcS4Eom2QBmM0jMIA"></div>
 
 ```js
 const instance = Ractive({
@@ -246,100 +248,67 @@ const instance = Ractive({
     foo: {
       bar: 1
     }
-  }
-})
-
-instance.observe('foo', function(newValue){
-  console.log('foo changed to', newValue)
-})
-instance.observe('foo.bar', function(newValue){
-  console.log('foo.bar changed to', newValue)
-})
-
-// Logs:
-// - foo.bar changed to 2
-// - foo changed to { bar: 2 }
-instance.set('foo.bar', 2 )
-
-// Logs:
-// - foo.bar changed to 3
-// - foo changed to { bar: 3 }
-instance.set('foo', { bar: 3 })
-```
-
-To bypass this behavior, observer methods accept a [`strict`](../api/instance-methods.md#observe) option which causes the observer to fire only when the specified keypath is updated.
-
-### Wildcards
-
-Wildcards allow observers to observe keypaths which have parts that cannot be determined in advance. This is useful when observing an array, observing objects within an array, or observing changes on object properties.
-
-
-```js
-const instance = Ractive({
-  data: {
-    people: [
-      {name: 'Rich Harris'},
-      {name: 'Marty Nelson'}
-    ]
-  }
-})
-
-// Observe changes on the array
-instance.observe('people.*', function(){
-  console.log(arguments)
-})
-
-// {name: 'Jason Brown'}, undefined, people.2, 2
-instance.push('people', {name: 'Jason Brown'})
-
-// {name: 'Jack Black'}, undefined, people.3, 3
-instance.set('people.3', {name: 'Jack Black'})
-```
-
-```js
-const instance = Ractive({
-  data: {
-    people: [
-      {name: 'Rich Harris'},
-      {name: 'Marty Nelson'}
-    ]
-  }
-})
-
-// Observe changes on the name property of any item on the array
-instance.observe('people.*.name', function(){
-  console.log(arguments)
-})
-
-// 'Jason Brown', undefined, people.2.name, 2
-instance.push('people', {name: 'Jason Brown'})
-
-// 'Jack Black', undefined, people.3.name, 3
-instance.set('people.3', {name: 'Jack Black'})
-```
-
-```js
-const instance = Ractive({
-  data: {
-    config: {
-      allowComments: true,
-      allowEdit: false
+  },
+  observe: {
+    'foo': function(newValue){
+      console.log('foo changed to', newValue)
+    },
+    'foo.bar': function(newValue){
+      console.log('foo.bar changed to', newValue)
     }
   }
 })
 
-// Observe changes on the object properties
-instance.observe('config.*', function() {
-  console.log(arguments)
+instance.set('foo.bar', 2)
+instance.set('foo', { bar: 3 })
+```
+
+Observers can be set to only execute on the specified keypath via the `strict` option for both [`observe`](../api/initialization-options.md#observe) initialization option and [`ractive.observe()`](../api/instance-methods.md#observe).
+
+### Wildcards
+
+Wildcards allow observers to observe keypaths whose segments cannot be determined in advance. This is useful when observing an array, observing items within an array, or observing changes on object properties.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKABwRElAGwSyA2mMWLgJegFstlAOQdqBMJQAS9GDGq5z2PfrlHTs8wFlHcgBPSgA5BHVcUjcPCQBdLFjKYhIAM2oUWXlPSnp1dSIAdwBhImNTEnJcWXIYAFcERIV9PILCgFEkanJZVLzcBCSMD3cFIgAjAZgBLKSAejnKAHlJhGmWG0Y0XEpSSnIwFkcYeiCk8xU1TQA6ACpzXrqmXlJBAEpszxSom4KUQXMx1Ou1W6xg5iwuRgKDqFSqbyGTX0C2WoIEyTAWwQOz2BxY3hYShgajWwV2qVyJBC3QQxho4jxUJOZ2aFkuGgQd2uBIelFSTx41FeHySEm+RF+RH+gKcwJpdImUwE4MhjhhcNwCNZo2RixWSo2mJI2124kYISJJJgZKIFMYIIAVggeOcUukUHdefznkKSO9PvpxZLpRMnTxlMSVNaQoq1sqIVD1QhKpqhiMxBgtWJaBRGMxrko6rgwAD2ZoE4YTGZzAApehRcQAIWJhRIbi1OYYTE5A3IpdUHOuAGYKwTfHWCABrSiN9TcSft7N0PM9hB98xujLXVpFTrdBO1BpvTBAA"></div>
+
+```js
+const instance = Ractive({
+  data: {
+    people: [
+      {name: 'Rich Harris'},
+      {name: 'Marty Nelson'}
+    ],
+    config: {
+      allowComments: true,
+      allowEdit: false
+    }
+  },
+  observe: {
+    // Observe changes on the array
+    'people.*': function(){
+      console.log('array observer', arguments)
+    },
+    // Observe changes on the name property of any item in the array
+    'people.*.name': function(){
+      console.log('array item observer', arguments)
+    },
+    // Observe changes on any property of an object
+    'config.*': function(){
+      console.log('object property observer', arguments)
+    }
+  }
 })
 
-// true, false, 'config.allowEdit', 'allowEdit'
+instance.push('people', {name: 'Jason Brown'})
+instance.set('people.3', {name: 'Jack Black'})
 instance.set('config.allowEdit', true)
 ```
 
-### Space delimited observers
+### Multiple sources
 
-Observers also support observing multiple keypaths. This can be done by simply defining the keypaths and separating them with spaces. This can be used for observing multiple specific keypaths on the data where observing an upstream keypath isn't viable.
+Multiple keypaths can be observed by adding them one after the other, separating them with a space.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKAV1wIYs4CrUl6AWwSyA5ACMYRAO4lqCAGbJD2MYsrESN6ig3VcAQSS7aWRt6ABtVRwUJYl19EnIAYSIlONkABidKCIkiY1UYAQ0MiUMtGAA6Up19F1J3FDLvPwDxaNiEpLjDIOSealJBAEp5ZyjSXCIQhDKQohRBQykGFzBGNCRDLEp6GBQlNtwBgG4izIyMMQwBsTFaCkZmMtVyedKKvKqEDcpDAjAYb0MRxudHuUye81cdQavn8tC+5BgSgQQKsIKYYIQzx+RBiCDiiWS5C+ABYAExHTBAA"></div>
 
 ```js
 const instance = Ractive({
@@ -347,17 +316,24 @@ const instance = Ractive({
     user: {username: 'browniefed'},
     config: {isAdmin: false},
     commentCount: 0
+  },
+  observe: {
+    'user.username config.isAdmin commentCount': function(){
+      console.log('data changed', arguments);
+    }
   }
 })
 
-ractive.observe('user.username config.isAdmin commentCount', function(){
-  // executes when any of the 3 keypaths defined changes
-})
+instance.set('user.username', 'chris');
+instance.set('config.isAdmin', true);
+instance.set('commentCount', 42);
 ```
 
 ### Caveats
 
-Ractive observers by default do not defensively clone the old and new values as identity of these values may be essential. Thus, observers on non-primitive values may result in having identically equal old and new values.
+Observers do not defensively clone the old and new values as identity of these values may be essential. Thus, observers on non-primitive values may result in having identically equal old and new values.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKxEgDNqKWfMWL6AG11EA7gGEiAWzMIS5XLPIwArgixjtEvQcMBRJNXKyVPVwEV0UMUOxQogAjYJgBTVCJAHJlNRRkgIcmXlJBEgRDADU9JyxKIl0kEt0nAEotN2VcSoQAOgMUfMKapzZWdkrq0oQ6pMpwhUmMMZIxWgpGZjbg8kFU0nS2jyMfP2Ty+3rMIA"></div>
 
 ```js
 const instance = Ractive({
@@ -366,21 +342,18 @@ const instance = Ractive({
       allowComments: true,
       allowEdit: false
     }
+  },
+  observe: {
+    'config': function(newValue, oldValue){
+      console.log(newValue === oldValue)
+    }
   }
 })
 
-instance.observe('config', function(newValue, oldValue) {
-  console.log(newValue === oldValue) // true
-})
-
-// Old and new values point to the same object since we only changed config's
-// properties but not change the config object itself.
-// { allowComments: true, allowEdit: true }, { allowComments: true, allowEdit: true }
 instance.set('config.allowEdit', true)
 ```
 
-If the old value's original structure matters, observer methods provide an [`old`](../api/instance-methods.md#ractiveobserve) option. This could be used to define the old value as a deep-clone of the data before any mutations are done.
-
+Both [`observe`](../api/initialization-options.md#observe) initialization option and [`ractive.observe()`](../api/instance-methods.md#observe) accept an `old` option which allows you to define the old value passed to the observer prior to modifications.
 
 ## Components
 
