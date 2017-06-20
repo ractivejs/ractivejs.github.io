@@ -94,117 +94,145 @@ Because the expression has multiple dependencies, it won't trigger an update str
 
 ## Two-way binding
 
-Out of the box, Ractive supports two-way binding. This allows data to update bi-directionally, from data to the UI and vice versa.
+Two-way binding allows data to update bi-directionally, from data to the UI and vice versa.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSAtrhS8+ACQQAbXUKw8A6kJi6kAQj5Se2W2QQqADrrkJeAA1vSAPBSZnAFcyHjJRZwQAXgYQRwAPMlieKiJdIOjY4GAeNRQ7DFiAPh5s3PUC5h8eXwEQsiElRoBaEl0KEgBrGJAAATIwClwAOlwEMlo+PIl+ABkzJx4ASWdcIJU+AEpigBUhHnbV9d8Aejq2RqLbbyYMTcwgA"></div>
 
 ```js
-const instance = Ractive({
-  data: { msg: 'Hello, World!' },
+Ractive({
+  data: {
+    msg: 'Hello, World!'
+  },
   template: `
-    <input type="text" value="{{ msg }}">
-    Ractive says: {{ msg }}
+    <input type="text" value="{{ msg }}"> {{ msg }}
+
+    <button on-click="@this.set('msg', 'Lorem Ipsum')">To lipsum</button>
   `
 })
-
-// Writing on the input updates msg and re-renders anything bound to it.
-
-// Updating msg updates and re-renders anything bound to it.
-instance.set('msg', 'Lorem ipsum')
 ```
 
 Two-way binding can be disabled via the [`twoway`](../api/initialization-options.md#twoway) initialization option or the [`twoway`](../api/directives.md#twoway) input directive.
 
 ### Ambiguous references
 
-An ambiguous reference refers to a reference whose data does not exist at the time of construction.
+An ambiguous reference refers to a reference whose data does not exist at the time of construction. Ractive must make an assumption, following a [resolution algorithm](./templates.md#reference-resolution), on what ambiguous references resolve to. Until a suitable keypath pops into existence, ambiguous references resolve to `undefined`.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vYNik8yCALYAHADZyEvAAbLpAHgpMNAVzI8qRLRYQBeBiGDAeAjjwwYXAPh43Dy8fZX1JJgwASkwgA"></div>
 
 ```js
 Ractive({
-  data: { foo: {} },
+  data: {},
   template: `
-    {{#foo}}
-      <input value="{{bar}}">
-    {{/foo}}
+    <input value="{{ msg }}"> {{ msg }}
   `,
 })
 ```
 
-In the example above, `foo.bar` nor `bar` exists on the data. Ractive must make an assumption, following a [resolution algorithm](./templates.md#reference-resolution), on what `bar` should be. Until any of those keypaths pop into existence, `bar` remains `undefined`.
-
-To prevent Ractive from making assumptions on ambiguous references, [keypath prefixes](../api/references.md#keypath-prefixes) can be used to restrict resolution to a specific keypath.
+Ambiguous references can be locked to a specific keypath, skipping the whole resolution process, using [keypath prefixes](../api/references.md#keypath-prefixes).
 
 ### Lazy updates
 
 By default, Ractive uses various events (i.e. `change`, `click`, `input`, `keypress`) to listen for changes on interactive elements and immediately update bound data. In cases where data updates should only take place after the element loses focus, Ractive also supports lazy updating.
 
-Lazy updates can be enabled via the [`lazy`](../api/initialization-options.md#lazy) initialization option or the [`lazy`](../api/directives.md#lazy) input directive.
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjwA2RAF6jeZGAFcEkptKRF2vRluk8AtrhS8+fKT2zWyCYwAc593gANr0gDxJqAPgAVUUcEHiImJB4SGQoSAGseIVUyXAokULIwUIomR2SvAHpfKj9PHi8cvLIeMmCEAF4GEHsADzImnioiGXVGkGBgEzMbDCa-HgGhlBHrDyYMAEpMIA"></div>
+
+```js
+Ractive({
+  lazy: true,
+  data: {
+    msg: ''
+  },
+  template: `
+    <div>Type and click outside the input</div>
+    <input type="text" value="{{ msg }}"> {{ msg }}
+  `
+})
+```
+
+Lazy updates can be enabled via the [`lazy`](../api/initialization-options.md#lazy) initialization option or the [`lazy`](../api/directives.md#lazy) directive.
 
 ## Computed Properties
 
-Computed properties are top-level pseudo-data references whose value is defined by a computation and which updates when its data dependencies update. They are useful for cases where a piece of data can be derived from other pieces of data as well as to avoid "watch-and-sync" boilerplate.
+Computed properties are top-level pseudo-data references whose value is defined by a computation and which automatically update when its dependencies update.
+
+### Function syntax
+
+The function syntax defines a computed property as a function that returns the computed value. The context of the function is the current instance.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSA7hSRkwvAEwAGXZKXKANgiYpNvAMz6pPbHZJCAtgAcArmWQK70jgiJaAEpFZWUYBDJ3GCVNClwAOi5aPjUNMD4gngAqHjjE5L5Tc01M33s7ByMvN2M5BF4AA3KAdXVLHgAeCiYPMjzRVwQAXgYQLwAPMjGeKiJjdxGx4GAeNM17DDGAPnKAGTMLLS6evoGh0fGEKZm5haWQFZ5io82d8oBBCKIFVf8iN5GZpMDBBTBAA"></div>
 
 ```js
 Ractive({
   data: {
     width: 200,
-    height: 300,
+    length: 300
   },
   computed: {
-    area(){ return this.get('width') * this.get('height') }
-  },
-  template: `
-    Width: <input type="text" value="{{ width }}>
-    Height: <input type="text" value="{{ height }}>
-    Area: {{ area }}
-  `
-})
-```
-
-In the example above, the instance keeps a rectangle's length, width, and specifically _its area_. If area was kept as a data property, there's the need for ungodly amounts of "watch-and-sync" code to keep it updated when either `width` or `length` change. With computed properties, you simply define `area` as a function of its `width` and `length`.
-
-### Compact form
-
-For simpler cases, computed properties support a compact syntax. It's a string containing a JavaScript expression. Anything inside a `${}` is replaced internally with a `ractive.get()`, using the contents as a keypath.
-
-```js
-Ractive({
-  data: {
-    width: 200,
-    height: 300,
-  },
-  computed: {
-    area: '${width} * ${height}'
-  },
-  template: `
-    Width: <input type="text" value="{{ width }}>
-    Height: <input type="text" value="{{ height }}>
-    Area: {{ area }}
-  `
-})
-```
-
-### Accessor form
-
-By default, computed properties are read-only. To be able to set data bi-directionally on a computed property, computed properties support an accessor form. The accessor form defines a computed property as an object with a `get` and `set` method. `get` is called to retrieve its value and `set` is called when something updates its value.
-
-```js
-Ractive({
-  data: {
-    side: 200,
-  },
-  computed: {
-    area: {
-      get: 'Math.pow(${side}, 2)',
-      set: function(v){ this.set('side', Math.sqrt(v) }
+    area(){
+      return this.get('width') * this.get('length')
     }
   },
   template: `
-    Side: <input type="text" value="{{ side }}>
-    Area: <input type="text" value="{{ area }}>
+    Width: <input type="text" value="{{ width }}">
+    Length: <input type="text" value="{{ length }}">
+    Area: {{ area }}
   `
 })
 ```
 
-In the example above, updating `side` will recompute `area` while at the same time, setting a value on `area` will update `side`.
+### Expression syntax
+
+The expression syntax defines a computed property as a string containing a JavaScript expression. `${}` is replaced internally with a `ractive.get()`, using its contents as a keypath.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSA7hSRkwvAEwAGXZKXKANgiYpNvAMz6pPbHZJCAtgAcArmWQK70jgiJePgASYDUNMAweACoeUNNzTQw+OwcjLzdjOQReAANfHgB1dUseAB4KJg8yHjJRVwQAXgYQLwAPMhaeKiJjdyaW4GAecM17DBaAPgKAGTMLLXLK6tr6gdaEDq6evvWhngSF8amCgEEYAIVh-yJjo3ymDABKTCA"></div>
+
+```js
+Ractive({
+  data: {
+    width: 200,
+    length: 300
+  },
+  computed: {
+    area: '${width} * ${length}'
+  },
+  template: `
+    Width: <input type="text" value="{{ width }}">
+    Length: <input type="text" value="{{ length }}">
+    Area: {{ area }}
+  `
+})
+```
+
+### Accessor syntax
+
+Both function and expression syntaxes only describe retrieval of the computed property's value, and therefore makes the computed property read-only. The accessor syntax defines a computed property by providing `get` and `set` methods. `get` is called to retrieve its value and `set` is called when something updates its value.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nTcFJAl4AmAAzapPbPpJCAtgAcArmWQL90jgiK2ly6V1oBKRa9cwEZCxglAFk5MAA6MyEAd1oyMApccPc+VXU+DyweTQ87ZUMXV1x-WiovPNd4xPDislpUtQQJHlD4moBHGDqy3ML8vIx9AulrcwAbOQ0eAAM8gGVG3gAeCiZLMh4yUTMEAF4GEGsADzIDnioiMYs9g+BgHjSEA0GQAD48gEE-Jx4VtatNtsbocECczhcrsC7jwHERngd3i5ZkwMB5MEA"></div>
+
+```js
+Ractive({
+  data: {
+    side: 200
+  },
+  computed: {
+    area: {
+      get(){
+        return Math.pow(this.get('side'), 2)
+      },
+      set(v){
+        this.set('side', Math.sqrt(v))
+      }
+    }
+  },
+  template: `
+    Side: <input type="text" value="{{ side }}">
+    Area: <input type="text" value="{{ area }}">
+  `
+})
+```
+
+Both function and expression syntaxes are supported for the `get` method.
+
 
 ## Observers
 
