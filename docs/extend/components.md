@@ -123,7 +123,7 @@ var parent = new Ractive({
     components: { child: ChildComp },
 
     validate: function( client ) {
-        // Lookup a ninstance of the child component.
+        // Lookup an instance of the child component.
         var child = this.findComponent("child");
 
         // Invoke a method
@@ -208,7 +208,7 @@ With this approach we can dynamically switch between the two components, however
 
 While not as flexible as unmanaged components, the managed approach clearly communicates all the available components through it's template.
 
-With managed components we just need an anchor and can attach any Ractive instance to it:
+With unmanaged components we just need an anchor and can attach any Ractive instance to it:
 ```html
 <#child/>
 ```
@@ -226,7 +226,7 @@ parent.attachChild( childC, { target: "child" } );
 ```
 
 ### Workflow
-Ractive provides a variety of ways that parent and child components can communicate with each other.
+Ractive provide a variety of ways that parent and child components can communicate with each other.
 
 Components are great for encapsulating features in their own file and provides a way to reuse compponents in an application, or even across different applications.
 
@@ -246,9 +246,9 @@ Let's look at the various ways parent and child components can communicate
 
 #### Data mappings
 
-**Data mapping** is a mechanism that allows us to *connect* pieces of data in the parent to data in the child. When a **data mapping** is specified Ractive creates a [link()](../api/instance-methods.md#ractivelink) between the parent and child data.
+**Data mapping** is a mechanism to *expose* a piece of data in the parent to the child. When a **data mapping** is specified Ractive creates a [link()](../api/instance-methods.md#ractivelink) between the parent and child so that the child can *accesss* the parent data through *keypaths*. Changes on one side will reflect on the other and vice versa.
 
-Changes on one side will reflect on the other and vice versa.
+*Note:* specifying a *data mapping* does not create a *copy* of the data in the child. [Linking()](../api/instance-methods.md#ractivelink) simply informs Ractive that two keypaths refer to the same data.
 
 Data mappings are specified on the child element or anchor. For example:
 
@@ -366,7 +366,7 @@ Here is the child template:
 
 ```html
 {{#persons}}
-<input value="name" type="text"/>
+<input value="{{name}}" type="text"/>
 <button on-click="@.notifyChange( this )">Notify change</button>
 {{/}}
 ```
@@ -386,7 +386,7 @@ Inside the method we [fire()](../api/instance-methods.md#ractivefire) the **pers
 
 When Ractive fires events from components their event names are automatically namespaced with the name they are registered with, meaning Ractive will actually fire the event as *child.personChanged*. In the case of *unmanaged* components, Ractive will use the name of the anchor.
 
-The reason for namespacing is so a parent with multiple components firing events under the same name, say *foo*, know from which child the event was fired from.
+The reason for namespacing is so a parent with multiple components firing events under the same name, say *foo*, know which child the event was fired from.
 
 For more info on namespacing see [event-management](../concepts/event-management.md#component-propagation).
 
@@ -415,7 +415,7 @@ Next we look at a couple of alternative ways the parent and child components can
 
 ### Isolated
 
-If you aren't interested in reusability of a component or would like to prototype a feature, Ractive provides some convenient features that speeds up the development process.
+If you aren't interested in reusability of a component or would like to prototype a feature, Ractive provides some convenient features that speed up the development process.
 
 By default components are **isolated**, meaning the child cannot access the parent' data. This is recommended if you want the child component to be independent of the parent.
 
@@ -483,7 +483,7 @@ var child = Ractive.extend({
 
 Here we get a reference to the parent components through the [findParent()](../api/instance-methods.md#ractivefindparent) method and informing it whether the client is in a valid state or not by invoking either *clientIsValid()* or *clientIsInvalid()*.
 
-__Note:__ when referencing the parent, we are creating a dependency in that any parent that makes use of the child component will have to provide the *clientIsValid* and *clientIsInvalid* methods, even if that parent has no interest in whether the client is valid or not. If *events* was used instead, the parent could simply ignore those events without Javascript throwing error about missing methods!
+__Note:__ when referencing the parent, we are creating a dependency in that any parent that makes use of the child component will have to provide the *clientIsValid* and *clientIsInvalid* methods, even if that parent has no interest in whether the client is valid or not. If *events* were used instead, the parent could simply ignore those events without Javascript throwing error about missing methods!
 
 In addition to the [findParent()](../api/instance-methods.md#ractivefindparent) method, Ractive also supports the [parent](../api/instance-properties.md#ractiveparent) and [root](../api/instance-properties.md#ractiveroot) properties, that returns the direct **parent** of the current component and the **root** Ractive instance respectively.
 
