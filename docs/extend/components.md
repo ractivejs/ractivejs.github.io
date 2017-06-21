@@ -142,9 +142,9 @@ var parent = new Ractive({
 
 When using __unmanaged__ components we are responsible for creating new instances and **attaching** / **detaching** them from other Ractive instances.
 
-Another difference from __managed__ components is how to declare them in templates. Where managed components uses _custom_elemens_, unmanaged components are declared with __anchors__.
+Another difference from __managed__ components is how to declare them in templates. Where managed components uses _custom_elements_, unmanaged components are declared with __anchors__.
 
-Anchors look similar to custom_elemens but prefixed with a #:
+Anchors look similar to custom_elements but prefixed with a #:
 ```html
 <#MyComp/>
 ```
@@ -224,6 +224,31 @@ parent.attachChild( childB, { target: "child" } );
 parent.detachChild( compB );
 parent.attachChild( childC, { target: "child" } );
 ```
+
+### Managed or unmanaged?
+How do we decide when to use which?
+
+The rule of thumb is to use **managed** components for *UI widgets* because they are declared as *custom_elements*, so they *look* like normal HTML tags:
+
+```html
+<cool-form>
+     <cool-calendar/>
+     <cool-input/>
+ </cool-form>
+ ```
+
+**unmanaged** components are ideal for *views* because of their dynamic behavior.  They are declared as *anchors* in order to differentiate them from *UI widgets*.
+
+ ```html
+ <h1> My Blog </h1>
+  {{#posts}}
+
+  <#item post={{this}} />
+
+ {{/}}
+ ```
+
+However if you prefer one over the other, go ahead, Ractive won't mind either way.
 
 ### Workflow
 Ractive provide a variety of ways that parent and child components can communicate with each other.
