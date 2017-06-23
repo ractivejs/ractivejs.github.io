@@ -130,6 +130,7 @@ code{
   background: #fff;
   transform: translate(100%, 0);
   transition: transform 0.4s, box-shadow 0.4s;
+  z-index: 20;
 }
 
 .toc-side{
@@ -139,6 +140,7 @@ code{
   transition: transform 0.4s, box-shadow 0.4s;
   min-width: 12em;
   overflow-y: auto;
+  z-index: 20;
 }
 
 .toc .pure-menu-link:not(.pure-menu-heading),
