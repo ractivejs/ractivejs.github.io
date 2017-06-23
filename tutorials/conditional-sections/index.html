@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Next-generation DOM manipulation">
+  
+
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <link rel="author" href="RactiveJS contributors">
+  <link rel="canonical" href="https://ractive.js.org">
+
+  <title>Ractive.js</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="../../theme.css">
+
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  
+</head>
+
+<body>
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+  <input class="search-state" type="checkbox" name="search-state" id="search-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#conditional-sections">Conditional Sections</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-1">Step 1</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-2">Step 2</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+        </div>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          <h1 id="conditional-sections"><a class="toclink" href="#conditional-sections">Conditional Sections</a></h1>
+<p>Often, you want to show or hide part of your view depending on whether a particular condition is met. For example you might want to show a slightly different view to users depending on whether they're signed in or not.</p>
+<h2 id="step-1"><a class="toclink" href="#step-1">Step 1</a></h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwEAhAFpn5RQmHCGacgDMAexhyYWIUfmRnYn5yAFdhBBhhclc+QQdJNgB1BBVRAI9yACMLAGsscmBgeMT+Bg8MDEcuTLtWdKdXd09vX0Dg-gD+Z1DwyOi4hKSU5zT7AkyACWItMESER3IABRUEBgTyAgZyMBgEP2oAcgBiS-Ih51EVYlFSq4ABADpR-gBJfgAFABKS5sH6UfhcBgcTitSGcMQSaRsEA4YTwUhMcjmSzWcjUcgRADu5AAShYrKQEADgG1cEwWJByDd6cwELhLlg6UpVOoEEyWTy1ApOW0kOoGEzaTFyLKfsh-ky-AwVAkuTLZYNcABlMIRJCKrQwWI2GXYARyvWGvyxfi4obkYGVC3keyYgb1BD48iSGAFaQA5kAUX4CmC2gCsWCNRgdUKuACIT1EM5zJxlIQAH1lfw7kCANx2dKy9PWb7smltWWymNx-mEz3q+zVpNjA38Jm4Y0IJsyata3Vt60qhJV8gYAsujACCf5zBAA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBgAYmIAzcsOIp+yAJL8MDDtWXAIAQgBaCPJFBGFhBjRyVwB7GA8vHyQI4n5yAFdhBBhhcii+QRCCSTYAdQQVURTY8gAjCwBrLHJHQuL+BljAsK4a4MdON0Dg8ec3cn4U3ABlTL8AoMr7cKiYuISk1PTF-gjPb2QcvL6SsoiK+22agAliLTBihDDyAAUVBAYRXIBAY5DAMAQrmoAHInNDyClTqIVMRRB0YQABAB0534-gAFABKaFsXGUfhcBgcThjSoTKabLhiCTSNggHDCeCkJjkcyWazkagLBAAd3IACULFZSAh8cBgrgmCxIORYYrmAhcNCsAqlKp1AgVWq9WoFNrgkh1AwVfK8uR7bj1irXAwVEUdXb7YsVmskP4VbgYPkbHbsAIHZl-cl8vx+YjyESeuHyPZucdBghBeRJDBmtJ8aqAKL8BTpbQpfLpG4DFq4FIZbzk7WqvnShAAfRd-HhhIA3HZKvbW9YcZq5cF7fbqxmVTWEB77JOG1ko4HgwuZJPvasLn7+M7XUUJ+QMH3k5tT73MEA">Fix Code</button>
+</div></p>
+<p>In this example we've already set up a mock sign-in mechanism – click the 'sign in' button and enter your name in the prompt.</p>
+<p>All we need to do is hide the 'please sign in' message when we're signed in, and the 'welcome back!' message when we're not.</p>
+<p>Wrap the first block in an <code>#if</code> section that uses the <code>signedIn</code> property:</p>
+<pre><code class="handlebars">{{#if signedIn}}
+  &lt;!-- message for signed-in users --&gt;
+  &lt;p&gt;Welcome back, {{username}}!&lt;/p&gt;
+{{/if}}
+</code></pre>
+
+<p>Now do the same for the other block, except with the <code>notSignedIn</code> property. Execute the code.</p>
+<blockquote>
+<p>The plain mustache block <code>{{#...}}</code> is equivalent to <code>{{#if ...}}{{#with ...}}</code>. It is both conditional and contextual.</p>
+</blockquote>
+<h2 id="step-2"><a class="toclink" href="#step-2">Step 2</a></h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBgAYmIAzcsOIp+yAJL8MDDtWXAIAQgBaCPJFBGFhBjRyVwB7GA8vHyQI4n5yAFdhBBhhcii+QRCCSTYAdQQVURTY8gAjCwBrLHJHQuL+BljAsK4a4MdON0Dg8ec3cn4U3ABlTL8AoMr7cKiYuISk1PTF-gjPb2QcvL6SsoiK+22agAliLTBihDDyAAUVBAYRXIBAY5DAMAQrmoAHInNDyClTqIVMRRB0YQABAB0534-gAFABKaFsXGUfhcBgcThjSoTKabLhiCTSNggHDCeCkJjkcyWazkagLBAAd3IACULFZSAh8cBgrgmCxIORYYrmAhcNCsAqlKp1AgVWq9WoFNrgkh1AwVfK8uR7bj1irXAwVEUdXb7YsVmskP4VbgYPkbHbsAIHZl-cl8vx+YjyESeuHyPZucdBghBeRJDBmtJ8aqAKL8BTpbQpfLpG4DFq4FIZbzk7WqvnShAAfRd-HhhIA3HZKvbW9YcZq5cF7fbqxmVTWEB77JOG1ko4HgwuZJPvasLn7+M7XUUJ+QMH3k5tT73MEA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVzBgAYmIAzcsOIp+yAJL8MDDtWXAIAQgBaCPJFBGFhBjRyVwB7GA8vHyQI4n5yAFdhBBhhcii+QRCCSTYAdQQVURTY8gAjCwBrLHJHQuL+BljAsK4a4McGosDg+3ComLiEpNT0-hT+CM9vZBy8vpKyiIr7WZqACWItMGKEMPIABRUEBiLyAgZyMBgEV2oAcicf3I6wiohUxFEHX+AAEAHRbfj+AAUAEo-mwEZR+FwGBxOGNKo5OG5ptjOGIJNI2CAcMJ4KQmORzJZrORqOQfAB3cgAJQsVlICCRwGCuCYLEg5ABYuYCFwfywoqUqnUCEl0uVagUCuCSHUDElIry5BNCL8-ElrgYKiKAhN2DtGW8-kt+X4LPW5FRPUd9gZq0GCDZ5EkMGa0iRUoAovwFOltCl8ul9gMWrgUk68rkFVLmQKEAB9K38IEogDcdkqJrz1nhcuFwRNJpTgclqYQiqrTbNSBdWhg+RsXYw5cdQQC5cwQA">Fix Code</button>
+</div></p>
+<p>Having two properties (<code>signedIn</code> and <code>notSignedIn</code>) to represent one piece of data (whether or not the user is signed in) is the sort of thing that makes most programmers itch uncontrollably.</p>
+<p>We have a couple of options. We could use an <code>#unless</code> section:</p>
+<pre><code class="handlebars">{{#unless signedIn}}
+  &lt;!-- not-signed-in block --&gt;
+{{/unless}}
+</code></pre>
+
+<blockquote>
+<p>There's also a plain mustache for negated sections, <code>{{^signedIn}}...{{/}}</code>.</p>
+</blockquote>
+<p>Alternatively, we could use else:</p>
+<pre><code class="handlebars">{{#if signedIn}}
+  &lt;!-- signed-in block --&gt;
+{{else}}
+  &lt;!-- not-signed-in block --&gt;
+{{/if}}
+</code></pre>
+
+<p>Update the template. Then, remove the references to notSignedIn in the JavaScript. Then breathe a sigh of relief – doesn't that feel better?</p>
+<blockquote>
+<p>If you have another branch in your conditional, you can include it with an <code>{{elseif ...}}</code> mustache. An <code>{{#if}}</code> section can include as many <code>elseif</code>s as you need, but it can only contain one <code>else</code>.</p>
+</blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="previous" href="../events/">Previous</a>
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/tutorials/conditional-sections.md" target="_blank">Edit this page</a>
+  <a class="page-controls__link" rel="next" href="../iterative-sections/">Next</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    <label class="search-toggle" for="search-state">Search</label>
+    
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+    <iframe class="playground-frame" src="/playground/?env=docs"></iframe>
+  </div>
+
+  <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../..">Ractive.js</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="">Get Started</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../hello-world/">Hello, world!</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../nested-properties/">Nested Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../expressions/">Expressions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item pure-menu-selected">
+          <a class="pure-menu-link" href="./">Conditional Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../iterative-sections/">Iterative Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../two-way-binding/">Two-way Binding</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../triples-embedded-html/">Triples (Embedded HTML)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../components/">Components</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../animation/">Animations</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../svg/">SVG</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../transitions/">Transitions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../decorators/">Decorators</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../api/">API</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../plugins/">Plugins</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../integrations/">Integrations</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../concepts/">Concepts</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../support/">Support</a>
+      </li>
+      
+      </li>
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link pure-menu-heading" href="https://github.com/ractivejs/ractive">GitHub</a>
+    </li>
+  </ul>
+</div>
+  
+  <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#conditional-sections">Conditional Sections</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-1">Step 1</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-2">Step 2</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-container">
+    <ul class="pure-menu-list">
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../..">Ractive.js</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
+              <span class="pure-menu-link">Get Started</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../hello-world/">Hello, world!</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../nested-properties/">Nested Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../expressions/">Expressions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">Conditional Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../iterative-sections/">Iterative Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../two-way-binding/">Two-way Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../triples-embedded-html/">Triples (Embedded HTML)</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../animation/">Animations</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../svg/">SVG</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../transitions/">Transitions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../decorators/">Decorators</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../api/">API</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../plugins/">Plugins</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../integrations/">Integrations</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../concepts/">Concepts</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../support/">Support</a>
+          </li>
+        
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">GitHub</a>
+      </li>
+      <li class="pure-menu-item">
+        <label class="pure-menu-link search-toggle" for="search-state">Search</label>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <div class="search-modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <label class="close-search" for="search-state" aria-role="close">&times;</label>
+    <input type="text" class="search-field" placeholder="Search..." id="mkdocs-search-query">
+    <div id="mkdocs-search-results"></div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../../static/js/index.js"></script>
+  <script>var base_url = '../..';</script>
+  <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Next-generation DOM manipulation">
+  
+
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <link rel="author" href="RactiveJS contributors">
+  <link rel="canonical" href="https://ractive.js.org">
+
+  <title>Ractive.js</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="../theme.css">
+
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  
+</head>
+
+<body>
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+  <input class="search-state" type="checkbox" name="search-state" id="search-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#architecture">Architecture</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#parser">Parser</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#models">Models</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#virtual-dom">Virtual DOM</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#data-management">Data management</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#dependents">Dependents</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#two-way-binding">Two-way binding</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#computed-properties">Computed Properties</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#observers">Observers</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#components">Components</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#event-management">Event Management</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#sources">Sources</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#handling">Handling</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#event-context">Event context</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#namespacing">Namespacing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#propagation">Propagation</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#rendering">Rendering</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#scoped-css">Scoped CSS</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#progressive-enhancement">Progressive Enhancement</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#server-side">Server-side</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#security">Security</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#content-security-policy">Content Security Policy</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#templates">Templates</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#keypaths">Keypaths</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#references">References</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#conditional-attributes">Conditional attributes</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#optimization">Optimization</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+        </div>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          <h1 id="architecture"><a class="toclink" href="#architecture">Architecture</a></h1>
+<p>There are three major sections in the Ractive source code: The parser which handles template parsing, the models which handle data management and the views which handle the virtual DOM. This document aims to give a breakdown of just what exactly each of these sections do.</p>
+<h2 id="parser"><a class="toclink" href="#parser">Parser</a></h2>
+<p>Ractive's parser is reponsible for taking in Mustache-like/Handlebar-like templates. Unlike Mustache and Handlebars, however, it turns them into an <em>AST</em> for use by the runtime. In addition, it also supports a fair amount of ES syntax for use in expressions.</p>
+<p>Each item expressable in Ractive-flavored mustache has its own parsing function that may also be comprised of other parsing functions. Each bit of ES syntax that Ractive understands for expressions also has its own parsing function. The parser starts at the beginning of the template string and starts applying each parsing function in precedence order. Each function will then consume as much of the template as needed to return an item, like an element, a section, a partial, a bit of text, or an interpolator. It may also return nothing. Most items can also contain children, including items of the same type as themselves, and will thus recurse by trying to parse their content.</p>
+<h3 id="mustaches"><a class="toclink" href="#mustaches">Mustaches</a></h3>
+<p>Each type of mustache has its own reader that calls the appropriate expression or reference readers internally. For instance, the partial reader reads the current open mustache delimiter (defaults to <code>{{</code>) followed by a <code>&gt;</code>. It then expects to find a relaxed reference, meaning it may contain dashes and slashes among other usually-forbidden characters. It may then optionally read a context expression or series of alias definitions</p>
+<h3 id="expressions"><a class="toclink" href="#expressions">Expressions</a></h3>
+<p>The expression readers are set arranged such that they can read valid ES expressions with the correct operator precedence by starting with ternary conditionals and trying different expression types from there. Once the expression tree has been parsed, it is flattened into an expression string and a list of references that are used within that string. If the parsing is done with <code>csp</code> (Content Security Policy) support enabled, then the expression strings are also turned into functions and attached to the output template structure so that the template can be used as-is from a script tag without <code>eval</code>ing.</p>
+<h3 id="cleanup"><a class="toclink" href="#cleanup">Cleanup</a></h3>
+<p>After all of the nodes have been parsed from the template, the template is cleaned up in a process that, among other things, merges adjacent text nodes and forms individual conditional sections out of <code>elseif</code>/<code>else</code> trees.</p>
+<h2 id="models"><a class="toclink" href="#models">Models</a></h2>
+<p>Ractive wraps any data given to it into a tree-like hierarchy of <code>Model</code>. Any data that is rendered into a template will be bound to a <code>Model</code>. Access to read and write data in Ractive is handled through the model hierarchy based on keypaths, which are, generally, a list of object properties that one would need to follow to reach a leaf of the data tree starting from the root. Each key along the keypath has its own corresponding model.</p>
+<p>Models allow entities that depend upon them to register themeselves to receive change notifications when the model value changes. This is how Ractive keeps track of exactly which parts of the view need to be updated when values change.</p>
+<p>All of the data managed by Ractive is represented by its model hierarchy.</p>
+<p>Almost every type of Model is a subclass of <code>Model</code>, so it seems a good place to start. Each model typically has a parent model, a key that is used to access its value from its parent, and a value. Most models also have children of some sort, which are tracked by key such that <code>{ foo: { bar: 'baz' } }</code> would have a model with a <code>childByKey['foo']</code>, which would also have a model at <code>childByKey['bar']</code>. The value of each of the models listed there would be the object containing <code>foo: { bar:</code>baz<code>}</code>, its <code>foo</code> child would be the object <code>bar: 'baz'</code>, and its <code>bar</code> child would be the string <code>'baz'</code>. Where children of a model are other models, dependents (<code>deps</code>) of a model may be anything that wants to be notified of changes, and each model will typically have a number of dependents, too.</p>
+<p>Each model has a unique keypath that is assembled by taking its key and each of its parents keys up to the root and joining them with a <code>.</code>.</p>
+<p>Models are also inherently lazy, meaning their value is not necessarily available when the are created. A value is retrieved from a model using its <code>get</code> method which may have the side effect of computing the value. Once a value has been computed, it is generally cached until a change happens that would cause the cache to be invalidated. In most models, there isn't really an opportunity for that change outside of normal change propagation.</p>
+<h3 id="rootmodel"><a class="toclink" href="#rootmodel">RootModel</a></h3>
+<p>Every tree needs a root, and <code>RootModel</code> serves that purpose here. Each Ractive instance gets its own <code>RootModel</code> that is stored at its <code>viewmodel</code> property. This special model is also the storage point for computations and mappings.</p>
+<h3 id="keymodel"><a class="toclink" href="#keymodel">KeyModel</a></h3>
+<p>The last major model remaining is the <code>KeyModel</code>. Instances of this represent indices of arrays and keys of objects during iteration. The key flavor never is immutable, becuase the keys of  objects never change (they may be removed, but that doesn't change the key itself). The index flavor <strong>does</strong> change, but only when the array represented by its parent model is shuffled.</p>
+<h3 id="other-models"><a class="toclink" href="#other-models">Other models</a></h3>
+<p>There are a few other types of <code>Model</code> in the code, such as the <code>RactiveModel</code>, which represents a Ractive instance, and the <code>GlobalModel</code>, which represents the global object of the current environment a.k.a. <code>window</code> for browsers and <code>global</code> for Node.js.</p>
+<h3 id="model-operations"><a class="toclink" href="#model-operations">Model operations</a></h3>
+<h4 id="change-propagation"><a class="toclink" href="#change-propagation">Change propagation</a></h4>
+<p>When a change is supplied to a model, its <code>set</code> method is called, which usually delegates to <code>applyValue</code>. <code>applyValue</code> checks to see that the value has actually changed in some way (hint: setting to the same object or array is considered a change because something may have changed further in), and if it has, it will start change notification for all of the model's children and dependents. If the model has resolvers registered with it trying to get an unresolved value, then this is where the unresolved value will be resolved and the resolver satisfied and cleared. Next, any children will be notified that their parent has had a value change and that they may need to update accordingly, which may trigger further cascades of resolution and change notification. Next, any dependents of the model will be notified that the model has had a value change as their <code>handleChange</code> methods are called. Finally, upstream models (parents) are notified that a change has taken place somewhere among its children.</p>
+<p>The child notification of the propagation is handled by the model's <code>mark</code> method. <code>mark</code> also checks to see that the value has actually changed, and if it has, will notify its children and dependents that it has had a value change. This is also the method called when the user signals that they have changed some data externally by calling <code>ractive.update()</code>.</p>
+<h4 id="shuffling"><a class="toclink" href="#shuffling">Shuffling</a></h4>
+<p>There is a special form of change wherein an array is modified without being swapped out, which is triggered by array methods like <code>splice</code>, <code>push</code>, and <code>pop</code>. When an array modification happens, change propagation takes a special path through the model that allows more precise DOM manipulation rather than throwing all of the DOM out and replacing it with a new result. This is achieved by having the special array method handlers compute which indexes are actually changed and having the array model's deps that can actally handle a shuffle ignore any untouched indices.</p>
+<p>The instance method <code>merge</code> does something similar, but instead of modifying the underlying array, it compares the members of the new supplied array against the model array to compute the index changes. It the swaps in the new array and triggers a shuffle based on the computed index changes.</p>
+<h4 id="adaptation"><a class="toclink" href="#adaptation">Adaptation</a></h4>
+<p>Between the change check and the change propagation during <code>applyValue</code>, there is a step that handles part of adaptation so that external objects with special behaviors, like backbone models, can be used as data sources. An adaptors takes the special object, wraps it up, and returns the wrapper that also has a value that represents the object for consumption by Ractive. Most adaptors also have methods to update values in their source data as well, and those methods are called when an update is applied to an adapted model.</p>
+<h4 id="computations"><a class="toclink" href="#computations">Computations</a></h4>
+<p>A computation is exactly what is sounds like: a getter and optional setter function that are used to provide read and optional write access to some non-fixed piece of data. Each computation is stored in the root model <code>computations</code> hash by its keypath. Computations can be created in two places:</p>
+<ol>
+<li>Explicitly when a <code>computed</code> map is passed to a Ractive instantiation or when an entry is later added to a instance's computed map. These may be read/write and have a keypath that mirrors their name.</li>
+<li>Implicitly when an expression is used in a template. These are read-only and have a keypath that is an expanded representation of their expression.</li>
+</ol>
+<p>A computation is also a form of model, so anything that depends on it will subscribe to it as if it were a regular model. Change propagation happens in the same way as a regular model as well.</p>
+<p>Since computations may depend on other bits of data controlled by Ractive, while they are being retrieved, any references to other models will cause the extra references to be <code>capture</code>d. When the computation is complete, the computation will register with each of its captured dependencies so that it will be notified when it needs to invalidate and notify its dependents of the change.</p>
+<h4 id="mappings"><a class="toclink" href="#mappings">Mappings</a></h4>
+<p>When a Ractive instance has children, typically components, it may supply a handles to its own data to them in the form of mappings. The child instance stores a reference to the parent model at its mapped name and uses it when its dependents request access to keypaths that start with the mapped name. This allows child instances, which may be isolated, to stay in sync with portions of their parents data easily, because the parent still controls the data (single source of truth) and there is no syncing involved. So if a parent has a component <code>&lt;Component foo="{{bar.baz.bat.bippy}}" /&gt;</code>, then the component instance will get a mapping <code>foo</code> that references the parent model at <code>bar.baz.bat.bippy</code>.</p>
+<h2 id="virtual-dom"><a class="toclink" href="#virtual-dom">Virtual DOM</a></h2>
+<p>Every piece of DOM that Ractive can manage has a corresponding class in the virtual DOM to handle the DOM node, which generally end up being either Elements or Text Nodes. View items are grouped together as Fragments of view, which may then be owned by other fragments or items. At the root of every ractive instance is a Fragment instance that contains its entire virtual DOM tree. Each Ractive template construct has at least one analog in the virtual DOM. The bulk of Ractive's view functionality is implemented in the Section, Interpolator, and Element items, with there being a number of specialized element classes to handle special types of HTML element.</p>
+<p>All virtual DOM items go through roughly the same lifecycle: creation, binding, rendering, bubbling, updating, unrendering, and unbinding. Creation is basically just the constructor call and almost always is immediately followed by binding. Binding is the point at which the item resolves and registers with its data references. Rendering is the point at which the item inserts an actual DOM node into the DOM. Bubbling and updating are the two halves of the update process, which is discussed in the next section. Unrendering is the point at which the item should no longer be present in the DOM, and it often occurs at the same point as unbinding, which is the point at which the item unregisters with the viewmodel and is effectively destroyed.</p>
+<p>There a number of other members, such as events and decorators, and processes, such as change propagation, which are described in detail in the view overview.</p>
+<p>Ractive views are structured virtual DOM trees that are assembled from template AST and manage DOM nodes on the page when they are rendered. Virtual DOM items are grouped together in <code>Fragment</code>s, which contain them, and they may also own <code>Fragment</code>s that contain other items. Each item may contain a reference to a DOM node when rendered, though every item doesn not have a DOM analog.</p>
+<h3 id="parallel-dom"><a class="toclink" href="#parallel-dom">Parallel DOM</a></h3>
+<p>Ractive works by maintaining a simplified model of the part of the DOM that it's responsible for. This model contains all the information - about data-binding, event handling and so on - that it needs to keep things up-to-date.</p>
+<p>You can inspect the parallel DOM to understand what's going on under the hood, if you're into that sort of thing. Each Ractive instance, once rendered, has a <code>fragment</code> property. Each fragment has a number of properties:</p>
+<ul>
+<li><code>contextStack</code> - the context stack in which mustache references should be evaluated</li>
+<li><code>root</code> - a reference to the Ractive instance to which it belongs</li>
+<li><code>owner</code> - the <em>item</em> that owns this fragment (in the case of the root fragment, the same as <code>root</code>)</li>
+<li><code>items</code> - the items belonging to this fragment</li>
+</ul>
+<p><em>Items</em> means elements, text nodes, and mustaches. Elements may have fragments of their own (i.e. if they have children). A partial mustache will have a fragment, and a section mustache will have zero or more fragments depending on the value of its keypath.</p>
+<p>Elements may also have attributes, which have a different kind of fragment (a <em>text fragment</em> as opposed to a <em>DOM fragment</em>), containing text and mustaches.</p>
+<p>Each item has a <code>descriptor</code>, which is something like DNA. This comes straight from the parsed template.</p>
+<p>This is the briefest of overviews - if you want to gain a deeper understanding of what's going on under the hood, <a href="https://github.com/RactiveJS/Ractive/tree/master/src">use the source</a>.</p>
+<h3 id="states"><a class="toclink" href="#states">States</a></h3>
+<p>Items generally follow a fixed lifecycle.</p>
+<ol>
+<li>Construction - the item is created and knows about its parent and the template chunk from which it was created. Its template may also indicate what its children should look like if it has them.</li>
+<li><code>bind</code> - the item looks up any references is may have and registers with the model(s) that they represent. At this point, the item may create child items and bind them as well.</li>
+<li><code>render</code> - the item may create an actual DOM node and tell its children to create their DOM nodes as necessary. The resulting nodes will be inserted into the document.</li>
+<li><code>unrender</code> - thie item is no longer needed and will be removed from the document immediately or in the near future.</li>
+<li><code>unbind</code> - this typically goes along with <code>unrender</code> and tells the models on which this item depends that they should no longer send change notifications to it.</li>
+</ol>
+<p>There is a sixth floating step <code>rebind</code> that happens any time one dependency models shuffles (and in certain other very special circumstances) that causes the items to re-resolve their models and re-register if necessary.</p>
+<h3 id="virtual-dom-items"><a class="toclink" href="#virtual-dom-items">Virtual DOM Items</a></h3>
+<h4 id="text"><a class="toclink" href="#text">Text</a></h4>
+<p>Text is the simplest item. It simply holds a string that it turns into a <code>TextNode</code> when rendered.</p>
+<h4 id="interpolator"><a class="toclink" href="#interpolator">Interpolator</a></h4>
+<p>This is the next simplest item. It resolves a model for its reference or expression and renders the value of the model as a text node if needed. Interpolators don't necessarily render directly, as they may be used for values by other items, such as attributes, mappings, and bindings.</p>
+<h4 id="element"><a class="toclink" href="#element">Element</a></h4>
+<p>An <code>Element</code> represents a DOM element. It also contains a number of other items in the form of <code>Attribute</code>s, <code>Decorator</code>s, <code>Transition</code>s, <code>EventDirective</code>s, and its children in a <code>Fragment</code>.</p>
+<h4 id="attributes"><a class="toclink" href="#attributes">Attributes</a></h4>
+<p>There are actually several different items that are treated as attributes for <code>Element</code>s, event though only two of them actually may render into the DOM.</p>
+<ul>
+<li><code>Attribute</code>s - maybe obvious, they these represent a DOM attribute on their parent element. There are a number of different handlers for updating attributes depending on the element and attribute name. The <code>updateDelegate</code> for a particular attribute can be found in <code>getUpdateDelegate.js</code>.</li>
+<li><code>ConditionalAttribute</code>s - render as a string and are parsed into actual DOM attributes using a <code>div</code> or an <code>svg</code> depending on their parent element.</li>
+<li><code>Mapping</code>s - when rendered add a mapping to their component, and when unrendered, remove it. These aren't attached to <code>Element</code>s, but instead, are attached to <code>Component</code>s (see below).</li>
+<li><code>EventDirective</code>s - when rendered attach an event listener to their parent, and when unrenedered, remove it. Event parameters are kept in sync with their bindings and are evaluated when the event fires.</li>
+<li><code>BindingDirective</code>s - when rendered and unrendered update their parent element's bindings, if they exist.</li>
+<li><code>Decorator</code>s - when rendered call the named decorator with their parent element, and when unrenedered, remove it. <code>Decorator</code>s also have an update cycle related to their parameters.</li>
+<li><code>Transition</code>s - are a sort of weird case. When rendered, they attach a transition handler to their element, and when the element renders or unrenders, if an appropriate transition handler is registered, will trigger the transition. Transition parameters are also kept in sync with their bindings.</li>
+</ul>
+<h4 id="bindings"><a class="toclink" href="#bindings">Bindings</a></h4>
+<p>Certain attributes may also trigger a binding to be created on their parent element. For instance, if two-way binding is enabled on the parent element, and the parent element is an <code>input</code>, a <code>value</code> attribute with a single <code>Interpolator</code> as its content will cause a two-way binding to be created between the value of the <code>input</code> and the model of the <code>Interpolator</code>. This binding will handle updating the model when the input <code>value</code> has changed. There are a few other types of bindings for managing check values, content editables, name-bound lists of checkboxes, and other miscellaneous special values.</p>
+<p>A <code>lazy</code> binding directive will cause any associated two-way bindings to fire either after a timeout or on blur, depending on the value of the <code>lazy</code> directive.</p>
+<h4 id="section"><a class="toclink" href="#section">Section</a></h4>
+<p><code>Section</code>s come in many flavors, depending on the chunk of template from which they are created. A section may provide context, be conditional (positive or negative), or be iterative. Generic sections (<code>{{#something}}...{{/}}</code> in template) will adjust their type, to a certain extent, based on the value of their model. A generic section will always provide context in the form of their model. An <code>if</code>-style conditional section, including <code>elseif</code>, <code>else</code>, and <code>unless</code> do not provide context. An <code>each</code> section will always provide context in the form of the current iteration. A <code>with</code> section will always provide context as its model, but it will only render if its model is considered truthy by Ractive, which is pretty much the same as JS truthy except <code>{}</code> and <code>[]</code> are falsey. A generic section will be context/conditional if it is anything other than an array, which will make it iterative.</p>
+<p>Sections that provide context do so by binding their <code>Fragment</code>s with their model so that the reference resolution process can find the appropriate contexts when resolving.</p>
+<h4 id="contextconditional"><a class="toclink" href="#contextconditional">Context/Conditional</a></h4>
+<p>Context and conditional sections will render and unrender their child fragment as their model changes truthiness. Conditional sections always stand alone, even it they have <code>elseif</code> or <code>else</code> branches nested within them, because those branches are turned into independent sections during parsing.</p>
+<h4 id="iterative"><a class="toclink" href="#iterative">Iterative</a></h4>
+<p>If section is designated iterative (<code>{{#each ...}}</code>) or is a general section with an array value resolution, the section will create a special form of fragment for each index or key in the value. The special form <code>RepeatedFragment</code> handles mapping of indices, keys, and references to those to a corresponding model. Iterative sections also have special handling for shuffles so that DOM is not wholesale destroyed and recreated when the array shuffles.</p>
+<p>Iterative sections may supply an alias for their context, so that referencing the iterated value is a little bit easier. See <code>Aliases</code> below for more info, as this is just a slightly specialized form of that.</p>
+<p>Iterative sections may also supply key and/or index aliases so that their keys and/or indices may be referenced by a name from within their child fragments.</p>
+<h4 id="alias"><a class="toclink" href="#alias">Alias</a></h4>
+<p>Alias sections simply resolve their models and act as a lookup endpoint for reference resolution. Aliasing happens entirely in the view.</p>
+<h4 id="component"><a class="toclink" href="#component">Component</a></h4>
+<p>A component is a sort-of special form of <code>Element</code> that, instead of creating a DOM element, creates a new Ractive instance. The child instance will be rendered and unrendered in place of the component placeholder in the DOM.</p>
+<p>Any plain <code>Attribute</code>s with a single <code>Interpolator</code> as content in a component's template are turned into <code>Mapping</code>s.</p>
+<p>The resolution process no longer happens strictly within the vDOM, as the result of <code>Ractive.getContext</code> also uses the target <code>Element</code>'s fragment to resolve relative references. Event objects are also extended with methods from the same helper.</p>
+<h3 id="updates"><a class="toclink" href="#updates">Updates</a></h3>
+<p>The <code>runloop</code> controls when the DOM is actually updated and when transitions start in <code>batch</code>es. It also handles resolving promises when transitions have completed and the DOM is completely up to date.</p>
+<p>As changes propagate through the viewmodel, view items are notified of the change through their <code>handleChange</code> method. Most items just set a dirty flag and notify their parent, via their <code>bubble</code> method, that they will need to be updated at the completion of the runloop turn. The root fragment of each instance affected will then register with the runloop. Once the changes are ready to be flushed to the view, each fragment registered with the runloop is called on to update, where the process happens in reverse, with each parent fragment checking to see if there is a change it needs to respond to and propagating the update downward to its children.</p>
+<h1 id="data-management"><a class="toclink" href="#data-management">Data management</a></h1>
+<h2 id="dependents"><a class="toclink" href="#dependents">Dependents</a></h2>
+<p>Ractive maintains a dependency graph in order to do only the minimum amount of work necessary to keep the DOM up-to-date. If you inspect a Ractive instance, you'll see a property called <code>_deps</code>. This is where all dependants are listed, indexed by their dependency.</p>
+<h3 id="expression-dependencies"><a class="toclink" href="#expression-dependencies">Expression dependencies</a></h3>
+<p>Ractive uses dynamic analysis to determine dependencies. Depedendencies are determined by capturing references in the viewmodel while the function is executing. Dependencies for functions are re-captured each time the function is executed.</p>
+<pre><code class="html">&lt;p&gt;{{ formattedName() }}&lt;/p&gt;
+</code></pre>
+
+<pre><code class="js">var ractive = Ractive({
+  template: template,
+  el: output,
+  data: {
+    user: { firstName: 'John', lastName: 'Public' },
+    formattedName: function() {
+      return this.get('user.lastName') + ', ' + this.get('user.firstName')
+    }
+  }
+};
+</code></pre>
+
+<p>Result:</p>
+<pre><code class="html">&lt;p&gt;Public, John&lt;/p&gt;
+</code></pre>
+
+<p>In this example, the function <code>formattedName</code> will depend on both <code>user.firstName</code> and <code>user.lastName</code>, and updating either (or <code>user</code>) will cause any expressions referencing <code>formattedName</code> to be re-evaluated as well.</p>
+<pre><code class="js">ractive.set('user.firstName', 'Jane')
+</code></pre>
+
+<p>Result:</p>
+<pre><code class="html">&lt;p&gt;Public, Jane&lt;/p&gt;
+</code></pre>
+
+<h3 id="priority"><a class="toclink" href="#priority">Priority</a></h3>
+<p>Ractive runs updates based on priority. For instance, when a subtree of the DOM needs to be removed while at the same time updates are pending for that subtree. What Ractive does is prioritize the removal of the subtree over the updates. This causes the dependents on the subtree to unregister themselves, eliminating the need to update, resulting with only the removal operation being done.</p>
+<h3 id="indirect-dependencies"><a class="toclink" href="#indirect-dependencies">Indirect dependencies</a></h3>
+<p>If you have a mustache which depends on <code>foo.bar</code>, and <code>foo</code> changes, it's quite possible that the mustache needs to re-render. We say that the mustache has an <em>indirect dependency</em> on <code>foo</code>, or that it has a <em>direct dependency on a downstream keypath</em> of <code>foo</code>.</p>
+<p>This relationship is expressed through the <code>_depsMap</code> property of a Ractive instance - whenever <code>foo</code> changes, as well as dealing with direct <code>foo</code> dependants we check the map for those indirect dependants.</p>
+<p>In the case of expressions and observers, we also need to consider dependants of <em>upstream keypaths</em>. For example, suppose we have a section based on a sorted array - if we modify one of the members of the array, we need to see if the sort order has changed or not as a result:</p>
+<pre><code class="html">{{#( sort( list, 'name' ) )}}
+  &lt;p&gt;{{name}}&lt;/p&gt;
+{{/()}}
+</code></pre>
+
+<pre><code class="js">ractive = Ractive({
+  el: myContainer,
+  template: myTemplate,
+  data: {
+    list: [{ name: 'Bob' }, { name: 'Charles' }, { name: 'Alice' }],
+    sort: function ( list, property ) {
+      return list.slice().sort( function ( a, b ) {
+        return a[ property ] &lt; b[ property ] ? -1 : 1;
+      })
+    }
+  }
+})
+
+// renders Alice, Bob, Charles
+
+ractive.set( 'list[0].name', 'Zebediah' )
+
+// updates to Alice, Charles, Zebediah
+</code></pre>
+
+<p>In the example, setting <code>list[0].name</code> causes dependants of <code>list</code> to be updated.</p>
+<p>As well as expressions, Observers respond to both upstream and downstream changes.</p>
+<h3 id="expressions-with-multiple-dependencies"><a class="toclink" href="#expressions-with-multiple-dependencies">Expressions with multiple dependencies</a></h3>
+<p>The expression <code>{{ a + b }}</code> has two dependencies - <code>a</code> and <code>b</code> (or more accurately, whatever those references resolve to). The <code>_deps</code> graph actually includes objects representing those individual references, rather than the expression itself - the reference objects then notify the expression (if their value has changed) that it will need to re-evaluate itself.</p>
+<p>Because the expression has multiple dependencies, it won't trigger an update straight away - it will wait until all the new data has come in first. So doing <code>ractive.set({ a: 1, b: 2 })</code> will only trigger one update, not two.</p>
+<h2 id="two-way-binding"><a class="toclink" href="#two-way-binding">Two-way binding</a></h2>
+<p>Two-way binding allows data to update bi-directionally, from data to the UI and vice versa.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSAtrhS8+ACQQAbXUKw8A6kJi6kAQj5Se2W2QQqADrrkJeAA1vSAPBSZnAFcyHjJRZwQAXgYQRwAPMlieKiJdIOjY4GAeNRQ7DFiAPh5s3PUC5h8eXwEQsiElRoBaEl0KEgBrGJAAATIwClwAOlwEMlo+PIl+ABkzJx4ASWdcIJU+AEpigBUhHnbV9d8Aejq2RqLbbyYMTcwgA"></div>
+
+<pre><code class="js">Ractive({
+  data: {
+    msg: 'Hello, World!'
+  },
+  template: `
+    &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt; {{ msg }}
+
+    &lt;button on-click=&quot;@this.set('msg', 'Lorem Ipsum')&quot;&gt;To lipsum&lt;/button&gt;
+  `
+})
+</code></pre>
+
+<p>Two-way binding can be disabled via the <code>twoway</code> initialization option or the <code>twoway</code> input directive.</p>
+<h3 id="ambiguous-references"><a class="toclink" href="#ambiguous-references">Ambiguous references</a></h3>
+<p>An ambiguous reference refers to a reference whose data does not exist at the time of construction. Ractive must make an assumption, following a resolution algorithm, on what ambiguous references resolve to. Until a suitable keypath pops into existence, ambiguous references resolve to <code>undefined</code>.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vYNik8yCALYAHADZyEvAAbLpAHgpMNAVzI8qRLRYQBeBiGDAeAjjwwYXAPh43Dy8fZX1JJgwASkwgA"></div>
+
+<pre><code class="js">Ractive({
+  data: {},
+  template: `
+    &lt;input value=&quot;{{ msg }}&quot;&gt; {{ msg }}
+  `,
+})
+</code></pre>
+
+<p>Ambiguous references can be locked to a specific keypath, skipping the whole resolution process, using keypath prefixes.</p>
+<h3 id="lazy-updates"><a class="toclink" href="#lazy-updates">Lazy updates</a></h3>
+<p>By default, Ractive uses various events (i.e. <code>change</code>, <code>click</code>, <code>input</code>, <code>keypress</code>) to listen for changes on interactive elements and immediately update bound data. In cases where data updates should only take place after the element loses focus, Ractive also supports lazy updating.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjwA2RAF6jeZGAFcEkptKRF2vRluk8AtrhS8+fKT2zWyCYwAc593gANr0gDxJqAPgAVUUcEHiImJB4SGQoSAGseIVUyXAokULIwUIomR2SvAHpfKj9PHi8cvLIeMmCEAF4GEHsADzImnioiGXVGkGBgEzMbDCa-HgGhlBHrDyYMAEpMIA"></div>
+
+<pre><code class="js">Ractive({
+  lazy: true,
+  data: {
+    msg: ''
+  },
+  template: `
+    &lt;div&gt;Type and click outside the input&lt;/div&gt;
+    &lt;input type=&quot;text&quot; value=&quot;{{ msg }}&quot;&gt; {{ msg }}
+  `
+})
+</code></pre>
+
+<p>Lazy updates can be enabled via the <code>lazy</code> initialization option or the <code>lazy</code> directive.</p>
+<h2 id="computed-properties"><a class="toclink" href="#computed-properties">Computed Properties</a></h2>
+<p>Computed properties are top-level pseudo-data references whose value is defined by a computation and which automatically update when its dependencies update.</p>
+<h3 id="function-syntax"><a class="toclink" href="#function-syntax">Function syntax</a></h3>
+<p>The function syntax defines a computed property as a function that returns the computed value. The context of the function is the current instance.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSA7hSRkwvAEwAGXZKXKANgiYpNvAMz6pPbHZJCAtgAcArmWQK70jgiJaAEpFZWUYBDJ3GCVNClwAOi5aPjUNMD4gngAqHjjE5L5Tc01M33s7ByMvN2M5BF4AA3KAdXVLHgAeCiYPMjzRVwQAXgYQLwAPMjGeKiJjdxGx4GAeNM17DDGAPnKAGTMLLS6evoGh0fGEKZm5haWQFZ5io82d8oBBCKIFVf8iN5GZpMDBBTBAA"></div>
+
+<pre><code class="js">Ractive({
+  data: {
+    width: 200,
+    length: 300
+  },
+  computed: {
+    area(){
+      return this.get('width') * this.get('length')
+    }
+  },
+  template: `
+    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&quot;&gt;
+    Length: &lt;input type=&quot;text&quot; value=&quot;{{ length }}&quot;&gt;
+    Area: {{ area }}
+  `
+})
+</code></pre>
+
+<h3 id="expression-syntax"><a class="toclink" href="#expression-syntax">Expression syntax</a></h3>
+<p>The expression syntax defines a computed property as a string containing a JavaScript expression. <code>${}</code> is replaced internally with a <code>ractive.get()</code>, using its contents as a keypath.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nSA7hSRkwvAEwAGXZKXKANgiYpNvAMz6pPbHZJCAtgAcArmWQK70jgiJePgASYDUNMAweACoeUNNzTQw+OwcjLzdjOQReAANfHgB1dUseAB4KJg8yHjJRVwQAXgYQLwAPMhaeKiJjdyaW4GAecM17DBaAPgKAGTMLLXLK6tr6gdaEDq6evvWhngSF8amCgEEYAIVh-yJjo3ymDABKTCA"></div>
+
+<pre><code class="js">Ractive({
+  data: {
+    width: 200,
+    length: 300
+  },
+  computed: {
+    area: '${width} * ${length}'
+  },
+  template: `
+    Width: &lt;input type=&quot;text&quot; value=&quot;{{ width }}&quot;&gt;
+    Length: &lt;input type=&quot;text&quot; value=&quot;{{ length }}&quot;&gt;
+    Area: {{ area }}
+  `
+})
+</code></pre>
+
+<h3 id="accessor-syntax"><a class="toclink" href="#accessor-syntax">Accessor syntax</a></h3>
+<p>Both function and expression syntaxes only describe retrieval of the computed property's value, and therefore makes the computed property read-only. The accessor syntax defines a computed property by providing <code>get</code> and <code>set</code> methods. <code>get</code> is called to retrieve its value and <code>set</code> is called when something updates its value.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggBTAA6Adg2WUTGmZAAQDkAIwD2SAJ58szHjyRF2vRk2nTcFJAl4AmAAzapPbPpJCAtgAcArmWQL90jgiK2ly6V1oBKRa9cwEZCxglAFk5MAA6MyEAd1oyMApccPc+VXU+DyweTQ87ZUMXV1x-WiovPNd4xPDislpUtQQJHlD4moBHGDqy3ML8vIx9AulrcwAbOQ0eAAM8gGVG3gAeCiZLMh4yUTMEAF4GEGsADzIDnioiMYs9g+BgHjSEA0GQAD48gEE-Jx4VtatNtsbocECczhcrsC7jwHERngd3i5ZkwMB5MEA"></div>
+
+<pre><code class="js">Ractive({
+  data: {
+    side: 200
+  },
+  computed: {
+    area: {
+      get(){
+        return Math.pow(this.get('side'), 2)
+      },
+      set(v){
+        this.set('side', Math.sqrt(v))
+      }
+    }
+  },
+  template: `
+    Side: &lt;input type=&quot;text&quot; value=&quot;{{ side }}&quot;&gt;
+    Area: &lt;input type=&quot;text&quot; value=&quot;{{ area }}&quot;&gt;
+  `
+})
+</code></pre>
+
+<p>Both function and expression syntaxes are supported for the <code>get</code> method.</p>
+<h2 id="observers"><a class="toclink" href="#observers">Observers</a></h2>
+<h3 id="nested-properties"><a class="toclink" href="#nested-properties">Nested properties</a></h3>
+<p>Observers observe <em>upstream</em> and <em>downstream</em> keypaths. This allows observers to execute when data is updated indirectly, whether if it's the enclosing structure or a descendant structure.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKAMyJFZ8xYoBG9GLICMYzRiOVspoltwIYA9aYkByFUUeylAVya9SgkggB3ADV6ABsPBABKDU1KYjIiUIQAOlCiFEFnVTiwRjQkSnJXLEp-YLCIyIczLGqsomSdGDdlLx5qXzKQ8KiYzXjcRJS0jPrG3Ry85ELi0sDuyuqTBWWMKpIxWgpGZmTrckyXceaSgCZ1rYYmFP3D1UcS4Eom2QBmM0jMIA"></div>
+
+<pre><code class="js">const instance = Ractive({
+  data: {
+    foo: {
+      bar: 1
+    }
+  },
+  observe: {
+    'foo': function(newValue){
+      console.log('foo changed to', newValue)
+    },
+    'foo.bar': function(newValue){
+      console.log('foo.bar changed to', newValue)
+    }
+  }
+})
+
+instance.set('foo.bar', 2)
+instance.set('foo', { bar: 3 })
+</code></pre>
+
+<p>Observers can be set to only execute on the specified keypath via the <code>strict</code> option for both <code>observe</code> initialization option and <code>ractive.observe()</code>.</p>
+<h3 id="wildcards"><a class="toclink" href="#wildcards">Wildcards</a></h3>
+<p>Wildcards allow observers to observe keypaths whose segments cannot be determined in advance. This is useful when observing an array, observing items within an array, or observing changes on object properties.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKABwRElAGwSyA2mMWLgJegFstlAOQdqBMJQAS9GDGq5z2PfrlHTs8wFlHcgBPSgA5BHVcUjcPCQBdLFjKYhIAM2oUWXlPSnp1dSIAdwBhImNTEnJcWXIYAFcERIV9PILCgFEkanJZVLzcBCSMD3cFIgAjAZgBLKSAejnKAHlJhGmWG0Y0XEpSSnIwFkcYeiCk8xU1TQA6ACpzXrqmXlJBAEpszxSom4KUQXMx1Ou1W6xg5iwuRgKDqFSqbyGTX0C2WoIEyTAWwQOz2BxY3hYShgajWwV2qVyJBC3QQxho4jxUJOZ2aFkuGgQd2uBIelFSTx41FeHySEm+RF+RH+gKcwJpdImUwE4MhjhhcNwCNZo2RixWSo2mJI2124kYISJJJgZKIFMYIIAVggeOcUukUHdefznkKSO9PvpxZLpRMnTxlMSVNaQoq1sqIVD1QhKpqhiMxBgtWJaBRGMxrko6rgwAD2ZoE4YTGZzAApehRcQAIWJhRIbi1OYYTE5A3IpdUHOuAGYKwTfHWCABrSiN9TcSft7N0PM9hB98xujLXVpFTrdBO1BpvTBAA"></div>
+
+<pre><code class="js">const instance = Ractive({
+  data: {
+    people: [
+      {name: 'Rich Harris'},
+      {name: 'Marty Nelson'}
+    ],
+    config: {
+      allowComments: true,
+      allowEdit: false
+    }
+  },
+  observe: {
+    // Observe changes on the array
+    'people.*': function(){
+      console.log('array observer', arguments)
+    },
+    // Observe changes on the name property of any item in the array
+    'people.*.name': function(){
+      console.log('array item observer', arguments)
+    },
+    // Observe changes on any property of an object
+    'config.*': function(){
+      console.log('object property observer', arguments)
+    }
+  }
+})
+
+instance.push('people', {name: 'Jason Brown'})
+instance.set('people.3', {name: 'Jack Black'})
+instance.set('config.allowEdit', true)
+</code></pre>
+
+<h3 id="multiple-sources"><a class="toclink" href="#multiple-sources">Multiple sources</a></h3>
+<p>Multiple keypaths can be observed by adding them one after the other, separating them with a space.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKAV1wIYs4CrUl6AWwSyA5ACMYRAO4lqCAGbJD2MYsrESN6ig3VcAQSS7aWRt6ABtVRwUJYl19EnIAYSIlONkABidKCIkiY1UYAQ0MiUMtGAA6Up19F1J3FDLvPwDxaNiEpLjDIOSealJBAEp5ZyjSXCIQhDKQohRBQykGFzBGNCRDLEp6GBQlNtwBgG4izIyMMQwBsTFaCkZmMtVyedKKvKqEDcpDAjAYb0MRxudHuUye81cdQavn8tC+5BgSgQQKsIKYYIQzx+RBiCDiiWS5C+ABYAExHTBAA"></div>
+
+<pre><code class="js">const instance = Ractive({
+  data: {
+    user: {username: 'browniefed'},
+    config: {isAdmin: false},
+    commentCount: 0
+  },
+  observe: {
+    'user.username config.isAdmin commentCount': function(){
+      console.log('data changed', arguments);
+    }
+  }
+})
+
+instance.set('user.username', 'chris');
+instance.set('config.isAdmin', true);
+instance.set('commentCount', 42);
+</code></pre>
+
+<h3 id="caveats"><a class="toclink" href="#caveats">Caveats</a></h3>
+<p>Observers do not defensively clone the old and new values as identity of these values may be essential. Thus, observers on non-primitive values may result in having identically equal old and new values.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gMYD2AdrgC4AEAlmeQIYkEKUC8lASvQedQG4IAFMAA6JSpST0GkSqPETKxEgDNqKWfMWL6AG11EA7gGEiAWzMIS5XLPIwArgixjtEvQcMBRJNXKyVPVwEV0UMUOxQogAjYJgBTVCJAHJlNRRkgIcmXlJBEgRDADU9JyxKIl0kEt0nAEotN2VcSoQAOgMUfMKapzZWdkrq0oQ6pMpwhUmMMZIxWgpGZjbg8kFU0nS2jyMfP2Ty+3rMIA"></div>
+
+<pre><code class="js">const instance = Ractive({
+  data: {
+    config: {
+      allowComments: true,
+      allowEdit: false
+    }
+  },
+  observe: {
+    'config': function(newValue, oldValue){
+      console.log(newValue === oldValue)
+    }
+  }
+})
+
+instance.set('config.allowEdit', true)
+</code></pre>
+
+<p>Both <code>observe</code> initialization option and <code>ractive.observe()</code> accept an <code>old</code> option which allows you to define the old value passed to the observer prior to modifications.</p>
+<h2 id="components"><a class="toclink" href="#components">Components</a></h2>
+<h3 id="mappings_1"><a class="toclink" href="#mappings_1">Mappings</a></h3>
+<p>Mappings connect pieces of data on the enclosing instance to data on enclosed instances. Changes on one side will reflect on the other.</p>
+<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
+  data: {
+    message: ''
+  },
+  template: `
+    &lt;input type=&quot;text&quot; value=&quot;{{ message }}&quot;&gt;
+  `
+})
+
+const instance = Ractive({
+  el: 'body',
+  data: {
+    text: ''
+  },
+  template: `
+    &lt;MyComponent message=&quot;{{ text }} /&gt;
+  `
+})
+
+ractive.set('text', 'Hello World!')
+</code></pre>
+
+<p>In the example above, <code>text</code> on the instance is mapped to <code>MyComponent</code>'s <code>message</code>. Updates on <code>text</code> will update <code>message</code> and any UI elements bound to it. Updates on <code>message</code>, like editing the <code>&lt;input&gt;</code> bound with it, will update <code>text</code>.</p>
+<h3 id="data-context"><a class="toclink" href="#data-context">Data context</a></h3>
+<p>Each component instance comes with its own data context so that its data does not pollute the primary data. Any mapping between the component and the enclosing instance will still update across both contexts.</p>
+<pre><code class="js">Ractive.components.MyComponent = Ractive.extend({
+  data: {
+    shades: '',
+    option: ''
+  }
+})
+
+const instance = Ractive({
+  template: `
+    &lt;MyComponent shades='{{colors}}' option='A' /&gt;
+  `,
+  data: {
+    name: 'Colors',
+    colors: ['red', 'blue', 'yellow']
+  }
+})
+
+const widget = ractive.findComponent('MyComponent')
+
+ractive.get() // {&quot;colors&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
+widget.get()  // {&quot;shades&quot;:[&quot;red&quot;,&quot;blue&quot;,&quot;yellow&quot;], &quot;option&quot;:&quot;A&quot;}
+
+ractive.set('colors.1', 'green')
+
+ractive.get() // {&quot;colors&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;name&quot;:&quot;Colors&quot;}
+widget.get()  // {&quot;shades&quot;:[&quot;red&quot;,&quot;green&quot;,&quot;yellow&quot;], &quot;option&quot;:&quot;A&quot;}
+</code></pre>
+
+<p>In the example above, the enclosing instance data holds <code>name</code> and <code>colors</code>. <code>colors</code> is mapped to <code>shades</code> and <code>option</code> is set on an instance of <code>MyComponent</code>. Upon inspection, <code>name</code> from the enclosing instance does not cross over to <code>MyComponent</code> nor does <code>option</code> cross over to the enclosing instance. However, since <code>colors</code> on the instance is mapped to <code>shades</code> on the component, any modifications on either side will reflect on the other.</p>
+<h3 id="isolation"><a class="toclink" href="#isolation">Isolation</a></h3>
+<p>By default, components are "isolated". Descendant components can update ancestor data only when there is an explicit mapping between them. This avoids unintended mutation of ancestor data and ensures portability of components.</p>
+<pre><code class="js">Ractive.components.ChildComponent = Ractive.extend({
+  template: 'Message missing {{ message }}'
+})
+
+const instance = Ractive({
+  el: 'body',
+  template: '&lt;ChildComponent /&gt;',
+  data: {
+    message: 'The ChildComponent will not know anything about this message'
+  }
+})
+</code></pre>
+
+<p>In the example above, <code>&lt;ChildComponent&gt;</code> will not print anything since <code>message</code> is not defined in the component and due to isolation, the component cannot see the instance's <code>message</code>.</p>
+<p>Isolation can be disabled via the <code>isolated</code> initialization option.</p>
+<h1 id="event-management"><a class="toclink" href="#event-management">Event Management</a></h1>
+<p>Like many other libraries, Ractive implements its own <a href="https://en.wikipedia.org/wiki/Publish–subscribe_pattern">publish/subscribe</a> mechanism for triggering and responding to particular events. One of the advantages of using Ractive-managed events is that events are automatically unsubscribed and unreferenced once the instance is torn down, avoiding the need to do manual housekeeping.</p>
+<h2 id="sources"><a class="toclink" href="#sources">Sources</a></h2>
+<h3 id="event-api"><a class="toclink" href="#event-api">Event API</a></h3>
+<p>Events that are published as a result of using the event APIs directly (i.e. <code>ractive.fire</code>). Most of the other event sources use the event APIs to publish events at some point in their operation.</p>
+<pre><code class="js">instance.fire('someevent', 'Hello, World!')
+</code></pre>
+
+<h3 id="lifecycle-events"><a class="toclink" href="#lifecycle-events">Lifecycle events</a></h3>
+<p>Lifecycle events are events that are published by an instance during the different phases of its existence. Ractive instances publish the following lifecycle events:</p>
+<ul>
+<li><code>construct</code></li>
+<li><code>config</code></li>
+<li><code>init</code></li>
+<li><code>render</code></li>
+<li><code>complete</code></li>
+<li><code>update</code></li>
+<li><code>insert</code></li>
+<li><code>detach</code></li>
+<li><code>unrender</code></li>
+<li><code>teardown</code></li>
+<li><code>destruct</code></li>
+</ul>
+<p>Lifecycle event names are reserved. They should not be used as names of other events.</p>
+<h3 id="dom-events"><a class="toclink" href="#dom-events">DOM events</a></h3>
+<p>DOM events are events that are published by the DOM.</p>
+<pre><code class="html">&lt;button on-click=&quot;...&quot;&gt;
+</code></pre>
+
+<h3 id="custom-events"><a class="toclink" href="#custom-events">Custom events</a></h3>
+<p>Custom events are events that are published by event plugins.</p>
+<pre><code class="html">&lt;img on-tap=&quot;...&quot;&gt;
+</code></pre>
+
+<h3 id="component-events"><a class="toclink" href="#component-events">Component events</a></h3>
+<p>Component events are events that are published by <a href="../plugins/#components">components</a>.</p>
+<pre><code class="html">&lt;MyModal on-close=&quot;...&quot; /&gt;
+</code></pre>
+
+<h2 id="handling"><a class="toclink" href="#handling">Handling</a></h2>
+<h3 id="event-api_1"><a class="toclink" href="#event-api_1">Event API</a></h3>
+<p>Events published from the direct use of the event APIs are also handled by directly using the event APIs (i.e. <code>ractive.on</code>, <code>ractive.once</code>). Most of the other handling methods use the event APIs to handle events at some point in their operation.</p>
+<pre><code class="js">instance.on('someevent', (event, message) =&gt; {
+  console.log(message)
+})
+</code></pre>
+
+<h3 id="lifecycle-events_1"><a class="toclink" href="#lifecycle-events_1">Lifecycle events</a></h3>
+<p>Lifecycle events are handled by assigning a function to the appropriate lifecycle event initialization option.</p>
+<pre><code class="js">Ractive({
+  onrender(){
+    console.log('instance has been rendered')
+  }
+})
+</code></pre>
+
+<p>The event APIs can also subscribe to lifecycle events. However, the handler must subscribe prior to the event publishing. Using the lifecycle event initialization options is the safer option to ensure the correct timing of subscriptions.</p>
+<h3 id="proxy-syntax"><a class="toclink" href="#proxy-syntax">Proxy syntax</a></h3>
+<p>Ractive instances do not immediately subscribe to template-based events (DOM events, component events, custom events). The proxy syntax "proxies" template-based events into events that the current instance can subscribe to. From there, the events are handled by event APIs. Arguments are not supported in this syntax.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', event =&gt; {
+      console.log('button clicked')
+    })
+  }
+})
+</code></pre>
+
+<h3 id="expression-syntax_1"><a class="toclink" href="#expression-syntax_1">Expression syntax</a></h3>
+<p>A more powerful form of template-based event handling is the expression syntax, which allows the use of expressions as their values. This form acts very similar to inline scripts plus some useful additions. The expression syntax also has full, unmustached access to data and special references.</p>
+<p>The first form is a special form of the proxy syntax. It accepts an array whose first item is the event name, and the rest are its arguments.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;button on-click=&quot;['buttonclicked', 'foo', 'bar']&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', (event, foo, bar) =&gt; {
+      console.log('button clicked passing', foo, bar)
+    })
+  }
+})
+</code></pre>
+
+<p>The second form uses expressions directly. This allows unrestricted access to almost anything, from calling instance methods, custom methods, or even firing a proxy event manually.</p>
+<pre><code class="js">Ractive({
+  data: { msg: '' },
+  template: `
+    &lt;button on-click=&quot;@this.set('msg', 'Hello, World!')&quot;&gt;Set message&lt;/button&gt;
+    &lt;button on-click=&quot;@this.greetz(msg)&quot;&gt;Print message&lt;/button&gt;
+    &lt;button on-click=&quot;@this.fire('manualproxy', msg)&quot;&gt;Print message via proxy&lt;/button&gt;
+    &lt;button on-click=&quot;@this.set('foo', 1), @this.set('bar', 2)&quot;&gt;Cccombo!!!&lt;/button&gt;
+  `,
+  greetz(message){
+    console.log(`${message}`)
+  },
+  oninit(){
+    this.on('manualproxy', (event, message) =&gt; {
+      console.log(`${message}`)
+    })
+  }
+})
+</code></pre>
+
+<h2 id="event-context"><a class="toclink" href="#event-context">Event context</a></h2>
+<p>Event handlers, regardless of event source, receive an <code>event</code> object as first argument. The <code>event</code> object is a special instance of a context object augmented with additional event-related properties where applicable.</p>
+<ul>
+<li><code>name</code> - The name of the published event.</li>
+<li><code>node</code> - A reference to the DOM node publishing the event. Only available on DOM events.</li>
+<li><code>event</code> - A reference to the DOM event. Only available on DOM</li>
+<li><code>original</code> - A reference to the DOM event. Only available on DOM</li>
+<li><code>component</code> - A reference to the component that published the event. Only available on propagated events.</li>
+</ul>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', event =&gt; {
+      console.log(event.node.type) // submit
+    })
+  }
+})
+</code></pre>
+
+<h2 id="namespacing"><a class="toclink" href="#namespacing">Namespacing</a></h2>
+<p>Pattern-matching is supported on any type of event, allowing a form of event namespacing. This is done by using a keypath-like event name and using wildcards (<code>*</code>) on segments during subscription.</p>
+<pre><code class="js">Ractive({
+  el: 'body',
+  append: true,
+  template: `
+    &lt;button on-click=&quot;foo.bar&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;foo.baz&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;foo.bam&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;qux.bar&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;qux.baz&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;button on-click=&quot;qux.bam&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  oninit(){
+    this.on('*.bar', event =&gt; {
+      console.log('A bar event was published')
+    })
+    this.on('qux.*', event =&gt; {
+      console.log('A qux event was published')
+    })
+  }
+})
+</code></pre>
+
+<p>Be aware that handlers subscribing to just <code>*</code> will fire for <em>all</em> events.</p>
+<h2 id="propagation"><a class="toclink" href="#propagation">Propagation</a></h2>
+<h3 id="dom-event-propagation"><a class="toclink" href="#dom-event-propagation">DOM event propagation</a></h3>
+<p>Native DOM event propagation is preserved, allowing things such as delegation.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;div on-click=&quot;buttonclicked&quot;&gt;
+      &lt;button type=&quot;button&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  oninit(){
+    this.on('buttonclicked', event =&gt; {
+      console.log('button clicked')
+    })
+  }
+})
+</code></pre>
+
+<h3 id="component-propagation"><a class="toclink" href="#component-propagation">Component propagation</a></h3>
+<p>Propagation across component boundaries is also supported. Propagating events are namespaced using the publishing component's name as prefix. This applies to component, proxy, and even lifecycle events.</p>
+<pre><code class="js">const ChildComponent = Ractive.extend({
+  template: '&lt;div&gt;&lt;/div&gt;',
+  oncomplete(){
+    this.fire('childevent')
+  }
+})
+
+const ParentComponent = Ractive.extend({
+  components: { ChildComponent },
+  template: '&lt;ChildComponent /&gt;'
+})
+
+const instance = Ractive({
+  components: { ParentComponent },
+  template: '&lt;ParentComponent /&gt;'
+})
+
+instance.on('ChildComponent.childevent', function(){
+  console.log('Hello World!')
+})
+</code></pre>
+
+<h3 id="stopping-propagation"><a class="toclink" href="#stopping-propagation">Stopping propagation</a></h3>
+<p>Propagation can be stopped by simply returning <code>false</code> from an event handler. If the event is a DOM event, <code>event.stopPropagation()</code> and <code>event.preventDefault()</code> are automatically called.</p>
+<pre><code class="js">Ractive({
+  template: `
+    &lt;div on-click=&quot;ancestorbuttonclick&quot;&gt;
+      &lt;button on-click=&quot;descendantbuttonclick&quot;&gt;Click Me!&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  oninit(){
+    this.on('ancestorbuttonclick', event =&gt; {
+      console.log('This will not run')
+    })
+    this.on('descendantbuttonclick', event =&gt; {
+      console.log('This will run')
+      return false;
+    })
+  }
+})
+</code></pre>
+
+<p>Returning <code>false</code> also stops propagation across components.</p>
+<pre><code class="js">const ChildComponent = Ractive.extend({
+  template: '&lt;div&gt;&lt;/div&gt;',
+  oncomplete: function(){
+    this.fire('childevent')
+  }
+})
+
+const ParentComponent = Ractive.extend({
+  components: { ChildComponent },
+  template: '&lt;ChildComponent /&gt;',
+  oninit: function(){
+    this.on('ChildComponent.childevent', function(){
+      return false;
+    })
+  }
+})
+
+const instance = Ractive({
+  components: { ParentComponent },
+  template: '&lt;ParentComponent /&gt;'
+})
+
+instance.on('ChildComponent.childevent', function(){
+  console.log('This will not run')
+})
+</code></pre>
+
+<p>Assigning a handler using <code>on-*</code> will also stop propagation. However, if <code>on-*</code> is assigned a proxy event and not stopped, that proxy event will propagate in place of the stopped event.</p>
+<pre><code class="js">const ChildComponent = Ractive.extend({
+  template: '&lt;div&gt;&lt;/div&gt;',
+  oncomplete: function() {
+    this.fire('childevent1')
+    this.fire('childevent2')
+    this.fire('childevent3')
+    this.fire('childevent4')
+  }
+})
+
+const ParentComponent = Ractive.extend({
+  components: { ChildComponent },
+  template: `
+    &lt;ChildComponent
+      on-childevent1=&quot;&quot;
+      on-childevent2=&quot;childevent2proxy&quot;
+      on-childevent3=&quot;childevent3proxy&quot;
+      on-childevent4=&quot;@this.parentMethod()&quot;
+    /&gt;
+  `,
+  oninit: function() {
+    this.on('childevent2proxy', function() {
+      // childevent2proxy replaces childevent2
+    })
+    this.on('childevent3proxy', function() {
+      // childevent3proxy replaces childevent3 but stopped
+      return false
+    })
+  },
+  parentMethod: function(){
+    // childevent4 handled by a method
+  }
+})
+
+const instance = Ractive({
+  components: { ParentComponent },
+  template: '&lt;ParentComponent /&gt;'
+})
+
+instance.on('ChildComponent.childevent1', function() {
+  console.log('childevent1 stopped by a blank handler')
+})
+
+instance.on('ChildComponent.childevent2', function() {
+  console.log('childevent2 stopped by a proxy event')
+})
+
+instance.on('ChildComponent.childevent3', function() {
+  console.log('childevent3 stopped by a proxy event')
+})
+
+instance.on('ChildComponent.childevent4', function() {
+  console.log('childevent4 stopped by a method call')
+})
+
+instance.on('ParentComponent.childevent3proxy', function() {
+  console.log('childevent3proxy stopped by returning false')
+})
+
+// This one gets through since its proxy event was left to propagate
+instance.on('ParentComponent.childevent2proxy', function() {
+  console.log('childevent2proxy fired')
+})
+</code></pre>
+
+<h1 id="rendering"><a class="toclink" href="#rendering">Rendering</a></h1>
+<h2 id="scoped-css"><a class="toclink" href="#scoped-css">Scoped CSS</a></h2>
+<p>CSS provided via the <code>css</code> initialization option is scoped to the component.</p>
+<pre><code class="js">const Component = Ractive.extend({
+  template: `
+    &lt;span&gt;I'm red&lt;/span&gt;
+    &lt;div&gt;
+      &lt;span&gt;I'm also red&lt;/span&gt;
+    &lt;/div&gt;
+  `,
+  css: `
+    span { color: red }
+  `
+});
+
+Ractive({
+  components: { Component },
+  el: 'body',
+  template: `
+    &lt;Component /&gt;
+    &lt;span&gt;I'm not red&lt;/span&gt;
+  `
+})
+</code></pre>
+
+<p>This is done by generating a unique id for each component definition. That ID is then added to each selector defined in <code>css</code> and to each top-level element in the component's DOM.</p>
+<pre><code class="css">span[data-ractive-css~=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;],
+[data-ractive-css~=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;] span {
+  color: red
+}
+</code></pre>
+
+<pre><code class="html">&lt;span data-ractive-css=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;&gt;I'm red&lt;/span&gt;
+&lt;div data-ractive-css=&quot;{6f9bd745-a6b9-9346-0c8c-e3cc94b3d2a5}&quot;&gt;
+  &lt;span&gt;I'm also red&lt;/span&gt;
+&lt;/div&gt;
+&lt;span&gt;I'm not red&lt;/span&gt;
+</code></pre>
+
+<p>Currently, there are a few limitations to this feature:</p>
+<ul>
+<li>ID-based scoping is not true component scoping and will affect elements of descendant components.</li>
+<li><code>css</code> can only be used with components and not on direct Ractive instances. This may change in the future.</li>
+</ul>
+<h2 id="progressive-enhancement"><a class="toclink" href="#progressive-enhancement">Progressive Enhancement</a></h2>
+<p>TODO</p>
+<h2 id="server-side"><a class="toclink" href="#server-side">Server-side</a></h2>
+<p>Server-side rendering can be achieved using <code>ractive.toHTML()</code> and <code>ractive.toCSS()</code>. Both methods render the instance and its descendants at their current state to HTML and CSS, respectively.</p>
+<pre><code class="js">const Component1 = Ractive.extend({
+  data: {
+    message: '';
+  },
+  template: `
+    &lt;div class=&quot;component1&quot;&gt;{{message}}&lt;/div&gt;
+  `,
+  css: `
+    .component1 { color: red }
+  `
+})
+
+const Component2 = Ractive.extend({
+  data: {
+    greeting: '';
+  },
+  template: `
+    &lt;div class=&quot;component2&quot;&gt;{{greeting}}&lt;/div&gt;
+  `,
+  css: `
+    .component2 { color: green }
+  `
+})
+
+const App = Ractive.extend({
+  components: {
+    Component1,
+    Component2
+  },
+  data: {
+    greet: '',
+    msg: ''
+  },
+  template: `
+    &lt;Component1 message=&quot;{{ msg }}&quot; /&gt;
+    &lt;Component2 greeting=&quot;{{ greet }}&quot; /&gt;
+  `
+})
+
+const state = { greet: 'Good Morning!', msg: 'Hello, World!' }
+const app = App({ data: state })
+const html = app.toHTML()
+const css = app.toCSS()
+</code></pre>
+
+<p>Currently, there are a few limitations to this feature:</p>
+<ul>
+<li><code>ractive.toHTML()</code> prints HTML without component IDs while <code>ractive.toCSS()</code> prints out selectors with component IDs, which causes the HTML and CSS to not match up.<ul>
+<li>A workaround is to render the CSS as is by setting <code>noCSSTransform</code> to <code>true</code> and to use a CSS naming convention (i.e BEM, OOCSS, SMACSS) to match up selectors with their elements.</li>
+</ul>
+</li>
+<li><code>ractive.toHTML()</code> does not automatically insert the document CSS when rendering a component that represents a full document. This must be done manually.</li>
+</ul>
+<h1 id="security"><a class="toclink" href="#security">Security</a></h1>
+<h2 id="content-security-policy"><a class="toclink" href="#content-security-policy">Content Security Policy</a></h2>
+<p>To use Ractive with <a href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">Content Security Policy</a>, you'll currently need <code>'unsafe-eval'</code> specified for <code>scriptSrc</code> in your CSP header. This may change in future - see https://github.com/ractivejs/ractive/issues/1897 .</p>
+<h1 id="templates"><a class="toclink" href="#templates">Templates</a></h1>
+<p>Strictly speaking, Ractive templates are not HTML. They are markup representations of objects that are used to construct HTML. Simply put, templates are <em>HTML-like</em>. Ractive parses templates into <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a>s which contain everything Ractive needs to know to construct an instance's DOM, data bindings, events and transitions etc.</p>
+<pre><code class="js">Ractive.parse('&lt;div class=&quot;message&quot;&gt;Hello World!&lt;/div&gt;')
+
+// {&quot;v&quot;:4,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;div&quot;,&quot;m&quot;:[{&quot;n&quot;:&quot;class&quot;,&quot;f&quot;:&quot;message&quot;,&quot;t&quot;:13}],&quot;f&quot;:[&quot;Hello World!&quot;]}]}
+</code></pre>
+
+<h2 id="keypaths"><a class="toclink" href="#keypaths">Keypaths</a></h2>
+<p>A keypath is a kind of reference that represents the location of a piece of data.</p>
+<pre><code class="js">Ractive({
+  data: {
+    foo: {
+      bar: {
+        baz: {
+          qux: 'Hello, World!'
+        }
+      }
+    }
+  },
+  template: `
+    {{ foo.bar.baz.qux }}
+  `
+})
+</code></pre>
+
+<h3 id="dot-and-bracket-notations"><a class="toclink" href="#dot-and-bracket-notations">Dot and bracket notations</a></h3>
+<p>Dot and bracket notation rules for keypaths are similar to vanilla JS. The only addition to this is that the dot notation can also be used to access arrays, by using the index directly on the segment.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    items: [1, 2, 3],
+    foo: {
+      bar: {
+        baz: {
+          qux: 'Hello, World!',
+          'dotted.key': 'Me, Hungry!'
+        }
+      }
+    },
+    dynamicKey: 'bar'
+  },
+  template: `
+    {{ foo['bar']['baz']['qux'] }} &lt;!-- bracket notation object access --&gt;
+    {{ foo.bar.baz.qux }}          &lt;!-- dot notation object access --&gt;
+
+    {{ items[0] }} &lt;!-- bracket notation array access --&gt;
+    {{ items.0 }}  &lt;!-- dot notation array access --&gt;
+
+    {{ foo.bar.baz['dotted.key'] }} &lt;!-- dotted key access --&gt;
+
+    {{ foo[dynamicKey].baz.qux }} &lt;!-- dynamic key access --&gt;
+  `
+})
+</code></pre>
+
+<h3 id="missing-properties"><a class="toclink" href="#missing-properties">Missing properties</a></h3>
+<p>In JavaScript, trying to access a child property of an object that does not exist would throw an error. In Ractive, it would simply return <code>undefined</code> or render nothing.</p>
+<pre><code class="js">const instance = Ractive({
+  data: {
+    numbers: [ 1, 2, 3 ]
+  },
+  template: `
+    {{ letters[0] }}
+  `
+})
+
+ractive.get( 'letters[0]' ) // undefined
+</code></pre>
+
+<h3 id="upstream-and-downstream-keypaths"><a class="toclink" href="#upstream-and-downstream-keypaths">Upstream and downstream keypaths</a></h3>
+<p>Ractive has this concept of "upstream" and "downstream" keypaths. Upstream keypaths are ancestor keypaths. For the keypath <code>foo.bar.baz.qux</code>, it's upstream keypaths are <code>foo</code>, <code>foo.bar</code> and <code>foo.bar.baz</code>. Downstream keypaths are descendant keypaths. For the <code>foo</code> keypath, it's downstream keypaths would be <code>foo.bar</code>, <code>foo.bar.baz</code> and <code>foo.bar.baz.qux</code>.</p>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
+<p>A reference is a string that refers to a piece of data. A keypath is an example of a reference, one that points to a specific location in the data. Special references are also a form of reference, one that provides to a certain value.</p>
+<h3 id="reference-resolution"><a class="toclink" href="#reference-resolution">Reference resolution</a></h3>
+<p>Ractive follows the following resolution algorithm to find the value of a reference:</p>
+<ol>
+<li>If the reference a special reference, resolve with that keypath.</li>
+<li>If the reference is explicit or matches a path in the current context exactly, resolve with that keypath.</li>
+<li>Grab the current virtual node from the template hierarchy.</li>
+<li>If the reference matches an alias, section indexes, or keys, resolve with that keypath.</li>
+<li>If the reference matches any mappings, resolve with that keypath.</li>
+<li>If the reference matches a path on the context, resolve with that keypath.</li>
+<li>Remove the innermost context from the stack. Repeat steps 3-7.</li>
+<li>If the reference is a valid keypath by itself, resolve with that keypath.</li>
+<li>If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.</li>
+</ol>
+<h3 id="context-stack"><a class="toclink" href="#context-stack">Context stack</a></h3>
+<p>Whenever Ractive encounters section mustaches or similar constructs, it stores the context in a <em>context stack</em>. Ractive then resolves references relative to the top of the stack, and popping off contexts until the reference resolves to a keypath.</p>
+<pre><code class="js">Ractive({
+  data: {
+    qux: 'Me, Hungry!',
+    foo: {
+      bar: {
+        baz: 'Hello, World!'
+      }
+    }
+  },
+  template: `
+                &lt;!-- context is the root of the data --&gt;
+    {{#foo}}    &lt;!-- context is now foo --&gt;
+      {{#bar}}  &lt;!-- context is now foo.bar --&gt;
+        {{baz}} &lt;!-- Resolution order: foo.bar.baz, foo.baz, baz. Resolved at foo.bar.baz. --&gt;
+        {{qux}} &lt;!-- Resolution order: foo.bar.quz, foo.qux, qux. Resolved at qux. --&gt;
+      {{/}}
+    {{/}}
+  `,
+})
+</code></pre>
+
+<h2 id="conditional-attributes"><a class="toclink" href="#conditional-attributes">Conditional attributes</a></h2>
+<p>Sections can toggle attributes, whether it's one attribute, multiple attributes or specific values of the attribute.</p>
+<pre><code class="html">&lt;!-- one attribute --&gt;
+&lt;a href=&quot;/&quot; {{#if currentPage}}class=&quot;active&quot;{{/if}}&gt;Home&lt;/a&gt;
+
+&lt;!-- multiple attributes --&gt;
+&lt;a href=&quot;/&quot; {{#if currentPage}}class=&quot;active&quot; title=&quot;Current page&quot;{{/if}}&gt;Home&lt;/a&gt;
+
+&lt;!-- specific attribute value --&gt;
+&lt;a href=&quot;/&quot; class=&quot;nav-link {{#if currentPage}}nav-link--active{{/if}}&quot;&gt;Home&lt;/a&gt;
+</code></pre>
+
+<h2 id="optimization"><a class="toclink" href="#optimization">Optimization</a></h2>
+<h3 id="pre-parsing"><a class="toclink" href="#pre-parsing">Pre-parsing</a></h3>
+<p>Parsing templates can be a very slow operation. As an optimization option, templates can be pre-parsed outside of runtime, speeding up app initialization. Most loaders do pre-parsing of templates as part of their build process. A parsed template is approximately 30-40% larger than the markup version, making it a trade-off between space and processing.</p>
+<h3 id="limiting-template-expressions"><a class="toclink" href="#limiting-template-expressions">Limiting template expressions</a></h3>
+<p>While expressions provide power and convenience when building templates, it incurs a performance penalty as Ractive sets up each one on a per-instance level. To avoid this overhead, there are several places where logic can move to, trimming down expressions into mere function calls.</p>
+<p>Functions can be set on the data globally via <code>Ractive.defaults.data</code>.</p>
+<pre><code class="js">Ractive.defaults.data.customLogic = function(){ ... }
+
+Ractive({
+  template: `
+    {{ customLogic() }}
+  `
+})
+</code></pre>
+
+<p>Functions can also be defined on a component level using methods.</p>
+<pre><code class="js">const Component = Ractive.extend({
+  template: `
+    {{ @this.customLogic() }}
+  `,
+  customLogic(){
+    ...
+  }
+})
+</code></pre>
+
+<h3 id="expression-processing"><a class="toclink" href="#expression-processing">Expression processing</a></h3>
+<p>When Ractive parses a template, it creates a string representation of the expression structure and keeps track of its dependencies. Then Ractive converts these expression strings into a function which can be called to generate the expression's value.</p>
+<p>Ractive optimizes this routine starting by generating the same expression string for structurally-identical expressions. Then a value-generating function is created for each <em>distinct</em> expression string, cached globally and shared to all instances. Furthermore, Ractive caches the generated values and only updates them when the expression's dependencies update.</p>
+<pre><code class="js">// Expression parsing
+Ractive.parse('{{ a + b }}{{ c + d }}');
+
+// {
+//   &quot;v&quot;: 4,
+//   &quot;t&quot;: [
+//     {
+//       &quot;t&quot;: 2,
+//       &quot;x&quot;: {
+//         &quot;r&quot;: [&quot;a&quot;,&quot;b&quot;], &lt;-- dependencies here
+//         &quot;s&quot;: &quot;_0+_1&quot;    &lt;-- expression string here
+//       }
+//     },
+//     {
+//       &quot;t&quot;: 2,
+//       &quot;x&quot;: {
+//         &quot;r&quot;: [&quot;c&quot;,&quot;d&quot;], &lt;-- dependencies here
+//         &quot;s&quot;: &quot;_0+_1&quot;    &lt;-- expression string here
+//       }
+//     }
+//   ],
+//   &quot;e&quot;: {}
+// }
+
+// Building and caching of the expression resolver of `_0+_1`
+const expressionFunctionsCache = {};
+expressionFunctionsCache['_0+_1'] = new Function('_0', '_1', 'return _0+_1');
+
+// Evaluate {{ a + b }}
+const dep = ['a', 'b'];
+const exp = '_0+_1'
+const arg = dep.map(instance.get);
+const val = expressionFunctionsCache[exp].apply(instance, arg);
+
+// Evaluate {{ c + d }}
+const dep = ['c', 'd'];
+const exp = '_0+_1'
+const arg = dep.map(instance.get);
+const val = expressionFunctionsCache[exp].apply(instance, arg);
+</code></pre>
+
+<p>The <code>Function</code> constructor was chosen over <code>eval</code> because it allows Ractive to compile the expression string <em>once</em> as well as <em>cache</em> the resulting function, instead of evaluating the string every time the value is needed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/concepts.md" target="_blank">Edit this page</a>
+  
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    <label class="search-toggle" for="search-state">Search</label>
+    
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+    <iframe class="playground-frame" src="/playground/?env=docs"></iframe>
+  </div>
+
+  <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="..">Ractive.js</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="">Get Started</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../api/">API</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../plugins/">Plugins</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../integrations/">Integrations</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="./">Concepts</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../support/">Support</a>
+      </li>
+      
+      </li>
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link pure-menu-heading" href="https://github.com/ractivejs/ractive">GitHub</a>
+    </li>
+  </ul>
+</div>
+  
+  <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#architecture">Architecture</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#parser">Parser</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#models">Models</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#virtual-dom">Virtual DOM</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#data-management">Data management</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#dependents">Dependents</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#two-way-binding">Two-way binding</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#computed-properties">Computed Properties</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#observers">Observers</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#components">Components</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#event-management">Event Management</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#sources">Sources</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#handling">Handling</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#event-context">Event context</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#namespacing">Namespacing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#propagation">Propagation</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#rendering">Rendering</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#scoped-css">Scoped CSS</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#progressive-enhancement">Progressive Enhancement</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#server-side">Server-side</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#security">Security</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#content-security-policy">Content Security Policy</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#templates">Templates</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#keypaths">Keypaths</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#references">References</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#conditional-attributes">Conditional attributes</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#optimization">Optimization</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-container">
+    <ul class="pure-menu-list">
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="..">Ractive.js</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Get Started</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../api/">API</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../plugins/">Plugins</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../integrations/">Integrations</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-selected">
+            <a class="pure-menu-link" href="./">Concepts</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../support/">Support</a>
+          </li>
+        
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">GitHub</a>
+      </li>
+      <li class="pure-menu-item">
+        <label class="pure-menu-link search-toggle" for="search-state">Search</label>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <div class="search-modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <label class="close-search" for="search-state" aria-role="close">&times;</label>
+    <input type="text" class="search-field" placeholder="Search..." id="mkdocs-search-query">
+    <div id="mkdocs-search-results"></div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../static/js/index.js"></script>
+  <script>var base_url = '..';</script>
+  <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+</body>
+
+</html>

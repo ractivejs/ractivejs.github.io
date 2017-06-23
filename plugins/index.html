@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Next-generation DOM manipulation">
+  
+
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <link rel="author" href="RactiveJS contributors">
+  <link rel="canonical" href="https://ractive.js.org">
+
+  <title>Ractive.js</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="../theme.css">
+
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  
+</head>
+
+<body>
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+  <input class="search-state" type="checkbox" name="search-state" id="search-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#adaptors">Adaptors</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#components">Components</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_1">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_1">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_1">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_1">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#decorators">Decorators</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_2">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_2">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_2">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_2">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#easings">Easings</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_3">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_3">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_3">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_3">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#events">Events</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_4">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_4">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_4">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_4">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#interpolators">Interpolators</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_5">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_5">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_5">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_5">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#partials">Partials</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_6">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_6">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_6">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_6">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#transitions">Transitions</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_7">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_7">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_7">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_7">Examples</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+        </div>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          <h1 id="adaptors"><a class="toclink" href="#adaptors">Adaptors</a></h1>
+<p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. Adaptors allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
+<h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
+<pre><code class="js">const myAdaptor = {
+  filter: function ( object, keypath, ractive ) {
+    // return `true` if a particular object is of the type we want to adapt.
+  },
+  wrap: function ( ractive, object, keypath, prefixer ) {
+    // Setup
+    return {
+      teardown: function(){
+        // Code executed on teardown.
+      },
+      get: function(){
+        // Returns POJO version of your data backend.
+      },
+      set: function(property, value){
+        // Data setter for POJO property keypaths.
+      },
+      reset: function(value){
+        // Data setter for POJO keypath.
+      }
+    }
+  }
+};
+</code></pre>
+
+<p>Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an adaptor is as follows:</p>
+<ol>
+<li>Provides an POJO version of your data source to Ractive.</li>
+<li>Captures data changes on your data source and mirror them to the data in Ractive.</li>
+<li>Captures data changes on the data in Ractive and mirror them to the data source.</li>
+</ol>
+<p>Whether it's a third-party data modelling library, a RESTful service, a socket server, browser storage, or whatever, as long as all of the three can be done, it can be adapted.</p>
+<p><code>filter</code> is a function that gets called to check if <code>object</code> needs to use an adaptor.</p>
+<p><code>object</code> is the data source to adapt.</p>
+<p><code>keypath</code> is the keypath to <code>object</code>.</p>
+<p><code>ractive</code> is the ractive instance that is currently using the adaptor.</p>
+<p><code>wrap</code> is a function that gets called to set up the adaptor on <code>object</code>.</p>
+<p><code>prefixer</code> is a helper function that accepts an object and automatically prefixes <code>keypath</code> to the object's keys.</p>
+<p><code>get</code> is a function that gets called when Ractive needs the adapted representation of the <code>object</code>.</p>
+<p><code>set</code> is a function that is called when <code>ractive.set()</code> updates a keypath to a property of the adapted data. This function allows you to update the same property on <code>object</code>.</p>
+<p><code>property</code> is the keypath to the property being updated, relative to <code>keypath</code>.</p>
+<p><code>value</code> is the value being passed into <code>ractive.set()</code>.</p>
+<p><code>reset</code> is a function that is called when <code>ractive.set()</code> updates a keypath to the adapted data. This function allows you to either update <code>object</code> or tear down the adaptor.</p>
+<p><code>teardown</code> is a function called when the adaptor is being removed. This function allows you to do cleanup work on anything that was done during the adaptor setup.</p>
+<h3 id="adaptors-only-adapt-one-level"><a class="toclink" href="#adaptors-only-adapt-one-level">Adaptors only adapt one level</a></h3>
+<p>An adaptor only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.</p>
+<h3 id="no-built-in-infinite-loop-detection"><a class="toclink" href="#no-built-in-infinite-loop-detection">No built-in infinite loop detection</a></h3>
+<p>There is no built-in mechanism for avoiding infinite loops. If your adaptor calls <code>ractive.set()</code> on adapted data, which in turn will call the adaptor's <code>set()</code> method, which may directly or indirectly trigger another <code>ractive.set()</code> on the same adapted data, a stack overflow error might occur.</p>
+<p>This isn't a problem with primitive values since Ractive doesn't bother calling <code>set()</code> if a value hasn't changed. But with objects and arrays, there's no easy and performant way to tell if the contents have changed. So <code>set()</code> gets called <em>in case something changed</em> rather than <em>because something changed</em>.</p>
+<h3 id="different-for-every-back-end"><a class="toclink" href="#different-for-every-back-end">Different for every back-end</a></h3>
+<p>The adaptor structure only provides you with the means to talk to and listen from a custom back-end. It does not impose any rules on how to write an adaptor for a certain back-end. For instance, an adaptor for a constructor-based object may be written differently from an adaptor meant to interact with a socket server.</p>
+<h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
+<p>Like other plugins, there's 3 ways you can register adaptors:</p>
+<h3 id="globally-via-the-ractiveadaptors-static-property"><a class="toclink" href="#globally-via-the-ractiveadaptors-static-property">Globally, via the <code>Ractive.adaptors</code> static property.</a></h3>
+<pre><code class="js">Ractive.adaptors.myAdaptor = myAdaptor;
+</code></pre>
+
+<h3 id="per-component-via-the-components-adaptors-initialization-property"><a class="toclink" href="#per-component-via-the-components-adaptors-initialization-property">Per component, via the component's <code>adaptors</code> initialization property.</a></h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  adaptors: { myAdaptor }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-adaptors-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</a></h3>
+<pre><code class="js">const ractive = new Ractive({
+  adaptors: { myAdaptor }
+});
+</code></pre>
+
+<h2 id="using"><a class="toclink" href="#using">Using</a></h2>
+<p>In order to use an adaptor, you must tell the component or an instance to use it using the <code>adapt</code> initialization option.</p>
+<pre><code class="js">const ractive = new Ractive({
+  adapt: [ 'myAdaptor' ]
+})
+</code></pre>
+
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
+<p>In the following example, we have a <code>Box</code> constructor that uses accessors to get and set its <code>width</code> and <code>height</code> properties. Since an instance of <code>Box</code> will have no publicly visible properties, Ractive cannot bind to them directly.</p>
+<pre><code class="js">function Box(width, height){
+  var _width = width;
+  var _height = height;
+
+  this.getWidth = function(){ return _width; };
+  this.setWidth = function(width){ _width = width; };
+  this.getHeight = function(){ return _height; };
+  this.setHeight = function(height){ _height = height };
+}
+</code></pre>
+
+<p>In order for Ractive to properly use a <code>Box</code> instance, we build an adaptor for <code>Box</code>.</p>
+<pre><code class="js">Ractive.adaptors.boxAdaptor = {
+  filter: function ( object ) {
+    // Checks if the piece of data is an instance of Box.
+    return object instanceof Box;
+  },
+  wrap: function ( ractive, box, keypath, prefixer ) {
+
+    // We keep a reference to the original functions before monkey-patching.
+    const setWidth = box.setWidth;
+    const setHeight = box.setHeight;
+
+    // Use ractive.set on the the adapted data whenever the setters are used.
+    box.setWidth = function(width){
+      ractive.set(prefixer({
+        width: width
+      }));
+    };
+
+    box.setHeight = function(height){
+      ractive.set(prefixer({
+        height: height
+      }));
+    };
+
+    return {
+      // Return a POJO representation of an instance of Box.
+      get: function(){
+        return {
+          width: box.getWidth(),
+          height: box.getHeight();
+        };
+      },
+      // Update the adapted object's properties
+      set: function(property, value){
+        if(property === 'width') setWidth.call(box, value);
+        if(property === 'height') setHeight.call(box, value);
+      },
+      // Update the adapted object.
+      reset: function(data){
+        // We don't adapt non-objects. And if the new data is an instance of Box
+        // there's a high chance that its a new instance. In either case, we
+        // need to tear down this adapter and have Ractive set it up again if
+        // necessary.
+        if(typeof data !== 'object' || data instanceof Box) return false;
+
+        // Otherwise, we just parse through the data and update the existing box
+        // instance.
+        if(data.width !== undefined) setWidth.call(box, data.width);
+        if(data.height !== undefined) setHeight.call(box, data.height);
+      },
+      // Delete the monkey-patched methods.
+      teardown: function(){
+        delete box.setWidth;
+        delete box.setHeight;
+      }
+    };
+  }
+};
+</code></pre>
+
+<p>Then we use <code>boxAdaptor</code> on an instance. The data can now be treated like regular Ractive data. Updates done directly on <code>box</code> will reflect on Ractive. Any changes via Ractive will reflect on <code>box</code>.</p>
+<pre><code class="js">const ractive = new Ractive({
+  el: 'body',
+  // Tell the instance we'll be using boxAdaptor
+  adapt: [ 'boxAdaptor' ],
+  // We write Ractive like normal.
+  template: `
+    &lt;div&gt;Box is {{ box.width }}x{{ box.height }}&lt;/div&gt;,
+    &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.width }}&quot;&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.height }}&quot;&gt;&lt;/div&gt;
+  `
+});
+
+const box = new Box(3, 4);
+
+// Set the Box instance as if it were a POJO.
+ractive.set('box', box);
+
+// Both box instance and box object will have 7 width and 11 height and will
+// be rendered in the UI accordingly.
+box.setWidth(7);
+ractive.set('box.height', 11);
+</code></pre>
+
+<h1 id="components"><a class="toclink" href="#components">Components</a></h1>
+<p>In many situations, you want to encapsulate behaviour and markup into a single reusable <em>component</em>, which can be dropped into Ractive applications. Components are simply custom-configured "subclasses" of Ractive (analogous, but technically incorrect).</p>
+<h2 id="writing_1"><a class="toclink" href="#writing_1">Writing</a></h2>
+<p>There are several ways to write Ractive components. Standard initialization options apply for configuration unless where changes are explicitly mentioned.</p>
+<p>The most common way to define a component is by using <code>Ractive.extend()</code>.</p>
+<pre><code class="js">// A subclass of Ractive
+const MyComponent = Ractive.extend({
+  template: `
+    &lt;div class=&quot;my-component&quot;&gt;
+      &lt;span class=&quot;my-component__message&quot;&gt;{{ message }}&lt;/span&gt;
+    &lt;/div&gt;
+  `,
+  css: `
+    .my-component__message { color: red }
+  `,
+  data: { message: 'Hello World' }
+});
+</code></pre>
+
+<p>Another way to define a component is by using component files and loaders.</p>
+<pre><code class="html">&lt;div class=&quot;my-component&quot;&gt;
+  &lt;span class=&quot;my-component__message&quot;&gt;{{ message }}&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+  .my-component__message { color: red }
+&lt;/style&gt;
+
+&lt;script&gt;
+component.exports = {
+  data: { message: 'Hello World' }
+};
+&lt;/script&gt;
+</code></pre>
+
+<h2 id="registering_1"><a class="toclink" href="#registering_1">Registering</a></h2>
+<p>Like other plugins, there's 3 ways you can register components:</p>
+<h3 id="globally-via-the-ractivecomponents-static-property"><a class="toclink" href="#globally-via-the-ractivecomponents-static-property">Globally, via the <code>Ractive.components</code> static property:</a></h3>
+<pre><code class="js">// Available to all instances of Ractive.
+Ractive.components.MyComponent = Ractive.extend({ ... });
+</code></pre>
+
+<h3 id="per-component-via-the-components-components-initialization-property"><a class="toclink" href="#per-component-via-the-components-components-initialization-property">Per component, via the component's <code>components</code> initialization property.</a></h3>
+<pre><code class="js">// Only available for instances of AnotherComponent.
+const AnotherComponent = Ractive.extend({
+  components: { MyComponent }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-components-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's <code>components</code> initialization property.</a></h3>
+<pre><code class="js">// Only available to this specific instance.
+const ractive = new Ractive({
+  components: { MyComponent }
+});
+</code></pre>
+
+<h2 id="using_1"><a class="toclink" href="#using_1">Using</a></h2>
+<p>Components are simply subclasses of Ractive, which means the are instatiable via the <code>new</code> keyword.</p>
+<pre><code class="js">const ractive = new MyComponent({ ... });
+</code></pre>
+
+<p>But where components really shine is when they're used on templates. They are written like <em>custom elements</em>. Each custom element notation represents one instance of the component.</p>
+<pre><code class="js">const AnotherComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;
+      &lt;MyComponent /&gt; &lt;!-- One instance of MyComponent --&gt;
+      &lt;MyComponent /&gt; &lt;!-- Another instance of MyComponent --&gt;
+      &lt;MyComponent /&gt; &lt;!-- Yet another instance of MyComponent --&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<p>The component's tag name depends on the name used upon registration. The same component can be registered more than once using different names.</p>
+<pre><code class="js">const MyComponent = Ractive.extend({...});
+Ractive.components.MyComponent = MyComponent;
+Ractive.components.MyComponentOtherName = MyComponent;
+
+const AnotherComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;
+      &lt;MyComponent /&gt;          &lt;!-- Using MyComponent --&gt;
+      &lt;MyComponentOtherName /&gt; &lt;!-- Using MyComponent's other name --&gt;
+    &lt;/div&gt;
+  `
+});
+</code></pre>
+
+<h2 id="examples_1"><a class="toclink" href="#examples_1">Examples</a></h2>
+<pre><code></code></pre>
+
+<h1 id="decorators"><a class="toclink" href="#decorators">Decorators</a></h1>
+<p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
+<h2 id="writing_2"><a class="toclink" href="#writing_2">Writing</a></h2>
+<pre><code class="js">const myDecorator = function(node[, ...args]) {
+  // Setup code
+  return {
+    teardown: function(){
+      // Cleanup code
+    },
+    update: function([...args]){
+      // Update code
+    }
+  };
+};
+</code></pre>
+
+<p>Decorators are simply functions that are called upon to setup the decorator once Ractive detects its use. It takes a <code>node</code> argument and returns an object with a <code>teardown</code> and <code>update</code> property.</p>
+<p><code>node</code> is the element to which the decorator is applied to.</p>
+<p><code>args</code> are optional arguments provided by the decorator directive.</p>
+<p><code>teardown</code> is a function that gets called when the decorator is torn down.</p>
+<p><code>update</code> is an optional function that gets called when the arguments update.</p>
+<p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
+<h2 id="registering_2"><a class="toclink" href="#registering_2">Registering</a></h2>
+<p>Like other plugins, there's 3 ways you can register decorators:</p>
+<h3 id="globally-via-the-ractivedecorators-static-property"><a class="toclink" href="#globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</a></h3>
+<pre><code class="js">Ractive.decorators.myDecorator = myDecorator;
+</code></pre>
+
+<h3 id="per-component-via-the-components-decorators-initialization-property"><a class="toclink" href="#per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</a></h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  decorators: { myDecorator }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-decorators-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</a></h3>
+<pre><code class="js">const ractive = new Ractive({
+  decorators: { myDecorator }
+});
+</code></pre>
+
+<h2 id="using_2"><a class="toclink" href="#using_2">Using</a></h2>
+<p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
+<pre><code class="html">&lt;!-- without arguments --&gt;
+&lt;div as-myDecorator&gt;...&lt;/div&gt;
+
+&lt;!-- with arguments --&gt;
+&lt;div as-myDecorator=&quot;arg1, .some.other.arg2, 10 * @index&quot; as-somethingElseToo&gt;...&lt;/div&gt;
+</code></pre>
+
+<h2 id="examples_2"><a class="toclink" href="#examples_2">Examples</a></h2>
+<p>The following example builds a decorator that updates the time.</p>
+<pre><code class="js">Ractive.decorators.timer = function(node, time) {
+  node.innerHTML = 'Hello World!';
+
+  return {
+    teardown: function() {
+      node.innerHTML = '';
+    },
+    update: function(time) {
+      node.innerHTML = time;
+    }
+  }
+};
+
+const ractive = new Ractive({
+  el: 'body',
+  template: `
+    &lt;span as-timer=&quot;time&quot;&gt;&lt;/span&gt;
+  `,
+  data: {
+    time: 0
+  }
+});
+
+setInterval(function() {
+  ractive.set('time', Date.now())
+}, 1000);
+</code></pre>
+
+<h1 id="easings"><a class="toclink" href="#easings">Easings</a></h1>
+<p>Easing functions are used by <code>ractive.animate</code> and some transitions. They describe the animation's progression from start to finish.</p>
+<h2 id="writing_3"><a class="toclink" href="#writing_3">Writing</a></h2>
+<pre><code class="js">const myEasing = function ( x ) {
+  // Calculation
+  return y;
+};
+</code></pre>
+
+<p>Easing functions are simply functions that accept one argument, a numeric value <code>x</code> between 0 and 1 representing progress along a timeline. The function must return a numeric <code>y</code> value to represent its progression.</p>
+<h2 id="registering_3"><a class="toclink" href="#registering_3">Registering</a></h2>
+<p>Like other plugins, there's 3 ways you can register an easing function:</p>
+<h3 id="globally-via-the-ractiveeasing-static-property"><a class="toclink" href="#globally-via-the-ractiveeasing-static-property">Globally via the <code>Ractive.easing</code> static property.</a></h3>
+<pre><code class="js">Ractive.easing.myEasing = myEasing;
+</code></pre>
+
+<h3 id="per-component-via-the-components-easing-initialization-property"><a class="toclink" href="#per-component-via-the-components-easing-initialization-property">Per component via the component's <code>easing</code> initialization property.</a></h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  easing: { myEasing }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-easing-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-easing-initialization-property">Per instance, via the instance's <code>easing</code> initialization property.</a></h3>
+<pre><code class="js">const ractive = new Ractive({
+  easing: { myEasing }
+});
+</code></pre>
+
+<h2 id="using_3"><a class="toclink" href="#using_3">Using</a></h2>
+<p>Easing functions don't work alone. They are utilized by ractive.animate() and Transitions to dictate animations.</p>
+<pre><code class="js">ractive.animate('foo.bar', 1, {
+  easing: 'myEasing'
+});
+</code></pre>
+
+<h2 id="examples_3"><a class="toclink" href="#examples_3">Examples</a></h2>
+<p>Here's an <code>elastic</code> easing function taken from <a href="https://github.com/danro">danro</a>'s excellent <a href="https://github.com/danro/easing-js/blob/master/easing.js">easing.js</a> library.</p>
+<pre><code class="js">Ractive.easing.elastic = function ( x ) {
+  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1;
+};
+</code></pre>
+
+<h1 id="events"><a class="toclink" href="#events">Events</a></h1>
+<p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
+<h2 id="writing_4"><a class="toclink" href="#writing_4">Writing</a></h2>
+<pre><code class="js">const myEvent = function(node, fire){
+  // Setup code
+  return {
+    teardown: function(){
+      // Cleanup code
+    }
+  };
+}
+</code></pre>
+
+<p>Events are simply functions that are called to set up the event on a DOM element. The event function accepts two arguments: <code>node</code> and <code>fire</code>, and returns an object containing a <code>teardown</code> property.</p>
+<p><code>node</code> is the element to which the event is being applied.</p>
+<p><code>fire</code> is the function that must be called when the event has taken place. <code>fire</code> takes a single argument, the event object received by handlers. The minimum requirement for the event object is a <code>node</code> property that references DOM node the event is attached to, and an <code>original</code> property which references the native DOM <code>event</code> object supplied by the native handler, if available.</p>
+<p>The event object will be augmented with <code>context</code>, <code>keypath</code> and <code>index</code> properties, whose values depend on the data context the node is in. <code>context</code> references the data context that surrounds the node, <code>keypath</code> is a string that leads to the current data context and <code>index</code> is a number that references the index number of the data, should the data context be in an array.</p>
+<p><code>teardown</code> is a function that gets called once the element is torn down. This allows the event to clean up after itself.</p>
+<h2 id="registering_4"><a class="toclink" href="#registering_4">Registering</a></h2>
+<p>Like other plugins, there's 3 ways you can register events:</p>
+<h3 id="globally-via-the-ractiveevents-static-property"><a class="toclink" href="#globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</a></h3>
+<pre><code class="js">Ractive.events.myEvent = myEvent;
+</code></pre>
+
+<h3 id="per-component-via-the-components-events-initialization-property"><a class="toclink" href="#per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</a></h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  events: { myEvent }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-events-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</a></h3>
+<pre><code class="js">const ractive = new Ractive({
+  events: { myEvent }
+});
+</code></pre>
+
+<h2 id="using_4"><a class="toclink" href="#using_4">Using</a></h2>
+<p>Events use the same <code>on-*</code> attribute syntax as component and DOM events. When Ractive encounters an <code>on-*</code> attribute on a DOM element, it looks for a registered event and applies it on the element. If no matching event name was found, Ractive will think the event name is a native DOM event and will attach one accordingly.</p>
+<pre><code class="html">// This will apply the &quot;myEvent&quot; custom event if one is registered.
+// Otherwise, Ractive will think it's a DOM event. You have been warned!
+&lt;span on-myEvent=&quot;foo()&quot;&gt;Click me!&lt;/span&gt;
+</code></pre>
+
+<h2 id="examples_4"><a class="toclink" href="#examples_4">Examples</a></h2>
+<p>Here's an example of a "long press" event which fires when the mouse is clicked and held for 1 second.</p>
+<pre><code class="js">// Definition
+Ractive.events.longpress = function(node, fire){
+  let timer = null;
+
+  function clearTimer(){
+    if(timer) clearTimeout(timer);
+    timer = null;
+  }
+
+  function mouseDownHandler(event){
+    clearTimer();
+
+    timer = setTimeout(function(){
+      fire({
+        node: node,
+        original: event
+      });
+    }, 1000);
+  }
+
+  function mouseUpHandler(){
+    clearTimer();
+  }
+
+  node.addEventListener('mousedown', mouseDownHandler);
+  node.addEventListener('mouseup', mouseUpHandler);
+
+  return {
+    teardown: function(){
+      node.removeEventListener('mousedown', mouseDownHandler);
+      node.removeEventListener('mouseup', mouseUpHandler);
+    }
+  };
+};
+
+// Usage:
+new Ractive({
+  el: 'body',
+  template: `
+    &lt;button type=&quot;button&quot; on-longpress=&quot;@this.greetz()&quot;&gt;Click Me!&lt;/button&gt;
+  `,
+  greetz: function(){
+    console.log('Hello World!');
+  }
+});
+</code></pre>
+
+<h1 id="interpolators"><a class="toclink" href="#interpolators">Interpolators</a></h1>
+<p>TODO</p>
+<h2 id="writing_5"><a class="toclink" href="#writing_5">Writing</a></h2>
+<p>TODO</p>
+<h2 id="registering_5"><a class="toclink" href="#registering_5">Registering</a></h2>
+<p>TODO</p>
+<h2 id="using_5"><a class="toclink" href="#using_5">Using</a></h2>
+<p>TODO</p>
+<h2 id="examples_5"><a class="toclink" href="#examples_5">Examples</a></h2>
+<p>TODO</p>
+<h1 id="partials"><a class="toclink" href="#partials">Partials</a></h1>
+<p>A partial is a template snippet which can be reused in templates or in other partials. They help to keep templates uncluttered, non-repetetive and easy to read.</p>
+<h2 id="writing_6"><a class="toclink" href="#writing_6">Writing</a></h2>
+<pre><code class="js">const myPartial = '&lt;!-- template --&gt;';
+</code></pre>
+
+<p>Partials are simply Ractive templates.</p>
+<h2 id="registering_6"><a class="toclink" href="#registering_6">Registering</a></h2>
+<p>Unlike other plugins, partials have more than 3 registration options.</p>
+<h3 id="globally-via-the-ractivepartials-static-property"><a class="toclink" href="#globally-via-the-ractivepartials-static-property">Globally via the <code>Ractive.partials</code> static property.</a></h3>
+<pre><code class="js">Ractive.partials.myPartial = MyPartial;
+</code></pre>
+
+<h3 id="globally-via-a-non-executing-script-tag-on-the-current-page"><a class="toclink" href="#globally-via-a-non-executing-script-tag-on-the-current-page">Globally, via a non-executing script tag on the current page.</a></h3>
+<pre><code class="html">&lt;script type=&quot;ractive/template&quot; id=&quot;myPartial&quot;&gt;
+  ...
+&lt;/script&gt;
+</code></pre>
+
+<h3 id="per-component-via-the-components-partials-initialization-property"><a class="toclink" href="#per-component-via-the-components-partials-initialization-property">Per component, via the component's <code>partials</code> initialization property.</a></h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  partials: { myPartial }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-partials-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's <code>partials</code> initialization property.</a></h3>
+<pre><code class="js">const ractive = new Ractive({
+  partials: { myPartial }
+});
+</code></pre>
+
+<h3 id="in-template-using-the-partial-mustache"><a class="toclink" href="#in-template-using-the-partial-mustache">In-template, using the <code>{{#partial}}</code> mustache.</a></h3>
+<pre><code>{{#partial myPartial}}
+  ...
+{{/}}
+</code></pre>
+
+<h2 id="using_6"><a class="toclink" href="#using_6">Using</a></h2>
+<p>Partials can be used using <code>{{&gt;partialName}}</code>. Partials work where any template would work and takes on its surrounding context.</p>
+<pre><code class="html">{{#partial myPartial}}
+  &lt;div class=&quot;message&quot;&gt;{{message}}&lt;/div&gt;
+{{/partial}}
+
+&lt;div class=&quot;app&quot;&gt;
+  {{&gt;myPartial}}
+&lt;/div&gt;
+</code></pre>
+
+<h3 id="valid-names"><a class="toclink" href="#valid-names">Valid names</a></h3>
+<p>Partials may be named with the same rules as any other identifier in Ractive or JavaScript, but since there isn't much danger of trying to do math in a partial name, they enjoy relaxed naming requirements that allow otherwise reserved globals and keywords to be used for partial names.</p>
+<p>Partial names may also contain <code>-</code> and <code>/</code> characters as long as they are surrounded by other valid characters e.g. <code>templates/some-partial-template</code>.</p>
+<h3 id="context"><a class="toclink" href="#context">Context</a></h3>
+<p>Partials be given an explicit context. Simply supply a reference to the context following the partial name on usage.</p>
+<pre><code class="js">Ractive({
+  data: {
+    foo:{
+      bar: 'Hello, World!'
+    }
+  },
+  template: `
+    {{#partial myPartial}}{{bar}}{{/partial}}
+
+    {{&gt;myPartial foo}}
+  `
+})
+</code></pre>
+
+<h3 id="aliases"><a class="toclink" href="#aliases">Aliases</a></h3>
+<p>References can also be aliased in partials. Simply define aliases as comma-separated <code>reference as alias</code> pairs following the partial name on usage.</p>
+<pre><code class="js">Ractive({
+  data: {
+    status: 'Me, Hungry!',
+    foo:{
+      bar: 'Hello, World!'
+    }
+  },
+  template: `
+    {{#partial myPartial}}{{msg}} {{state}}{{/partial}}
+
+    {{&gt;myPartial foo.bar as msg, status as state}}
+  `
+})
+</code></pre>
+
+<h3 id="recursive-partials"><a class="toclink" href="#recursive-partials">Recursive partials</a></h3>
+<p>Partials can be used recursively. A common use case for this is when reusing partials on a tree-like structure, like a directory listing.</p>
+<pre><code class="html">&lt;div class='fileSystem'&gt;
+  {{#root}}
+    {{&gt;folder}}
+  {{/root}}
+&lt;/div&gt;
+
+{{#partial folder}}
+&lt;ul class='folder'&gt;
+  {{#files}}
+    {{&gt;file}}
+  {{/files}}
+&lt;/ul&gt;
+{{/partial}}
+
+{{#partial file}}
+&lt;li class='file'&gt;
+  &lt;img class='icon-{{type}}'&gt;
+  &lt;span&gt;{{filename}}&lt;/span&gt;
+
+  &lt;!-- if this is actually a folder, embed the folder partial --&gt;
+  {{# type === 'folder' }}
+    {{&gt;folder}}
+  {{/ type === 'folder' }}
+&lt;/li&gt;
+{{/partial}}
+</code></pre>
+
+<pre><code class="js">rv = new Ractive({
+  el: 'container',
+  template: '#myTemplate',
+  data: {
+    root: {
+      files: [
+        { type: 'jpg', filename: 'hello.jpg' },
+        { type: 'mp3', filename: 'NeverGonna.mp3' },
+        { type: 'folder', filename: 'subfolder', files: [
+          { type: 'txt', filename: 'README.txt' },
+          { type: 'folder', filename: 'rabbithole', files: [
+            { type: 'txt', filename: 'Inception.txt' }
+          ]}
+        ]}
+      ]
+    }
+  }
+});
+</code></pre>
+
+<p>In the example above, subfolders use the <code>{{&gt;folder}}</code> partial, which uses the <code>{{&gt;file}}</code> partial for each file, and if any of those files are folders, the <code>{{&gt;folder}}</code> partial will be invoked again, and so on until there are no more files.</p>
+<p>Beware of cyclical data structures! Ractive makes no attempt to detect cyclicality, and will happily continue rendering partials until the <a href="http://en.wikipedia.org/wiki/Big_Crunch">Big Crunch</a> (or your browser exceeds its maximum call stack size. Whichever is sooner).</p>
+<h3 id="injecting-partials"><a class="toclink" href="#injecting-partials">Injecting partials</a></h3>
+<p>One good use of partials is to vary the shape of a template according to some condition, the same way you might use <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a> elsewhere in your code.</p>
+<p>For example, you might offer a different view to mobile users:</p>
+<pre><code class="html">&lt;div class='main'&gt;
+  &lt;div class='content'&gt;
+    {{&gt;content}}
+  &lt;/div&gt;
+
+  &lt;div class='sidebar'&gt;
+    {{&gt;sidebar}}
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="js">isMobile = /mobile/i.test( navigator.userAgent ); // please don't do this in real life!
+
+ractive = new Ractive({
+  el: myContainer,
+  template: myTemplate,
+  partials: {
+    content: isMobile ? mobileContentPartial : desktopContentPartial,
+    sidebar: isMobile ? mobileSidebarPartial : desktopSidebarPartial
+  }
+});
+</code></pre>
+
+<p>Or you might make it possible to extend a subclass without overriding its template:</p>
+<pre><code class="html">&lt;div class='modal-background'&gt;
+  &lt;div class='modal'&gt;
+    {{&gt;modalContent}}
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="js">// Create a Modal subclass
+Modal = Ractive.extend({
+  template: modalTemplate,
+  init: function () {
+    var self = this, resizeHandler;
+
+    resizeHandler = function () {
+      self.center();
+    };
+
+    // when the window resizes, keep the modal horizontally and vertically centred
+    window.addEventListener( 'resize', resizeHandler );
+
+    // clean up after ourselves later
+    this.on( 'teardown', function () {
+      window.removeEventListener( 'resize', resizeHandler );
+    });
+
+    // manually call this.center() the first time
+    this.center();
+  },
+  center: function () {
+    // centering logic goes here
+  }
+});
+
+helloModal = new Modal({
+  el: document.body,
+  partials: {
+    modalContent: '&lt;p&gt;Hello!&lt;/p&gt;&lt;a class=&quot;modal-button&quot; proxy-tap=&quot;close&quot;&gt;Close&lt;/a&gt;'
+  }
+});
+
+helloModal.on( 'close', function () {
+  this.teardown();
+});
+</code></pre>
+
+<h3 id="partial-expressions"><a class="toclink" href="#partial-expressions">Partial expressions</a></h3>
+<p>Expressions can also be used to reference a partial instead of fixed partial names. Ractive will evaluate the expression and use its return value to select a partial. This is useful when you want the data to indicate what type of partial it should render with.</p>
+<p>In the following example, <code>organisms</code> contains a list of organisms whose <code>type</code> can either be <code>person</code> or <code>animal</code>. Partials for each type is defined and the list uses the <code>type</code> of each item to determine which partial to use.</p>
+<pre><code class="html">{{#partial person}}Hi! I am {{.name}} and I have {{.fingerCount}} fingers!{{/}}
+
+{{#partial animal}}Hi! I am a {{.name}} and I have {{.legCount}} legs!{{/}}
+
+&lt;ul&gt;
+  {{# organisms }}
+    &lt;li&gt;{{&gt; type }}&lt;/li&gt;
+  {{/}}
+&lt;/ul&gt;
+</code></pre>
+
+<p>In the case where there's a collision between the expression and a partial of the same name, Ractive will not evaluate the expression and instead, will immediately resolve to that partial.</p>
+<p>In the following example, a partial named <code>type</code> is defined. Instead of evaluating <code>type</code>'s value, it will resolve to the partial named <code>type</code>.</p>
+<pre><code class="html">{{#partial person}}Hi! I am {{.name}} and I have {{.fingerCount}} fingers!{{/}}
+
+{{#partial animal}}Hi! I am a {{.name}} and I have {{.legCount}} legs!{{/}}
+
+{{#partial type}}Hi! I am {{.name}}{{/}}
+
+&lt;ul&gt;
+  {{# organisms }}
+    &lt;li&gt;{{&gt; type }}&lt;/li&gt;
+  {{/}}
+&lt;/ul&gt;
+</code></pre>
+
+<p>Partials can also be registered on-the-fly as well as have functions determine the partial to use.</p>
+<p>In the following example, <code>makePartial</code> registers a partial on the fly using <code>template</code> and <code>id</code>, and returns the partial name for use in the template.</p>
+<pre><code class="js">new Ractive({
+  el: 'main',
+  template: `
+    &lt;span&gt;Add a partial:&lt;/span&gt;
+    &lt;textarea value=&quot;{{tpl}}&quot; /&gt;&lt;/div&gt;
+    &lt;button on-click=&quot;@this.add()&quot;&gt;Add&lt;/button&gt;&lt;br/&gt;
+
+    {{#list}}
+      {{&gt; @this.makePartial(.id, .template) }}
+    {{/}}
+  `,
+  data: {
+    list: [],
+    tpl: '',
+
+  },
+  add: function() {
+    this.push('list', {
+      id: Math.random(),
+      template: this.get('tpl')
+    });
+    this.set('tpl', '');
+  },
+  makePartial: function(id, template) {
+    const name = 'partial-' + id;
+    this.partials[name] = this.partials[name] || template;
+    return name;
+  }
+});
+</code></pre>
+
+<h3 id="updating-partials"><a class="toclink" href="#updating-partials">Updating Partials</a></h3>
+<p>Partials may be reset after they are rendered using <code>ractive.resetPartial()</code>. A reset partial will update everywhere it is referenced, so if it is used multiple times or inherited by a component, those instances will be updated as well. If a component has a partial with the same name as a parent partial, partial resets will not affect it since it is a different partial.</p>
+<p>It should be noted that partials evaluate lazily, so it is possible to cause a single partial to update by wrapping it in a conditional section and causing the section to be hidden and re-shown.</p>
+<pre><code class="html">{{^toggle}}{{&gt;rickroll}}{{/}}
+</code></pre>
+
+<pre><code class="js">ractive.partials.rickroll = 'I wouldn\'t do that to you, chum.';
+ractive.set('toggle', true);
+ractive.set('toggle', false);
+</code></pre>
+
+<h2 id="examples_6"><a class="toclink" href="#examples_6">Examples</a></h2>
+<p>Here's an example of a gallery using a partial for its thumbnail information:</p>
+<pre><code class="html">&lt;!-- The partial called &quot;thumbnail&quot; --&gt;
+&lt;figure class='thumbnail'&gt;
+  &lt;img src='assets/thumbnails/{{id}}.jpg'&gt;
+  &lt;figcaption&gt;{{description}}&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- The template that uses the partial --&gt;
+&lt;div class='gallery'&gt;
+  {{#items}}
+    {{&gt;thumbnail}}
+  {{/items}}
+&lt;/div&gt;
+</code></pre>
+
+<h1 id="transitions"><a class="toclink" href="#transitions">Transitions</a></h1>
+<p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
+<h2 id="writing_7"><a class="toclink" href="#writing_7">Writing</a></h2>
+<pre><code class="js">const myTransition = function ( t, params ) {
+  // Manipulate the DOM.
+  // Call t.complete() when completed.
+};
+</code></pre>
+
+<p>Transitions are simply functions that get called to animate a specified element.</p>
+<p><code>t</code> is a transition helper object that aids in the implementation of the transition.</p>
+<p><code>params</code> is the parameters passed in via the transition directive.</p>
+<p>Transitions are expected to be asynchronous. In order to signal Ractive that the transition has completed, the transition must call the <code>t.complete()</code>.</p>
+<p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
+<h2 id="registering_7"><a class="toclink" href="#registering_7">Registering</a></h2>
+<p>Like other plugins, there's 3 ways you can register transitions:</p>
+<h3 id="globally-via-the-ractivetransitions-static-property"><a class="toclink" href="#globally-via-the-ractivetransitions-static-property">Globally, via the <code>Ractive.transitions</code> static property.</a></h3>
+<pre><code class="js">Ractive.transitions.myTransition = myTransition;
+</code></pre>
+
+<h3 id="per-component-via-the-components-transitions-initialization-property"><a class="toclink" href="#per-component-via-the-components-transitions-initialization-property">Per component, via the component's <code>transitions</code> initialization property.</a></h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  transitions: { myTransition }
+});
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-transitions-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</a></h3>
+<pre><code class="js">const ractive = new Ractive({
+  transitions: { myTransition }
+});
+</code></pre>
+
+<h2 id="using_7"><a class="toclink" href="#using_7">Using</a></h2>
+<p>Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix <code>-in</code>, outro-only (upon removal) using the suffix <code>-out</code>, or both using the suffix <code>-in-out</code>.</p>
+<pre><code class="html">&lt;div myTransition-in&gt;Intro-only&lt;/div&gt;
+&lt;div myTransition-out&gt;Outro-only&lt;/div&gt;
+&lt;div myTransition-in-out&gt;Intro and outro&lt;/div&gt;
+</code></pre>
+
+<p>To pass arguments to the transition, simply provide an expression as the directive's value. This will be passed as the second argument of the transition function.</p>
+<pre><code class="html">&lt;div myTransition-in=&quot;{ /*params */ }&quot;&gt;Intro-only&lt;/div&gt;
+&lt;div myTransition-out=&quot;{ /*params */ }&quot;&gt;Outro-only&lt;/div&gt;
+&lt;div myTransition-in-out=&quot;{ /*params */ }&quot;&gt;Intro and outro&lt;/div&gt;
+</code></pre>
+
+<h2 id="examples_7"><a class="toclink" href="#examples_7">Examples</a></h2>
+<p>The following example demonstrates a "flash" transition which colors the element green upon attachment, and red prior to removal.</p>
+<pre><code class="js">Ractive.transitions.flash = function(t, params) {
+  // Process params and declaring defaults.
+  const options = t.processParams(params, {
+    color: t.isIntro ? '#0f0' : '#f00',
+    duration: 400
+  });
+
+  // The &quot;transition&quot;
+  t.setStyle('color', options.color);
+
+  // Signal Ractive that the transition is complete.
+  setTimeout(t.complete, options.duration);
+};
+
+new Ractive({
+  el: 'body',
+  template: `
+    &lt;button on-click='@this.insert()'&gt;Insert item&lt;/button&gt;
+    &lt;button on-click='@this.remove()'&gt;Remove item&lt;/button&gt;
+    &lt;ul&gt;
+      {{#items}}
+      &lt;li flash-in-out&gt;{{this}}&lt;/li&gt;
+      {{/items}}
+    &lt;/ul&gt;
+  `,
+  data: {
+    items: []
+  },
+  insert() {
+    this.push('items', Date.now());
+  },
+  remove() {
+    this.splice('items', 0, 1);
+  }
+});
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/plugins.md" target="_blank">Edit this page</a>
+  
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    <label class="search-toggle" for="search-state">Search</label>
+    
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+    <iframe class="playground-frame" src="/playground/?env=docs"></iframe>
+  </div>
+
+  <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="..">Ractive.js</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="">Get Started</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../api/">API</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="./">Plugins</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../integrations/">Integrations</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../concepts/">Concepts</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../support/">Support</a>
+      </li>
+      
+      </li>
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link pure-menu-heading" href="https://github.com/ractivejs/ractive">GitHub</a>
+    </li>
+  </ul>
+</div>
+  
+  <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#adaptors">Adaptors</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#components">Components</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_1">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_1">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_1">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_1">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#decorators">Decorators</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_2">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_2">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_2">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_2">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#easings">Easings</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_3">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_3">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_3">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_3">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#events">Events</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_4">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_4">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_4">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_4">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#interpolators">Interpolators</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_5">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_5">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_5">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_5">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#partials">Partials</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_6">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_6">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_6">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_6">Examples</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#transitions">Transitions</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#writing_7">Writing</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#registering_7">Registering</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#using_7">Using</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#examples_7">Examples</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-container">
+    <ul class="pure-menu-list">
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="..">Ractive.js</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Get Started</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../api/">API</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-selected">
+            <a class="pure-menu-link" href="./">Plugins</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../integrations/">Integrations</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../concepts/">Concepts</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../support/">Support</a>
+          </li>
+        
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">GitHub</a>
+      </li>
+      <li class="pure-menu-item">
+        <label class="pure-menu-link search-toggle" for="search-state">Search</label>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <div class="search-modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <label class="close-search" for="search-state" aria-role="close">&times;</label>
+    <input type="text" class="search-field" placeholder="Search..." id="mkdocs-search-query">
+    <div id="mkdocs-search-results"></div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../static/js/index.js"></script>
+  <script>var base_url = '..';</script>
+  <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+</body>
+
+</html>

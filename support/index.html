@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Next-generation DOM manipulation">
+  
+
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <link rel="author" href="RactiveJS contributors">
+  <link rel="canonical" href="https://ractive.js.org">
+
+  <title>Ractive.js</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="../theme.css">
+
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  
+</head>
+
+<body>
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+  <input class="search-state" type="checkbox" name="search-state" id="search-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#support">Support</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#getting-in-touch">Getting in touch</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#legacy-versions">Legacy versions</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#legacy-browsers">Legacy browsers</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#svgs">SVGs</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#migrating-from-previous-versions">Migrating from previous versions</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#08-to-09">0.8 to 0.9</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#07-to-08">0.7 to 0.8</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+        </div>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          <h1 id="support"><a class="toclink" href="#support">Support</a></h1>
+<h2 id="getting-in-touch"><a class="toclink" href="#getting-in-touch">Getting in touch</a></h2>
+<p>There are a lot of places to find help if you get stuck with Ractive:</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/tagged/ractivejs">StackOverflow</a></li>
+<li><a href="http://groups.google.com/forum/#!forum/ractive-js">Google Groups</a></li>
+<li><a href="https://github.com/ractivejs/ractive/issues">GitHub</a></li>
+<li><a href="http://twitter.com/RactiveJS">Twitter</a></li>
+<li><a href="https://gitter.im/ractivejs/ractive">Gitter</a></li>
+</ul>
+<h2 id="legacy-versions"><a class="toclink" href="#legacy-versions">Legacy versions</a></h2>
+<p>Legacy versions are found at <a href="https://ractive.js.org/v0.x">https://ractive.js.org/v0.x</a>.</p>
+<h2 id="legacy-browsers"><a class="toclink" href="#legacy-browsers">Legacy browsers</a></h2>
+<p>The core Ractive library requires at least the following APIs need to be present:</p>
+<ul>
+<li><code>Array.isArray</code></li>
+<li><code>Array.prototype.every</code></li>
+<li><code>Array.prototype.filter</code></li>
+<li><code>Array.prototype.forEach</code></li>
+<li><code>Array.prototype.indexOf</code></li>
+<li><code>Array.prototype.map</code></li>
+<li><code>Array.prototype.reduce</code></li>
+<li><code>Date.now</code></li>
+<li><code>Function.prototype.bind</code></li>
+<li><code>Node.prototype.contains</code></li>
+<li><code>Object.create</code></li>
+<li><code>Object.defineProperty</code></li>
+<li><code>Object.freeze</code></li>
+<li><code>Object.keys</code></li>
+<li><code>Promise</code></li>
+<li><code>requestAnimationFrame</code></li>
+<li><code>String.prototype.trim</code></li>
+<li><code>window.addEventListener</code></li>
+<li><code>window.getComputedStyle</code></li>
+</ul>
+<p><a href="https://kangax.github.io/compat-table">Most <em>modern</em> browsers already support these APIs</a>. Should you want to serve your app on older browsers, <a href="https://cdn.jsdelivr.net/npm/ractive/">the Ractive package</a> comes with an optional file called <a href="https://cdn.jsdelivr.net/npm/ractive@0.9.0/polyfills.js"><code>polyfills.js</code></a> containing these specific polyfills. Simply load it up before Ractive. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library.</p>
+<p>In addition, Ractive no longer serves the "legacy build". It is recommended that you integrate <code>polyfills.js</code> in your build should you need to support older browsers. However, if you're pulling the legacy build from a CDN, <a href="https://www.jsdelivr.com">jsDelivr</a> can combine files on the fly. Simply instruct jsDelivr to <a href="https://cdn.jsdelivr.net/combine/npm/ractive/polyfills.min.js,npm/ractive/ractive.min.js">combine <code>polyfills.js</code> with <code>ractive.js</code></a> to get a file similar to the former legacy build.</p>
+<h2 id="svgs"><a class="toclink" href="#svgs">SVGs</a></h2>
+<p>Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) <em>do</em> care.</p>
+<blockquote>
+<p>This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information</p>
+</blockquote>
+<p>If your template includes SVG and these browsers throw an error along those lines, <a href="http://xkcd.com/601/">the only winning move is not to play</a>. You will need to provide an alternate fallback when SVG isn't supported. Ractive provides <code>Ractive.svg</code> to indicate if the browser handles SVGs properly.</p>
+<pre><code class="js">new Ractive({
+  el: 'container',
+  template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent
+});
+</code></pre>
+
+<h1 id="migrating-from-previous-versions"><a class="toclink" href="#migrating-from-previous-versions">Migrating from previous versions</a></h1>
+<p>These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the <a href="https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md">changelog</a>.</p>
+<h2 id="08-to-09"><a class="toclink" href="#08-to-09">0.8 to 0.9</a></h2>
+<h3 id="removed-deprecations"><a class="toclink" href="#removed-deprecations">Removed deprecations</a></h3>
+<p>0.9 removes any of the remaining deprecations from 0.8, including:</p>
+<ul>
+<li><code>decorator="name:{{arg1}},{{arg2}}</code> directives, to be replaced with <code>as-name="arg1, arg2"</code></li>
+<li><code>intro="name:{{ { arg1: arg1, arg2, arg2 } }}"</code> and the same forms of <code>outro</code> and <code>intro-outro</code> to be replaced with <code>name-in="{ arg1, arg2 }"</code> and the same forms of <code>name-out</code> and <code>name-in-out</code></li>
+<li>The <code>ractive.data</code> getter, to be replaced with <code>ractive.get()</code>, which returns a computed object tree containing virtual keys like mappings, links, and computations. The optional form <code>ractive.get({ virtual: false })</code> will return the raw root object without any virtual keys.</li>
+<li>Lifecycle methods <code>init</code> and <code>beforeInit</code>, to be replaced with lifecycle events or equivalent instance methods. <code>beforeInit</code> corresponds to the <code>construct</code> lifecycle event.</li>
+<li>Partial comments in the form of <code>&lt;!-- {{&gt;myPartial}} --&gt;...&lt;!-- {{/myPartial}} --&gt;</code>, to be replaced with partial blocks <code>{{#partial myPartial}}...{{/partial}}</code></li>
+</ul>
+<p>Part of removing directive deprecations allowed using the plain expression parser for attributes and directives, which means that directives that parse in an expression context are much more resilient to things like quote pileup with strings e.g. <code>as-target=""id as a string""</code>.</p>
+<p><strong>Note</strong>: this also means that directive values aren't processed as HTML before being parsed, so HTML entities are no longer automatically encoded within directive values.</p>
+<h3 id="template-format"><a class="toclink" href="#template-format">Template format</a></h3>
+<p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.9.</p>
+<h3 id="partial-context"><a class="toclink" href="#partial-context">Partial context</a></h3>
+<p>Any context provided to a partial <code>{{&gt;my-partial context}}</code> is no longer wrapped around the partial but is instead wrapped around the <em>content</em> of the partial. It's a subtle difference that only shows up when the partial name is an expression e.g. <code>{{&gt;.type ~/external.item}}</code>. Before this break, the <code>.type</code> would resolve to <code>~/external.item.type</code>, and now it will resolve to <code>.type</code> on the context in which the partial appears.</p>
+<h3 id="yielding"><a class="toclink" href="#yielding">Yielding</a></h3>
+<p>Yielding is no longer restricted to inline partials, and each partial may be yielded more than once. You will no longer get a warning if you try to yield an instance or dynamic partial or if you yield the same partial multiple times.</p>
+<h3 id="nointro-inheritance"><a class="toclink" href="#nointro-inheritance"><code>noIntro</code> inheritance</a></h3>
+<p>The <code>noIntro</code> setting of an instance that contains components will now apply to the components too, unless those components have their own <code>noIntro</code> setting.</p>
+<h3 id="polyfills"><a class="toclink" href="#polyfills">Polyfills</a></h3>
+<p>There is no longer a <code>legacy</code> build of Ractive.js available. Instead, a separate <code>polyfills</code> library is available that can be included before Ractive.js is loaded, or you can supply your own polyfills, shims, or shams.</p>
+<h3 id="node-registry"><a class="toclink" href="#node-registry">Node registry</a></h3>
+<p>Elements with an <code>id</code> attribute are no longer collected into a <code>nodes</code> map on the Ractive.js instance. If you require similar functionality, it can be achieved in a much more flexible way with a decorator.</p>
+<h3 id="unresolved-references"><a class="toclink" href="#unresolved-references">Unresolved references</a></h3>
+<p>References that don't resolve are no longer kept in an unresolved state, waiting on an appropriate keypath to pop into existence somewhere in the context hierarchy. Instead, references that don't resolve are immediately resolved in the current context, which tends to be the desired behavior in most circumstances.</p>
+<h3 id="live-queries"><a class="toclink" href="#live-queries">Live queries</a></h3>
+<p>Element and component queries no longer support automatically keeping the resulting array up to date as new matching elements or components are rendered. If you require similar functionality, it can be achieved with a decorator for elements or bubbled lifecycle events for components.</p>
+<h3 id="change-event"><a class="toclink" href="#change-event"><code>change</code> event</a></h3>
+<p>The <code>change</code> event has been removed and replaced by recursive observers, which are strictly opt-in and can be scoped to a deeper keypath than the root.</p>
+<h3 id="event-reference"><a class="toclink" href="#event-reference"><code>event</code> reference</a></h3>
+<p>The <code>event</code> special reference available to event directives has been deprecated and replaced with three special references:</p>
+<ul>
+<li><code>@context</code>, which is roughly equivalent to <code>event</code>, but with both an <code>event</code> and <code>original</code> key that point to the original event object. This is a context object.</li>
+<li><code>@event</code>, which is resolves to the original event that triggered the directive.</li>
+<li><code>@node</code>, which resolves to the element to which the event directive is attached.</li>
+</ul>
+<h3 id="ractivemerge"><a class="toclink" href="#ractivemerge"><code>ractive.merge</code></a></h3>
+<p><code>ractive.merge</code> has been removed and replaced by an option on <code>ractive.set</code>, <code>{ shuffle: true }</code>, which more accurately reflects what actually happens. <code>merge</code> did not merge data, but instead re-arranged any DOM associated with the elements in the given array to match the order of the array - hence <code>shuffle</code> rather than <code>merge</code>.</p>
+<h3 id="isolation"><a class="toclink" href="#isolation">Isolation</a></h3>
+<p>Components are now <code>isolated</code> by default. If you need non-<code>isolated</code> components in order to create implicit mappings as data is accessed, you can pass <code>isolated: false</code> to <code>extend</code> when creating the component. If you prefer all components to be non-<code>isolated</code> by default, you can set <code>Ractive.defaults.isolated = false</code>.</p>
+<p>Further, non-<code>isolated</code> components will now create implicit mappings when necessary for <code>set</code> operations, including <code>add</code>, <code>subtract</code>, etc, in addition to <code>get</code> operations. To avoid creating an implicit mapping with a <code>set</code> operation from a non-<code>isolated</code> component, pass <code>{ isolated: true }</code> as an option to the <code>set</code> method.</p>
+<h3 id="magic-and-array-adaptors"><a class="toclink" href="#magic-and-array-adaptors">Magic and array adaptors</a></h3>
+<p>The magic and array adaptors are no longer part of Ractive.js core. They may be reappear as independent plugins at some point in the future.</p>
+<h3 id="class-directives"><a class="toclink" href="#class-directives"><code>class-</code> directives</a></h3>
+<p><code>class-</code> directives are now parsed in an expression context like decorator, transition, and event directives, rather than in a string context like attributes and <code>style-</code> directives. This means that mustaches are no longer required for <code>class-</code> directive values, so you should use <code>class-selected=".selected"</code> rather than <code>class-selected="{{.selected}}"</code>.</p>
+<h3 id="getnodeinfo"><a class="toclink" href="#getnodeinfo"><code>getNodeInfo</code></a></h3>
+<p><code>ractive.getNodeInfo</code> has been renamed to <code>ractive.getContext</code>, as has the static version of the function, to more accurately reflect its function. The <code>getNodeInfo</code> alias is deprecated and will be removed in a future version.</p>
+<h3 id="multiple-inheritance"><a class="toclink" href="#multiple-inheritance">Multiple inheritance</a></h3>
+<p>Components can no longer inherit from multiple other components at the same level, meaning that <code>Ractive.extend(FirstComponent, SecondComponent)</code> is no longer possible. You can still set up an inheritance hierachy multiple levels deep with <code>Ractive.extend(FirstComponent).extend(SecondComponent)</code>.</p>
+<h2 id="07-to-08"><a class="toclink" href="#07-to-08">0.7 to 0.8</a></h2>
+<h3 id="template-format_1"><a class="toclink" href="#template-format_1">Template format</a></h3>
+<p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.8.</p>
+<h3 id="ie8"><a class="toclink" href="#ie8">IE8</a></h3>
+<p>IE8 is no longer supported. If you still need to support IE8, well, we're very, very sorry...</p>
+<h3 id="expressions-and-binding"><a class="toclink" href="#expressions-and-binding">Expressions and binding</a></h3>
+<p>Two-way bindings are no longer supported in computed contexts that don't have a <code>set</code>ter, including template expression contexts. This means that <code>{{#each filter(list)}}&lt;input value="{{.name}}" /&gt;{{/each}}</code> is no longer possible. The reasoning behind this change is that the original <code>list.${index}.name</code> is not updated when the binding within the computed context in the <code>each</code> expression is changed. 0.9 adds an instance flag <code>syncComputedChildren</code> that can address this.</p>
+<h3 id="relaxed-partial-names"><a class="toclink" href="#relaxed-partial-names">Relaxed partial names</a></h3>
+<p>Partial names can now include <code>\</code> characters, which can be problematic if you happen to use division with no spaces arount the <code>/</code> in a partial expression.</p>
+<h3 id="integer-references"><a class="toclink" href="#integer-references">Integer references</a></h3>
+<p>Integers are no longer considered references, even in an array context, meaning that in <code>{{#with [1, 2, 3]}}{{0}}{{/with}}</code> will no longer result in <code>1</code> being rendered. Integers are now stricly considered to integer literals. If you need to reference a specific index in an array context, you can do so with a context specific reference like <code>{{this.0}}</code>.</p>
+<h3 id="array-modification"><a class="toclink" href="#array-modification">Array modification</a></h3>
+<p><code>modifyArrays</code> now defaults to <code>false</code>, so the array adaptor is not applied to arrays automatically as they are added to the instance data. The preferred method of performing array operations is using the <code>splice</code>, <code>push</code>, <code>pop</code>, etc methods on the Ractive.js instance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/support.md" target="_blank">Edit this page</a>
+  
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    <label class="search-toggle" for="search-state">Search</label>
+    
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+    <iframe class="playground-frame" src="/playground/?env=docs"></iframe>
+  </div>
+
+  <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="..">Ractive.js</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="">Get Started</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../api/">API</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../plugins/">Plugins</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../integrations/">Integrations</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../concepts/">Concepts</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="./">Support</a>
+      </li>
+      
+      </li>
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link pure-menu-heading" href="https://github.com/ractivejs/ractive">GitHub</a>
+    </li>
+  </ul>
+</div>
+  
+  <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#support">Support</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#getting-in-touch">Getting in touch</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#legacy-versions">Legacy versions</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#legacy-browsers">Legacy browsers</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#svgs">SVGs</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#migrating-from-previous-versions">Migrating from previous versions</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#08-to-09">0.8 to 0.9</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#07-to-08">0.7 to 0.8</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-container">
+    <ul class="pure-menu-list">
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="..">Ractive.js</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover ">
+              <span class="pure-menu-link">Get Started</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../api/">API</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../plugins/">Plugins</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../integrations/">Integrations</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../concepts/">Concepts</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-selected">
+            <a class="pure-menu-link" href="./">Support</a>
+          </li>
+        
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">GitHub</a>
+      </li>
+      <li class="pure-menu-item">
+        <label class="pure-menu-link search-toggle" for="search-state">Search</label>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <div class="search-modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <label class="close-search" for="search-state" aria-role="close">&times;</label>
+    <input type="text" class="search-field" placeholder="Search..." id="mkdocs-search-query">
+    <div id="mkdocs-search-results"></div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../static/js/index.js"></script>
+  <script>var base_url = '..';</script>
+  <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+</body>
+
+</html>

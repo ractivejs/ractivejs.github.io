@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Next-generation DOM manipulation">
+  
+
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <link rel="author" href="RactiveJS contributors">
+  <link rel="canonical" href="https://ractive.js.org">
+
+  <title>Ractive.js</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="../../theme.css">
+
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  
+</head>
+
+<body>
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+  <input class="search-state" type="checkbox" name="search-state" id="search-state">
+
+  <div class="main">
+    <div class="main__page">
+      
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          <div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#iterative-sections">Iterative Sections</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-1">Step 1</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-2">Step 2</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-3">Step 3</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-4">Step 4</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-5">Step 5</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+        </div>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          <h1 id="iterative-sections"><a class="toclink" href="#iterative-sections">Iterative Sections</a></h1>
+<p>Lists of data, of some form or another, are often at the heart of webapps. In this tutorial we're going to build a sortable table of superheroes, using data taken from <a href="http://www.superherodb.com">superherodb.com</a>.</p>
+<h2 id="step-1"><a class="toclink" href="#step-1">Step 1</a></h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++QDvXDA2AGUAVz0YMAQYAHtyfgZFBC5gvy8AxxCAJQQGFUTk1M50u0ygkIioyTiAd1i0kPKs0t9ylqD2zwD7RyQOUoHOvtwBtOGe8lHxoYzW3G6+0pc3Dy4xCWk2EBxheFImcnNLayxyIxT+AG47fk5OciQEADNifgRyOPCYcmFI2IxeIIYQCS4IfjkajkADaAgCwCKKUg5AA5AA5YgoMC4cQMOpuGCo84wfIqJLItEAdQYKA+MHOAGkfrhiYEArUGjAUaiACoINy1GBOKxxfhswLvF5xHk43CSSAPOrKgB0-yiQLiSGcKtEcUUnEx2Nx5gJsU4AEYAAwAWmtAHZOKjyNh4eRERSEDyAMLaUQqOKSYQS9mkgqenkRRQpGDCc6hPW4VnnDn1WI8gDy0mIonIrgYwmT7ICUplaLlCqVqvVgNiWp1eoNvv9geElttAFYrU6XVg3R7ijycnEUOEECHi2HyYO0QBZJjEBDnACC-CSE9TXJ5y+cwjiMGc7xQ5E5sWD51LsqTlc4yrqaoB0Tr2t1+s4w9HCHbNoAHABmC0e1dSF3SRL1qTiFRSFid5xxTAIpwjNEAAl6jcJNzgAKWKc9AlPbk0TyNB6XUYgxQ3S9y2vRVb2rR9NRfRtOCpSDoIkD5vwtAA2QDnQwAQAF1bkEfgTisaCoUSBA6nIHILHEhAAApgDdJxmAQXAeQAYjUlhiVUpRVHUcDUR0wy1AUfSQKQdQGBRREayfYFhBRcFIX4-gMAASmuXYQFEeAcUUQoVM8aV+FwG0XmSYgVG0FFhAYfhhBtYQYJeYSPIEJxXE+UL7GcfdnhgVLJAsI8UStTK7mCd1ygUEwbQKLF+BRNwXlwYSCosABrFB4nCfgkBtPUAwIrSACYpq63FIP3FEtIQJbqpEsY6s8QqYGKm1CqTfUUQtSQjD+SCqHILSkEulbst+NhyAAKnW+wysuiryCtFUOyUTLMCAA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++QDvXDA2AGUAVz0YMAQYAHtyfgZFBC5gvy8AxxCAJQQGFUTk1M50u0ygkIioyTiAd1i0kPKs0t9ylvJgYABifNEwcmFI2Jj4hGEMDE6s3HbPQMDHJA4GcjAYBAAzagBybuJ+Lbip3bZupJSprgYOUpWZpdwV7s2Cy4Rr+4zF2ZfgWoNGBfZ4-JZtMHdTj9MBTcppFxuDxcMQSaRsEA4YTwUhMcjmSzWLDkIwpfgAbjs-E4nHISG2hwQ5Di4RgQxG0VicQmAlJCH45Go5AA2gIAsAiilIORdgA5YgoMC4cQMOpuGC7YlvFQfaW7ADqDBQ-FixIA0qzcJrfoDYnqACoINy1GBOKxxfjWwKHY56pW4SSQGl1EMAOmGUTGcSQzlDojiik48sVyvMatinAAjAAGAC0OYA7JxduRsGKupKEHqAMLaUQqOKSYRexba3UyiKKFIwYTE0Lx3BW4kBW0wPUAeWkxFE5FcDGEQ9+lCOcT9g8DwbDEdGXJjcYTnFr9cbwizeYArNni6WsOWJe3djk4ihwggW7828U9QBZJjEBDEgAgvwSTviO9R2jKgHOMIcQwM4hwoOQo7NsSPqrjK-obpwIZ1OGHJRnu8aJk+L4IGeuYABwAMyZteZYChWD76nEKikLEjLvp+UoygAEvUbiDsSABSxSoYEo56nkaAmuY7qesO3ormuAZBjhW4EbusbEZwLFsRxJoUZmABsdEltM-AALqUoI-AElY7GCokCB1OQOQWA5CAABTAOWTjMAguB6j0-ksJqflKKo6hVjKIWRWoCjhYxSDqAw0oStunLjMI0p8gKFkYAAlOSmIgKI8BKoohS+Z4xz8LguZbMkxAqNo0rCAw-DCLmwgcVsNkWQITiuEyNX2M4cH0jAPWSBYiHStmA1UsEXTlAoJi5gUCr8NKbhbLgNnjRYADWKDxOE-BILm8YNmO5A9AATE9h3KqxcHSn0CAIEttnPKtngTTAU25hNg4JtKmaSEYQysVQ91IAjP1DWybDkAAVP99izQj83kNmobnkoA2YEAA">Fix Code</button>
+</div></p>
+<p>We've already got an array of objects representing four of the X-Men, over there on the right. We just need to update the template.</p>
+<p>Begin by wrapping the second <code>&lt;tr&gt;</code> in an <code>#each</code> section:</p>
+<pre><code class="handlebars">{{#each superheroes}}
+  &lt;tr&gt;
+    &lt;!-- row content --&gt;
+  &lt;/tr&gt;
+{{/each}}
+</code></pre>
+
+<blockquote>
+<p>As with <code>#with</code> and <code>#if</code> sections, you could just do <code>{{#superheroes}}...{{/superheroes}}</code> and it would work the same way, as long as superheroes is an array.</p>
+</blockquote>
+<p>Then, insert mustaches representing each of the three properties in the table – <code>name</code>, <code>realname</code> and <code>power</code>. For extra credit, wrap the name in a link pointing to the info URL.</p>
+<p>Execute the code.</p>
+<pre><code class="js">// You can use array notation to update the data:
+ractive.set( 'superheroes[1].power', 'Martial arts' );
+
+// Or, you can use dot notation. Whichever you prefer:
+ractive.set( 'superheroes.3.power', 'Enhanced senses' );
+</code></pre>
+
+<blockquote>
+<p>What if there weren't any items in the array? Displaying a table with no rows has been recognized by the International Web Decorum Foundation as impolite, so Ractive.js will allow you to provide alternate content using an <code>{{else}}</code> section in the <code>#each</code> block, which will be rendered if the array is empty.</p>
+<pre><code>{{#each superheroes}}
+  &lt;tr&gt;...&lt;/tr&gt;
+{{else}}
+  &lt;tr&gt;&lt;td colspan="4"&gt;Oh no! There are no superheroes!&lt;/td&gt;&lt;/tr&gt;
+{{/each}}
+</code></pre>
+<p>This also works with plain mustache sections.</p>
+</blockquote>
+<h2 id="step-2"><a class="toclink" href="#step-2">Step 2</a></h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++QDvXDA2AGUAVz0YMAQYAHtyfgZFBC5gvy8AxxCAJQQGFUTk1M50u0ygkIioyTiAd1i0kPKs0t9ylvJgYABifNEwcmFI2Jj4hGEMDE6s3HbPQMDHJA4GcjAYBAAzagBybuJ+Lbip3bZupJSprgYOUpWZpdwV7s2Cy4Rr+4zF2ZfgWoNGBfZ4-JZtMHdTj9MBTcppFxuDxcMQSaRsEA4YTwUhMcjmSzWLDkIwpfgAbjs-E4nHISG2hwQ5Di4RgQxG0VicQmAlJCH45Go5AA2gIAsAiilIORdgA5YgoMC4cQMOpuGC7YlvFQfaW7ADqDBQ-FixIA0qzcJrfoDYnqACoINy1GBOKxxfjWwKHY56pW4SSQGl1EMAOmGUTGcSQzlDojiik48sVyvMatinAAjAAGAC0OYA7JxduRsGKupKEHqAMLaUQqOKSYRexba3UyiKKFIwYTE0Lx3BW4kBW0wPUAeWkxFE5FcDGEQ9+lCOcT9g8DwbDEdGXJjcYTnFr9cbwizeYArNni6WsOWJe3djk4ihwggW7828U9QBZJjEBDEgAgvwSTviO9R2jKgHOMIcQwM4hwoOQo7NsSPqrjK-obpwIZ1OGHJRnu8aJk+L4IGeuYABwAMyZteZYChWD76nEKikLEjLvp+UoygAEvUbiDsSABSxSoYEo56nkaAmuY7qesO3ormuAZBjhW4EbusbEZwLFsRxJoUZmABsdEltM-AALqUoI-AElY7GCokCB1OQOQWA5CAABTAOWTjMAguB6j0-ksJqflKKo6hVjKIWRWoCjhYxSDqAw0oStunLjMI0p8gKFkYAAlOSmIgKI8BKoohS+Z4xz8LguZbMkxAqNo0rCAw-DCLmwgcVsNkWQITiuEyNX2M4cH0jAPWSBYiHStmA1UsEXTlAoJi5gUCr8NKbhbLgNnjRYADWKDxOE-BILm8YNmO5A9AATE9h3KqxcHSn0CAIEttnPKtngTTAU25hNg4JtKmaSEYQysVQ91IAjP1DWybDkAAVP99izQj83kNmobnkoA2YEAA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++XJ7RzA2AGIuXBC7LwDgtgBlAFc9GDAEGAB7cn4GRQQIqM8A2Mi2ACUEBhVs3PzOUuji71KklMkMgHd0gr8vCN9oxvJgYFDK0TByYWT0tMyEYUhsxMUMDCGSgaLioNwkNhH+FfIAanIARjWI-Y3ix32CBnIwGAQAM2oAchHifjeMtafA7AHJ5K6cBgceo3bZNe7A15VUEIcF7XpNEr7EbtLowVEw-x3epbQkjTjjMBraIRFxuDxcMQSaRsEA4YTwUhMcjmSzWLDkIx5fgAbjs-E4nHISHevwQ5AyiRgUxmqXSGQWAkFCH45Go5AA2gIAsAanklp8AHLEFBgXDiBgdNwwT78xEqZHmgDqDBQ-HS-IA0orcC6MTj0uaACoINztGBOKwZfih4q-f7m224SSQCUdPMAOmmKTmGSQznzogyik4VptdvMjvSnHOAAYALStgDsnE+5GwRuGpoQ5oAwtpRCoMpJhCmmm6PeRPklFHkYMJ+fFK7gQ-yAuGYOaAPLSYiiciuBjCHcYyh-DIZ7fZ3MFouzNVlitVzhjidT4TN9sAFYWx7PssAHE0F0+MoMhQRIEFnDF51qc0AFkmGIBB+QAQX4HJEL3ToI0XbDnGEDIYGcX4UHIfcZ35NN70XTMn04PMOkLFUSw-StqxguCEAAtsAA4AGZzlA-sdUHKDPQyFRSHSWVEOQs1FwACU6Nxt35AApWp6OKfdzQqNA-XMRNk13VM7wfLMczYl8uPfcteM4OSFKUv0hPOAA2CTe3WfgAF1RUEfgeSsRTdWyBAOnIMoLCihAAApgAHJxmAQXBzVCTKWBdDKlFUdRh0XPLirUBRCukpB1AYJYTVfVV5kWAUhT7AQMAASmFVkQFEeBbUUap0s8f5+FwNs3lyYgVG0JZhAYfhhDbYQlLeMKgoEJxXDlMb7GcCjpRgNbJAsailhbLaxUiYZogUEw2yqa1+CWNw3lwMLDosABrFBMkSfgkDbStJwPchQgAJhh767XkiiljGBAEBu8K9nuzwjpgE62yO7cqyWc5JCMKZ5KoSGkCptGdqVNhyAAKkx+xzqpy7yBbfNAKULbMCAA">Fix Code</button>
+</div></p>
+<p>Often when working with lists, we want to know the index of the list item we're currently rendering.</p>
+<p>Mustache doesn't have a good way of doing this, so Ractive.js introduces the <em>index reference</em>:</p>
+<pre><code class="handlebars">{{#each list: num}}
+  &lt;!-- inside here, {{num}} is the index --&gt;
+{{/each}}
+</code></pre>
+
+<blockquote>
+<p>If you don't want to name your index, you can also use the generic index special reference <code>@index</code>. <code>@index</code> will resolve to the index of the nearest iteration, so if you happen to have nested iterations, it will be the nearest parent iteration, not the root.</p>
+<p>If your section happens to be iterating an object rather than an array, you can use the <code>@key</code> special reference to get the object key of the current iteration.</p>
+</blockquote>
+<p>By declaring <code>num</code> to be an index reference, we can use it the same way we'd use any other variable. Let's add a number column to our table – first add the column to the header row:</p>
+<pre><code class="handlebars">&lt;tr&gt;
+  &lt;th&gt;#&lt;/th&gt;
+  &lt;th&gt;Superhero name&lt;/th&gt;
+  &lt;!-- etc --&gt;
+&lt;/tr&gt;
+</code></pre>
+
+<p>Then to the list row:</p>
+<pre><code class="handlebars">{{#each superheroes: num}}
+  &lt;tr&gt;
+    &lt;td&gt;{{num}}&lt;/td&gt;
+    &lt;td&gt;&lt;a href='{{info}}'&gt;{{name}}&lt;/a&gt;&lt;/td&gt;
+    &lt;td&gt;{{realname}}&lt;/td&gt;
+    &lt;td&gt;{{power}}&lt;/td&gt;
+  &lt;/tr&gt;
+{{/each}}
+</code></pre>
+
+<p>Execute the code.</p>
+<p>Not bad, but it would look better if the numbers started at 1 rather than 0. Use an expression to increment each row number by 1.</p>
+<h2 id="step-3"><a class="toclink" href="#step-3">Step 3</a></h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++XJ7RzA2AGIuXBC7LwDgtgBlAFc9GDAEGAB7cn4GRQQIqM8A2Mi2ACUEBhVs3PzOUuji71KklMkMgHd0gr8vCN9oxvJgYFDK0TByYWT0tMyEYUhsxMUMDCGSgaLioNwkNhH+FfIAanIARjWI-Y3ix32CBnIwGAQAM2oAchHifjeMtafA7AHJ5K6cBgceo3bZNe7A15VUEIcF7XpNEr7EbtLowVEw-x3epbQkjTjjMBraIRFxuDxcMQSaRsEA4YTwUhMcjmSzWLDkIx5fgAbjs-E4nHISHevwQ5AyiRgUxmqXSGQWAkFCH45Go5AA2gIAsAanklp8AHLEFBgXDiBgdNwwT78xEqZHmgDqDBQ-HS-IA0orcC6MTj0uaACoINztGBOKwZfih4q-f7m224SSQCUdPMAOmmKTmGSQznzogyik4VptdvMjvSnHOAAYALStgDsnE+5GwRuGpoQ5oAwtpRCoMpJhCmmm6PeRPklFHkYMJ+fFK7gQ-yAuGYOaAPLSYiiciuBjCHcYyh-DIZ7fZ3MFouzNVlitVzhjidT4TN9sAFYWx7PssAHE0F0+MoMhQRIEFnDF51qc0AFkmGIBB+QAQX4HJEL3ToI0XbDnGEDIYGcX4UHIfcZ35NN70XTMn04PMOkLFUSw-StqxguCEAAtsAA4AGZzlA-sdUHKDPQyFRSHSWVEOQs1FwACU6Nxt35AApWp6OKfdzQqNA-XMRNk13VM7wfLMczYl8uPfcteM4OSFKUv0hPOAA2CTe3WfgAF1RUEfgeSsRTdWyBAOnIMoLCihAAApgAHJxmAQXBzVCTKWBdDKlFUdRh0XPLirUBRCukpB1AYJYTVfVV5kWAUhT7AQMAASmFVkQFEeBbUUap0s8f5+FwNs3lyYgVG0JZhAYfhhDbYQlLeMKgoEJxXDlMb7GcCjpRgNbJAsailhbLaxUiYZogUEw2yqa1+CWNw3lwMLDosABrFBMkSfgkDbStJwPchQgAJhh767XkiiljGBAEBu8K9nuzwjpgE62yO7cqyWc5JCMKZ5KoSGkCptGdqVNhyAAKkx+xzqpy7yBbfNAKULbMCAA">Start</button>
+</div></p>
+<p>Let's say you wanted to add an item to your list. You could use <code>ractive.set()</code> the way you're used to, but you'd have to find the length of the existing array first:</p>
+<pre><code class="js">var index = ractive.get( 'superheroes' ).length;
+ractive.set( 'superheroes[' + index + ']', newSuperhero );
+</code></pre>
+
+<p>That's not ideal. We could use <code>ractive.update('superheroes')</code> instead, which will make sure that the table is up to date:</p>
+<pre><code class="js">xmen[ xmen.length ] = newSuperhero;
+ractive.update( 'superheroes' );
+</code></pre>
+
+<blockquote>
+<p>If you don't pass a keypath argument to <code>ractive.update()</code>, Ractive.js will update everything that has changed since the last set or update.</p>
+</blockquote>
+<p>But there's a more convenient way. Ractive.js provides mutator methods for arrays (push, pop, shift, unshift, splice, sort and reverse) that work with a keypath:</p>
+<pre><code class="js">ractive.push( 'superheroes', newSuperhero );
+</code></pre>
+
+<p>Try adding Storm to the list by pushing to the array in the Script pane:</p>
+<pre><code class="js">var newSuperhero = {
+  name: 'Storm',
+  realname: 'Monroe, Ororo',
+  power: 'Controlling the weather',
+  info: 'http://www.superherodb.com/Storm/10-135/'
+};
+
+// add the code here...
+</code></pre>
+
+<h2 id="step-4"><a class="toclink" href="#step-4">Step 4</a></h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++XJ7RzA2AGIuXBC7LwDg8lE1YWEDYQB7GCdXGxA2AGUAVz0YMAQYVPJ+BkUECKjPANjI+MTk+jSMlzd2ACUEBhUKqprOSL8Y7yaEhiSU9MyunIKiyVSAd1LasdiR32jogOBgUL7RMHJhQtKSsoRhSAr8xQwMfYafLYag3CQ2Q-5H8gAanIAEZnhEfq8GhMfgQGOQwDAEAAzagAckOxH4yNSzzRv2AlWq4M4DA4I0h9WhMIJSP6RIQJO+H2hjh+hxW6xgTMp-jeOw+h04JzAz2iEU67iEnDEEmkbBAOGE8FITHI5ks1iw5CM1X4AG47PxOJxyEgUViEORUvkYOdLsVSqlbgJdQh+ORqOQANoCA6Dar3NEAOWIKDAuHEDFWbhgaO1dJUDKDAHUGCh+KVtQBpW24ePUzmlIMAFQQbhWHSsqX4BYaWJxQYjuEkkBNqw7ADoLkVrqkkM5O6JUopOKHw5HzDHSpwQQAGAC084A7Jw0eRsH7yMAAwggwBhbQJVKSYR16GJ5PkNEFRTVGDCbW5Ye4fPagJFmBBgDy0mIonIVxpjfalKGxVIm1fVt2y7HsridAchxHThD2PU9Z0XABWOc1w3LAtx3K80W6VIUHyBBz2pS8hiDABZJhiAQbUAEF+EqSiPzWYtr2Y5x2mcLEUHIT8z21BsIOvZtoM4DtVm7B0+0Q4dRxIsiEAwhcAA4AGYQVwzcPW3XdU1SFRSFKS1KOowNrwACTWNxX21AApIZRIaT8g16NBM3Mata3fetwMgls2xk2CFIQwdlM4FNTPMiRMw0kEADY9PXF5+AAXUNQR+A1KxzM9CoEFWchugsQqEAACmALcnGYBBcCDUIGpYeN6qUVR1D3a9Wq6tQFA6wykHUBh7h3ODHRuO4dT1PCt3aZryGRfJ+E1GtqviUzHg9ABKbct3sfpSlwLabzmQTAO0ddgWHFRdvIPat0yjA9v1RUQFEeAI0UAY6s8HF+FwBdkSqYgVG0e5hAYfhhAXYQLORXLMoEeYrQB+xnHSc0YARyQLEE+45xRo0mkx19jBB-ow34e43GRXBcqxiwAGsUDKNakAXe70nuUIACYheZyNTL58hjgQBBSbyyJuzmSVDs8URbXae4VixBQYBltGwHljoskgZwUXSDHomHYH3WWtFAD7SNERd5r8Jcwl2RcUJgUCxBcJAnYnO0wpQdeBpAlaxnHSgXbHXxHe4QUkIxzlMqgJaQVOg9wO02HIAAqUOWwYVOifIOd-cDgQMEwIA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++XJ7RzA2AGIuXBC7LwDg8lE1YWEDYQB7GCdXGxByVP4AWgTiUQBrAwABADo0jIAKAHJ+BkUEeoBKdgBlAFc9GDAEGFTyJpaIqM8A2Mj4xOT6Gsy3TTzClWKy+irFhpgEBhVR1o6QNgAlfZUR5oRxvxjvGYSGJJT0pezcgqLSiur3hqSVIAd0G7S6vUGQNBMDu0VinFwvmi8PIwGAoX2ojA5GEkP6g1SCGEkBG3UUGAwqOmyMmUyCuCQbHR-HJ5AA1OQAIyUiJM6lTRxMggMchgPYAM2o9XRxH4EtSlPqzOAR15nAYHER-LpU0eTPRewOaowfPueumBuA0MG6sZ5sFiNp-jRwE4WLAlOiERcbg8XDEEmkbBAOGE8FITHI5ks1iw5CMLX4AG47PxOJxyEgEBK5Qhct0YLj8QMhsSBImEPxyNRyABtAQBYDXFqk+oAOWIKDAuHEDGBbhg9XjRsONzbAHUGCh+IN4wBpQu4YcWm0wNsAFQQbiBGXUxDyK6mcoVbZ7uEkkAzwJv1RLhKQzkqolSik4ne7vfMA8GnC5AAZ8gAgB2Th6nIbBGzRFsEDbABhbQElSSRhCPPVRyONsekUFoYGEeNOhfXBl3jAI1zbAB5aRinIVwXhIi1KHlVIz2Iy9r1vPE+lLVJH2fV9OAQpCUL-QCAFZ-zAiCsCg5tMPIeozlSFBulaUjGIw8cFIAWSYYgEHjABBfgmjQqZyIUwznBqZw5RQcg11Q+MTxYhTz3Yzgb2BO9uIfJ8XzfJSVIQUT8gADgAZi5KTIOraD5PqCdUhUUhBjzMzNNbBSAAkQTcYj4wAKRuJzzJBQY2wuNBZ3MKxD3UgIXNYi8r08zj7yGPiAs4JKUrS2dQq5AA2aLwKpfgAF1U0EfgYysVKaxGBBgXIM4LHmhBamAKCnGYBBcDbUJdpYYcdqUVR1FghSjvOtQFFOuKkHUBhSWbLjBh44lSUratYoCRZSQlbp+FjPJaniZLyWrNo0Sg+wDkGXBwfqTp3js2jtHAzkXxUKHyA6OLxowNpk1DEBRHgHtFCubbPAVfhcHyCVmmIFRtFJYQGH4YR8mENKJWm8aBA+WHPGcdJsxgXnJAsOzSX-QW0xmWn7AUEx8gOLt+FJNwJVwab7GcCwShQIZgaQQpkvSUlQgAJntg3eyt9dyExBAEEVmbIn+PcslF+xRELGpSSBOUFBgT3hbAH2PkgZwc3SfMVadhmqwOhTAD7SepHZx63XbEgvHcUJgUDlfIJE-eXKjEpRI4Z6PFl9BAY+QOOE72f2nZUPO3Y9gQhYZpBO-FmBJfycXiNfUkuUkIxcWSqhXaQZe66Rcg2HIAAqTuZeXuXyH-ava-7zAgA">Fix Code</button>
+</div></p>
+<p>It's time to make our table sortable. We've added a 'sortable' class to the three headers to indicate they can be clicked on.</p>
+<p>First, let's add an event listener to each column header, calling the instance <code>sort</code> method with the column header as an argument:</p>
+<pre><code class="handlebars">&lt;th class='sortable' on-click='@.sort(&quot;name&quot;)'&gt;Superhero name&lt;/th&gt;
+&lt;th class='sortable' on-click='@.sort(&quot;realname&quot;)'&gt;Real name&lt;/th&gt;
+&lt;th class='sortable' on-click='@.sort(&quot;power&quot;)'&gt;Superpower&lt;/th&gt;
+</code></pre>
+
+<p>That way, when the user clicks one of the column headers, the view will fire call the <code>sort</code> method.</p>
+<pre><code class="js">ractive.sort = function ( column ) {
+  alert( 'Sorting by ' + column );
+});
+</code></pre>
+
+<blockquote>
+<p>You can add methods and properties directly to a Ractive.js instance by simply including them in the init options. Any keys that don't match know init options are added to the instance upon creation.</p>
+</blockquote>
+<p>Execute the code. When you click on the three sortable headers, the browser should alert the name of the column we're sorting by. Now we just need to add the sorting logic.</p>
+<h2 id="step-5"><a class="toclink" href="#step-5">Step 5</a></h2>
+<p><div class="tutorial">
+  <button data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++XJ7RzA2AGIuXBC7LwDg8lE1YWEDYQB7GCdXGxByVP4AWgTiUQBrAwABADo0jIAKAHJ+BkUEeoBKdgBlAFc9GDAEGFTyJpaIqM8A2Mj4xOT6Gsy3TTzClWKy+irFhpgEBhVR1o6QNgAlfZUR5oRxvxjvGYSGJJT0pezcgqLSiur3hqSVIAd0G7S6vUGQNBMDu0VinFwvmi8PIwGAoX2ojA5GEkP6g1SCGEkBG3UUGAwqOmyMmUyCuCQbHR-HJ5AA1OQAIyUiJM6lTRxMggMchgPYAM2o9XRxH4EtSlPqzOAR15nAYHER-LpU0eTPRewOaowfPueumBuA0MG6sZ5sFiNp-jRwE4WLAlOiERcbg8XDEEmkbBAOGE8FITHI5ks1iw5CMLX4AG47PxOJxyEgEBK5Qhct0YLj8QMhsSBImEPxyNRyABtAQBYDXFqk+oAOWIKDAuHEDGBbhg9XjRsONzbAHUGCh+IN4wBpQu4YcWm0wNsAFQQbiBGXUxDyK6mcoVbZ7uEkkAzwJv1RLhKQzkqolSik4ne7vfMA8GnC5AAZ8gAgB2Th6nIbBGzRFsEDbABhbQElSSRhCPPVRyONsekUFoYGEeNOhfXBl3jAI1zbAB5aRinIVwXhIi1KHlVIz2Iy9r1vPE+lLVJH2fV9OAQpCUL-QCAFZ-zAiCsCg5tMPIeozlSFBulaUjGIw8cFIAWSYYgEHjABBfgmjQqZyIUwznBqZw5RQcg11Q+MTxYhTz3Yzgb2BO9uIfJ8XzfJSVIQUT8gADgAZi5KTIOraD5PqCdUhUUhBjzMzNNbBSAAkQTcYj4wAKRuJzzJBQY2wuNBZ3MKxD3UgIXNYi8r08zj7yGPiAs4JKUrS2dQq5AA2aLwKpfgAF1U0EfgYysVKaxGBBgXIM4LHmhBamAKCnGYBBcDbUJdpYYcdqUVR1FghSjvOtQFFOuKkHUBhSWbLjBh44lSUratYoCRZSQlbp+FjPJaniZLyWrNo0Sg+wDkGXBwfqTp3js2jtHAzkXxUKHyA6OLxowNpk1DEBRHgHtFCubbPAVfhcHyCVmmIFRtFJYQGH4YR8mENKJWm8aBA+WHPGcdJsxgXnJAsOzSX-QW0xmWn7AUEx8gOLt+FJNwJVwab7GcCwShQIZgaQQpkvSUlQgAJntg3eyt9dyExBAEEVmbIn+PcslF+xRELGpSSBOUFBgT3hbAH2PkgZwc3SfMVadhmqwOhTAD7SepHZx63XbEgvHcUJgUDlfIJE-eXKjEpRI4Z6PFl9BAY+QOOE72f2nZUPO3Y9gQhYZpBO-FmBJfycXiNfUkuUkIxcWSqhXaQZe66Rcg2HIAAqTuZeXuXyH-ava-7zAgA">Start</button>
+  <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++XJ7RzA2AGIuXBC7LwDg8lE1YWEDYQB7GCdXGxB4xOEAWjSM5BT03ABhVJUAV0V+cmpG8gByfgZFBGbNVP58hOJRAGsDAAEAOiLcAApW9s6ASnYAZWq9GDAEGFTyNo6IqM8A2MjchiTSjJc3TQSzgsmS+knKmrqGpuaYBAYVXc7u3r9IajCZlGZfH5-ZqLEBsABK3xUOzm+z8MW8J1u5yeZSu2VOSUKZUeIGeVVq9Ua1BaklSAHdNl0cj0+ioBsN6ONJjNaQyYNDlqtNrzNqjorFOLhfNFxeRgMBQt9RGByNzVUL1ptUghhOR5pAdrUMBhZcdpYcjkFcEg2PL+LVyABqcgARmNERtpqOjhtBAY5DAXwAZtRmvLiPwg6ljc1bcA-u7OAwOJLPRajhibfKIb85onrWiM8cs8ARTB82n-N7Jeaq-LOEqwMbohE8R4uGIJNI2CAcMJ4KQmORzJZrFhyEYOvwANx2ficTjkJAIIMRhDkVLVGDqtYbLY6gSThCU8gAbQEAWAyI6BuaADliCgwLhxAw6W5+eOc39bwB1BgoPwmzjgA0luuDNOOGZlreAAqCBuLSlxWD0kEZhGUa3s+uCSJAC50gREwanuqRIM4YyiKkiicA+T4vuY76bJwLoAAz5KxADsnDNOQ2AXnK14ILe5TaAkqSSMIaFFt+cy3isigdDAwjjkslG4BBUHkDBLQAPLSAM5CuGcGlFpQkapFh6m4fhhHCMRWpkRRVGcCJYkScxbEAKwsdxvFYPxV4-i0cKpCg1SdJp0mIkFzQALJMMQCDjgAgvwbRSdB9KbLeyXOEUzgRigWlZUpaEYRZLTYdZnAEXSRG7g55GUdRIVhQgHn5AAHAAzC6vl8fUAkxb+VSkJsa4ZcO0WyS0AAS9JuOp44AFJzJJmnac0CJoEB5gofwk1mZhlVWXhNW2fZWyOc1nAjSoY0SEBHUugAbH1PEmvwAC6s6CPwI5WGNDQ7AgdLkHCFiAwgUzAPxTjMAguC3qE8MsJBcNKKo6hCS0KOY2oCjo4NSDqAwBqw4N9h2Q1+7CAaR78P5lO4GSrz8LeUJMwEVNlAaQbVPwo49FM5BMOY2h6nK-H2PYC7kCg5jOFoGzxFuXz8DIkzxOSdTS6wuCDtulFs8DkTEMIYwsCLzSsxSPHzL93OsBasuLmJQHK+uYsMBLaSi7q-CpDIuDbIopHEEGEuROuAvLjAKjaIVS6k7K9iG6LMDbtS3vaBMbKiNDDup87Vb2F8uBbvUYughkIv84L+0iww45K-MUsu-r5eV6Lp7aybX3eIZvfGxS5ADwA-OQ7HkAaLq-aXuAYEXzOfQEA0BJMfMC0L-AiyPbxtxTTty6sJMKJ7qplH3FJ62bFvCIjMy23UaH7-wy9rwIS-Tr2ICiPAz5FBIgpvYKMGt8hBnaMQBOBphAMH4PccaQZfqfQEJkNw7d7DOHSHHQokgLCFQNCxFBc4TggPUsYXA+QfiPnZuQNwQZcDz1wM4CwgwFabn4EgPoVR0gGlCAAJiEcw42fDyCKgQAgEhf1Ig13QeuchogtxFANLSCMCgYDSLQWAOReJIDOBXOkBR0RKIa2PEjFogA+0maCI3hMB+GeUccwxQTAUARnyBIOiRCxieSUFojWOjJh4jkcgfRhiviYJfHY-hkipFf1IUgSJ2CYC4OwepKis9JBGEvmyRJoQkAFP8VKcgbByAACpIn4IKYQ8gLEfF+K-pgIAA">Fix Code</button>
+</div></p>
+<p>So we've wired up our event handler, and it's behaving as it should. The next step is to add some logic that actually sorts the table. For bonus points, we'll add a 'sorted' class to the header of the sorted column.</p>
+<p>There's a nice easy way to ensure that the table remains sorted, even when we add more data: an expression. That's right, you can use expressions with sections.</p>
+<p>Update the template:</p>
+<pre><code class="handlebars">{{#each sort( superheroes ) : num}}
+  &lt;tr&gt;
+   &lt;!-- row contents --&gt;
+  &lt;/tr&gt;
+{{/each}}
+</code></pre>
+
+<p>Now we need to add the <code>sort</code> function. Here's one (if you're not sure why this works, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/sort">here's an MDN page</a> that will help explain):</p>
+<pre><code class="js">function ( array ) {
+  // grab the current sort column
+  var column = this.get( 'sortColumn' ); 
+
+  // clone the array so as not to modify the underlying data
+  var arr = array.slice();
+
+  return arr.sort( function ( a, b ) {
+    return a[ sortColumn ] &lt; b[ sortColumn ] ? -1 : 1;
+  });
+}
+</code></pre>
+
+<p>Wiring it up is easy:</p>
+<pre><code class="js">ractive.sort = function ( column ) {
+  this.set( 'sortColumn', column );
+});
+</code></pre>
+
+<p>Try executing this code and clicking different headers to sort the table. (You could specify an initial sort column by adding e.g. <code>sortColumn: 'name'</code> to <code>data</code>.)</p>
+<p>The last job is to add a sorted class to the header of the currently sorted column. There are several ways we could do this – you could use a bit of jQuery inside the sort proxy event handler, for example. But for this demonstration we'll put the logic in the template, using the conditional operator:</p>
+<pre><code class="handlebars">&lt;th class='sortable' class-sorted=&quot;sortColumn === 'name'&quot; on-click='@.sort(&quot;name&quot;)'&gt;
+  Superhero name
+&lt;/th&gt;
+</code></pre>
+
+<blockquote>
+<p>The <code>class-</code> directive is similar to the <code>style-</code> directive - it gives you direct control over the presence of a single class. The <code>class-</code> directive exists in an expression context, so mustaches are not required. If the expression passed to the directive is truthy, Ractive.js will add the class to the element, and if it's false-y, it will remove it.</p>
+<p>You could also add an additional expression within the existing <code>class</code> attribute using a ternary e.g. <code>class="sortable {{ sortColumn === 'name' ? 'sorted' : '' }}</code>.</p>
+</blockquote>
+<p>Do this for each of the headers, then execute the code. Congratulations! You've built a sortable table in just a few steps. Now comes the fun part – add Storm back to the table. The table will maintain its sort order.</p>
+<pre><code class="js">ractive.push( 'superheroes', {
+  name: 'Storm',
+  realname: 'Monroe, Ororo',
+  power: 'Controlling the weather',
+  info: 'http://www.superherodb.com/Storm/10-135/'
+});
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    <div class="main__footer">
+      <div class="page-controls">
+  <a class="page-controls__link" rel="previous" href="../conditional-sections/">Previous</a>
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/tutorials/iterative-sections.md" target="_blank">Edit this page</a>
+  <a class="page-controls__link" rel="next" href="../two-way-binding/">Next</a>
+</div>
+
+<p class="credits">©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.</p>
+    </div>
+  </div>
+
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    <label class="search-toggle" for="search-state">Search</label>
+    
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+    <iframe class="playground-frame" src="/playground/?env=docs"></iframe>
+  </div>
+
+  <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../..">Ractive.js</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item pure-menu-selected">
+        <a class="pure-menu-link pure-menu-heading" href="">Get Started</a>
+      </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../hello-world/">Hello, world!</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../nested-properties/">Nested Properties</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../expressions/">Expressions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../events/">Events</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../conditional-sections/">Conditional Sections</a>
+        </li>
+      
+        <li class="pure-menu-item pure-menu-selected">
+          <a class="pure-menu-link" href="./">Iterative Sections</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../two-way-binding/">Two-way Binding</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../partials/">Partials</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../triples-embedded-html/">Triples (Embedded HTML)</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../components/">Components</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../animation/">Animations</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../svg/">SVG</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../transitions/">Transitions</a>
+        </li>
+      
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link" href="../decorators/">Decorators</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../api/">API</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../plugins/">Plugins</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../integrations/">Integrations</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../concepts/">Concepts</a>
+      </li>
+      
+      </li>
+    
+      <li class="pure-menu-item ">
+        <a class="pure-menu-link pure-menu-heading" href="../../support/">Support</a>
+      </li>
+      
+      </li>
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link pure-menu-heading" href="https://github.com/ractivejs/ractive">GitHub</a>
+    </li>
+  </ul>
+</div>
+  
+  <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#iterative-sections">Iterative Sections</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-1">Step 1</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-2">Step 2</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-3">Step 3</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-4">Step 4</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#step-5">Step 5</a>
+        </li>
+      
+      </li>
+    
+  </ul>
+</div>
+
+  <div class="nav-main pure-menu pure-menu-horizontal pure-menu-fixed">
+  <div class="nav-container">
+    <ul class="pure-menu-list">
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../..">Ractive.js</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover pure-menu-selected">
+              <span class="pure-menu-link">Get Started</span>
+              <ul class="pure-menu-children">
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../hello-world/">Hello, world!</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../nested-properties/">Nested Properties</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../expressions/">Expressions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../events/">Events</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../conditional-sections/">Conditional Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item pure-menu-selected">
+                    <a class="pure-menu-link" href="./">Iterative Sections</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../two-way-binding/">Two-way Binding</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../partials/">Partials</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../triples-embedded-html/">Triples (Embedded HTML)</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../components/">Components</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../animation/">Animations</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../svg/">SVG</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../transitions/">Transitions</a>
+                  </li>
+                
+                  <li class="pure-menu-item ">
+                    <a class="pure-menu-link" href="../decorators/">Decorators</a>
+                  </li>
+                
+              </ul>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../api/">API</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../plugins/">Plugins</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../integrations/">Integrations</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../concepts/">Concepts</a>
+          </li>
+        
+      
+        
+          <li class="pure-menu-item ">
+            <a class="pure-menu-link" href="../../support/">Support</a>
+          </li>
+        
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/ractivejs/ractive">GitHub</a>
+      </li>
+      <li class="pure-menu-item">
+        <label class="pure-menu-link search-toggle" for="search-state">Search</label>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <div class="search-modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <label class="close-search" for="search-state" aria-role="close">&times;</label>
+    <input type="text" class="search-field" placeholder="Search..." id="mkdocs-search-query">
+    <div id="mkdocs-search-results"></div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="../../static/js/index.js"></script>
+  <script>var base_url = '../..';</script>
+  <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+</body>
+
+</html>

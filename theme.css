@@ -141,6 +141,12 @@ code{
   overflow-y: auto;
 }
 
+.toc .pure-menu-link:not(.pure-menu-heading),
+.toc-side .pure-menu-link:not(.pure-menu-heading),
+.nav-side .pure-menu-link:not(.pure-menu-heading){
+  padding-left: 2em;
+}
+
 .search-modal{
   position: fixed;
   transform: translate(0, -100%);
