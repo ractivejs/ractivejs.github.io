@@ -165,3 +165,12 @@
     left: 33.5%;
   }
 }
+
+.pure-menu-heading {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.toclink {
+font-weight: normal;
+}
