@@ -289,6 +289,15 @@ code{
   margin-left: 0.5em;
 }
 
+.pure-menu-heading {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.toclink {
+  font-weight: normal;
+}
+
 @media screen and (max-width: 767px){
 
   div + pre > code.hljs {
