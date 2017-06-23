@@ -28,52 +28,22 @@ markdown_extensions:
 pages:
   - Ractive.js: index.md
   - Get Started:
-    - Hello, world!: get-started/tutorials/hello-world.md
-    - Nested Properties: get-started/tutorials/nested-properties.md
-    - Expressions: get-started/tutorials/expressions.md
-    - Events: get-started/tutorials/events.md
-    - Conditional Sections: get-started/tutorials/conditional-sections.md
-    - Iterative Sections: get-started/tutorials/iterative-sections.md
-    - Two-way Binding: get-started/tutorials/two-way-binding.md
-    - Partials: get-started/tutorials/partials.md
-    - Triples (Embedded HTML): get-started/tutorials/triples-embedded-html.md
-    - Components: get-started/tutorials/components.md
-    - Animations: get-started/tutorials/animation.md
-    - SVG: get-started/tutorials/svg.md
-    - Transitions: get-started/tutorials/transitions.md
-    - Decorators: get-started/tutorials/decorators.md
-    - Support: get-started/support.md
-    - Migrating: get-started/migrating.md
-  - API:
-    - Initialization Options: api/initialization-options.md
-    - Static Properties: api/static-properties.md
-    - Static Methods: api/static-methods.md
-    - Instance Properties: api/instance-properties.md
-    - Instance Methods: api/instance-methods.md
-    - Context Object: api/context-object.md
-    - Parse Object: api/parse-object.md
-    - Transition Object: api/transition-object.md
-    - Directives: api/directives.md
-    - References: api/references.md
-  - Extend:
-    - Adaptors: extend/adaptors.md
-    - Components: extend/components.md
-    - Decorators: extend/decorators.md
-    - Easings: extend/easings.md
-    - Events: extend/events.md
-    - Interpolators: extend/interpolators.md
-    - Partials: extend/partials.md
-    - Transitions: extend/transitions.md
-  - Integrations:
-    - Component Files: api/component-files.md
-    - Loaders: integrations/loaders.md
-    - Plugins: integrations/plugins.md
-    - Tools: integrations/tools.md
-    - Libraries: integrations/libraries.md
-  - Concepts:
-    - Architecture: concepts/architecture.md
-    - Data Management: concepts/data-management.md
-    - Event Management: concepts/event-management.md
-    - Templates: concepts/templates.md
-    - Rendering: concepts/rendering.md
-    - Security: concepts/security.md
+    - Hello, world!: tutorials/hello-world.md
+    - Nested Properties: tutorials/nested-properties.md
+    - Expressions: tutorials/expressions.md
+    - Events: tutorials/events.md
+    - Conditional Sections: tutorials/conditional-sections.md
+    - Iterative Sections: tutorials/iterative-sections.md
+    - Two-way Binding: tutorials/two-way-binding.md
+    - Partials: tutorials/partials.md
+    - Triples (Embedded HTML): tutorials/triples-embedded-html.md
+    - Components: tutorials/components.md
+    - Animations: tutorials/animation.md
+    - SVG: tutorials/svg.md
+    - Transitions: tutorials/transitions.md
+    - Decorators: tutorials/decorators.md
+  - API: api.md
+  - Plugins: plugins.md
+  - Integrations: integrations.md
+  - Concepts: concepts.md
+  - Support: support.md
