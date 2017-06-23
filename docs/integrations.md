@@ -1,101 +1,15 @@
-# Component files
+# Libraries
 
-Remember the good old days? When all CSS went in `<style>` elements in `<head>`? When all JS went in `<script>` elements just before `</body>`? When all HTML was written in Mustache inside inert `<script>` elements? When it felt good when everything just worked after a page refresh? Ractive remembers, and it's bringing those good times back with component files.
+We heard that you love your framework so much, we put Ractive in your framework!
 
-Ractive component files are simply self-contained HTML files that define a component and contains all the markup, data, styles and logic it needs. It's also designed with dependency management in mind, allowing it to declare library and component dependencies. Best of all, component files are written in the same way regardless of the development process involved, build step or none.
+## jQuery Mobile
 
-## Example component file
+[Sergio Castillo](http://twitter.com/scyrizales) has made a jQuery mobile plugin, which you can [see in action on this JSFiddle](http://jsfiddle.net/scyrizales/RHL9z/).
 
-```html
-<!-- Example component file -->
-
-<!-- Import a component named Foo from the file foo.html. -->
-<link rel='ractive' href='foo.html' name='foo'>
-
-<!-- Define the markup for this component. -->
-<h1>{{ title }}</h1>
-
-<!-- Use imported foo component -->
-<p>This is an imported 'foo' component: <foo/></p>
-
-<!-- Define the styles for this component. -->
-<style>
-  p { color: red; }
-</style>
-
-<!-- Define the behavior for this component. -->
-<script>
-const $ = require( 'jquery' );
-
-component.exports = {
-  onrender: function () {
-    $('<p />').text('component rendered').insertAfter($this.find('p'));
-  },
-  data: {
-    title: 'Hello World!'
-  }
-};
-</script>
-```
-
-The above component file roughly translates to the following in vanilla JS:
-
-```js
-import Ractive from 'ractive';
-import $ from 'jquery';
-import foo from './foo.html';
-
-export default Ractive.extend({
-  components: { foo },
-  onrender: function () {
-    $('<p />').text('component rendered').insertAfter($this.find('p'));
-  },
-  data: {
-    title: 'Hello World!'
-  },
-  template: `
-    <h1>{{ title }}</h1>
-    <p>This is an imported 'foo' component: <foo/></p>
-  `,
-  css: `
-    p { color: red; }
-  `
-});
-```
-
-## Writing
-
-### `<link rel="ractive">`
-
-Top-level `<link rel="ractive">` elements define dependencies on other components. It accepts two attributes:
-
-- `href` - The path to the required component file. Paths that start with `./` or `../` are resolved relative to the importing component file. Otherwise, resolution is loader-specific.
-
-- `name` (optional) - The registered name of the component. This corresponds to the key used in the `components` initialization option. When not defined, the filename of the dependency will be used as the name.
-
-The names and the loaded dependency will be assigned to the component's [`components`](api.md#components) initialization option.
-
-### `<style>`
-
-Top-level `<style>` elements define the styles for the component. If more than one `<style>` element is found on the component file, their contents are concatenated in the order of appearance of the `<style>` elements. Contents of these elements will be concatenated and assigned to the component's [`css`](api.md#css) initialization option.
-
-### `<script>`
-
-A top-level `<script>` defines the component's initialization. The script's scope has a `component` object that is similar to Node's `module` object. Initialization options for the component is expected via `component.exports`. It also has a special `require` function that fetches script dependencies. `require`'s behavior depends on the loader used. Refer to the specific loader's documentation to know more.
-
-There can only ever be one `<script>` in a component file. Defining more than one will result in the loader throwing an error.
-
-### Template
-
-After yanking out top-level `<link rel="ractive">`, `<style>` or `<script>` from the component file, anything that's left becomes a part of the template. The remaining markup will be assigned to the component's [`template`](api.md#template) initialization option.
-
-## Using
-
-In order to use component files, you will have to use _loaders_, Head over to the [loaders](#loaders.md) page to learn more about loaders and help you choose a loader that suits your needs.
 
 # Loaders
 
-By itself, neither Ractive nor your tools know what to do with a [component file](api.md). You will need a _loader_ to transform a component file into a representation that the target tool or environment can understand.
+By itself, neither Ractive nor your tools know what to do with a component file. You will need a _loader_ to transform a component file into a representation that the target tool or environment can understand.
 
 ## Available loaders
 
@@ -132,11 +46,7 @@ Ractive also has a couple of handy modules to aid you in loader development:
 
 # Plugins
 
-It may not be apparent but Ractive is actually built with extreme extensibility in mind. Plugins allow you to augment Ractive with extra functionality. Whether you're a JavaScript developer, an interface designer or just trying to get away from your framework overlords, Ractive can accomodate one and all.
-
-## Available plugins
-
-### [Adaptors](extend.md#adaptors)
+## Adaptors
 
 Interface with different backends.
 
@@ -149,7 +59,7 @@ Interface with different backends.
 - [Ractive](https://github.com/rstacruz/ractive-ractive) by [@rstacruz](https://github.com/rstacruz) - Synchronise several Ractive instances.
 - [ss-ractive](https://github.com/arxpoetica/ss-ractive) by Robert Hall [@arxpoetica](https://github.com/arxpoetica) - Ractive Template Engine wrapper for [SocketStream](https://github.com/socketstream/socketstream).
 
-### [Components](extend.md#components)
+## Components
 
 Encapsulate functionality behind the guise of a custom element.
 
@@ -161,7 +71,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [Stepper](https://github.com/JonDum/ractive-stepper) - A numeric stepper component.
 - [Split](https://dagnelies.github.io/ractive-split)
 
-### [Decorators](extend.md#decorators)
+## Decorators
 
 Augment the DOM with more functionality.
 
@@ -171,11 +81,11 @@ Augment the DOM with more functionality.
 - [Sortable](http://ractivejs.github.io/Ractive-decorators-sortable/)
 - [Tooltip](http://github.com/JonDum/ractive-tooltip)
 
-### [Easings](extend.md#easings)
+## Easings
 
 Custom animation progressions.
 
-### [Events](extend.md#events)
+## Events
 
 Augment the DOM with custom events beyond those supported by the browser.
 
@@ -191,11 +101,11 @@ Augment the DOM with custom events beyond those supported by the browser.
 - [Typing](https://github.com/svapreddy/ractive-events-typing) by [@svapreddy](https://github.com/svapreddy)
 - [Viewport](https://github.com/svapreddy/ractive-event-viewport) by [@svapreddy](https://github.com/svapreddy)
 
-### [Partials](extend.md#partials)
+## Partials
 
 Reusable pieces of markup.
 
-### [Transitions](extend.md#transitions)
+## Transitions
 
 Apply custom animation.
 
@@ -205,15 +115,11 @@ Apply custom animation.
 - [Slide](http://ractivejs.github.io/ractive-transitions-slide)
 - [Typewriter](http://ractivejs.github.io/ractive-transitions-typewriter)
 
-## And so much more!
-
-Due to the nature of how easy it is to write and distribute plugins as well as how diverse the distribution channels are, we cannot possibly know what other Ractive plugins exist in the wild.
-
-To discover more, try searching your favorite package manager, search engine, or code hosting service for the keyword "ractive". I guarantee you'll be surprised.
-
-<small>Note: Like any other open-source project, these plugins may not have been maintained for a while. Should bugs arise, we highly encourage reporting the issue to relevant parties so that it can be addressed.</small>
-
 # Tools
+
+## Ractive CLI
+
+TODO
 
 ## Browserify
 
@@ -221,15 +127,15 @@ To discover more, try searching your favorite package manager, search engine, or
 
 There are three Browserify transforms available that you can use for Ractive.js:
 
-- [Ractivate](https://www.npmjs.org/package/ractivate), a transform that will pre-parse templates. Contributed by [jrajav](https://github.com/jrajav). [(Github repository)](https://github.com/jrajav/ractivate)
-- [Ractify](https://npmjs.org/package/ractify), a transform that will pre-compile components. Contributed by [marcello3d](https://github.com/marcello3d). [(Github repository)](https://github.com/marcello3d/node-ractify)
-- [Ractiveify](https://npmjs.org/package/ractiveify), a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by [norcalli](https://github.com/norcalli). [(Github repository)](https://github.com/norcalli/ractiveify)
+- [Ractivate](https://www.npmjs.org/package/ractivate), a transform that will pre-parse templates. Contributed by [jrajav](https://github.com/jrajav). [(GitHub repository)](https://github.com/jrajav/ractivate)
+- [Ractify](https://npmjs.org/package/ractify), a transform that will pre-compile components. Contributed by [marcello3d](https://github.com/marcello3d). [(GitHub repository)](https://github.com/marcello3d/node-ractify)
+- [Ractiveify](https://npmjs.org/package/ractiveify), a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by [norcalli](https://github.com/norcalli). [(GitHub repository)](https://github.com/norcalli/ractiveify)
 
 A [starter project](https://github.com/alienscience/gulp-ractive-starter) is available for using Ractivate with [gulp.js](http://gulpjs.com/) build system.
 
 ### Using plugins with Ractive and Browserify
 
-[Plugins](#plugins.md) typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls `require('ractive')`. If you want to be explicit about *which* version of Ractive gets loaded, you can do it when you configure browserify like so:
+Plugins typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls `require('ractive')`. If you want to be explicit about *which* version of Ractive gets loaded, you can do it when you configure browserify like so:
 
 ```js
 browserify.require('./my-copy-of-ractive.js', { expose: 'ractive' });
@@ -359,11 +265,3 @@ TODO
 ## Babel
 
 TODO
-
-# Libraries
-
-We heard that you love your framework so much, we put Ractive in your framework!
-
-## jQuery Mobile
-
-[Sergio Castillo](http://twitter.com/scyrizales) has made a jQuery mobile plugin, which you can [see in action on this JSFiddle](http://jsfiddle.net/scyrizales/RHL9z/).

@@ -5,24 +5,25 @@ Ractive.components.Tabs = Ractive.extend({
   data: function() { return { selected: 0, tabs: [], actions: [] }; },
   on: {
     init: function(ctx) {
-      this.partials.content.forEach(n => {
+      var that = this;
+      this.partials.content.forEach(function(n) {
         if (n.e === 'Tab') {
           var tab = {};
-          var node = (n.m || []).find(a => a.n === 'title');
+          var node = (n.m || []).find(function(a) { return a.n === 'title' });
           if (node) tab.title = { t: Array.isArray(node.f) ? node.f : [node.f] };
-          node = (n.m || []).find(a => a.n === 'scroll');
+          node = (n.m || []).find(function(a) { return a.n === 'scroll'; });
           if (node) tab.scroll = true;
           tab.content = { t: n.f };
-          this.push('tabs', tab);
+          that.push('tabs', tab);
         } else if (n.e === "Action") {
           var tab = {};
-          var title = (n.m || []).find(a => a.n === 'title');
+          var title = (n.m || []).find(function(a) { return a.n === 'title'; });
           if (title) tab.title = { t: Array.isArray(title.f) ? title.f : [title.f] };
-          var action = (n.m || []).find(a => a.n && a.n[0] === 'click');
+          var action = (n.m || []).find(function(a) { return a.n && a.n[0] === 'click'; });
           if (action) {
             tab.action = { t: [action] };
           }
-          this.push('actions', tab);
+          that.push('actions', tab);
         }
       });
     },

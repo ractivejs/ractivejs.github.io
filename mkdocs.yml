@@ -1,85 +1,49 @@
 site_name: Ractive.js
-
-site_url: https://ractive.js.org
-repo_url: https://github.com/ractivejs/ractive
-
 site_description: Next-generation DOM manipulation
-
 site_author: RactiveJS contributors
+site_url: https://ractive.js.org
+
+repo_url: https://github.com/ractivejs/ractivejs.github.io
+edit_uri: edit/dev/docs/
+
 copyright: ©RactiveJS contributors. Ractive.js is a free and open source project released under the MIT license.
 
-theme: cinder
-theme_dir: custom_theme
+theme_dir: theme
+
+
 extra_css:
-  - css/index.css
+  - /static/css/index.css
 extra_javascript:
-  - js/index.js
+  - static/js/index.js
+
+extra:
+  lib_url: https://github.com/ractivejs/ractive
+  favicon: /static/img/favicon.ico
+  theme_color: "#729D34"
+
+markdown_extensions:
+    - toc:
+        anchorlink: true
 
 pages:
+  - Ractive.js: index.md
   - Get Started:
-    - Introduction: index.md
-    - 60-second Setup: get-started/60-second-setup.md
-    - Learn:
-      - Hello, world!: get-started/tutorials/hello-world.md
-      - Nested Properties: get-started/tutorials/nested-properties.md
-      - Expressions: get-started/tutorials/expressions.md
-      - Events: get-started/tutorials/events.md
-      - Conditional Sections: get-started/tutorials/conditional-sections.md
-      - Iterative Sections: get-started/tutorials/iterative-sections.md
-      - Two-way Binding: get-started/tutorials/two-way-binding.md
-      - Partials: get-started/tutorials/partials.md
-      - Triples (Embedded HTML): get-started/tutorials/triples-embedded-html.md
-      - Components: get-started/tutorials/components.md
-      - Animations: get-started/tutorials/animation.md
-      - SVG: get-started/tutorials/svg.md
-      - Transitions: get-started/tutorials/transitions.md
-      - Decorators: get-started/tutorials/decorators.md
-    - Examples:
-      - Analog Clock: get-started/examples/analog-clock.md
-      - Animated Chart: get-started/examples/animated-chart.md
-      - Comments: get-started/examples/comments.md
-      - Donut Chart: get-started/examples/donut-chart.md
-      - Illustration: get-started/examples/illustration.md
-      - Rating Sars: get-started/examples/rating-stars.md
-      - ToDo List: get-started/examples/todo-list.md
-    - Support: get-started/support.md
+    - Hello, world!: tutorials/hello-world.md
+    - Nested Properties: tutorials/nested-properties.md
+    - Expressions: tutorials/expressions.md
+    - Events: tutorials/events.md
+    - Conditional Sections: tutorials/conditional-sections.md
+    - Iterative Sections: tutorials/iterative-sections.md
+    - Two-way Binding: tutorials/two-way-binding.md
+    - Partials: tutorials/partials.md
+    - Triples (Embedded HTML): tutorials/triples-embedded-html.md
+    - Components: tutorials/components.md
+    - Animations: tutorials/animation.md
+    - SVG: tutorials/svg.md
+    - Transitions: tutorials/transitions.md
+    - Decorators: tutorials/decorators.md
   - API: api.md
-  - Extend: extend.md
+  - Plugins: plugins.md
   - Integrations: integrations.md
-  - Concepts:
-    - Architecture:
-      - Overview: concepts/architecture/overview.md
-      - Parser: concepts/architecture/parser.md
-      - Model: concepts/architecture/model.md
-      - View: concepts/architecture/view.md
-    - Data Binding:
-      - Computed Properties: concepts/data-binding/computed-properties.md
-      - Dependents: concepts/data-binding/dependents.md
-      - Observers: concepts/data-binding/observers.md
-      - Parallel DOM: concepts/data-binding/parallel-dom.md
-      - Two-Way Binding: concepts/data-binding/two-way-binding.md
-    - Events:
-      - Overview: concepts/events/overview.md
-      - Bubbling: concepts/events/bubbling.md
-      - Directives: concepts/events/directives.md
-      - Method Calls: concepts/events/method-calls.md
-      - Proxy Events: concepts/events/proxy-events.md
-      - Publish-Subscribe: concepts/events/publish-subscribe.md
-    - Rendering:
-      - Progressive Enhancement: concepts/rendering/progressive-enhancement.md
-      - Server-Side Rendering: concepts/rendering/server-side-rendering.md
-    - Security:
-      - CSP: concepts/security/csp.md
-    - Templates:
-      - Elements: concepts/templates/elements.md
-      - Expressions: concepts/templates/expressions.md
-      - Keypaths: concepts/templates/keypaths.md
-      - Mustaches: concepts/templates/mustaches.md
-      - Parsing: concepts/templates/parsing.md
-      - References: concepts/templates/references.md
-  - Articles:
-    - Introducing Ractive.js: articles/introducing-ractive-js.md
-    - The Origins Of Ractive: articles/the-origins-of-ractive.md
-    - Ractive.js Expressions And The New Wave Of Reactive Programming: articles/ractive-js-expressions-and-the-new-wave-of-reactive-programming.md
-    - Ractive.js vs Angular: articles/ractive-vs-angular.md
-    - Ractive.js vs React: articles/ractive-vs-react.md
+  - Concepts: concepts.md
+  - Support: support.md

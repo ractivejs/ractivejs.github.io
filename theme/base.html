@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if config.site_description %}<meta name="description" content="{{ config.site_description }}">{% endif %}
+  {% if config.theme_color %}<meta name="theme-color" content="{{ extra.theme_color }}">{% endif %}
+
+  {% if config.extra and config.extra.favicon %}<link rel="shortcut icon" href="{{ config.extra.favicon }}">{% endif %}
+  {% if config.site_author %}<link rel="author" href="{{ config.site_author }}">{% endif %}
+  {% if config.site_url %}<link rel="canonical" href="{{ config.site_url }}">{% endif %}
+
+  <title>{{ config.site_name }}</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro|Voltaire">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="{{ base_url }}/theme.css">
+
+  {% for path in config.extra_css %}<link rel="stylesheet" href="{{ path }}">{% endfor %}
+
+  {% if config.google_analytics %}
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '{{ config.google_analytics[0] }}', '{{ config.google_analytics[1] }}');
+    ga('send', 'pageview');
+    </script>
+  {% endif %}
+</head>
+
+<body>
+  <input class="menu-state menu-toggle" type="checkbox" name="menu-state" id="menu-state">
+  <input class="toc-state menu-toggle" type="checkbox" name="toc-state" id="toc-state">
+  <input class="search-state" type="checkbox" name="search-state" id="search-state">
+
+  <div class="main">
+    <div class="main__page">
+      {% block page %}{% endblock %}
+    </div>
+    <div class="main__footer">
+      {% include "footer.html" %}
+    </div>
+  </div>
+
+  <div class="nav-mobile">
+    <label class="menu-toggle" for="menu-state">Menu</label>
+    <label class="search-toggle" for="search-state">Search</label>
+    {% block mobile_toc_toggle %}{% endblock %}
+  </div>
+  <label class="playground-toggle">Ractive Playground<span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+
+  <div class="playground-container">
+    <div class="close-fullscreen" title="Exit Fullscreen">
+      &#8977;
+    </div>
+    <iframe class="playground-frame" src="/playground/?env=docs"></iframe>
+  </div>
+
+  {% include "nav-side.html" %}
+  {% block mobile_toc %}{% endblock %}
+  {% include "nav-main.html" %}
+
+  <div class="search-modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <label class="close-search" for="search-state" aria-role="close">&times;</label>
+    <input type="text" class="search-field" placeholder="Search..." id="mkdocs-search-query">
+    <div id="mkdocs-search-results"></div>
+  </div>
+
+  <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  {% for path in extra_javascript %}<script src="{{ path }}"></script>{% endfor %}
+  <script>var base_url = '{{ base_url }}';</script>
+  <script data-main="{{ base_url }}/mkdocs/js/search.js" src="{{ base_url }}/mkdocs/js/require.js"></script>
+</body>
+
+</html>

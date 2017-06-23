@@ -1,0 +1,167 @@
+.main--split{
+  margin-bottom: 50vh;
+}
+
+.main__sidebar-container--hidden{
+  display: none;
+}
+
+.run-it{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background: #777;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 15px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.run-it:active{
+  background: #555;
+}
+
+.playground-toggle{
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  padding: 5px 15px;
+  background: #729d34;
+  color: #fff;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: bottom 0.4s, width 0.4s;
+  overflow: hidden;
+  width: 131px;
+  height: 24px;
+  white-space: nowrap;
+}
+
+.playground-toggle:hover{
+  color: #eee;
+}
+
+.playground-toggle--open{
+  bottom: 50%;
+  width: 163px;
+}
+
+.playground-toggle .playground-fullscreen {
+  margin-left: 20px;
+  transform: scale(1.5, 1.5);
+  cursor: move;
+  display: inline-block;
+}
+
+.playground-container{
+  top: 100%;
+  height: 50vh;
+  transition: top 0.4s, height 0.4s;
+  position: fixed;
+  width: 100%;
+}
+
+.playground-container--open{
+  top: 50%;
+  box-shadow: 5px 5px 30px #777;
+}
+
+.playground-container--fullscreen{
+  width: 100vw !important;
+  height: 100vh !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 50;
+}
+
+.playground-container .close-fullscreen{
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0.5em;
+  display: none;
+  color: #222;
+  font-size: 2em;
+  cursor: pointer;
+  color: #8eb155;
+  font-weight: 700;
+}
+
+.playground-container--fullscreen .close-fullscreen{
+  display: block;
+}
+
+.playground-frame{
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+/* playground pre should be relative */
+[data-playground] ~ pre,
+[data-runtutorial] ~ pre{
+  position: relative
+}
+
+@media screen and (min-width: 768px){
+  .main{
+    transition: width 0.4s;
+    width: 100%;
+  }
+
+  .main--split{
+    width: 50%;
+    padding-right: 35px;
+  }
+
+  .playground-toggle{
+    transition: right 0.4s;
+    bottom: auto;
+    right: 0;
+    transform: rotate(-90deg);
+    transform-origin: 100% 100%;
+    top: 100px;
+  }
+
+  .playground-toggle--open{
+    right: 50%;
+  }
+
+  .playground-container{
+    position: fixed;
+    top: 40px;
+    left: 100%;
+    transition: left 0.4s, width 0.4s;
+    width: 50%;
+    height: calc(100vh - 40px);
+  }
+
+  .playground-container--open{
+    left: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1420px) {
+  .main{
+    padding-right: 35px;
+  }
+}
+
+@media screen and (min-width: 1449px) {
+  .main--split {
+    margin-right: 66.5%;
+    width: 33.5%;
+  }
+
+  .playground-toggle--open{
+    right: 66.5%;
+  }
+
+  .playground-container--open{
+    width: 66.5%;
+    left: 33.5%;
+  }
+}

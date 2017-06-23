@@ -1,0 +1,15 @@
+<div class="toc pure-menu pure-menu-scrollable">
+  <ul class="pure-menu-list">
+    {% for nav_item in page.toc %}
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+      </li>
+      {% for nav_item in nav_item.children %}
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+        </li>
+      {% endfor %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

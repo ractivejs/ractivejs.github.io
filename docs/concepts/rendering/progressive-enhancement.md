@@ -1,3 +1,0 @@
-# Progressive Enhancement
-
-TODO

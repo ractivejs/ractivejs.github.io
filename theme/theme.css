@@ -1,0 +1,389 @@
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Voltaire', sans-serif;
+}
+
+html{
+  font-size: 10px;
+}
+
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+  background: #fafafa;
+  color: #555;
+  line-height: 1.5;
+  position: relative;
+  margin-top: 40px;
+}
+
+a{
+  color: #729D34;
+  text-decoration: none;
+}
+
+blockquote{
+  padding-left: 1em;
+  margin-left: 0;
+  border-left: 3px solid #729d34;
+  color: #777;
+}
+
+code{
+  word-break: break-all;
+}
+
+:target::before{
+  content: '';
+  display: block;
+  height: 40px;
+  margin: -40px 0 0;
+}
+
+.notification{
+  display: block;
+  padding: 5px 15px;
+  background: #729D34;
+  border-radius: 5px;
+  text-align: center;
+  margin: 15px 0;
+  color: white;
+}
+
+.menu-state, .toc-state, .search-state{
+  display: none;
+}
+
+.menu-state:checked ~ .nav-side{
+  transform: translate(0, 0);
+  box-shadow: 5px 5px 30px #777;
+}
+
+.toc-state:checked ~ .toc-side{
+  transform: translate(0, 0);
+  box-shadow: -5px 5px 30px #777;
+}
+
+.search-state:checked ~ .search-modal{
+  top: 41px;
+  transform: translate(0, 0);
+}
+
+.nav-mobile{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 20;
+}
+
+.menu-toggle{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-image: url(/static/img/avatar.png);
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: contain;
+  height: 35px;
+  line-height: 35px;
+  padding-left: 40px;
+  width: 40px;
+}
+
+.toc-toggle{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  line-height: 35px;
+  text-align: right;
+  width: 60px;
+  padding-right: 22px;
+}
+
+.hamburger{
+  position: absolute;
+  margin: 0 0.2em;
+  font-size: 1.7em;
+  display: inline-block;
+  top: 0;
+}
+
+.nav-mobile .search-toggle{
+  display: block;
+  margin: 5px auto;
+  width: 48px;
+  line-height: 35px;
+}
+
+.nav-side{
+  left: auto;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  transform: translate(100%, 0);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.toc-side{
+  bottom: 0;
+  background: #fff;
+  transform: translate(-100%, 0);
+  transition: transform 0.4s, box-shadow 0.4s;
+  min-width: 12em;
+  overflow-y: auto;
+}
+
+.toc .pure-menu-link:not(.pure-menu-heading),
+.toc-side .pure-menu-link:not(.pure-menu-heading),
+.nav-side .pure-menu-link:not(.pure-menu-heading){
+  padding-left: 2em;
+}
+
+.search-modal{
+  position: fixed;
+  transform: translate(0, -100%);
+  transition: transform 0.4s;
+  box-shadow: -5px -5px 30px #777;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  overflow-y: auto;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+.close-search{
+  display: block;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  cursor: pointer;
+  transform: scale(2, 2);
+}
+
+.search-field {
+  width: 20em;
+  display: block;
+  margin: 0 auto;
+  padding: 0.2em 1em;
+  border-radius: 1em;
+  border: 1px solid #777;
+}
+
+.nav-main{
+  display: none;
+}
+
+.main, .nav-container{
+  max-width: 1360px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.main__footer{
+  margin: 100px 0;
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.main__sidebar{
+  display: none;
+}
+
+.main__content{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.page-controls{
+  text-align: center;
+  margin: 15px 0;
+}
+
+.page-controls__link{
+  padding: 0 15px;
+  display: inline-block;
+}
+
+.page-controls__link + .page-controls__link{
+  border-left: 1px solid #eee;
+}
+
+.logo{
+  margin: 50px auto 50px;
+  display: table;
+}
+
+.logo__image{
+  display: block;
+  margin: 0 auto;
+}
+
+.logo__text{
+  text-align: center;
+}
+
+.logo__name{
+  font-size: 3.6rem;
+  font-family: 'Voltaire', sans-serif;
+}
+
+.logo__slogan{
+  font-size: 2.4rem;
+}
+
+.cdn{
+  display: none;
+}
+
+.info{
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.info__block{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+.about{
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.about__block{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.about-block__header{
+  font-size: 2.4rem;
+  font-family: 'Voltaire', sans-serif;
+  color: #729D34;
+}
+
+.tutorial{
+  text-align: right;
+  margin-top: -54px;
+}
+
+.tutorial button {
+  border: none;
+  background: #777;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0.25em 1em;
+  margin-left: 0.5em;
+}
+
+@media screen and (max-width: 767px){
+
+  div + pre > code.hljs {
+    padding-top: 24px;
+  }
+
+  .search-state:checked ~ .search-modal {
+    top: 46px;
+  }
+}
+
+@media screen and (min-width: 768px){
+
+  .nav-mobile{
+    display: none;
+  }
+
+  .nav-side{
+    display: none;
+  }
+
+  .toc-side{
+      display: none;
+  }
+
+  .nav-main{
+    display: block;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+
+  .toc{
+    height: calc(100vh - 40px);
+    overflow: auto;
+  }
+
+  .main--split{
+    margin-right: 50%;
+  }
+
+  /* Elements that are pure-menu-link regardless of element should be pointer */
+  .pure-menu-link{
+    cursor: pointer;
+  }
+
+  /* Border on the dropdowns */
+  .nav-main .pure-menu-children{
+    border: 1px solid #eee;
+    min-width: 200px;
+  }
+
+  /* The sublinks of the current page should stay gray */
+  .pure-menu-selected .pure-menu-link,
+  .pure-menu-selected .pure-menu-link:visited{
+    color: #777;
+  }
+
+  /* The current page link and its ancestors should be green */
+  .pure-menu-selected > .pure-menu-link,
+  .pure-menu-selected > .pure-menu-link:visited{
+    color: #729D34;
+  }
+
+  /* Keep the parent background hover grey if we're going through the dropdown */
+  .pure-menu-item:hover > .pure-menu-link,
+  .pure-menu-item:hover > .pure-menu-link:visited{
+    background: #eee;
+  }
+
+  .main__sidebar{
+    display: block;
+    position: sticky;
+    top: 40px;
+  }
+
+  .logo__logo{
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  .logo__image{
+    margin: 0;
+  }
+
+  .logo__text{
+    text-align: left;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 15px;
+  }
+
+  .cdn{
+    display: table;
+    margin: 50px auto;
+    font-size: 2.4rem;
+  }
+
+}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block page %}
+  <div class="main__center-container">
+    <div class="pure-g">
+      <div class="main__sidebar-container pure-u-1 pure-u-md-1-4">
+        <div class="main__sidebar">
+          {% include "toc-main.html" %}
+        </div>
+      </div>
+      <div class="main__content-container pure-u-1 pure-u-md-3-4">
+        <div class="main__content">
+          {{ page.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block mobile_toc %}
+  {% include "toc-side.html" %}
+{% endblock %}
+
+{% block mobile_toc_toggle %}
+  <label class="toc-toggle" for="toc-state">Contents<span class="hamburger">&#8801;</span></label>
+{% endblock %}
