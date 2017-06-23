@@ -39,30 +39,6 @@
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#libraries">Libraries</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#jquery-mobile">jQuery Mobile</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#loaders">Loaders</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#available-loaders">Available loaders</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#looking-to-write-your-own-loader">Looking to write your own loader?</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#plugins">Plugins</a>
       </li>
       
@@ -97,6 +73,42 @@
       </li>
     
       <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#libraries">Libraries</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#jquery">jQuery</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#loaders">Loaders</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#vanilla">Vanilla</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#requirejs">RequireJS</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#browserify">Browserify</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#broccoli">Broccoli</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#webpack">Webpack</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#tools">Tools</a>
       </li>
       
@@ -105,11 +117,7 @@
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#browserify_1">Browserify</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#requirejs_1">RequireJS</a>
+          <a class="pure-menu-link" href="#ractive-utilities">Ractive utilities</a>
         </li>
       
         <li class="pure-menu-item">
@@ -132,43 +140,7 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="libraries"><a class="toclink" href="#libraries">Libraries</a></h1>
-<p>We heard that you love your framework so much, we put Ractive in your framework!</p>
-<h2 id="jquery-mobile"><a class="toclink" href="#jquery-mobile">jQuery Mobile</a></h2>
-<p><a href="http://twitter.com/scyrizales">Sergio Castillo</a> has made a jQuery mobile plugin, which you can <a href="http://jsfiddle.net/scyrizales/RHL9z/">see in action on this JSFiddle</a>.</p>
-<h1 id="loaders"><a class="toclink" href="#loaders">Loaders</a></h1>
-<p>By itself, neither Ractive nor your tools know what to do with a component file. You will need a <em>loader</em> to transform a component file into a representation that the target tool or environment can understand.</p>
-<h2 id="available-loaders"><a class="toclink" href="#available-loaders">Available loaders</a></h2>
-<h3 id="vanilla"><a class="toclink" href="#vanilla">Vanilla</a></h3>
-<ul>
-<li><a href="https://github.com/ractivejs/ractive-load">ractive-load</a> - Uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XHR</a> to load your component files and creates component constructors at runtime.</li>
-</ul>
-<h3 id="requirejs"><a class="toclink" href="#requirejs"><a href="http://requirejs.org/">RequireJS</a></a></h3>
-<ul>
-<li><a href="https://github.com/ractivejs/rvc">rvc</a> - Converts component files into <a href="http://requirejs.org/docs/api.html">AMD modules</a>. Works with plain and <a href="http://requirejs.org/docs/optimization.html">optimized</a> AMD modules.</li>
-</ul>
-<h3 id="browserify"><a class="toclink" href="#browserify"><a href="http://browserify.org/">Browserify</a></a></h3>
-<ul>
-<li><a href="https://github.com/marcello3d/node-ractify">ractify</a> - Converts component files into <a href="https://nodejs.org/api/modules.html">CJS modules</a>.</li>
-<li><a href="https://github.com/norcalli/ractiveify">ractiveify</a> - Similar to ractify, but supports JS/CSS compilation.</li>
-<li><a href="https://github.com/blackgate/ractive-componentify">ractive-componentify</a> - Similar to ractiveify, but supports <a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map">source maps</a> and partial imports.</li>
-</ul>
-<h3 id="broccoli"><a class="toclink" href="#broccoli"><a href="http://broccolijs.com/">Broccoli</a></a></h3>
-<ul>
-<li><a href="https://github.com/ractivejs/broccoli-ractive">broccoli-ractive</a> - Converts your component files into either AMD, CJS, or ES modules.</li>
-</ul>
-<h3 id="webpack"><a class="toclink" href="#webpack"><a href="https://webpack.github.io/">Webpack</a></a></h3>
-<ul>
-<li><a href="https://github.com/thomsbg/ractive-component-loader">ractive-component-loader</a> - Allows you to load component files as constructors via Webpack.</li>
-</ul>
-<h2 id="looking-to-write-your-own-loader"><a class="toclink" href="#looking-to-write-your-own-loader">Looking to write your own loader?</a></h2>
-<p>Head over to the <a href="https://github.com/ractivejs/component-spec">component file specifications</a> repo for a full rundown about the parts of a component file as well as loader behaviors and responsibilities.</p>
-<p>Ractive also has a couple of handy modules to aid you in loader development:</p>
-<ul>
-<li><a href="https://github.com/ractivejs/rcu">rcu</a> - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.</li>
-<li><a href="https://github.com/ractivejs/rcu-builders">rcu-builders</a> - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.</li>
-</ul>
-<h1 id="plugins"><a class="toclink" href="#plugins">Plugins</a></h1>
+          <h1 id="plugins"><a class="toclink" href="#plugins">Plugins</a></h1>
 <h2 id="adaptors"><a class="toclink" href="#adaptors">Adaptors</a></h2>
 <p>Interface with different backends.</p>
 <ul>
@@ -229,117 +201,46 @@
 <li><a href="http://ractivejs.github.io/ractive-transitions-slide">Slide</a></li>
 <li><a href="http://ractivejs.github.io/ractive-transitions-typewriter">Typewriter</a></li>
 </ul>
+<h1 id="libraries"><a class="toclink" href="#libraries">Libraries</a></h1>
+<h2 id="jquery"><a class="toclink" href="#jquery">jQuery</a></h2>
+<p><a href="http://twitter.com/scyrizales">Sergio Castillo</a> has made a jQuery mobile plugin, which you can <a href="http://jsfiddle.net/scyrizales/RHL9z/">see in action on this JSFiddle</a>.</p>
+<h1 id="loaders"><a class="toclink" href="#loaders">Loaders</a></h1>
+<p>By itself, neither Ractive nor tools know what to do with a component files. Loaders take in component files and parse them into a representation that other tools understand.</p>
+<h2 id="vanilla"><a class="toclink" href="#vanilla">Vanilla</a></h2>
+<ul>
+<li><a href="https://github.com/ractivejs/ractive-load">ractive-load</a> - Uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XHR</a> to load your component files and creates component constructors at runtime.</li>
+</ul>
+<h2 id="requirejs"><a class="toclink" href="#requirejs"><a href="http://requirejs.org/">RequireJS</a></a></h2>
+<ul>
+<li><a href="https://github.com/ractivejs/rvc">rvc</a> - Converts component files into <a href="http://requirejs.org/docs/api.html">AMD modules</a>.</li>
+<li><a href="https://github.com/ractivejs/rv">rv</a> - Loads and pre-compiles Ractive templates from external files. A sample <a href="https://github.com/RactiveJS/requirejs-ractive/tree/master/sample">Ractive + RequireJS sample application</a> is also available using rv.</li>
+</ul>
+<h2 id="browserify"><a class="toclink" href="#browserify"><a href="http://browserify.org/">Browserify</a></a></h2>
+<ul>
+<li><a href="https://github.com/marcello3d/node-ractify">ractify</a> - Converts component files into <a href="https://nodejs.org/api/modules.html">CJS modules</a>.</li>
+<li><a href="https://github.com/norcalli/ractiveify">ractiveify</a> - Similar to ractify, but supports JS/CSS compilation.</li>
+<li><a href="https://github.com/blackgate/ractive-componentify">ractive-componentify</a> - Similar to ractiveify, but supports <a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map">source maps</a> and partial imports.</li>
+<li><a href="https://www.npmjs.org/package/ractivate">Ractivate</a>, a transform that will pre-parse templates. Contributed by <a href="https://github.com/jrajav">jrajav</a>. <a href="https://github.com/jrajav/ractivate">(GitHub repository)</a>. A <a href="https://github.com/alienscience/gulp-ractive-starter">starter project</a> is available with a <a href="http://gulpjs.com/">gulp.js</a> build system.</li>
+</ul>
+<h2 id="broccoli"><a class="toclink" href="#broccoli"><a href="http://broccolijs.com/">Broccoli</a></a></h2>
+<ul>
+<li><a href="https://github.com/ractivejs/broccoli-ractive">broccoli-ractive</a> - Converts your component files into either AMD, CJS, or ES modules.</li>
+</ul>
+<h2 id="webpack"><a class="toclink" href="#webpack"><a href="https://webpack.github.io/">Webpack</a></a></h2>
+<ul>
+<li><a href="https://github.com/thomsbg/ractive-component-loader">ractive-component-loader</a> - Allows you to load component files as constructors via Webpack.</li>
+</ul>
 <h1 id="tools"><a class="toclink" href="#tools">Tools</a></h1>
 <h2 id="ractive-cli"><a class="toclink" href="#ractive-cli">Ractive CLI</a></h2>
-<p>TODO</p>
-<h2 id="browserify_1"><a class="toclink" href="#browserify_1">Browserify</a></h2>
-<p><a href="http://browserify.org/">Browserify</a> is a way of using <a href="http://nodejs.org/">node-style</a> requires in the browser, bundling your scripts into a single file for efficient deployment.</p>
-<p>There are three Browserify transforms available that you can use for Ractive.js:</p>
+<p>As of version 0.9, Ractive now comes with a CLI tool that comes with a few handy commands. See <code>ractive help</code> for more details on available commands.</p>
+<h2 id="ractive-utilities"><a class="toclink" href="#ractive-utilities">Ractive utilities</a></h2>
+<p>Ractive provides a couple of modules to aid you in loader development:</p>
 <ul>
-<li><a href="https://www.npmjs.org/package/ractivate">Ractivate</a>, a transform that will pre-parse templates. Contributed by <a href="https://github.com/jrajav">jrajav</a>. <a href="https://github.com/jrajav/ractivate">(GitHub repository)</a></li>
-<li><a href="https://npmjs.org/package/ractify">Ractify</a>, a transform that will pre-compile components. Contributed by <a href="https://github.com/marcello3d">marcello3d</a>. <a href="https://github.com/marcello3d/node-ractify">(GitHub repository)</a></li>
-<li><a href="https://npmjs.org/package/ractiveify">Ractiveify</a>, a transform that will pre-compile components with support for compiling embedded scripts and style tags (with Livescript, CoffeeScript, Sass, etc). Inspired by ractify. Contributed by <a href="https://github.com/norcalli">norcalli</a>. <a href="https://github.com/norcalli/ractiveify">(GitHub repository)</a></li>
+<li><a href="https://github.com/ractivejs/rcu">rcu</a> - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.</li>
+<li><a href="https://github.com/ractivejs/rcu-builders">rcu-builders</a> - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.</li>
 </ul>
-<p>A <a href="https://github.com/alienscience/gulp-ractive-starter">starter project</a> is available for using Ractivate with <a href="http://gulpjs.com/">gulp.js</a> build system.</p>
-<h3 id="using-plugins-with-ractive-and-browserify"><a class="toclink" href="#using-plugins-with-ractive-and-browserify">Using plugins with Ractive and Browserify</a></h3>
-<p>Plugins typically include a Universal Module Definition (UMD) block that, in a node.js or Browserify environment, calls <code>require('ractive')</code>. If you want to be explicit about <em>which</em> version of Ractive gets loaded, you can do it when you configure browserify like so:</p>
-<pre><code class="js">browserify.require('./my-copy-of-ractive.js', { expose: 'ractive' });
-</code></pre>
-
-<h2 id="requirejs_1"><a class="toclink" href="#requirejs_1">RequireJS</a></h2>
-<p><em>Psst! Looking for the <a href="https://github.com/RactiveJS/requirejs-ractive/tree/master/sample">Ractive + RequireJS sample application</a>?</em></p>
-<p>If Ractive detects that you're using an <a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a> module loader (in other words, if <code>typeof define !== 'undefined' &amp;&amp; define.amd</code>) such as <a href="http://requirejs.org/">RequireJS</a>, it will register itself as an AMD module rather than as a browser global.</p>
-<p>You'd then use Ractive the same as you'd use any other module, such as in this (contrived, oversimple) example:</p>
-<pre><code class="js">// define our main application, with an 'init' method to call when
-// the DOM is ready etc
-define([ 'jquery', 'Ractive' ], function ( $, Ractive ) {
-
-  'use strict';
-
-  var app = {
-    init: function () {
-
-      // load our template with jQuery AJAX
-      $.ajax( 'templates/main.html' ).then( function ( mainTemplate ) {
-
-        // render our main view
-        this.mainView = new Ractive({
-          el: 'container',
-          template: mainTemplate
-        });
-      });
-    }
-  };
-
-  return app;
-
-});
-</code></pre>
-
-<h3 id="loading-templates-without-ajax"><a class="toclink" href="#loading-templates-without-ajax">Loading templates without AJAX</a></h3>
-<p>We can do one better than that. Rather than stuffing our code full of asynchronous logic, we can use AMD to do the donkey work for us.</p>
-<p>Include the <a href="https://github.com/requirejs/text">RequireJS text loader plugin</a> in the root of your project (or whatever you've specified as the RequireJS <code>baseUrl</code>) - you can now do this (note we no longer require jQuery):</p>
-<pre><code class="js">// define our main application, with an 'init' method to call when
-// the DOM is ready etc
-define([ 'Ractive', 'text!templates/main.html' ], function ( Ractive, mainTemplate ) {
-
-  'use strict';
-
-  var app = {
-    init: function () {
-
-      // render our main view
-      this.mainView = new Ractive({
-        el: 'container',
-        template: mainTemplate
-      });
-    }
-  };
-
-  return app;
-
-});
-</code></pre>
-
-<p>But we can do even better. If you use the <a href="https://github.com/RactiveJS/require-ractive-plugin">Ractive RequireJS loader plugin</a>, it will pre-parse the template for us. We'll see in a moment why that's useful.</p>
-<p>Put the plugin in the same folder as the text loader plugin (which the Ractive plugin depends on). Note that we can omit the <code>'.html'</code> file extension:</p>
-<pre><code class="js">// define our main application, with an 'init' method to call when
-// the DOM is ready etc
-define([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {
-
-  'use strict';
-
-  var app = {
-    init: function () {
-
-      // render our main view
-      this.mainView = new Ractive({
-        el: 'container',
-        template: mainTemplate
-      });
-    }
-  };
-
-  return app;
-
-});
-</code></pre>
-
-<h3 id="using-the-requirejs-optimiser"><a class="toclink" href="#using-the-requirejs-optimiser">Using the RequireJS optimiser</a></h3>
-<p>You might wonder why the third example is better than the second - after all, we've basically just added another middleman, right?</p>
-<p>The answer is that you can now use the <a href="http://requirejs.org/docs/optimization.html">RequireJS optimiser</a> to parse your template as part of your build process. The optimiser converts your project into a single minified file, which in most cases makes your app much quicker to load for the end user (because the browser only needs to make one HTTP request, and the total file size is reduced).</p>
-<p>By pre-parsing templates, we save browsers having to do it, which shaves a few milliseconds off at render time.</p>
-<p>So you get the best of both worlds - your templates stay neatly organised in their own files, where you can easily edit them, and the user gets the best possible experience.</p>
-<p>If you're <em>really</em> anal about performance, you can tweak things further still. We don't need the loader plugins any more (because everything has been inlined), but they're still there in our optimised file. We can instruct the optimiser to 'stub them out', saving ourselves a few precious bytes. In your optimiser config, add the following option:</p>
-<pre><code class="js">({
-    stubModules: [ 'rv', 'text' ]
-})
-</code></pre>
-
-<p>(This assumes you're using a <code>build.js</code> file, or a build system like Grunt. If you're using the optimiser on the command line it will be different - consult the <a href="http://requirejs.org/docs/optimization.html">documentation</a> for more info.)</p>
-<p>Getting to grips with AMD and RequireJS can be tricky at first, but it's worth the effort. Good luck!</p>
 <h2 id="yeoman"><a class="toclink" href="#yeoman">Yeoman</a></h2>
-<p><a href="http://yeoman.io/">Yeoman</a> is a tool for scaffolding webapps. <a href="http://colindres.me/">Jorge Colindres</a> has created <a href="https://github.com/colindresj/generator-ractive">generator-ractive</a>, a Yeoman generator to quickly set up a Ractive application.</p>
+<p><a href="http://colindres.me/">Jorge Colindres</a> has created <a href="https://github.com/colindresj/generator-ractive">generator-ractive</a>, a Yeoman generator to quickly set up a Ractive application.</p>
 <h2 id="rollup"><a class="toclink" href="#rollup">Rollup</a></h2>
 <p>TODO</p>
 <h2 id="babel"><a class="toclink" href="#babel">Babel</a></h2>
@@ -488,30 +389,6 @@ define([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {
   <ul class="pure-menu-list">
     
       <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#libraries">Libraries</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#jquery-mobile">jQuery Mobile</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#loaders">Loaders</a>
-      </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#available-loaders">Available loaders</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#looking-to-write-your-own-loader">Looking to write your own loader?</a>
-        </li>
-      
-      </li>
-    
-      <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#plugins">Plugins</a>
       </li>
       
@@ -546,6 +423,42 @@ define([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {
       </li>
     
       <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#libraries">Libraries</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#jquery">jQuery</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
+        <a class="pure-menu-link pure-menu-heading" href="#loaders">Loaders</a>
+      </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#vanilla">Vanilla</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#requirejs">RequireJS</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#browserify">Browserify</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#broccoli">Broccoli</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#webpack">Webpack</a>
+        </li>
+      
+      </li>
+    
+      <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#tools">Tools</a>
       </li>
       
@@ -554,11 +467,7 @@ define([ 'Ractive', 'rv!templates/main' ], function ( Ractive, mainTemplate ) {
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#browserify_1">Browserify</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#requirejs_1">RequireJS</a>
+          <a class="pure-menu-link" href="#ractive-utilities">Ractive utilities</a>
         </li>
       
         <li class="pure-menu-item">
