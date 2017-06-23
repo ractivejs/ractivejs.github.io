@@ -94,11 +94,11 @@ var slideshow = new Slideshow({
 Go ahead and execute the code – you should now have a working slideshow.
 
 > Needless to say, you could add as many bells and whistles as you wanted – fading or sliding transitions, image preloading, thumbnails, touchscreen gesture controls, and so on.
-> 
+>
 > You could, of course, just use an existing image slideshow library. But then you would have to learn that library, and potentially submit to its design philosophy.
-> 
+>
 > Ractive.js is all about flexibility. If you want to change the design or behaviour of a component (say, adding a class name to a particular element), the power to do so is in your hands – the template is easy to understand and tweak because it's basically just HTML, and the view logic is straightforward.
-> 
+>
 > It's better to be able to build your own solution than to rely on developers maintaining high quality and up-to-date documentation.
 
 ## Step 3
@@ -142,7 +142,7 @@ We _were_ passing the list of pictures to the instance as it was being initializ
 
 Update the code with another images array and put two `slideshow` components in the main instance.
 
-> Mappings are automatically managed cross-instance [`link`](/api/instance-methods#ractivelink)s. A link is a bit like a filesystem symlink in that the data isn't copied anywhere - it just gets a new path that points to it. Changing the data in either place is effectively the same as changing it everywhere at once.
+> Mappings are automatically managed cross-instance `link`s. A link is a bit like a filesystem symlink in that the data isn't copied anywhere - it just gets a new path that points to it. Changing the data in either place is effectively the same as changing it everywhere at once.
 
 ## Step 4
 <div class="tutorial">
@@ -222,7 +222,7 @@ When we started out with our slideshow, we were rendering it directly to a targe
 
 In order do use views with a main instance controlling the overall app, you would have to have some sort of big `#if`/`else` block with each view included as a branch. You could also resort to some sort of partial generation scheme. There's an easier way though.
 
-Ractive.js will allow you to attach one independent instance to another using [`attachChild`](/api/instance-methods#ractiveattachchild), optionally specifying a _target_. If you don't specify a target, then the child instance will not be rendered, but if you _do_ specify a target, then the instance will be rendered into the first available matching _anchor_. An anchor looks like a component or element, but its name always starts with a `#`. You may have as many anchors as you like, and they may each have the same or different names.
+Ractive.js will allow you to attach one independent instance to another using `attachChild`, optionally specifying a _target_. If you don't specify a target, then the child instance will not be rendered, but if you _do_ specify a target, then the instance will be rendered into the first available matching _anchor_. An anchor looks like a component or element, but its name always starts with a `#`. You may have as many anchors as you like, and they may each have the same or different names.
 
 ```handlebars
 <#anchor />
@@ -234,7 +234,7 @@ Ractive.js will allow you to attach one independent instance to another using [`
 
 Go ahead and fill out the two provided views as you like, add anchors to the main instance template, and attach an instance of each view to an anchor on the main instance.
 
-> You can detach a child using the conveniently named [`detachChild`](/api/instance-methods#ractivedetachchild) method.
+> You can detach a child using the conveniently named `detachChild` method.
 >
 > Child instances can be attached in `prepend`, `insertAt`, or `append` (the default) mode. Ractive.js will try to find a matching anchor for each child starting with the first. If there aren't enough anchors, some instances will not be rendered. Each time a child is attached or detached, Ractive.js will adjust any affected anchors so all instances that can be rendered are rendered.
 >

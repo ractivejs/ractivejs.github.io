@@ -19,8 +19,8 @@ You can specify intro transitions:
 
 Try adding intros to the three buttons in the template, choosing from `fade`, `slide` and `fly`, which have been included on this page.
 
-> As with custom events, transitions are distributed as plugins, [which you can download here](/integrations/plugins) to use in your project. You can [create your own transitions](/extend/transitions).
-> 
+> As with custom events, transitions are distributed as plugins.
+>
 > Where possible, Ractive uses CSS transitions, but in older browsers it will fall back to timer-based animation.
 
 ## Step 2
@@ -87,4 +87,4 @@ By convention, if you pass in a number, it will be treated as the duration prope
 
 In place of a number, you can use `fast` (200 milliseconds) or `slow` (600 milliseconds), just like jQuery.
 
-The parameters available to you depend on the transition. Visit the [plugins page](/integrations/plugins.md) to see which transitions are available or [create your own](/extend/transitions.md).
+The parameters available to you depend on the transition.

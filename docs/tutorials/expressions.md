@@ -76,8 +76,6 @@ ractive.set({
 > You might reasonably ask how this works. What happens is this: when the template is parsed, any _references_ inside expressions (such as `price`, `quantity` or `format` in the example above) are identified. At render time, the expression binds to those references and creates a function to calculate the result. (Whenever possible, Ractive.js will re-use functions – for example `{{a+b}}` and `{{c+d}}` would share the same function.)
 >
 > When the value of one or more of those references change, the expression is re-evaluated. If the result changes, the DOM is updated.
->
-> For the super-curious, there's more information on the [docs](../../concepts/templates.md#expressions).
 
 ## Step 3
 <div class="tutorial">

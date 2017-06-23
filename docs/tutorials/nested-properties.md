@@ -1,6 +1,6 @@
 # Nested Properties
 
-Ractive uses the [mustache syntax](../../concepts/templates.md#mustaches), which supports nested properties – in JavaScript-land, that means properties that are objects with their own properties (which might be objects with their own properties...).
+Ractive uses the mustache syntax, which supports nested properties – in JavaScript-land, that means properties that are objects with their own properties (which might be objects with their own properties...).
 
 ## Step 1
 <div class="tutorial">
