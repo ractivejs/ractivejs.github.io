@@ -46,4 +46,5 @@ pages:
   - Plugins: plugins.md
   - Integrations: integrations.md
   - Concepts: concepts.md
+  - Workflows: workflows.md
   - Support: support.md
