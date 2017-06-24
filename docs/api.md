@@ -1477,7 +1477,7 @@ Special context-local storage associated with the current context. This is inten
 
 ## `$n`
 
-`$n` is a reference to a specific event argument when handing events using the expression syntax. Argument positions are referened by an integer, where the first argument is `1`.
+`$n` is a reference available when handing events using the expression syntax that points to a specific argument passed by the event. Argument positions are denoted by the `n` which is a one-indexed integer.
 
 ```js
 const CustomButton = Ractive.extend({
@@ -1495,7 +1495,7 @@ Ractive({
     <!-- Use with method call -->
     <CustomButton on-buttonevent="@this.method($1, $2)" />
   `,
-  observe: {
+  on: {
     proxy(event, foo, bar){
       console.log(foo, bar);
     }
@@ -1505,6 +1505,39 @@ Ractive({
   }
 })
 ```
+
+## `arguments`
+
+`arguments` is a reference available when handling events using the expression syntax that points to an array of arguments passed by the event.
+
+```js
+const CustomButton = Ractive.extend({
+  template: `
+    <button on-click="@this.fire('buttonevent', 'foo', 'bar')">Click Me</button>
+  `
+})
+
+Ractive({
+  components: { CustomButton },
+  template: `
+    <!-- Use with proxy expression syntax -->
+    <CustomButton on-buttonevent="['proxy', arguments]" />
+
+    <!-- Use with method call -->
+    <CustomButton on-buttonevent="@this.method(arguments)" />
+  `,
+  on: {
+    proxy(event, args){
+      console.log(args);
+    }
+  },
+  method(foo,bar){
+    console.log(args);
+  }
+})
+```
+
+`arguments` is a normal array instance and not the special `arguments` JavaScript variable.
 
 # Initialization Options
 
