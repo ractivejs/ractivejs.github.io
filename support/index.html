@@ -65,11 +65,23 @@
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#08-to-09">0.8 to 0.9</a>
+          <a class="pure-menu-link" href="#migrating-from-08">Migrating from 0.8</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#07-to-08">0.7 to 0.8</a>
+          <a class="pure-menu-link" href="#migrating-from-07">Migrating from 0.7</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-06">Migrating from 0.6</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-05">Migrating from 0.5</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-04">Migrating from 0.4</a>
         </li>
       
       </li>
@@ -131,7 +143,7 @@
 
 <h1 id="migrating-from-previous-versions"><a class="toclink" href="#migrating-from-previous-versions">Migrating from previous versions</a></h1>
 <p>These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the <a href="https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md">changelog</a>.</p>
-<h2 id="08-to-09"><a class="toclink" href="#08-to-09">0.8 to 0.9</a></h2>
+<h2 id="migrating-from-08"><a class="toclink" href="#migrating-from-08">Migrating from 0.8</a></h2>
 <h3 id="removed-deprecations"><a class="toclink" href="#removed-deprecations">Removed deprecations</a></h3>
 <p>0.9 removes any of the remaining deprecations from 0.8, including:</p>
 <ul>
@@ -181,7 +193,7 @@
 <p><code>ractive.getNodeInfo</code> has been renamed to <code>ractive.getContext</code>, as has the static version of the function, to more accurately reflect its function. The <code>getNodeInfo</code> alias is deprecated and will be removed in a future version.</p>
 <h3 id="multiple-inheritance"><a class="toclink" href="#multiple-inheritance">Multiple inheritance</a></h3>
 <p>Components can no longer inherit from multiple other components at the same level, meaning that <code>Ractive.extend(FirstComponent, SecondComponent)</code> is no longer possible. You can still set up an inheritance hierachy multiple levels deep with <code>Ractive.extend(FirstComponent).extend(SecondComponent)</code>.</p>
-<h2 id="07-to-08"><a class="toclink" href="#07-to-08">0.7 to 0.8</a></h2>
+<h2 id="migrating-from-07"><a class="toclink" href="#migrating-from-07">Migrating from 0.7</a></h2>
 <h3 id="template-format_1"><a class="toclink" href="#template-format_1">Template format</a></h3>
 <p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.8.</p>
 <h3 id="ie8"><a class="toclink" href="#ie8">IE8</a></h3>
@@ -194,6 +206,89 @@
 <p>Integers are no longer considered references, even in an array context, meaning that in <code>{{#with [1, 2, 3]}}{{0}}{{/with}}</code> will no longer result in <code>1</code> being rendered. Integers are now stricly considered to integer literals. If you need to reference a specific index in an array context, you can do so with a context specific reference like <code>{{this.0}}</code>.</p>
 <h3 id="array-modification"><a class="toclink" href="#array-modification">Array modification</a></h3>
 <p><code>modifyArrays</code> now defaults to <code>false</code>, so the array adaptor is not applied to arrays automatically as they are added to the instance data. The preferred method of performing array operations is using the <code>splice</code>, <code>push</code>, <code>pop</code>, etc methods on the Ractive.js instance.</p>
+<h2 id="migrating-from-06"><a class="toclink" href="#migrating-from-06">Migrating from 0.6</a></h2>
+<h3 id="whats-new"><a class="toclink" href="#whats-new">What's new</a></h3>
+<p>Components can now access their parents and containers using an official API.</p>
+<p>Binding directives may be set on elements that support two-way binding. These directives override the settings on the Ractive instance for <code>twoway</code> and <code>lazy</code>.</p>
+<p>Single-fire versions of <code>ractive.on</code> and <code>ractive.observe</code> are now available as <code>ractive.once</code> and <code>ractive.observeOnce</code>.</p>
+<p>Inline partials can now be defined within a new section <code>{{#partial partial-name}}...{{/partial}}</code>. The old comment syntax is now deprecated and will be removed in a future release.</p>
+<p>Inline partials are now scoped to their nearest element. If a partial reference sits in the template below an element with a matching inline partial, the inline partial will be used in the reference. This can be used as a sort of partial inheritance. If an inline partial is defined directly within a component tag or the root of the template, it will be added to the Ractive instance.</p>
+<p>Components may now yield to multiple inline partials by supplying the partial name with yield e.g. <code>{{yield some-name}}</code>. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. <code>{{&gt;partial}}</code>.</p>
+<p>Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new <code>resetPartial</code> method on Ractive instances.</p>
+<p><code>this.event</code> is now available to method-call event handlers.</p>
+<p>Regular expression literals can now be used in template expressions.</p>
+<p>You can now escape mustaches with a '\' if you'd like them to appear in the template.</p>
+<p><code>ractive.toggle</code> now works with patterns.</p>
+<p>The debug setting is no longer set per-instance. It has been replaced with <code>Ractive.DEBUG</code>, which defaults to true. You can set it automatically based on whether or not the your code has been minified with:</p>
+<pre><code class="js">Ractive.DEBUG = /unminified/.test(function(){/*unminified*/});
+</code></pre>
+
+<h3 id="breaking-changes-and-deprecation"><a class="toclink" href="#breaking-changes-and-deprecation">Breaking changes and deprecation</a></h3>
+<ul>
+<li><code>twoway</code> and <code>lazy</code> are now reserved attribute names to be used as binding directives.</li>
+<li>Inline partials now belong to their nearest element.</li>
+<li>The comment syntax for inline partials is now deprecated.</li>
+<li><code>elseif</code> is now a reserved identifier.</li>
+<li><code>ractive.data</code> is no longer available. Use <code>ractive.get()</code> to get a shallow copy of the data with any component mappings.</li>
+<li>Child data always overrides parent data, whether it is a POJO or not.</li>
+<li><code>ractive.debug</code> has been replaced with the global <code>Ractive.DEBUG</code> flag.</li>
+</ul>
+<h2 id="migrating-from-05"><a class="toclink" href="#migrating-from-05">Migrating from 0.5</a></h2>
+<h3 id="lifecycle-events"><a class="toclink" href="#lifecycle-events">Lifecycle events</a></h3>
+<p>Ractive instances now emit <em>lifecycle events</em>. If you use <code>Ractive.extend(...)</code> with <code>init()</code>, <code>beforeInit()</code> or <code>complete()</code>, you will need to replace them - they will continue to work, but will be removed in a future version.</p>
+<p><code>init()</code> can be replaced with one of the following methods, or you may need to split your code into both methods. Use <code>onrender()</code> for code that needs access to the rendered DOM, but is safe being called more than once if you unrender and rerender your ractive instance. Use <code>oninit()</code> for code that should run only once or needs to be run regardless of whether the ractive instance is rendered into the DOM.</p>
+<p>The <code>init()</code> method also no longer recieves an <code>options</code> parameter as the ractive instance now inherits <em>all</em> options passed to the constructor. You can still access the options directly using the <code>onconstruct()</code> method.</p>
+<p><code>beforeInit()</code> and <code>complete()</code> can be replaced directly with <code>onconstruct()</code> and <code>oncomplete()</code> respectively.</p>
+<p>See the lifecycle events page for more detail.</p>
+<h3 id="other-breaking-changes"><a class="toclink" href="#other-breaking-changes">Other Breaking changes</a></h3>
+<ul>
+<li><code>new Ractive()</code> now inherits all options as methods/properties including event hooks. If you have been passing data through custom initialisation options be aware that they will appended to your ractive instance.</li>
+<li>
+<p>Using other elements besides <code>&lt;script&gt;</code> for templates is an now an error. Migrate any templates in non-script elements and include a non-javascript type so the browser does not try to interpret your template:</p>
+<p><code>js
+    &lt;script id='template' type='text/ractive'&gt;
+        Your template goes here
+    &lt;/script&gt;</code></p>
+</li>
+<li>
+<p>New reserved events cannot be used for proxy event names, i.e. <code>&lt;p on-click='init'&gt;&lt;/p&gt;</code>. These include 'change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', and 'update'. You will need to rename your events.</p>
+</li>
+<li>Setting uninitialised data on a component will no longer cause it to leak out into the parent scope</li>
+<li>'Smart updates', via <code>ractive.merge()</code> and <code>ractive.shift()</code> etc, work across component boundaries. In most cases this is the expected behavior.</li>
+<li>The CSS length interpolator has been removed.</li>
+</ul>
+<h2 id="migrating-from-04"><a class="toclink" href="#migrating-from-04">Migrating from 0.4</a></h2>
+<h3 id="breaking-changes"><a class="toclink" href="#breaking-changes">Breaking changes</a></h3>
+<ul>
+<li>Errors in observers and evaluators are no longer caught</li>
+<li>Nodes are detached as soon as any outro transitions are complete (if any), rather than when <em>all</em> transitions are complete</li>
+<li>(Outdated if you are moving to <code>0.6.x</code> or above) The options argument of <code>init: function(options)</code> is now strictly what was passed into the constructor, use <code>this.option</code> to access configured value.</li>
+<li><code>data</code> with properties on prototype are no longer cloned when accessed. <code>data</code> from "baseClass" is no longer deconstructed and copied.</li>
+<li>Options specified on component constructors will not be picked up as defaults. <code>debug</code> now on <code>defaults</code>, not constructor</li>
+<li>Select bindings follow general browser rules for choosing options. Disabled options have no value.</li>
+<li>Input values are not coerced to numbers, unless input type is <code>number</code> or <code>range</code></li>
+<li><code>{{this.foo}}</code> in templates now means same thing as <code>{{.foo}}</code></li>
+<li>Rendering to an element already render by Ractive causes that element to be torn down (unless appending).</li>
+<li>Illegal javascript no longer allowed by parser in expressions and will throw</li>
+<li>Parsed template format changed to specify template spec version.<ul>
+<li>Proxy-event representation</li>
+<li>Non-dynamic (bound) fragments of html are no longer stored as single string</li>
+<li>See https://github.com/ractivejs/template-spec for current spec.</li>
+</ul>
+</li>
+<li>Arrays being observed via <code>array.*</code> no longer send <code>item.length</code> event on mutation changes</li>
+<li>Reserved event names in templates ('change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', 'update') will cause the parser to throw an error</li>
+<li><code>{{else}}</code> support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference</li>
+<li>Child components are created in data order</li>
+<li>Reference expressions resolve left to right and follow same logic as regular mustache references (bind to root, not context, if left-most part is unresolved).</li>
+<li>Improved attribute parsing and handling:<ul>
+<li>character escaping and whitespace handling in attribute directive arguments</li>
+<li>boolean and empty string attributes</li>
+</ul>
+</li>
+<li>Computed properties no longer create nested objects with keypath like names, i.e. <code>page.area: '${width} * ${height}'</code> creates a property accessible by <code>{{page.area}}</code> but not <code>{{#page}}{{area}}{{/page}}</code></li>
+<li>The element into which the ractive instance was rendered is no longer available as <code>ractive.el</code>. See <code>ractive.render()</code> and <code>ractive.insert()</code> for more information on moving ractive instances in the DOM.</li>
+</ul>
         </div>
       </div>
     </div>
@@ -364,11 +459,23 @@
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#08-to-09">0.8 to 0.9</a>
+          <a class="pure-menu-link" href="#migrating-from-08">Migrating from 0.8</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#07-to-08">0.7 to 0.8</a>
+          <a class="pure-menu-link" href="#migrating-from-07">Migrating from 0.7</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-06">Migrating from 0.6</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-05">Migrating from 0.5</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-04">Migrating from 0.4</a>
         </li>
       
       </li>
