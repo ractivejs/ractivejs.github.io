@@ -61,7 +61,7 @@ new Ractive({
 
 These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the [changelog](https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md).
 
-## 0.8 to 0.9
+## Migrating from 0.8
 
 ### Removed deprecations
 
@@ -147,7 +147,7 @@ The magic and array adaptors are no longer part of Ractive.js core. They may be 
 
 Components can no longer inherit from multiple other components at the same level, meaning that `Ractive.extend(FirstComponent, SecondComponent)` is no longer possible. You can still set up an inheritance hierachy multiple levels deep with `Ractive.extend(FirstComponent).extend(SecondComponent)`.
 
-## 0.7 to 0.8
+## Migrating from 0.7
 
 ### Template format
 
@@ -172,3 +172,104 @@ Integers are no longer considered references, even in an array context, meaning 
 ### Array modification
 
 `modifyArrays` now defaults to `false`, so the array adaptor is not applied to arrays automatically as they are added to the instance data. The preferred method of performing array operations is using the `splice`, `push`, `pop`, etc methods on the Ractive.js instance.
+
+## Migrating from 0.6
+
+### What's new
+
+Components can now access their parents and containers using an official API.
+
+Binding directives may be set on elements that support two-way binding. These directives override the settings on the Ractive instance for `twoway` and `lazy`.
+
+Single-fire versions of `ractive.on` and `ractive.observe` are now available as `ractive.once` and `ractive.observeOnce`.
+
+Inline partials can now be defined within a new section `{{#partial partial-name}}...{{/partial}}`. The old comment syntax is now deprecated and will be removed in a future release.
+
+Inline partials are now scoped to their nearest element. If a partial reference sits in the template below an element with a matching inline partial, the inline partial will be used in the reference. This can be used as a sort of partial inheritance. If an inline partial is defined directly within a component tag or the root of the template, it will be added to the Ractive instance.
+
+Components may now yield to multiple inline partials by supplying the partial name with yield e.g. `{{yield some-name}}`. Yielding without a name will still result in non-partial content being yielded. Only inline partials may be yielded. Any partials, including inline and inherited, may still be referenced within a component using a plain partial section e.g. `{{>partial}}`.
+
+Partials can now be reset without resorting to manually un/re-rendering them using a wrapping conditional section. This can be done with the new `resetPartial` method on Ractive instances.
+
+`this.event` is now available to method-call event handlers.
+
+Regular expression literals can now be used in template expressions.
+
+You can now escape mustaches with a '\' if you'd like them to appear in the template.
+
+`ractive.toggle` now works with patterns.
+
+The debug setting is no longer set per-instance. It has been replaced with `Ractive.DEBUG`, which defaults to true. You can set it automatically based on whether or not the your code has been minified with:
+```js
+Ractive.DEBUG = /unminified/.test(function(){/*unminified*/});
+```
+
+### Breaking changes and deprecation
+
+* `twoway` and `lazy` are now reserved attribute names to be used as binding directives.
+* Inline partials now belong to their nearest element.
+* The comment syntax for inline partials is now deprecated.
+* `elseif` is now a reserved identifier.
+* `ractive.data` is no longer available. Use `ractive.get()` to get a shallow copy of the data with any component mappings.
+* Child data always overrides parent data, whether it is a POJO or not.
+* `ractive.debug` has been replaced with the global `Ractive.DEBUG` flag.
+
+## Migrating from 0.5
+
+### Lifecycle events
+
+Ractive instances now emit *lifecycle events*. If you use `Ractive.extend(...)` with `init()`, `beforeInit()` or `complete()`, you will need to replace them - they will continue to work, but will be removed in a future version.
+
+`init()` can be replaced with one of the following methods, or you may need to split your code into both methods. Use `onrender()` for code that needs access to the rendered DOM, but is safe being called more than once if you unrender and rerender your ractive instance. Use `oninit()` for code that should run only once or needs to be run regardless of whether the ractive instance is rendered into the DOM.
+
+The `init()` method also no longer recieves an `options` parameter as the ractive instance now inherits _all_ options passed to the constructor. You can still access the options directly using the `onconstruct()` method.
+
+`beforeInit()` and `complete()` can be replaced directly with `onconstruct()` and `oncomplete()` respectively.
+
+See the lifecycle events page for more detail.
+
+### Other Breaking changes
+
+* `new Ractive()` now inherits all options as methods/properties including event hooks. If you have been passing data through custom initialisation options be aware that they will appended to your ractive instance.
+* Using other elements besides `<script>` for templates is an now an error. Migrate any templates in non-script elements and include a non-javascript type so the browser does not try to interpret your template:
+
+	```js
+		<script id='template' type='text/ractive'>
+			Your template goes here
+		</script>
+	```
+
+* New reserved events cannot be used for proxy event names, i.e. `<p on-click='init'></p>`. These include 'change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', and 'update'. You will need to rename your events.
+* Setting uninitialised data on a component will no longer cause it to leak out into the parent scope
+* 'Smart updates', via `ractive.merge()` and `ractive.shift()` etc, work across component boundaries. In most cases this is the expected behavior.
+* The CSS length interpolator has been removed.
+
+
+## Migrating from 0.4
+
+### Breaking changes
+
+* Errors in observers and evaluators are no longer caught
+* Nodes are detached as soon as any outro transitions are complete (if any), rather than when *all* transitions are complete
+* (Outdated if you are moving to `0.6.x` or above) The options argument of `init: function(options)` is now strictly what was passed into the constructor, use `this.option` to access configured value.
+* `data` with properties on prototype are no longer cloned when accessed. `data` from "baseClass" is no longer deconstructed and copied.
+* Options specified on component constructors will not be picked up as defaults. `debug` now on `defaults`, not constructor
+* Select bindings follow general browser rules for choosing options. Disabled options have no value.
+* Input values are not coerced to numbers, unless input type is `number` or `range`
+* `{{this.foo}}` in templates now means same thing as `{{.foo}}`
+* Rendering to an element already render by Ractive causes that element to be torn down (unless appending).
+* Illegal javascript no longer allowed by parser in expressions and will throw
+* Parsed template format changed to specify template spec version.
+	* Proxy-event representation
+	* Non-dynamic (bound) fragments of html are no longer stored as single string
+	* See https://github.com/ractivejs/template-spec for current spec.
+* Arrays being observed via `array.*` no longer send `item.length` event on mutation changes
+* Reserved event names in templates ('change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', 'update') will cause the parser to throw an error
+* `{{else}}` support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference
+* Child components are created in data order
+* Reference expressions resolve left to right and follow same logic as regular mustache references (bind to root, not context, if left-most part is unresolved).
+* Improved attribute parsing and handling:
+	* character escaping and whitespace handling in attribute directive arguments
+	* boolean and empty string attributes
+* Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `{{page.area}}` but not `{{#page}}{{area}}{{/page}}`
+* The element into which the ractive instance was rendered is no longer available as `ractive.el`. See `ractive.render()` and `ractive.insert()` for more information on moving ractive instances in the DOM.
