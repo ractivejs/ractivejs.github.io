@@ -99,6 +99,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#anchors">Anchors</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#content">{{&gt;content}}</a>
         </li>
       
@@ -1385,6 +1389,37 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 <pre><code class="html">\\{{ ref }}   &lt;!-- \value --&gt;
 \\\{{ ref }}  &lt;!-- \\value --&gt;
 \\\\{{ ref }} &lt;!-- \\\value --&gt;
+</code></pre>
+
+<h2 id="anchors"><a class="toclink" href="#anchors">Anchors</a></h2>
+<p><code>&lt;# /&gt;</code> define anchors which are mounting points where instances can be mounted to dynamically during runtime.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAWQE8BhUgWwAcK1yUqBeKgJSTEUASwBuaAHRoAHunIATABTAAOuSpV0bZOkhUABus2aAPAvEA+YMCrNMGJAHM0VHDlMB6C2MvHD6jgAlOrqgsLiaCr+KEgwLij6AOQARqQKdEl4-gqoSPpqGibMGE7JABJoCAikeFQA6qQwCAoAhEn++DFoOqho+kZFZgDEdqQArlzsIlwA7FSefkUG2UUUMyIoSkGFJgueVAwwaH1U5GgA7lQzWORCaP6aZJTczIws7OdcvLTvbBxcbahIb7KgAGRmAGs7KUqKQAGZUVhxTjcFCkOwOZyuBHXF53YgPEFvJj-L4oSQIKFKJIlJxZKi0rEuBm2GBCUQSfQoMAiDBuELkR6ggCSKCS-OYEy4SRmWhE9lawp5fMkqFixDADF5LSUJI+AJQdVssXiaESjKlkxQ0zmSWCnUCQVwQA"></div>
+
+<pre><code class="js">const MyComponent = Ractive.extend({
+  template: `
+    &lt;div&gt;{{ message }}&lt;/div&gt;
+  `
+})
+
+Ractive({
+  target: 'body',
+  data: {
+    msg: 'Hello, World!'
+  },
+  template: `
+    &lt;# mountpoint7 /&gt;
+  `,
+  oninit(){
+    // Create new instnace
+    const myComponent = MyComponent()
+
+    // Link msg of parent to message of instnace
+    myComponent.link('msg', 'message', { ractive: this })
+
+    // It's mount'in time!
+    this.attachChild(myComponent, { target: 'mountpoint7'})
+  }
+})
 </code></pre>
 
 <h2 id="content"><a class="toclink" href="#content">{{&gt;content}}</a></h2>
@@ -5321,6 +5356,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#escaping-mustaches">Escaping mustaches</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#anchors">Anchors</a>
         </li>
       
         <li class="pure-menu-item">
