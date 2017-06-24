@@ -258,6 +258,10 @@
           <a class="pure-menu-link" href="#n">$n</a>
         </li>
       
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#arguments">arguments</a>
+        </li>
+      
       </li>
     
       <li class="pure-menu-item">
@@ -2310,7 +2314,7 @@ Ractive({
 <h2 id="local"><a class="toclink" href="#local"><code>@local</code></a></h2>
 <p>Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.</p>
 <h2 id="n"><a class="toclink" href="#n"><code>$n</code></a></h2>
-<p><code>$n</code> is a reference to a specific event argument when handing events using the expression syntax. Argument positions are referened by an integer, where the first argument is <code>1</code>.</p>
+<p><code>$n</code> is a reference available when handing events using the expression syntax that points to a specific argument passed by the event. Argument positions are denoted by the <code>n</code> which is a one-indexed integer.</p>
 <pre><code class="js">const CustomButton = Ractive.extend({
   template: `
     &lt;button on-click=&quot;@this.fire('buttonevent', 'foo', 'bar')&quot;&gt;Click Me&lt;/button&gt;
@@ -2326,7 +2330,7 @@ Ractive({
     &lt;!-- Use with method call --&gt;
     &lt;CustomButton on-buttonevent=&quot;@this.method($1, $2)&quot; /&gt;
   `,
-  observe: {
+  on: {
     proxy(event, foo, bar){
       console.log(foo, bar);
     }
@@ -2337,6 +2341,35 @@ Ractive({
 })
 </code></pre>
 
+<h2 id="arguments"><a class="toclink" href="#arguments"><code>arguments</code></a></h2>
+<p><code>arguments</code> is a reference available when handling events using the expression syntax that points to an array of arguments passed by the event.</p>
+<pre><code class="js">const CustomButton = Ractive.extend({
+  template: `
+    &lt;button on-click=&quot;@this.fire('buttonevent', 'foo', 'bar')&quot;&gt;Click Me&lt;/button&gt;
+  `
+})
+
+Ractive({
+  components: { CustomButton },
+  template: `
+    &lt;!-- Use with proxy expression syntax --&gt;
+    &lt;CustomButton on-buttonevent=&quot;['proxy', arguments]&quot; /&gt;
+
+    &lt;!-- Use with method call --&gt;
+    &lt;CustomButton on-buttonevent=&quot;@this.method(arguments)&quot; /&gt;
+  `,
+  on: {
+    proxy(event, args){
+      console.log(args);
+    }
+  },
+  method(foo,bar){
+    console.log(args);
+  }
+})
+</code></pre>
+
+<p><code>arguments</code> is a normal array instance and not the special <code>arguments</code> JavaScript variable.</p>
 <h1 id="initialization-options"><a class="toclink" href="#initialization-options">Initialization Options</a></h1>
 <p>The following is an exhaustive list of initialisation options that you can pass to <code>new Ractive()</code> and <code>Ractive.extend()</code>. Extra properties passed as options that are not initialization options are added as properties or methods of the instance.</p>
 <pre><code class="js">var ractive = new Ractive({
@@ -5448,6 +5481,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#n">$n</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#arguments">arguments</a>
         </li>
       
       </li>
