@@ -419,6 +419,40 @@ To interpret a `\` as a literal slash before a mustache, simply prepend another 
 \\\\{{ ref }} <!-- \\\value -->
 ```
 
+## Anchors
+
+`<# />` define anchors which are mounting points where instances can be mounted to dynamically during runtime.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAWQE8BhUgWwAcK1yUqBeKgJSTEUASwBuaAHRoAHunIATABTAAOuSpV0bZOkhUABus2aAPAvEA+YMCrNMGJAHM0VHDlMB6C2MvHD6jgAlOrqgsLiaCr+KEgwLij6AOQARqQKdEl4-gqoSPpqGibMGE7JABJoCAikeFQA6qQwCAoAhEn++DFoOqho+kZFZgDEdqQArlzsIlwA7FSefkUG2UUUMyIoSkGFJgueVAwwaH1U5GgA7lQzWORCaP6aZJTczIws7OdcvLTvbBxcbahIb7KgAGRmAGs7KUqKQAGZUVhxTjcFCkOwOZyuBHXF53YgPEFvJj-L4oSQIKFKJIlJxZKi0rEuBm2GBCUQSfQoMAiDBuELkR6ggCSKCS-OYEy4SRmWhE9lawp5fMkqFixDADF5LSUJI+AJQdVssXiaESjKlkxQ0zmSWCnUCQVwQA"></div>
+
+```js
+const MyComponent = Ractive.extend({
+  template: `
+    <div>{{ message }}</div>
+  `
+})
+
+Ractive({
+  target: 'body',
+  data: {
+    msg: 'Hello, World!'
+  },
+  template: `
+    <# mountpoint7 />
+  `,
+  oninit(){
+    // Create new instnace
+    const myComponent = MyComponent()
+
+    // Link msg of parent to message of instnace
+    myComponent.link('msg', 'message', { ractive: this })
+
+    // It's mount'in time!
+    this.attachChild(myComponent, { target: 'mountpoint7'})
+  }
+})
+```
+
 ## {{>content}}
 
 `{{>content}}` renders the inner HTML in the context of the component. Partials, components, and any other valid template items can be used as inner HTML.
