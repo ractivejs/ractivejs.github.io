@@ -3228,13 +3228,11 @@ If an animation is started on a keypath which is *already* being animated, the f
 **Syntax**
 
 - `ractive.animate(keypath, value[, options])`
-- `ractive.animate(map[, options])`
 
 **Arguments**
 
 - `keypath (string)`: The keypath to animate.
 - `value (number|string|Object|Array)`: The value to animate to.
-- `map (Object)`: A key-value hash of keypath and value.
 - `[options] (Object)`:
     - `[duration] (number)`: How many milliseconds the animation should run for. Defaults to `400`.
     - `[easing] (string|Function)`: The name of an easing function or the easing function itself. Defaults to `linear`.
