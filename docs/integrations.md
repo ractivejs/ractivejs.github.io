@@ -104,6 +104,9 @@ By itself, neither Ractive nor tools know what to do with a component files. Loa
 
 - [ractive-component-loader](https://github.com/thomsbg/ractive-component-loader) - Allows you to load component files as constructors via Webpack.
 
+## [Grunt](https://gruntjs.com/)
+
+- [grunt-ractive](https://github.com/ekhaled/grunt-ractive) - Compiles Ractive component files into AMD, CJS or ES modules.
 
 # Tools
 
