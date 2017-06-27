@@ -84,27 +84,27 @@ By itself, neither Ractive nor tools know what to do with a component files. Loa
 
 - [ractive-load](https://github.com/ractivejs/ractive-load) - Uses [XHR](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) to load your component files and creates component constructors at runtime.
 
-## [RequireJS](http://requirejs.org/)
+## RequireJS
 
 - [rvc](https://github.com/ractivejs/rvc) - Converts component files into [AMD modules](http://requirejs.org/docs/api.html).
 - [rv](https://github.com/ractivejs/rv) - Loads and pre-compiles Ractive templates from external files. A sample [Ractive + RequireJS sample application](https://github.com/RactiveJS/requirejs-ractive/tree/master/sample) is also available using rv.
 
-## [Browserify](http://browserify.org/)
+## Browserify
 
 - [ractify](https://github.com/marcello3d/node-ractify) - Converts component files into [CJS modules](https://nodejs.org/api/modules.html).
 - [ractiveify](https://github.com/norcalli/ractiveify) - Similar to ractify, but supports JS/CSS compilation.
 - [ractive-componentify](https://github.com/blackgate/ractive-componentify) - Similar to ractiveify, but supports [source maps](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map) and partial imports.
 - [Ractivate](https://www.npmjs.org/package/ractivate), a transform that will pre-parse templates. Contributed by [jrajav](https://github.com/jrajav). [(GitHub repository)](https://github.com/jrajav/ractivate). A [starter project](https://github.com/alienscience/gulp-ractive-starter) is available with a [gulp.js](http://gulpjs.com/) build system.
 
-## [Broccoli](http://broccolijs.com/)
+## Broccoli
 
 - [broccoli-ractive](https://github.com/ractivejs/broccoli-ractive) - Converts your component files into either AMD, CJS, or ES modules.
 
-## [Webpack](https://webpack.github.io/)
+## Webpack
 
 - [ractive-component-loader](https://github.com/thomsbg/ractive-component-loader) - Allows you to load component files as constructors via Webpack.
 
-## [Grunt](https://gruntjs.com/)
+## Grunt
 
 - [grunt-ractive](https://github.com/ekhaled/grunt-ractive) - Compiles Ractive component files into AMD, CJS or ES modules.
 
