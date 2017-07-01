@@ -113,6 +113,10 @@
       </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#synchronous-rendering">Synchronous rendering</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#scoped-css">Scoped CSS</a>
         </li>
       
@@ -947,6 +951,57 @@ instance.on('ParentComponent.childevent2proxy', function() {
 </code></pre>
 
 <h1 id="rendering"><a class="toclink" href="#rendering">Rendering</a></h1>
+<h2 id="synchronous-rendering"><a class="toclink" href="#synchronous-rendering">Synchronous rendering</a></h2>
+<p>Ractive does not batch renders, asynchronously render, nor render at next tick. The instance's DOM is updated immediately after its dependencies update. This is a trade-off between optimization and predictability. Ractive chose the latter route to make it easier to anticipate the state of the DOM at any given moment.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAS0pSXOLSoF4qAlJYlGgNzQAKYAB1yVKgxgBzNCkhUA5ACNSAEwCeivGIlrUSBaPESqZAK7l5VAAw6T+XZLQBbAA7J0CgAZOJAHjV+AD5gYDNSSxQqHBx-AHogvmCnb3scAEoxMTJ6KiS2WnpGZgA6ADM6NUFFJMUs8hyKDFIENFKEUmkagCE0ctIYNEhtfP5SunI0GAAJABUAWQAZBrosEvaMORqLK1GARhsbBtyWto6umoBBcvQYEbwxvgnyKdnFlezyePiqPoGhgobGIflQbncFIcbLggA"></div>
+
+<pre><code class="js">const instance = Ractive({
+  target: 'body',
+  data: {
+    count: 0,
+  },
+  template: `
+    &lt;div&gt;{{ count }}&lt;/div&gt;
+  `,
+})
+
+const div = instance.find('div')
+
+console.log('Before:', div.innerHTML)
+instance.set('count', 100)
+console.log('After:', div.innerHTML)
+
+// Before: 0
+// After: 100
+</code></pre>
+
+<p>The only time rendering happens asynchronously is during animations and transitions. All mutator methods return a promise which resolves when the animations and/or transitions resulting from these operations complete.</p>
+<div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAS0pSXOLSoF4qAlJYlGgNzQAKYAB1yVKgxgBzNCkhUA5ACNSAEwCeivGIlrUSBaPESqZAK7l5VAAw6T+XZLQBbAA7J0CgAZOJAHjV+AD5gYDNSSxQqHBx-AHogvmCnb3scAEoxMTJ6KiS2WnpGZgA6ADM6NUFFJMUs8hyKDFIENFKEUmkagCE0ctIYNEhtfP5SunI0GAAJABUAWQAZBrosEvbGGhdUIUULK1GARhsbDNKUMDRyQUEMtmCqYwlclraOrpqOTFaBNRG8GM+BNyFNZosVmJMk1KK12p1uooAILldAwAFAkFg+bLBpieLxKh9AZDBQ2fGElFoskUimcH4IP4KE42XBAA"></div>
+
+<pre><code class="js">const instance = Ractive({
+  target: 'body',
+  data: {
+    count: 0,
+  },
+  template: `
+    &lt;div&gt;{{ count }}&lt;/div&gt;
+  `,
+})
+
+const div = instance.find('div')
+
+console.log('Before:', div.innerHTML)
+instance.animate('count', 100).then(() =&gt; {
+  console.log('Resolved:', div.innerHTML)
+})
+console.log('After:', div.innerHTML)
+
+// Before: 0
+// After: 0
+//
+// Resolved: 100
+</code></pre>
+
 <h2 id="scoped-css"><a class="toclink" href="#scoped-css">Scoped CSS</a></h2>
 <p>CSS provided via the <code>css</code> initialization option is scoped to the component.</p>
 <pre><code class="js">const Component = Ractive.extend({
@@ -1457,6 +1512,10 @@ const val = expressionFunctionsCache[exp].apply(instance, arg);
       <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#rendering">Rendering</a>
       </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#synchronous-rendering">Synchronous rendering</a>
+        </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#scoped-css">Scoped CSS</a>
