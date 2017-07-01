@@ -997,7 +997,63 @@ instance.on('ParentComponent.childevent2proxy', function() {
 })
 ```
 
-#Rendering
+# Rendering
+
+## Synchronous rendering
+
+Ractive does not batch renders, asynchronously render, nor render at next tick. The instance's DOM is updated immediately after its dependencies update. This is a trade-off between optimization and predictability. Ractive chose the latter route to make it easier to anticipate the state of the DOM at any given moment.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAS0pSXOLSoF4qAlJYlGgNzQAKYAB1yVKgxgBzNCkhUA5ACNSAEwCeivGIlrUSBaPESqZAK7l5VAAw6T+XZLQBbAA7J0CgAZOJAHjV+AD5gYDNSSxQqHBx-AHogvmCnb3scAEoxMTJ6KiS2WnpGZgA6ADM6NUFFJMUs8hyKDFIENFKEUmkagCE0ctIYNEhtfP5SunI0GAAJABUAWQAZBrosEvaMORqLK1GARhsbBtyWto6umoBBcvQYEbwxvgnyKdnFlezyePiqPoGhgobGIflQbncFIcbLggA"></div>
+
+```js
+const instance = Ractive({
+  target: 'body',
+  data: {
+    count: 0,
+  },
+  template: `
+    <div>{{ count }}</div>
+  `,
+})
+
+const div = instance.find('div')
+
+console.log('Before:', div.innerHTML)
+instance.set('count', 100)
+console.log('After:', div.innerHTML)
+
+// Before: 0
+// After: 100
+```
+
+The only time rendering happens asynchronously is during animations and transitions. All mutator methods return a promise which resolves when the animations and/or transitions resulting from these operations complete.
+
+<div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAS0pSXOLSoF4qAlJYlGgNzQAKYAB1yVKgxgBzNCkhUA5ACNSAEwCeivGIlrUSBaPESqZAK7l5VAAw6T+XZLQBbAA7J0CgAZOJAHjV+AD5gYDNSSxQqHBx-AHogvmCnb3scAEoxMTJ6KiS2WnpGZgA6ADM6NUFFJMUs8hyKDFIENFKEUmkagCE0ctIYNEhtfP5SunI0GAAJABUAWQAZBrosEvbGGhdUIUULK1GARhsbDNKUMDRyQUEMtmCqYwlclraOrpqOTFaBNRG8GM+BNyFNZosVmJMk1KK12p1uooAILldAwAFAkFg+bLBpieLxKh9AZDBQ2fGElFoskUimcH4IP4KE42XBAA"></div>
+
+```js
+const instance = Ractive({
+  target: 'body',
+  data: {
+    count: 0,
+  },
+  template: `
+    <div>{{ count }}</div>
+  `,
+})
+
+const div = instance.find('div')
+
+console.log('Before:', div.innerHTML)
+instance.animate('count', 100).then(() => {
+  console.log('Resolved:', div.innerHTML)
+})
+console.log('After:', div.innerHTML)
+
+// Before: 0
+// After: 0
+//
+// Resolved: 100
+```
 
 ## Scoped CSS
 
