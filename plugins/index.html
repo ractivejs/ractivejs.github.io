@@ -505,7 +505,7 @@ const AnotherComponent = Ractive.extend({
 
 <p>Decorators are simply functions that are called upon to setup the decorator once Ractive detects its use. It takes a <code>node</code> argument and returns an object with a <code>teardown</code> and <code>update</code> property.</p>
 <p><code>node</code> is the element to which the decorator is applied to.</p>
-<p><code>args</code> are optional arguments provided by the decorator directive.</p>
+<p><code>[args]</code> are optional arguments provided by the decorator directive.</p>
 <p><code>teardown</code> is a function that gets called when the decorator is torn down.</p>
 <p><code>update</code> is an optional function that gets called when the arguments update.</p>
 <p>Any updates to the arguments will call the decorator's <code>teardown</code> and run the decorator function again, essentially setting up the decorator again. If an <code>update</code> function is provided on the return object, that will be called instead of the <code>teardown</code> and setup function.</p>
@@ -528,7 +528,7 @@ const AnotherComponent = Ractive.extend({
 </code></pre>
 
 <h2 id="using_2"><a class="toclink" href="#using_2">Using</a></h2>
-<p>You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.</p>
+<p>One or more decorators can be added to an element via the <code>as-*</code> directive. Arguments are passed to the decorator function by supplying comma-separated expressions as values. These expressions will become the second argument and onwards of the transition function.</p>
 <pre><code class="html">&lt;!-- without arguments --&gt;
 &lt;div as-myDecorator&gt;...&lt;/div&gt;
 
@@ -1009,7 +1009,7 @@ ractive.set('toggle', false);
 <h1 id="transitions"><a class="toclink" href="#transitions">Transitions</a></h1>
 <p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
 <h2 id="writing_7"><a class="toclink" href="#writing_7">Writing</a></h2>
-<pre><code class="js">const myTransition = function ( t, params ) {
+<pre><code class="js">const myTransition = function ( t[, ...args]] ) {
   // Manipulate the DOM.
   // Call t.complete() when completed.
 };
@@ -1017,7 +1017,7 @@ ractive.set('toggle', false);
 
 <p>Transitions are simply functions that get called to animate a specified element.</p>
 <p><code>t</code> is a transition helper object that aids in the implementation of the transition.</p>
-<p><code>params</code> is the parameters passed in via the transition directive.</p>
+<p><code>[args]</code> is the arguments passed in via the transition directive.</p>
 <p>Transitions are expected to be asynchronous. In order to signal Ractive that the transition has completed, the transition must call the <code>t.complete()</code>.</p>
 <p>Note that transitions control the element's arrival and departure to the page. That means upon completion, any styling done to the element will be removed automatically.</p>
 <h2 id="registering_7"><a class="toclink" href="#registering_7">Registering</a></h2>
@@ -1039,16 +1039,14 @@ ractive.set('toggle', false);
 </code></pre>
 
 <h2 id="using_7"><a class="toclink" href="#using_7">Using</a></h2>
-<p>Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix <code>-in</code>, outro-only (upon removal) using the suffix <code>-out</code>, or both using the suffix <code>-in-out</code>.</p>
+<p>Transitions are added to an element via the <code>*-in</code>, <code>*-out</code> or <code>*-in-out</code> directives. The transition may be applied on element render (<code>-in</code>), on element removal (<code>-out</code>), or both (<code>-in-out</code>).</p>
 <pre><code class="html">&lt;div myTransition-in&gt;Intro-only&lt;/div&gt;
 &lt;div myTransition-out&gt;Outro-only&lt;/div&gt;
 &lt;div myTransition-in-out&gt;Intro and outro&lt;/div&gt;
 </code></pre>
 
-<p>To pass arguments to the transition, simply provide an expression as the directive's value. This will be passed as the second argument of the transition function.</p>
-<pre><code class="html">&lt;div myTransition-in=&quot;{ /*params */ }&quot;&gt;Intro-only&lt;/div&gt;
-&lt;div myTransition-out=&quot;{ /*params */ }&quot;&gt;Outro-only&lt;/div&gt;
-&lt;div myTransition-in-out=&quot;{ /*params */ }&quot;&gt;Intro and outro&lt;/div&gt;
+<p>Arguments are passed to the transition function by supplying comma-separated expressions as values to <code>*-in</code>, <code>*-out</code> or <code>*-in-out</code>. These expressions will become the second argument and onwards of the transition function.</p>
+<pre><code class="html">&lt;div myTransition-in-out=&quot;'Hello, World!', 42&quot;&gt;Hello, World!&lt;/div&gt;
 </code></pre>
 
 <h2 id="examples_7"><a class="toclink" href="#examples_7">Examples</a></h2>

@@ -1725,7 +1725,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
 </code></pre>
 
 <h2 id="as-42"><a class="toclink" href="#as-42">as-*</a></h2>
-<p><code>as-*</code> directives augment the element with decorators. It accepts an optional, comma-separated list of expressions which are passed to the decorator function as arguments.</p>
+<p><code>as-*</code> directives augment the element with decorators. It accepts optional, comma-separated expressions as arguments to the decorator function.</p>
 <pre><code class="html">&lt;div as-modal&gt;Div appearing as modal&lt;/div&gt;
 &lt;div as-modal=&quot;true, true, true, false&quot;&gt;Div appearing as modal&lt;/div&gt;
 </code></pre>
@@ -1772,7 +1772,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
 </code></pre>
 
 <h2 id="42-in-42-out-42-in-out"><a class="toclink" href="#42-in-42-out-42-in-out">*-in, *-out, *-in-out</a></h2>
-<p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> directives apply transitions to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three directives accept an optional, comma-separated list of expressions which are passed to the transition function as arguments.</p>
+<p><code>*-in</code>, <code>*-out</code>, and <code>*-in-out</code> directives apply transitions to the element. <code>*-in</code> specifies intro-only, <code>*-out</code> specifies outro-only, and <code>*-in-out</code> for both intro and outro. All three directives accept optional, comma-separated expressions as arguments to the transition function.</p>
 <pre><code class="html">&lt;div fade-in&gt;Fades on render&lt;/div&gt;
 &lt;div fade-out&gt;Fades before removal&lt;/div&gt;
 &lt;div fade-in-out&gt;Fades on render and before removal&lt;/div&gt;
