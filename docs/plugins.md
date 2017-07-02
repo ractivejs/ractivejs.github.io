@@ -356,7 +356,7 @@ Decorators are simply functions that are called upon to setup the decorator once
 
 `node` is the element to which the decorator is applied to.
 
-`args` are optional arguments provided by the decorator directive.
+`[args]` are optional arguments provided by the decorator directive.
 
 `teardown` is a function that gets called when the decorator is torn down.
 
@@ -392,7 +392,7 @@ const ractive = new Ractive({
 
 ## Using
 
-You can invoke one or more decorators on your elements by using a decorator directive. Arguments are optional. Argument-less decorators can simply use the directive without value. Decorators with arguments take a comma-separated set of expressions that resolve to the element's context.
+One or more decorators can be added to an element via the `as-*` directive. Arguments are passed to the decorator function by supplying comma-separated expressions as values. These expressions will become the second argument and onwards of the transition function.
 
 ```html
 <!-- without arguments -->
@@ -995,7 +995,7 @@ Transitions allow you to control how enter the DOM and how they leave the DOM. T
 ## Writing
 
 ```js
-const myTransition = function ( t, params ) {
+const myTransition = function ( t[, ...args]] ) {
   // Manipulate the DOM.
   // Call t.complete() when completed.
 };
@@ -1005,7 +1005,7 @@ Transitions are simply functions that get called to animate a specified element.
 
 `t` is a transition helper object that aids in the implementation of the transition.
 
-`params` is the parameters passed in via the transition directive.
+`[args]` is the arguments passed in via the transition directive.
 
 Transitions are expected to be asynchronous. In order to signal Ractive that the transition has completed, the transition must call the `t.complete()`.
 
@@ -1039,7 +1039,7 @@ const ractive = new Ractive({
 
 ## Using
 
-Transitions are added to an element via a transition directive. The directive starts with the transition name followed by one or more suffixes. The transition may be intro-only (upon rendering) using the suffix `-in`, outro-only (upon removal) using the suffix `-out`, or both using the suffix `-in-out`.
+Transitions are added to an element via the `*-in`, `*-out` or `*-in-out` directives. The transition may be applied on element render (`-in`), on element removal (`-out`), or both (`-in-out`).
 
 ```html
 <div myTransition-in>Intro-only</div>
@@ -1047,12 +1047,10 @@ Transitions are added to an element via a transition directive. The directive st
 <div myTransition-in-out>Intro and outro</div>
 ```
 
-To pass arguments to the transition, simply provide an expression as the directive's value. This will be passed as the second argument of the transition function.
+Arguments are passed to the transition function by supplying comma-separated expressions as values to `*-in`, `*-out` or `*-in-out`. These expressions will become the second argument and onwards of the transition function.
 
 ```html
-<div myTransition-in="{ /*params */ }">Intro-only</div>
-<div myTransition-out="{ /*params */ }">Outro-only</div>
-<div myTransition-in-out="{ /*params */ }">Intro and outro</div>
+<div myTransition-in-out="'Hello, World!', 42">Hello, World!</div>
 ```
 
 ## Examples

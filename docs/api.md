@@ -808,7 +808,7 @@ Lazy: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
 
 ## as-\*
 
-`as-*` directives augment the element with decorators. It accepts an optional, comma-separated list of expressions which are passed to the decorator function as arguments.
+`as-*` directives augment the element with decorators. It accepts optional, comma-separated expressions as arguments to the decorator function.
 
 ```html
 <div as-modal>Div appearing as modal</div>
@@ -866,7 +866,7 @@ Ractive({
 
 ## \*-in, \*-out, \*-in-out
 
-`*-in`, `*-out`, and `*-in-out` directives apply transitions to the element. `*-in` specifies intro-only, `*-out` specifies outro-only, and `*-in-out` for both intro and outro. All three directives accept an optional, comma-separated list of expressions which are passed to the transition function as arguments.
+`*-in`, `*-out`, and `*-in-out` directives apply transitions to the element. `*-in` specifies intro-only, `*-out` specifies outro-only, and `*-in-out` for both intro and outro. All three directives accept optional, comma-separated expressions as arguments to the transition function.
 
 ```html
 <div fade-in>Fades on render</div>
