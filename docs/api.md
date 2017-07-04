@@ -4182,11 +4182,12 @@ If the given keypath does not resolve to an array, an error will be thrown.
 
 **Syntax**
 
-- `ractive.sort(keypath)`
+- `ractive.sort(keypath[, compareFunction])`
 
 **Arguments**
 
 - `keypath (string)`: The keypath of the array to sort, e.g. `list` or `order.items`.
+- `compareFunction (Function)`: A function that defines the sort order.
 
 **Returns**
 
