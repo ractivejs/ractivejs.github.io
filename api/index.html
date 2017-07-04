@@ -4422,11 +4422,12 @@ ractive.resetPartial('foo', 'bar');
 <p>If the given keypath does not resolve to an array, an error will be thrown.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>ractive.sort(keypath)</code></li>
+<li><code>ractive.sort(keypath[, compareFunction])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>keypath (string)</code>: The keypath of the array to sort, e.g. <code>list</code> or <code>order.items</code>.</li>
+<li><code>compareFunction (Function)</code>: A function that defines the sort order.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
