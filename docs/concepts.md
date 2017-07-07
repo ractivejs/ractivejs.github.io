@@ -1166,9 +1166,26 @@ Currently, there are a few limitations to this feature:
 
 # Security
 
+## Use of the Function constructor
+
+Ractive uses the `Function` constructor only to convert expressions (i.e. mustache expressions, expression-style computed properties) into value-generating functions. As of 0.9, `allowExpressions` initialization option is available to toggle the expression-to-function feature. Setting it to `false` will tell Ractive neither to parse nor process expressions.
+
 ## Content Security Policy
 
-To use Ractive with [Content Security Policy](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), you'll currently need `'unsafe-eval'` specified for `scriptSrc` in your CSP header. This may change in future - see https://github.com/ractivejs/ractive/issues/1897 .
+When using the `default-src 'self'` directive, out of the box Ractive will violate `script-src` due to the use of the `Function` constructor and `style-src` due to scoped CSS applied via a `<style>` element.
+
+In order to avoid violating `script-src`, either:
+
+- Pre-parse templates. As of 0.8, the parser will generate functions for expressions and store them on the parsed template object. The result will no longer be JSON-compatible and should be treated as a script. The result can be inlined into code as part of a built step or executed as a regular script to obtain the value.
+
+- Prevent Ractive from using `Function`. Setting the `allowExpressions` initialization option to `false` will tell Ractive neither to parse nor process expressions.
+
+- Add `script-src 'unsafe-eval'` to your CSP directives.
+
+
+In order to avoid violating `style-src`, either:
+
+- Add `style-src 'unsafe-inline'` to your CSP directives.
 
 # Templates
 
