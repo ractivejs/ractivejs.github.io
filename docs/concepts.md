@@ -1166,9 +1166,23 @@ Currently, there are a few limitations to this feature:
 
 # Security
 
+## Use of the Function constructor
+
+Ractive uses the `Function` constructor only to convert expressions (i.e. mustache expressions, expression-style computed properties) into value-generating functions. As of 0.9, `allowExpressions` initialization option is available to toggle the expression-to-function feature. Setting it to `false` will tell Ractive neither to parse nor process expressions.
+
 ## Content Security Policy
 
-To use Ractive with [Content Security Policy](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), you'll currently need `'unsafe-eval'` specified for `scriptSrc` in your CSP header. This may change in future - see https://github.com/ractivejs/ractive/issues/1897 .
+Out of the box, Ractive will violate certain CSP directives due to the use of the `Function` constructor for evaluating expressions, and dynamically generated `<style>` elements for Ractive-managed CSS.
+
+In order to avoid violating `script-src`, either:
+
+- Pre-parse templates. As of 0.8, the parser will store expressions as functions on the AST. To preserve the functions when serializing the AST, use libraries like [node-tosource](https://github.com/marcello3d/node-tosource) or [serialize-javascript](https://github.com/yahoo/serialize-javascript) instead of `JSON.stringify()`.
+- Set `allowExpressions` initialization option to `false`. This will tell Ractive to avoid evaluating expressions.
+- Add the `script-src 'unsafe-eval'` CSP directive. This will allow the use of the `Function` constructor.
+
+In order to avoid violating `style-src`, either:
+
+- Add `style-src 'unsafe-inline'` to your CSP directives. This will allow the use of dynamically generated `<style>` elements.
 
 # Templates
 
