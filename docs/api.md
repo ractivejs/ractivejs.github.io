@@ -576,6 +576,40 @@ const ractive = new Ractive({
 });
 ```
 
+Since the yielded content exists entirely in the context of the container (as opposed to the component), there's no way for the yielded content to access data in the component that is yielding. To address that, yields may supply aliases that are made available to the yielded content:
+
+```js
+const list = Ractive.extend({
+  template: `
+    <ul>{{#each items}}<li>{{yield with . as item, @index as index}}</li>{{/each}}</ul>
+  `
+});
+
+const ractive = new Ractive({
+  el: 'body',
+  data: {
+    some: {
+      list: [ 1, 2, 3 ]
+    }
+  },
+  select(i) { console.log('you picked', i); },
+  template: `
+    <list items="{{some.list}}">
+      <a href="#" on-click="@.select(item)">Item {{index}}</a>
+    </list>
+  `,
+  components: { list }
+});
+```
+
+Without the given alises, iterating a list within the component to yield the content would be useless, because the content would not have access to the current iteration. You could get around that by using a normal partial rather than a yield, but at that point, the click event on the content would result in an error because the `select` method does not exist on the `list` component.
+
+You can also yield with aliases for a specific named partial. For instance to yield a `title` partial making the current `page` number available:
+
+```handlebars
+{{yield title with meta.pageNumber as page}}
+```
+
 # Data binding
 
 ## Text inputs
