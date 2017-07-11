@@ -2104,7 +2104,7 @@ This can also be controlled per transition using the `nested` boolean parameter 
 
 
 
-## noCSSTransform
+## noCssTransform
 
 `(boolean)`
 

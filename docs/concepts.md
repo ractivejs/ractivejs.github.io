@@ -1161,7 +1161,7 @@ const css = app.toCSS()
 Currently, there are a few limitations to this feature:
 
 - `ractive.toHTML()` prints HTML without component IDs while `ractive.toCSS()` prints out selectors with component IDs, which causes the HTML and CSS to not match up.
-    - A workaround is to render the CSS as is by setting `noCSSTransform` to `true` and to use a CSS naming convention (i.e BEM, OOCSS, SMACSS) to match up selectors with their elements.
+    - A workaround is to render the CSS as is by setting `noCssTransform` to `true` and to use a CSS naming convention (i.e BEM, OOCSS, SMACSS) to match up selectors with their elements.
 - `ractive.toHTML()` does not automatically insert the document CSS when rendering a component that represents a full document. This must be done manually.
 
 # Security
