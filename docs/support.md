@@ -2,45 +2,36 @@
 
 ## Getting in touch
 
-There are a lot of places to find help if you get stuck with Ractive:
-
-* [StackOverflow](http://stackoverflow.com/questions/tagged/ractivejs)
-* [Google Groups](http://groups.google.com/forum/#!forum/ractive-js)
+* [Gitter](https://gitter.im/ractivejs/ractive)
 * [GitHub](https://github.com/ractivejs/ractive/issues)
 * [Twitter](http://twitter.com/RactiveJS)
-* [Gitter](https://gitter.im/ractivejs/ractive)
+* [StackOverflow](http://stackoverflow.com/questions/tagged/ractivejs)
+* [Google Groups](http://groups.google.com/forum/#!forum/ractive-js)
 
-## Legacy versions
+## Legacy documentation
 
-Legacy versions are found at [https://ractive.js.org/v0.x](https://ractive.js.org/v0.x).
+Legacy documentation can be found at [https://ractive.js.org/v0.x](https://ractive.js.org/v0.x).
 
-## Legacy browsers
+## Builds
 
-The core Ractive library requires at least the following APIs need to be present:
+Ractive comes in two flavors:
 
-- `Array.isArray`
-- `Array.prototype.every`
-- `Array.prototype.filter`
-- `Array.prototype.forEach`
-- `Array.prototype.indexOf`
-- `Array.prototype.map`
-- `Array.prototype.reduce`
-- `Date.now`
-- `Function.prototype.bind`
-- `Node.prototype.contains`
-- `Object.create`
-- `Object.defineProperty`
-- `Object.freeze`
-- `Object.keys`
+- Regular (`ractive.js`, `ractive.min.js`, `ractive.mjs`) - Ractive with batteries included. Intended for maximum compatibility.
+- Runtime (`runtime.js`, `runtime.min.js`, `runtime.mjs`) - Ractive without the template parser. Intended for workflows that pre-parse templates.
+
+Source maps are included for all variants of Ractive.
+
+## Browser support
+
+Ractive requires browsers to support at least [ES5 APIs](https://kangax.github.io/compat-table). Ractive also comes with the following polyfills:
+
 - `Promise`
+- `Array.prototype.find`
+- `Object.assign`
+- `performance.now`
 - `requestAnimationFrame`
-- `String.prototype.trim`
-- `window.addEventListener`
-- `window.getComputedStyle`
 
-[Most _modern_ browsers already support these APIs](https://kangax.github.io/compat-table). Should you want to serve your app on older browsers, [the Ractive package](https://cdn.jsdelivr.net/npm/ractive/) comes with an optional file called [`polyfills.js`](https://cdn.jsdelivr.net/npm/ractive@0.9.0/polyfills.js) containing these specific polyfills. Simply load it up before Ractive. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library.
-
-In addition, Ractive no longer serves the "legacy build". It is recommended that you integrate `polyfills.js` in your build should you need to support older browsers. However, if you're pulling the legacy build from a CDN, [jsDelivr](https://www.jsdelivr.com) can combine files on the fly. Simply instruct jsDelivr to [combine `polyfills.js` with `ractive.js`](https://cdn.jsdelivr.net/combine/npm/ractive/polyfills.min.js,npm/ractive/ractive.min.js) to get a file similar to the former legacy build.
+Note that these polyfills are applied globally, but only when the native APIs are not present.
 
 ## SVGs
 
@@ -48,13 +39,13 @@ Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the s
 
 > This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information
 
-If your template includes SVG and these browsers throw an error along those lines, [the only winning move is not to play](http://xkcd.com/601/). You will need to provide an alternate fallback when SVG isn't supported. Ractive provides `Ractive.svg` to indicate if the browser handles SVGs properly.
+If the browser logs an error like the one above, [the only winning move is not to play](http://xkcd.com/601/). Ractive provides `Ractive.svg` to indicate if the browser handles SVGs properly. This may be used to supply fallback content in place of the SVG.
 
 ```js
-new Ractive({
+Ractive({
   el: 'container',
   template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent
-});
+})
 ```
 
 # Migrating from previous versions
