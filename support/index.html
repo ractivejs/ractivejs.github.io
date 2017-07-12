@@ -47,11 +47,15 @@
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#legacy-versions">Legacy versions</a>
+          <a class="pure-menu-link" href="#legacy-documentation">Legacy documentation</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#legacy-browsers">Legacy browsers</a>
+          <a class="pure-menu-link" href="#builds">Builds</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#browser-support">Browser support</a>
         </li>
       
         <li class="pure-menu-item">
@@ -94,51 +98,42 @@
         <div class="main__content">
           <h1 id="support"><a class="toclink" href="#support">Support</a></h1>
 <h2 id="getting-in-touch"><a class="toclink" href="#getting-in-touch">Getting in touch</a></h2>
-<p>There are a lot of places to find help if you get stuck with Ractive:</p>
 <ul>
-<li><a href="http://stackoverflow.com/questions/tagged/ractivejs">StackOverflow</a></li>
-<li><a href="http://groups.google.com/forum/#!forum/ractive-js">Google Groups</a></li>
+<li><a href="https://gitter.im/ractivejs/ractive">Gitter</a></li>
 <li><a href="https://github.com/ractivejs/ractive/issues">GitHub</a></li>
 <li><a href="http://twitter.com/RactiveJS">Twitter</a></li>
-<li><a href="https://gitter.im/ractivejs/ractive">Gitter</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/ractivejs">StackOverflow</a></li>
+<li><a href="http://groups.google.com/forum/#!forum/ractive-js">Google Groups</a></li>
 </ul>
-<h2 id="legacy-versions"><a class="toclink" href="#legacy-versions">Legacy versions</a></h2>
-<p>Legacy versions are found at <a href="https://ractive.js.org/v0.x">https://ractive.js.org/v0.x</a>.</p>
-<h2 id="legacy-browsers"><a class="toclink" href="#legacy-browsers">Legacy browsers</a></h2>
-<p>The core Ractive library requires at least the following APIs need to be present:</p>
+<h2 id="legacy-documentation"><a class="toclink" href="#legacy-documentation">Legacy documentation</a></h2>
+<p>Legacy documentation can be found at <a href="https://ractive.js.org/v0.x">https://ractive.js.org/v0.x</a>.</p>
+<h2 id="builds"><a class="toclink" href="#builds">Builds</a></h2>
+<p>Ractive comes in two flavors:</p>
 <ul>
-<li><code>Array.isArray</code></li>
-<li><code>Array.prototype.every</code></li>
-<li><code>Array.prototype.filter</code></li>
-<li><code>Array.prototype.forEach</code></li>
-<li><code>Array.prototype.indexOf</code></li>
-<li><code>Array.prototype.map</code></li>
-<li><code>Array.prototype.reduce</code></li>
-<li><code>Date.now</code></li>
-<li><code>Function.prototype.bind</code></li>
-<li><code>Node.prototype.contains</code></li>
-<li><code>Object.create</code></li>
-<li><code>Object.defineProperty</code></li>
-<li><code>Object.freeze</code></li>
-<li><code>Object.keys</code></li>
-<li><code>Promise</code></li>
-<li><code>requestAnimationFrame</code></li>
-<li><code>String.prototype.trim</code></li>
-<li><code>window.addEventListener</code></li>
-<li><code>window.getComputedStyle</code></li>
+<li>Regular (<code>ractive.js</code>, <code>ractive.min.js</code>, <code>ractive.mjs</code>) - Ractive with batteries included. Intended for maximum compatibility.</li>
+<li>Runtime (<code>runtime.js</code>, <code>runtime.min.js</code>, <code>runtime.mjs</code>) - Ractive without the template parser. Intended for workflows that pre-parse templates.</li>
 </ul>
-<p><a href="https://kangax.github.io/compat-table">Most <em>modern</em> browsers already support these APIs</a>. Should you want to serve your app on older browsers, <a href="https://cdn.jsdelivr.net/npm/ractive/">the Ractive package</a> comes with an optional file called <a href="https://cdn.jsdelivr.net/npm/ractive@0.9.0/polyfills.js"><code>polyfills.js</code></a> containing these specific polyfills. Simply load it up before Ractive. That way, you can still enjoy the full Ractive experience without lugging in a huge polyfill library.</p>
-<p>In addition, Ractive no longer serves the "legacy build". It is recommended that you integrate <code>polyfills.js</code> in your build should you need to support older browsers. However, if you're pulling the legacy build from a CDN, <a href="https://www.jsdelivr.com">jsDelivr</a> can combine files on the fly. Simply instruct jsDelivr to <a href="https://cdn.jsdelivr.net/combine/npm/ractive/polyfills.min.js,npm/ractive/ractive.min.js">combine <code>polyfills.js</code> with <code>ractive.js</code></a> to get a file similar to the former legacy build.</p>
+<p>Source maps are included for all variants of Ractive.</p>
+<h2 id="browser-support"><a class="toclink" href="#browser-support">Browser support</a></h2>
+<p>Ractive requires browsers to support at least <a href="https://kangax.github.io/compat-table">ES5 APIs</a>. Ractive also comes with the following polyfills:</p>
+<ul>
+<li><code>Promise</code></li>
+<li><code>Array.prototype.find</code></li>
+<li><code>Object.assign</code></li>
+<li><code>performance.now</code></li>
+<li><code>requestAnimationFrame</code></li>
+</ul>
+<p>Note that these polyfills are applied globally, but only when the native APIs are not present.</p>
 <h2 id="svgs"><a class="toclink" href="#svgs">SVGs</a></h2>
 <p>Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) <em>do</em> care.</p>
 <blockquote>
 <p>This browser does not support namespaces other than http://www.w3.org/1999/xhtml. The most likely cause of this error is that you're trying to render SVG in an older browser. See https://github.com/RactiveJS/Ractive/wiki/SVG-and-older-browsers for more information</p>
 </blockquote>
-<p>If your template includes SVG and these browsers throw an error along those lines, <a href="http://xkcd.com/601/">the only winning move is not to play</a>. You will need to provide an alternate fallback when SVG isn't supported. Ractive provides <code>Ractive.svg</code> to indicate if the browser handles SVGs properly.</p>
-<pre><code class="js">new Ractive({
+<p>If the browser logs an error like the one above, <a href="http://xkcd.com/601/">the only winning move is not to play</a>. Ractive provides <code>Ractive.svg</code> to indicate if the browser handles SVGs properly. This may be used to supply fallback content in place of the SVG.</p>
+<pre><code class="js">Ractive({
   el: 'container',
   template: Ractive.svg ? awesomeVectorGraphicsContent : highResolutionImageContent
-});
+})
 </code></pre>
 
 <h1 id="migrating-from-previous-versions"><a class="toclink" href="#migrating-from-previous-versions">Migrating from previous versions</a></h1>
@@ -441,11 +436,15 @@
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#legacy-versions">Legacy versions</a>
+          <a class="pure-menu-link" href="#legacy-documentation">Legacy documentation</a>
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#legacy-browsers">Legacy browsers</a>
+          <a class="pure-menu-link" href="#builds">Builds</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#browser-support">Browser support</a>
         </li>
       
         <li class="pure-menu-item">
