@@ -14,24 +14,20 @@ Legacy documentation can be found at [https://ractive.js.org/v0.x](https://racti
 
 ## Builds
 
-Ractive comes in two flavors:
-
 - Regular (`ractive.js`, `ractive.min.js`, `ractive.mjs`) - Ractive with batteries included. Intended for maximum compatibility.
-- Runtime (`runtime.js`, `runtime.min.js`, `runtime.mjs`) - Ractive without the template parser. Intended for workflows that pre-parse templates.
+- Runtime (`runtime.js`, `runtime.min.js`, `runtime.mjs`) - Ractive without the template parser. Intended for workflows that pre-parse templates which do not require the parser at runtime.
 
 Source maps are included for all variants of Ractive.
 
 ## Browser support
 
-Ractive requires browsers to support at least [ES5 APIs](https://kangax.github.io/compat-table). Ractive also comes with the following polyfills:
+[ES5 support](https://kangax.github.io/compat-table/es5/) is the minimum requirement. Ractive also comes with the following polyfills:
 
 - `Promise`
 - `Array.prototype.find`
 - `Object.assign`
 - `performance.now`
 - `requestAnimationFrame`
-
-Note that these polyfills are applied globally, but only when the native APIs are not present.
 
 ## SVGs
 
