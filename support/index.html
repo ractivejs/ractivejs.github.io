@@ -108,14 +108,13 @@
 <h2 id="legacy-documentation"><a class="toclink" href="#legacy-documentation">Legacy documentation</a></h2>
 <p>Legacy documentation can be found at <a href="https://ractive.js.org/v0.x">https://ractive.js.org/v0.x</a>.</p>
 <h2 id="builds"><a class="toclink" href="#builds">Builds</a></h2>
-<p>Ractive comes in two flavors:</p>
 <ul>
 <li>Regular (<code>ractive.js</code>, <code>ractive.min.js</code>, <code>ractive.mjs</code>) - Ractive with batteries included. Intended for maximum compatibility.</li>
-<li>Runtime (<code>runtime.js</code>, <code>runtime.min.js</code>, <code>runtime.mjs</code>) - Ractive without the template parser. Intended for workflows that pre-parse templates.</li>
+<li>Runtime (<code>runtime.js</code>, <code>runtime.min.js</code>, <code>runtime.mjs</code>) - Ractive without the template parser. Intended for workflows that pre-parse templates which do not require the parser at runtime.</li>
 </ul>
 <p>Source maps are included for all variants of Ractive.</p>
 <h2 id="browser-support"><a class="toclink" href="#browser-support">Browser support</a></h2>
-<p>Ractive requires browsers to support at least <a href="https://kangax.github.io/compat-table">ES5 APIs</a>. Ractive also comes with the following polyfills:</p>
+<p><a href="https://kangax.github.io/compat-table/es5/">ES5 support</a> is the minimum requirement. Ractive also comes with the following polyfills:</p>
 <ul>
 <li><code>Promise</code></li>
 <li><code>Array.prototype.find</code></li>
@@ -123,7 +122,6 @@
 <li><code>performance.now</code></li>
 <li><code>requestAnimationFrame</code></li>
 </ul>
-<p>Note that these polyfills are applied globally, but only when the native APIs are not present.</p>
 <h2 id="svgs"><a class="toclink" href="#svgs">SVGs</a></h2>
 <p>Ractive doesn't mind whether you're rendering HTML or SVG - it treats both the same way. Unfortunately, some browsers (notably IE8 and below, and Android 2.3 and below) <em>do</em> care.</p>
 <blockquote>
