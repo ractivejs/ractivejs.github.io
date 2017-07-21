@@ -68,6 +68,10 @@ __Note__: this also means that directive values aren't processed as HTML before 
 
 The template format produced by `Ractive.parse` has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.9.
 
+### Event delegation
+
+Ractive will now automatically set up event delegation for elements that contain iterative sections. This installs a single DOM listener on the host element for each event type within the iterative section, and when an event fires from one of the iterative elements with a listener, the parent delegation target handles triggering listeners on the correct elements. This prevents having to set up large numbers of event listeners in iterative sections, but it can also surface inconsistencies in browser event implementations. If you need to disable event delegation for a special case, you can add a `no-delegation` attribute to the element containing the iterative section, pass `delegate: false` to your component or instance, or set `Ractive.defaults.delegate` to `false`.
+
 ### Partial context
 
 Any context provided to a partial `{{>my-partial context}}` is no longer wrapped around the partial but is instead wrapped around the _content_ of the partial. It's a subtle difference that only shows up when the partial name is an expression e.g. `{{>.type ~/external.item}}`. Before this break, the `.type` would resolve to `~/external.item.type`, and now it will resolve to `.type` on the context in which the partial appears.
