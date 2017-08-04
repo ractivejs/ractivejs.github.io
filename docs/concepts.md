@@ -699,7 +699,7 @@ Component events are events that are published by [components](plugins.md#compon
 Events published from the direct use of the event APIs are also handled by directly using the event APIs (i.e. `ractive.on`, `ractive.once`). Most of the other handling methods use the event APIs to handle events at some point in their operation.
 
 ```js
-instance.on('someevent', (event, message) => {
+instance.on('someevent', (ctx, message) => {
   console.log(message)
 })
 ```
@@ -728,7 +728,7 @@ Ractive({
     <button on-click="buttonclicked">Click Me!</button>
   `,
   oninit(){
-    this.on('buttonclicked', event => {
+    this.on('buttonclicked', ctx => {
       console.log('button clicked')
     })
   }
@@ -747,7 +747,7 @@ Ractive({
     <button on-click="['buttonclicked', 'foo', 'bar']">Click Me!</button>
   `,
   oninit(){
-    this.on('buttonclicked', (event, foo, bar) => {
+    this.on('buttonclicked', (ctx, foo, bar) => {
       console.log('button clicked passing', foo, bar)
     })
   }
@@ -769,7 +769,7 @@ Ractive({
     console.log(`${message}`)
   },
   oninit(){
-    this.on('manualproxy', (event, message) => {
+    this.on('manualproxy', (ctx, message) => {
       console.log(`${message}`)
     })
   }
@@ -778,7 +778,7 @@ Ractive({
 
 ## Event context
 
-Event handlers, regardless of event source, receive an `event` object as first argument. The `event` object is a special instance of a context object augmented with additional event-related properties where applicable.
+Event handlers, regardless of event source, receive an `context` object as first argument. The `context` object is a special instance of a context object augmented with additional event-related properties where applicable.
 
 - `name` - The name of the published event.
 - `node` - A reference to the DOM node publishing the event. Only available on DOM events.
@@ -792,7 +792,7 @@ Ractive({
     <button on-click="buttonclicked">Click Me!</button>
   `,
   oninit(){
-    this.on('buttonclicked', event => {
+    this.on('buttonclicked', ctx => {
       console.log(event.node.type) // submit
     })
   }
