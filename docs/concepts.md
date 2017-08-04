@@ -699,7 +699,7 @@ Component events are events that are published by [components](plugins.md#compon
 Events published from the direct use of the event APIs are also handled by directly using the event APIs (i.e. `ractive.on`, `ractive.once`). Most of the other handling methods use the event APIs to handle events at some point in their operation.
 
 ```js
-instance.on('someevent', (ctx, message) => {
+instance.on('someevent', (context, message) => {
   console.log(message)
 })
 ```
@@ -728,7 +728,7 @@ Ractive({
     <button on-click="buttonclicked">Click Me!</button>
   `,
   oninit(){
-    this.on('buttonclicked', ctx => {
+    this.on('buttonclicked', context => {
       console.log('button clicked')
     })
   }
@@ -747,7 +747,7 @@ Ractive({
     <button on-click="['buttonclicked', 'foo', 'bar']">Click Me!</button>
   `,
   oninit(){
-    this.on('buttonclicked', (ctx, foo, bar) => {
+    this.on('buttonclicked', (context, foo, bar) => {
       console.log('button clicked passing', foo, bar)
     })
   }
@@ -769,7 +769,7 @@ Ractive({
     console.log(`${message}`)
   },
   oninit(){
-    this.on('manualproxy', (ctx, message) => {
+    this.on('manualproxy', (context, message) => {
       console.log(`${message}`)
     })
   }
@@ -792,7 +792,7 @@ Ractive({
     <button on-click="buttonclicked">Click Me!</button>
   `,
   oninit(){
-    this.on('buttonclicked', ctx => {
+    this.on('buttonclicked', context => {
       console.log(event.node.type) // submit
     })
   }
@@ -816,10 +816,10 @@ Ractive({
     <button on-click="qux.bam">Click Me!</button>
   `,
   oninit(){
-    this.on('*.bar', event => {
+    this.on('*.bar', context => {
       console.log('A bar event was published')
     })
-    this.on('qux.*', event => {
+    this.on('qux.*', context => {
       console.log('A qux event was published')
     })
   }
@@ -842,7 +842,7 @@ Ractive({
     </div>
   `,
   oninit(){
-    this.on('buttonclicked', event => {
+    this.on('buttonclicked', context => {
       console.log('button clicked')
     })
   }
