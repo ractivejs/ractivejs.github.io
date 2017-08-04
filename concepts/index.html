@@ -685,7 +685,7 @@ const instance = Ractive({
 <h2 id="handling"><a class="toclink" href="#handling">Handling</a></h2>
 <h3 id="event-api_1"><a class="toclink" href="#event-api_1">Event API</a></h3>
 <p>Events published from the direct use of the event APIs are also handled by directly using the event APIs (i.e. <code>ractive.on</code>, <code>ractive.once</code>). Most of the other handling methods use the event APIs to handle events at some point in their operation.</p>
-<pre><code class="js">instance.on('someevent', (event, message) =&gt; {
+<pre><code class="js">instance.on('someevent', (context, message) =&gt; {
   console.log(message)
 })
 </code></pre>
@@ -707,7 +707,7 @@ const instance = Ractive({
     &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
   `,
   oninit(){
-    this.on('buttonclicked', event =&gt; {
+    this.on('buttonclicked', context =&gt; {
       console.log('button clicked')
     })
   }
@@ -722,7 +722,7 @@ const instance = Ractive({
     &lt;button on-click=&quot;['buttonclicked', 'foo', 'bar']&quot;&gt;Click Me!&lt;/button&gt;
   `,
   oninit(){
-    this.on('buttonclicked', (event, foo, bar) =&gt; {
+    this.on('buttonclicked', (context, foo, bar) =&gt; {
       console.log('button clicked passing', foo, bar)
     })
   }
@@ -742,7 +742,7 @@ const instance = Ractive({
     console.log(`${message}`)
   },
   oninit(){
-    this.on('manualproxy', (event, message) =&gt; {
+    this.on('manualproxy', (context, message) =&gt; {
       console.log(`${message}`)
     })
   }
@@ -750,7 +750,7 @@ const instance = Ractive({
 </code></pre>
 
 <h2 id="event-context"><a class="toclink" href="#event-context">Event context</a></h2>
-<p>Event handlers, regardless of event source, receive an <code>event</code> object as first argument. The <code>event</code> object is a special instance of a context object augmented with additional event-related properties where applicable.</p>
+<p>Event handlers, regardless of event source, receive an <code>context</code> object as first argument. The <code>context</code> object is a special instance of a context object augmented with additional event-related properties where applicable.</p>
 <ul>
 <li><code>name</code> - The name of the published event.</li>
 <li><code>node</code> - A reference to the DOM node publishing the event. Only available on DOM events.</li>
@@ -763,7 +763,7 @@ const instance = Ractive({
     &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
   `,
   oninit(){
-    this.on('buttonclicked', event =&gt; {
+    this.on('buttonclicked', context =&gt; {
       console.log(event.node.type) // submit
     })
   }
@@ -784,10 +784,10 @@ const instance = Ractive({
     &lt;button on-click=&quot;qux.bam&quot;&gt;Click Me!&lt;/button&gt;
   `,
   oninit(){
-    this.on('*.bar', event =&gt; {
+    this.on('*.bar', context =&gt; {
       console.log('A bar event was published')
     })
-    this.on('qux.*', event =&gt; {
+    this.on('qux.*', context =&gt; {
       console.log('A qux event was published')
     })
   }
@@ -805,7 +805,7 @@ const instance = Ractive({
     &lt;/div&gt;
   `,
   oninit(){
-    this.on('buttonclicked', event =&gt; {
+    this.on('buttonclicked', context =&gt; {
       console.log('button clicked')
     })
   }
