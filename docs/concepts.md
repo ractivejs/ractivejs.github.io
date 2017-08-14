@@ -727,10 +727,10 @@ Ractive({
   template: `
     <button on-click="buttonclicked">Click Me!</button>
   `,
-  oninit(){
-    this.on('buttonclicked', context => {
+  on: {
+    buttonclicked: function(context){
       console.log('button clicked')
-    })
+    }
   }
 })
 ```
@@ -746,10 +746,10 @@ Ractive({
   template: `
     <button on-click="['buttonclicked', 'foo', 'bar']">Click Me!</button>
   `,
-  oninit(){
-    this.on('buttonclicked', (context, foo, bar) => {
+  on: {
+    buttonclicked: function(context, foo, bar){
       console.log('button clicked passing', foo, bar)
-    })
+    }
   }
 })
 ```
@@ -768,10 +768,10 @@ Ractive({
   greetz(message){
     console.log(`${message}`)
   },
-  oninit(){
-    this.on('manualproxy', (context, message) => {
+  on: {
+    manualproxy: function(context, message){
       console.log(`${message}`)
-    })
+    }
   }
 })
 ```
@@ -791,10 +791,10 @@ Ractive({
   template: `
     <button on-click="buttonclicked">Click Me!</button>
   `,
-  oninit(){
-    this.on('buttonclicked', context => {
+  on: {
+    buttonclicked: function(context){
       console.log(event.node.type) // submit
-    })
+    }
   }
 })
 ```
@@ -815,13 +815,13 @@ Ractive({
     <button on-click="qux.baz">Click Me!</button>
     <button on-click="qux.bam">Click Me!</button>
   `,
-  oninit(){
-    this.on('*.bar', context => {
+  on: {
+    '*.bar': function(context){
       console.log('A bar event was published')
-    })
-    this.on('qux.*', context => {
+    },
+    'qux.*': function(context){
       console.log('A qux event was published')
-    })
+    }
   }
 })
 ```
@@ -841,10 +841,10 @@ Ractive({
       <button type="button">Click Me!</button>
     </div>
   `,
-  oninit(){
-    this.on('buttonclicked', context => {
+  on: {
+    buttonclicked: function(context){
       console.log('button clicked')
-    })
+    }
   }
 })
 ```
@@ -887,14 +887,14 @@ Ractive({
       <button on-click="descendantbuttonclick">Click Me!</button>
     </div>
   `,
-  oninit(){
-    this.on('ancestorbuttonclick', event => {
+  on: {
+    ancestorbuttonclick: function(context){
       console.log('This will not run')
-    })
-    this.on('descendantbuttonclick', event => {
+    },
+    descendantbuttonclick: function(context){
       console.log('This will run')
       return false;
-    })
+    }
   }
 })
 ```
@@ -912,10 +912,10 @@ const ChildComponent = Ractive.extend({
 const ParentComponent = Ractive.extend({
   components: { ChildComponent },
   template: '<ChildComponent />',
-  oninit: function(){
-    this.on('ChildComponent.childevent', function(){
+  on: {
+    'ChildComponent.childevent': function(){
       return false;
-    })
+    }
   }
 })
 
@@ -952,14 +952,14 @@ const ParentComponent = Ractive.extend({
       on-childevent4="@this.parentMethod()"
     />
   `,
-  oninit: function() {
-    this.on('childevent2proxy', function() {
+  on: {
+    childevent2proxy: function() {
       // childevent2proxy replaces childevent2
-    })
-    this.on('childevent3proxy', function() {
+    },
+    childevent3proxy: function() {
       // childevent3proxy replaces childevent3 but stopped
       return false
-    })
+    }
   },
   parentMethod: function(){
     // childevent4 handled by a method

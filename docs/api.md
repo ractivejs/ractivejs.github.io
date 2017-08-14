@@ -871,13 +871,13 @@ Ractive({
     <button type="button" on-click="['clickedArray', 'Hello, World!']">Push me!</button>
     <button type="button" on-click="@this.clickedMethod('Hello, World!')">Push me!</button>
   `,
-  oninit(){
-    this.on('clickedproxy', event => {
+  on: {
+    clickedproxy: function(context){
       console.log('Hello, World!');
-    });
-    this.on('clickedArray', (event, msg) => {
+    },
+    clickedArray: function(context, msg){
       console.log(msg);
-    })
+    }
   },
   clickedMethod(msg){
     console.log(msg);
@@ -1564,7 +1564,7 @@ Ractive({
     <CustomButton on-buttonevent="@this.method($1, $2)" />
   `,
   on: {
-    proxy(event, foo, bar){
+    proxy: function(context, foo, bar){
       console.log(foo, bar);
     }
   },
@@ -1595,7 +1595,7 @@ Ractive({
     <CustomButton on-buttonevent="@this.method(arguments)" />
   `,
   on: {
-    proxy(event, args){
+    proxy: function(context, args){
       console.log(args);
     }
   },
@@ -2207,7 +2207,7 @@ new Ractive({
     },
     'users.*.name people.*.name': {
       handler ( value, old, path, idx ) {
-        console.log( `${path} changed to '${value}' );
+        console.log( `${path} changed to '${value}'` );
       },
       init: false,
       strict: true
@@ -2244,7 +2244,7 @@ The keys of the hash may be any string that is accepted by `ractive.on()`, and t
 new Ractive({
   // ...
   on: {
-    init () {
+    init: function(){
       console.log('I will print during init');
     },
     '*.somethingHappened': {
