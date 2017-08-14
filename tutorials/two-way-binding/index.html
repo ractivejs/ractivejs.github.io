@@ -167,7 +167,7 @@ ractive.set( 'color', 'green' );
 <p>You can also set up an alias to <code>this</code> for a slightly more human friendly template in many circumstances. Within <code>{{#each users as user}}...{{/each}}</code>, <code>user</code> will resolve to the current iteration. You can still use index names too e.g. <code>{{#each users as user: i}}...{{/each}}</code>.</p>
 </blockquote>
 <p>And add some data to our view:</p>
-<pre><code class="js">var ractive = new Ractive({
+<pre><code class="js">var ractive = Ractive({
   el: output,
   template: template,
   data: {

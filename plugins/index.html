@@ -286,14 +286,14 @@
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-adaptors-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</a></h3>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   adaptors: { myAdaptor }
 });
 </code></pre>
 
 <h2 id="using"><a class="toclink" href="#using">Using</a></h2>
 <p>In order to use an adaptor, you must tell the component or an instance to use it using the <code>adapt</code> initialization option.</p>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   adapt: [ 'myAdaptor' ]
 })
 </code></pre>
@@ -373,7 +373,7 @@
 </code></pre>
 
 <p>Then we use <code>boxAdaptor</code> on an instance. The data can now be treated like regular Ractive data. Updates done directly on <code>box</code> will reflect on Ractive. Any changes via Ractive will reflect on <code>box</code>.</p>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   el: 'body',
   // Tell the instance we'll be using boxAdaptor
   adapt: [ 'boxAdaptor' ],
@@ -447,14 +447,14 @@ const AnotherComponent = Ractive.extend({
 
 <h3 id="per-instance-via-the-instances-components-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's <code>components</code> initialization property.</a></h3>
 <pre><code class="js">// Only available to this specific instance.
-const ractive = new Ractive({
+const ractive = Ractive({
   components: { MyComponent }
 });
 </code></pre>
 
 <h2 id="using_1"><a class="toclink" href="#using_1">Using</a></h2>
-<p>Components are simply subclasses of Ractive, which means the are instatiable via the <code>new</code> keyword.</p>
-<pre><code class="js">const ractive = new MyComponent({ ... });
+<p>Components are simply subclasses of Ractive, which means they are also instatiable.</p>
+<pre><code class="js">const ractive = MyComponent({ ... });
 </code></pre>
 
 <p>But where components really shine is when they're used on templates. They are written like <em>custom elements</em>. Each custom element notation represents one instance of the component.</p>
@@ -522,7 +522,7 @@ const AnotherComponent = Ractive.extend({
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-decorators-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</a></h3>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   decorators: { myDecorator }
 });
 </code></pre>
@@ -551,7 +551,7 @@ const AnotherComponent = Ractive.extend({
   }
 };
 
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   template: `
     &lt;span as-timer=&quot;time&quot;&gt;&lt;/span&gt;
@@ -589,7 +589,7 @@ setInterval(function() {
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-easing-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-easing-initialization-property">Per instance, via the instance's <code>easing</code> initialization property.</a></h3>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   easing: { myEasing }
 });
 </code></pre>
@@ -639,7 +639,7 @@ setInterval(function() {
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-events-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</a></h3>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   events: { myEvent }
 });
 </code></pre>
@@ -689,7 +689,7 @@ Ractive.events.longpress = function(node, fire){
 };
 
 // Usage:
-new Ractive({
+Ractive({
   el: 'body',
   template: `
     &lt;button type=&quot;button&quot; on-longpress=&quot;@this.greetz()&quot;&gt;Click Me!&lt;/button&gt;
@@ -736,7 +736,7 @@ new Ractive({
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-partials-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's <code>partials</code> initialization property.</a></h3>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   partials: { myPartial }
 });
 </code></pre>
@@ -823,7 +823,7 @@ new Ractive({
 {{/partial}}
 </code></pre>
 
-<pre><code class="js">rv = new Ractive({
+<pre><code class="js">rv = Ractive({
   el: 'container',
   template: '#myTemplate',
   data: {
@@ -861,7 +861,7 @@ new Ractive({
 
 <pre><code class="js">isMobile = /mobile/i.test( navigator.userAgent ); // please don't do this in real life!
 
-ractive = new Ractive({
+ractive = Ractive({
   el: myContainer,
   template: myTemplate,
   partials: {
@@ -905,7 +905,7 @@ Modal = Ractive.extend({
   }
 });
 
-helloModal = new Modal({
+helloModal = Modal({
   el: document.body,
   partials: {
     modalContent: '&lt;p&gt;Hello!&lt;/p&gt;&lt;a class=&quot;modal-button&quot; proxy-tap=&quot;close&quot;&gt;Close&lt;/a&gt;'
@@ -948,7 +948,7 @@ helloModal.on( 'close', function () {
 
 <p>Partials can also be registered on-the-fly as well as have functions determine the partial to use.</p>
 <p>In the following example, <code>makePartial</code> registers a partial on the fly using <code>template</code> and <code>id</code>, and returns the partial name for use in the template.</p>
-<pre><code class="js">new Ractive({
+<pre><code class="js">Ractive({
   el: 'main',
   template: `
     &lt;span&gt;Add a partial:&lt;/span&gt;
@@ -1033,7 +1033,7 @@ ractive.set('toggle', false);
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-transitions-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</a></h3>
-<pre><code class="js">const ractive = new Ractive({
+<pre><code class="js">const ractive = Ractive({
   transitions: { myTransition }
 });
 </code></pre>
@@ -1065,7 +1065,7 @@ ractive.set('toggle', false);
   setTimeout(t.complete, options.duration);
 };
 
-new Ractive({
+Ractive({
   el: 'body',
   template: `
     &lt;button on-click='@this.insert()'&gt;Insert item&lt;/button&gt;

@@ -141,7 +141,7 @@
 </code></pre>
 
 <p>Let's add some code to instantiate the slideshow with our gifs. There's a ready-made images variable you can use for this step:</p>
-<pre><code class="js">var slideshow = new Slideshow({
+<pre><code class="js">var slideshow = Slideshow({
   target: '#target',
   data: { images: images }
 });
@@ -163,7 +163,7 @@
 <pre><code class="js">Ractive.components.slideshow = Slideshow;
 
 // or
-var ractive = new Ractive({
+var ractive = Ractive({
     // ...
 
   components: {
@@ -224,7 +224,7 @@ var ractive = new Ractive({
 </div></p>
 <p>Now suppose we wanted to do something to each of our component instances as they're created, like validate that they have certain parameters provided and issue a warning if they don't. Ractive.js components actually have a pretty complete set of lifecycle events that allow component authors to hook into just about every stage of a component's lifecycle - from <code>construct</code>ion to <code>destruct</code>ion hitting <code>init</code>, <code>render</code>, <code>unrender</code>, <code>teardown</code>, <code>complete</code> (<code>render</code> complete along with any transitions) and a few others in between. Each lifecycle event also happens to be an instance event.</p>
 <p>Lets add our check to make sure the <code>Slideshow</code> component receives an <code>image</code> parameter. There are a few ways to do this, including using <code>on</code> and providing an <code>oninit</code> function as an initialization parameter.</p>
-<pre><code class="js">var ractive = new Ractive({
+<pre><code class="js">var ractive = Ractive({
   // ...
   on: {
     init: function () {}
@@ -234,7 +234,7 @@ var ractive = new Ractive({
 
 // or
 
-var ractive = new Ractive({
+var ractive = Ractive({
   // ...
   oninit: function () {},
   // ...
