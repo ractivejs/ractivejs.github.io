@@ -1775,13 +1775,13 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
     &lt;button type=&quot;button&quot; on-click=&quot;['clickedArray', 'Hello, World!']&quot;&gt;Push me!&lt;/button&gt;
     &lt;button type=&quot;button&quot; on-click=&quot;@this.clickedMethod('Hello, World!')&quot;&gt;Push me!&lt;/button&gt;
   `,
-  oninit(){
-    this.on('clickedproxy', event =&gt; {
+  on: {
+    clickedproxy: function(context){
       console.log('Hello, World!');
-    });
-    this.on('clickedArray', (event, msg) =&gt; {
+    },
+    clickedArray: function(context, msg){
       console.log(msg);
-    })
+    }
   },
   clickedMethod(msg){
     console.log(msg);
@@ -2395,7 +2395,7 @@ Ractive({
     &lt;CustomButton on-buttonevent=&quot;@this.method($1, $2)&quot; /&gt;
   `,
   on: {
-    proxy(event, foo, bar){
+    proxy: function(context, foo, bar){
       console.log(foo, bar);
     }
   },
@@ -2423,7 +2423,7 @@ Ractive({
     &lt;CustomButton on-buttonevent=&quot;@this.method(arguments)&quot; /&gt;
   `,
   on: {
-    proxy(event, args){
+    proxy: function(context, args){
       console.log(args);
     }
   },
@@ -2862,7 +2862,7 @@ ractive.unrender();
     },
     'users.*.name people.*.name': {
       handler ( value, old, path, idx ) {
-        console.log( `${path} changed to '${value}' );
+        console.log( `${path} changed to '${value}'` );
       },
       init: false,
       strict: true
@@ -2891,7 +2891,7 @@ ractive.unrender();
 <pre><code class="js">new Ractive({
   // ...
   on: {
-    init () {
+    init: function(){
       console.log('I will print during init');
     },
     '*.somethingHappened': {

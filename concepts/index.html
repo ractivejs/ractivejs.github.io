@@ -706,10 +706,10 @@ const instance = Ractive({
   template: `
     &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
   `,
-  oninit(){
-    this.on('buttonclicked', context =&gt; {
+  on: {
+    buttonclicked: function(context){
       console.log('button clicked')
-    })
+    }
   }
 })
 </code></pre>
@@ -721,10 +721,10 @@ const instance = Ractive({
   template: `
     &lt;button on-click=&quot;['buttonclicked', 'foo', 'bar']&quot;&gt;Click Me!&lt;/button&gt;
   `,
-  oninit(){
-    this.on('buttonclicked', (context, foo, bar) =&gt; {
+  on: {
+    buttonclicked: function(context, foo, bar){
       console.log('button clicked passing', foo, bar)
-    })
+    }
   }
 })
 </code></pre>
@@ -741,10 +741,10 @@ const instance = Ractive({
   greetz(message){
     console.log(`${message}`)
   },
-  oninit(){
-    this.on('manualproxy', (context, message) =&gt; {
+  on: {
+    manualproxy: function(context, message){
       console.log(`${message}`)
-    })
+    }
   }
 })
 </code></pre>
@@ -762,10 +762,10 @@ const instance = Ractive({
   template: `
     &lt;button on-click=&quot;buttonclicked&quot;&gt;Click Me!&lt;/button&gt;
   `,
-  oninit(){
-    this.on('buttonclicked', context =&gt; {
+  on: {
+    buttonclicked: function(context){
       console.log(event.node.type) // submit
-    })
+    }
   }
 })
 </code></pre>
@@ -783,13 +783,13 @@ const instance = Ractive({
     &lt;button on-click=&quot;qux.baz&quot;&gt;Click Me!&lt;/button&gt;
     &lt;button on-click=&quot;qux.bam&quot;&gt;Click Me!&lt;/button&gt;
   `,
-  oninit(){
-    this.on('*.bar', context =&gt; {
+  on: {
+    '*.bar': function(context){
       console.log('A bar event was published')
-    })
-    this.on('qux.*', context =&gt; {
+    },
+    'qux.*': function(context){
       console.log('A qux event was published')
-    })
+    }
   }
 })
 </code></pre>
@@ -804,10 +804,10 @@ const instance = Ractive({
       &lt;button type=&quot;button&quot;&gt;Click Me!&lt;/button&gt;
     &lt;/div&gt;
   `,
-  oninit(){
-    this.on('buttonclicked', context =&gt; {
+  on: {
+    buttonclicked: function(context){
       console.log('button clicked')
-    })
+    }
   }
 })
 </code></pre>
@@ -844,14 +844,14 @@ instance.on('ChildComponent.childevent', function(){
       &lt;button on-click=&quot;descendantbuttonclick&quot;&gt;Click Me!&lt;/button&gt;
     &lt;/div&gt;
   `,
-  oninit(){
-    this.on('ancestorbuttonclick', event =&gt; {
+  on: {
+    ancestorbuttonclick: function(context){
       console.log('This will not run')
-    })
-    this.on('descendantbuttonclick', event =&gt; {
+    },
+    descendantbuttonclick: function(context){
       console.log('This will run')
       return false;
-    })
+    }
   }
 })
 </code></pre>
@@ -867,10 +867,10 @@ instance.on('ChildComponent.childevent', function(){
 const ParentComponent = Ractive.extend({
   components: { ChildComponent },
   template: '&lt;ChildComponent /&gt;',
-  oninit: function(){
-    this.on('ChildComponent.childevent', function(){
+  on: {
+    'ChildComponent.childevent': function(){
       return false;
-    })
+    }
   }
 })
 
@@ -905,14 +905,14 @@ const ParentComponent = Ractive.extend({
       on-childevent4=&quot;@this.parentMethod()&quot;
     /&gt;
   `,
-  oninit: function() {
-    this.on('childevent2proxy', function() {
+  on: {
+    childevent2proxy: function() {
       // childevent2proxy replaces childevent2
-    })
-    this.on('childevent3proxy', function() {
+    },
+    childevent3proxy: function() {
       // childevent3proxy replaces childevent3 but stopped
       return false
-    })
+    }
   },
   parentMethod: function(){
     // childevent4 handled by a method
