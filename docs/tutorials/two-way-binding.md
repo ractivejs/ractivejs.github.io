@@ -131,7 +131,7 @@ That's good, but we can go one better – rather than hard-coding our colours in
 And add some data to our view:
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   el: output,
   template: template,
   data: {

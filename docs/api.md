@@ -464,7 +464,7 @@ Ractive.components.ChildComponent = Ractive.extend({
   `
 });
 
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   data: {
     message: 'Hello World!'
@@ -492,7 +492,7 @@ Ractive.components.ChildComponent = Ractive.extend({
   `
 });
 
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   data: {
     message: 'Hello World!'
@@ -524,7 +524,7 @@ Ractive.components.ChildComponent = Ractive.extend({
   `
 });
 
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   data: {
     message: 'Hello, World!'
@@ -553,7 +553,7 @@ Ractive.components.ChildComponent = Ractive.extend({
   `
 });
 
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   data: {
     message: 'Hello World!'
@@ -585,7 +585,7 @@ const list = Ractive.extend({
   `
 });
 
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   data: {
     some: {
@@ -1609,10 +1609,10 @@ Ractive({
 
 # Initialization Options
 
-The following is an exhaustive list of initialisation options that you can pass to `new Ractive()` and `Ractive.extend()`. Extra properties passed as options that are not initialization options are added as properties or methods of the instance.
+The following is an exhaustive list of initialisation options that you can pass to `Ractive()` and `Ractive.extend()`. Extra properties passed as options that are not initialization options are added as properties or methods of the instance.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   myMethod: function () {
     alert( 'my method was called' );
   }
@@ -1636,7 +1636,7 @@ adapt: [ 'MyAdaptor', AdaptorDefinition ]
 `adapt` is not required if you registered adaptors via the `adaptors` initialization property. The adaptors registered via `adaptors` initialization property are automatically used as if they were set with `adapt`.
 
 ```js
-const instance = new Ractive({
+const instance = Ractive({
   adaptors: { MyAdaptor: AdaptorDefinition }
   // No need to use adapt
 });
@@ -1670,7 +1670,7 @@ Registering an adaptor via `adaptors` is not required if you directly specified 
 ```js
 const Adaptor = { ... };
 
-const instance = new Ractive({
+const instance = Ractive({
   adapt: [ AdaptorDefinition ]
   // No need to use adaptors
 });
@@ -1858,7 +1858,7 @@ const Component = Ractive.extend({
 });
 
 // This will not work
-new Ractive({
+Ractive({
   css: '...'
 });
 ```
@@ -1897,8 +1897,8 @@ const Component = Ractive.extend({
   }
 });
 
-var component1 = new Component();
-var component2 = new Component();
+var component1 = Component();
+var component2 = Component();
 component1.set( 'foo.bar', 12 );
 component2.get( 'foo.bar' ); // returns 12
 ```
@@ -1914,8 +1914,8 @@ const Component = Ractive.extend({
   }
 });
 
-var component1 = new Component();
-var component2 = new Component();
+var component1 = Component();
+var component2 = Component();
 component1.set( 'foo.bar', 12 );
 component2.get( 'foo.bar' ); // returns 42
 ```
@@ -2081,7 +2081,7 @@ Relevant only to Components.
 Whether or not to update data using late-firing DOM events (i.e. `change`, `blur`) instead of events that fire immediately on interaction (i.e. `keyup`, `keydown`). Defaults to `false`.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   lazy: true,
   data: { foo: 'bar' },
   template: `
@@ -2096,7 +2096,7 @@ var ractive = new Ractive({
 `lazy` also accepts a number value, a millisecond value, that indicates the delay between the last UI interaction and Ractive updating the data. Losing element focus is not required for the update to kick in.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   lazy: 1000,
   data: { foo: 'bar' },
   template: `
@@ -2153,7 +2153,7 @@ Prevents component CSS from being transformed with scoping guids. Defaults to `f
 Whether or not to skip intro transitions on initial render. Defaults to `false`.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   template: '<ul>{{#items}}<li fade-in>{{.}}</li>{{/items}}</ul>',
   data: { items: [ 'red', 'blue' ] },
   transitions: { fade: function ( t, params ) {...} },
@@ -2174,7 +2174,7 @@ ractive.push( 'items', 'green' );
 Whether or not to skip outro transitions during an instance unrender. Defaults to `false`.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   template: '<ul>{{#items}}<li fade-out>{{.}}</li>{{/items}}</ul>',
   data: { items: [ 'red', 'blue' ] },
   transitions: { fade: function ( t, params ) {...} },
@@ -2199,7 +2199,7 @@ A hash of observers to subscribe during initialization and unsubscribe during te
 The keys of the hash may be any string that is accepted by `ractive.observe()`, and the values may be either callback functions, as would be passed to `ractive.observe()`, or objects with a `handler` property that is a callback function. The object form also takes other options that control the behavior of the observer.
 
 ```js
-new Ractive({
+Ractive({
   // ..
   observe: {
     show ( value ) {
@@ -2241,7 +2241,7 @@ A hash of event listeners to subscribe during initialization and unsubscribe dur
 The keys of the hash may be any string that is accepted by `ractive.on()`, and the values may be either callback functions, as would be passed to `ractive.on()`, or objects with a `handler` property that is a callback function. The object form also takes other options that control the behavior of the event handler.
 
 ```js
-new Ractive({
+Ractive({
   // ...
   on: {
     init: function(){
@@ -2388,7 +2388,7 @@ Whether or not to preserve whitespace in templates when parsing. Defaults to `fa
 Whitespace in `<pre>` elements is always preserved. The browser will still deal with whitespace in the normal fashion.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   template: '<p>hello\n\n  \tworld   </p>',
   preserveWhitespace: false //default
 });
@@ -2396,7 +2396,7 @@ var ractive = new Ractive({
 console.log( ractive.toHTML() );
 // "<p>hello world</p>"
 
-var ractive = new Ractive({
+var ractive = Ractive({
   template: '<p>hello\n\n  \tworld   </p>',
   preserveWhitespace: true
 });
@@ -2467,7 +2467,7 @@ sanitize: {
 Sets the static (one-time binding) delimiters. Defaults to `[ '[[', ']]' ]`.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   template: 'hello [[foo]]',
   staticDelimiters: [ '[[', ']]' ], //default
   data: { foo: 'world' }
@@ -2487,7 +2487,7 @@ ractive.set( 'foo', 'mars' );
 Sets the static (one-time binding) triple delimiters. Defaults to `[ '[[[', ']]]' ]`.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   template: 'hello [[[html]]]',
   staticTripleDelimiters: [ '[[[', ']]]' ], //default
   data: { html: '<span>world</span>' }
@@ -2607,7 +2607,7 @@ data: { html: '<span>world</span>' }
 Whether or not two-way binding is enabled. Defaults to `true`.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   template: '<input value="{{foo}}">',
   data: { foo: 'bar' },
   twoway: false
@@ -2677,7 +2677,7 @@ Global defaults for initialisation options with the exception of plugin registri
 Ractive.defaults.delimiters = [ '[[', ']]' ];
 
 // Future instances now use [[ ]]
-ractive1 = new Ractive({
+ractive1 = Ractive({
     template: 'hello [[world]]'
 });
 ```
@@ -2696,12 +2696,12 @@ Configuration on the instance overrides subclass and global defaults.
 Ractive.defaults.delimiters = [ '[[', ']]' ];
 
 // Uses the delimiters specified above
-new Ractive({
+Ractive({
 	template: 'hello [[world]]'
 });
 
 // Uses the delimiters specified in the init options
-new Ractive({
+Ractive({
 	template: 'hello //world\\',
 	delimiters: [ '//', '\\' ]
 });
@@ -2804,12 +2804,12 @@ const SubClass = Ractive.extend({
 });
 
 // <div>Hello World!</div>
-const instance1 = new SubClass({
+const instance1 = SubClass({
     el: '.div1'
 });
 
 // <div>Lorem Ipsum</div>
-const instance2 = new SubClass({
+const instance2 = SubClass({
     el: '.div2',
     data: {
         message: 'Lorem Ipsum'
@@ -3226,7 +3226,7 @@ Increments the selected keypath.
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiQmJkzC-r1CmarNeY0ENDOEDQBzTPOvxZud0GD0eEzw9AAjMNoaCVAtlqt1lpNjtlHsDkcTj1zpdrrdtAMYBVIcNYeoDhhXu9Pj8-gD8aZgZNQfh6AAmaGk6a4IA"></div>
 
 ```js
-var r = new Ractive({
+var r = Ractive({
 	el: '#main',
 	template: '#tpl',
 	data: {
@@ -3282,7 +3282,7 @@ If an animation is started on a keypath which is *already* being animated, the f
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiRlVfrMwv69CvoAJmG8Q3omLRhUfeUDF+Gw3oU1mEzeAEZAcMZrggA"></div>
 
 ```js
-var r = new Ractive({
+var r = Ractive({
 	el: '#main',
 	template: '#tpl',
 	data: {
@@ -3297,7 +3297,7 @@ setTimeout(function() {
 
 ## ractive.attachChild()
 
-Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by `Ractive.extend()`, but that is not a requirement, as children may be a plain Ractive instance created with `new Ractive()`.
+Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by `Ractive.extend()`, but that is not a requirement, as children may be a plain Ractive instance created with `Ractive()`.
 
 **Syntax**
 ```js
@@ -3353,7 +3353,7 @@ Detaches the instance from the DOM, returning a document fragment. You can reins
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJgAjAvIB7AK7L0MSPWDA9h4zhwkp2lWqTKm9DLplpeYlCrsVqOiVVZRImKgA3RlYOGSQqVUU7cIiFEAIMeAikGHpclnplNAB3egAlJHIUSLQACmBHdARTAHIAYjiElrxG9BkuVDRWtpQubsamVCRTBtVfFEsjNBN6AAZGnBUcAEoAbkdlDDQUABUqTwMUWoAzQyqqXWVa7bNG7NyU+gKmXXJ9TyMADpKGhBgBRBBoAFXFopFp7CaRQFIGiCFwAYTAVAQTFqMEBTGOlTAzwRcz0h10kMBCF0AHNailAQkijAABInACyABkyfh6JpVkK9rggA"></div>
 
 ```js
-var r = new Ractive({
+var r = Ractive({
 	el: '#main',
 	template: '#tpl',
 	data: {
@@ -3411,7 +3411,7 @@ Returns the first element inside a given Ractive instance matching a CSS selecto
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnsaPtdn4se0mLdXjQ-HFEslXrCguRCU0EGg-NUErdmej0DBTEiALLpTnKfD0ACMAAYVbDcEA"></div>
 
 ```js
-var r = new Ractive({
+var r = Ractive({
 	el: '#main',
 	template: '#tpl'
 });
@@ -3445,7 +3445,7 @@ This method is similar to [`ractive.find()`]ractivefind), with an important diff
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnt8vtdn4se0mABBBAIW6vGivWFBfK0rIAUUuYGxuPxhNuNBJZNc5EJTQQaD81QSYr86PQMFMSIAsulOXpoZCSgBGAAMpthuCAA"></div>
 
 ```js
-var r = new Ractive({
+var r = Ractive({
 	el: '#main',
 	template: '#tpl'
 });
@@ -3485,7 +3485,7 @@ var Component = Ractive.extend({
 	template: 'Component {{number}}'
 });
 
-var r = new Ractive({
+var r = Ractive({
 	el: '#main',
 	template: '#tpl',
 	components: {
@@ -3528,7 +3528,7 @@ var Component = Ractive.extend({
 	template: 'Component {{number}}'
 });
 
-var r = new Ractive({
+var r = Ractive({
 	el: '#main',
 	template: '#tpl',
 	components: {
@@ -3609,7 +3609,7 @@ Fires an event, which will be received by handlers that were bound using `ractiv
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAAoAlAG4AOt0swAdD0MByAGadODvMycBXbjt33jZmBLcxQuXn40GwROAHNHF05PXRg0ABMHM0scLKtuWycUo2dXTNNcIA"></div>
 
 ```js
-var r = new Ractive();
+var r = Ractive();
 
 r.on('foo', function() {
   console.log('foo fired');
@@ -3641,7 +3641,7 @@ Returns the value at `keypath`. If the keypath is omitted, returns a shallow cop
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAApgAHW4mUAE1RJIzU+ZQWAZp052HFrygBGsuwDazADkfgBewcwAumbeOLEo8dw4AJQA3LHcXLz8aAB0CJwA5oYweUVoKIbBrpx5fmUADMEp6bhAA"></div>
 
 ```js
-var r = new Ractive({
+var r = Ractive({
 	data: {
 		foo: {
 			bar: [ 'baz' ]
@@ -4013,7 +4013,7 @@ Gets the source keypath and instance for a link.
 **Examples**
 
 ```js
-const r = new Ractive({
+const r = Ractive({
   data: {
     items: [
       { name: 'Apple' },
@@ -4072,7 +4072,7 @@ Resets the entire `ractive.data` object and updates the DOM.
 This differs from `ractive.set()` in the following way:
 
 ```js
-ractive = new Ractive({
+ractive = Ractive({
   // ...,
   data: { foo: 1 }
 });
@@ -4106,7 +4106,7 @@ Inline partials that don't belong directly to a Ractive instance aren't affected
 **Examples**
 
 ```js
-ractive = new Ractive({
+ractive = Ractive({
   // ...,
   partials: { foo: 'foo' }
 });
@@ -4334,7 +4334,7 @@ const Subclass = Ractive.extend({
     ...
 });
 
-const subclassInstance = new Subclass({...});
+const subclassInstance = Subclass({...});
 
 // Contains the scoped version of div{ color: red }
 subclassInstance.toCSS();
@@ -4530,7 +4530,7 @@ If you programmatically manipulate inputs and other elements that have two‐way
 **Examples**
 
 ```js
-ractive = new Ractive({
+ractive = Ractive({
   el: 'container',
   template: '<input value="{{name}}">'
   data: { name: 'Bob' }

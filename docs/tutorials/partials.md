@@ -39,7 +39,7 @@ Then, in the main template we replace all that with a partial, which looks like 
 Finally, we need to add the partial when we initialize out instance:
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   target: '#target',
   template: '#template',
 

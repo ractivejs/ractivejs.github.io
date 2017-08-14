@@ -28,7 +28,7 @@ Note that we're using `Math.round()` to make the end result cleaner.
 Apply similar changes to the labels, then add some data:
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   el: output,
   template: template,
   data: { width: 100, height: 100 }

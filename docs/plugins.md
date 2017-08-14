@@ -96,7 +96,7 @@ const MyComponent = Ractive.extend({
 ### Per instance, via the instance's `adaptors` initialization property.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   adaptors: { myAdaptor }
 });
 ```
@@ -106,7 +106,7 @@ const ractive = new Ractive({
 In order to use an adaptor, you must tell the component or an instance to use it using the `adapt` initialization option.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   adapt: [ 'myAdaptor' ]
 })
 ```
@@ -193,7 +193,7 @@ Ractive.adaptors.boxAdaptor = {
 Then we use `boxAdaptor` on an instance. The data can now be treated like regular Ractive data. Updates done directly on `box` will reflect on Ractive. Any changes via Ractive will reflect on `box`.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   // Tell the instance we'll be using boxAdaptor
   adapt: [ 'boxAdaptor' ],
@@ -283,17 +283,17 @@ const AnotherComponent = Ractive.extend({
 
 ```js
 // Only available to this specific instance.
-const ractive = new Ractive({
+const ractive = Ractive({
   components: { MyComponent }
 });
 ```
 
 ## Using
 
-Components are simply subclasses of Ractive, which means the are instatiable via the `new` keyword.
+Components are simply subclasses of Ractive, which means they are also instatiable.
 
 ```js
-const ractive = new MyComponent({ ... });
+const ractive = MyComponent({ ... });
 ```
 
 But where components really shine is when they're used on templates. They are written like _custom elements_. Each custom element notation represents one instance of the component.
@@ -385,7 +385,7 @@ const MyComponent = Ractive.extend({
 ### Per instance, via the instance's `decorators` initialization property.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   decorators: { myDecorator }
 });
 ```
@@ -420,7 +420,7 @@ Ractive.decorators.timer = function(node, time) {
   }
 };
 
-const ractive = new Ractive({
+const ractive = Ractive({
   el: 'body',
   template: `
     <span as-timer="time"></span>
@@ -471,7 +471,7 @@ const MyComponent = Ractive.extend({
 ### Per instance, via the instance's `easing` initialization property.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   easing: { myEasing }
 });
 ```
@@ -544,7 +544,7 @@ const MyComponent = Ractive.extend({
 ### Per instance, via the instance's `events` initialization property.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   events: { myEvent }
 });
 ```
@@ -600,7 +600,7 @@ Ractive.events.longpress = function(node, fire){
 };
 
 // Usage:
-new Ractive({
+Ractive({
   el: 'body',
   template: `
     <button type="button" on-longpress="@this.greetz()">Click Me!</button>
@@ -672,7 +672,7 @@ const MyComponent = Ractive.extend({
 ### Per instance, via the instance's `partials` initialization property.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   partials: { myPartial }
 });
 ```
@@ -777,7 +777,7 @@ Partials can be used recursively. A common use case for this is when reusing par
 ```
 
 ```js
-rv = new Ractive({
+rv = Ractive({
   el: 'container',
   template: '#myTemplate',
   data: {
@@ -822,7 +822,7 @@ For example, you might offer a different view to mobile users:
 ```js
 isMobile = /mobile/i.test( navigator.userAgent ); // please don't do this in real life!
 
-ractive = new Ractive({
+ractive = Ractive({
   el: myContainer,
   template: myTemplate,
   partials: {
@@ -869,7 +869,7 @@ Modal = Ractive.extend({
   }
 });
 
-helloModal = new Modal({
+helloModal = Modal({
   el: document.body,
   partials: {
     modalContent: '<p>Hello!</p><a class="modal-button" proxy-tap="close">Close</a>'
@@ -922,7 +922,7 @@ Partials can also be registered on-the-fly as well as have functions determine t
 In the following example, `makePartial` registers a partial on the fly using `template` and `id`, and returns the partial name for use in the template.
 
 ```js
-new Ractive({
+Ractive({
   el: 'main',
   template: `
     <span>Add a partial:</span>
@@ -1032,7 +1032,7 @@ const MyComponent = Ractive.extend({
 ### Per instance, via the instance's `transitions` initialization property.
 
 ```js
-const ractive = new Ractive({
+const ractive = Ractive({
   transitions: { myTransition }
 });
 ```
@@ -1072,7 +1072,7 @@ Ractive.transitions.flash = function(t, params) {
   setTimeout(t.complete, options.duration);
 };
 
-new Ractive({
+Ractive({
   el: 'body',
   template: `
     <button on-click='@this.insert()'>Insert item</button>

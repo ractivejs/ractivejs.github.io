@@ -27,7 +27,7 @@ In order to turn our static template into something a bit more dynamic, we'll tu
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaWyDgGd4pJuQYAHceWrkAdggDu5AEoMAxrjIIAFMFqzy5XExaRySAPZqArgFsEs3ADoAjtYQwAngGUEAGwQNCxhtAHIAYmNmBFxQgEosfUNcBFtxPwYUs1CCMAAmNmBgFBgEGOJZFAxsciKHTVxPaoBCLny2UMSDc0yGMz1uwxKyzUrsgAl-PwtOpMNyeuJG7IVgvyRQuYx9DDiAbkwgA"></div>
 
 ```js
-var app = new Ractive({
+var app = Ractive({
   target: document.querySelector('#target'),
   template: '<h2>{{greeting}}, {{entity}}!</h2>',
   data: {

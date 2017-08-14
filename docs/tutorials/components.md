@@ -85,7 +85,7 @@ function ( index ) {
 Let's add some code to instantiate the slideshow with our gifs. There's a ready-made images variable you can use for this step:
 
 ```js
-var slideshow = new Slideshow({
+var slideshow = Slideshow({
   target: '#target',
   data: { images: images }
 });
@@ -113,7 +113,7 @@ Now we have our lovely slideshow component, but suppose we want to use it in our
 Ractive.components.slideshow = Slideshow;
 
 // or
-var ractive = new Ractive({
+var ractive = Ractive({
     // ...
 
   components: {
@@ -189,7 +189,7 @@ Now suppose we wanted to do something to each of our component instances as they
 Lets add our check to make sure the `Slideshow` component receives an `image` parameter. There are a few ways to do this, including using `on` and providing an `oninit` function as an initialization parameter.
 
 ```js
-var ractive = new Ractive({
+var ractive = Ractive({
   // ...
   on: {
     init: function () {}
@@ -199,7 +199,7 @@ var ractive = new Ractive({
 
 // or
 
-var ractive = new Ractive({
+var ractive = Ractive({
   // ...
   oninit: function () {},
   // ...

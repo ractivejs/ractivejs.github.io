@@ -30,7 +30,7 @@ A reference is ambiguous if it does not exist in the current context. Ractive wi
 ```
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdc5XAE9JCOngQAPXJzAN+SADYIARk2H1KNergQBbSboaX2A2rmDAAxAHdiuMOQO6AexQAOkkA4VxhYIAGDAwnGXIAQQBXHwCYSHJXBjSwDOD+BisEOITXTi8fMv4uMQlpNhAcYXhSJnIGSUlyanJ+BA9yACUGUVwyBAAKYFoYAXJZJhYsgHI3XGWEXFWsOYXZa1t7BDWNo7tLXf3+RaR7BizZ+dvFv0CUJ5u3t7CI4SyAG1shhyABdb5veIvRbQgQYACUAG4bjdhNsACrEEoBNJTABmKX442IAX4UwR2UhXUkwXRuCmq38QVC4UiMWCuXSMEKxQQu3IqwAUgEwLcAIrBEYIYQBXSkBAwVbIm7YcgARmiWuRmCAA"></div>
 ```js
-var app = new Ractive({
+var app = Ractive({
   target: '#target',
   template: '#template',
   data: {
@@ -60,7 +60,7 @@ Ambiguity in Ractive is generally discouraged, since it can lead to weird scenar
 ```
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdc5XAE9JCOngQAPXJzAN+SADYIARk2H1KNergQBbSboaX2A2rmDAAxMQBm5YWAD2AO4YGE4y5K5uAcS4YOQGun4owaHkqeHuUTHkkn7CuMIAdAAMyYJhaeQEYABMbACCVgbEKACu0XLkVgwdBgjkKH5+SOR+MHEMSFjkSAiKOsT8KCP85AFaMnJ+LQDkMH24MHILS7h+034FXDV8ZRWpBJJsrgX8DFYIwVyPKXcPT8Cvd6fTjfW5pVycTJgUrOVIQqEwlzATheUpcMQSaRsEA4YTwUhMcgMSSScjUcj8BABcgAJQYolwZAQAApgLQYAJUrgmCxIORtm5ucwELhtlh2ZzZNZbPYEHyBZYbHZLGKJStpvYGHy2Rz1al4oltWq7tlcvk+QBtcIYcgAXXFupNgLl-IAsgxYgAhBIobbGtLYf2pXyBPkHFoIf0hXUYACUAG41WrhCKACrEd5bXDMzwtfgM4h+fjM2Phf3EyQFFPZ7YGlAFHJ5QpFF5vBBi-kASSJVnInkGBSMMEHDAAXtsE-7-dX05mWtnc-nGUWS2XdbCiSSCqcUCh9MztiGAhPE+uwhXt4k9yzD-5j5PHeRsOQAIxFd8PgTPt8f08CTBAA"></div>
 ```js
-var app = new Ractive({
+var app = Ractive({
   target: '#target',
   template: '#template',
   data: {
