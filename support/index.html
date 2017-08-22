@@ -187,7 +187,7 @@
 <h3 id="getnodeinfo"><a class="toclink" href="#getnodeinfo"><code>getNodeInfo</code></a></h3>
 <p><code>ractive.getNodeInfo</code> has been renamed to <code>ractive.getContext</code>, as has the static version of the function, to more accurately reflect its function. The <code>getNodeInfo</code> alias is deprecated and will be removed in a future version.</p>
 <h3 id="multiple-inheritance"><a class="toclink" href="#multiple-inheritance">Multiple inheritance</a></h3>
-<p>Components can no longer inherit from multiple other components at the same level, meaning that <code>Ractive.extend(FirstComponent, SecondComponent)</code> is no longer possible. You can still set up an inheritance hierachy multiple levels deep with <code>Ractive.extend(FirstComponent).extend(SecondComponent)</code>.</p>
+<p>Components can no longer inherit from multiple other components at the same level, meaning that <code>Ractive.extend(FirstComponent, SecondComponent)</code> is no longer possible. You can still set up an inheritance hierachy multiple levels deep with <code>const First = Ractive.extend({ ...options }); const Second = First.extend({ ...others });</code>.</p>
 <h2 id="migrating-from-07"><a class="toclink" href="#migrating-from-07">Migrating from 0.7</a></h2>
 <h3 id="template-format_1"><a class="toclink" href="#template-format_1">Template format</a></h3>
 <p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.8.</p>
