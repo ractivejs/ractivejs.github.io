@@ -136,7 +136,7 @@ The magic and array adaptors are no longer part of Ractive.js core. They may be 
 
 ### Multiple inheritance
 
-Components can no longer inherit from multiple other components at the same level, meaning that `Ractive.extend(FirstComponent, SecondComponent)` is no longer possible. You can still set up an inheritance hierachy multiple levels deep with `Ractive.extend(FirstComponent).extend(SecondComponent)`.
+Components can no longer inherit from multiple other components at the same level, meaning that `Ractive.extend(FirstComponent, SecondComponent)` is no longer possible. You can still set up an inheritance hierachy multiple levels deep with `const First = Ractive.extend({ ...options }); const Second = First.extend({ ...others });`.
 
 ## Migrating from 0.7
 
