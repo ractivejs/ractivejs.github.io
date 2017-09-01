@@ -35,12 +35,12 @@ blockquote{
 
 code{
   word-break: break-all;
-  background-color: #fafafa;
+  background-color: rgb(240,240,240);
   border-radius: 4px;
   padding: 3px 5px;
   margin: 4px;
   font-family: "courier";
-  box-shadow: 0.5px 0.5px 2px #888888;
+  color: maroon;
 }
 
 :target::before{
