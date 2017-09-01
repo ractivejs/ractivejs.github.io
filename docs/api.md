@@ -4169,7 +4169,12 @@ When setting an array value, ractive will reuse the existing DOM nodes for the n
 
 **Arguments**
 
-- `keypath (string)`: The keypath of the data we're changing, e.g. `user` or `user.name` or `user.friends[1]` or `users.*.status`.
+- `keypath (string)`: The keypath of the data we're changing, e.g.
+    * `user`
+    * `user.name`
+    * `user.friends[1]` or `user.friends.1`
+    * `users.*.status`
+    * `images.aaa\\.jpg.url`.
 - `value (any)`: The value we're changing it to. Can be a primitive or an object (or array), in which case dependants of *downstream keypaths* will also be re-rendered (if they have changed).
 - `map (Object)`: A map of `keypath: value` pairs, as above.
 - `[options] Object`:
@@ -4197,6 +4202,10 @@ ractive.on('selectAll', function(){
 	ractive.set('items.*.selected', true);
 })
 ```
+
+**See Also**
+
+* [`Ractive.escapeKey()`](#ractiveescapekey)
 
 ## ractive.shift()
 
