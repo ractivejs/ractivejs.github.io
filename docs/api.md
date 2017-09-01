@@ -2776,7 +2776,7 @@ Escapes the given key so that it can be concatenated with a keypath string.
 * Simple example
 
         Ractive.escapeKey('foo.bar'); // 'foo\\.bar'
-        
+
 
 * [Playground example](https://ractive.js.org/playground/?env=docs#N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOiAPYCuuADi-QHwED0JpnWgDsCAZwDGMYq1yUa9YkPa565XAE9WCOngQAPXDxgBDcbjIIuw2rgKtBKlUJs2CAIxa4GQ8t4C04gA2xOIA1jriYMZCaACqMIFcAMJRMQjksQBKADK8HrheQoLOju6e3r5CAcFhEalxCQBMyfXpWdnkABQA7sS4YOSZpuakCAB0CBLGWp0AlLN55UXWtjz2K3ac5Cs2TAm+AGbbIMZjAFasKKrEopDk7pzAwJQAtigA2gDkpxconwC6Yz2gXIGAweS2GzWxV4EikMk4IBwongQgQ3UGwwsnWAK1wxhgaFwd0+AGJmGwWJ8sHiEC9WIFjLgECTSYplNSVt5oDtcJFog1AncDkwhGZiN45riSi4CmAbmNRAhcJ1PsQ3mNjLRtbRzpcgQlqcceC91Dw0d01kywHqriBZgBuXnYXn8tLxQKNYWi8WS2bS2U2U2hBDqcjUcjfW2fJ0yxz9BVKlVqjWfcgAakx4tGEymWgA0qHOsHQ7MM5GDYEjfQeP0EDwGHWYFb+rb6I7nSsXSUkEzjHcA451SgB7ybFHfp9R3HZcC7jXWNbawweD9LvQx7gMJ2StuZUIMLNMEA)
 
@@ -3043,12 +3043,12 @@ Splits the given keypath into an array of unescaped keys.
 **Examples**
 
 ```js
-Ractive.splitKeypath( 'foo.bar\.baz' ); // [ 'foo', 'bar.baz' ]
+Ractive.splitKeypath( 'foo.bar\\.baz' ); // [ 'foo', 'bar.baz' ]
 ```
 
 ## Ractive.unescapeKey()
 
-Unescapes the given key e.g. `foo\.bar` => `foo.bar`.
+Unescapes the given key e.g. `foo\\.bar` => `foo.bar`.
 
 **Syntax**
 
@@ -3065,7 +3065,7 @@ Unescapes the given key e.g. `foo\.bar` => `foo.bar`.
 **Examples**
 
 ```js
-Ractive.unescapeKey('foo\.bar'); // foo.bar
+Ractive.unescapeKey('foo\\.bar'); // foo.bar
 ```
 
 # Instance Properties
