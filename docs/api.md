@@ -657,6 +657,33 @@ Ractive({
 });
 ```
 
+or by using events:
+
+```js
+new Ractive({
+  el: '#output',
+  template: `
+  {{#each foo}}
+  <p> {{.}} : <input on-change="hello" type="file" /> </p>
+  {{/each}}	
+  `,
+  on:{
+    hello: function(ctx){
+      files = ctx.node.files; 
+      keypath = ctx.resolve();
+      console.log('selected files:', files);
+      console.log('first file:', files[0]);
+      console.log('current context: ', keypath);
+    }
+  },
+  data:{
+    foo: [1, 2, 3]
+  }
+})
+```
+
+[(Playground example)](https://ractive.js.org/playground/?env=docs#N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gHYIDuABAEoCGAxgC4CWAbggBTAA6B7tCANpKQDkAYgD2AV1oAHSYKyduPALZTelHgIAGC2sGDCENMKQBmo0Rgw6APFIB8pPQDpLpAdfoEZtUqIIBaajBKAjQAXnZwPl5RSNJaAE8pBAiQE3peBDiAegdrbPsdPWzDIMsdG3FeOwrdfVLjACNKGHKuWm5rXno7Z1EYehQAaQQk9TBXAWcCSiUESyxSXHoALwQp4Cdltdd87pr27mKGts7sqoPOsABmOzNRd2yby9pbGARe4AApAGUAeQAcltaANQvQTAkWPcAJSWfJSd4vazPZowR7PGwIj56X6A4GglDgyGo2EYeGInSaeTtPzQWpgaIPUziAh0eh+Fh0AAe0I4hw6tHSmVwpDCpG5TgIoiQCCcQoQuAA3KRatwANajKTjUXi2hcpzvXCiXjMFjQxUKfncVEABW1YqobOYW1U9FoIzGtDALA1nrA5tVtGofiNmScMRQLEEtu1LRglASkDkpBjXoDVtoqbAAG0AAwAXR10ZaggtGazOqzTgAVqJPFGnIJ09wW0GQ8bZRGo1nk1nmwLuMGCKHO6JI4IJYbjcwBMnfVq02XW4owPRcFsELQWFnFnzlwL+oMPQuwAJ5+NFoHuDM5gJ5bg8-nJbMEJeM9xtutTBkFY+tqt5l3GUECkAQQXEeZ+24Kx2mwHQkHUSg6X5e4BGzABGRYACZFmufM31bVE0PzHQYIwaEQBwWh4GsJAmFIegkFSCRpEkSI7HyOjGDsTAgA)
+
 ## Checkboxes
 
 Boolean data can be bound to checkboxes via the `checked` directive.
