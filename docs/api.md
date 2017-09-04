@@ -660,7 +660,7 @@ Ractive({
 or by using events:
 
 ```js
-new Ractive({
+Ractive({
   el: '#output',
   template: `
   {{#each foo}}
