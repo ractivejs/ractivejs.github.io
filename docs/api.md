@@ -3620,7 +3620,7 @@ r.fire('foo');
 
 ## ractive.get()
 
-Returns the value at `keypath`. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, but excludes computed properties.
+Returns the value at `keypath`. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, including computed properties.
 
 **Syntax**
 
