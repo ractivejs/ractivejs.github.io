@@ -3620,7 +3620,21 @@ r.fire('foo');
 
 ## ractive.get()
 
-Returns the value at `keypath`. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, including computed properties.
+Returns the value at `keypath`. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, as well as computed properties. To exclude computed properties, use: `ractive.get({virtual : false})`.
+
+For example:
+```
+ractive = new Ractive({
+	el : '#container',
+	template : '#tmpl',
+	data : {name : "Herbert"},
+	computed : { computed_num : function(){return 55}}
+})
+
+ractive.get() # => {name : "Herbert", computed_num : 5}
+
+ractive.get({virtual : false}) # => {name : "Herbert"}
+```
 
 **Syntax**
 
