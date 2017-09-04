@@ -3622,20 +3622,6 @@ r.fire('foo');
 
 Returns the value at `keypath`. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, as well as computed properties. To exclude computed properties, use: `ractive.get({virtual : false})`.
 
-For example:
-```
-ractive = new Ractive({
-	el : '#container',
-	template : '#tmpl',
-	data : {name : "Herbert"},
-	computed : { computed_num : function(){return 55}}
-})
-
-ractive.get() # => {name : "Herbert", computed_num : 5}
-
-ractive.get({virtual : false}) # => {name : "Herbert"}
-```
-
 **Syntax**
 
 - `ractive.get([keypath][, options])`
@@ -3664,6 +3650,25 @@ var r = Ractive({
 });
 
 console.log(r.get('foo.bar.0'));
+```
+
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gG4CGMABGQLykB2CA7qQEpEDGALgJYEIAUwAOtX5skRNkVKRSA6qTny51IgFsEk0vxAAJBDABGutpsELsg4SwD2ygA4BXNsnXANshfIBmly+o93q7ByW1DwAlDLukeQIbHYwsgCsCSZRGClyadQYoeYBwbiWADYIAHSFlig8MCVobGGhpAD0jaQUAHzSSqrqmjr6hppYpF4+UkmZglbUBcVlFVU1MXwEHDCxRIW+G7gI2Q3NrR3AXWpSvboGa5oYIDhs8CxgCCwA1qRsT6RTM+gYQA"></div>
+
+```
+var r = new Ractive({
+	data : {
+        name : "Herbert"
+    },
+	computed : {
+        foo : function(){
+            return 55
+        }
+    }
+})
+
+console.log(r.get()) // => {name : "Herbert", foo : 55}
+
+console.log(r.get({virtual : false})) // => {name : "Herbert"}
 ```
 
 ## ractive.getContext()
