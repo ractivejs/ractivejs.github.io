@@ -64,3 +64,23 @@ blc -egorv http://localhost:8000
 - All links must be relative to the current file.
 - Pages should start with a title as first heading.
 - The nav bar is managed in `mkdocs.yml` under `pages`.
+- Providing examples:
+    - Create a **bare minimum** example in the [playground](/playground/) that demonstrates only the related property.
+    - Get the content data of your example (eg. `N4IgFiBcoE5S...cASlxA`) and use it to place a `RUN IT` button right above your code section.
+    - Strip down your example (remove unnecessary parts, like `el: '#container'`, unnecessary parts of template, the `new` keyword, ...) and place it in a code section under **Examples** header.
+    - Follow the other examples' coding style.
+    - Example of an example:
+
+            <div data-playground="N4IgFiBcoE5S...cASlxA"></div>
+            ```js
+            Ractive({
+                template: `
+                    <button on-click="foo">make foo!</button>
+                    <p>message {{hello}}</p>
+                `
+                on: {
+                    'foo': function(){
+                        this.set('hello', 'there');
+                    }
+                }
+            })
