@@ -66,21 +66,50 @@ blc -egorv http://localhost:8000
 - The nav bar is managed in `mkdocs.yml` under `pages`.
 - Providing examples:
     - Create a **bare minimum** example in the [playground](/playground/) that demonstrates only the related property.
-    - Get the content data of your example (eg. `N4IgFiBcoE5S...cASlxA`) and use it to place a `RUN IT` button right above your code section.
+    - Get the content data of your example (eg. `N4IgF...uEA`) and use it to place a `RUN IT` button right above your code section.
     - Strip down your example (remove unnecessary parts, like `el: '#container'`, unnecessary parts of template, the `new` keyword, ...) and place it in a code section under **Examples** header.
     - Follow the other examples' coding style.
     - Example of an example:
 
-            <div data-playground="N4IgFiBcoE5S...cASlxA"></div>
+        1. Actual working code:
+
+            Html:
+
+            ```html
+            <div id="output"></div>
+            ```
+
+            Script:
+
             ```js
-            Ractive({
+            ractive = new Ractive({
+            	el: '#output',
                 template: `
-                    <button on-click="foo">make foo!</button>
-                    <p>message {{hello}}</p>
-                `
-                on: {
-                    'foo': function(){
-                        this.set('hello', 'there');
-                    }
+                    <h2>Check the console</h2>
+                `,
+                data: {
+                	foo: {
+                		bar: 1,
+                		baz: 2
+                	}
                 }
             })
+
+            console.log(ractive.get('foo')) // => {bar: 1, baz: 2}
+            ```
+
+        2. Stripped version that is placed into the Examples section:
+
+                <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4YkBjFASwDc0ACAXloDs0B3WgJTMpoApgAOkwEoRaBJFoByAMQB7AK4oADkql4htLbXQBbZcnSSABpu3mAPGABMAPgDCYNKQDWOp7VJymGOQjQWAPQ2tmZaxhpM5gAmqEiSglHaIgBmcnIJYbQiIgBGSDCSAIx42UlaOSj5AF6S1lkiOFlNTDgAlEJCXj5+aAB0CHIA5rwk5NT9Q2govFJpclJtbbSBgQy2tMD5hbQltDV1OCAE2JAgFtHUtBTR9AIgiipK97ZBl1S2uEA"></div>
+
+                ```js
+                ractive = Ractive({
+                    data: {
+                    	foo: {
+                    		bar: 1,
+                    		baz: 2
+                    	}
+                    }
+                })
+
+                console.log(ractive.get('foo')) // => {bar: 1, baz: 2}            ```
