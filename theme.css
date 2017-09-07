@@ -14,7 +14,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
-  background: #fafafa;
+  background: #fefefe;
   color: #555;
   line-height: 1.5;
   position: relative;
@@ -35,6 +35,12 @@ blockquote{
 
 code{
   word-break: break-all;
+  background-color: rgb(240,240,240);
+  border-radius: 4px;
+  padding: 3px 5px;
+  margin: 4px;
+  font-family: "courier";
+  color: maroon;
 }
 
 :target::before{
@@ -147,6 +153,8 @@ code{
 .toc-side .pure-menu-link:not(.pure-menu-heading),
 .nav-side .pure-menu-link:not(.pure-menu-heading){
   padding-left: 2em;
+  line-height: 1;
+  font-size: 95%;
 }
 
 .search-modal{
