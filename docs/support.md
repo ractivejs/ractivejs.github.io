@@ -112,6 +112,10 @@ The `event` special reference available to event directives has been deprecated 
 * `@event`, which is resolves to the original event that triggered the directive.
 * `@node`, which resolves to the element to which the event directive is attached.
 
+### Instance events
+
+The signature for callbacks to instance events, supplied to `ractive.on()`, now _always_ includes a context regardless of the origin of the event (DOM or API). Additionally, the `fire` method has changed such that the first argument may be a context object. Any events that need to send an object to the callback as the first post-context argument will need to supply a placeholder context object e.g. `ractive.fire( 'event', { first: 'arg' } )` becomes `ractive.fire( 'event', {}, { first: 'arg' } )`.
+
 ### `ractive.merge`
 
 `ractive.merge` has been removed and replaced by an option on `ractive.set`, `{ shuffle: true }`, which more accurately reflects what actually happens. `merge` did not merge data, but instead re-arranged any DOM associated with the elements in the given array to match the order of the array - hence `shuffle` rather than `merge`.
