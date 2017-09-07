@@ -250,6 +250,11 @@ code{
   display: none;
 }
 
+.cdn__revisions{
+  font-size: 1.8rem;
+  text-align: center;
+}
+
 .info{
   margin-left: -15px;
   margin-right: -15px;

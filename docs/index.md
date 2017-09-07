@@ -12,7 +12,7 @@ template: main-no-toc.html
 
 <div class="cdn">
   <span>&lt;script src="</span><a href="https://cdn.jsdelivr.net/npm/ractive">https://cdn.jsdelivr.net/npm/ractive</a><span>"&gt;&lt;/script&gt;</span>
-  <div><a href="https://cdn.jsdelivr.net/npm/ractive/">(All revisions here)</a></div>
+  <div class="cdn__revisions"><a href="https://cdn.jsdelivr.net/npm/ractive/">(All revisions here)</a></div>
 </div>
 
 <div class="info">
