@@ -3216,9 +3216,16 @@ Ractive({
 <li><code>(string)</code>: The escaped key.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">Ractive.escapeKey('foo.bar'); // foo\.bar
+<ul>
+<li>
+<p>Simple example</p>
+<pre><code>Ractive.escapeKey('foo.bar'); // 'foo\\.bar'
 </code></pre>
-
+</li>
+<li>
+<p><a href="https://ractive.js.org/playground/?env=docs#N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOiAPYCuuADi-QHwED0JpnWgDsCAZwDGMYq1yUa9YkPa565XAE9WCOngQAPXDxgBDcbjIIuw2rgKtBKlUJs2CAIxa4GQ8t4C04gA2xOIA1jriYMZCaACqMIFcAMJRMQjksQBKADK8HrheQoLOju6e3r5CAcFhEalxCQBMyfXpWdnkABQA7sS4YOSZpuakCAB0CBLGWp0AlLN55UXWtjz2K3ac5Cs2TAm+AGbbIMZjAFasKKrEopDk7pzAwJQAtigA2gDkpxconwC6Yz2gXIGAweS2GzWxV4EikMk4IBwongQgQ3UGwwsnWAK1wxhgaFwd0+AGJmGwWJ8sHiEC9WIFjLgECTSYplNSVt5oDtcJFog1AncDkwhGZiN45riSi4CmAbmNRAhcJ1PsQ3mNjLRtbRzpcgQlqcceC91Dw0d01kywHqriBZgBuXnYXn8tLxQKNYWi8WS2bS2U2U2hBDqcjUcjfW2fJ0yxz9BVKlVqjWfcgAakx4tGEymWgA0qHOsHQ7MM5GDYEjfQeP0EDwGHWYFb+rb6I7nSsXSUkEzjHcA451SgB7ybFHfp9R3HZcC7jXWNbawweD9LvQx7gMJ2StuZUIMLNMEA">Playground example</a></p>
+</li>
+</ul>
 <h2 id="ractiveextend"><a class="toclink" href="#ractiveextend">Ractive.extend()</a></h2>
 <p>Creates a "subclass" of the Ractive constructor or a subclass constructor. See <code>Components</code> for an in-depth discussion on the use of <code>Ractive.extend</code>.</p>
 <p><strong>Syntax</strong></p>
@@ -3453,11 +3460,11 @@ const info = Ractive.getContext('#some-node');
 <li><code>(Array)</code>: Returns an array of unescaped keys.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">Ractive.splitKeypath( 'foo.bar\.baz' ); // [ 'foo', 'bar.baz' ]
+<pre><code class="js">Ractive.splitKeypath( 'foo.bar\\.baz' ); // [ 'foo', 'bar.baz' ]
 </code></pre>
 
 <h2 id="ractiveunescapekey"><a class="toclink" href="#ractiveunescapekey">Ractive.unescapeKey()</a></h2>
-<p>Unescapes the given key e.g. <code>foo\.bar</code> =&gt; <code>foo.bar</code>.</p>
+<p>Unescapes the given key e.g. <code>foo\\.bar</code> =&gt; <code>foo.bar</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>Ractive.unescapeKey(key)</code></li>
@@ -3471,7 +3478,7 @@ const info = Ractive.getContext('#some-node');
 <li><code>(string)</code>: The unescaped key.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">Ractive.unescapeKey('foo\.bar'); // foo.bar
+<pre><code class="js">Ractive.unescapeKey('foo\\.bar'); // foo.bar
 </code></pre>
 
 <h1 id="instance-properties"><a class="toclink" href="#instance-properties">Instance Properties</a></h1>
@@ -4411,7 +4418,14 @@ ractive.resetPartial('foo', 'bar');
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>keypath (string)</code>: The keypath of the data we're changing, e.g. <code>user</code> or <code>user.name</code> or <code>user.friends[1]</code> or <code>users.*.status</code>.</li>
+<li><code>keypath (string)</code>: The keypath of the data we're changing, e.g.<ul>
+<li><code>user</code></li>
+<li><code>user.name</code></li>
+<li><code>user.friends[1]</code> or <code>user.friends.1</code></li>
+<li><code>users.*.status</code></li>
+<li><code>images.aaa\\.jpg.url</code>.</li>
+</ul>
+</li>
 <li><code>value (any)</code>: The value we're changing it to. Can be a primitive or an object (or array), in which case dependants of <em>downstream keypaths</em> will also be re-rendered (if they have changed).</li>
 <li><code>map (Object)</code>: A map of <code>keypath: value</code> pairs, as above.</li>
 <li><code>[options] Object</code>:<ul>
@@ -4440,6 +4454,10 @@ ractive.resetPartial('foo', 'bar');
 })
 </code></pre>
 
+<p><strong>See Also</strong></p>
+<ul>
+<li><a href="#ractiveescapekey"><code>Ractive.escapeKey()</code></a></li>
+</ul>
 <h2 id="ractiveshift"><a class="toclink" href="#ractiveshift">ractive.shift()</a></h2>
 <p>The Ractive equivalent to <code>Array.shift</code> that removes an element from the beginning of the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not exist (is <code>undefined</code>), an empty array will be supplied instead. Otherwise, if the given keypath does not resolve to an array, an error will be thrown.</p>
