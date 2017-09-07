@@ -54,7 +54,7 @@ template: main-no-toc.html
       <div class="about__block">
         <h2>Downloads</h2>
 <pre><code># jsDelivr
-https://cdn.jsdelivr.net/npm/ractive
+https://cdn.jsdelivr.net/npm/ractive/
 
 # CDNjs
 https://cdnjs.com/libraries/ractive
