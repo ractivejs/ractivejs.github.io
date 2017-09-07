@@ -12,6 +12,7 @@ template: main-no-toc.html
 
 <div class="cdn">
   <span>&lt;script src="</span><a href="https://cdn.jsdelivr.net/npm/ractive">https://cdn.jsdelivr.net/npm/ractive</a><span>"&gt;&lt;/script&gt;</span>
+  <div><a href="https://cdn.jsdelivr.net/npm/ractive/">(All revisions here)</a></div>
 </div>
 
 <div class="info">
@@ -54,7 +55,7 @@ template: main-no-toc.html
       <div class="about__block">
         <h2>Downloads</h2>
 <pre><code># jsDelivr
-https://cdn.jsdelivr.net/npm/ractive/
+https://cdn.jsdelivr.net/npm/ractive
 
 # CDNjs
 https://cdnjs.com/libraries/ractive
