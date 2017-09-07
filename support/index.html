@@ -175,6 +175,8 @@
 <li><code>@event</code>, which is resolves to the original event that triggered the directive.</li>
 <li><code>@node</code>, which resolves to the element to which the event directive is attached.</li>
 </ul>
+<h3 id="instance-events"><a class="toclink" href="#instance-events">Instance events</a></h3>
+<p>The signature for callbacks to instance events, supplied to <code>ractive.on()</code>, now <em>always</em> includes a context regardless of the origin of the event (DOM or API). Additionally, the <code>fire</code> method has changed such that the first argument may be a context object. Any events that need to send an object to the callback as the first post-context argument will need to supply a placeholder context object e.g. <code>ractive.fire( 'event', { first: 'arg' } )</code> becomes <code>ractive.fire( 'event', {}, { first: 'arg' } )</code>.</p>
 <h3 id="ractivemerge"><a class="toclink" href="#ractivemerge"><code>ractive.merge</code></a></h3>
 <p><code>ractive.merge</code> has been removed and replaced by an option on <code>ractive.set</code>, <code>{ shuffle: true }</code>, which more accurately reflects what actually happens. <code>merge</code> did not merge data, but instead re-arranged any DOM associated with the elements in the given array to match the order of the array - hence <code>shuffle</code> rather than <code>merge</code>.</p>
 <h3 id="isolation"><a class="toclink" href="#isolation">Isolation</a></h3>
