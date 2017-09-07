@@ -4,6 +4,7 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
 
 h1, h2, h3, h4, h5, h6{
   font-family: 'Voltaire', sans-serif;
+  margin-top: 2em;
 }
 
 html{
@@ -41,6 +42,10 @@ code{
   margin: 4px;
   font-family: "courier";
   color: maroon;
+}
+h3 code{
+  background-color: #fafafa;
+  color: #729d34;
 }
 
 :target::before{
