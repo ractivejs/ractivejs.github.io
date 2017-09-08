@@ -32,7 +32,7 @@ Ractive.components.Sheet = Ractive.extend({
     unit: {
       handler: function(unit) {
         var scripts = ((unit.h || {}).s || []).map(function(s) { return '\n\t\t<' + 'script src="' + s + '"><' + '/script>'; }).join('');
-        if (unit.h && unit.h.r) scripts = '\n\t\t<' + 'script src="//unpkg.com/ractive@' + unit.h.r + '"><' + '/script>' + scripts;
+        if (unit.h && unit.h.r) scripts = '\n\t\t<' + 'script src="//cdn.jsdelivr.net/npm/ractive@' + unit.h.r + '/ractive.js"><' + '/script>' + scripts;
         scripts += '\n\t\t<' + 'script>(function() {\n\tvar csl = console.log, csw = console.warn; cse = console.error;\n\tfunction proxy(fn, type) {\n\t\treturn function() {\n\t\t\tvar args = Array.prototype.slice.call(arguments);\n\t\t\ttry {\n\t\t\t\twindow.parent.postMessage({ log: args, type: type }, \'*\');\n\t\t\t} catch (e) {\n\t\t\t\twindow.parent.postMessage({ log: [\'Failed to proxy message from output console.\', e.message], type: \'error\' }, \'*\');\n\t\t\t}\n\t\t\tfn.apply(console, args);\n\t\t};\n\t}\n\tconsole.log = proxy(csl, \'log\');\n\tconsole.warn = proxy(csw, \'warn\');\n\tconsole.error = proxy(cse, \'error\');\n})();\n//# sourceURL=util.js\n<' + '/script>';
         var ev = unit.e ? '<' + 'script>' + unit.e + '//# sourceURL=eval.js\n<' + '/script>' : '';
         if (ev) delete unit.e;
