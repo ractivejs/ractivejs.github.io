@@ -441,10 +441,10 @@ Ractive({
     <# mountpoint7 />
   `,
   oninit(){
-    // Create new instnace
+    // Create new instance
     const myComponent = MyComponent()
 
-    // Link msg of parent to message of instnace
+    // Link msg of parent to message of instance
     myComponent.link('msg', 'message', { ractive: this })
 
     // It's mount'in time!
