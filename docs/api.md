@@ -2802,12 +2802,38 @@ Escapes the given key so that it can be concatenated with a keypath string.
 
 **Examples**
 
-* Simple example
+*Example 1*
 
-        Ractive.escapeKey('foo.bar'); // 'foo\\.bar'
+```js
+Ractive.escapeKey('foo.bar'); // 'foo\\.bar'
+```
+
+*Example 2*
+
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOiAPYCuuADi-QHwED0JpnWgDsCAZwDGMYq1yUa9YkPa565XAE9WCOngQAPXDxgBDcbjIIuw2rgKtBKlUJs2CAIxa4GQ8t4C04gA2xOIA1jriYMZCaACqMIFcAMJRMQjksQBKADLkABRu6uRMoooo5AgSxlrkkcYmZggwAJS8HrheQoLOju6e3r5CAcFhEalxCQBMyePpWbl5AO7EuGDkmabmpAgAdJXi1Qh5za087Z3drjz21rb25Lc2TAm+AGYPIMY7AFasKKrEUSQcjuTjAYCUAC2KAA2gByL6-FBwgC6O2egXIGAwbU4Dx6vBuIh4EikMk4IBwongQgQi3WmwseWAt1w9TQuGBcIAxMw2Cw4VhWQhIaxAsZcAgudzFMpBbdvNBHrg6ml4oFga8mEIzMRvMcWT0XB0wICdqIELg8nDiNCdsZaI7aD8-uiEoKPjxIeoeLTFtcJWAXf8QM0ANzK7DK1UTQKTTXa3X65qG402b2hBBFajkBHBuERo2OVZmi1Wm12uHkADUDN12z2VS0AGks3kM1nmjXc27Ah76DxVggeAwhzAA6tg-Rw5HblGekgJcZganHLaUCvlTY80i4Zui8aMcCB6xA4OGDxEX96FvcBhZz170ahBhmpggA"></div>
 
 
-* [Playground example](https://ractive.js.org/playground/?env=docs#N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOiAPYCuuADi-QHwED0JpnWgDsCAZwDGMYq1yUa9YkPa565XAE9WCOngQAPXDxgBDcbjIIuw2rgKtBKlUJs2CAIxa4GQ8t4C04gA2xOIA1jriYMZCaACqMIFcAMJRMQjksQBKADK8HrheQoLOju6e3r5CAcFhEalxCQBMyfXpWdnkABQA7sS4YOSZpuakCAB0CBLGWp0AlLN55UXWtjz2K3ac5Cs2TAm+AGbbIMZjAFasKKrEopDk7pzAwJQAtigA2gDkpxconwC6Yz2gXIGAweS2GzWxV4EikMk4IBwongQgQ3UGwwsnWAK1wxhgaFwd0+AGJmGwWJ8sHiEC9WIFjLgECTSYplNSVt5oDtcJFog1AncDkwhGZiN45riSi4CmAbmNRAhcJ1PsQ3mNjLRtbRzpcgQlqcceC91Dw0d01kywHqriBZgBuXnYXn8tLxQKNYWi8WS2bS2U2U2hBDqcjUcjfW2fJ0yxz9BVKlVqjWfcgAakx4tGEymWgA0qHOsHQ7MM5GDYEjfQeP0EDwGHWYFb+rb6I7nSsXSUkEzjHcA451SgB7ybFHfp9R3HZcC7jXWNbawweD9LvQx7gMJ2StuZUIMLNMEA)
+```js
+Ractive({
+    ...
+	on:{
+		changeUrl: function(){
+			this.set('img.a\\.jpg.url', "/my/new/path.jpg");
+		},
+		changeUrl2: function(){
+			mykey = 'a.jpg';
+			this.set('img.' + Ractive.escapeKey(mykey) + '.url', "/the/other/path.jpg");
+		}
+	},
+	data: {
+		img: {
+			'a.jpg': {
+				url: "/path/to/a.jpg"
+			}
+		}
+	}
+})
+```
 
 ## Ractive.extend()
 
