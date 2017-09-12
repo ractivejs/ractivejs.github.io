@@ -423,6 +423,10 @@ To interpret a `\` as a literal slash before a mustache, simply prepend another 
 
 `<# />` define anchors which are mounting points where instances can be mounted to dynamically during runtime.
 
+**Examples**
+
+*Example 1*
+
 <div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAWQE8BhUgWwAcK1yUqBeKgJSTEUASwBuaAHRoAHunIATABTAAOuSpV0bZOkhUABus2aAPAvEA+YMCrNMGJAHM0VHDlMB6C2MvHD6jgAlOrqgsLiaCr+KEgwLij6AOQARqQKdEl4-gqoSPpqGibMGE7JABJoCAikeFQA6qQwCAoAhEn++DFoOqho+kZFZgDEdqQArlzsIlwA7FSefkUG2UUUMyIoSkGFJgueVAwwaH1U5GgA7lQzWORCaP6aZJTczIws7OdcvLTvbBxcbahIb7KgAGRmAGs7KUqKQAGZUVhxTjcFCkOwOZyuBHXF53YgPEFvJj-L4oSQIKFKJIlJxZKi0rEuBm2GBCUQSfQoMAiDBuELkR6ggCSKCS-OYEy4SRmWhE9lawp5fMkqFixDADF5LSUJI+AJQdVssXiaESjKlkxQ0zmSWCnUCQVwQA"></div>
 
 ```js
@@ -449,6 +453,40 @@ Ractive({
 
     // It's mount'in time!
     this.attachChild(myComponent, { target: 'mountpoint7'})
+  }
+})
+```
+
+*Example 2*: Attaching, detaching, firing events, creating two-way bindings within the template
+
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gLICeAwgPYC2ADmQHYK0AuABALzMBKAhgMaMCWANwQA6BAA9GDJAApgAHVrNmU6gBsuUyMwAGi5coA8AIwCujRnWZ0AtDzX8eAa1byQ9x07cA+XFyLMYAhqamQAhMwyMNIIMMw8ZKZM2sDACUmMGBgAlJEUCLh+aCnA+YVcaFnZhgD0ZhZ03vq6WM100bRIsdoAZkl8-HQy2QpKzPIWYPy4IlxIsgDk6UwL2QDczdjNSJpcvf0CQyPNE9GMpjBKo8oTE8uM2gAMJ5mbijmKitwDwnLNjFwYGgHswFsYyEgiAtWmMdgCUs1lBRcChtAsABLBUJYZgAdTIMDUSDCC02MOUqioGi0uheJnMliUtg8zlcIAoZGEPg5wmY-EYtXqjO84zGE3pDSZtDsDlZbmBACFeF4QN5gcxjMrBQzGp8xQKkEJmLhGEQ1Ag2eCYF0YNoAMxUcTGsgOJDMaJINaBBD8FBgEEAVkejp8nxYBkMAGJmByMjR+EwbHQENZpSyXG4giEyG4YwUiha3KlkSgsrmak0xkYaobBJWbvrDLXjabzZaCTb7Y7na7mEQsWQAO5eoK+-3aIMh1UvIzR2NMeOJxiDsipmWeNlZ0K5soFtmpGMo5gAalBJ7Pp5LzDLIGYFcRzFqtfrBgfhjAdu8REScV3FRTQTRLUH4vkYCZUOYzCCFwaimIWIDFiiN53i+OjkqmHSdswfS0AMRzXAYNQ1MwJDRJoKb0IOfK0CatC8AgD4UEQACSNEArhKbsMQ5DUMmTDDBstC3JM0yzBYvBgCQUxEjITGsSaXAcTiwAqICwJovOjCLowSb0AsHxCYwEyMFMMxDKMwkTDyCD7Lhhy0MMFlGc5xmmSIXQAjwknSbIclsYpPAIOsYaWSJMyaJ53n8DJfkKUpzAqQCQIICCCyadpNjLmQ+nZCFzlbIZwmKsqtl4Q5xyFS5YXuSlElSdFvksf5HHBZVwkmaJEV1T5slNXFgXKapyWpelZAJjpyY5XlEwFaFCxbtlpX2TIfDiBVoVWYkTAAApjUwbDxIw4giAkvH0EwJ2UDQ52MCIdH5NNzkwbEjAyJmA7YTAlDjLel5bYwu3jeeuaDvyYB5uUxQ-eeq2XWdDC3cCMhpfm-6rLlbWvJVBnKBg7zZJgQA"></div>
+
+```js
+MyComponent = Ractive.extend({
+    template: ...
+})
+
+Ractive({
+    ...
+    template: `
+        <button on-click="move">move it</button>
+	    <# mountpoint-one on-click="hello" message="{{msg}}" />
+        <# mountpoint-two on-click="hello" message="{{ msg + ' + ' + msg }}" />
+        <input value="{{msg}}" />
+    `,
+    onrender: function(){
+        // Create new instnace
+        myInstance = MyComponent();
+		this.attachChild(myInstance, { target: 'mountpoint-one'})
+		this.on({
+			move: function(){
+				this.detachChild(myInstance);
+				this.attachChild(myInstance, { target: 'mountpoint-two'})
+			},
+			'hello': function(ctx){
+                // fire an event as you would do with a regular component
+			}
+		})
   }
 })
 ```
