@@ -3197,7 +3197,7 @@ The instance-only registry of transitions.
 
 # Instance Methods
 
-## ractive._super()
+## ractive.\_super()
 
 Calls the parent method from a child method of the same name.
 
