@@ -3744,37 +3744,39 @@ Inserts the instance to a different location. If the instance is currently in th
 
 **Examples**
 
-<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggHQkD2AtgA4MB2C7ZutR-AAgC8A4uWp0EADzJckACmAAddkrKzWAGyKzIApSAA8AIwCu6jgD5gwAJ4UEmpBgyGA9GYvtLBlRgCUKpwA7qKklDSKKmqOegDkAMQM5izmcVjR6ghaOgh6AAaZaoZgAMw+qmRqxYxICAIk2ri4QgbGZKoglrKaCGwwZO61CJYCnmQcAsEUmpoCZDBE7Lj9ZPNg9YbDDU0tbR0GlhuzDEMMdaPjk0VVZABmMMwCto6aDKFI1PMMAjDIAp8qDd3GUKtUqpVqpDBgBCAC0cIECORKNRaPRGIRSLhYNuJnME3YAg4cMaFBIAGtWiAmAwaIcen0GAN3FdvMC2cT2KTNOSqQY-rgJn9DoLhQhWQSrDdgYCBELbL1qcZmXUYHoAEwsKTyhi8pDPV7vADcAiYFG5GwoKDAZD0AFYAAzaw4ywb8IhHI3uD244puQF+wZyihIal3BgMAzysiKhDK1UIdUCACM2t1+t+yFN5stCGttodzqkruh7kDmXyWH0lQ4f3Yar0d1M7HEHHk-mU0LIwR+IjIYAovDuFqQAGFmGxONx5HEPXF-MabmQiDA0Gt+4Ph6PZwkIwwF0voczrQAZBgkHQUSb93u0FdrhAQ8EDoe0dtd8FqWk0JsttvsB2n63C+d4WrgSZkPID7roubrYG6YrMnkAjNq2lDtp2bpqD2DC0OBkHyCeKDnpeGHsHB0JqBgNwBEe1F+P4IA4GQ8CGCGYYGMkZCpFUXTltQljMSAJDwLQ7REsBjBvMmwSDrIpqZMYpAUigjwtkgpJ6syehqUQtiKZULBEEgnzsCgeilNqhlqCqMBqnCiyfKYuCWdZSmJsmaY6rgeqhmM2iUkeNHsJgQA"></div>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gEoCGAxgC4CWAbggHQkD2AtgA4MB2C7ZutR-AAgC8A4uWp0EADzJckACmAAddkrKzWAGyKzIApSAA8AIwCu6jgD5gwAJ4UEmpBgyGA9GYvtLBlRgCUKiqcAO6ipJQ0ikGymnoA5ADEDOYs5vFYMRos2roCAAYxaoZgAMw+qmRqxYxICAIk2ri4QgbGZKoglrEIbDBk7rUIlgKeZBwCIRSamgJkMETsuH1kc2D1hkMNTS1tHQaW6zMMgwx1I2MTRVVkAGYwzAK2jpoMYUjUcwwCMMgCH1Rru4yhVqlVKsUAIQAWmhAlhCMRSORKNRsPh0NBNyBl3YAg40MaFBIAGtWiAmAwaAceit3LiscVcfj2ITNMSyQZfrhxr8DtzeQh6eZxt5rkCAQIKEhyYxuEQKJwYABGAwCHm2TQIcnGBgwOowPQAJhYUnVDHZSCeLzeAG4BExFdD1hQUGAyHoAKwABlNB3FA34REONvcQcZAzcANBEIGkulso4ZAVSqNao1Wp1eoNemVpvNlp+yHtjtZLrdHoEPr9XSCsfc0Zi+Sw+kqHD0yjxAm7lKi-k73cHDQ4PIEQeEawovFuiqQAGFmGxONx5PEg-F-LaVEPu3LR8mYGhViIyGAp7QZ+wFEk5cnFQgYEaN1uu0Og7RFbgH2R5Aej5vt0HbBAO7AU9QQeR+xAwc91WccTzPadZwXVgOC4H8134Z9oN3EdVj-BBj0nJCr1XRJbxTB9lWw19B3fT9v1-IhD0IgDaIwGIOPYAIQBwMh4EMeMZQMFIyDSKougbahLF4kASHgWh2jxTs1EYV5DUmM9ZHtGJjFIEkUAeUwr0JC09T0QyiFsHTKhYIgkA+dgUD0UpTRstRdX1B9oQWD5TFwFy3N07MH1zfNcAtaVRm0UkXy4zAgA"></div>
 
 ```js
 Ractive.components.aaa = Ractive.extend({
-	template: "<button>{{yield}}</button>"
+    template: "<button>{{yield}}</button>"
 })
+
 Ractive({
     ...
-	template: `
-		<button on-click="move">teleport</button>
-		<button on-click="restore">restore</button>
+    template: `
+        <button on-click="move">teleport</button>
+        <button on-click="restore">restore</button>
 
-		<div style="border: 2px solid yellow; min-height: 50px">
-			<aaa>hello</aaa>
-		</div>
-		<div id="foo" style="border: 1px solid red; min-height: 50px">
-		</div>
-	`,
-	onrender: function(){
-		two = this.findComponent('aaa');
-		target = this.find('#foo');
-		origLocation = two.target
-		this.on({
-			move: function(){
-				two.insert(target);
-			},
-			restore: function(){
-				two.insert(origLocation);
-			}
-		});
-	}
+        <div id="container1" style="border: 2px solid yellow; min-height: 50px">
+            <aaa>hello</aaa>
+        </div>
+
+        <div id="container2" style="border: 1px solid red; min-height: 50px">
+
+        </div>
+    `,
+    on: {
+        move(){
+          const aaa = this.findComponent('aaa');
+          const target = this.find('#container2');
+          aaa.insert(target);
+        },
+        restore(){
+          const aaa = this.findComponent('aaa');
+          const target = this.find('#container1');
+          aaa.insert(target);
+        }
+    }
 })
 ```
 
