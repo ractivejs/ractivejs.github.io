@@ -470,24 +470,24 @@ Ractive({
     ...
     template: `
         <button on-click="move">move it</button>
-	    <# mountpoint-one on-click="hello" message="{{msg}}" />
+        <# mountpoint-one on-click="hello" message="{{msg}}" />
         <# mountpoint-two on-click="hello" message="{{ msg + ' + ' + msg }}" />
         <input value="{{msg}}" />
     `,
     onrender: function(){
-        // Create new instnace
+        // Create new instance
         myInstance = MyComponent();
-		this.attachChild(myInstance, { target: 'mountpoint-one'})
-		this.on({
-			move: function(){
-				this.detachChild(myInstance);
-				this.attachChild(myInstance, { target: 'mountpoint-two'})
-			},
-			'hello': function(ctx){
+        this.attachChild(myInstance, { target: 'mountpoint-one'})
+        this.on({
+            move(){
+                this.detachChild(myInstance);
+                this.attachChild(myInstance, { target: 'mountpoint-two'})
+            },
+            hello(ctx){
                 // fire an event as you would do with a regular component
-			}
-		})
-  }
+            }
+        })
+    }
 })
 ```
 
@@ -3424,9 +3424,7 @@ Children can be detached using `ractive.detachChild()`.
 
 **Examples**
 
-```js
-// TODO
-```
+*Example 1*: See the example for [Anchors](#anchors)
 
 ## ractive.detach()
 
@@ -3480,9 +3478,7 @@ When a child instance that was attached targeting an anchor is detached, its ins
 
 **Examples**
 
-```js
-// TODO
-```
+*Example 1*: See the example for [Anchors](#anchors)
 
 ## ractive.find()
 
