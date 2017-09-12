@@ -1126,7 +1126,7 @@
             "title": "Instance Methods"
         }, 
         {
-            "location": "/api/#ractive_super", 
+            "location": "/api/#ractive95super", 
             "text": "Calls the parent method from a child method of the same name.  ractive._super()  is not always available. Only when Ractive detects its use does it make this reference to the parent method.  Syntax   ractive._super([arg[, ...argN]])   Arguments   [arg] (any) : One or more arguments to pass to the function.   Returns   (any) : Depends on the method called.   Examples   var Component = Ractive.extend({\n    oninit: function() {\n        console.log('super init')\n    }\n});\n\nvar SubComponent = Component.extend({\n    oninit: function() {\n        this._super();\n        console.log('sub init');\n    }\n})\n\nnew SubComponent();", 
             "title": "ractive._super()"
         }, 
