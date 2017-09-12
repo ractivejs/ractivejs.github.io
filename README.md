@@ -111,5 +111,5 @@ blc -egorv http://localhost:8000
                     	}
                     }
                 })
-
-                console.log(ractive.get('foo')) // => {bar: 1, baz: 2}            ```
+                console.log(ractive.get('foo')) // => {bar: 1, baz: 2}            
+                ```
