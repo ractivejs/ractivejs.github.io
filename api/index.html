@@ -1393,6 +1393,8 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 
 <h2 id="anchors"><a class="toclink" href="#anchors">Anchors</a></h2>
 <p><code>&lt;# /&gt;</code> define anchors which are mounting points where instances can be mounted to dynamically during runtime.</p>
+<p><strong>Examples</strong></p>
+<p><em>Example 1</em></p>
 <div data-run="true" data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoQN4BjAewDssACAWQE8BhUgWwAcK1yUqBeKgJSTEUASwBuaAHRoAHunIATABTAAOuSpV0bZOkhUABus2aAPAvEA+YMCrNMGJAHM0VHDlMB6C2MvHD6jgAlOrqgsLiaCr+KEgwLij6AOQARqQKdEl4-gqoSPpqGibMGE7JABJoCAikeFQA6qQwCAoAhEn++DFoOqho+kZFZgDEdqQArlzsIlwA7FSefkUG2UUUMyIoSkGFJgueVAwwaH1U5GgA7lQzWORCaP6aZJTczIws7OdcvLTvbBxcbahIb7KgAGRmAGs7KUqKQAGZUVhxTjcFCkOwOZyuBHXF53YgPEFvJj-L4oSQIKFKJIlJxZKi0rEuBm2GBCUQSfQoMAiDBuELkR6ggCSKCS-OYEy4SRmWhE9lawp5fMkqFixDADF5LSUJI+AJQdVssXiaESjKlkxQ0zmSWCnUCQVwQA"></div>
 
 <pre><code class="js">const MyComponent = Ractive.extend({
@@ -1419,6 +1421,38 @@ Ractive({
     // It's mount'in time!
     this.attachChild(myComponent, { target: 'mountpoint7'})
   }
+})
+</code></pre>
+
+<p><em>Example 2</em>: Attaching, detaching, firing events, creating two-way bindings within the template</p>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gLICeAwgPYC2ADmQHYK0AuABALzMBKAhgMaMCWANwQA6BAA9GDJAApgAHVrNmU6gBsuUyMwAGi5coA8AIwCujRnWZ0AtDzX8eAa1byQ9x07cA+XFyLMYAhqamQAhMwyMNIIMMw8ZKZM2sDACUmMGBgAlJEUCLh+aCnA+YVcaFnZhgD0ZhZ03vq6WM100bRIsdoAZkl8-HQy2QpKzPIWYPy4IlxIsgDk6UwL2QDczdjNSJpcvf0CQyPNE9GMpjBKo8oTE8uM2gAMJ5mbijmKitwDwnLNjFwYGgHswFsYyEgiAtWmMdgCUs1lBRcChtAsABLBUJYZgAdTIMDUSDCC02MOUqioGi0uheJnMliUtg8zlcIAoZGEPg5wmY-EYtXqjO84zGE3pDSZtDsDlZbmBACFeF4QN5gcxjMrBQzGp8xQKkEJmLhGEQ1Ag2eCYF0YNoAMxUcTGsgOJDMaJINaBBD8FBgEEAVkejp8nxYBkMAGJmByMjR+EwbHQENZpSyXG4giEyG4YwUiha3KlkSgsrmak0xkYaobBJWbvrDLXjabzZaCTb7Y7na7mEQsWQAO5eoK+-3aIMh1UvIzR2NMeOJxiDsipmWeNlZ0K5soFtmpGMo5gAalBJ7Pp5LzDLIGYFcRzFqtfrBgfhjAdu8REScV3FRTQTRLUH4vkYCZUOYzCCFwaimIWIDFiiN53i+OjkqmHSdswfS0AMRzXAYNQ1MwJDRJoKb0IOfK0CatC8AgD4UEQACSNEArhKbsMQ5DUMmTDDBstC3JM0yzBYvBgCQUxEjITGsSaXAcTiwAqICwJovOjCLowSb0AsHxCYwEyMFMMxDKMwkTDyCD7Lhhy0MMFlGc5xmmSIXQAjwknSbIclsYpPAIOsYaWSJMyaJ53n8DJfkKUpzAqQCQIICCCyadpNjLmQ+nZCFzlbIZwmKsqtl4Q5xyFS5YXuSlElSdFvksf5HHBZVwkmaJEV1T5slNXFgXKapyWpelZAJjpyY5XlEwFaFCxbtlpX2TIfDiBVoVWYkTAAApjUwbDxIw4giAkvH0EwJ2UDQ52MCIdH5NNzkwbEjAyJmA7YTAlDjLel5bYwu3jeeuaDvyYB5uUxQ-eeq2XWdDC3cCMhpfm-6rLlbWvJVBnKBg7zZJgQA"></div>
+
+<pre><code class="js">MyComponent = Ractive.extend({
+    template: ...
+})
+
+Ractive({
+    ...
+    template: `
+        &lt;button on-click=&quot;move&quot;&gt;move it&lt;/button&gt;
+        &lt;# mountpoint-one on-click=&quot;hello&quot; message=&quot;{{msg}}&quot; /&gt;
+        &lt;# mountpoint-two on-click=&quot;hello&quot; message=&quot;{{ msg + ' + ' + msg }}&quot; /&gt;
+        &lt;input value=&quot;{{msg}}&quot; /&gt;
+    `,
+    onrender: function(){
+        // Create new instance
+        myInstance = MyComponent();
+        this.attachChild(myInstance, { target: 'mountpoint-one'})
+        this.on({
+            move(){
+                this.detachChild(myInstance);
+                this.attachChild(myInstance, { target: 'mountpoint-two'})
+            },
+            hello(ctx){
+                // fire an event as you would do with a regular component
+            }
+        })
+    }
 })
 </code></pre>
 
@@ -3243,16 +3277,34 @@ Ractive({
 <li><code>(string)</code>: The escaped key.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<ul>
-<li>
-<p>Simple example</p>
-<pre><code>Ractive.escapeKey('foo.bar'); // 'foo\\.bar'
+<p><em>Example 1</em></p>
+<pre><code class="js">Ractive.escapeKey('foo.bar'); // 'foo\\.bar'
 </code></pre>
-</li>
-<li>
-<p><a href="https://ractive.js.org/playground/?env=docs#N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOiAPYCuuADi-QHwED0JpnWgDsCAZwDGMYq1yUa9YkPa565XAE9WCOngQAPXDxgBDcbjIIuw2rgKtBKlUJs2CAIxa4GQ8t4C04gA2xOIA1jriYMZCaACqMIFcAMJRMQjksQBKADK8HrheQoLOju6e3r5CAcFhEalxCQBMyfXpWdnkABQA7sS4YOSZpuakCAB0CBLGWp0AlLN55UXWtjz2K3ac5Cs2TAm+AGbbIMZjAFasKKrEopDk7pzAwJQAtigA2gDkpxconwC6Yz2gXIGAweS2GzWxV4EikMk4IBwongQgQ3UGwwsnWAK1wxhgaFwd0+AGJmGwWJ8sHiEC9WIFjLgECTSYplNSVt5oDtcJFog1AncDkwhGZiN45riSi4CmAbmNRAhcJ1PsQ3mNjLRtbRzpcgQlqcceC91Dw0d01kywHqriBZgBuXnYXn8tLxQKNYWi8WS2bS2U2U2hBDqcjUcjfW2fJ0yxz9BVKlVqjWfcgAakx4tGEymWgA0qHOsHQ7MM5GDYEjfQeP0EDwGHWYFb+rb6I7nSsXSUkEzjHcA451SgB7ybFHfp9R3HZcC7jXWNbawweD9LvQx7gMJ2StuZUIMLNMEA">Playground example</a></p>
-</li>
-</ul>
+
+<p><em>Example 2</em></p>
+<div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOiAPYCuuADi-QHwED0JpnWgDsCAZwDGMYq1yUa9YkPa565XAE9WCOngQAPXDxgBDcbjIIuw2rgKtBKlUJs2CAIxa4GQ8t4C04gA2xOIA1jriYMZCaACqMIFcAMJRMQjksQBKADLkABRu6uRMoooo5AgSxlrkkcYmZggwAJS8HrheQoLOju6e3r5CAcFhEalxCQBMyePpWbl5AO7EuGDkmabmpAgAdJXi1Qh5za087Z3drjz21rb25Lc2TAm+AGYPIMY7AFasKKrEUSQcjuTjAYCUAC2KAA2gByL6-FBwgC6O2egXIGAwbU4Dx6vBuIh4EikMk4IBwongQgQi3WmwseWAt1w9TQuGBcIAxMw2Cw4VhWQhIaxAsZcAgudzFMpBbdvNBHrg6ml4oFga8mEIzMRvMcWT0XB0wICdqIELg8nDiNCdsZaI7aD8-uiEoKPjxIeoeLTFtcJWAXf8QM0ANzK7DK1UTQKTTXa3X65qG402b2hBBFajkBHBuERo2OVZmi1Wm12uHkADUDN12z2VS0AGks3kM1nmjXc27Ah76DxVggeAwhzAA6tg-Rw5HblGekgJcZganHLaUCvlTY80i4Zui8aMcCB6xA4OGDxEX96FvcBhZz170ahBhmpggA"></div>
+
+<pre><code class="js">Ractive({
+    ...
+    on:{
+        changeUrl: function(){
+            this.set('img.a\\.jpg.url', &quot;/my/new/path.jpg&quot;);
+        },
+        changeUrl2: function(){
+            mykey = 'a.jpg';
+            this.set('img.' + Ractive.escapeKey(mykey) + '.url', &quot;/the/other/path.jpg&quot;);
+        }
+    },
+    data: {
+        img: {
+            'a.jpg': {
+                url: &quot;/path/to/a.jpg&quot;
+            }
+        }
+    }
+})
+</code></pre>
+
 <h2 id="ractiveextend"><a class="toclink" href="#ractiveextend">Ractive.extend()</a></h2>
 <p>Creates a "subclass" of the Ractive constructor or a subclass constructor. See <code>Components</code> for an in-depth discussion on the use of <code>Ractive.extend</code>.</p>
 <p><strong>Syntax</strong></p>
@@ -3708,9 +3760,7 @@ ractive.attachChild( child, options );
 </ul>
 <p>Children can be detached using <code>ractive.detachChild()</code>.</p>
 <p><strong>Examples</strong></p>
-<pre><code class="js">// TODO
-</code></pre>
-
+<p><em>Example 1</em>: See the example for <a href="#anchors">Anchors</a></p>
 <h2 id="ractivedetach"><a class="toclink" href="#ractivedetach">ractive.detach()</a></h2>
 <p>Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with <code>ractive.insert()</code> (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).</p>
 <p><strong>Syntax</strong></p>
@@ -3755,9 +3805,7 @@ setTimeout(function() {
 <li><code>(Promise)</code>: A <code>Promise</code> that resolves with the child instance when any transitions are complete.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">// TODO
-</code></pre>
-
+<p><em>Example 1</em>: See the example for <a href="#anchors">Anchors</a></p>
 <h2 id="ractivefind"><a class="toclink" href="#ractivefind">ractive.find()</a></h2>
 <p>Returns the first element inside a given Ractive instance matching a CSS selector. This is similar to doing <code>this.el.querySelector(selector)</code> (though it doesn't actually use <code>querySelector()</code>).</p>
 <p><strong>Syntax</strong></p>
