@@ -68,7 +68,7 @@ blc -egorv http://localhost:8000
     - Create a **bare minimum** example in the [playground](/playground/) that demonstrates only the related property.
     - Get the content data of your example (eg. `N4IgF...uEA`) and use it to place a `RUN IT` button right above your code section.
     - Strip down your example (remove unnecessary parts, like `el: '#container'`, unnecessary parts of template, the `new` keyword, ...) and place it in a code section under **Examples** header.
-    - Follow the other examples' coding style.
+    - Follow the other examples' coding style, use 2 spaces per indentation.
     - Example of an example:
 
         1. Actual working code:
