@@ -5384,4 +5384,4 @@ After yanking out top-level `<link rel="ractive">`, `<style>` or `<script>` from
 
 ## Using
 
-In order to use component files, you will have to use _loaders_, Head over to the loaders page to learn more about loaders and help you choose a loader that suits your needs.
+In order to use component files, you will have to use _loaders_, Head over to [the loaders page](https://ractive.js.org/integrations/#loaders) to learn more about loaders and help you choose a loader that suits your needs.
