@@ -4017,16 +4017,17 @@ r.fire('foo');
 </code></pre>
 
 <h2 id="ractiveget"><a class="toclink" href="#ractiveget">ractive.get()</a></h2>
-<p>Returns the value at <code>keypath</code>. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, as well as computed properties. To exclude computed properties, use: <code>ractive.get({virtual : false})</code>.</p>
+<p>Returns the value at <code>keypath</code>.</p>
 <p><strong>Syntax</strong></p>
 <ul>
 <li><code>ractive.get([keypath][, options])</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
-<li><code>[keypath] (string)</code>: The keypath of the data to retrieve.</li>
+<li><code>[keypath] (string)</code>: The keypath of the data to retrieve. If omitted, returns a shallow copy of the instance's data.</li>
 <li><code>[options] (Object)</code>: An options hash that may contain:</li>
-<li><code>virtual (boolean)</code>: Whether or not to include virtual keypaths (computations, links, etc) in the composed object for the given keypath. This defaults to <code>true</code> for the root keypath and <code>false</code> for any other keypaths. Use <code>ractive.get({ virtual: false })</code> to get the raw root object.</li>
+<li><code>virtual (boolean)</code>: When set to <code>false</code>, excludes virtual keypaths (computations, links, mappings, etc.). Defaults to <code>true</code> for the root keypath and <code>false</code> for keypaths other than the root.</li>
+<li><code>unwrap (boolean)</code>: When set to <code>false</code>, returns the adapted value of the data if an adaptor was applied. Defaults to <code>true</code>.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
