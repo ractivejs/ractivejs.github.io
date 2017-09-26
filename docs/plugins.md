@@ -4,17 +4,21 @@ In some cases you want to write your UI in Ractive but have a custom back-end ma
 
 ## Writing
 
+Adaptors translate custom non-POJO data sources into POJOs and vice-versa. Generally, an adaptor does the following:
+
+- Checks if data needs to be adapted, and if so, "wraps" an adaptor to it.
+- Provides a POJO version of your data source for Ractive to use.
+- Captures data changes on your data source and mirror them to the data in Ractive.
+- Captures data changes on the data in Ractive and mirror them to the data source.
+
 ```js
 const myAdaptor = {
-  filter: function ( object, keypath, ractive ) {
+  filter: function ( value, keypath, ractive ) {
     // return `true` if a particular object is of the type we want to adapt.
   },
-  wrap: function ( ractive, object, keypath, prefixer ) {
+  wrap: function ( ractive, value, keypath, prefixer ) {
     // Setup
     return {
-      teardown: function(){
-        // Code executed on teardown.
-      },
       get: function(){
         // Returns POJO version of your data backend.
       },
@@ -23,43 +27,36 @@ const myAdaptor = {
       },
       reset: function(value){
         // Data setter for POJO keypath.
+      },
+      teardown: function(){
+        // Code executed on teardown.
       }
     }
   }
 };
 ```
 
-Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an adaptor is as follows:
+An adaptor definition is an object with two methods:
 
-1. Provides an POJO version of your data source to Ractive.
-2. Captures data changes on your data source and mirror them to the data in Ractive.
-3. Captures data changes on the data in Ractive and mirror them to the data source.
+- `filter`: A function which, if it returns `true`, tells Ractive to use the adaptor on the value.
+    - `value`: The value to check.
+    - `keypath`: The keypath of `value` relative to the instance root.
+    - `ractive`: The instance where `value` resides.
+- `wrap`: A function that sets up an adaptor.
+    - `ractive`: The instance where `value` resides.
+    - `value`: The value to adapt.
+    - `keypath`: The keypath of `value` relative to the instance root.
+    - `prefixer`: A function that accepts an object and returns a shallow clone with its keys prepended with `keypath`.
 
-Whether it's a third-party data modelling library, a RESTful service, a socket server, browser storage, or whatever, as long as all of the three can be done, it can be adapted.
+The `wrap` function must return an object with four methods:
 
-`filter` is a function that gets called to check if `object` needs to use an adaptor.
-
-`object` is the data source to adapt.
-
-`keypath` is the keypath to `object`.
-
-`ractive` is the ractive instance that is currently using the adaptor.
-
-`wrap` is a function that gets called to set up the adaptor on `object`.
-
-`prefixer` is a helper function that accepts an object and automatically prefixes `keypath` to the object's keys.
-
-`get` is a function that gets called when Ractive needs the adapted representation of the `object`.
-
-`set` is a function that is called when `ractive.set()` updates a keypath to a property of the adapted data. This function allows you to update the same property on `object`.
-
-`property` is the keypath to the property being updated, relative to `keypath`.
-
-`value` is the value being passed into `ractive.set()`.
-
-`reset` is a function that is called when `ractive.set()` updates a keypath to the adapted data. This function allows you to either update `object` or tear down the adaptor.
-
-`teardown` is a function called when the adaptor is being removed. This function allows you to do cleanup work on anything that was done during the adaptor setup.
+- `get`: A function that returns the POJO representation of the adapted data.
+- `set`: A function that's called when the keypath being updated is a property of the adapted data.
+    - `property`: The property name to be updated.
+    - `value`: The new value.
+- `reset`: A function that's called when the keypath being updated is the adapted data itself. If `reset` returns `false`, Ractive will replace the data on the keypath with the POJO version, and tear down the adaptor.
+    - `value`: The new value
+- `teardown`: A function that's called when an adaptor is being removed.
 
 ### Adaptors only adapt one level
 
