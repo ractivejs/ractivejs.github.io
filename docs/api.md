@@ -3712,7 +3712,7 @@ r.fire('foo');
 
 ## ractive.get()
 
-Returns the value at `keypath`. If the keypath is omitted, returns a shallow copy of all the data in the instance. This data includes mappings introduced by enclosing components, as well as computed properties. To exclude computed properties, use: `ractive.get({virtual : false})`.
+Returns the value at `keypath`.
 
 **Syntax**
 
@@ -3720,9 +3720,10 @@ Returns the value at `keypath`. If the keypath is omitted, returns a shallow cop
 
 **Arguments**
 
-- `[keypath] (string)`: The keypath of the data to retrieve.
+- `[keypath] (string)`: The keypath of the data to retrieve. If omitted, returns a shallow copy of the instance's data.
 - `[options] (Object)`: An options hash that may contain:
-  - `virtual (boolean)`: Whether or not to include virtual keypaths (computations, links, etc) in the composed object for the given keypath. This defaults to `true` for the root keypath and `false` for any other keypaths. Use `ractive.get({ virtual: false })` to get the raw root object.
+  - `virtual (boolean)`: When set to `false`, excludes virtual keypaths (computations, links, mappings, etc.). Defaults to `true` for the root keypath and `false` for keypaths other than the root.
+  - `unwrap (boolean)`: When set to `false`, returns the adapted value of the data if an adaptor was applied. Defaults to `true`.
 
 **Returns**
 
