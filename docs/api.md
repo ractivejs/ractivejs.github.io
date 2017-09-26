@@ -3722,8 +3722,8 @@ Returns the value at `keypath`.
 
 - `[keypath] (string)`: The keypath of the data to retrieve. If omitted, returns a shallow copy of the instance's data.
 - `[options] (Object)`: An options hash that may contain:
-  - `virtual (boolean)`: When set to `false`, excludes virtual keypaths (computations, links, mappings, etc.). Defaults to `true` for the root keypath and `false` for keypaths other than the root.
-  - `unwrap (boolean)`: When set to `false`, returns the adapted value of the data if an adaptor was applied. Defaults to `true`.
+    - `virtual (boolean)`: When set to `false`, excludes virtual keypaths (computations, links, mappings, etc.). Defaults to `true` for the root keypath and `false` for keypaths other than the root.
+    - `unwrap (boolean)`: When set to `false`, returns the adapted value of the data if an adaptor was applied. Defaults to `true`.
 
 **Returns**
 
