@@ -223,16 +223,20 @@
           <h1 id="adaptors"><a class="toclink" href="#adaptors">Adaptors</a></h1>
 <p>In some cases you want to write your UI in Ractive but have a custom back-end manage the data. Adaptors allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.</p>
 <h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>
+<p>Adaptors translate custom non-POJO data sources into POJOs and vice-versa. Generally, an adaptor does the following:</p>
+<ul>
+<li>Checks if data needs to be adapted, and if so, "wraps" an adaptor to it.</li>
+<li>Provides a POJO version of your data source for Ractive to use.</li>
+<li>Captures data changes on your data source and mirror them to the data in Ractive.</li>
+<li>Captures data changes on the data in Ractive and mirror them to the data source.</li>
+</ul>
 <pre><code class="js">const myAdaptor = {
-  filter: function ( object, keypath, ractive ) {
+  filter: function ( value, keypath, ractive ) {
     // return `true` if a particular object is of the type we want to adapt.
   },
-  wrap: function ( ractive, object, keypath, prefixer ) {
+  wrap: function ( ractive, value, keypath, prefixer ) {
     // Setup
     return {
-      teardown: function(){
-        // Code executed on teardown.
-      },
       get: function(){
         // Returns POJO version of your data backend.
       },
@@ -241,31 +245,45 @@
       },
       reset: function(value){
         // Data setter for POJO keypath.
+      },
+      teardown: function(){
+        // Code executed on teardown.
       }
     }
   }
 };
 </code></pre>
 
-<p>Adaptors are simply the translation and sync layers between your custom data source and Ractive instances. The basic principle of an adaptor is as follows:</p>
-<ol>
-<li>Provides an POJO version of your data source to Ractive.</li>
-<li>Captures data changes on your data source and mirror them to the data in Ractive.</li>
-<li>Captures data changes on the data in Ractive and mirror them to the data source.</li>
-</ol>
-<p>Whether it's a third-party data modelling library, a RESTful service, a socket server, browser storage, or whatever, as long as all of the three can be done, it can be adapted.</p>
-<p><code>filter</code> is a function that gets called to check if <code>object</code> needs to use an adaptor.</p>
-<p><code>object</code> is the data source to adapt.</p>
-<p><code>keypath</code> is the keypath to <code>object</code>.</p>
-<p><code>ractive</code> is the ractive instance that is currently using the adaptor.</p>
-<p><code>wrap</code> is a function that gets called to set up the adaptor on <code>object</code>.</p>
-<p><code>prefixer</code> is a helper function that accepts an object and automatically prefixes <code>keypath</code> to the object's keys.</p>
-<p><code>get</code> is a function that gets called when Ractive needs the adapted representation of the <code>object</code>.</p>
-<p><code>set</code> is a function that is called when <code>ractive.set()</code> updates a keypath to a property of the adapted data. This function allows you to update the same property on <code>object</code>.</p>
-<p><code>property</code> is the keypath to the property being updated, relative to <code>keypath</code>.</p>
-<p><code>value</code> is the value being passed into <code>ractive.set()</code>.</p>
-<p><code>reset</code> is a function that is called when <code>ractive.set()</code> updates a keypath to the adapted data. This function allows you to either update <code>object</code> or tear down the adaptor.</p>
-<p><code>teardown</code> is a function called when the adaptor is being removed. This function allows you to do cleanup work on anything that was done during the adaptor setup.</p>
+<p>An adaptor definition is an object with two methods:</p>
+<ul>
+<li><code>filter</code>: A function which, if it returns <code>true</code>, tells Ractive to use the adaptor on the value.<ul>
+<li><code>value</code>: The value to check.</li>
+<li><code>keypath</code>: The keypath of <code>value</code> relative to the instance root.</li>
+<li><code>ractive</code>: The instance where <code>value</code> resides.</li>
+</ul>
+</li>
+<li><code>wrap</code>: A function that sets up an adaptor.<ul>
+<li><code>ractive</code>: The instance where <code>value</code> resides.</li>
+<li><code>value</code>: The value to adapt.</li>
+<li><code>keypath</code>: The keypath of <code>value</code> relative to the instance root.</li>
+<li><code>prefixer</code>: A function that accepts an object and returns a shallow clone with its keys prepended with <code>keypath</code>.</li>
+</ul>
+</li>
+</ul>
+<p>The <code>wrap</code> function must return an object with four methods:</p>
+<ul>
+<li><code>get</code>: A function that returns the POJO representation of the adapted data.</li>
+<li><code>set</code>: A function that's called when the keypath being updated is a property of the adapted data.<ul>
+<li><code>property</code>: The property name to be updated.</li>
+<li><code>value</code>: The new value.</li>
+</ul>
+</li>
+<li><code>reset</code>: A function that's called when the keypath being updated is the adapted data itself. If <code>reset</code> returns <code>false</code>, Ractive will replace the data on the keypath with the POJO version, and tear down the adaptor.<ul>
+<li><code>value</code>: The new value</li>
+</ul>
+</li>
+<li><code>teardown</code>: A function that's called when an adaptor is being removed.</li>
+</ul>
 <h3 id="adaptors-only-adapt-one-level"><a class="toclink" href="#adaptors-only-adapt-one-level">Adaptors only adapt one level</a></h3>
 <p>An adaptor only adapts an object's immediate properties. Updating nested data via Ractive or via the data source will not update the other.</p>
 <h3 id="no-built-in-infinite-loop-detection"><a class="toclink" href="#no-built-in-infinite-loop-detection">No built-in infinite loop detection</a></h3>
