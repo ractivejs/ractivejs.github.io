@@ -3019,6 +3019,38 @@ const info = Ractive.getContext(document.getElementById('some-node'));
 const info = Ractive.getContext('#some-node');
 ```
 
+## Ractive.isInstace()
+
+Determines whether or not the given object is an instance of the Ractive constructor. This is also extended to component constructors, where it will make sure that the given object is an instance of the particular constructor on which it is called.
+
+__Syntax__
+
+- `Ractive.isInstance(obj)`
+
+__Arguments__
+
+- `obj (any)`: The thing to check.
+
+__Returns__
+
+- `boolean`
+
+__Examples__
+
+```js
+const MyComponent = Ractive.extend();
+const MySpecialComponent = MyComponent.extend();
+const OtherComponent = Ractive.extend();
+
+const r = new MySpecialCompoennt();
+
+MySpecialComponent.isInstance(r); // true
+MyComponent.isInstance(r); // true
+OtherComponent.isIstance(r); // false
+
+Ractive.isInstance(r); //true
+```
+
 ## Ractive.joinKeys()
 
 Joins the given keys into a properly escaped keypath.
