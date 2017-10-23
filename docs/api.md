@@ -2811,6 +2811,16 @@ Ractive({
 	delimiters: [ '//', '\\' ]
 });
 ```
+Global data attributes may be specified:
+```js
+Ractive.defaults.data.people = [{id:4, name:'Fred'},{id:5, name:'Wilma'},...]
+
+//or alterntively, here using underscore's extend function
+_.extend(Ractive.defaults.data,{people : [{id:4, name:'Fred'},{id:5, name:'Wilma'},...],
+                                title : 'Flintstones',
+                                producer : 'Hanna-Barbera'})
+```
+The data attributes and values are then accessible in all components.
 
 ## Ractive.easing
 
