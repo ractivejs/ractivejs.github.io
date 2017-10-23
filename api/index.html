@@ -259,6 +259,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#style">@style</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#n">$n</a>
         </li>
       
@@ -302,6 +306,10 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#css">css</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#cssdata">cssData</a>
         </li>
       
         <li class="pure-menu-item">
@@ -491,6 +499,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivecontext">Ractive.Context</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivedebug">Ractive.DEBUG</a>
         </li>
       
@@ -519,7 +531,15 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#componentparent">[Component].Parent</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivepartials">Ractive.partials</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#componentractive">[Component].Ractive</a>
         </li>
       
         <li class="pure-menu-item">
@@ -561,6 +581,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractiveisinstance">Ractive.isInstance()</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivejoinkeys">Ractive.joinKeys()</a>
         </li>
       
@@ -570,6 +594,14 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivesplitkeypath">Ractive.splitKeypath()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivesharedset">Ractive.sharedSet()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivestyleset">Ractive.styleSet()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -840,6 +872,10 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextgetbindingpath">context.getBindingPath()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contextgetparent">context.getParent()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -2438,6 +2474,9 @@ Ractive({
 <p>The DOM node associated with an event directive. This reference is only available to event directive expressions.</p>
 <h2 id="local"><a class="toclink" href="#local"><code>@local</code></a></h2>
 <p>Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.</p>
+<h2 id="style"><a class="toclink" href="#style"><code>@style</code></a></h2>
+<p><strong>From</strong> <em>0.9.4</em></p>
+<p>The cssData associated with the current instance based on its constructor.</p>
 <h2 id="n"><a class="toclink" href="#n"><code>$n</code></a></h2>
 <p><code>$n</code> is a reference available when handing events using the expression syntax that points to a specific argument passed by the event. Argument positions are denoted by the <code>n</code> which is a one-indexed integer.</p>
 <pre><code class="js">const CustomButton = Ractive.extend({
@@ -2667,7 +2706,7 @@ computed: {
 <p>Whether or not to add inline functions for expressions after parsing. Defaults to <code>false</code>.</p>
 <p>This can effectively eliminate <code>eval</code> caused by expressions in templates. It also makes the resulting template no longer JSON compatible, so the template will have to be served via <code>script</code> tag.</p>
 <h2 id="css"><a class="toclink" href="#css">css</a></h2>
-<p><code>(string)</code></p>
+<p><code>(string|function)</code></p>
 <p>Scoped CSS for a component and its descendants.</p>
 <pre><code class="js">css: `
   .bold { font-weight: bold }
@@ -2686,6 +2725,22 @@ Ractive({
 });
 </code></pre>
 
+<p><strong>From</strong> <em>0.9.4</em>, if <code>css</code> is a function, the function will be called with a handle to the component's style data and is expected to return a string of CSS.</p>
+<pre><code class="js">const Component = Ractive.extend({
+  css(data) {
+    // you can use Ractive.styleSet('colors.special', 'pink') or Component.styleSet('colors.special', 'pink')
+    // at any time to override the default here, which is green
+    return `
+      .super-special { color: ${data('colors.special') || 'green'}; }
+    `
+  }
+});
+</code></pre>
+
+<h2 id="cssdata"><a class="toclink" href="#cssdata">cssData</a></h2>
+<p><strong>From</strong> <em>0.9.4</em></p>
+<p><code>(object)</code></p>
+<p>Like <code>css</code>, this also only applies to components. This is the default data for a component's style computation, if it has one. It is inherited from parent components all the way back to Ractive, and any changes that are made at any point in the hierarchy are automatically propagated down from that point. This means that if a component uses <code>foo</code> in its style computation but does not define a value for it in its <code>cssData</code>, then calling <code>Ractive.styleSet('foo', ...)</code> will cause the component style to recompute.</p>
 <h2 id="data"><a class="toclink" href="#data">data</a></h2>
 <p><code>(Object&lt;string, any&gt;|Function)</code></p>
 <p>The data for an instance, or default data for a component. Can either be an object or a function that returns an object.</p>
@@ -2971,7 +3026,7 @@ ractive.unrender();
 <li><code>handler (Function)</code>: The callback function for the event.</li>
 <li><code>once (boolean)</code>: Use <code>ractive.once()</code> rather than <code>ractive.on()</code> to subscribe the listener, meaning that the handler will only be called the first time the event is fired and then it will be unsubscribed.</li>
 </ul>
-<p><code>on</code> event listeners may subscribe to any instance event, including lifecycle events <em>after</em> <code>construct</code>. When a sublcass created with <code>Ractive.extend()</code> is passed an <code>on</code> hash, then any further subclasses or instances created with an <code>on</code> hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.</p>
+<p><code>on</code> event listeners may subscribe to any instance event, including lifecycle events. When a sublcass created with <code>Ractive.extend()</code> is passed an <code>on</code> hash, then any further subclasses or instances created with an <code>on</code> hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.</p>
 <h2 id="oncomplete"><a class="toclink" href="#oncomplete">oncomplete</a></h2>
 <p><code>(Function)</code></p>
 <p>A lifecycle event that is called when the instance is rendered and all the transitions have completed.</p>
@@ -3196,6 +3251,10 @@ ractive.set( 'foo', 'fizz' );
 <h2 id="ractivecomponents"><a class="toclink" href="#ractivecomponents">Ractive.components</a></h2>
 <p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The registry of globally available component definitions.</p>
+<h2 id="ractivecontext"><a class="toclink" href="#ractivecontext">Ractive.Context</a></h2>
+<p><strong>From</strong> <em>0.9.4</em></p>
+<p><code>(Object)</code></p>
+<p>The prototype for <code>Context</code> objects. This is provided so that you can extend context objects provided by Ractive with your own methods and properties.</p>
 <h2 id="ractivedebug"><a class="toclink" href="#ractivedebug">Ractive.DEBUG</a></h2>
 <p><code>(boolean)</code></p>
 <p>Tells Ractive if it's in debug mode or not. When set to <code>true</code>, non-fatal errors are logged. When set to <code>false</code>, non-fatal errors are suppressed. By default, this is set to <code>true</code>.</p>
@@ -3248,10 +3307,32 @@ Ractive({
 <h2 id="ractiveinterpolators"><a class="toclink" href="#ractiveinterpolators">Ractive.interpolators</a></h2>
 <p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>A key-value hash of interpolators use by <code>ractive.animate()</code> or non-CSS transitions.</p>
+<h2 id="componentparent"><a class="toclink" href="#componentparent">[Component].Parent</a></h2>
+<p><strong>From</strong> <em>0.9.1</em></p>
+<p><code>(Ractive|Component constructor)</code></p>
+<p>The parent constructor of a component.</p>
+<pre><code class="js">const MyComponent = Ractive.extend();
+const MySpecialComponent = MyComponent.extend();
+
+MyComponent.Parent === Ractive; // true
+MySpecialCompoennt.Parent === MyComponent; // true
+</code></pre>
+
 <h2 id="ractivepartials"><a class="toclink" href="#ractivepartials">Ractive.partials</a></h2>
 <p><code>(Object&lt;string, string|Object|Function&gt;)</code></p>
 <p>The global registry of partial templates.</p>
 <p>Like templates, partials are parsed at the point of use. The parsed output is cached and utilized for future use.</p>
+<h2 id="componentractive"><a class="toclink" href="#componentractive">[Component].Ractive</a></h2>
+<p><strong>From</strong> <em>0.9.1</em></p>
+<p><code>(Ractive)</code></p>
+<p>The root Ractive constructor that is the first ancestor of this component.</p>
+<pre><code class="js">const MyComponent = Ractive.extend();
+const MySpecialComponent = MyComponent.extend();
+
+MyComponent.Ractive === Ractive; // true
+MySpecialCompoennt.Ractive === Ractive; // true
+</code></pre>
+
 <h2 id="ractivesvg"><a class="toclink" href="#ractivesvg">Ractive.svg</a></h2>
 <p><code>(boolean)</code></p>
 <p>Indicates whether or not the browser supports SVG.</p>
@@ -3434,6 +3515,35 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 const info = Ractive.getContext('#some-node');
 </code></pre>
 
+<h2 id="ractiveisinstance"><a class="toclink" href="#ractiveisinstance">Ractive.isInstance()</a></h2>
+<p><strong>From</strong> <em>0.9.1</em></p>
+<p>Determines whether or not the given object is an instance of the Ractive constructor. This is also extended to component constructors, where it will make sure that the given object is an instance of the particular constructor on which it is called.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>Ractive.isInstance(obj)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>obj (any)</code>: The thing to check.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>boolean</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">const MyComponent = Ractive.extend();
+const MySpecialComponent = MyComponent.extend();
+const OtherComponent = Ractive.extend();
+
+const r = new MySpecialCompoennt();
+
+MySpecialComponent.isInstance(r); // true
+MyComponent.isInstance(r); // true
+OtherComponent.isIstance(r); // false
+
+Ractive.isInstance(r); //true
+</code></pre>
+
 <h2 id="ractivejoinkeys"><a class="toclink" href="#ractivejoinkeys">Ractive.joinKeys()</a></h2>
 <p>Joins the given keys into a properly escaped keypath.</p>
 <p><strong>Syntax</strong></p>
@@ -3540,6 +3650,46 @@ const info = Ractive.getContext('#some-node');
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">Ractive.splitKeypath( 'foo.bar\\.baz' ); // [ 'foo', 'bar.baz' ]
+</code></pre>
+
+<h2 id="ractivesharedset"><a class="toclink" href="#ractivesharedset">Ractive.sharedSet()</a></h2>
+<p><strong>From</strong> <em>0.9.4</em></p>
+<p>Sets data in the <code>@shared</code> object without requiring access to a Ractive instance.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>Ractive.sharedSet(keypath, value, options)</code></li>
+<li><code>Ractive.sharedSet(hash, options)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<p>Arguments are the same as would be supplied to <code>ractive.set</code>.</p>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise that resolves when any transitions associated with the change have completed.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">Ractive.sharedSet( '_', lodash );
+</code></pre>
+
+<h2 id="ractivestyleset"><a class="toclink" href="#ractivestyleset">Ractive.styleSet()</a></h2>
+<p><strong>From</strong> <em>0.9.4</em></p>
+<p>Sets data in the <code>@style</code> object of Ractive or the component constructor on which it is called. When an applied style that is affected by a change from <code>styleSet</code> updates, Ractive will update its manaaged style tag so that the changes show up in the browser immediately.</p>
+<p>This function is also available to components created with <code>Ractive.extend</code>. When called on a component constructor, <code>styleSet</code> will set the value in the component's <code>cssData</code>, and any extensions of the component will also be notified that the parent data changed.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>Ractive.styleSet(keypath, value, options)</code></li>
+<li><code>Ractive.styleSet(hash, options)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<p>Arguments are the same as would be supplied to <code>ractive.set</code> with an addition to the <code>options</code> hash:</p>
+<ul>
+<li><code>apply (boolean)</code>: Whether or not to apply any affected styles now. Defaults to <code>true</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: Returns a promise that resolves when any transitions associated with the change have completed.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">Ractive.styleSet( 'colors.fg', '#000' );
 </code></pre>
 
 <h2 id="ractiveunescapekey"><a class="toclink" href="#ractiveunescapekey">Ractive.unescapeKey()</a></h2>
@@ -3997,7 +4147,7 @@ setTimeout(function() {
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>name (string)</code>: The name of the event.</li>
-<li><code>[context] (context|object)</code>: A context object to reuse for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (<code>{}</code>) before the additional arguments.</li>
+<li><code>[context] (context|object)</code>: A context object to use for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (<code>{}</code>) before the additional arguments. <strong>From</strong> <em>0.9.4</em>, if you want to reuse a context exactly as it exists, it should have a <code>refire</code> property that is <code>=== true</code>.</li>
 <li><code>[arg] (any)</code>: The arguments that event handlers will be called with.</li>
 </ul>
 <p><strong>Returns</strong></p>
@@ -4140,12 +4290,15 @@ Ractive({
 <p>Creates a link between two keypaths that keeps them in sync. Since Ractive can't always watch the contents of objects, copying an object to two different keypaths in your data usually leads to one or both of them getting out of sync. <code>link</code> creates a sort of symlink between the two paths so that Ractive knows they are actually the same object. This is particularly useful for master/detail scenarios where you have a complex list of data and you want to be able to select an item to edit in a detail form.</p>
 <p><strong>Syntax</strong></p>
 <ul>
-<li><code>ractive.link(source, destination)</code></li>
+<li><code>ractive.link(source, destination, options)</code></li>
 </ul>
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>source (string)</code>: The keypath of the source item.</li>
 <li><code>destination (string)</code>: The keypath to use as the destination - or where you'd like the data 'copied'.</li>
+<li><code>options (hash)</code>: </li>
+<li><code>instance</code> or <code>ractive</code>: The Ractive instance in which to find the source keyapth. This allows cross-instance linking much like mapped paths between components.</li>
+<li><code>keypath</code>: <strong>from</strong> <em>0.9.4</em> - The keypath to register as the source of the link. This is an advanced option that allows you to specify how the link should shuffle. For instance <code>items.0.name</code> will never shuffle, but if the keypath is specified as <code>.name</code>, then it will shuffle when <code>items.0</code> shuffles.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -4551,7 +4704,7 @@ ractive.resetPartial('foo', 'bar');
 <li><code>Function</code>: Add/move/remove existing items to their new index using the value returned by the given function for comparison.</li>
 </ul>
 </li>
-<li><code>keep (boolean)</code>: Whether or not to keep the virtual DOM that would be disposed by the <code>set</code> operation. This is useful for hiding components without completely tearing them down and recreating them. It's also a little bit faster, as the virtual DOM doesn't have to be recreated when it would reappear. This <em>may</em> try to keep the actual DOM around for reuse at some point in the future. Defaults to <code>false</code>.</li>
+<li><code>keep (boolean)</code>: Whether or not to keep the virtual DOM that would be disposed by the <code>set</code> operation. This is useful for hiding components without completely tearing them down and recreating them. It's also a little bit faster, as the virtual DOM doesn't have to be recreated when it would reappear. When the virtual DOM is re-rendered, it will also us the progressive enhancement process to reuse the existing DOM nodes that were detached originalls. Defaults to <code>false</code>.</li>
 </ul>
 </li>
 </ul>
@@ -4926,6 +5079,31 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
 </code></pre>
 
 <pre><code class="js">Ractive.getContext('#findMe').getBindingPath(); // Returns &quot;foo.bar.baz&quot;
+</code></pre>
+
+<h2 id="contextgetparent"><a class="toclink" href="#contextgetparent">context.getParent()</a></h2>
+<p><strong>From</strong> <em>0.9.4</em></p>
+<p>Gets the parent context of this context. This is finer grained than element access provided by <code>Ractive.getContext</code>, as it can target sections that exist nested between elements.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>context.getParent(crossComponentBoundary)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>crossComponentBoundary (boolean)</code>: Whether or not to cross into the context containing a component. Defaults to <code>false</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(context)</code>: The parent context object.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="html">&lt;div&gt;{{#with foo.bar}}{{#with .baz}}&lt;span /&gt;{{/with}}{{/with}}&lt;/div&gt;
+</code></pre>
+
+<pre><code class="js">const ctx = Ractive.getContext('span');
+ctx.resolve(); // foo.bar.baz
+const parent = ctx.getParent();
+parent.resolve(); // foo.bar
 </code></pre>
 
 <h2 id="contextisbound"><a class="toclink" href="#contextisbound">context.isBound()</a></h2>
@@ -5320,7 +5498,7 @@ export default Ractive.extend({
 </li>
 </ul>
 <p>The names and the loaded dependency will be assigned to the component's <code>components</code> initialization option.</p>
-<h3 id="style"><a class="toclink" href="#style"><code>&lt;style&gt;</code></a></h3>
+<h3 id="style_1"><a class="toclink" href="#style_1"><code>&lt;style&gt;</code></a></h3>
 <p>Top-level <code>&lt;style&gt;</code> elements define the styles for the component. If more than one <code>&lt;style&gt;</code> element is found on the component file, their contents are concatenated in the order of appearance of the <code>&lt;style&gt;</code> elements. Contents of these elements will be concatenated and assigned to the component's <code>css</code> initialization option.</p>
 <h3 id="script"><a class="toclink" href="#script"><code>&lt;script&gt;</code></a></h3>
 <p>A top-level <code>&lt;script&gt;</code> defines the component's initialization. The script's scope has a <code>component</code> object that is similar to Node's <code>module</code> object. Initialization options for the component is expected via <code>component.exports</code>. It also has a special <code>require</code> function that fetches script dependencies. <code>require</code>'s behavior depends on the loader used. Refer to the specific loader's documentation to know more.</p>
@@ -5693,6 +5871,10 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#style">@style</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#n">$n</a>
         </li>
       
@@ -5736,6 +5918,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#css">css</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#cssdata">cssData</a>
         </li>
       
         <li class="pure-menu-item">
@@ -5925,6 +6111,10 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivecontext">Ractive.Context</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivedebug">Ractive.DEBUG</a>
         </li>
       
@@ -5953,7 +6143,15 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#componentparent">[Component].Parent</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivepartials">Ractive.partials</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#componentractive">[Component].Ractive</a>
         </li>
       
         <li class="pure-menu-item">
@@ -5995,6 +6193,10 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractiveisinstance">Ractive.isInstance()</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivejoinkeys">Ractive.joinKeys()</a>
         </li>
       
@@ -6004,6 +6206,14 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivesplitkeypath">Ractive.splitKeypath()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivesharedset">Ractive.sharedSet()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivestyleset">Ractive.styleSet()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -6274,6 +6484,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextgetbindingpath">context.getBindingPath()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contextgetparent">context.getParent()</a>
         </li>
       
         <li class="pure-menu-item">
