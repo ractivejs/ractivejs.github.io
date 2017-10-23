@@ -339,11 +339,14 @@ A decorator is a simple way to add behaviour to a node when it is rendered, or t
 const myDecorator = function(node[, ...args]) {
   // Setup code
   return {
-    teardown: function(){
+    teardown: function() {
       // Cleanup code
     },
-    update: function([...args]){
+    update: function([...args]) {
       // Update code
+    },
+    invalidate: function() {
+      // Code called on invalidate
     }
   };
 };
@@ -358,6 +361,8 @@ Decorators are simply functions that are called upon to setup the decorator once
 `teardown` is a function that gets called when the decorator is torn down.
 
 `update` is an optional function that gets called when the arguments update.
+
+`invalidate`, starting with 0.9.3, is an optional function that gets called when any bit of template downstream from the node is being updated.
 
 Any updates to the arguments will call the decorator's `teardown` and run the decorator function again, essentially setting up the decorator again. If an `update` function is provided on the return object, that will be called instead of the `teardown` and setup function.
 
