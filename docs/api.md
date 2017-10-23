@@ -2794,6 +2794,22 @@ The global registry of custom event plugins.
 
 A key-value hash of interpolators use by `ractive.animate()` or non-CSS transitions.
 
+## [Component].Parent
+
+__From__ _0.9.1_
+
+`(Ractive|Component constructor)`
+
+The parent constructor of a component.
+
+```js
+const MyComponent = Ractive.extend();
+const MySpecialComponent = MyComponent.extend();
+
+MyComponent.Parent === Ractive; // true
+MySpecialCompoennt.Parent === MyComponent; // true
+```
+
 ## Ractive.partials
 
 `(Object<string, string|Object|Function>)`
@@ -2801,6 +2817,22 @@ A key-value hash of interpolators use by `ractive.animate()` or non-CSS transiti
 The global registry of partial templates.
 
 Like templates, partials are parsed at the point of use. The parsed output is cached and utilized for future use.
+
+## [Component].Ractive
+
+__From__ _0.9.1_
+
+`(Ractive)`
+
+The root Ractive constructor that is the first ancestor of this component.
+
+```js
+const MyComponent = Ractive.extend();
+const MySpecialComponent = MyComponent.extend();
+
+MyComponent.Ractive === Ractive; // true
+MySpecialCompoennt.Ractive === Ractive; // true
+```
 
 ## Ractive.svg
 
@@ -3020,6 +3052,8 @@ const info = Ractive.getContext('#some-node');
 ```
 
 ## Ractive.isInstace()
+
+__From__ _0.9.1_
 
 Determines whether or not the given object is an instance of the Ractive constructor. This is also extended to component constructors, where it will make sure that the given object is an instance of the particular constructor on which it is called.
 
