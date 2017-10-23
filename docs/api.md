@@ -1610,6 +1610,12 @@ The DOM node associated with an event directive. This reference is only availabl
 
 Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.
 
+## `@style`
+
+__From__ _0.9.4_
+
+The cssData associated with the current instance based on its constructor.
+
 ## `$n`
 
 `$n` is a reference available when handing events using the expression syntax that points to a specific argument passed by the event. Argument positions are denoted by the `n` which is a one-indexed integer.
@@ -1906,7 +1912,7 @@ This can effectively eliminate `eval` caused by expressions in templates. It als
 
 ## css
 
-`(string)`
+`(string|function)`
 
 Scoped CSS for a component and its descendants.
 
@@ -1929,6 +1935,30 @@ Ractive({
   css: '...'
 });
 ```
+
+__From__ _0.9.4_, if `css` is a function, the function will be called with a handle to the component's style data and is expected to return a string of CSS.
+
+```js
+const Component = Ractive.extend({
+  css(data) {
+    // you can use Ractive.styleSet('colors.special', 'pink') or Component.styleSet('colors.special', 'pink')
+    // at any time to override the default here, which is green
+    return `
+      .super-special { color: ${data('colors.special') || 'green'}; }
+    `
+  }
+});
+```
+
+
+
+## cssData
+
+__From__ _0.9.4_
+
+`(object)`
+
+Like `css`, this also only applies to components. This is the default data for a component's style computation, if it has one. It is inherited from parent components all the way back to Ractive, and any changes that are made at any point in the hierarchy are automatically propagated down from that point. This means that if a component uses `foo` in its style computation but does not define a value for it in its `cssData`, then calling `Ractive.styleSet('foo', ...)` will cause the component style to recompute.
 
 
 
@@ -2330,7 +2360,7 @@ The options that may be specified in the object form are:
 * `handler (Function)`: The callback function for the event.
 * `once (boolean)`: Use `ractive.once()` rather than `ractive.on()` to subscribe the listener, meaning that the handler will only be called the first time the event is fired and then it will be unsubscribed.
 
-`on` event listeners may subscribe to any instance event, including lifecycle events _after_ `construct`. When a sublcass created with `Ractive.extend()` is passed an `on` hash, then any further subclasses or instances created with an `on` hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.
+`on` event listeners may subscribe to any instance event, including lifecycle events. When a sublcass created with `Ractive.extend()` is passed an `on` hash, then any further subclasses or instances created with an `on` hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.
 
 
 
@@ -2715,6 +2745,14 @@ The registry of globally available adaptors.
 
 The registry of globally available component definitions.
 
+## Ractive.Context
+
+__From__ _0.9.4_
+
+`(Object)`
+
+The prototype for `Context` objects. This is provided so that you can extend context objects provided by Ractive with your own methods and properties.
+
 ## Ractive.DEBUG
 
 `(boolean)`
@@ -3051,7 +3089,7 @@ const info = Ractive.getContext(document.getElementById('some-node'));
 const info = Ractive.getContext('#some-node');
 ```
 
-## Ractive.isInstace()
+## Ractive.isInstance()
 
 __From__ _0.9.1_
 
@@ -3203,6 +3241,60 @@ Splits the given keypath into an array of unescaped keys.
 
 ```js
 Ractive.splitKeypath( 'foo.bar\\.baz' ); // [ 'foo', 'bar.baz' ]
+```
+
+## Ractive.sharedSet()
+
+__From__ _0.9.4_
+
+Sets data in the `@shared` object without requiring access to a Ractive instance.
+
+__Syntax__
+
+- `Ractive.sharedSet(keypath, value, options)`
+- `Ractive.sharedSet(hash, options)`
+
+__Arguments__
+
+Arguments are the same as would be supplied to `ractive.set`.
+
+__Returns__
+
+- `(Promise)`: Returns a promise that resolves when any transitions associated with the change have completed.
+
+__Examples__
+
+```js
+Ractive.sharedSet( '_', lodash );
+```
+
+## Ractive.styleSet()
+
+__From__ _0.9.4_
+
+Sets data in the `@style` object of Ractive or the component constructor on which it is called. When an applied style that is affected by a change from `styleSet` updates, Ractive will update its manaaged style tag so that the changes show up in the browser immediately.
+
+This function is also available to components created with `Ractive.extend`. When called on a component constructor, `styleSet` will set the value in the component's `cssData`, and any extensions of the component will also be notified that the parent data changed.
+
+__Syntax__
+
+- `Ractive.styleSet(keypath, value, options)`
+- `Ractive.styleSet(hash, options)`
+
+__Arguments__
+
+Arguments are the same as would be supplied to `ractive.set` with an addition to the `options` hash:
+
+- `apply (boolean)`: Whether or not to apply any affected styles now. Defaults to `true`.
+
+__Returns__
+
+- `(Promise)`: Returns a promise that resolves when any transitions associated with the change have completed.
+
+__Examples__
+
+```js
+Ractive.styleSet( 'colors.fg', '#000' );
 ```
 
 ## Ractive.unescapeKey()
@@ -3755,7 +3847,7 @@ Fires an event, which will be received by handlers that were bound using `ractiv
 **Arguments**
 
 - `name (string)`: The name of the event.
-- `[context] (context|object)`: A context object to reuse for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (`{}`) before the additional arguments.
+- `[context] (context|object)`: A context object to use for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (`{}`) before the additional arguments. __From__ _0.9.4_, if you want to reuse a context exactly as it exists, it should have a `refire` property that is `=== true`.
 - `[arg] (any)`: The arguments that event handlers will be called with.
 
 **Returns**
@@ -3913,12 +4005,15 @@ Creates a link between two keypaths that keeps them in sync. Since Ractive can't
 
 **Syntax**
 
-- `ractive.link(source, destination)`
+- `ractive.link(source, destination, options)`
 
 **Arguments**
 
 - `source (string)`: The keypath of the source item.
 - `destination (string)`: The keypath to use as the destination - or where you'd like the data 'copied'.
+- `options (hash)`: 
+  - `instance` or `ractive`: The Ractive instance in which to find the source keyapth. This allows cross-instance linking much like mapped paths between components.
+  - `keypath`: __from__ _0.9.4_ - The keypath to register as the source of the link. This is an advanced option that allows you to specify how the link should shuffle. For instance `items.0.name` will never shuffle, but if the keypath is specified as `.name`, then it will shuffle when `items.0` shuffles.
 
 **Returns**
 
@@ -4379,7 +4474,7 @@ When setting an array value, ractive will reuse the existing DOM nodes for the n
         - `true`: Add/move/remove existing items to their new index using a strict equality comparison.
         - `string`: Add/move/remove existing items to their new index using a property comparison where the property compared is named by the given string.
         - `Function`: Add/move/remove existing items to their new index using the value returned by the given function for comparison.
-    - `keep (boolean)`: Whether or not to keep the virtual DOM that would be disposed by the `set` operation. This is useful for hiding components without completely tearing them down and recreating them. It's also a little bit faster, as the virtual DOM doesn't have to be recreated when it would reappear. This _may_ try to keep the actual DOM around for reuse at some point in the future. Defaults to `false`.
+    - `keep (boolean)`: Whether or not to keep the virtual DOM that would be disposed by the `set` operation. This is useful for hiding components without completely tearing them down and recreating them. It's also a little bit faster, as the virtual DOM doesn't have to be recreated when it would reappear. When the virtual DOM is re-rendered, it will also us the progressive enhancement process to reuse the existing DOM nodes that were detached originalls. Defaults to `false`.
 
 **Returns**
 
@@ -4856,6 +4951,39 @@ Returns the keypath of the binding if the node represented by this info object h
 
 ```js
 Ractive.getContext('#findMe').getBindingPath(); // Returns "foo.bar.baz"
+```
+
+
+
+## context.getParent()
+
+__From__ _0.9.4_
+
+Gets the parent context of this context. This is finer grained than element access provided by `Ractive.getContext`, as it can target sections that exist nested between elements.
+
+__Syntax__
+
+- `context.getParent(crossComponentBoundary)`
+
+__Arguments__
+
+- `crossComponentBoundary (boolean)`: Whether or not to cross into the context containing a component. Defaults to `false`.
+
+__Returns__
+
+- `(context)`: The parent context object.
+
+__Examples__
+
+```html
+<div>{{#with foo.bar}}{{#with .baz}}<span />{{/with}}{{/with}}</div>
+```
+
+```js
+const ctx = Ractive.getContext('span');
+ctx.resolve(); // foo.bar.baz
+const parent = ctx.getParent();
+parent.resolve(); // foo.bar
 ```
 
 
