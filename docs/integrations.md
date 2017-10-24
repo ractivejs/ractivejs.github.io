@@ -24,6 +24,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [Select](https://github.com/JonDum/ractive-select) - A `<select>` replacement component.
 - [Stepper](https://github.com/JonDum/ractive-stepper) - A numeric stepper component.
 - [Split](https://dagnelies.github.io/ractive-split)
+- [ractive-modal](https://github.com/kouts/ractive-modal) - A modal popup component.
 
 ## Decorators
 
