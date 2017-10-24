@@ -2813,14 +2813,16 @@ Ractive({
 ```
 Global data attributes may be specified:
 ```js
-Ractive.defaults.data.people = [{id:4, name:'Fred'},{id:5, name:'Wilma'},...]
+Ractive.defaults.data.people = [{id:4, name:'Fred'},{id:5, name:'Wilma'},...];
 
-//or alterntively, here using underscore's extend function
-_.extend(Ractive.defaults.data,{people : [{id:4, name:'Fred'},{id:5, name:'Wilma'},...],
-                                title : 'Flintstones',
-                                producer : 'Hanna-Barbera'})
+//or alternatively:
+Object.assign(Ractive.defaults.data,{people : [{id:4, name:'Fred'},{id:5, name:'Wilma'},...],
+                                     title : 'Flintstones',
+                                     producer : 'Hanna-Barbera'});
+
+// (Object.assign is provided as a polyfill by Ractive if it's not supported by the browser)
 ```
-The data attributes and values are then accessible in all components.
+The data attributes and values are then accessible in all components. Data attributes specified in this way, however, do *not* trigger an automatic component update if the attribute value is changed after the component is instantiated.
 
 ## Ractive.easing
 
