@@ -25,6 +25,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [Stepper](https://github.com/JonDum/ractive-stepper) - A numeric stepper component.
 - [Split](https://dagnelies.github.io/ractive-split)
 - [ractive-modal](https://github.com/kouts/ractive-modal) - A modal popup component.
+- [ractive-materialish](https://github.com/evs-chris/ractive-materialish) - A collection of components and plugins for making desktop- and mobile-friendly frontend applications.
 
 ## Decorators
 
