@@ -120,7 +120,7 @@ As of version 0.9, Ractive now comes with a CLI tool that comes with a few handy
 
 Ractive provides a couple of modules to aid you in loader development:
 
--  [rcu](https://github.com/ractivejs/rcu) - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.
+- [rcu](https://github.com/ractivejs/rcu) - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.
 - [rcu-builders](https://github.com/ractivejs/rcu-builders) - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.
 
 
@@ -130,7 +130,7 @@ Ractive provides a couple of modules to aid you in loader development:
 
 ## Rollup
 
-TODO
+- [rollup-plugin-ractive-bin](https://github.com/ractivejs/rollup-plugin-ractive-bin) - Compile Ractive.js components using rollup.js and the Ractive bin
 
 ## Babel
 
