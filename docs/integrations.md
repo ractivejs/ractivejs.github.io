@@ -105,6 +105,7 @@ By itself, neither Ractive nor tools know what to do with a component files. Loa
 ## Webpack
 
 - [ractive-component-loader](https://github.com/thomsbg/ractive-component-loader) - Allows you to load component files as constructors via Webpack.
+- [ractive-bin-loader](https://github.com/ractivejs/ractive-bin-loader) - Write Ractive.js components and have them available pre-compiled for the rest of your webpack build.
 
 ## Grunt
 
