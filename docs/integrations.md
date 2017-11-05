@@ -86,6 +86,13 @@ By itself, neither Ractive nor tools know what to do with a component files. Loa
 
 - [ractive-load](https://github.com/ractivejs/ractive-load) - Uses [XHR](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) to load your component files and creates component constructors at runtime.
 
+## Rollup
+
+- [rollup-plugin-ractive-bin](https://github.com/ractivejs/rollup-plugin-ractive-bin) - Compile Ractive.js components using rollup.js and the Ractive bin
+
+## SystemJS
+- [ractem](https://github.com/guilhermeaiolfi/ractem) - A plugin for SystemJS for loading Ractive components
+
 ## RequireJS
 
 - [rvc](https://github.com/ractivejs/rvc) - Converts component files into [AMD modules](http://requirejs.org/docs/api.html).
@@ -111,6 +118,10 @@ By itself, neither Ractive nor tools know what to do with a component files. Loa
 
 - [grunt-ractive](https://github.com/ekhaled/grunt-ractive) - Compiles Ractive component files into AMD, CJS or ES modules.
 
+## Babel
+
+TODO
+
 # Tools
 
 ## Ractive CLI
@@ -128,11 +139,3 @@ Ractive provides a couple of modules to aid you in loader development:
 ## Yeoman
 
 [Jorge Colindres](http://colindres.me/) has created [generator-ractive](https://github.com/colindresj/generator-ractive), a Yeoman generator to quickly set up a Ractive application.
-
-## Rollup
-
-- [rollup-plugin-ractive-bin](https://github.com/ractivejs/rollup-plugin-ractive-bin) - Compile Ractive.js components using rollup.js and the Ractive bin
-
-## Babel
-
-TODO
