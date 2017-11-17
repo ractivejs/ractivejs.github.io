@@ -2665,14 +2665,77 @@ template: '&lt;p&gt;grey&lt;/p&gt;'
 
 <p>The extra attributes passed to a component are not limited to simple attributes - they can also include directives, but any mustache sections will not have their contents checked. By default, the <code>extra-attributes</code> will <em>not</em> be mapped, meaning that the values won't be available with <code>get</code> from the component, so the partial should be yielded. If you need the extra attributes to be mapped, include an additional setting in the attributes map <code>mapAll: true</code>.</p>
 <h2 id="components"><a class="toclink" href="#components">components</a></h2>
-<p><code>(Object&lt;string, Function&gt;)</code></p>
-<p>A map of components where the key is the component name the value is either a component definition or a function that returns either a name of a registered component or a component definition. The function form receives processed <code>data</code> as first argument.</p>
-<pre><code class="js">components: {
-  StaticComponent: ComponentDefinition,
-  DynamicComponent: function(data){
-    return data.foo ? 'MyGlobalComponent' : ComponentDefinition;
-  }
-}
+<p><code>(Object&lt;string, Function|Promise)</code></p>
+<p>A map of components available to the instance or component being configured. The key is the registered name of the component, which is used in the template.</p>
+<p>A component can be registered statically by assinging a component definition.</p>
+<pre><code class="js">const MyStaticComponent = Ractive.extend({ ... })
+
+const MyComponent = Ractive.extend({
+  components: { MyStaticComponent },
+  template: `
+    &lt;MyStaticComponent /&gt;
+  `
+})
+</code></pre>
+
+<p>A component can be registered dynamically by assinging a function that returns either a component definition, or a name of a registered component. The function receives <code>data</code> as first argument.</p>
+<pre><code class="js">Ractive.components.GlobalComponent = Ractive.extend({ ... })
+
+const NonGlobalComponent = Ractive.extend({ ... })
+
+const MyComponent = Ractive.extend({
+  data: { isGlobal: false },
+  components: {
+    MyDynamicComponent: (data) =&gt; data.isGlobal ? 'GlobalComponent' : NonGlobalComponent
+  },
+  template: `
+    &lt;MyDynamicComponent /&gt;
+  `
+})
+</code></pre>
+
+<p>A component can be loaded asynchronously by assingning a promise that resolves with a component definition.</p>
+<pre><code class="js"> // Assuming MyAsyncComponent.js does `export default Ractive.extend({ ... })`
+
+const MyComponent = Ractive.extend({
+  components: {
+    MyAsyncComponent: import('./path/to/MyAsyncComponent.js')
+  },
+  template: `
+    &lt;MyAsyncComponent /&gt;
+  `
+})
+</code></pre>
+
+<p>A component can be loaded lazily by assinging a function that returns a promise that resolves with a component definition. Ractive only loads the component when it's being rendered.</p>
+<pre><code class="js"> // Assuming MyAsyncComponent.js does `export default Ractive.extend({ ... })`
+
+const MyComponent = Ractive.extend({
+  components: {
+    MyAsyncComponent: () =&gt; import('./path/to/MyAsyncComponent.js')
+  },
+  template: `
+    &lt;MyAsyncComponent /&gt;
+  `
+})
+</code></pre>
+
+<p>In both asynchronous cases, instances will be rendered immediately while the asynchronous components load. Once the asynchronous components are available, their placeholders will be re-rendered. Two reserved partial names, <code>async-loading</code> and <code>async-loaded</code>, can be used to define markup when the asynchronous component is loading and loaded, respectively. A special partial named <code>component</code> is also available to render the component's contents inside <code>async-loaded</code>.</p>
+<pre><code class="js"> // Assuming MyAsyncComponent.js does `export default Ractive.extend({ ... })`
+
+const MyComponent = Ractive.extend({
+  components: {
+    MyAsyncComponent: import('./path/to/MyAsyncComponent.js')
+  },
+  template: `
+    &lt;span&gt;I'm rendered immediately. I don't wait for MyAsyncComponent&lt;/span&gt;
+    &lt;MyAsyncComponent&gt;
+      {{#partial async-loading}}I'm rendered when MyAsyncComponent is loading{{/partial}}
+      {{#partial async-loaded}}I'm rendered when MyAsyncComponent is loaded{{/partial}}
+      {{#partial async-loaded}}MyAsyncComponent contents: {{&gt;component}}{{/partial}}
+    &lt;/MyAsyncComponent&gt;
+  `
+})
 </code></pre>
 
 <p>During a <code>ractive.reset()</code>, components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
