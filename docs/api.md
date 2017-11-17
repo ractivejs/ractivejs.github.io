@@ -1852,18 +1852,91 @@ The extra attributes passed to a component are not limited to simple attributes 
 
 ## components
 
-`(Object<string, Function>)`
+`(Object<string, Function|Promise)`
 
-A map of components where the key is the component name the value is either a component definition or a function that returns either a name of a registered component or a component definition. The function form receives processed `data` as first argument.
+A map of components available to the instance or component being configured. The key is the registered name of the component, which is used in the template.
+
+A component can be registered statically by assinging a component definition.
 
 ```js
-components: {
-  StaticComponent: ComponentDefinition,
-  DynamicComponent: function(data){
-    return data.foo ? 'MyGlobalComponent' : ComponentDefinition;
-  }
-}
+const MyStaticComponent = Ractive.extend({ ... })
+
+const MyComponent = Ractive.extend({
+  components: { MyStaticComponent },
+  template: `
+    <MyStaticComponent />
+  `
+})
 ```
+
+A component can be registered dynamically by assinging a function that returns either a component definition, or a name of a registered component. The function receives `data` as first argument.
+
+```js
+Ractive.components.GlobalComponent = Ractive.extend({ ... })
+
+const NonGlobalComponent = Ractive.extend({ ... })
+
+const MyComponent = Ractive.extend({
+  data: { isGlobal: false },
+  components: {
+    MyDynamicComponent: (data) => data.isGlobal ? 'GlobalComponent' : NonGlobalComponent
+  },
+  template: `
+    <MyDynamicComponent />
+  `
+})
+```
+
+A component can be loaded asynchronously by assingning a promise that resolves with a component definition.
+
+```js
+ // Assuming MyAsyncComponent.js does `export default Ractive.extend({ ... })`
+
+const MyComponent = Ractive.extend({
+  components: {
+    MyAsyncComponent: import('./path/to/MyAsyncComponent.js')
+  },
+  template: `
+    <MyAsyncComponent />
+  `
+})
+```
+
+A component can be loaded lazily by assinging a function that returns a promise that resolves with a component definition. Ractive only loads the component when it's being rendered.
+
+```js
+ // Assuming MyAsyncComponent.js does `export default Ractive.extend({ ... })`
+
+const MyComponent = Ractive.extend({
+  components: {
+    MyAsyncComponent: () => import('./path/to/MyAsyncComponent.js')
+  },
+  template: `
+    <MyAsyncComponent />
+  `
+})
+```
+
+In both asynchronous cases, instances will be rendered immediately while the asynchronous components load. Once the asynchronous components are available, their placeholders will be re-rendered. Two reserved partial names, `async-loading` and `async-loaded`, can be used to define markup when the asynchronous component is loading and loaded, respectively. A special partial named `component` is also available to render the component's contents inside `async-loaded`.
+
+```js
+ // Assuming MyAsyncComponent.js does `export default Ractive.extend({ ... })`
+
+const MyComponent = Ractive.extend({
+  components: {
+    MyAsyncComponent: import('./path/to/MyAsyncComponent.js')
+  },
+  template: `
+    <span>I'm rendered immediately. I don't wait for MyAsyncComponent</span>
+    <MyAsyncComponent>
+      {{#partial async-loading}}I'm rendered when MyAsyncComponent is loading{{/partial}}
+      {{#partial async-loaded}}I'm rendered when MyAsyncComponent is loaded{{/partial}}
+      {{#partial async-loaded}}MyAsyncComponent contents: {{>component}}{{/partial}}
+    </MyAsyncComponent>
+  `
+})
+```
+
 
 During a `ractive.reset()`, components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
