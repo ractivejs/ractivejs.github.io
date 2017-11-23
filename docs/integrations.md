@@ -17,6 +17,7 @@ Interface with different backends.
 
 Encapsulate functionality behind the guise of a custom element.
 
+- [ACE Editor](https://dagnelies.github.io/ractive-ace/)
 - [Ractive-Require](https://github.com/XavierBoubert/ractive-require)
 - [CodeMirror](http://dagnelies.github.io/ractive-codemirror/)
 - [Bootstrap](http://dagnelies.github.io/ractive-bootstrap/)
