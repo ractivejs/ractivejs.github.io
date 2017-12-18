@@ -1,9 +1,9 @@
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6{
-  font-family: 'Voltaire', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   margin-top: 2em;
 }
 
@@ -40,7 +40,7 @@ code{
   border-radius: 4px;
   padding: 3px 5px;
   margin: 4px;
-  font-family: "courier";
+  font-family: 'Roboto Mono', monospace;
   color: maroon;
 }
 h3 code{
@@ -252,7 +252,7 @@ h3 code{
 
 .logo__name{
   font-size: 3.6rem;
-  font-family: 'Voltaire', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .logo__slogan{
@@ -291,7 +291,7 @@ h3 code{
 
 .about-block__header{
   font-size: 2.4rem;
-  font-family: 'Voltaire', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   color: #729D34;
 }
 
