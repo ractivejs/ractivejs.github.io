@@ -1749,7 +1749,13 @@ const instance = Ractive({
 });
 ```
 
+## allowExpressions
 
+`(boolean)`
+
+Indicates whether or not Ractive should parse and/or process expressions. Defaults to `true`.
+
+Setting this to `false` effectively avoids the use of the `Function` constructor at the cost of not being able to use expressions such as those found in templates and computed properties.
 
 ## append
 
