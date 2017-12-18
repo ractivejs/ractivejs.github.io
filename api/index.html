@@ -285,6 +285,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#allowexpressions">allowExpressions</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#append">append</a>
         </li>
       
@@ -2584,6 +2588,10 @@ const instance = Ractive({
 });
 </code></pre>
 
+<h2 id="allowexpressions"><a class="toclink" href="#allowexpressions">allowExpressions</a></h2>
+<p><code>(boolean)</code></p>
+<p>Indicates whether or not Ractive should process expressions. Defaults to <code>true</code>.</p>
+<p>Setting this to <code>false</code> effectively avoids the use of the <code>Function</code> constructor at the cost of not being able to use expressions such as those found in templates and computed properties.</p>
 <h2 id="append"><a class="toclink" href="#append">append</a></h2>
 <p><code>(boolean|string|HTMLElement|array-like)</code></p>
 <p>Controls how the instance is attached to <code>el</code>. Defaults to <code>false</code>.</p>
@@ -4371,7 +4379,7 @@ Ractive({
 <ul>
 <li><code>source (string)</code>: The keypath of the source item.</li>
 <li><code>destination (string)</code>: The keypath to use as the destination - or where you'd like the data 'copied'.</li>
-<li><code>options (hash)</code>: </li>
+<li><code>options (hash)</code>:</li>
 <li><code>instance</code> or <code>ractive</code>: The Ractive instance in which to find the source keyapth. This allows cross-instance linking much like mapped paths between components.</li>
 <li><code>keypath</code>: <strong>from</strong> <em>0.9.4</em> - The keypath to register as the source of the link. This is an advanced option that allows you to specify how the link should shuffle. For instance <code>items.0.name</code> will never shuffle, but if the keypath is specified as <code>.name</code>, then it will shuffle when <code>items.0</code> shuffles.</li>
 </ul>
@@ -5969,6 +5977,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#adaptors">adaptors</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#allowexpressions">allowExpressions</a>
         </li>
       
         <li class="pure-menu-item">

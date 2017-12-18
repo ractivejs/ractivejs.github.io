@@ -135,6 +135,10 @@
       </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#use-of-the-function-constructor">Use of the Function constructor</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#content-security-policy">Content Security Policy</a>
         </li>
       
@@ -1103,8 +1107,20 @@ const css = app.toCSS()
 <li><code>ractive.toHTML()</code> does not automatically insert the document CSS when rendering a component that represents a full document. This must be done manually.</li>
 </ul>
 <h1 id="security"><a class="toclink" href="#security">Security</a></h1>
+<h2 id="use-of-the-function-constructor"><a class="toclink" href="#use-of-the-function-constructor">Use of the Function constructor</a></h2>
+<p>Ractive uses the <code>Function</code> constructor only to convert expressions (i.e. mustache expressions, expression-style computed properties) into value-generating functions. As of 0.9, <code>allowExpressions</code> initialization option is available to toggle the expression-to-function feature. Setting it to <code>false</code> will tell Ractive neither to parse nor process expressions.</p>
 <h2 id="content-security-policy"><a class="toclink" href="#content-security-policy">Content Security Policy</a></h2>
-<p>To use Ractive with <a href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">Content Security Policy</a>, you'll currently need <code>'unsafe-eval'</code> specified for <code>scriptSrc</code> in your CSP header. This may change in future - see https://github.com/ractivejs/ractive/issues/1897 .</p>
+<p>Out of the box, Ractive will violate certain CSP directives due to the use of the <code>Function</code> constructor for evaluating expressions, and dynamically generated <code>&lt;style&gt;</code> elements for Ractive-managed CSS.</p>
+<p>In order to avoid violating <code>script-src</code>, either:</p>
+<ul>
+<li>Pre-parse templates. As of 0.8, the parser will store expressions as functions on the AST. To preserve the functions when serializing the AST, use libraries like <a href="https://github.com/marcello3d/node-tosource">node-tosource</a> or <a href="https://github.com/yahoo/serialize-javascript">serialize-javascript</a> instead of <code>JSON.stringify()</code>.</li>
+<li>Set <code>allowExpressions</code> initialization option to <code>false</code>. This will tell Ractive to avoid evaluating expressions.</li>
+<li>Add the <code>script-src 'unsafe-eval'</code> CSP directive. This will allow the use of the <code>Function</code> constructor.</li>
+</ul>
+<p>In order to avoid violating <code>style-src</code>, either:</p>
+<ul>
+<li>Add <code>style-src 'unsafe-inline'</code> to your CSP directives. This will allow the use of dynamically generated <code>&lt;style&gt;</code> elements.</li>
+</ul>
 <h1 id="templates"><a class="toclink" href="#templates">Templates</a></h1>
 <p>Strictly speaking, Ractive templates are not HTML. They are markup representations of objects that are used to construct HTML. Simply put, templates are <em>HTML-like</em>. Ractive parses templates into <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a>s which contain everything Ractive needs to know to construct an instance's DOM, data bindings, events and transitions etc.</p>
 <pre><code class="js">Ractive.parse('&lt;div class=&quot;message&quot;&gt;Hello World!&lt;/div&gt;')
@@ -1534,6 +1550,10 @@ const val = expressionFunctionsCache[exp].apply(instance, arg);
       <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#security">Security</a>
       </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#use-of-the-function-constructor">Use of the Function constructor</a>
+        </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#content-security-policy">Content Security Policy</a>
