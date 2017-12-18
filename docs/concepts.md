@@ -210,11 +210,11 @@ var ractive = Ractive({
   el: output,
   data: {
     user: { firstName: 'John', lastName: 'Public' },
-    formattedName: function() {
+    formattedName () {
       return this.get('user.lastName') + ', ' + this.get('user.firstName')
     }
   }
-};
+}
 ```
 
 Result:
@@ -257,9 +257,9 @@ ractive = Ractive({
   template: myTemplate,
   data: {
     list: [{ name: 'Bob' }, { name: 'Charles' }, { name: 'Alice' }],
-    sort: function ( list, property ) {
+    sort ( list, property ) {
       return list.slice().sort( function ( a, b ) {
-        return a[ property ] < b[ property ] ? -1 : 1;
+        return a[ property ] < b[ property ] ? -1 : 1
       })
     }
   }
@@ -360,7 +360,7 @@ Ractive({
     length: 300
   },
   computed: {
-    area(){
+    area () {
       return this.get('width') * this.get('length')
     }
   },
@@ -408,10 +408,10 @@ Ractive({
   },
   computed: {
     area: {
-      get(){
+      get () {
         return Math.pow(this.get('side'), 2)
       },
-      set(v){
+      set(v) {
         this.set('side', Math.sqrt(v))
       }
     }
@@ -442,10 +442,10 @@ const instance = Ractive({
     }
   },
   observe: {
-    'foo': function(newValue){
+    'foo' (newValue) {
       console.log('foo changed to', newValue)
     },
-    'foo.bar': function(newValue){
+    'foo.bar' (newValue) {
       console.log('foo.bar changed to', newValue)
     }
   }
@@ -477,15 +477,15 @@ const instance = Ractive({
   },
   observe: {
     // Observe changes on the array
-    'people.*': function(){
+    'people.*' () {
       console.log('array observer', arguments)
     },
     // Observe changes on the name property of any item in the array
-    'people.*.name': function(){
+    'people.*.name' () {
       console.log('array item observer', arguments)
     },
     // Observe changes on any property of an object
-    'config.*': function(){
+    'config.*' () {
       console.log('object property observer', arguments)
     }
   }
@@ -510,15 +510,15 @@ const instance = Ractive({
     commentCount: 0
   },
   observe: {
-    'user.username config.isAdmin commentCount': function(){
-      console.log('data changed', arguments);
+    'user.username config.isAdmin commentCount' () {
+      console.log('data changed', arguments)
     }
   }
 })
 
-instance.set('user.username', 'chris');
-instance.set('config.isAdmin', true);
-instance.set('commentCount', 42);
+instance.set('user.username', 'chris')
+instance.set('config.isAdmin', true)
+instance.set('commentCount', 42)
 ```
 
 ### Caveats
@@ -536,7 +536,7 @@ const instance = Ractive({
     }
   },
   observe: {
-    'config': function(newValue, oldValue){
+    'config' (newValue, oldValue) {
       console.log(newValue === oldValue)
     }
   }
@@ -710,7 +710,7 @@ Lifecycle events are handled by assigning a function to the appropriate lifecycl
 
 ```js
 Ractive({
-  onrender(){
+  onrender () {
     console.log('instance has been rendered')
   }
 })
@@ -728,7 +728,7 @@ Ractive({
     <button on-click="buttonclicked">Click Me!</button>
   `,
   on: {
-    buttonclicked: function(context){
+    buttonclicked (context) {
       console.log('button clicked')
     }
   }
@@ -747,7 +747,7 @@ Ractive({
     <button on-click="['buttonclicked', 'foo', 'bar']">Click Me!</button>
   `,
   on: {
-    buttonclicked: function(context, foo, bar){
+    buttonclicked (context, foo, bar) {
       console.log('button clicked passing', foo, bar)
     }
   }
@@ -765,11 +765,11 @@ Ractive({
     <button on-click="@this.fire('manualproxy', msg)">Print message via proxy</button>
     <button on-click="@this.set('foo', 1), @this.set('bar', 2)">Cccombo!!!</button>
   `,
-  greetz(message){
+  greetz(message) {
     console.log(`${message}`)
   },
   on: {
-    manualproxy: function(context, message){
+    manualproxy (context, message) {
       console.log(`${message}`)
     }
   }
@@ -792,7 +792,7 @@ Ractive({
     <button on-click="buttonclicked">Click Me!</button>
   `,
   on: {
-    buttonclicked: function(context){
+    buttonclicked (context) {
       console.log(event.node.type) // submit
     }
   }
@@ -816,10 +816,10 @@ Ractive({
     <button on-click="qux.bam">Click Me!</button>
   `,
   on: {
-    '*.bar': function(context){
+    '*.bar' (context) {
       console.log('A bar event was published')
     },
-    'qux.*': function(context){
+    'qux.*' (context) {
       console.log('A qux event was published')
     }
   }
@@ -842,7 +842,7 @@ Ractive({
     </div>
   `,
   on: {
-    buttonclicked: function(context){
+    buttonclicked (context) {
       console.log('button clicked')
     }
   }
@@ -856,7 +856,7 @@ Propagation across component boundaries is also supported. Propagating events ar
 ```js
 const ChildComponent = Ractive.extend({
   template: '<div></div>',
-  oncomplete(){
+  oncomplete () {
     this.fire('childevent')
   }
 })
@@ -871,7 +871,7 @@ const instance = Ractive({
   template: '<ParentComponent />'
 })
 
-instance.on('ChildComponent.childevent', function(){
+instance.on('ChildComponent.childevent', function () {
   console.log('Hello World!')
 })
 ```
@@ -888,12 +888,12 @@ Ractive({
     </div>
   `,
   on: {
-    ancestorbuttonclick: function(context){
+    ancestorbuttonclick (context) {
       console.log('This will not run')
     },
-    descendantbuttonclick: function(context){
+    descendantbuttonclick (context) {
       console.log('This will run')
-      return false;
+      return false
     }
   }
 })
@@ -904,7 +904,7 @@ Returning `false` also stops propagation across components.
 ```js
 const ChildComponent = Ractive.extend({
   template: '<div></div>',
-  oncomplete: function(){
+  oncomplete () {
     this.fire('childevent')
   }
 })
@@ -913,8 +913,8 @@ const ParentComponent = Ractive.extend({
   components: { ChildComponent },
   template: '<ChildComponent />',
   on: {
-    'ChildComponent.childevent': function(){
-      return false;
+    'ChildComponent.childevent' () {
+      return false
     }
   }
 })
@@ -924,7 +924,7 @@ const instance = Ractive({
   template: '<ParentComponent />'
 })
 
-instance.on('ChildComponent.childevent', function(){
+instance.on('ChildComponent.childevent', function () {
   console.log('This will not run')
 })
 ```
@@ -934,7 +934,7 @@ Assigning a handler using `on-*` will also stop propagation. However, if `on-*` 
 ```js
 const ChildComponent = Ractive.extend({
   template: '<div></div>',
-  oncomplete: function() {
+  oncomplete () {
     this.fire('childevent1')
     this.fire('childevent2')
     this.fire('childevent3')
@@ -953,15 +953,15 @@ const ParentComponent = Ractive.extend({
     />
   `,
   on: {
-    childevent2proxy: function() {
+    childevent2proxy () {
       // childevent2proxy replaces childevent2
     },
-    childevent3proxy: function() {
+    childevent3proxy () {
       // childevent3proxy replaces childevent3 but stopped
       return false
     }
   },
-  parentMethod: function(){
+  parentMethod () {
     // childevent4 handled by a method
   }
 })
@@ -971,28 +971,28 @@ const instance = Ractive({
   template: '<ParentComponent />'
 })
 
-instance.on('ChildComponent.childevent1', function() {
+instance.on('ChildComponent.childevent1', function () {
   console.log('childevent1 stopped by a blank handler')
 })
 
-instance.on('ChildComponent.childevent2', function() {
+instance.on('ChildComponent.childevent2', function () {
   console.log('childevent2 stopped by a proxy event')
 })
 
-instance.on('ChildComponent.childevent3', function() {
+instance.on('ChildComponent.childevent3', function () {
   console.log('childevent3 stopped by a proxy event')
 })
 
-instance.on('ChildComponent.childevent4', function() {
+instance.on('ChildComponent.childevent4', function () {
   console.log('childevent4 stopped by a method call')
 })
 
-instance.on('ParentComponent.childevent3proxy', function() {
+instance.on('ParentComponent.childevent3proxy', function () {
   console.log('childevent3proxy stopped by returning false')
 })
 
 // This one gets through since its proxy event was left to propagate
-instance.on('ParentComponent.childevent2proxy', function() {
+instance.on('ParentComponent.childevent2proxy', function () {
   console.log('childevent2proxy fired')
 })
 ```
@@ -1070,7 +1070,7 @@ const Component = Ractive.extend({
   css: `
     span { color: red }
   `
-});
+})
 
 Ractive({
   components: { Component },
@@ -1115,7 +1115,7 @@ Server-side rendering can be achieved using `ractive.toHTML()` and `ractive.toCS
 ```js
 const Component1 = Ractive.extend({
   data: {
-    message: '';
+    message: ''
   },
   template: `
     <div class="component1">{{message}}</div>
@@ -1127,7 +1127,7 @@ const Component1 = Ractive.extend({
 
 const Component2 = Ractive.extend({
   data: {
-    greeting: '';
+    greeting: ''
   },
   template: `
     <div class="component2">{{greeting}}</div>
@@ -1340,7 +1340,7 @@ While expressions provide power and convenience when building templates, it incu
 Functions can be set on the data globally via `Ractive.defaults.data`.
 
 ```js
-Ractive.defaults.data.customLogic = function(){ ... }
+Ractive.defaults.data.customLogic = function () { ... }
 
 Ractive({
   template: `
@@ -1356,7 +1356,7 @@ const Component = Ractive.extend({
   template: `
     {{ @this.customLogic() }}
   `,
-  customLogic(){
+  customLogic () {
     ...
   }
 })
@@ -1370,7 +1370,7 @@ Ractive optimizes this routine starting by generating the same expression string
 
 ```js
 // Expression parsing
-Ractive.parse('{{ a + b }}{{ c + d }}');
+Ractive.parse('{{ a + b }}{{ c + d }}')
 
 // {
 //   "v": 4,
@@ -1394,20 +1394,20 @@ Ractive.parse('{{ a + b }}{{ c + d }}');
 // }
 
 // Building and caching of the expression resolver of `_0+_1`
-const expressionFunctionsCache = {};
-expressionFunctionsCache['_0+_1'] = new Function('_0', '_1', 'return _0+_1');
+const expressionFunctionsCache = {}
+expressionFunctionsCache['_0+_1'] = new Function('_0', '_1', 'return _0+_1')
 
 // Evaluate {{ a + b }}
-const dep = ['a', 'b'];
+const dep = ['a', 'b']
 const exp = '_0+_1'
-const arg = dep.map(instance.get);
-const val = expressionFunctionsCache[exp].apply(instance, arg);
+const arg = dep.map(instance.get)
+const val = expressionFunctionsCache[exp].apply(instance, arg)
 
 // Evaluate {{ c + d }}
-const dep = ['c', 'd'];
+const dep = ['c', 'd']
 const exp = '_0+_1'
-const arg = dep.map(instance.get);
-const val = expressionFunctionsCache[exp].apply(instance, arg);
+const arg = dep.map(instance.get)
+const val = expressionFunctionsCache[exp].apply(instance, arg)
 ```
 
 The `Function` constructor was chosen over `eval` because it allows Ractive to compile the expression string _once_ as well as _cache_ the resulting function, instead of evaluating the string every time the value is needed.

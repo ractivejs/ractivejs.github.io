@@ -196,7 +196,7 @@ You can now escape mustaches with a '\' if you'd like them to appear in the temp
 
 The debug setting is no longer set per-instance. It has been replaced with `Ractive.DEBUG`, which defaults to true. You can set it automatically based on whether or not the your code has been minified with:
 ```js
-Ractive.DEBUG = /unminified/.test(function(){/*unminified*/});
+Ractive.DEBUG = /unminified/.test(function(){/*unminified*/})
 ```
 
 ### Breaking changes and deprecation
@@ -228,11 +228,11 @@ See the lifecycle events page for more detail.
 * `new Ractive()` now inherits all options as methods/properties including event hooks. If you have been passing data through custom initialisation options be aware that they will appended to your ractive instance.
 * Using other elements besides `<script>` for templates is an now an error. Migrate any templates in non-script elements and include a non-javascript type so the browser does not try to interpret your template:
 
-	```js
-		<script id='template' type='text/ractive'>
-			Your template goes here
-		</script>
-	```
+  ```js
+    <script id='template' type='text/ractive'>
+      Your template goes here
+    </script>
+  ```
 
 * New reserved events cannot be used for proxy event names, i.e. `<p on-click='init'></p>`. These include 'change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', and 'update'. You will need to rename your events.
 * Setting uninitialised data on a component will no longer cause it to leak out into the parent scope
@@ -255,16 +255,16 @@ See the lifecycle events page for more detail.
 * Rendering to an element already render by Ractive causes that element to be torn down (unless appending).
 * Illegal javascript no longer allowed by parser in expressions and will throw
 * Parsed template format changed to specify template spec version.
-	* Proxy-event representation
-	* Non-dynamic (bound) fragments of html are no longer stored as single string
-	* See https://github.com/ractivejs/template-spec for current spec.
+  * Proxy-event representation
+  * Non-dynamic (bound) fragments of html are no longer stored as single string
+  * See https://github.com/ractivejs/template-spec for current spec.
 * Arrays being observed via `array.*` no longer send `item.length` event on mutation changes
 * Reserved event names in templates ('change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', 'update') will cause the parser to throw an error
 * `{{else}}` support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference
 * Child components are created in data order
 * Reference expressions resolve left to right and follow same logic as regular mustache references (bind to root, not context, if left-most part is unresolved).
 * Improved attribute parsing and handling:
-	* character escaping and whitespace handling in attribute directive arguments
-	* boolean and empty string attributes
+  * character escaping and whitespace handling in attribute directive arguments
+  * boolean and empty string attributes
 * Computed properties no longer create nested objects with keypath like names, i.e. `page.area: '${width} * ${height}'` creates a property accessible by `{{page.area}}` but not `{{#page}}{{area}}{{/page}}`
 * The element into which the ractive instance was rendered is no longer available as `ractive.el`. See `ractive.render()` and `ractive.insert()` for more information on moving ractive instances in the DOM.
