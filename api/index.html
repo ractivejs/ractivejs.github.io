@@ -1326,8 +1326,14 @@
 
     &lt;div&gt;
       {{#partial scopedPartial}}
-        Usage of {{this}} partial is only available to the descendants of the div
+        &lt;li class=&quot;item&quot;&gt;{{this}}!&lt;/li&gt;
       {{/partial}}
+
+      &lt;ul&gt;
+        {{#each things}}
+          {{&gt; scopedPartial }}
+        {{/each}}
+      &lt;/ul&gt;
     &lt;/div&gt;
   `
 })
@@ -1405,15 +1411,26 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 </ul>
 <h2 id="comments"><a class="toclink" href="#comments">Comments</a></h2>
 <p><code>{{! }}</code> defines a template comment. Comments are ignored by the parser and never make it to the AST.</p>
-<pre><code class="html">&lt;h1&gt;Today{{! ignore me }}.&lt;/h1&gt;
+<pre><code class="js">Ractive({
+  template: `
+    &lt;h1&gt;Today{{! ignore me }}.&lt;/h1&gt;
+  `
+})
 </code></pre>
 
 <h2 id="custom-delimiters"><a class="toclink" href="#custom-delimiters">Custom delimiters</a></h2>
 <p><code>{{= =}}</code> defines custom delimiters. Custom delimiters should not contain whitespace or the equals sign.</p>
-<pre><code class="html">{{foo}}
+<pre><code class="js">Ractive({
+  data: {
+    msg: 'Hello, World!'
+  },
+  template: `
+    {{ msg }}
 
-{{=&lt;% %&gt;=}}
-&lt;% foo %&gt;
+    {{=&lt;% %&gt;=}}
+    &lt;% msg %&gt;
+  `
+})
 </code></pre>
 
 <h2 id="escaping-mustaches"><a class="toclink" href="#escaping-mustaches">Escaping mustaches</a></h2>
@@ -1426,9 +1443,16 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 </code></pre>
 
 <p>To interpret a <code>\</code> as a literal slash before a mustache, simply prepend another <code>\</code>. Any further <code>\</code> prepended will be treated in this manner.</p>
-<pre><code class="html">\\{{ ref }}   &lt;!-- \value --&gt;
-\\\{{ ref }}  &lt;!-- \\value --&gt;
-\\\\{{ ref }} &lt;!-- \\\value --&gt;
+<pre><code class="js">Ractive({
+  data: {
+    msg: 'Hello, World!'
+  },
+  template: `
+    \\{{ msg }}   &lt;!-- \Hello, World! --&gt;
+    \\\{{ msg }}  &lt;!-- \\Hello, World! --&gt;
+    \\\\{{ msg }} &lt;!-- \\\Hello, World! --&gt;
+  `
+})
 </code></pre>
 
 <h2 id="anchors"><a class="toclink" href="#anchors">Anchors</a></h2>
@@ -1451,7 +1475,7 @@ Ractive({
   template: `
     &lt;# mountpoint7 /&gt;
   `,
-  oninit(){
+  oninit () {
     // Create new instance
     const myComponent = MyComponent()
 
@@ -1479,16 +1503,16 @@ Ractive({
         &lt;# mountpoint-two on-click=&quot;hello&quot; message=&quot;{{ msg + ' + ' + msg }}&quot; /&gt;
         &lt;input value=&quot;{{msg}}&quot; /&gt;
     `,
-    onrender: function(){
+    onrender () {
         // Create new instance
-        myInstance = MyComponent();
+        myInstance = MyComponent()
         this.attachChild(myInstance, { target: 'mountpoint-one'})
         this.on({
-            move(){
-                this.detachChild(myInstance);
+            move () {
+                this.detachChild(myInstance)
                 this.attachChild(myInstance, { target: 'mountpoint-two'})
             },
-            hello(ctx){
+            hello(ctx) {
                 // fire an event as you would do with a regular component
             }
         })
@@ -1502,7 +1526,7 @@ Ractive({
   template: `
     &lt;div class=&quot;child-component&quot;&gt;{{&gt;content}}&lt;/div&gt;
   `
-});
+})
 
 const ractive = Ractive({
   el: 'body',
@@ -1517,7 +1541,7 @@ const ractive = Ractive({
       &lt;/ChildComponent&gt;
     &lt;/div&gt;
   `
-});
+})
 </code></pre>
 
 <p>Partials defined in the inner HTML can be used to override partials defined on the component.</p>
@@ -1528,7 +1552,7 @@ const ractive = Ractive({
   template: `
     &lt;div class=&quot;child-component&quot;&gt;{{&gt;content}}&lt;/div&gt;
   `
-});
+})
 
 const ractive = Ractive({
   el: 'body',
@@ -1539,16 +1563,18 @@ const ractive = Ractive({
     &lt;div class=&quot;ractive&quot;&gt;
       &lt;ChildComponent message=&quot;Lorem Ipsum&quot;&gt;
 
+        &lt;!-- Override component's messageWrapper --&gt;
         {{#partial messageWrapper}}&lt;em&gt;{{message}}&lt;/em&gt;{{/}}
 
         &lt;div class=&quot;inner-content&quot;&gt;
+          &lt;!-- Renders emphasized instead of strong --&gt;
           {{&gt; messageWrapper }}
         &lt;/div&gt;
 
       &lt;/ChildComponent&gt;
     &lt;/div&gt;
   `
-});
+})
 </code></pre>
 
 <h2 id="yield"><a class="toclink" href="#yield">{{yield}}</a></h2>
@@ -1557,7 +1583,7 @@ const ractive = Ractive({
   template: `
     &lt;div class=&quot;child-component&quot;&gt;{{ yield }}&lt;/div&gt;
   `
-});
+})
 
 const ractive = Ractive({
   el: 'body',
@@ -1572,7 +1598,7 @@ const ractive = Ractive({
       &lt;/ChildComponent&gt;
     &lt;/div&gt;
   `
-});
+})
 </code></pre>
 
 <p>Yields can also be customized using named yields. A named yield will look for a partial of the same name in the inner HTML and render that partial instead.</p>
@@ -1584,7 +1610,7 @@ const ractive = Ractive({
       {{ yield boldYield }}
     &lt;/div&gt;
   `
-});
+})
 
 const ractive = Ractive({
   el: 'body',
@@ -1606,15 +1632,20 @@ const ractive = Ractive({
       &lt;/ChildComponent&gt;
     &lt;/div&gt;
   `
-});
+})
 </code></pre>
 
 <p>Since the yielded content exists entirely in the context of the container (as opposed to the component), there's no way for the yielded content to access data in the component that is yielding. To address that, yields may supply aliases that are made available to the yielded content:</p>
 <pre><code class="js">const list = Ractive.extend({
   template: `
-    &lt;ul&gt;{{#each items}}&lt;li&gt;{{yield with . as item, @index as index}}&lt;/li&gt;{{/each}}&lt;/ul&gt;
+    &lt;ul&gt;
+      {{#each items}}
+        &lt;!-- Expose item and index to yield context. --&gt;
+        &lt;li&gt;{{yield with . as item, @index as index}}&lt;/li&gt;
+      {{/each}}
+    &lt;/ul&gt;
   `
-});
+})
 
 const ractive = Ractive({
   el: 'body',
@@ -1625,17 +1656,47 @@ const ractive = Ractive({
   },
   select(i) { console.log('you picked', i); },
   template: `
+    &lt;!-- Pass in some.list as items into list. --&gt;
     &lt;list items=&quot;{{some.list}}&quot;&gt;
+
+      &lt;!-- Access item and index aliases. --&gt;
       &lt;a href=&quot;#&quot; on-click=&quot;@.select(item)&quot;&gt;Item {{index}}&lt;/a&gt;
     &lt;/list&gt;
   `,
   components: { list }
-});
+})
 </code></pre>
 
 <p>Without the given alises, iterating a list within the component to yield the content would be useless, because the content would not have access to the current iteration. You could get around that by using a normal partial rather than a yield, but at that point, the click event on the content would result in an error because the <code>select</code> method does not exist on the <code>list</code> component.</p>
-<p>You can also yield with aliases for a specific named partial. For instance to yield a <code>title</code> partial making the current <code>page</code> number available:</p>
-<pre><code class="handlebars">{{yield title with meta.pageNumber as page}}
+<p>Yield aliases are also available for named yields.</p>
+<pre><code class="js">const Pager = Ractive.extend({
+  template: `
+    &lt;ul&gt;
+      &lt;li&gt;{{ yield prev }}&lt;/li&gt;
+      {{#each pages}}
+        &lt;li&gt;{{yield link with . as page}}&lt;/li&gt;
+      {{/each}}
+      &lt;li&gt;{{ yield next }}&lt;/li&gt;
+    &lt;/ul&gt;
+  `
+})
+
+const ractive = Ractive({
+  components: { Pager },
+  el: 'body',
+  data: {
+    book: {
+      pages: [ 1, 2, 3 ]
+    }
+  },
+  template: `
+    &lt;Pager pages=&quot;{{ book.pages }}&quot;&gt;
+      {{#partial prev}}&lt;a href=&quot;#prev&quot;&gt;Prev&lt;/a&gt;{{/partial}}
+      {{#partial link}}&lt;a href=&quot;#{{ page }}&quot;&gt;{{ page }}&lt;/a&gt;{{/partial}}
+      {{#partial next}}&lt;a href=&quot;#next&quot;&gt;Next&lt;/a&gt;{{/partial}}
+    &lt;/Pager&gt;
+  `,
+})
 </code></pre>
 
 <h1 id="data-binding"><a class="toclink" href="#data-binding">Data binding</a></h1>
@@ -1648,7 +1709,7 @@ const ractive = Ractive({
   data: {
     msg: 'Hello, World!'
   }
-});
+})
 </code></pre>
 
 <h2 id="number-inputs"><a class="toclink" href="#number-inputs">Number inputs</a></h2>
@@ -1660,7 +1721,7 @@ const ractive = Ractive({
   data: {
     daysWithoutSleep: 2
   }
-});
+})
 </code></pre>
 
 <h2 id="file-inputs"><a class="toclink" href="#file-inputs">File inputs</a></h2>
@@ -1672,7 +1733,7 @@ const ractive = Ractive({
   data: {
     file: /* FileList instance */
   }
-});
+})
 </code></pre>
 
 <p>or by using events:</p>
@@ -1688,12 +1749,12 @@ const ractive = Ractive({
     {{/each}}
   `,
   on:{
-    hello: function(ctx){
-      files = ctx.node.files;
-      keypath = ctx.resolve();
-      console.log('selected files:', files);
-      console.log('first file:', files[0]);
-      console.log('current context: ', keypath);
+    hello (ctx) {
+      files = ctx.node.files
+      keypath = ctx.resolve()
+      console.log('selected files:', files)
+      console.log('first file:', files[0])
+      console.log('current context: ', keypath)
     }
   },
   data:{
@@ -1711,7 +1772,7 @@ const ractive = Ractive({
   data: {
     isChecked: true
   }
-});
+})
 </code></pre>
 
 <p>Array data can also be bound to checkboxes via the <code>name</code> directive.</p>
@@ -1724,7 +1785,7 @@ const ractive = Ractive({
   data: {
     selectedItems: ['1', '2']
   }
-});
+})
 </code></pre>
 
 <p>When both <code>checked</code> and <code>name</code> bindings are present, the binding to <code>checked</code> will be honored and the binding to <code>name</code> will be treated as a regular interpolation.</p>
@@ -1741,7 +1802,7 @@ const ractive = Ractive({
     option2: true,
     option3: false
   }
-});
+})
 </code></pre>
 
 <p>Data can also be bound to radio buttons via the <code>name</code> directive.</p>
@@ -1754,7 +1815,7 @@ const ractive = Ractive({
   data: {
     selectedOption: '1'
   }
-});
+})
 </code></pre>
 
 <h2 id="text-areas"><a class="toclink" href="#text-areas">Text areas</a></h2>
@@ -1766,7 +1827,7 @@ const ractive = Ractive({
   data: {
     msg: 'Hello, World!'
   }
-});
+})
 </code></pre>
 
 <p>Data can also be bound to text areas via its contents.</p>
@@ -1777,7 +1838,7 @@ const ractive = Ractive({
   data: {
     msg: 'Hello, World!'
   }
-});
+})
 </code></pre>
 
 <h2 id="select-lists"><a class="toclink" href="#select-lists">Select lists</a></h2>
@@ -1793,7 +1854,7 @@ const ractive = Ractive({
   data: {
     selectedOption: '2'
   }
-});
+})
 </code></pre>
 
 <p>Array data can also be bound to select lists with the <code>multiple</code> attribute via the <code>value</code> directive.</p>
@@ -1808,7 +1869,7 @@ const ractive = Ractive({
   data: {
     selectedItems: [ '2', '3' ]
   }
-});
+})
 </code></pre>
 
 <h2 id="contenteditable"><a class="toclink" href="#contenteditable">contenteditable</a></h2>
@@ -1820,7 +1881,7 @@ const ractive = Ractive({
   data: {
     msg: 'Hello, World!'
   }
-});
+})
 
 // Rendered as:
 // &lt;div contenteditable=&quot;true&quot;&gt;Hello, World!&lt;/div&gt;
@@ -1834,7 +1895,7 @@ const ractive = Ractive({
 </ul>
 <h1 id="directives"><a class="toclink" href="#directives">Directives</a></h1>
 <h2 id="twoway"><a class="toclink" href="#twoway">twoway</a></h2>
-<p>The element-specific directive form of <code>twoway</code>.</p>
+<p>The element-specific directive form of the <code>twoway</code> initialization option.</p>
 <pre><code class="html">&lt;!-- By default, two-way is enabled. Editing the input updates foo. --&gt;
 Two-way: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
 
@@ -1846,7 +1907,7 @@ One-way: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; twoway=&quo
 </code></pre>
 
 <h2 id="lazy"><a class="toclink" href="#lazy">lazy</a></h2>
-<p>The element-specific directive form of <code>lazy</code>.</p>
+<p>The element-specific directive form of the <code>lazy</code> initialization option.</p>
 <pre><code class="html">&lt;!-- Editing the input updates foo on keypress. --&gt;
 Eager: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
 
@@ -1877,17 +1938,17 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
     &lt;button type=&quot;button&quot; on-click=&quot;@this.clickedMethod('Hello, World!')&quot;&gt;Push me!&lt;/button&gt;
   `,
   on: {
-    clickedproxy: function(context){
-      console.log('Hello, World!');
+    clickedproxy (context) {
+      console.log('Hello, World!')
     },
-    clickedArray: function(context, msg){
-      console.log(msg);
+    clickedArray (context, msg) {
+      console.log(msg)
     }
   },
-  clickedMethod(msg){
-    console.log(msg);
+  clickedMethod(msg) {
+    console.log(msg)
   }
-});
+})
 </code></pre>
 
 <p>Multiple events can also be tied to the same handler by appending event names to the directive, separating them by hyphens:</p>
@@ -1895,10 +1956,10 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
   template: `
     &lt;button type=&quot;button&quot; on-hover-click=&quot;@this.someMethod()&quot;&gt;Push me!&lt;/button&gt;
   `,
-  someMethod(){
-    console.log('Fires on hover and on click!');
+  someMethod () {
+    console.log('Fires on hover and on click!')
   }
-});
+})
 </code></pre>
 
 <h2 id="42-in-42-out-42-in-out"><a class="toclink" href="#42-in-42-out-42-in-out">*-in, *-out, *-in-out</a></h2>
@@ -1930,7 +1991,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
   data: {
     spoon: 'SPOON',
     matrix: {
-        agent: 'Smith'
+      agent: 'Smith'
       // There is no spoon
     }
   },
@@ -1941,7 +2002,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       &lt;div&gt;In reality, there is no {{ ./spoon }}&lt;/div&gt;
     {{/}}
   `
-});
+})
 
 // Outside the matrix, you have SPOON
 // Inside the matrix, you think you have SPOON.
@@ -1957,13 +2018,13 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
   data: {
     id: 'reality',
     dream: {
-        id: 'dream1',
+      id: 'dream1',
+      dream: {
+        id: 'dream2',
         dream: {
-            id: 'dream2',
-            dream: {
-                id: 'dream3',
-            }
+          id: 'dream3',
         }
+      }
     }
   },
   template: `
@@ -1983,7 +2044,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       {{/}}
     {{/}}
   `
-});
+})
 
 // You are in reality
 // You are in dream1
@@ -2022,7 +2083,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       {{/with}}
     {{/each}}
   `
-});
+})
 
 // the home base bulding1 is Operations
 // the current iteration base building1 is Mess Hall
@@ -2039,29 +2100,29 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
   data: {
     room: '1',
     portal: {
-        room: '2',
+      room: '2',
+      portal: {
+        room: '3',
         portal: {
-            room: '3',
-            portal: {
-                room: '4',
-            }
+          room: '4',
         }
+      }
     }
   },
   template: `
     {{# portal }}
+      {{# portal }}
         {{# portal }}
-        {{# portal }}
-                &lt;div&gt;Entering...&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/room }}&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/portal.room }}&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/portal.portal.room }}&lt;/div&gt;
-                &lt;div&gt;You are in room {{ ~/portal.portal.portal.room }}&lt;/div&gt;
-            {{/}}
+          &lt;div&gt;Entering...&lt;/div&gt;
+          &lt;div&gt;You are in room {{ ~/room }}&lt;/div&gt;
+          &lt;div&gt;You are in room {{ ~/portal.room }}&lt;/div&gt;
+          &lt;div&gt;You are in room {{ ~/portal.portal.room }}&lt;/div&gt;
+          &lt;div&gt;You are in room {{ ~/portal.portal.portal.room }}&lt;/div&gt;
         {{/}}
+      {{/}}
     {{/}}
   `
-});
+})
 
 // Entering...
 // You are in room 1
@@ -2107,7 +2168,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       {{/}}
     {{/}}
   `,
-});
+})
 
 // info 1: {&quot;info&quot;:{&quot;message&quot;:&quot;Hello World!&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;The quick brown fox&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;jumps over the lazy dog&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;Thats all folks&quot;}}}}}
 // info 2: {&quot;message&quot;:&quot;Hello World!&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;The quick brown fox&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;jumps over the lazy dog&quot;,&quot;info&quot;:{&quot;message&quot;:&quot;Thats all folks&quot;}}}}
@@ -2130,10 +2191,10 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
     &lt;button type=&quot;button&quot; on-click=&quot;@this.add('count')&quot;&gt;Increment&lt;/button&gt;
     &lt;button type=&quot;button&quot; on-click=&quot;@this.myMethod()&quot;&gt;Log count&lt;/button&gt;
   `,
-  myMethod(){
-    console.log(`current count is ${this.get('count')}`);
+  myMethod () {
+    console.log(`current count is ${this.get('count')}`)
   }
-});
+})
 </code></pre>
 
 <p><code>@this</code> can also be referenced by using its shorthand <code>@</code>.</p>
@@ -2149,10 +2210,10 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
     &lt;button type=&quot;button&quot; on-click=&quot;@.add('count')&quot;&gt;Increment&lt;/button&gt;
     &lt;button type=&quot;button&quot; on-click=&quot;@.myMethod()&quot;&gt;Log count&lt;/button&gt;
   `,
-  myMethod(){
-    console.log(`current count is ${this.get('count')}`);
+  myMethod () {
+    console.log(`current count is ${this.get('count')}`)
   }
-});
+})
 </code></pre>
 
 <h2 id="index"><a class="toclink" href="#index"><code>@index</code></a></h2>
@@ -2173,7 +2234,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       &lt;div&gt;User #{{ @index }} says: Hi! I'm {{ name }}!&lt;/div&gt;
     {{/each}}
   `
-});
+})
 
 // User #0 says: Hi! I'm bob!
 // User #1 says: Hi! I'm alice!
@@ -2197,7 +2258,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       &lt;div&gt;User #{{ @index }} says: {{ this }}&lt;/div&gt;
     {{/each}}
   `
-});
+})
 
 // User #0 says: Hi! I am bob!
 // User #1 says: Hi! I am alice!
@@ -2222,7 +2283,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       &lt;div&gt;User {{ @key }} says: {{ this }}&lt;/div&gt;
     {{/each}}
   `
-});
+})
 
 // User bob says: Hi! I am bob!
 // User alice says: Hi! I am alice!
@@ -2246,7 +2307,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       &lt;div&gt;User #{{ @key }} says: Hi! I'm {{ name }}!&lt;/div&gt;
     {{/each}}
   `
-});
+})
 
 // User #0 says: Hi! I'm bob!
 // User #1 says: Hi! I'm alice!
@@ -2280,7 +2341,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       {{/}}
     {{/}}
   `
-});
+})
 
 // Keypath:
 // Keypath: foo
@@ -2302,7 +2363,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;tru
       &lt;div&gt;Keypath: {{ @keypath }}&lt;/div&gt;
     {{/}}
   `
-});
+})
 
 Ractive({
   el: 'body',
@@ -2324,7 +2385,7 @@ Ractive({
       &lt;Message info=&quot;{{ this }}&quot; /&gt;
     {{/}}
   `
-});
+})
 
 // Sender: bob
 // Message: Hi alice!
@@ -2361,7 +2422,7 @@ Ractive({
       {{/}}
     {{/}}
   `
-});
+})
 
 // Keypath:
 // Keypath: foo
@@ -2383,7 +2444,7 @@ Ractive({
       &lt;div&gt;Keypath: {{ @rootpath }}&lt;/div&gt;
     {{/}}
   `
-});
+})
 
 Ractive({
   el: 'body',
@@ -2405,7 +2466,7 @@ Ractive({
       &lt;Message info=&quot;{{ this }}&quot; /&gt;
     {{/}}
   `
-});
+})
 
 // Sender: bob
 // Message: Hi alice!
@@ -2426,7 +2487,7 @@ Ractive({
   template: `
     {{ @global.message }}
   `
-});
+})
 
 // Hello World!
 </code></pre>
@@ -2456,16 +2517,16 @@ Ractive({
       &lt;li&gt;Repeat steps 1 and 2 and notice that both steps are now aware&lt;/li&gt;
     &lt;/ol&gt;
   `,
-  logReference(){
+  logReference () {
     console.log(this.get('@global.message'))
   },
-  logGlobal(){
-    console.log(window.message);
+  logGlobal () {
+    console.log(window.message)
   },
-  setFooBarBaz(){
+  setFooBarBaz () {
     window.message = &quot;foo bar baz&quot;
   }
-});
+})
 </code></pre>
 
 <h2 id="shared"><a class="toclink" href="#shared"><code>@shared</code></a></h2>
@@ -2499,12 +2560,12 @@ Ractive({
     &lt;CustomButton on-buttonevent=&quot;@this.method($1, $2)&quot; /&gt;
   `,
   on: {
-    proxy: function(context, foo, bar){
-      console.log(foo, bar);
+    proxy (context, foo, bar) {
+      console.log(foo, bar)
     }
   },
-  method(foo,bar){
-    console.log(foo, bar);
+  method (foo,bar) {
+    console.log(foo, bar)
   }
 })
 </code></pre>
@@ -2527,12 +2588,12 @@ Ractive({
     &lt;CustomButton on-buttonevent=&quot;@this.method(arguments)&quot; /&gt;
   `,
   on: {
-    proxy: function(context, args){
-      console.log(args);
+    proxy (context, args) {
+      console.log(args)
     }
   },
-  method(foo,bar){
-    console.log(args);
+  method (foo,bar) {
+    console.log(args)
   }
 })
 </code></pre>
@@ -2541,10 +2602,10 @@ Ractive({
 <h1 id="initialization-options"><a class="toclink" href="#initialization-options">Initialization Options</a></h1>
 <p>The following is an exhaustive list of initialisation options that you can pass to <code>Ractive()</code> and <code>Ractive.extend()</code>. Extra properties passed as options that are not initialization options are added as properties or methods of the instance.</p>
 <pre><code class="js">var ractive = Ractive({
-  myMethod: function () {
-    alert( 'my method was called' );
+  myMethod () {
+    alert( 'my method was called' )
   }
-});
+})
 
 ractive.myMethod(); // triggers the alert
 </code></pre>
@@ -2559,16 +2620,16 @@ ractive.myMethod(); // triggers the alert
 <pre><code class="js">const instance = Ractive({
   adaptors: { MyAdaptor: AdaptorDefinition }
   // No need to use adapt
-});
+})
 
 const Component = Ractive.extend({
   adaptors: { MyAdaptor: AdaptorDefinition }
   // No need to use adapt
-});
+})
 
 new Component({
   // No need to use adapt
-});
+})
 </code></pre>
 
 <h2 id="adaptors"><a class="toclink" href="#adaptors">adaptors</a></h2>
@@ -2580,12 +2641,12 @@ new Component({
 </code></pre>
 
 <p>Registering an adaptor via <code>adaptors</code> is not required if you directly specified the adaptor definition via <code>adapt</code>.</p>
-<pre><code class="js">const Adaptor = { ... };
+<pre><code class="js">const Adaptor = { ... }
 
 const instance = Ractive({
   adapt: [ AdaptorDefinition ]
   // No need to use adaptors
-});
+})
 </code></pre>
 
 <h2 id="allowexpressions"><a class="toclink" href="#allowexpressions">allowExpressions</a></h2>
@@ -2665,7 +2726,7 @@ template: '&lt;p&gt;grey&lt;/p&gt;'
     required: [ 'list' ],
     optional: [ 'type' ]
   }
-});
+})
 
 // &lt;Component type=&quot;foo&quot; /&gt; will issue a warning about missing list
 // &lt;Component list=&quot;{{things}}&quot; style-color=&quot;green&quot; /&gt; will not warn, but will include the style-color=&quot;green&quot; on the wrapper div
@@ -2756,17 +2817,17 @@ computed: {
   diagonal: '${side} * Math.sqrt(2)',
 
   // A function
-  perimeter: function(){
-    return 4 * this.get('side');
+  perimeter () {
+    return 4 * this.get('side')
   },
 
   // An object with get and set functions
   area: {
-    get: function(){
-      return Math.pow(this.get('side'), 2);
+    get () {
+      return Math.pow(this.get('side'), 2)
     },
-    set: function(value){
-      this.set('side', Math.sqrt(value));
+    set (value) {
+      this.set('side', Math.sqrt(value))
     }
   },
 }
@@ -2788,12 +2849,12 @@ computed: {
 <pre><code class="js">// This works
 const Component = Ractive.extend({
   css: '...'
-});
+})
 
 // This will not work
 Ractive({
   css: '...'
-});
+})
 </code></pre>
 
 <p><strong>From</strong> <em>0.9.4</em>, if <code>css</code> is a function, the function will be called with a handle to the component's style data and is expected to return a string of CSS.</p>
@@ -2805,7 +2866,7 @@ Ractive({
       .super-special { color: ${data('colors.special') || 'green'}; }
     `
   }
-});
+})
 </code></pre>
 
 <h2 id="cssdata"><a class="toclink" href="#cssdata">cssData</a></h2>
@@ -2821,8 +2882,8 @@ data: {
 }
 
 // Function form
-data: function() {
-  return { foo: 'bar' };
+data () {
+  return { foo: 'bar' }
 }
 
 // Function form using arrow function for less verbosity
@@ -2836,26 +2897,26 @@ data: () =&gt; ({
   data: {
     foo: { bar: 42 }
   }
-});
+})
 
-var component1 = Component();
-var component2 = Component();
-component1.set( 'foo.bar', 12 );
+var component1 = Component()
+var component2 = Component()
+component1.set( 'foo.bar', 12 )
 component2.get( 'foo.bar' ); // returns 12
 </code></pre>
 
 <p>When using the function form, the function is executed to give each instance a copy of the data. Standard prototype rules apply.</p>
 <pre><code class="js">const Component = Ractive.extend({
-  data: function () {
+  data () {
     return {
       foo: { bar: 42 }
-    };
+    }
   }
-});
+})
 
-var component1 = Component();
-var component2 = Component();
-component1.set( 'foo.bar', 12 );
+var component1 = Component()
+var component2 = Component()
+component1.set( 'foo.bar', 12 )
 component2.get( 'foo.bar' ); // returns 42
 </code></pre>
 
@@ -2865,13 +2926,13 @@ component2.get( 'foo.bar' ); // returns 42
     foo: 'Hello',
     bar: 'World'
   }
-});
+})
 
 const Child = Parent.extend({
   data: {
     foo: 'Goodbye'
   }
-});
+})
 
 Parent().get(); // { foo: 'Hello', bar: 'World' }
 Child().get();  // { foo: 'Goodbye', bar: 'World' }
@@ -2967,7 +3028,7 @@ el: jQuery('#container')
     &lt;!-- Updates when the input loses focus --&gt;
     {{ foo }}
   `
-});
+})
 </code></pre>
 
 <p><code>lazy</code> also accepts a number value, a millisecond value, that indicates the delay between the last UI interaction and Ractive updating the data. Losing element focus is not required for the update to kick in.</p>
@@ -2980,7 +3041,7 @@ el: jQuery('#container')
     &lt;!-- Updates 1000ms after the last interaction on input --&gt;
     {{ foo }}
   `
-});
+})
 </code></pre>
 
 <p><code>lazy</code> is only applicable if <code>twoway</code> is <code>true</code>.</p>
@@ -3011,12 +3072,14 @@ el: jQuery('#container')
 <pre><code class="js">var ractive = Ractive({
   template: '&lt;ul&gt;{{#items}}&lt;li fade-in&gt;{{.}}&lt;/li&gt;{{/items}}&lt;/ul&gt;',
   data: { items: [ 'red', 'blue' ] },
-  transitions: { fade: function ( t, params ) {...} },
+  transitions: {
+    fade ( t, params ) {...}
+  },
   noIntro: true
-});
+})
 // 'red' and 'blue' list items do not fade in
 
-ractive.push( 'items', 'green' );
+ractive.push( 'items', 'green' )
 // 'green' list item will fade in
 </code></pre>
 
@@ -3026,14 +3089,16 @@ ractive.push( 'items', 'green' );
 <pre><code class="js">var ractive = Ractive({
   template: '&lt;ul&gt;{{#items}}&lt;li fade-out&gt;{{.}}&lt;/li&gt;{{/items}}&lt;/ul&gt;',
   data: { items: [ 'red', 'blue' ] },
-  transitions: { fade: function ( t, params ) {...} },
+  transitions: {
+    fade ( t, params ) {...}
+  },
   noOutro: true
-});
+})
 
-ractive.pop( 'items' );
+ractive.pop( 'items' )
 // 'blue' list item will fade out
 
-ractive.unrender();
+ractive.unrender()
 // 'red' list item will not fade out
 </code></pre>
 
@@ -3045,17 +3110,17 @@ ractive.unrender();
   // ..
   observe: {
     show ( value ) {
-      console.log( `show changed to '${value}'` );
+      console.log( `show changed to '${value}'` )
     },
     'users.*.name people.*.name': {
       handler ( value, old, path, idx ) {
-        console.log( `${path} changed to '${value}'` );
+        console.log( `${path} changed to '${value}'` )
       },
       init: false,
       strict: true
     }
   }
-});
+})
 </code></pre>
 
 <p>The options that may be specified in the object form are (see the <code>ractive.observe()</code> docs for more detailed option descriptions):</p>
@@ -3078,18 +3143,18 @@ ractive.unrender();
 <pre><code class="js">Ractive({
   // ...
   on: {
-    init: function(){
-      console.log('I will print during init');
+    init () {
+      console.log('I will print during init')
     },
     '*.somethingHappened': {
       handler ( ctx ) {
-        console.log('I will fire when this instance or any child component fires an instance event named &quot;somethingHappened&quot;');
+        console.log('I will fire when this instance or any child component fires an instance event named &quot;somethingHappened&quot;')
       },
       once: true
     }
   },
   // ...
-});
+})
 </code></pre>
 
 <p>The options that may be specified in the object form are:</p>
@@ -3139,8 +3204,8 @@ ractive.unrender();
 <pre><code class="js">partials: {
   stringPartial: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
   parsedPartial: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
-  functionPartial: function(data, p){
-    return data.condition ? '&lt;p&gt;hello world&lt;/p&gt;' : '&lt;div&gt;yes, we have no foo&lt;/div&gt;';
+  functionPartial (data, p) {
+    return data.condition ? '&lt;p&gt;hello world&lt;/p&gt;' : '&lt;div&gt;yes, we have no foo&lt;/div&gt;'
   }
 }
 </code></pre>
@@ -3153,17 +3218,17 @@ ractive.unrender();
 <pre><code class="js">var ractive = Ractive({
   template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
   preserveWhitespace: false //default
-});
+})
 
-console.log( ractive.toHTML() );
+console.log( ractive.toHTML() )
 // &quot;&lt;p&gt;hello world&lt;/p&gt;&quot;
 
 var ractive = Ractive({
   template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
   preserveWhitespace: true
-});
+})
 
-console.log( ractive.toHTML() );
+console.log( ractive.toHTML() )
 //&quot;&lt;p&gt;hello
 //
 //  world   &lt;/p&gt;&quot;
@@ -3211,10 +3276,10 @@ sanitize: {
   template: 'hello [[foo]]',
   staticDelimiters: [ '[[', ']]' ], //default
   data: { foo: 'world' }
-});
+})
 // result: &quot;hello world&quot;
 
-ractive.set( 'foo', 'mars' );
+ractive.set( 'foo', 'mars' )
 // still is: &quot;hello world&quot;
 </code></pre>
 
@@ -3225,10 +3290,10 @@ ractive.set( 'foo', 'mars' );
   template: 'hello [[[html]]]',
   staticTripleDelimiters: [ '[[[', ']]]' ], //default
   data: { html: '&lt;span&gt;world&lt;/span&gt;' }
-});
+})
 // result: &quot;hello &lt;span&gt;world&lt;/span&gt;&quot;
 
-ractive.set( 'html', '&lt;span&gt;mars&lt;/span&gt;' );
+ractive.set( 'html', '&lt;span&gt;mars&lt;/span&gt;' )
 // still is: &quot;hello world&quot;
 </code></pre>
 
@@ -3268,8 +3333,8 @@ template: '&lt;p&gt;{{greeting}} world!&lt;/p&gt;',
 template: {&quot;v&quot;:3,&quot;t&quot;:[{&quot;t&quot;:7,&quot;e&quot;:&quot;p&quot;,&quot;f&quot;:[{&quot;t&quot;:2,&quot;r&quot;:&quot;greeting&quot;},&quot; world!&quot;]}]},
 
 // Function
-template: function(data, p){
-  return '&lt;p&gt;{{greeting}} world!&lt;/p&gt;';
+template (data, p) {
+  return '&lt;p&gt;{{greeting}} world!&lt;/p&gt;'
 },
 </code></pre>
 
@@ -3298,7 +3363,7 @@ data: { html: '&lt;span&gt;world&lt;/span&gt;' }
   template: '&lt;input value=&quot;{{foo}}&quot;&gt;',
   data: { foo: 'bar' },
   twoway: false
-});
+})
 
 // user types &quot;fizz&quot; into &lt;input&gt;, but data value is not changed:
 
@@ -3306,7 +3371,7 @@ console.log( ractive.get( 'foo' ) ); //logs &quot;bar&quot;
 
 // updates from the model are still pushed to the view
 
-ractive.set( 'foo', 'fizz' );
+ractive.set( 'foo', 'fizz' )
 
 // input now displays &quot;fizz&quot;
 </code></pre>
@@ -3339,42 +3404,42 @@ ractive.set( 'foo', 'fizz' );
 <p><code>(Object&lt;string, any&gt;)</code></p>
 <p>Global defaults for initialisation options with the exception of plugin registries.</p>
 <pre><code class="js">// Change the default mustache delimiters to [[ ]] globally
-Ractive.defaults.delimiters = [ '[[', ']]' ];
+Ractive.defaults.delimiters = [ '[[', ']]' ]
 
 // Future instances now use [[ ]]
 ractive1 = Ractive({
     template: 'hello [[world]]'
-});
+})
 </code></pre>
 
 <p>Defaults can be specified for a subclass of Ractive, overriding global defaults.</p>
-<pre><code class="js">var MyRactive = Ractive.extend();
+<pre><code class="js">var MyRactive = Ractive.extend()
 
-MyRactive.defaults.el = document.body;
+MyRactive.defaults.el = document.body
 </code></pre>
 
 <p>Configuration on the instance overrides subclass and global defaults.</p>
-<pre><code class="js">Ractive.defaults.delimiters = [ '[[', ']]' ];
+<pre><code class="js">Ractive.defaults.delimiters = [ '[[', ']]' ]
 
 // Uses the delimiters specified above
 Ractive({
-    template: 'hello [[world]]'
-});
+  template: 'hello [[world]]'
+})
 
 // Uses the delimiters specified in the init options
 Ractive({
-    template: 'hello //world\\',
-    delimiters: [ '//', '\\' ]
-});
+  template: 'hello //world\\',
+  delimiters: [ '//', '\\' ]
+})
 </code></pre>
 
 <p>Global data attributes may be specified:</p>
-<pre><code class="js">Ractive.defaults.data.people = [{id:4, name:'Fred'},{id:5, name:'Wilma'},...];
+<pre><code class="js">Ractive.defaults.data.people = [{id:4, name:'Fred'},{id:5, name:'Wilma'},...]
 
 //or alternatively:
 Object.assign(Ractive.defaults.data,{people : [{id:4, name:'Fred'},{id:5, name:'Wilma'},...],
                                      title : 'Flintstones',
-                                     producer : 'Hanna-Barbera'});
+                                     producer : 'Hanna-Barbera'})
 
 // (Object.assign is provided as a polyfill by Ractive if it's not supported by the browser)
 </code></pre>
@@ -3394,8 +3459,8 @@ Object.assign(Ractive.defaults.data,{people : [{id:4, name:'Fred'},{id:5, name:'
 <p><strong>From</strong> <em>0.9.1</em></p>
 <p><code>(Ractive|Component constructor)</code></p>
 <p>The parent constructor of a component.</p>
-<pre><code class="js">const MyComponent = Ractive.extend();
-const MySpecialComponent = MyComponent.extend();
+<pre><code class="js">const MyComponent = Ractive.extend()
+const MySpecialComponent = MyComponent.extend()
 
 MyComponent.Parent === Ractive; // true
 MySpecialCompoennt.Parent === MyComponent; // true
@@ -3409,8 +3474,8 @@ MySpecialCompoennt.Parent === MyComponent; // true
 <p><strong>From</strong> <em>0.9.1</em></p>
 <p><code>(Ractive)</code></p>
 <p>The root Ractive constructor that is the first ancestor of this component.</p>
-<pre><code class="js">const MyComponent = Ractive.extend();
-const MySpecialComponent = MyComponent.extend();
+<pre><code class="js">const MyComponent = Ractive.extend()
+const MySpecialComponent = MyComponent.extend()
 
 MyComponent.Ractive === Ractive; // true
 MySpecialCompoennt.Ractive === Ractive; // true
@@ -3450,22 +3515,22 @@ MySpecialCompoennt.Ractive === Ractive; // true
 
 <pre><code class="js">Ractive({
     ...
-    on:{
-        changeUrl: function(){
-            this.set('img.a\\.jpg.url', &quot;/my/new/path.jpg&quot;);
-        },
-        changeUrl2: function(){
-            mykey = 'a.jpg';
-            this.set('img.' + Ractive.escapeKey(mykey) + '.url', &quot;/the/other/path.jpg&quot;);
-        }
+  on:{
+    changeUrl () {
+      this.set('img.a\\.jpg.url', &quot;/my/new/path.jpg&quot;)
     },
-    data: {
-        img: {
-            'a.jpg': {
-                url: &quot;/path/to/a.jpg&quot;
-            }
-        }
+    changeUrl2 () {
+      mykey = 'a.jpg'
+      this.set('img.' + Ractive.escapeKey(mykey) + '.url', &quot;/the/other/path.jpg&quot;)
     }
+  },
+  data: {
+    img: {
+      'a.jpg': {
+        url: &quot;/path/to/a.jpg&quot;
+      }
+    }
+  }
 })
 </code></pre>
 
@@ -3489,12 +3554,12 @@ MySpecialCompoennt.Ractive === Ractive; // true
     data: {
         message: 'Hello World!'
     }
-});
+})
 
 // &lt;div&gt;Hello World!&lt;/div&gt;
 const instance1 = SubClass({
     el: '.div1'
-});
+})
 
 // &lt;div&gt;Lorem Ipsum&lt;/div&gt;
 const instance2 = SubClass({
@@ -3502,7 +3567,7 @@ const instance2 = SubClass({
     data: {
         message: 'Lorem Ipsum'
     }
-});
+})
 </code></pre>
 
 <h2 id="ractiveextendwith"><a class="toclink" href="#ractiveextendwith">Ractive.extendWith()</a></h2>
@@ -3523,21 +3588,21 @@ const instance2 = SubClass({
 <p><strong>Examples</strong></p>
 <pre><code class="js">class Widget {
   notify ( message ) {
-    this.push( 'messages', message );
+    this.push( 'messages', message )
   }
 
   show () {
-    this.set( 'visible', true );
+    this.set( 'visible', true )
   }
 
   hide () {
-    this.set( 'visible', false );
+    this.set( 'visible', false )
   }
 }
 
 Ractive.extendWith( Widget, {
   template: '{{#if visible}}&lt;ul&gt;{{#each messages}}&lt;li&gt;{{.}}&lt;/li&gt;{{/each}}&lt;/ul&gt;{{/if}}'
-});
+})
 </code></pre>
 
 <h2 id="ractivegetcss"><a class="toclink" href="#ractivegetcss">Ractive.getCSS()</a></h2>
@@ -3561,20 +3626,20 @@ const Subclass1 = Ractive.extend({
     ...
     css: 'div{ color: red }'
     ...
-});
+})
 
 // Assuming the generated ID for this subclass is 'yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy'.
 const Subclass2 = Ractive.extend({
     ...
     css: 'div{ color: green }'
     ...
-});
+})
 
 // CSS contains the scoped versions of div{ color: red } and div{ color: green }.
-const css = Ractive.getCSS();
+const css = Ractive.getCSS()
 
 // css contains the scoped version of div{ color: red } only.
-const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
+const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ])
 
 </code></pre>
 
@@ -3593,9 +3658,9 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ]);
 <li><code>(Context)</code>: A context object.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">const info = Ractive.getContext(document.getElementById('some-node'));
+<pre><code class="js">const info = Ractive.getContext(document.getElementById('some-node'))
 
-const info = Ractive.getContext('#some-node');
+const info = Ractive.getContext('#some-node')
 </code></pre>
 
 <h2 id="ractiveisinstance"><a class="toclink" href="#ractiveisinstance">Ractive.isInstance()</a></h2>
@@ -3614,11 +3679,11 @@ const info = Ractive.getContext('#some-node');
 <li><code>boolean</code></li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">const MyComponent = Ractive.extend();
-const MySpecialComponent = MyComponent.extend();
-const OtherComponent = Ractive.extend();
+<pre><code class="js">const MyComponent = Ractive.extend()
+const MySpecialComponent = MyComponent.extend()
+const OtherComponent = Ractive.extend()
 
-const r = new MySpecialCompoennt();
+const r = new MySpecialCompoennt()
 
 MySpecialComponent.isInstance(r); // true
 MyComponent.isInstance(r); // true
@@ -3750,7 +3815,7 @@ Ractive.isInstance(r); //true
 <li><code>(Promise)</code>: Returns a promise that resolves when any transitions associated with the change have completed.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">Ractive.sharedSet( '_', lodash );
+<pre><code class="js">Ractive.sharedSet( '_', lodash )
 </code></pre>
 
 <h2 id="ractivestyleset"><a class="toclink" href="#ractivestyleset">Ractive.styleSet()</a></h2>
@@ -3772,7 +3837,7 @@ Ractive.isInstance(r); //true
 <li><code>(Promise)</code>: Returns a promise that resolves when any transitions associated with the change have completed.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">Ractive.styleSet( 'colors.fg', '#000' );
+<pre><code class="js">Ractive.styleSet( 'colors.fg', '#000' )
 </code></pre>
 
 <h2 id="ractiveunescapekey"><a class="toclink" href="#ractiveunescapekey">Ractive.unescapeKey()</a></h2>
@@ -3871,19 +3936,19 @@ Ractive.isInstance(r); //true
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGbVOAWwAOPNNxTMAvMwBKSeigCWUtADo0AD3TcAJgApgAHW5OUPI9yMpIzAGYArtyGRjz2AJTMzq4obly8-OYInADm9gDkGAHKaHKe3unhLm44LjjhANzF3DJyAMoBAEYKKmoa2vJKqtzqKBbW6g7Rbh5ePv5BIWGRw7EobEYYZgD6WTkwEVUxcTx8AmbJaZlNzPkohVslZUWu3D0A7swNzV1tKJu4QA"></div>
 
 <pre><code class="js">var Component = Ractive.extend({
-    oninit: function() {
-        console.log('super init')
-    }
-});
-
-var SubComponent = Component.extend({
-    oninit: function() {
-        this._super();
-        console.log('sub init');
-    }
+  oninit () {
+    console.log('super init')
+  }
 })
 
-new SubComponent();
+var SubComponent = Component.extend({
+  oninit () {
+    this._super()
+    console.log('sub init')
+  }
+})
+
+new SubComponent()
 </code></pre>
 
 <h2 id="ractiveadd"><a class="toclink" href="#ractiveadd">ractive.add()</a></h2>
@@ -3905,22 +3970,22 @@ new SubComponent();
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiQmJkzC-r1CmarNeY0ENDOEDQBzTPOvxZud0GD0eEzw9AAjMNoaCVAtlqt1lpNjtlHsDkcTj1zpdrrdtAMYBVIcNYeoDhhXu9Pj8-gD8aZgZNQfh6AAmaGk6a4IA"></div>
 
 <pre><code class="js">var r = Ractive({
-    el: '#main',
-    template: '#tpl',
-    data: {
-        counter: 0
-    }
-});
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
+})
 
-setTimeout(function() {
-    r.add('counter');
-    console.log(r.get('counter'));
-}, 1000);
+setTimeout(() =&gt; {
+  r.add('counter')
+  console.log(r.get('counter'))
+}, 1000)
 
-setTimeout(function() {
-    r.add('counter', 10);
-    console.log(r.get('counter'));
-}, 2000);
+setTimeout(() =&gt; {
+  r.add('counter', 10)
+  console.log(r.get('counter'))
+}, 2000)
 </code></pre>
 
 <h2 id="ractiveanimate"><a class="toclink" href="#ractiveanimate">ractive.animate()</a></h2>
@@ -3954,23 +4019,23 @@ setTimeout(function() {
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NinIB7AK7L0MSPWDBNOvThwqSEitTpLVykkyoA3Rqw4ykVVYqvOXBRACDHgXJBh6SJZ6ZTQAd3oAJSRyFFc0AApgFTU0BAMAcgBiLx9CvFyUdBkuVDQi4pQuCqqmVCQDHNUUNRNdNH16AAYqi2UcAEoAblzlDDQUABUqGTRtFEyAMx00qg1lTMnDKpgAOiRlVfrMwv69CvoAJmG8Q3omLRhUfeUDF+Gw3oU1mEzeAEZAcMZrggA"></div>
 
 <pre><code class="js">var r = Ractive({
-    el: '#main',
-    template: '#tpl',
-    data: {
-        counter: 0
-    }
-});
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
+})
 
-setTimeout(function() {
-    r.animate('counter', 20, { duration: 2000 });
-}, 1000);
+setTimeout(() =&gt; {
+  r.animate('counter', 20, { duration: 2000 })
+}, 1000)
 </code></pre>
 
 <h2 id="ractiveattachchild"><a class="toclink" href="#ractiveattachchild">ractive.attachChild()</a></h2>
 <p>Creates a parent-child relationship between two Ractive instances. The child may be an instance of a component defined by <code>Ractive.extend()</code>, but that is not a requirement, as children may be a plain Ractive instance created with <code>Ractive()</code>.</p>
 <p><strong>Syntax</strong></p>
-<pre><code class="js">ractive.attachChild( child );
-ractive.attachChild( child, options );
+<pre><code class="js">ractive.attachChild( child )
+ractive.attachChild( child, options )
 </code></pre>
 
 <p><strong>Arguments</strong></p>
@@ -4012,18 +4077,18 @@ ractive.attachChild( child, options );
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJgAjAvIB7AK7L0MSPWDA9h4zhwkp2lWqTKm9DLplpeYlCrsVqOiVVZRImKgA3RlYOGSQqVUU7cIiFEAIMeAikGHpclnplNAB3egAlJHIUSLQACmBHdARTAHIAYjiElrxG9BkuVDRWtpQubsamVCRTBtVfFEsjNBN6AAZGnBUcAEoAbkdlDDQUABUqTwMUWoAzQyqqXWVa7bNG7NyU+gKmXXJ9TyMADpKGhBgBRBBoAFXFopFp7CaRQFIGiCFwAYTAVAQTFqMEBTGOlTAzwRcz0h10kMBCF0AHNailAQkijAABInACyABkyfh6JpVkK9rggA"></div>
 
 <pre><code class="js">var r = Ractive({
-    el: '#main',
-    template: '#tpl',
-    data: {
-        counter: 0
-    }
-});
+  el: '#main',
+  template: '#tpl',
+  data: {
+    counter: 0
+  }
+})
 
-setTimeout(function() {
-    var div = document.createElement('div');
-    div.appendChild(r.detach());
-    console.log(div.innerHTML);
-}, 1000);
+setTimeout(() =&gt; {
+  var div = document.createElement('div')
+  div.appendChild(r.detach())
+  console.log(div.innerHTML)
+}, 1000)
 </code></pre>
 
 <h2 id="ractivedetachchild"><a class="toclink" href="#ractivedetachchild">ractive.detachChild()</a></h2>
@@ -4061,14 +4126,14 @@ setTimeout(function() {
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnsaPtdn4se0mLdXjQ-HFEslXrCguRCU0EGg-NUErdmej0DBTEiALLpTnKfD0ACMAAYVbDcEA"></div>
 
 <pre><code class="js">var r = Ractive({
-    el: '#main',
-    template: '#tpl'
-});
+  el: '#main',
+  template: '#tpl'
+})
 
-setTimeout(function() {
-    var p = r.find('p.target');
-    console.log(p.outerHTML);
-}, 1000);
+setTimeout(() =&gt; {
+  var p = r.find('p.target')
+  console.log(p.outerHTML)
+}, 1000)
 </code></pre>
 
 <h2 id="ractivefindall"><a class="toclink" href="#ractivefindall">ractive.findAll()</a></h2>
@@ -4093,16 +4158,16 @@ setTimeout(function() {
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NihJMqANyWqUakmABMCgBJokTNDBJSTKtQZq7H+lAEllKGAHsAdAEObrbOQU705MgYGMIoSDAA5mj6imFuADI+MGgyjDQYAK4yePQFYCVMPghZ9EgyySUYPvUoYFTKCQF+aSEu6hKaOiq2FNR0Lsoa2oysHDJI7RwKtoMKIAQY8Frx9DD0LPTKaADu9ABKSOQo2mgAFMBBaAiQ9ADkAMTz7a94QegyXFQaBeHxQXFeKhwAEoANwOZQYZIAFSo9R8BRQtwAZgVlFcqD5lLcofQHnptnt8vtdn4se0mABBBAIW6vGivWFBfK0rIAUUuYGxuPxhNuNBJZNc5EJTQQaD81QSYr86PQMFMSIAsulOXpoZCSgBGAAMpthuCAA"></div>
 
 <pre><code class="js">var r = Ractive({
-    el: '#main',
-    template: '#tpl'
-});
+  el: '#main',
+  template: '#tpl'
+})
 
-setTimeout(function() {
-    var ps = r.findAll('p');
-    ps.forEach(function(p) {
-        console.log(p.outerHTML);
-    })
-}, 1000);
+setTimeout(() =&gt; {
+  var ps = r.findAll('p')
+  ps.forEach(function(p) {
+    console.log(p.outerHTML)
+  })
+}, 1000)
 </code></pre>
 
 <h2 id="ractivefindallcomponents"><a class="toclink" href="#ractivefindallcomponents">ractive.findAllComponents()</a></h2>
@@ -4127,23 +4192,23 @@ setTimeout(function() {
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NimDAAxGiTkw9ANoBGPPQBMpgMwBdHDhVq1JJlQBuCkgGEA9jJrflNGUGZQBXGQAjNBhhDQA6Ox4JDwkXdwd1YAkdPUTlEgkKajolVXy0xlYOGSQqVUUCtIUQAgx4VyQYeh8-AKCGFnoAJV0UNzQ4sXRlJgAKYAz0P2R0SHoAch7-QOD6DTDI6Lt1lRwASgBuB2UOrq7BwIB3YdHx+Yy0BDX1zRq69bwizQy1QaG+mhQXABGXIvm2-QwawWqhQai2fWCa3RO1RKPsynOVzKGDQKAAKlQZGhvKEULMAGahZTkMYBWZnPYZW70cgYeiDGBxel1JgAQQQCGxCNmmzhGJQ60uMIwQu8MAAorowAymSyqGzyBzkY4ULDlBhvAgJghvABzWbkOIobwACTJAFkADLspV4s6nUxGAAMIcuuCAAa"></div>
 
 <pre><code class="js">var Component = Ractive.extend({
-    template: 'Component {{number}}'
-});
+  template: 'Component {{number}}'
+})
 
 var r = Ractive({
-    el: '#main',
-    template: '#tpl',
-    components: {
-        Component: Component
-    }
-});
+  el: '#main',
+  template: '#tpl',
+  components: {
+    Component: Component
+  }
+})
 
-setTimeout(function() {
-    var cs = r.findAllComponents('Component');
-    cs.forEach(function(c) {
-        console.log(c.toHTML());
-    })
-}, 1000);
+setTimeout(() =&gt; {
+  var cs = r.findAllComponents('Component')
+  cs.forEach(function(c) {
+    console.log(c.toHTML())
+  })
+}, 1000)
 </code></pre>
 
 <h2 id="ractivefindcomponent"><a class="toclink" href="#ractivefindcomponent">ractive.findComponent()</a></h2>
@@ -4168,21 +4233,21 @@ setTimeout(function() {
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeDAYxgEsAHFAAioBMBeAHUJoQ-pQE8aadoTQAPFAHowKALbcQAPjYA7NimDAAxGiTkw9ANoBGPPQBMpgMwBdHDhVq1JJlQBuCkgGEA9jJrflNGUGZQBXGQAjNBhhDQA6Ox4JDwkXdwd1YAkdPUTlEgkKajolVXy0xlYOGSQqVUUCtIUQAgx4VyQYeh8-AKCGFnoAJV0UNzQ4sXRlJgAKYAz0P2R0SHoAch7-QOD6DTDI6Lt1lRwASgBuB2UOrq7BwIB3YdHx+Yy0BDX1zRq69bwizQy1QaG+mhQXABGXIvm2-QwawWqhQai2fWCa3RO1RKPsynOVzKGDQKAAKlQZGhvKEULMAGahZTkMYBWZnPYZW70cj0QYwOL0upMbH9WabOEYlDrS4wgIYbwICYIbwAc1m5DiKG8AAkyQBZAAy7NlBNMRgADFbLrggA"></div>
 
 <pre><code class="js">var Component = Ractive.extend({
-    template: 'Component {{number}}'
-});
+  template: 'Component {{number}}'
+})
 
 var r = Ractive({
-    el: '#main',
-    template: '#tpl',
-    components: {
-        Component: Component
-    }
-});
+  el: '#main',
+  template: '#tpl',
+  components: {
+    Component: Component
+  }
+})
 
-setTimeout(function() {
-    var c = r.findComponent('Component');
-    console.log(c.toHTML());
-}, 1000);
+setTimeout(() =&gt; {
+  var c = r.findComponent('Component')
+  console.log(c.toHTML())
+}, 1000)
 </code></pre>
 
 <h2 id="ractivefindcontainer"><a class="toclink" href="#ractivefindcontainer">ractive.findContainer()</a></h2>
@@ -4240,13 +4305,13 @@ setTimeout(function() {
 <p><strong>Examples</strong></p>
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAAoAlAG4AOt0swAdD0MByAGadODvMycBXbjt33jZmBLcxQuXn40GwROAHNHF05PXRg0ABMHM0scLKtuWycUo2dXTNNcIA"></div>
 
-<pre><code class="js">var r = Ractive();
+<pre><code class="js">var r = Ractive()
 
-r.on('foo', function() {
-  console.log('foo fired');
-});
+r.on('foo', () =&gt; {
+  console.log('foo fired')
+})
 
-r.fire('foo');
+r.fire('foo')
 </code></pre>
 
 <h2 id="ractiveget"><a class="toclink" href="#ractiveget">ractive.get()</a></h2>
@@ -4272,27 +4337,27 @@ r.fire('foo');
 <div data-playground="N4IgFiBcoE5SAbAhgFwKYGcUgL4BoRtIQAeMARgD4BhMNAYwGsACFO5+gewDsNOE0JAPQVKIAhngA3JDGZyAvM25oA7swBKSeigCWUtAApgAHW4mUAE1RJIzU+ZQWAZp052HFrygBGsuwDazADkfgBewcwAumbeOLEo8dw4AJQA3LHcXLz8aAB0CJwA5oYweUVoKIbBrpx5fmUADMEp6bhAA"></div>
 
 <pre><code class="js">var r = Ractive({
-    data: {
-        foo: {
-            bar: [ 'baz' ]
-        }
+  data: {
+    foo: {
+      bar: [ 'baz' ]
     }
-});
+  }
+})
 
-console.log(r.get('foo.bar.0'));
+console.log(r.get('foo.bar.0'))
 </code></pre>
 
 <div data-playground="N4IgFiBcoE5SBTAJgcwSAvgGhAZ3gG4CGMABGQLykB2CA7qQEpEDGALgJYEIAUwAOtX5skRNkVKRSA6qTny51IgFsEk0vxAAJBDABGutpsELsg4SwD2ygA4BXNsnXANshfIBmly+o93q7ByW1DwAlDLukeQIbHYwsgCsCSZRGClyadQYoeYBwbiWADYIAHSFlig8MCVobGGhpAD0jaQUAHzSSqrqmjr6hppYpF4+UkmZglbUBcVlFVU1MXwEHDCxRIW+G7gI2Q3NrR3AXWpSvboGa5oYIDhs8CxgCCwA1qRsT6RTM+gYQA"></div>
 
 <pre><code>var r = new Ractive({
-    data : {
-        name : &quot;Herbert&quot;
-    },
-    computed : {
-        foo : function(){
-            return 55
-        }
+  data : {
+    name : &quot;Herbert&quot;
+  },
+  computed : {
+    foo  () {
+      return 55
     }
+  }
 })
 
 console.log(r.get()) // =&gt; {name : &quot;Herbert&quot;, foo : 55}
@@ -4355,15 +4420,15 @@ Ractive({
         &lt;/div&gt;
     `,
     on: {
-        move(){
-          const aaa = this.findComponent('aaa');
-          const target = this.find('#container2');
-          aaa.insert(target);
+        move () {
+          const aaa = this.findComponent('aaa')
+          const target = this.find('#container2')
+          aaa.insert(target)
         },
-        restore(){
-          const aaa = this.findComponent('aaa');
-          const target = this.find('#container1');
-          aaa.insert(target);
+        restore () {
+          const aaa = this.findComponent('aaa')
+          const target = this.find('#container1')
+          aaa.insert(target)
         }
     }
 })
@@ -4388,7 +4453,7 @@ Ractive({
 <li><code>(Promise)</code>: Returns a promise.</li>
 </ul>
 <p><strong>Examples</strong></p>
-<pre><code class="js">ractive.link( 'some.nested.0.list.25.item', 'current' );
+<pre><code class="js">ractive.link( 'some.nested.0.list.25.item', 'current' )
 ractive.set( 'current.name', 'Rich' ); // some.nested.0.list.25.item.name is also updated to be 'Rich'
 </code></pre>
 
@@ -4450,15 +4515,15 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 
 <p>Note that you can observe keypath <em>patterns</em>...</p>
 <pre><code class="js">ractive.observe( 'items.*.status', function ( newValue, oldValue, keypath) {
-    var index = /items.(\d+).status/.exec( keypath )[1];
-    alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
-});
+  var index = /items.(\d+).status/.exec( keypath )[1]
+  alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue )
+})
 </code></pre>
 
 <p>...or multiple space-separated keypaths simultaneously:</p>
 <pre><code class="js">ractive.observe( 'foo bar baz', function ( newValue, oldValue, keypath ) {
-    alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue );
-});
+  alert( keypath ) + ' changed from ' + oldValue + ' to ' + newValue )
+})
 </code></pre>
 
 <p>See Observers for more detail.</p>
@@ -4488,15 +4553,15 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 
 <p>Note that you can observe keypath <em>patterns</em>...</p>
 <pre><code class="js">ractive.observeOnce( 'items.*.status', function ( newValue, oldValue, keypath ) {
-    var index = /items.(\d+).status/.exec( keypath )[1];
-    alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue );
-});
+  var index = /items.(\d+).status/.exec( keypath )[1]
+  alert( 'item ' + index + ' status changed from ' + oldValue + ' to ' + newValue )
+})
 </code></pre>
 
 <p>...or multiple space-separated keypaths simultaneously:</p>
 <pre><code class="js">ractive.observeOnce( 'foo bar baz', function ( newValue, oldValue, keypath ) {
-    alert( keypath + ' changed from ' + oldValue + ' to ' + newValue );
-});
+  alert( keypath + ' changed from ' + oldValue + ' to ' + newValue )
+})
 </code></pre>
 
 <p>See Observers for more detail.</p>
@@ -4546,26 +4611,26 @@ Name: &lt;input value=&quot;{{~/current.name}}&quot; /&gt;
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">// single handler to function
-ractive.on( 'activate', function () {...});
+ractive.on( 'activate', function () {...})
 
 // wildcard pattern matching
-ractive.on( 'foo.*', function () {...} );
+ractive.on( 'foo.*', function () {...} )
 
 // multiple handlers to one function
-ractive.on( 'activate select', function () {...} );
+ractive.on( 'activate select', function () {...} )
 
 // map of handler/function pairs
 ractive.on({
-    activate: function () {...},
-    select: function () {...}
-});
+  activate () {...},
+  select () {...}
+})
 
 // knock yourself out:
 ractive.on({
-    activate: function () {...},
-    'bip bop boop': function () {...},
-    'select foo.* bar': function () {...}
-});
+  activate () {...},
+  'bip bop boop' () {...},
+  'select foo.* bar' () {...}
+})
 </code></pre>
 
 <h2 id="ractiveonce"><a class="toclink" href="#ractiveonce">ractive.once()</a></h2>
@@ -4657,11 +4722,11 @@ ractive.on({
       { name: 'Orange' }
     ]
   }
-});
+})
 
-r.link( 'items.0', 'currentItem' );
+r.link( 'items.0', 'currentItem' )
 
-r.readLink( 'currentItem' );
+r.readLink( 'currentItem' )
 // returns { ractive: r, keypath: 'items.0' }
 </code></pre>
 
@@ -4702,12 +4767,12 @@ r.readLink( 'currentItem' );
 <pre><code class="js">ractive = Ractive({
   // ...,
   data: { foo: 1 }
-});
+})
 
-ractive.set({ bar: 2 });
+ractive.set({ bar: 2 })
 console.log( ractive.get() ); // { foo: 1, bar: 2 }
 
-ractive.reset({ bar: 2 });
+ractive.reset({ bar: 2 })
 console.log( ractive.get() ); // { bar: 2 }
 </code></pre>
 
@@ -4731,11 +4796,11 @@ console.log( ractive.get() ); // { bar: 2 }
 <pre><code class="js">ractive = Ractive({
   // ...,
   partials: { foo: 'foo' }
-});
+})
 
 // {{&gt;foo}} will be replaced with 'foo'
 
-ractive.resetPartial('foo', 'bar');
+ractive.resetPartial('foo', 'bar')
 
 // {{&gt;foo}} will be replaced with 'bar'
 </code></pre>
@@ -4800,8 +4865,8 @@ ractive.resetPartial('foo', 'bar');
 </code></pre>
 
 <p>The <code>keypath</code> can also contain wildcards pattern-observers. All matching keypaths will be set with the supplied values:</p>
-<pre><code class="js">ractive.on('selectAll', function(){
-    ractive.set('items.*.selected', true);
+<pre><code class="js">ractive.on('selectAll', function () {
+  ractive.set('items.*.selected', true)
 })
 </code></pre>
 
@@ -4928,12 +4993,12 @@ ractive.resetPartial('foo', 'bar');
     ...
     css: 'div{ color: red }'
     ...
-});
+})
 
-const subclassInstance = Subclass({...});
+const subclassInstance = Subclass({...})
 
 // Contains the scoped version of div{ color: red }
-subclassInstance.toCSS();
+subclassInstance.toCSS()
 </code></pre>
 
 <h2 id="ractivetohtml"><a class="toclink" href="#ractivetohtml">ractive.toHTML()</a></h2>
@@ -5070,8 +5135,8 @@ subclassInstance.toCSS();
 </ul>
 <p><strong>Examples</strong></p>
 <pre><code class="js">ractive.observe( 'foo', function ( foo ) {
-  alert( foo );
-});
+  alert( foo )
+})
 
 model.foo = 'changed';   // Does not cause the instance to update.
 ractive.update( 'foo' ); // Informs the instance that foo was changed externally.
@@ -5097,12 +5162,12 @@ ractive.update( 'foo' ); // Informs the instance that foo was changed externally
   el: 'container',
   template: '&lt;input value=&quot;{{name}}&quot;&gt;'
   data: { name: 'Bob' }
-});
+})
 
-ractive.find( 'input' ).value = 'Jim';
+ractive.find( 'input' ).value = 'Jim'
 alert( ractive.get( 'name' ) ); // alerts 'Bob', not 'Jim'
 
-ractive.updateModel();
+ractive.updateModel()
 alert( ractive.get( 'name' ) ); // alerts 'Jim'
 </code></pre>
 
@@ -5183,9 +5248,9 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
 <pre><code class="html">&lt;div&gt;{{#with foo.bar}}{{#with .baz}}&lt;span /&gt;{{/with}}{{/with}}&lt;/div&gt;
 </code></pre>
 
-<pre><code class="js">const ctx = Ractive.getContext('span');
+<pre><code class="js">const ctx = Ractive.getContext('span')
 ctx.resolve(); // foo.bar.baz
-const parent = ctx.getParent();
+const parent = ctx.getParent()
 parent.resolve(); // foo.bar
 </code></pre>
 
@@ -5533,28 +5598,28 @@ Ractive.getContext('#bar').isBound(); // Returns false
 
 &lt;!-- Define the behavior for this component. --&gt;
 &lt;script&gt;
-const $ = require( 'jquery' );
+const $ = require( 'jquery' )
 
 component.exports = {
-  onrender: function () {
-    $('&lt;p /&gt;').text('component rendered').insertAfter($this.find('p'));
+  onrender () {
+    $('&lt;p /&gt;').text('component rendered').insertAfter($this.find('p'))
   },
   data: {
     title: 'Hello World!'
   }
-};
+}
 &lt;/script&gt;
 </code></pre>
 
 <p>The above component file roughly translates to the following in vanilla JS:</p>
-<pre><code class="js">import Ractive from 'ractive';
-import $ from 'jquery';
-import foo from './foo.html';
+<pre><code class="js">import Ractive from 'ractive'
+import $ from 'jquery'
+import foo from './foo.html'
 
 export default Ractive.extend({
   components: { foo },
-  onrender: function () {
-    $('&lt;p /&gt;').text('component rendered').insertAfter($this.find('p'));
+  onrender () {
+    $('&lt;p /&gt;').text('component rendered').insertAfter($this.find('p'))
   },
   data: {
     title: 'Hello World!'
@@ -5566,7 +5631,7 @@ export default Ractive.extend({
   css: `
     p { color: red; }
   `
-});
+})
 </code></pre>
 
 <h2 id="writing"><a class="toclink" href="#writing">Writing</a></h2>

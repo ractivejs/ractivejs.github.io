@@ -217,7 +217,7 @@
 <p>You can now escape mustaches with a '\' if you'd like them to appear in the template.</p>
 <p><code>ractive.toggle</code> now works with patterns.</p>
 <p>The debug setting is no longer set per-instance. It has been replaced with <code>Ractive.DEBUG</code>, which defaults to true. You can set it automatically based on whether or not the your code has been minified with:</p>
-<pre><code class="js">Ractive.DEBUG = /unminified/.test(function(){/*unminified*/});
+<pre><code class="js">Ractive.DEBUG = /unminified/.test(function(){/*unminified*/})
 </code></pre>
 
 <h3 id="breaking-changes-and-deprecation"><a class="toclink" href="#breaking-changes-and-deprecation">Breaking changes and deprecation</a></h3>
@@ -240,16 +240,14 @@
 <h3 id="other-breaking-changes"><a class="toclink" href="#other-breaking-changes">Other Breaking changes</a></h3>
 <ul>
 <li><code>new Ractive()</code> now inherits all options as methods/properties including event hooks. If you have been passing data through custom initialisation options be aware that they will appended to your ractive instance.</li>
-<li>
-<p>Using other elements besides <code>&lt;script&gt;</code> for templates is an now an error. Migrate any templates in non-script elements and include a non-javascript type so the browser does not try to interpret your template:</p>
+<li>Using other elements besides <code>&lt;script&gt;</code> for templates is an now an error. Migrate any templates in non-script elements and include a non-javascript type so the browser does not try to interpret your template:</li>
+</ul>
 <p><code>js
     &lt;script id='template' type='text/ractive'&gt;
-        Your template goes here
+      Your template goes here
     &lt;/script&gt;</code></p>
-</li>
-<li>
-<p>New reserved events cannot be used for proxy event names, i.e. <code>&lt;p on-click='init'&gt;&lt;/p&gt;</code>. These include 'change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', and 'update'. You will need to rename your events.</p>
-</li>
+<ul>
+<li>New reserved events cannot be used for proxy event names, i.e. <code>&lt;p on-click='init'&gt;&lt;/p&gt;</code>. These include 'change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', and 'update'. You will need to rename your events.</li>
 <li>Setting uninitialised data on a component will no longer cause it to leak out into the parent scope</li>
 <li>'Smart updates', via <code>ractive.merge()</code> and <code>ractive.shift()</code> etc, work across component boundaries. In most cases this is the expected behavior.</li>
 <li>The CSS length interpolator has been removed.</li>
@@ -267,22 +265,18 @@
 <li><code>{{this.foo}}</code> in templates now means same thing as <code>{{.foo}}</code></li>
 <li>Rendering to an element already render by Ractive causes that element to be torn down (unless appending).</li>
 <li>Illegal javascript no longer allowed by parser in expressions and will throw</li>
-<li>Parsed template format changed to specify template spec version.<ul>
+<li>Parsed template format changed to specify template spec version.</li>
 <li>Proxy-event representation</li>
 <li>Non-dynamic (bound) fragments of html are no longer stored as single string</li>
 <li>See https://github.com/ractivejs/template-spec for current spec.</li>
-</ul>
-</li>
 <li>Arrays being observed via <code>array.*</code> no longer send <code>item.length</code> event on mutation changes</li>
 <li>Reserved event names in templates ('change', 'config', 'construct', 'init', 'render', 'reset', 'teardown', 'unrender', 'update') will cause the parser to throw an error</li>
 <li><code>{{else}}</code> support in both handlebars-style blocks and regular mustache conditional blocks, but is now a restricted keyword that cannot be used as a regular reference</li>
 <li>Child components are created in data order</li>
 <li>Reference expressions resolve left to right and follow same logic as regular mustache references (bind to root, not context, if left-most part is unresolved).</li>
-<li>Improved attribute parsing and handling:<ul>
+<li>Improved attribute parsing and handling:</li>
 <li>character escaping and whitespace handling in attribute directive arguments</li>
 <li>boolean and empty string attributes</li>
-</ul>
-</li>
 <li>Computed properties no longer create nested objects with keypath like names, i.e. <code>page.area: '${width} * ${height}'</code> creates a property accessible by <code>{{page.area}}</code> but not <code>{{#page}}{{area}}{{/page}}</code></li>
 <li>The element into which the ractive instance was rendered is no longer available as <code>ractive.el</code>. See <code>ractive.render()</code> and <code>ractive.insert()</code> for more information on moving ractive instances in the DOM.</li>
 </ul>

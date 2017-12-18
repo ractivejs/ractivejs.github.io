@@ -231,27 +231,27 @@
 <li>Captures data changes on the data in Ractive and mirror them to the data source.</li>
 </ul>
 <pre><code class="js">const myAdaptor = {
-  filter: function ( value, keypath, ractive ) {
+  filter ( value, keypath, ractive ) {
     // return `true` if a particular object is of the type we want to adapt.
   },
-  wrap: function ( ractive, value, keypath, prefixer ) {
+  wrap ( ractive, value, keypath, prefixer ) {
     // Setup
     return {
-      get: function(){
+      get () {
         // Returns POJO version of your data backend.
       },
-      set: function(property, value){
+      set (property, value) {
         // Data setter for POJO property keypaths.
       },
-      reset: function(value){
+      reset (value) {
         // Data setter for POJO keypath.
       },
-      teardown: function(){
+      teardown () {
         // Code executed on teardown.
       }
     }
   }
-};
+}
 </code></pre>
 
 <p>An adaptor definition is an object with two methods:</p>
@@ -294,19 +294,19 @@
 <h2 id="registering"><a class="toclink" href="#registering">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register adaptors:</p>
 <h3 id="globally-via-the-ractiveadaptors-static-property"><a class="toclink" href="#globally-via-the-ractiveadaptors-static-property">Globally, via the <code>Ractive.adaptors</code> static property.</a></h3>
-<pre><code class="js">Ractive.adaptors.myAdaptor = myAdaptor;
+<pre><code class="js">Ractive.adaptors.myAdaptor = myAdaptor
 </code></pre>
 
 <h3 id="per-component-via-the-components-adaptors-initialization-property"><a class="toclink" href="#per-component-via-the-components-adaptors-initialization-property">Per component, via the component's <code>adaptors</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   adaptors: { myAdaptor }
-});
+})
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-adaptors-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-adaptors-initialization-property">Per instance, via the instance's <code>adaptors</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = Ractive({
   adaptors: { myAdaptor }
-});
+})
 </code></pre>
 
 <h2 id="using"><a class="toclink" href="#using">Using</a></h2>
@@ -318,76 +318,76 @@
 
 <h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <p>In the following example, we have a <code>Box</code> constructor that uses accessors to get and set its <code>width</code> and <code>height</code> properties. Since an instance of <code>Box</code> will have no publicly visible properties, Ractive cannot bind to them directly.</p>
-<pre><code class="js">function Box(width, height){
-  var _width = width;
-  var _height = height;
+<pre><code class="js">function Box(width, height) {
+  var _width = width
+  var _height = height
 
-  this.getWidth = function(){ return _width; };
-  this.setWidth = function(width){ _width = width; };
-  this.getHeight = function(){ return _height; };
-  this.setHeight = function(height){ _height = height };
+  this.getWidth = () =&gt; { return _width; }
+  this.setWidth = (width) =&gt; { _width = width; }
+  this.getHeight = () =&gt; { return _height; }
+  this.setHeight = (height) =&gt; { _height = height }
 }
 </code></pre>
 
 <p>In order for Ractive to properly use a <code>Box</code> instance, we build an adaptor for <code>Box</code>.</p>
 <pre><code class="js">Ractive.adaptors.boxAdaptor = {
-  filter: function ( object ) {
+  filter ( object ) {
     // Checks if the piece of data is an instance of Box.
-    return object instanceof Box;
+    return object instanceof Box
   },
-  wrap: function ( ractive, box, keypath, prefixer ) {
+  wrap ( ractive, box, keypath, prefixer ) {
 
     // We keep a reference to the original functions before monkey-patching.
-    const setWidth = box.setWidth;
-    const setHeight = box.setHeight;
+    const setWidth = box.setWidth
+    const setHeight = box.setHeight
 
     // Use ractive.set on the the adapted data whenever the setters are used.
-    box.setWidth = function(width){
+    box.setWidth = (width) =&gt; {
       ractive.set(prefixer({
         width: width
-      }));
-    };
+      }))
+    }
 
-    box.setHeight = function(height){
+    box.setHeight = (height) =&gt; {
       ractive.set(prefixer({
         height: height
-      }));
-    };
+      }))
+    }
 
     return {
       // Return a POJO representation of an instance of Box.
-      get: function(){
+      get () {
         return {
           width: box.getWidth(),
-          height: box.getHeight();
-        };
+          height: box.getHeight()
+        }
       },
       // Update the adapted object's properties
-      set: function(property, value){
-        if(property === 'width') setWidth.call(box, value);
-        if(property === 'height') setHeight.call(box, value);
+      set (property, value) {
+        if(property === 'width') setWidth.call(box, value)
+        if(property === 'height') setHeight.call(box, value)
       },
       // Update the adapted object.
-      reset: function(data){
+      reset (data) {
         // We don't adapt non-objects. And if the new data is an instance of Box
         // there's a high chance that its a new instance. In either case, we
         // need to tear down this adapter and have Ractive set it up again if
         // necessary.
-        if(typeof data !== 'object' || data instanceof Box) return false;
+        if(typeof data !== 'object' || data instanceof Box) return false
 
         // Otherwise, we just parse through the data and update the existing box
         // instance.
-        if(data.width !== undefined) setWidth.call(box, data.width);
-        if(data.height !== undefined) setHeight.call(box, data.height);
+        if(data.width !== undefined) setWidth.call(box, data.width)
+        if(data.height !== undefined) setHeight.call(box, data.height)
       },
       // Delete the monkey-patched methods.
-      teardown: function(){
-        delete box.setWidth;
-        delete box.setHeight;
+      teardown () {
+        delete box.setWidth
+        delete box.setHeight
       }
-    };
+    }
   }
-};
+}
 </code></pre>
 
 <p>Then we use <code>boxAdaptor</code> on an instance. The data can now be treated like regular Ractive data. Updates done directly on <code>box</code> will reflect on Ractive. Any changes via Ractive will reflect on <code>box</code>.</p>
@@ -401,17 +401,17 @@
     &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.width }}&quot;&gt;&lt;/div&gt;
     &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;{{ box.height }}&quot;&gt;&lt;/div&gt;
   `
-});
+})
 
-const box = new Box(3, 4);
+const box = new Box(3, 4)
 
 // Set the Box instance as if it were a POJO.
-ractive.set('box', box);
+ractive.set('box', box)
 
 // Both box instance and box object will have 7 width and 11 height and will
 // be rendered in the UI accordingly.
-box.setWidth(7);
-ractive.set('box.height', 11);
+box.setWidth(7)
+ractive.set('box.height', 11)
 </code></pre>
 
 <h1 id="components"><a class="toclink" href="#components">Components</a></h1>
@@ -430,7 +430,7 @@ const MyComponent = Ractive.extend({
     .my-component__message { color: red }
   `,
   data: { message: 'Hello World' }
-});
+})
 </code></pre>
 
 <p>Another way to define a component is by using component files and loaders.</p>
@@ -445,7 +445,7 @@ const MyComponent = Ractive.extend({
 &lt;script&gt;
 component.exports = {
   data: { message: 'Hello World' }
-};
+}
 &lt;/script&gt;
 </code></pre>
 
@@ -453,26 +453,26 @@ component.exports = {
 <p>Like other plugins, there's 3 ways you can register components:</p>
 <h3 id="globally-via-the-ractivecomponents-static-property"><a class="toclink" href="#globally-via-the-ractivecomponents-static-property">Globally, via the <code>Ractive.components</code> static property:</a></h3>
 <pre><code class="js">// Available to all instances of Ractive.
-Ractive.components.MyComponent = Ractive.extend({ ... });
+Ractive.components.MyComponent = Ractive.extend({ ... })
 </code></pre>
 
 <h3 id="per-component-via-the-components-components-initialization-property"><a class="toclink" href="#per-component-via-the-components-components-initialization-property">Per component, via the component's <code>components</code> initialization property.</a></h3>
 <pre><code class="js">// Only available for instances of AnotherComponent.
 const AnotherComponent = Ractive.extend({
   components: { MyComponent }
-});
+})
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-components-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-components-initialization-property">Per instance, via the instance's <code>components</code> initialization property.</a></h3>
 <pre><code class="js">// Only available to this specific instance.
 const ractive = Ractive({
   components: { MyComponent }
-});
+})
 </code></pre>
 
 <h2 id="using_1"><a class="toclink" href="#using_1">Using</a></h2>
 <p>Components are simply subclasses of Ractive, which means they are also instatiable.</p>
-<pre><code class="js">const ractive = MyComponent({ ... });
+<pre><code class="js">const ractive = MyComponent({ ... })
 </code></pre>
 
 <p>But where components really shine is when they're used on templates. They are written like <em>custom elements</em>. Each custom element notation represents one instance of the component.</p>
@@ -484,13 +484,13 @@ const ractive = Ractive({
       &lt;MyComponent /&gt; &lt;!-- Yet another instance of MyComponent --&gt;
     &lt;/div&gt;
   `
-});
+})
 </code></pre>
 
 <p>The component's tag name depends on the name used upon registration. The same component can be registered more than once using different names.</p>
-<pre><code class="js">const MyComponent = Ractive.extend({...});
-Ractive.components.MyComponent = MyComponent;
-Ractive.components.MyComponentOtherName = MyComponent;
+<pre><code class="js">const MyComponent = Ractive.extend({...})
+Ractive.components.MyComponent = MyComponent
+Ractive.components.MyComponentOtherName = MyComponent
 
 const AnotherComponent = Ractive.extend({
   template: `
@@ -499,7 +499,7 @@ const AnotherComponent = Ractive.extend({
       &lt;MyComponentOtherName /&gt; &lt;!-- Using MyComponent's other name --&gt;
     &lt;/div&gt;
   `
-});
+})
 </code></pre>
 
 <h2 id="examples_1"><a class="toclink" href="#examples_1">Examples</a></h2>
@@ -508,20 +508,20 @@ const AnotherComponent = Ractive.extend({
 <h1 id="decorators"><a class="toclink" href="#decorators">Decorators</a></h1>
 <p>A decorator is a simple way to add behaviour to a node when it is rendered, or to augment it in some way. Decorators are a good way to integrate DOM manipulation libraries with Ractive, such as <a href="http://jqueryui.com/">jQuery UI</a> or <a href="https://getbootstrap.com/">Bootstrap</a>.</p>
 <h2 id="writing_2"><a class="toclink" href="#writing_2">Writing</a></h2>
-<pre><code class="js">const myDecorator = function(node[, ...args]) {
+<pre><code class="js">const myDecorator = (node[, ...args]) =&gt; {
   // Setup code
   return {
-    teardown: function() {
+    teardown () {
       // Cleanup code
     },
-    update: function([...args]) {
+    update ([...args]) {
       // Update code
     },
-    invalidate: function() {
+    invalidate () {
       // Code called on invalidate
     }
-  };
-};
+  }
+}
 </code></pre>
 
 <p>Decorators are simply functions that are called upon to setup the decorator once Ractive detects its use. It takes a <code>node</code> argument and returns an object with a <code>teardown</code> and <code>update</code> property.</p>
@@ -534,19 +534,19 @@ const AnotherComponent = Ractive.extend({
 <h2 id="registering_2"><a class="toclink" href="#registering_2">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register decorators:</p>
 <h3 id="globally-via-the-ractivedecorators-static-property"><a class="toclink" href="#globally-via-the-ractivedecorators-static-property">Globally, via the <code>Ractive.decorators</code> static property.</a></h3>
-<pre><code class="js">Ractive.decorators.myDecorator = myDecorator;
+<pre><code class="js">Ractive.decorators.myDecorator = myDecorator
 </code></pre>
 
 <h3 id="per-component-via-the-components-decorators-initialization-property"><a class="toclink" href="#per-component-via-the-components-decorators-initialization-property">Per component, via the component's <code>decorators</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   decorators: { myDecorator }
-});
+})
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-decorators-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-decorators-initialization-property">Per instance, via the instance's <code>decorators</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = Ractive({
   decorators: { myDecorator }
-});
+})
 </code></pre>
 
 <h2 id="using_2"><a class="toclink" href="#using_2">Using</a></h2>
@@ -560,18 +560,18 @@ const AnotherComponent = Ractive.extend({
 
 <h2 id="examples_2"><a class="toclink" href="#examples_2">Examples</a></h2>
 <p>The following example builds a decorator that updates the time.</p>
-<pre><code class="js">Ractive.decorators.timer = function(node, time) {
-  node.innerHTML = 'Hello World!';
+<pre><code class="js">Ractive.decorators.timer = (node, time) =&gt; {
+  node.innerHTML = 'Hello World!'
 
   return {
-    teardown: function() {
-      node.innerHTML = '';
+    teardown () {
+      node.innerHTML = ''
     },
-    update: function(time) {
-      node.innerHTML = time;
+    update (time) {
+      node.innerHTML = time
     }
   }
-};
+}
 
 const ractive = Ractive({
   el: 'body',
@@ -581,65 +581,65 @@ const ractive = Ractive({
   data: {
     time: 0
   }
-});
+})
 
-setInterval(function() {
+setInterval(function () {
   ractive.set('time', Date.now())
-}, 1000);
+}, 1000)
 </code></pre>
 
 <h1 id="easings"><a class="toclink" href="#easings">Easings</a></h1>
 <p>Easing functions are used by <code>ractive.animate</code> and some transitions. They describe the animation's progression from start to finish.</p>
 <h2 id="writing_3"><a class="toclink" href="#writing_3">Writing</a></h2>
-<pre><code class="js">const myEasing = function ( x ) {
+<pre><code class="js">const myEasing = ( x ) =&gt; {
   // Calculation
-  return y;
-};
+  return y
+}
 </code></pre>
 
 <p>Easing functions are simply functions that accept one argument, a numeric value <code>x</code> between 0 and 1 representing progress along a timeline. The function must return a numeric <code>y</code> value to represent its progression.</p>
 <h2 id="registering_3"><a class="toclink" href="#registering_3">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register an easing function:</p>
 <h3 id="globally-via-the-ractiveeasing-static-property"><a class="toclink" href="#globally-via-the-ractiveeasing-static-property">Globally via the <code>Ractive.easing</code> static property.</a></h3>
-<pre><code class="js">Ractive.easing.myEasing = myEasing;
+<pre><code class="js">Ractive.easing.myEasing = myEasing
 </code></pre>
 
 <h3 id="per-component-via-the-components-easing-initialization-property"><a class="toclink" href="#per-component-via-the-components-easing-initialization-property">Per component via the component's <code>easing</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   easing: { myEasing }
-});
+})
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-easing-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-easing-initialization-property">Per instance, via the instance's <code>easing</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = Ractive({
   easing: { myEasing }
-});
+})
 </code></pre>
 
 <h2 id="using_3"><a class="toclink" href="#using_3">Using</a></h2>
 <p>Easing functions don't work alone. They are utilized by ractive.animate() and Transitions to dictate animations.</p>
 <pre><code class="js">ractive.animate('foo.bar', 1, {
   easing: 'myEasing'
-});
+})
 </code></pre>
 
 <h2 id="examples_3"><a class="toclink" href="#examples_3">Examples</a></h2>
 <p>Here's an <code>elastic</code> easing function taken from <a href="https://github.com/danro">danro</a>'s excellent <a href="https://github.com/danro/easing-js/blob/master/easing.js">easing.js</a> library.</p>
-<pre><code class="js">Ractive.easing.elastic = function ( x ) {
-  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1;
-};
+<pre><code class="js">Ractive.easing.elastic = ( x ) =&gt; {
+  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1
+}
 </code></pre>
 
 <h1 id="events"><a class="toclink" href="#events">Events</a></h1>
 <p>Events allow custom-named events on DOM elements. Common use cases for custom DOM events include normalizing cross-browser events, normalizing cross-device events, implementing custom events, and so much more.</p>
 <h2 id="writing_4"><a class="toclink" href="#writing_4">Writing</a></h2>
-<pre><code class="js">const myEvent = function(node, fire){
+<pre><code class="js">const myEvent = (node, fire) =&gt; {
   // Setup code
   return {
-    teardown: function(){
+    teardown () {
       // Cleanup code
     }
-  };
+  }
 }
 </code></pre>
 
@@ -651,19 +651,19 @@ setInterval(function() {
 <h2 id="registering_4"><a class="toclink" href="#registering_4">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register events:</p>
 <h3 id="globally-via-the-ractiveevents-static-property"><a class="toclink" href="#globally-via-the-ractiveevents-static-property">Globally, via the <code>Ractive.events</code> static property.</a></h3>
-<pre><code class="js">Ractive.events.myEvent = myEvent;
+<pre><code class="js">Ractive.events.myEvent = myEvent
 </code></pre>
 
 <h3 id="per-component-via-the-components-events-initialization-property"><a class="toclink" href="#per-component-via-the-components-events-initialization-property">Per component, via the component's <code>events</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   events: { myEvent }
-});
+})
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-events-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-events-initialization-property">Per instance, via the instance's <code>events</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = Ractive({
   events: { myEvent }
-});
+})
 </code></pre>
 
 <h2 id="using_4"><a class="toclink" href="#using_4">Using</a></h2>
@@ -676,39 +676,39 @@ setInterval(function() {
 <h2 id="examples_4"><a class="toclink" href="#examples_4">Examples</a></h2>
 <p>Here's an example of a "long press" event which fires when the mouse is clicked and held for 1 second.</p>
 <pre><code class="js">// Definition
-Ractive.events.longpress = function(node, fire){
-  let timer = null;
+Ractive.events.longpress = (node, fire) =&gt; {
+  let timer = null
 
-  function clearTimer(){
-    if(timer) clearTimeout(timer);
-    timer = null;
+  function clearTimer () {
+    if(timer) clearTimeout(timer)
+    timer = null
   }
 
-  function mouseDownHandler(event){
-    clearTimer();
+  function mouseDownHandler(event) {
+    clearTimer()
 
-    timer = setTimeout(function(){
+    timer = setTimeout(() =&gt; {
       fire({
         node: node,
         original: event
-      });
-    }, 1000);
+      })
+    }, 1000)
   }
 
-  function mouseUpHandler(){
-    clearTimer();
+  function mouseUpHandler () {
+    clearTimer()
   }
 
-  node.addEventListener('mousedown', mouseDownHandler);
-  node.addEventListener('mouseup', mouseUpHandler);
+  node.addEventListener('mousedown', mouseDownHandler)
+  node.addEventListener('mouseup', mouseUpHandler)
 
   return {
-    teardown: function(){
-      node.removeEventListener('mousedown', mouseDownHandler);
-      node.removeEventListener('mouseup', mouseUpHandler);
+    teardown () {
+      node.removeEventListener('mousedown', mouseDownHandler)
+      node.removeEventListener('mouseup', mouseUpHandler)
     }
-  };
-};
+  }
+}
 
 // Usage:
 Ractive({
@@ -716,10 +716,10 @@ Ractive({
   template: `
     &lt;button type=&quot;button&quot; on-longpress=&quot;@this.greetz()&quot;&gt;Click Me!&lt;/button&gt;
   `,
-  greetz: function(){
-    console.log('Hello World!');
+  greetz () {
+    console.log('Hello World!')
   }
-});
+})
 </code></pre>
 
 <h1 id="interpolators"><a class="toclink" href="#interpolators">Interpolators</a></h1>
@@ -735,14 +735,14 @@ Ractive({
 <h1 id="partials"><a class="toclink" href="#partials">Partials</a></h1>
 <p>A partial is a template snippet which can be reused in templates or in other partials. They help to keep templates uncluttered, non-repetetive and easy to read.</p>
 <h2 id="writing_6"><a class="toclink" href="#writing_6">Writing</a></h2>
-<pre><code class="js">const myPartial = '&lt;!-- template --&gt;';
+<pre><code class="js">const myPartial = '&lt;!-- template --&gt;'
 </code></pre>
 
 <p>Partials are simply Ractive templates.</p>
 <h2 id="registering_6"><a class="toclink" href="#registering_6">Registering</a></h2>
 <p>Unlike other plugins, partials have more than 3 registration options.</p>
 <h3 id="globally-via-the-ractivepartials-static-property"><a class="toclink" href="#globally-via-the-ractivepartials-static-property">Globally via the <code>Ractive.partials</code> static property.</a></h3>
-<pre><code class="js">Ractive.partials.myPartial = MyPartial;
+<pre><code class="js">Ractive.partials.myPartial = MyPartial
 </code></pre>
 
 <h3 id="globally-via-a-non-executing-script-tag-on-the-current-page"><a class="toclink" href="#globally-via-a-non-executing-script-tag-on-the-current-page">Globally, via a non-executing script tag on the current page.</a></h3>
@@ -754,13 +754,13 @@ Ractive({
 <h3 id="per-component-via-the-components-partials-initialization-property"><a class="toclink" href="#per-component-via-the-components-partials-initialization-property">Per component, via the component's <code>partials</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   partials: { myPartial }
-});
+})
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-partials-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-partials-initialization-property">Per instance, via the instance's <code>partials</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = Ractive({
   partials: { myPartial }
-});
+})
 </code></pre>
 
 <h3 id="in-template-using-the-partial-mustache"><a class="toclink" href="#in-template-using-the-partial-mustache">In-template, using the <code>{{#partial}}</code> mustache.</a></h3>
@@ -862,7 +862,7 @@ Ractive({
       ]
     }
   }
-});
+})
 </code></pre>
 
 <p>In the example above, subfolders use the <code>{{&gt;folder}}</code> partial, which uses the <code>{{&gt;file}}</code> partial for each file, and if any of those files are folders, the <code>{{&gt;folder}}</code> partial will be invoked again, and so on until there are no more files.</p>
@@ -890,7 +890,7 @@ ractive = Ractive({
     content: isMobile ? mobileContentPartial : desktopContentPartial,
     sidebar: isMobile ? mobileSidebarPartial : desktopSidebarPartial
   }
-});
+})
 </code></pre>
 
 <p>Or you might make it possible to extend a subclass without overriding its template:</p>
@@ -904,39 +904,39 @@ ractive = Ractive({
 <pre><code class="js">// Create a Modal subclass
 Modal = Ractive.extend({
   template: modalTemplate,
-  init: function () {
-    var self = this, resizeHandler;
+  init () {
+    var self = this, resizeHandler
 
-    resizeHandler = function () {
-      self.center();
-    };
+    resizeHandler = () =&gt; {
+      self.center()
+    }
 
     // when the window resizes, keep the modal horizontally and vertically centred
-    window.addEventListener( 'resize', resizeHandler );
+    window.addEventListener( 'resize', resizeHandler )
 
     // clean up after ourselves later
     this.on( 'teardown', function () {
-      window.removeEventListener( 'resize', resizeHandler );
-    });
+      window.removeEventListener( 'resize', resizeHandler )
+    })
 
     // manually call this.center() the first time
-    this.center();
+    this.center()
   },
-  center: function () {
+  center () {
     // centering logic goes here
   }
-});
+})
 
 helloModal = Modal({
   el: document.body,
   partials: {
     modalContent: '&lt;p&gt;Hello!&lt;/p&gt;&lt;a class=&quot;modal-button&quot; proxy-tap=&quot;close&quot;&gt;Close&lt;/a&gt;'
   }
-});
+})
 
 helloModal.on( 'close', function () {
-  this.teardown();
-});
+  this.teardown()
+})
 </code></pre>
 
 <h3 id="partial-expressions"><a class="toclink" href="#partial-expressions">Partial expressions</a></h3>
@@ -986,19 +986,19 @@ helloModal.on( 'close', function () {
     tpl: '',
 
   },
-  add: function() {
+  add () {
     this.push('list', {
       id: Math.random(),
       template: this.get('tpl')
-    });
-    this.set('tpl', '');
+    })
+    this.set('tpl', '')
   },
-  makePartial: function(id, template) {
-    const name = 'partial-' + id;
-    this.partials[name] = this.partials[name] || template;
-    return name;
+  makePartial (id, template) {
+    const name = 'partial-' + id
+    this.partials[name] = this.partials[name] || template
+    return name
   }
-});
+})
 </code></pre>
 
 <h3 id="updating-partials"><a class="toclink" href="#updating-partials">Updating Partials</a></h3>
@@ -1007,9 +1007,9 @@ helloModal.on( 'close', function () {
 <pre><code class="html">{{^toggle}}{{&gt;rickroll}}{{/}}
 </code></pre>
 
-<pre><code class="js">ractive.partials.rickroll = 'I wouldn\'t do that to you, chum.';
-ractive.set('toggle', true);
-ractive.set('toggle', false);
+<pre><code class="js">ractive.partials.rickroll = 'I wouldn\'t do that to you, chum.'
+ractive.set('toggle', true)
+ractive.set('toggle', false)
 </code></pre>
 
 <h2 id="examples_6"><a class="toclink" href="#examples_6">Examples</a></h2>
@@ -1031,10 +1031,10 @@ ractive.set('toggle', false);
 <h1 id="transitions"><a class="toclink" href="#transitions">Transitions</a></h1>
 <p>Transitions allow you to control how enter the DOM and how they leave the DOM. This allows you to define intro and outro behavior, particularly animations, when elements go in and out of the page.</p>
 <h2 id="writing_7"><a class="toclink" href="#writing_7">Writing</a></h2>
-<pre><code class="js">const myTransition = function ( t[, ...args]] ) {
+<pre><code class="js">const myTransition = ( t[, ...args]] ) =&gt; {
   // Manipulate the DOM.
   // Call t.complete() when completed.
-};
+}
 </code></pre>
 
 <p>Transitions are simply functions that get called to animate a specified element.</p>
@@ -1045,19 +1045,19 @@ ractive.set('toggle', false);
 <h2 id="registering_7"><a class="toclink" href="#registering_7">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register transitions:</p>
 <h3 id="globally-via-the-ractivetransitions-static-property"><a class="toclink" href="#globally-via-the-ractivetransitions-static-property">Globally, via the <code>Ractive.transitions</code> static property.</a></h3>
-<pre><code class="js">Ractive.transitions.myTransition = myTransition;
+<pre><code class="js">Ractive.transitions.myTransition = myTransition
 </code></pre>
 
 <h3 id="per-component-via-the-components-transitions-initialization-property"><a class="toclink" href="#per-component-via-the-components-transitions-initialization-property">Per component, via the component's <code>transitions</code> initialization property.</a></h3>
 <pre><code class="js">const MyComponent = Ractive.extend({
   transitions: { myTransition }
-});
+})
 </code></pre>
 
 <h3 id="per-instance-via-the-instances-transitions-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-transitions-initialization-property">Per instance, via the instance's <code>transitions</code> initialization property.</a></h3>
 <pre><code class="js">const ractive = Ractive({
   transitions: { myTransition }
-});
+})
 </code></pre>
 
 <h2 id="using_7"><a class="toclink" href="#using_7">Using</a></h2>
@@ -1073,19 +1073,19 @@ ractive.set('toggle', false);
 
 <h2 id="examples_7"><a class="toclink" href="#examples_7">Examples</a></h2>
 <p>The following example demonstrates a "flash" transition which colors the element green upon attachment, and red prior to removal.</p>
-<pre><code class="js">Ractive.transitions.flash = function(t, params) {
+<pre><code class="js">Ractive.transitions.flash = (t, params) =&gt; {
   // Process params and declaring defaults.
   const options = t.processParams(params, {
     color: t.isIntro ? '#0f0' : '#f00',
     duration: 400
-  });
+  })
 
   // The &quot;transition&quot;
-  t.setStyle('color', options.color);
+  t.setStyle('color', options.color)
 
   // Signal Ractive that the transition is complete.
-  setTimeout(t.complete, options.duration);
-};
+  setTimeout(t.complete, options.duration)
+}
 
 Ractive({
   el: 'body',
@@ -1101,13 +1101,13 @@ Ractive({
   data: {
     items: []
   },
-  insert() {
-    this.push('items', Date.now());
+  insert () {
+    this.push('items', Date.now())
   },
-  remove() {
-    this.splice('items', 0, 1);
+  remove () {
+    this.splice('items', 0, 1)
   }
-});
+})
 </code></pre>
         </div>
       </div>
