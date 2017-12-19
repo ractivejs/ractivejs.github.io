@@ -3319,7 +3319,7 @@ Parses the template into an abstract syntax tree that Ractive can work on.
     - `[staticTripleDelimiters] ([string])`: Start and end delimiters for static triple mustaches. Defaults to `['[[[', ']]]']`.
     - `[contextLines] (integer)`: Additional lines above and below a line with a parse error to include in the error output. Defaults to `0`.
     - `[interpolate] (Object<string, boolean>)`: Map of elements that indicates whether or not to read mustaches within the element. Defaults to `{ script: false, textarea: true, template: false, style: false }`.
-    - `[csp]`(boolean)`: When `true` includes pre-compiled expression functions in the template output so that `eval` is not needed at runtime. Defaults to `true`.
+    - `[csp] (boolean)`: When `true` includes pre-compiled expression functions in the template output so that `eval` is not needed at runtime. Defaults to `true`.
     - `[preserveWhitespace] (boolean)`: When `true`, preserves whitespace in templates. Whitespace inside the `<pre>` element is preserved regardless of the value of this option. Defaults to `false`.
     - `[stripComments] (boolean)`: When `false` will leave comments in the parsed template. Defaults to `true`.
     - `[sanitize] (boolean|Object)`: When `true`, strips inline event attributes and certain elements from the markup. Defaults to `false`.
