@@ -2100,6 +2100,11 @@ __From__ _0.9.4_
 
 Like `css`, this also only applies to components. This is the default data for a component's style computation, if it has one. It is inherited from parent components all the way back to Ractive, and any changes that are made at any point in the hierarchy are automatically propagated down from that point. This means that if a component uses `foo` in its style computation but does not define a value for it in its `cssData`, then calling `Ractive.styleSet('foo', ...)` will cause the component style to recompute.
 
+## cssId
+
+`(string)`
+
+This value is used to scope CSS defined on a component's `css` initialization option only to the instances of the component. By default, the value is a randomly generated UUID.
 
 
 ## data
