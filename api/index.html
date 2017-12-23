@@ -317,6 +317,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#cssid">cssId</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#data">data</a>
         </li>
       
@@ -2873,6 +2877,9 @@ Ractive({
 <p><strong>From</strong> <em>0.9.4</em></p>
 <p><code>(object)</code></p>
 <p>Like <code>css</code>, this also only applies to components. This is the default data for a component's style computation, if it has one. It is inherited from parent components all the way back to Ractive, and any changes that are made at any point in the hierarchy are automatically propagated down from that point. This means that if a component uses <code>foo</code> in its style computation but does not define a value for it in its <code>cssData</code>, then calling <code>Ractive.styleSet('foo', ...)</code> will cause the component style to recompute.</p>
+<h2 id="cssid"><a class="toclink" href="#cssid">cssId</a></h2>
+<p><code>(string)</code></p>
+<p>This value is used to scope CSS defined on a component's <code>css</code> initialization option only to the instances of the component. By default, the value is a randomly generated UUID.</p>
 <h2 id="data"><a class="toclink" href="#data">data</a></h2>
 <p><code>(Object&lt;string, any&gt;|Function)</code></p>
 <p>The data for an instance, or default data for a component. Can either be an object or a function that returns an object.</p>
@@ -6074,6 +6081,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#cssdata">cssData</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#cssid">cssId</a>
         </li>
       
         <li class="pure-menu-item">
