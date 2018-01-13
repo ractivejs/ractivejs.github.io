@@ -4013,7 +4013,12 @@ setTimeout(() =&gt; {
 <li><code>[options] (Object)</code>:<ul>
 <li><code>[duration] (number)</code>: How many milliseconds the animation should run for. Defaults to <code>400</code>.</li>
 <li><code>[easing] (string|Function)</code>: The name of an easing function or the easing function itself. Defaults to <code>linear</code>.</li>
-<li><code>[step] (Function)</code>: A function to be called on each step of the animation. Receives <code>t</code> and <code>value</code> as arguments, where <code>t</code> is the animation progress (between <code>0</code> and <code>1</code>, as determined by the easing function) and <code>value</code> is the intermediate value at <code>t</code>.</li>
+<li><code>[interpolator] (string)</code>: The name of an interpolator function. Defaults to the built-in number interpolator if the value is numeric, or <code>null</code> if none is applicable.</li>
+<li><code>[step] (Function)</code>: A function called on each step of the animation.<ul>
+<li><code>t (number)</code>: The animation progress between <code>0</code> and <code>1</code> with easing function already applied.</li>
+<li><code>value (number)</code>: The value at <code>t</code> with interpolator function already applied.</li>
+</ul>
+</li>
 <li><code>[complete] (Function)</code>: A function to be called when the animation completes, with the <code>value</code> passed to <code>animate</code>.</li>
 </ul>
 </li>

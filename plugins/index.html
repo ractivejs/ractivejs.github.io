@@ -589,15 +589,15 @@ setInterval(function () {
 </code></pre>
 
 <h1 id="easings"><a class="toclink" href="#easings">Easings</a></h1>
-<p>Easing functions are used by <code>ractive.animate</code> and some transitions. They describe the animation's progression from start to finish.</p>
+<p>Easing functions describe the animation's progression from start to finish. Easings are used by <code>ractive.animate</code> and some transitions. Out of the box, Ractive comes with <code>linear</code>, <code>easeIn</code>, <code>easeOut</code> and <code>easeInOut</code>.</p>
 <h2 id="writing_3"><a class="toclink" href="#writing_3">Writing</a></h2>
-<pre><code class="js">const myEasing = ( x ) =&gt; {
+<pre><code class="js">const myEasing = ( t ) =&gt; {
   // Calculation
-  return y
+  return v
 }
 </code></pre>
 
-<p>Easing functions are simply functions that accept one argument, a numeric value <code>x</code> between 0 and 1 representing progress along a timeline. The function must return a numeric <code>y</code> value to represent its progression.</p>
+<p>Easing functions receive <code>t</code>, a value from <code>0</code> to <code>1</code>, which represents the linear progression of the animation from start to finish. The easing function must then return <code>v</code>, a value also from <code>0</code> to <code>1</code>, which represents the progress of the animation for that easing.</p>
 <h2 id="registering_3"><a class="toclink" href="#registering_3">Registering</a></h2>
 <p>Like other plugins, there's 3 ways you can register an easing function:</p>
 <h3 id="globally-via-the-ractiveeasing-static-property"><a class="toclink" href="#globally-via-the-ractiveeasing-static-property">Globally via the <code>Ractive.easing</code> static property.</a></h3>
@@ -617,16 +617,17 @@ setInterval(function () {
 </code></pre>
 
 <h2 id="using_3"><a class="toclink" href="#using_3">Using</a></h2>
-<p>Easing functions don't work alone. They are utilized by ractive.animate() and Transitions to dictate animations.</p>
-<pre><code class="js">ractive.animate('foo.bar', 1, {
+<p>Easing functions are utilized by <code>ractive.animate()</code> and transitions to define animations.</p>
+<pre><code class="js">
+ractive.animate('counter', 60, {
   easing: 'myEasing'
 })
 </code></pre>
 
 <h2 id="examples_3"><a class="toclink" href="#examples_3">Examples</a></h2>
 <p>Here's an <code>elastic</code> easing function taken from <a href="https://github.com/danro">danro</a>'s excellent <a href="https://github.com/danro/easing-js/blob/master/easing.js">easing.js</a> library.</p>
-<pre><code class="js">Ractive.easing.elastic = ( x ) =&gt; {
-  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1
+<pre><code class="js">Ractive.easing.elastic = ( t ) =&gt; {
+  return -1 * Math.pow(4,-8*t) * Math.sin((t*6-1)*(2*Math.PI)/2) + 1
 }
 </code></pre>
 
@@ -723,15 +724,58 @@ Ractive({
 </code></pre>
 
 <h1 id="interpolators"><a class="toclink" href="#interpolators">Interpolators</a></h1>
-<p>TODO</p>
+<p>Interpolator functions describe a value's progression during an animation from start to finish. Interpolator functions also determine the value on the model as well as what gets rendered during the animation.</p>
 <h2 id="writing_5"><a class="toclink" href="#writing_5">Writing</a></h2>
-<p>TODO</p>
+<pre><code class="js">const myInterpolator = (from, to) =&gt; {
+
+  return t =&gt; {
+    return valueAtTimeT
+  }
+}
+
+</code></pre>
+
+<p>Interpolator plugins accept <code>from</code> and <code>to</code>. <code>from</code> is the value on the animated keypath before calling <code>ractive.animate()</code> and <code>to</code> is the value being set by <code>ractive.animate()</code>. The plugin must return a function that receives <code>t</code> and returns a value that represents the animated value at <code>t</code>. <code>t</code> is a value from <code>0</code> to <code>1</code> representing the animation's progress with easing already applied.</p>
 <h2 id="registering_5"><a class="toclink" href="#registering_5">Registering</a></h2>
-<p>TODO</p>
+<p>Like other plugins, there's 3 ways you can register an interpolator function:</p>
+<h3 id="globally-via-the-ractiveinterpolators-static-property"><a class="toclink" href="#globally-via-the-ractiveinterpolators-static-property">Globally via the <code>Ractive.interpolators</code> static property.</a></h3>
+<pre><code class="js">Ractive.interpolators.myInterpolator = myInterpolator
+</code></pre>
+
+<h3 id="per-component-via-the-components-interpolators-initialization-property"><a class="toclink" href="#per-component-via-the-components-interpolators-initialization-property">Per component via the component's <code>interpolators</code> initialization property.</a></h3>
+<pre><code class="js">const MyComponent = Ractive.extend({
+  interpolators: { myInterpolator }
+})
+</code></pre>
+
+<h3 id="per-instance-via-the-instances-interpolators-initialization-property"><a class="toclink" href="#per-instance-via-the-instances-interpolators-initialization-property">Per instance, via the instance's <code>interpolators</code> initialization property.</a></h3>
+<pre><code class="js">const ractive = Ractive({
+  interpolators: { myInterpolator }
+})
+</code></pre>
+
 <h2 id="using_5"><a class="toclink" href="#using_5">Using</a></h2>
-<p>TODO</p>
+<p>Interpolator functions are utilized by <code>ractive.animate()</code> by supplying the interpolator name to the <code>interpolator</code> option.</p>
+<pre><code class="js">ractive.animate('counter', 60, {
+  interpolator: 'myInterpolator'
+})
+</code></pre>
+
 <h2 id="examples_5"><a class="toclink" href="#examples_5">Examples</a></h2>
-<p>TODO</p>
+<p>Here's an abridged version of Ractive's built-in <code>number</code> interpolator which interpolates numeric values (numbers and number-like strings) during animation.</p>
+<pre><code class="js">Ractive.interpolators.number = (from, to) =&gt; {
+  const start = Number(from)
+  const end = Number(to)
+
+  if (Number.isNaN(start) || Number.isNaN(end)) return null
+
+  const delta = end - start
+  const noChangeInterpolator = () =&gt; start
+  const changeInterpolator = t =&gt; start + (t * delta)
+  return delta ? changeInterpolator : noChangeInterpolator
+}
+</code></pre>
+
 <h1 id="partials"><a class="toclink" href="#partials">Partials</a></h1>
 <p>A partial is a template snippet which can be reused in templates or in other partials. They help to keep templates uncluttered, non-repetetive and easy to read.</p>
 <h2 id="writing_6"><a class="toclink" href="#writing_6">Writing</a></h2>
