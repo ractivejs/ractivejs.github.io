@@ -439,18 +439,18 @@ setInterval(function () {
 
 # Easings
 
-Easing functions are used by `ractive.animate` and some transitions. They describe the animation's progression from start to finish.
+Easing functions describe the animation's progression from start to finish. Easings are used by `ractive.animate` and some transitions. Out of the box, Ractive comes with `linear`, `easeIn`, `easeOut` and `easeInOut`.
 
 ## Writing
 
 ```js
-const myEasing = ( x ) => {
+const myEasing = ( t ) => {
   // Calculation
-  return y
+  return v
 }
 ```
 
-Easing functions are simply functions that accept one argument, a numeric value `x` between 0 and 1 representing progress along a timeline. The function must return a numeric `y` value to represent its progression.
+Easing functions receive `t`, a value from `0` to `1`, which represents the linear progression of the animation from start to finish. The easing function must then return `v`, a value also from `0` to `1`, which represents the progress of the animation for that easing.
 
 ## Registering
 
@@ -480,10 +480,11 @@ const ractive = Ractive({
 
 ## Using
 
-Easing functions don't work alone. They are utilized by ractive.animate() and Transitions to dictate animations.
+Easing functions are utilized by `ractive.animate()` and transitions to define animations.
 
 ```js
-ractive.animate('foo.bar', 1, {
+
+ractive.animate('counter', 60, {
   easing: 'myEasing'
 })
 ```
@@ -493,8 +494,8 @@ ractive.animate('foo.bar', 1, {
 Here's an `elastic` easing function taken from [danro](https://github.com/danro)'s excellent [easing.js](https://github.com/danro/easing-js/blob/master/easing.js) library.
 
 ```js
-Ractive.easing.elastic = ( x ) => {
-  return -1 * Math.pow(4,-8*x) * Math.sin((x*6-1)*(2*Math.PI)/2) + 1
+Ractive.easing.elastic = ( t ) => {
+  return -1 * Math.pow(4,-8*t) * Math.sin((t*6-1)*(2*Math.PI)/2) + 1
 }
 ```
 
@@ -615,23 +616,74 @@ Ractive({
 
 # Interpolators
 
-TODO
-
+Interpolator functions describe a value's progression during an animation from start to finish. Interpolator functions also determine the value on the model as well as what gets rendered during the animation.
 ## Writing
 
-TODO
+```js
+const myInterpolator = (from, to) => {
+
+  return t => {
+    return valueAtTimeT
+  }
+}
+
+```
+
+Interpolator plugins accept `from` and `to`. `from` is the value on the animated keypath before calling `ractive.animate()` and `to` is the value being set by `ractive.animate()`. The plugin must return a function that receives `t` and returns a value that represents the animated value at `t`. `t` is a value from `0` to `1` representing the animation's progress with easing already applied.
 
 ## Registering
 
-TODO
+Like other plugins, there's 3 ways you can register an interpolator function:
+
+### Globally via the `Ractive.interpolators` static property.
+
+```js
+Ractive.interpolators.myInterpolator = myInterpolator
+```
+
+### Per component via the component's `interpolators` initialization property.
+
+```js
+const MyComponent = Ractive.extend({
+  interpolators: { myInterpolator }
+})
+```
+
+### Per instance, via the instance's `interpolators` initialization property.
+
+```js
+const ractive = Ractive({
+  interpolators: { myInterpolator }
+})
+```
 
 ## Using
 
-TODO
+Interpolator functions are utilized by `ractive.animate()` by supplying the interpolator name to the `interpolator` option.
+
+```js
+ractive.animate('counter', 60, {
+  interpolator: 'myInterpolator'
+})
+```
 
 ## Examples
 
-TODO
+Here's an abridged version of Ractive's built-in `number` interpolator which interpolates numeric values (numbers and number-like strings) during animation.
+
+```js
+Ractive.interpolators.number = (from, to) => {
+  const start = Number(from)
+  const end = Number(to)
+
+  if (Number.isNaN(start) || Number.isNaN(end)) return null
+
+  const delta = end - start
+  const noChangeInterpolator = () => start
+  const changeInterpolator = t => start + (t * delta)
+  return delta ? changeInterpolator : noChangeInterpolator
+}
+```
 
 # Partials
 

@@ -3685,7 +3685,10 @@ If an animation is started on a keypath which is *already* being animated, the f
 - `[options] (Object)`:
     - `[duration] (number)`: How many milliseconds the animation should run for. Defaults to `400`.
     - `[easing] (string|Function)`: The name of an easing function or the easing function itself. Defaults to `linear`.
-    - `[step] (Function)`: A function to be called on each step of the animation. Receives `t` and `value` as arguments, where `t` is the animation progress (between `0` and `1`, as determined by the easing function) and `value` is the intermediate value at `t`.
+    - `[interpolator] (string)`: The name of an interpolator function. Defaults to the built-in number interpolator if the value is numeric, or `null` if none is applicable.
+    - `[step] (Function)`: A function called on each step of the animation.
+        - `t (number)`: The animation progress between `0` and `1` with easing function already applied.
+        - `value (number)`: The value at `t` with interpolator function already applied.
     - `[complete] (Function)`: A function to be called when the animation completes, with the `value` passed to `animate`.
 
 **Returns**
