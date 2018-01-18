@@ -168,6 +168,8 @@ if (window.location.hash) {
   if (unit) {
     r.set('unit', unit);
   }
+} else if (!r.get('unit.h.r')) { // default to having ractive available in script
+  r.set('unit.h.r', 'edge');
 }
 
 if (window.localStorage) {
