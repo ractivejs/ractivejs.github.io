@@ -396,6 +396,8 @@ Ractive({
 })
 ```
 
+__Note:__ `{{!foo}}` is also a valid expression, and expressions have a higher precedence in the parser than comments. To ensure that your comments are always treated as such, you can add a `#` after the `!` e.g. `{{!# comment }}` because `#` is never valid in an expression.
+
 ## Custom delimiters
 
 `{{= =}}` defines custom delimiters. Custom delimiters should not contain whitespace or the equals sign.
