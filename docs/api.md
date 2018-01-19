@@ -4589,6 +4589,35 @@ ractive.resetPartial('foo', 'bar')
 // {{>foo}} will be replaced with 'bar'
 ```
 
+## ractive.resetTemplate()
+
+Resets the template and re-renders the entire instance using the new template.
+
+__Syntax__
+
+- `ractive.resetTemplate(template)`
+
+__Arguments__
+
+- `template (string|Object)`: The new template to use. If an object, the template should be the result of `Ractive.parse` with both version and template array properties.
+
+__Returns__
+
+- `(Promise)`: A promise that resolves once any transitions that are triggered during the re-render are completed.
+
+__Examples__
+
+```js
+const ractive = new Ractive({
+  // ...,
+  template: 'replace me'
+});
+
+ractive.resetTemplate('you have been replaced');
+ractive.set('foo', 'world');
+ractive.resetTemplate(Ractive.parse('Hello, {{foo}}'));
+```
+
 ## ractive.reverse()
 
 The Ractive equivalent to ```Array.reverse``` reverses the array at the given keypath and triggers an update event.
