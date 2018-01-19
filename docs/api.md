@@ -5182,6 +5182,39 @@ parent.resolve(); // foo.bar
 ```
 
 
+## context.hasListener()
+
+Returns `true` if the element associated with the context has a Ractive-managed event listener for a given event name. The target event does not have to be an actual DOM event, so this method can be used conveniently in conjunction with `context.raise`.
+
+__Syntax__
+
+- `context.hasListener(event[, bubble])`
+
+__Arguments__
+
+- `event (string)`: The name of the event for which to check for listeners.
+- `bubble (boolean)`: Whether or not to check parent elements for the event name as well, should the target element not have a listener. Defaults to `false`.
+
+__Returns__
+
+- `(boolean)`: `true` if a listener was found or `false` otherwise.
+
+__Examples__
+
+```html
+<section on-other="othered">
+  <article on-thing="thinged">Some text...</article>
+</section>
+```
+
+```js
+const ctx = ractive.getContext('article');
+ctx.hasListener('thing'); // true
+ctx.hasListener('other'); // false
+ctx.hasListener('other', true); // true
+```
+
+
 
 ## context.isBound()
 
