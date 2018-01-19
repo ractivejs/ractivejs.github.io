@@ -206,7 +206,7 @@ Ractive.DEBUG = /unminified/.test(function(){/*unminified*/})
 * The comment syntax for inline partials is now deprecated.
 * `elseif` is now a reserved identifier.
 * `ractive.data` is no longer available. Use `ractive.get()` to get a shallow copy of the data with any component mappings.
-* Child data always overrides parent data, whether it is a POJO or not.
+* Child data always overrides parent data, whether it is a POJO (Plain Old JS Object) or not.
 * `ractive.debug` has been replaced with the global `Ractive.DEBUG` flag.
 
 ## Migrating from 0.5

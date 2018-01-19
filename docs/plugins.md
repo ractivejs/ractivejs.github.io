@@ -4,7 +4,7 @@ In some cases you want to write your UI in Ractive but have a custom back-end ma
 
 ## Writing
 
-Adaptors translate custom non-POJO data sources into POJOs and vice-versa. Generally, an adaptor does the following:
+Adaptors translate custom non-POJO (non-Plain Old JS Object) data sources into POJOs and vice-versa. Generally, an adaptor does the following:
 
 - Checks if data needs to be adapted, and if so, "wraps" an adaptor to it.
 - Provides a POJO version of your data source for Ractive to use.
