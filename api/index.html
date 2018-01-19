@@ -785,6 +785,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractiveresettemplate">ractive.resetTemplate()</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivereverse">ractive.reverse()</a>
         </li>
       
@@ -884,6 +888,10 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextgetparent">context.getParent()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contexthaslistener">context.hasListener()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -1422,6 +1430,7 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 })
 </code></pre>
 
+<p><strong>Note:</strong> <code>{{!foo}}</code> is also a valid expression, and expressions have a higher precedence in the parser than comments. To ensure that your comments are always treated as such, you can add a <code>#</code> after the <code>!</code> e.g. <code>{{!# comment }}</code> because <code>#</code> is never valid in an expression.</p>
 <h2 id="custom-delimiters"><a class="toclink" href="#custom-delimiters">Custom delimiters</a></h2>
 <p><code>{{= =}}</code> defines custom delimiters. Custom delimiters should not contain whitespace or the equals sign.</p>
 <pre><code class="js">Ractive({
@@ -4817,6 +4826,31 @@ ractive.resetPartial('foo', 'bar')
 // {{&gt;foo}} will be replaced with 'bar'
 </code></pre>
 
+<h2 id="ractiveresettemplate"><a class="toclink" href="#ractiveresettemplate">ractive.resetTemplate()</a></h2>
+<p>Resets the template and re-renders the entire instance using the new template.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>ractive.resetTemplate(template)</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>template (string|Object)</code>: The new template to use. If an object, the template should be the result of <code>Ractive.parse</code> with both version and template array properties.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(Promise)</code>: A promise that resolves once any transitions that are triggered during the re-render are completed.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="js">const ractive = new Ractive({
+  // ...,
+  template: 'replace me'
+});
+
+ractive.resetTemplate('you have been replaced');
+ractive.set('foo', 'world');
+ractive.resetTemplate(Ractive.parse('Hello, {{foo}}'));
+</code></pre>
+
 <h2 id="ractivereverse"><a class="toclink" href="#ractivereverse">ractive.reverse()</a></h2>
 <p>The Ractive equivalent to <code>Array.reverse</code> reverses the array at the given keypath and triggers an update event.</p>
 <p>If the given keypath does not resolve to an array, an error will be thrown.</p>
@@ -5264,6 +5298,33 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
 ctx.resolve(); // foo.bar.baz
 const parent = ctx.getParent()
 parent.resolve(); // foo.bar
+</code></pre>
+
+<h2 id="contexthaslistener"><a class="toclink" href="#contexthaslistener">context.hasListener()</a></h2>
+<p>Returns <code>true</code> if the element associated with the context has a Ractive-managed event listener for a given event name. The target event does not have to be an actual DOM event, so this method can be used conveniently in conjunction with <code>context.raise</code>.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>context.hasListener(event[, bubble])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>event (string)</code>: The name of the event for which to check for listeners.</li>
+<li><code>bubble (boolean)</code>: Whether or not to check parent elements for the event name as well, should the target element not have a listener. Defaults to <code>false</code>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(boolean)</code>: <code>true</code> if a listener was found or <code>false</code> otherwise.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code class="html">&lt;section on-other=&quot;othered&quot;&gt;
+  &lt;article on-thing=&quot;thinged&quot;&gt;Some text...&lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+
+<pre><code class="js">const ctx = ractive.getContext('article');
+ctx.hasListener('thing'); // true
+ctx.hasListener('other'); // false
+ctx.hasListener('other', true); // true
 </code></pre>
 
 <h2 id="contextisbound"><a class="toclink" href="#contextisbound">context.isBound()</a></h2>
@@ -6557,6 +6618,10 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractiveresettemplate">ractive.resetTemplate()</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivereverse">ractive.reverse()</a>
         </li>
       
@@ -6656,6 +6721,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#contextgetparent">context.getParent()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#contexthaslistener">context.hasListener()</a>
         </li>
       
         <li class="pure-menu-item">
