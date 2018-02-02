@@ -48,7 +48,7 @@ Given that there is a `subtract` method in the Ractive.js API, can you add a dec
   <button data-run="true" data-tutorial="N4IgFiBcoE5SBTAJgcwSAvgGhAF3gDxICWAbgATFIC8AOngIYxq70B8BA9CaW7QHYCCAZwDGMYgAdclGvVwIAtpIA2DBfXK4AnpIR08CAB65OMBqNxkE7AbVwFcDAEYqEfQTPKOYH++QDvXDA2AFkELmCOKIBlYldifhRIkLsvSN80gJ8-L2zcJFzAwOBgAGIAd2Jg8kUEDAws4pLgADpRAHsK4Qam5u9nAFdcXA7+cjGAWlEVYlEAawMAAU7+BRNWhiQkAApyAHJ2ruF98gBKdgBqLiGRsY5nGE4i-oHh0fGpmbnF+hWx9a4VrCBC4PaHTrdfZYcgABnO7AAkvsVCpasRhMJyNoOoMYZDhDd3vc+i1OFVgr1PMVIoVSY46dTmqVKtUwORhPFZkkqf5XqUjt1eXlmgRbh8JvxprMFstVoDNttwYKTgiQGxrpxxfcxU8Xv0xcTPlLvrK-vLjECQWCDiroXC1WwABIMMAAQnIAE1ceQVB1hDIcYMYOQCUS7vx9WSKWBhTTOAUXhlcpEXG4PFwxBJpGwQDhhPBSExyOZLNZyNRyPwEBVyAAlCxWUgIHbAAQBBAqSAHMpOZig6HtrRKVTqBDd-a9kdqBSD8bkJDqBjdtvz+x1Feh47d+HYJqchJJTcEnfkRrz88YM4AbjzIFE8EwQA">Fix Code</button>
 </div>
 
-To further wangle our incrementer contrivance, suppose we devised a web version of the old traveling game wherein you collect all of the cows that you pass on your side of the car. So we'll need two objects, one for `me` and one for my `sibling`. Each person will have a poroperty, `cows`, which is an integer representing accumulated bovine beasts.
+To further wangle our incrementer contrivance, suppose we devised a web version of the old traveling game wherein you collect all of the cows that you pass on your side of the car. So we'll need two objects, one for `me` and one for my `sibling`. Each person will have a property, `cows`, which is an integer representing accumulated bovine beasts.
 
 ```js
 {
