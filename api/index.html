@@ -1926,6 +1926,9 @@ Eager: &lt;input type=&quot;text&quot; value=&quot;{{ foo }}&quot;&gt; {{ foo }}
 
 &lt;!-- Editing the input updates bar only when focus moves away from the input. --&gt;
 Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;true&quot;&gt; {{ bar }}
+
+&lt;!-- Editing the input updates bar only five seconds after the change. --&gt;
+Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;5000&quot;&gt; {{ bar }}
 </code></pre>
 
 <h2 id="as-42"><a class="toclink" href="#as-42">as-*</a></h2>
