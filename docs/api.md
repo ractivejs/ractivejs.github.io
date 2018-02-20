@@ -968,6 +968,9 @@ Eager: <input type="text" value="{{ foo }}"> {{ foo }}
 
 <!-- Editing the input updates bar only when focus moves away from the input. -->
 Lazy: <input type="text" value="{{ bar }}" lazy="true"> {{ bar }}
+
+<!-- Editing the input updates bar only five seconds after the change. -->
+Lazy: <input type="text" value="{{ bar }}" lazy="5000"> {{ bar }}
 ```
 
 ## as-\*
