@@ -44,6 +44,6 @@ pages:
     - Decorators: tutorials/decorators.md
   - API: api.md
   - Plugins: plugins.md
-  - Integrations: integrations.md
+  - Resources: resources.md
   - Concepts: concepts.md
   - Support: support.md
