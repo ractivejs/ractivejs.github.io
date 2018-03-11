@@ -48,13 +48,6 @@ h3 code{
   color: #729d34;
 }
 
-:target::before{
-  content: '';
-  display: block;
-  height: 40px;
-  margin: -40px 0 0;
-}
-
 .notification{
   display: block;
   padding: 5px 15px;
@@ -316,6 +309,14 @@ h3 code{
 
 .toclink {
   font-weight: normal;
+}
+/* This hidden pseudo-element acts as padding for in-page anchors */
+.toclink:before {
+	content: " ";
+	display: block;
+	height: 90px;
+	margin-top: -90px;
+	visibility: hidden;
 }
 
 @media screen and (max-width: 767px){
