@@ -2,11 +2,11 @@ template: main-no-toc.html
 
 <div class="logo">
   <div class="logo__logo">
-    <img class="logo__image" src="/static/img/avatar.png" alt="Ractive.js" />
+    <img class="logo__image" src="/static/img/avatar.svg" alt="Ractive.js" />
   </div>
   <div class="logo__text">
     <div class="logo__name">Ractive.js</div>
-    <div class="logo__slogan">The diamond age of web development</div>
+    <div class="logo__slogan">web apps made simple</div>
   </div>
 </div>
 

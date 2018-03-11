@@ -14,15 +14,23 @@
               </ul>
           </li>
         {% else %}
-          <li class="pure-menu-item {% if nav_item.active %}pure-menu-selected{% endif %}">
-            <a class="pure-menu-link" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
-          </li>
+			{% if nav_item.title == 'Home' %}
+				<li class="pure-menu-item pure-menu-item--home">
+					<a href="{{ nav_item.url }}">
+						<img class="logo__image" src="/static/img/avatar.svg" alt="Ractive.js" style="width:40px" />
+					</a>
+				</li>
+			{% else %}
+				<li class="pure-menu-item {% if nav_item.active %}pure-menu-selected{% endif %}">
+					<a class="pure-menu-link" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+				</li>
+			{% endif %}
         {% endif %}
       {% endfor %}
       <li class="pure-menu-item">
         <a class="pure-menu-link" href="{{ config.extra.lib_url }}">GitHub</a>
       </li>
-      <li class="pure-menu-item">
+      <li class="pure-menu-item pure-menu-item--search">
         <label class="pure-menu-link search-toggle" for="search-state">Search</label>
       </li>
     </ul>

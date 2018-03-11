@@ -28,7 +28,7 @@
   bottom: 0;
   right: 15px;
   padding: 5px 15px;
-  background: #729d34;
+  background: #00818A;
   color: #fff;
   border-radius: 5px 5px 0 0;
   cursor: pointer;
@@ -132,7 +132,7 @@
 
   .playground-container{
     position: fixed;
-    top: 40px;
+    top: 69px;
     left: 100%;
     transition: left 0.4s, width 0.4s;
     width: 50%;
