@@ -48,11 +48,17 @@
   width: 163px;
 }
 
+.playground-toggle .playground-text {
+  display: block;
+  float: left;
+  margin-top: 1px;
+}
 .playground-toggle .playground-fullscreen {
   margin-left: 20px;
   transform: scale(1.5, 1.5);
   cursor: move;
   display: inline-block;
+  margin-top: 3px;
 }
 
 .playground-container{
@@ -82,10 +88,9 @@
   bottom: 0;
   right: 0.5em;
   display: none;
-  color: #222;
   font-size: 2em;
   cursor: pointer;
-  color: #8eb155;
+  color: #00818a;
   font-weight: 700;
 }
 
@@ -132,11 +137,11 @@
 
   .playground-container{
     position: fixed;
-    top: 69px;
+    top: 61px;
     left: 100%;
     transition: left 0.4s, width 0.4s;
     width: 50%;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 61px);
   }
 
   .playground-container--open{
