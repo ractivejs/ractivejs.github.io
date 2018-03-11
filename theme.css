@@ -1,10 +1,10 @@
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Hind', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6{
-  font-family: 'Roboto Condensed', sans-serif;
   margin-top: 2em;
+  font-weight: 600;
 }
 
 html{
@@ -19,18 +19,18 @@ body{
   color: #555;
   line-height: 1.5;
   position: relative;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 a{
-  color: #729D34;
+  color: #00818A;
   text-decoration: none;
 }
 
 blockquote{
   padding-left: 1em;
   margin-left: 0;
-  border-left: 3px solid #729d34;
+  border-left: 3px solid #00818A;
   color: #777;
 }
 
@@ -45,20 +45,13 @@ code{
 }
 h3 code{
   background-color: #fafafa;
-  color: #729d34;
-}
-
-:target::before{
-  content: '';
-  display: block;
-  height: 40px;
-  margin: -40px 0 0;
+  color: #00818A;
 }
 
 .notification{
   display: block;
   padding: 5px 15px;
-  background: #729D34;
+  background: #00818A;
   border-radius: 5px;
   text-align: center;
   margin: 15px 0;
@@ -80,7 +73,7 @@ h3 code{
 }
 
 .search-state:checked ~ .search-modal{
-  top: 41px;
+  top: 61px;
   transform: translate(0, 0);
 }
 
@@ -99,7 +92,7 @@ h3 code{
   position: absolute;
   top: 5px;
   left: 5px;
-  background-image: url(/static/img/avatar.png);
+  background-image: url(/static/img/avatar.svg);
   background-repeat: no-repeat;
   background-position: center left;
   background-size: contain;
@@ -205,7 +198,10 @@ h3 code{
   margin: 0 auto;
   box-sizing: border-box;
 }
-
+.nav-container {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 .main__footer{
   margin: 100px 0;
   text-align: center;
@@ -218,7 +214,7 @@ h3 code{
 }
 
 .main__content{
-  padding-left: 15px;
+  padding-left: 50px;
   padding-right: 15px;
 }
 
@@ -242,7 +238,6 @@ h3 code{
 }
 
 .logo__image{
-  display: block;
   margin: 0 auto;
 }
 
@@ -251,12 +246,14 @@ h3 code{
 }
 
 .logo__name{
-  font-size: 3.6rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 7rem;
+  font-family: 'Hind', sans-serif;
+  font-weight: 700;
 }
 
 .logo__slogan{
-  font-size: 2.4rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .cdn{
@@ -292,7 +289,7 @@ h3 code{
 .about-block__header{
   font-size: 2.4rem;
   font-family: 'Roboto Condensed', sans-serif;
-  color: #729D34;
+  color: #00818A;
 }
 
 .tutorial{
@@ -313,9 +310,21 @@ h3 code{
   font-weight: bold;
   font-size: 17px;
 }
-
+.pure-menu-horizontal .pure-menu-list {
+	display: block;
+	display: flex;
+	justify-content: center;
+}
 .toclink {
   font-weight: normal;
+}
+/* This hidden pseudo-element acts as padding for in-page anchors */
+.toclink:before {
+	content: " ";
+	display: block;
+	height: 90px;
+	margin-top: -90px;
+	visibility: hidden;
 }
 
 @media screen and (max-width: 767px){
@@ -350,8 +359,10 @@ h3 code{
   }
 
   .toc{
-    height: calc(100vh - 40px);
+    height: calc(100vh - 61px);
     overflow: auto;
+	padding-bottom: 30px;
+	border-right: 1px solid #eee;
   }
 
   .main--split{
@@ -367,6 +378,7 @@ h3 code{
   .nav-main .pure-menu-children{
     border: 1px solid #eee;
     min-width: 200px;
+	text-align: left;
   }
 
   /* The sublinks of the current page should stay gray */
@@ -375,27 +387,53 @@ h3 code{
     color: #777;
   }
 
-  /* The current page link and its ancestors should be green */
+  /* The current page link and its ancestors should be #00818A */
   .pure-menu-selected > .pure-menu-link,
   .pure-menu-selected > .pure-menu-link:visited{
-    color: #729D34;
+    color: #00818A;
   }
 
   /* Keep the parent background hover grey if we're going through the dropdown */
   .pure-menu-item:hover > .pure-menu-link,
-  .pure-menu-item:hover > .pure-menu-link:visited{
+  .pure-menu-item:hover > .pure-menu-link:visited {
     background: #eee;
+  }
+
+  .pure-menu-item.pure-menu-item--home:hover > .pure-menu-link,
+  .pure-menu-item.pure-menu-item--search:hover > .pure-menu-link {
+    background: transparent;
+  }
+
+  .pure-menu-item.pure-menu-item--home {
+	  padding-left: 15px;
+	  padding-right: 30px;
+	  flex: 1;
+  }
+  .pure-menu-item.pure-menu-item--search {
+	  padding-left: 15px;
+	  padding-right: 30px;
+	  text-align: right;
+	  flex: 1;
+  }
+  .pure-menu-item--search .pure-menu-link {
+	  display: inline-block;
+  }
+  .pure-menu-item.pure-menu-item--search .pure-menu-link:hover {
+	  background: #eee;
+  }
+
+  .pure-menu-item--home img {
+	  vertical-align: middle;
   }
 
   .main__sidebar{
     display: block;
     position: sticky;
-    top: 40px;
+    top: 61px;
   }
 
   .logo__logo{
-    display: inline-block;
-    vertical-align: bottom;
+    text-align: center;
   }
 
   .logo__image{
@@ -403,16 +441,12 @@ h3 code{
   }
 
   .logo__text{
-    text-align: left;
-    display: inline-block;
-    vertical-align: bottom;
-    margin-left: 15px;
   }
 
   .cdn{
     display: table;
     margin: 50px auto;
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
 }
