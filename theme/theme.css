@@ -214,7 +214,7 @@ h3 code{
 }
 
 .main__content{
-  padding-left: 50px;
+  padding-left: 15px;
   padding-right: 15px;
 }
 
@@ -235,6 +235,7 @@ h3 code{
 .logo{
   margin: 50px auto 50px;
   display: table;
+  text-align: center;
 }
 
 .logo__image{
@@ -430,6 +431,9 @@ h3 code{
     display: block;
     position: sticky;
     top: 61px;
+  }
+  .main__content{
+	padding-left: 50px;
   }
 
   .logo__logo{
