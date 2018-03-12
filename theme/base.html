@@ -15,7 +15,7 @@
   <title>{{ config.site_name }}</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind:400,600,700">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/default.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/github.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
   <link rel="stylesheet" href="{{ base_url }}/theme.css">
 
   {% for path in config.extra_css %}<link rel="stylesheet" href="{{ path }}">{% endfor %}
@@ -59,7 +59,7 @@
     <label class="search-toggle" for="search-state">Search</label>
     {% block mobile_toc_toggle %}{% endblock %}
   </div>
-  <label class="playground-toggle"><span class="playground-text">Ractive Playground</span><span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
+  <label class="playground-toggle"><span class="playground-text">Playground</span><span title="Fullscreen" class="playground-fullscreen">&#9974;</span></label>
 
   <div class="playground-container">
     <div class="close-fullscreen" title="Exit Fullscreen">
