@@ -35,13 +35,14 @@ blockquote{
 }
 
 code{
-  word-break: break-all;
-  background-color: rgb(240,240,240);
+  word-break: break-word;
+  background-color: #f8f8f8;
   border-radius: 4px;
   padding: 3px 5px;
   margin: 4px;
   font-family: 'Roboto Mono', monospace;
-  color: maroon;
+  color: #00515a;
+  white-space: pre-wrap;
 }
 h3 code{
   background-color: #fafafa;
