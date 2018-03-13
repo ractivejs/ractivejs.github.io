@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% if config.site_description %}<meta name="description" content="{{ config.site_description }}">{% endif %}
-  {% if config.theme_color %}<meta name="theme-color" content="{{ extra.theme_color }}">{% endif %}
+  {% if config.extra and config.extra.theme_color %}<meta name="theme-color" content="{{ config.extra.theme_color }}">{% endif %}
 
   {% if config.extra and config.extra.favicon %}<link rel="shortcut icon" href="{{ config.extra.favicon }}">{% endif %}
   {% if config.site_author %}<link rel="author" href="{{ config.site_author }}">{% endif %}

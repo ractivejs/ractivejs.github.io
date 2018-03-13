@@ -110,7 +110,7 @@ $(function () {
       // get the offset when the delay is up to avoid weird endpoint
       setTimeout(function() {
         $("html, body")
-          .animate({ scrollTop: $(event.target).offset().top - 80 });
+          .animate({ scrollTop: $(event.target).offset().top - (window.innerWidth > 767 ? 80 : 70) });
       }, delay);
     });
   });
