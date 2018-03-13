@@ -407,8 +407,7 @@ h3 code{
   }
 
   .pure-menu-item.pure-menu-item--home {
-	  padding-left: 15px;
-	  padding-right: 30px;
+	  padding-left: 30px;
 	  flex: 1;
   }
   .pure-menu-item.pure-menu-item--search {
