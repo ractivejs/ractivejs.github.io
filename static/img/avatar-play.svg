@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 55 54"
+   width="100"
+   height="100"
+   fill-rule="evenodd"
+   clip-rule="evenodd"
+   stroke-linejoin="round"
+   stroke-miterlimit="1.414"
+   version="1.1"
+   id="svg1522"
+   sodipodi:docname="avatar-play.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   inkscape:export-filename="/home/chris/development/html/ractivejs.github.io/src/docs/playground/assets/favicon.png"
+   inkscape:export-xdpi="15.36"
+   inkscape:export-ydpi="15.36">
+  <metadata
+     id="metadata1528">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs1526" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1800"
+     inkscape:window-height="1141"
+     id="namedview1524"
+     showgrid="false"
+     inkscape:zoom="3"
+     inkscape:cx="-31.066475"
+     inkscape:cy="-31.649053"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1522" />
+  <path
+     sodipodi:type="star"
+     style="opacity:1;fill:#00818a;fill-opacity:1;stroke:none;stroke-width:0.50854707;stroke-opacity:1"
+     id="path1378"
+     sodipodi:sides="3"
+     sodipodi:cx="20.346786"
+     sodipodi:cy="27.02836"
+     sodipodi:r1="31.566807"
+     sodipodi:r2="15.783403"
+     sodipodi:arg1="0"
+     sodipodi:arg2="1.0471976"
+     inkscape:flatsided="true"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="m 51.913593,27.02836 -47.3502099,27.337657 0,-54.67531323 z"
+     inkscape:transform-center-x="-7.8917021" />
+  <rect
+     style="opacity:1;fill:#00c1ce;fill-opacity:0;stroke:none;stroke-width:2.19131398;stroke-miterlimit:1.41400003;stroke-dasharray:none;stroke-opacity:1"
+     id="rect5783"
+     width="54.988541"
+     height="54.99007"
+     x="0.0028645834"
+     y="-0.49579695"
+     rx="3.8829522"
+     ry="4.298914" />
+  <path
+     d="M 0.47363491,0.17923822 H 54.520635 V 53.819238 H 0.47363491 Z"
+     id="path1511"
+     inkscape:connector-curvature="0"
+     style="fill:none" />
+  <clipPath
+     id="a">
+    <path
+       d="M0 0h54.047v53.64H0z"
+       id="path1513" />
+  </clipPath>
+  <path
+     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.98313206;stroke-miterlimit:1.41400003;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     id="path1518"
+     d="m 8.6823782,25.883815 h 5.5314058 c -0.0015,1.85797 -7.27e-4,12.721946 -7.27e-4,12.721946 0,0 -0.156331,0.78454 -0.828486,0.822002 H 9.5108542 A 0.86450729,0.86450729 0 0 1 8.682367,38.605761 Z m 12.3473268,4.414751 4.408986,7.90736 c 0,0 0.172181,0.378221 0.04971,0.695207 -0.119592,0.309062 -0.434416,0.508619 -0.773015,0.52663 h -4.374408 c -0.455307,-0.02449 -0.515102,-0.07277 -0.735551,-0.443781 L 16.210792,32.480006 A 18.942796,18.942796 0 0 0 21.0297,30.298566 Z M 16.125786,11.039504 c 3.017852,0.734831 5.729522,2.234752 7.173971,5.045121 1.693714,3.501975 1.171406,7.099045 -0.309782,9.522548 -1.7391,2.84639 -4.783607,4.268505 -6.862027,4.905358 7.26e-4,-1.810422 0.0028,-3.620124 0.0043,-5.430547 1.108732,-0.59651 1.994852,-1.540984 2.340655,-2.784433 0.648379,-2.332729 -0.244224,-4.997574 -2.337772,-6.150249 -0.0015,-1.70164 -0.0043,-3.404719 -0.0094,-5.107798 z M 8.6823782,23.981178 V 11.277964 c 0.040347,-0.730509 0.9682485,-0.842174 2.0279908,-0.840733 1.151235,0.0051 2.332008,0.07564 3.494771,0.238459 0.0051,1.616629 0.0079,13.305488 0.0079,13.305488 z"
+     inkscape:export-filename="/home/chris/development/html/ractivejs.github.io/src/docs/playground/assets/path1518.png"
+     inkscape:export-xdpi="15.749434"
+     inkscape:export-ydpi="15.749434" />
+</svg>
