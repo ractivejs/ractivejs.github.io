@@ -18,7 +18,7 @@ extra_javascript:
 
 extra:
   lib_url: https://github.com/ractivejs/ractive
-  favicon: /static/img/favicon.ico
+  favicon: /static/img/favicon.png
   theme_color: "#00818a"
 
 markdown_extensions:
