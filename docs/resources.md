@@ -17,13 +17,6 @@
 - [Transitions](tutorials/transitions.md)
 - [Decorators](tutorials/decorators.md)
 
-## Demos
-
-- [Popular movies](https://dagnelies.github.io/ractive-examples/movies_1.html)
-- [Movies with filters and infinite scrolling](https://dagnelies.github.io/ractive-examples/movies_2.html)
-- [Movies details open in modal dialog](https://dagnelies.github.io/ractive-examples/movies_3.html)
-- [Movies Single page app!](https://dagnelies.github.io/ractive-examples/movies_4.html)
-- [Some random users...](https://dagnelies.github.io/ractive-examples/user-list.html)
 
 # Plugins
 
