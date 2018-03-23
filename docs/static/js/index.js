@@ -115,4 +115,15 @@ $(function () {
     });
   });
 
+  // simplified modal interface to make mkdocs search plugin works correctly in all search scenario
+  $.fn.modal = function(action) {
+    switch (action) {
+      case 'hide':
+        $('#search-state').prop('checked', false);
+        break;
+
+      default:
+        $('#search-state').prop('checked', true);
+    }
+  };
 });
