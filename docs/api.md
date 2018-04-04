@@ -3169,7 +3169,7 @@ Creates a "subclass" of the Ractive constructor or a subclass constructor using 
 **Examples**
 
 ```js
-class Widget {
+class Widget extends Ractive {
   notify ( message ) {
     this.push( 'messages', message )
   }
