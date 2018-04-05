@@ -1,4 +1,38 @@
+# API
 
+This page contains _all_ of the main API available in Ractive, including that provided by templates. This can be a little bit overwhelming, but it's also very searchable. If you're new to Ractive and not exactly sure what you're looking for, we recommend starting with [the tutorial](/tutorials/hello-world) to get the basics and circling back here later. Here's a basic breakdown of the sections and what you can find in them:
+
+* Mustaches
+    
+    This section describes the main template constructs that are used in Ractive. Plain mustaches `{{like_this}}` are used to inject values into the DOM. `{{#if conditionals}}` are used to conditionally add or remove content. `{{#each iterations}}` are used to display content for every element in a list or object. `{{#with contexts}}` are used to scope data for a section of template.
+
+* Data Binding, Directives, Special References
+    
+    These sections make up the remainder of the template constructs that are used in Ractive. Directives control things like how an element transitions in an out of the DOM, what event listeners are installed on an element, and how two-way bindings are handled. Data Binding describes the different form element bindings available and the special directives that are used to apply them. Special References describes all of the template context-based magic variables that are automatically supplied to your template by Ractive.
+
+* Initialization Options
+
+    These are the options you can pass into a Ractive constructor to control how the instance behaves. Some of them can also be passed to `extend` and `extendWith` to control how a Ractive component behaves. This is where you'll find how to specify your template, data, event listeners, and observers that define your app, as well as options to control other behavior.
+
+* Static Properties
+
+    These are properties available either solely on the `Ractive` constructor singleton or on component constructors that have been created by `extend` or augmented by `extendWith`. Global plugin registries and prototypes are found here. 
+
+* Static Methods
+
+    This is a collection of helper functions that do things like parse a template, provide instance-free access to cross-instance state, create or augment Ractive components, and perform utility functions, like escaping keypaths.
+
+* Instance Properties
+
+    These are mostly instance-local plugin registries, but they also include things like references to parent and root instances for components.
+
+* Instance Methods
+
+    Along with the template and a few init options, these make up your primary interface with Ractive. You can interact with data (`get`, `set`, `toggle`, array methods), invalidate data (`update`), find child DOM nodes and components (`find`, `findComponent`, etc), handle event subscriptions (`on`, `off`, etc), manage rendering (`render`, `insert`, `detach`, `unrender`), and get a handle to a Context based on a selector or a DOM node (`getContext`).
+
+* Context Object
+
+    Context objects are a handle to a specific point in a template, usually based on a DOM node. They bridge the gap between the template and the DOM, so that you can interact with the template directly. Context objects contain analogs to all of the instance methods available on a Ractive instance, but these methods are scoped to the context with which they are associated. This allows you to do things like set relative paths, check to see if an element has an event directive, and interact with any bindings. Context objects are automatically provided as the first argument to any event listener. They can also be acquired from a template using the `@context` special reference and from the API using `getContext`.
 
 # Mustaches
 
@@ -159,7 +193,7 @@ Ractive({
 
 ## Each sections
 
-`{{#each }}` renders the block of markup for each item in the iterable. The context of the section is the value of the currently iterated item. `{{else}}` and `{{elseif}}` are supported and render if the iterable is empty.
+`{{#each }}` renders the block of markup for each item in the iterable. The context of the section is the value of the currently iterated item. `{{else}}` and `{{elseif}}` are supported and render if the iterable is empty. The iterable may be an array or an object, and if it is an object, the keys will be iterated with the context of each iteration being the value at the key associated with it.
 
 ```js
 Ractive({
@@ -168,13 +202,63 @@ Ractive({
   },
   template: `
     {{#each people}}
-      Hi! I'm {{name}}!
+      Hi! I'm {{.name}}!
     {{else}}
       There's nobody here
     {{/each}}
   `
 })
 ```
+
+If you want to refer to the item in an iteration by name, you can optionally supply an alias for it.
+
+```hbs
+{{#each people as person}}Hi! I'm {{person.name}}!{{/each}}
+```
+
+If you would also like to refer to the current index or key for an iteration by something other than the special refs `@key` and `@index`, you can also provide an alias for each of those. When aliasing key and index, only the first key alias is required, and it will always be the same as the index alias for an array because the key and index are the same thing. For an object iteration, the index alias will be the 0-based index of the key in the keys of the object being iterated.
+
+```hbs
+{{#each people: index, key}}index and key are the same for an array{{/each}}
+<!-- this works with a context alias as well -->
+{{#each people as person: index, key}}...{{/each}}
+<!-- the second alias is not required -->
+{{#each people: i}}...{{/each}}
+<!-- and it's only really useful when iterating an object -->
+{{#each someObject: k, i}}k is the current key and i is the current index{{/each}}
+```
+
+`@index` and `@key` aliases are useful for nested `{{#each}}` blocks so that you have a way to refer to the outer key or index in any given iteration. It's also sometimes useful to give a more meaningful name to a key or index.
+
+__From 0.10.0__
+
+In addition to a context alias, you can also include aliases for `@keypath`, `@rootpath`, `@index`, and `@key` instead of using the `: k, i` syntax. This tends to be slightly less confusing than trying to remember whether the first or second name is the key.
+
+```hbs
+{{#each people as person, i as @index, path as @keypath}}...{{/each}}
+<!-- the context alias is not required -->
+{{#each people, i as @index, path as @keypath}}...{{/each}}
+```
+
+There are also special aliases that can control the behavior of the `{{#each}}` block in special circumstances.
+
+First, it's not possible to have a computed array shuffle (a keyed update, which moves iterated elements around the DOM to match new array positions rather than simply updating contents in place) because there's no way to tell the computation when an index is moved. With a plain old model, an `{{#each}}` block will automatically know how to shuffle itself if you use an array method like `splice` or a `set` with the `shuffle` option set. By setting the `shuffle` alias to either `true` or a keypath string to use to return an identity for each iteration, you can tell an `{{#each}}` with a computed array how to shuffle itself when the array changes. `true` will cause the identity of each element to be used to determine its new index, and a keypath will cause the identity of the value at that keypath from each element to determine its new index.
+
+```hbs
+{{#each people, true as shuffle}}...{{/each}}
+{{#each people, 'profile.id' as shuffle}}...each person's profile id determines where they are in the list...{{/each}}
+```
+
+Second, computed contexts make two-way binding problematic, as updates don't propagate back to the source model automatically, or expensive, as using `syncComputedChildren` will invalidate everything involved with the computation any time the computed context is changed. The `source` alias of an `{{#each}}` block with a computed array can be set to have it map each of its iterations' contexts back to the plain model that is the basis of the computed array.
+
+```hbs
+{{#each filter(people, { name: 'joe' }), people as source}}
+  {{@keypath}} will be something like `people.0` rather than a computed
+  keypath based on `filter(people, { name: 'joe' }).0`
+{{/each}}
+```
+
+The `as` in aliases is also optional, so `{{#each people person, @index i}}` is equivalent to `{{#each people as person, @index as i}}`.
 
 ## With sections
 
@@ -264,6 +348,34 @@ Ractive({
     {{/with}}
   `
 })
+```
+
+__From 0.10.0__
+
+The `as` in aliases is also optional, so `{{#with foo qux, @global world}}` is equivalent to `{{#with foo as qux, @global as world}}`.
+
+## Await sections
+
+__From 0.10.0__
+
+`{{#await}}` sections take a value, preferrably a `Promise`, and allow you to render a pending template, while waiting, a success template if resolution completes, an error template if resolution fails, and an alternate template if the value is `undefined`.
+
+```hbs
+{{#await value}}
+  This bit of template displays while value is unresolved.
+{{then val}}
+  This bit of template displays when value is resolved, and the resolved value is available as val.
+{{catch err}}
+  This bit of template displays if the resolution results in an error, and the error is available as err.
+{{else}}
+  This bit of template displays if the value === undefined.
+{{/await}}
+```
+
+All of the aliases (`val` and `err` in the example) are optional, as are each of the sections. There's also a shorthand if you don't want to use a pending template:
+
+```hbs
+{{#await value then val}}{{val}} has resolved{{/await}}
 ```
 
 ## In-template partials
@@ -383,6 +495,7 @@ Expressions support only a subset of globals:
 - `parseFloat`
 - `parseInt`
 - `undefined`
+- `console`
 
 ## Comments
 
@@ -709,6 +822,27 @@ const ractive = Ractive({
     </Pager>
   `,
 })
+```
+
+__From 0.10.0__
+
+You can also inject a context into a yield rather than aliases, in the same way that you can supply a context to a partial. When injecting a context, the container context will be accessible from the yielded template via the context parent prefix (`^^/`). The component context for the yield will still be the container.
+
+```js
+const Loopy = Ractive.extend({
+  template: `<ul>{{#each list}}<li>{{yield with .}}</li>{{/each}}</ul>`
+});
+
+const ractive = new Ractive({
+  components: { Loopy },
+  target: 'body',
+  data: {
+    things: [ 1, 2, 3 ],
+    clicks: 0,
+    label: ' thing'
+  },
+  template: `{{clicks}}<Loopy list="{{things}}"><button on-click="@.add('clicks')">{{.}}{{^^/label}}</button></Loopy>`
+});
 ```
 
 # Data binding
@@ -1168,7 +1302,7 @@ Ractive({
     {{#each bases}}
       {{#with ~/homebase}}
         <div>the home base bulding1 is {{.building1.name}}</div>
-        <div>the current iteration base building1 is {{^^/.building1.name}}</div>
+        <div>the current iteration base building1 is {{^^/building1.name}}</div>
       {{/with}}
     {{/each}}
   `
@@ -1426,6 +1560,32 @@ Ractive({
 // User #2 says: Hi! I'm eve!
 ```
 
+## `@last`
+
+The index of the last iteration of the nearest iterative block. This is helpful for detecting the end of an object iteration.
+
+```js
+Ractive({
+  el: 'body',
+  data: {
+    users: {
+      bob: 'Hi! I am bob!',
+      alice: 'Hi! I am alice!',
+      eve: 'Hi! I am eve!'
+    }
+  },
+  template: `
+    {{#each users}}
+      <div>{{@key}}{{#if @last === @index}} is the last user{{/if}}</div>
+    {{/each}}
+  `
+})
+
+// bob
+// alice
+// eve is the last user
+```
+
 ## `@keypath`
 
 The keypath to the current data context relative to the instance's root data context.
@@ -1678,7 +1838,7 @@ Special context-local storage associated with the current context. This is inten
 
 ## `@style`
 
-__From__ _0.9.4_
+__From 0.9.4__
 
 The cssData associated with the current instance based on its constructor.
 
@@ -1760,8 +1920,6 @@ var ractive = Ractive({
 ractive.myMethod(); // triggers the alert
 ```
 
-
-
 ## adapt
 
 `(Array<string|Object>)`
@@ -1790,8 +1948,6 @@ new Component({
 })
 ```
 
-
-
 ## adaptors
 
 `(Object<string, Object>)`
@@ -1816,6 +1972,8 @@ const instance = Ractive({
 ```
 
 ## allowExpressions
+
+__From 0.10.0__
 
 `(boolean)`
 
@@ -1895,8 +2053,6 @@ template: '<p>grey</p>'
 </div>
 ```
 
-
-
 ## attributes
 
 `(Object<string, [string]|Object<string, [string]>>)`
@@ -1919,8 +2075,6 @@ const Component = Ractive.extend({
 ```
 
 The extra attributes passed to a component are not limited to simple attributes - they can also include directives, but any mustache sections will not have their contents checked. By default, the `extra-attributes` will _not_ be mapped, meaning that the values won't be available with `get` from the component, so the partial should be yielded. If you need the extra attributes to be mapped, include an additional setting in the attributes map `mapAll: true`.
-
-
 
 ## components
 
@@ -2009,10 +2163,7 @@ const MyComponent = Ractive.extend({
 })
 ```
 
-
 During a `ractive.reset()`, components registered using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
-
-
 
 ## computed
 
@@ -2043,8 +2194,6 @@ computed: {
 }
 ```
 
-
-
 ## csp
 
 `(boolean)`
@@ -2052,8 +2201,6 @@ computed: {
 Whether or not to add inline functions for expressions after parsing. Defaults to `false`.
 
 This can effectively eliminate `eval` caused by expressions in templates. It also makes the resulting template no longer JSON compatible, so the template will have to be served via `script` tag.
-
-
 
 ## css
 
@@ -2081,7 +2228,7 @@ Ractive({
 })
 ```
 
-__From__ _0.9.4_, if `css` is a function, the function will be called with a handle to the component's style data and is expected to return a string of CSS.
+__From 0.9.4__, if `css` is a function, the function will be called with a handle to the component's style data and is expected to return a string of CSS.
 
 ```js
 const Component = Ractive.extend({
@@ -2095,11 +2242,9 @@ const Component = Ractive.extend({
 })
 ```
 
-
-
 ## cssData
 
-__From__ _0.9.4_
+__From 0.9.4__
 
 `(object)`
 
@@ -2110,7 +2255,6 @@ Like `css`, this also only applies to components. This is the default data for a
 `(string)`
 
 This value is used to scope CSS defined on a component's `css` initialization option only to the instances of the component. By default, the value is a randomly generated UUID.
-
 
 ## data
 
@@ -2187,8 +2331,6 @@ Parent().get(); // { foo: 'Hello', bar: 'World' }
 Child().get();  // { foo: 'Goodbye', bar: 'World' }
 ```
 
-
-
 ## decorators
 
 `(Object<string, Function>)`
@@ -2201,8 +2343,6 @@ decorators: {
 }
 ```
 
-
-
 ## delegate
 
 `(boolean)`
@@ -2210,8 +2350,6 @@ decorators: {
 Whether or not to enable automatic event delegation for iterative sections within an element. Defaults to `true`.
 
 When enabled, DOM events subscribed within iterative sections will not add a DOM event listener to each element. Instead, a single listener will be installed on the element containing the iterative section, and that listener will find appropriate event directives starting from the target element and working back to the containing element with the listener.
-
-
 
 ## delimiters
 
@@ -2228,8 +2366,6 @@ data: { world: 'earth' }
 // hello earth
 ```
 
-
-
 ## easing
 
 `(Object<string, Function>)`
@@ -2241,8 +2377,6 @@ easing: {
   MyEasing: EasingDefinition
 }
 ```
-
-
 
 ## el
 
@@ -2256,8 +2390,6 @@ el: '#container'
 el: document.getElementById('container')
 el: jQuery('#container')
 ```
-
-
 
 ## enhance
 
@@ -2281,8 +2413,6 @@ There are a few limitations to this feature:
 
     It has been suggested that Ractive could deal with merged text nodes, but that would lead to extra complexity as there are certain scenarios where the text node would have to split and rejoin. When `foo` is falsey, `left text` and `right text` could be merged. But when `foo` becomes truthy, that text node would have to split in order to accomodate `middle text`.
 
-
-
 ## events
 
 `(Object<string, Function>)`
@@ -2295,7 +2425,20 @@ events: {
 }
 ```
 
+## interpolate
 
+`(Object<string, boolean>)`
+
+A map of elements that controls whether or not interpolation is allowed within the element. If an element is present in the map, then nested tags are treated as text rather than elements, as in a `<script>` tag. If the value associated with the element is `false`, mustaches within the element are also treated as text rather than blocks or interpolators.
+
+```js
+interpolate: {
+  textarea: true,
+  script: true,
+  style: true,
+  template: true
+}
+```
 
 ## interpolators
 
@@ -2309,8 +2452,6 @@ interpolators: {
 }
 ```
 
-
-
 ## isolated
 
 `(boolean)`
@@ -2318,8 +2459,6 @@ interpolators: {
 Controls whether the component will try to resolve data and plugins on its ancestors. Defaults to `true`.
 
 Relevant only to Components.
-
-
 
 ## lazy
 
@@ -2383,15 +2522,11 @@ This can also be controlled per transition using the `nested` boolean parameter 
 <div fade-in="{ duration: 'slow', nested: false }">...</div>
 ```
 
-
-
 ## noCssTransform
 
 `(boolean)`
 
 Prevents component CSS from being transformed with scoping guids. Defaults to `false`.
-
-
 
 ## noIntro
 
@@ -2413,8 +2548,6 @@ var ractive = Ractive({
 ractive.push( 'items', 'green' )
 // 'green' list item will fade in
 ```
-
-
 
 ## noOutro
 
@@ -2438,8 +2571,6 @@ ractive.pop( 'items' )
 ractive.unrender()
 // 'red' list item will not fade out
 ```
-
-
 
 ## observe
 
@@ -2481,8 +2612,6 @@ The options that may be specified in the object form are (see the `ractive.obser
 
 When a sublcass created with `Ractive.extend()` is passed an `observe` hash, then any further subclasses or instances created with an `observe` hash will be combined. Any superclass observers are installed first following the inheritance hierarchy, and finally, any instance observers are installed.
 
-
-
 ## on
 
 `(Object<string, Function|Object>)`
@@ -2516,23 +2645,17 @@ The options that may be specified in the object form are:
 
 `on` event listeners may subscribe to any instance event, including lifecycle events. When a sublcass created with `Ractive.extend()` is passed an `on` hash, then any further subclasses or instances created with an `on` hash will be combined. Any superclass event handlers are installed first following the inheritance hierarchy, and finally, any instance event handlers are installed.
 
-
-
 ## oncomplete
 
 `(Function)`
 
 A lifecycle event that is called when the instance is rendered and all the transitions have completed.
 
-
-
 ## onconfig
 
 `(Function)`
 
 A lifecycle event that is called when an instance is constructed and all initialization options have been processed.
-
-
 
 ## onconstruct
 
@@ -2542,15 +2665,11 @@ A lifecycle event that is called when an instance is constructed but before any 
 
 Accepts the instance's initialization options as argument.
 
-
-
 ## ondestruct
 
 `(Function)`
 
 A lifecycle event that is called when an instance is torn down and any associated transitions are complete.
-
-
 
 ## ondetach
 
@@ -2560,15 +2679,11 @@ A lifecycle event that is called whenever `ractive.detach()` is called.
 
 Note that `ractive.insert()` implicitly calls `ractive.detach()` if needed.
 
-
-
 ## oninit
 
 `(Function)`
 
 A lifecycle event that is called when an instance is constructed and is ready to be rendered.
-
-
 
 ## oninsert
 
@@ -2576,15 +2691,11 @@ A lifecycle event that is called when an instance is constructed and is ready to
 
 A lifecycle event that is called when `ractive.insert()` is called.
 
-
-
 ## onrender
 
 `(Function)`
 
 A lifecycle event that is called when the instance is rendered but _before_ transitions start.
-
-
 
 ## onteardown
 
@@ -2592,23 +2703,17 @@ A lifecycle event that is called when the instance is rendered but _before_ tran
 
 A lifecycle event that is called when the instance is being torn down.
 
-
-
 ## onunrender
 
 `(Function)`
 
 A lifecycle event that is called when the instance is being undrendered.
 
-
-
 ## onupdate
 
 `(Function)`
 
 A lifecycle event that is called when `ractive.update()` is called.
-
-
 
 ## partials
 
@@ -2628,15 +2733,15 @@ partials: {
 
 During a `ractive.reset()`, function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
-
-
 ## preserveWhitespace
 
-`(boolean)`
+`(boolean|Object<string, boolean>)`
 
 Whether or not to preserve whitespace in templates when parsing. Defaults to `false`.
 
 Whitespace in `<pre>` elements is always preserved. The browser will still deal with whitespace in the normal fashion.
+
+If the value is a map, whitespace is not preserved by default, and the elements named in the map will have whitespace preserved based on the value of the boolean associated with their name.
 
 ```js
 var ractive = Ractive({
@@ -2658,8 +2763,6 @@ console.log( ractive.toHTML() )
 //  world   </p>"
 ```
 
-
-
 ## resolveInstanceMembers
 
 `(boolean)`
@@ -2671,8 +2774,6 @@ Whether or not to include members of the Ractive instance at the end of the refe
 ```
 
 If there is no data member `toggle` in the context of the template, with `resolveInstanceMembers` enabled, the reference will resolve to the `ractive.toggle()` method of the instance.
-
-
 
 ## sanitize
 
@@ -2709,8 +2810,6 @@ sanitize: {
 // <div>the good stuff</div>
 ```
 
-
-
 ## staticDelimiters
 
 `(Array[string])`
@@ -2728,8 +2827,6 @@ var ractive = Ractive({
 ractive.set( 'foo', 'mars' )
 // still is: "hello world"
 ```
-
-
 
 ## staticTripleDelimiters
 
@@ -2749,8 +2846,6 @@ ractive.set( 'html', '<span>mars</span>' )
 // still is: "hello world"
 ```
 
-
-
 ## stripComments
 
 `(boolean)`
@@ -2764,8 +2859,6 @@ stripComments: false
 // result:
 // <!-- html comment -->hello world
 ```
-
-
 
 ## syncComputedChildren
 
@@ -2782,15 +2875,11 @@ Whether or not to invalidate the dependencies of an expression when child keypat
 
 In this example, the `input` inside the iteration is bound to a computation e.g. `filter(users, pattern).0.name` that isn't actually an addressable model. With `syncComputedChildren` enabled, when that virtual keypath is updated by a user changing the `input`, the expression will invalidate its dependencies (`filter`, `users`, and `pattern`), which will cause any other references to the `user` that happens to coincide with result of the expression to also update.
 
-
-
 ## target
 
 `(string|HTMLElement|array-like)`
 
 Alias for `el`.
-
-
 
 ## template
 
@@ -2816,23 +2905,17 @@ template (data, p) {
 
 During a `ractive.reset()`, templates provided using a function are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.
 
-
-
 ## transitions
 
 `(Object<string, Function>)`
 
 A map of transitions where the key is the name of the transition and the value is a transition definition.
 
-
-
 ## transitionsEnabled
 
 `(boolean)`
 
 Whether or not transitions are enabled. Defaults to `true`.
-
-
 
 ## tripleDelimiters
 
@@ -2848,8 +2931,6 @@ data: { html: '<span>world</span>' }
 // result:
 // hello <span>world</span>
 ```
-
-
 
 ## twoway
 
@@ -2875,7 +2956,26 @@ ractive.set( 'foo', 'fizz' )
 // input now displays "fizz"
 ```
 
+## use
 
+`([plugin])`
+
+An array of plugins to install on the instance or component. This is more or less a shorthand for calling the `use` method on a component or instance.
+
+```js
+import neato from 'some/neato/plugin';
+import thingy from 'thingy/plugin';
+
+// install a plugin in a component
+const Component = Ractive.extend({
+  use: [neato]
+});
+
+// install a plugin in an instance
+const app = window.app = new Component({
+  use: [thingy]
+});
+```
 
 ## warnAboutAmbiguity
 
@@ -2901,11 +3001,19 @@ The registry of globally available component definitions.
 
 ## Ractive.Context
 
-__From__ _0.9.4_
+__From 0.9.4__
 
 `(Object)`
 
 The prototype for `Context` objects. This is provided so that you can extend context objects provided by Ractive with your own methods and properties.
+
+## [Component].css
+
+__From 0.10.0__
+
+`(string|(CSSData) => string)`
+
+The CSS string or function that is set on the constructor. Setting this will cause the CSS for the component in the Rative-managed `<style>` element to be updated.
 
 ## Ractive.DEBUG
 
@@ -3000,7 +3108,7 @@ A key-value hash of interpolators use by `ractive.animate()` or non-CSS transiti
 
 ## [Component].Parent
 
-__From__ _0.9.1_
+__From 0.9.1__
 
 `(Ractive|Component constructor)`
 
@@ -3024,7 +3132,7 @@ Like templates, partials are parsed at the point of use. The parsed output is ca
 
 ## [Component].Ractive
 
-__From__ _0.9.1_
+__From 0.9.1__
 
 `(Ractive)`
 
@@ -3057,6 +3165,42 @@ The global registry of transition functions.
 The version of the currently loaded Ractive.
 
 # Static Methods
+
+## Ractive.addCSS()
+
+__From 0.10.0__
+
+Add CSS to the Ractive-managed `<style>` tag. This is particularly useful for plugins that aren't based on a component or macro. If you try to add the same `id` more than once, an error will be thrown.
+
+**Syntax**
+
+- `Ractive.addCSS(id, css)`
+
+**Arguments**
+
+- `id (string)`: An identifier for the styles.
+- `css (string|(CSSData) => string)`: A string of CSS or a function that receives CSS data (see `Ractive.styleSet`) and returns a string of CSS.
+
+**Example**
+
+```js
+Ractive.addCSS(
+  'fancy-buttons',
+  `button {
+    border-radius: 0.2em;
+    outline: 3px red;
+    color: blue;
+    background-color: yellow;
+    animation: buttonblink 1s linear infinite;
+    box-shadow: 2px 2px 5px rgba(0, 255, 255, 0.5);
+  }
+  @keyframes buttonblink {
+    50% {
+      color: transparent;
+    }
+  }`
+);
+```
 
 ## Ractive.escapeKey()
 
@@ -3255,9 +3399,27 @@ const info = Ractive.getContext(document.getElementById('some-node'))
 const info = Ractive.getContext('#some-node')
 ```
 
+## Ractive.hasCSS()
+
+__From 0.10.0__
+
+Determines whether or not CSS has been added with the given `id`.
+
+**Syntax**
+
+- `Ractive.hasCSS(id)`
+
+**Arguments**
+
+- `id (string)`: The id to check.
+
+**Returns**
+
+- `(boolean)`: `true` if there is already CSS installed with the given `id`.
+
 ## Ractive.isInstance()
 
-__From__ _0.9.1_
+__From 0.9.1__
 
 Determines whether or not the given object is an instance of the Ractive constructor. This is also extended to component constructors, where it will make sure that the given object is an instance of the particular constructor on which it is called.
 
@@ -3328,9 +3490,9 @@ Parses the template into an abstract syntax tree that Ractive can work on.
     - `[staticDelimiters] ([string])`: Start and end delimiters for static mustaches. Defaults to `['[[', ']]']`.
     - `[staticTripleDelimiters] ([string])`: Start and end delimiters for static triple mustaches. Defaults to `['[[[', ']]]']`.
     - `[contextLines] (integer)`: Additional lines above and below a line with a parse error to include in the error output. Defaults to `0`.
-    - `[interpolate] (Object<string, boolean>)`: Map of elements that indicates whether or not to read mustaches within the element. Defaults to `{ script: false, textarea: true, template: false, style: false }`.
+    - `[interpolate] (Object<string, boolean>)`: Map of elements that indicates whether or not to read mustaches within the element. Defaults to `{ script: false, textarea: true, template: false, style: false }`. Elements present within the map treat nested tags as text rather than elements.
     - `[csp] (boolean)`: When `true` includes pre-compiled expression functions in the template output so that `eval` is not needed at runtime. Defaults to `true`.
-    - `[preserveWhitespace] (boolean)`: When `true`, preserves whitespace in templates. Whitespace inside the `<pre>` element is preserved regardless of the value of this option. Defaults to `false`.
+    - `[preserveWhitespace] (boolean|Object<string, boolean>)`: When `true`, preserves whitespace in templates. Whitespace inside the `<pre>` element is preserved regardless of the value of this option. Defaults to `false`. If the value is a map, whitespace is not preserved by default, and the elements named in the map will have whitespace preserved based on the value of the boolean associated with their name.
     - `[stripComments] (boolean)`: When `false` will leave comments in the parsed template. Defaults to `true`.
     - `[sanitize] (boolean|Object)`: When `true`, strips inline event attributes and certain elements from the markup. Defaults to `false`.
         - `[elements] (Array<string>)`: An array of element names to blacklist.
@@ -3411,7 +3573,7 @@ Ractive.splitKeypath( 'foo.bar\\.baz' ); // [ 'foo', 'bar.baz' ]
 
 ## Ractive.sharedSet()
 
-__From__ _0.9.4_
+__From 0.9.4__
 
 Sets data in the `@shared` object without requiring access to a Ractive instance.
 
@@ -3436,7 +3598,7 @@ Ractive.sharedSet( '_', lodash )
 
 ## Ractive.styleSet()
 
-__From__ _0.9.4_
+__From 0.9.4__
 
 Sets data in the `@style` object of Ractive or the component constructor on which it is called. When an applied style that is affected by a change from `styleSet` updates, Ractive will update its manaaged style tag so that the changes show up in the browser immediately.
 
@@ -3484,6 +3646,24 @@ Unescapes the given key e.g. `foo\\.bar` => `foo.bar`.
 ```js
 Ractive.unescapeKey('foo\\.bar'); // foo.bar
 ```
+
+## Ractive.use()
+
+__From 0.10.0__
+
+Install one or more plugins globally or in a component constructor. If called on a component constructor (the result of `extend`), the plugin will be called with the construtor as the `instance` argument and the constructor prototype as the `proto` argument, so anything added to the `instance` or `proto` will be available to all instances and sub-components of the component.
+
+**Syntax**
+
+- `Ractive.use(plugin[, ...plugin])`
+
+**Arguments**
+
+- `plugin (plugin)`: A plugin function that receives `{ Ractive, instance: Ractive, proto: Ractive.defaults }` as an argument.
+
+**Returns**
+
+- `(this)`: The component on which the method was called.
 
 # Instance Properties
 
@@ -3753,6 +3933,28 @@ Children can be detached using `ractive.detachChild()`.
 
 *Example 1*: See the example for [Anchors](#anchors)
 
+## ractive.compute()
+
+Creates a new computation. This is the API equivalent of the `computed` init or extend option.
+
+**Syntax**
+
+- `ractive.compute( keypath, computation )`
+
+**Arguments**
+
+- `keypath ( string )`: The keypath at which the computation should be available. This may be more than one level deep and may include wildcards.
+- `computation ( string | function | object)`: The computation to be installed at the given keypath.
+    - `string`: The string that will be parsed and turned into a getter function.
+    - `function`: A getter function to be used for the computation.
+    - `object`: An object with a `get` and optionally a `set` to be used for the computation.
+
+**Returns**
+
+- `(Promise)`: A `Promise` that resolves with the child instance when any transitions are complete.
+
+If there are already bits of template or observers that depend on the target keypath, they will be transitioned to the new computed model.
+
 ## ractive.detach()
 
 Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with `ractive.insert()` (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).
@@ -4016,7 +4218,7 @@ Fires an event, which will be received by handlers that were bound using `ractiv
 **Arguments**
 
 - `name (string)`: The name of the event.
-- `[context] (context|object)`: A context object to use for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (`{}`) before the additional arguments. __From__ _0.9.4_, if you want to reuse a context exactly as it exists, it should have a `refire` property that is `=== true`.
+- `[context] (context|object)`: A context object to use for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (`{}`) before the additional arguments. __From 0.9.4__, if you want to reuse a context exactly as it exists, it should have a `refire` property that is `=== true`.
 - `[arg] (any)`: The arguments that event handlers will be called with.
 
 **Returns**
@@ -4182,7 +4384,7 @@ Creates a link between two keypaths that keeps them in sync. Since Ractive can't
 - `destination (string)`: The keypath to use as the destination - or where you'd like the data 'copied'.
 - `options (hash)`:
   - `instance` or `ractive`: The Ractive instance in which to find the source keyapth. This allows cross-instance linking much like mapped paths between components.
-  - `keypath`: __from__ _0.9.4_ - The keypath to register as the source of the link. This is an advanced option that allows you to specify how the link should shuffle. For instance `items.0.name` will never shuffle, but if the keypath is specified as `.name`, then it will shuffle when `items.0` shuffles.
+  - `keypath`: __From 0.9.4__ - The keypath to register as the source of the link. This is an advanced option that allows you to specify how the link should shuffle. For instance `items.0.name` will never shuffle, but if the keypath is specified as `.name`, then it will shuffle when `items.0` shuffles.
 
 **Returns**
 
@@ -5055,6 +5257,24 @@ ractive.updateModel()
 alert( ractive.get( 'name' ) ); // alerts 'Jim'
 ```
 
+## ractive.use()
+
+__From 0.10.0__
+
+Install one or more plugins in a Ractive instance.
+
+**Syntax**
+
+- `ractive.use(plugin[, ...plugin])`
+
+**Arguments**
+
+- `plugin (plugin)`: A plugin function that receives `{ Ractive, instance: ractive, proto: ractive }` as an argument.
+
+**Returns**
+
+- `(this)`: The instance on which the method was called.
+
 # Context Object
 
 The context object is the type of object you receive when calling getContext(). This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.
@@ -5155,7 +5375,7 @@ Ractive.getContext('#findMe').getBindingPath(); // Returns "foo.bar.baz"
 
 ## context.getParent()
 
-__From__ _0.9.4_
+__From 0.9.4__
 
 Gets the parent context of this context. This is finer grained than element access provided by `Ractive.getContext`, as it can target sections that exist nested between elements.
 

@@ -48,6 +48,34 @@ Ractive({
 
 These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the [changelog](https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md).
 
+## Migrating from 0.9
+
+### Defaults
+
+`resolveInstanceMembers` now defaults to `false` to avoid foot maimings associated with common instance member names and ambiguous references.
+
+### Computations
+
+The stringy syntax for computed properties has changed to plain old expression syntax. This means that `${length} * ${width}` as a computation is now just `length * width`, which is hopefully a little less surprising given `${interpolator}` syntax in template strings.
+
+'.'s in computation keypaths must now be escaped if they're meant to be part of a single key, as you can now add computations below the root level.
+
+### Template format
+
+Template positions in parsed template AST are now stored in the `q` member rather than the `p` member to avoid accidental overlap with local partials.
+
+### Data
+
+Checking that a value exists at some keypath in the data will no longer exclude the root prototypes (`Object`, `Function`, `Array`) because doing so creates issues when dealing with `Object.create(null)`. If you keep your references unambiguous, this shouldn't cause any issues. The simplest example of where this can cause trouble is with `{ items: [{ length: 10 }, {}] }` in `{{#each items}}{{length}}{{/each}}` where the second length will be that of the items array because the object has no length property but its parent context, the array, does.
+
+Aliases now take precedent over properties from contexts above their alias defintions. This means that `{{#with { foo: 10 } }}{{#with 42 as foo}}{{foo}}{{/with}}{{/with}}` results in `42` rather than `10`, which is hopefully the less surprising behavior.
+
+The context pop reference prefix `^^/` now correctly handles `{{#each}}` blocks such that `^^/ === ../../` from immediately within the block body. This is because `^^/` is supposed to jump explicit contexts and not just implicit contexts as provided by each iteration.
+
+### Polyfills
+
+`polyfills.js` is no longer included in the build, as it was just an empty placeholder since the handful of polyfills that were in it were included in the main build.
+
 ## Migrating from 0.8
 
 ### Removed deprecations
