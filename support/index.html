@@ -69,6 +69,10 @@
       </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-09">Migrating from 0.9</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#migrating-from-08">Migrating from 0.8</a>
         </li>
       
@@ -136,6 +140,20 @@
 
 <h1 id="migrating-from-previous-versions"><a class="toclink" href="#migrating-from-previous-versions">Migrating from previous versions</a></h1>
 <p>These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the <a href="https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md">changelog</a>.</p>
+<h2 id="migrating-from-09"><a class="toclink" href="#migrating-from-09">Migrating from 0.9</a></h2>
+<h3 id="defaults"><a class="toclink" href="#defaults">Defaults</a></h3>
+<p><code>resolveInstanceMembers</code> now defaults to <code>false</code> to avoid foot maimings associated with common instance member names and ambiguous references.</p>
+<h3 id="computations"><a class="toclink" href="#computations">Computations</a></h3>
+<p>The stringy syntax for computed properties has changed to plain old expression syntax. This means that <code>${length} * ${width}</code> as a computation is now just <code>length * width</code>, which is hopefully a little less surprising given <code>${interpolator}</code> syntax in template strings.</p>
+<p>'.'s in computation keypaths must now be escaped if they're meant to be part of a single key, as you can now add computations below the root level.</p>
+<h3 id="template-format"><a class="toclink" href="#template-format">Template format</a></h3>
+<p>Template positions in parsed template AST are now stored in the <code>q</code> member rather than the <code>p</code> member to avoid accidental overlap with local partials.</p>
+<h3 id="data"><a class="toclink" href="#data">Data</a></h3>
+<p>Checking that a value exists at some keypath in the data will no longer exclude the root prototypes (<code>Object</code>, <code>Function</code>, <code>Array</code>) because doing so creates issues when dealing with <code>Object.create(null)</code>. If you keep your references unambiguous, this shouldn't cause any issues. The simplest example of where this can cause trouble is with <code>{ items: [{ length: 10 }, {}] }</code> in <code>{{#each items}}{{length}}{{/each}}</code> where the second length will be that of the items array because the object has no length property but its parent context, the array, does.</p>
+<p>Aliases now take precedent over properties from contexts above their alias defintions. This means that <code>{{#with { foo: 10 } }}{{#with 42 as foo}}{{foo}}{{/with}}{{/with}}</code> results in <code>42</code> rather than <code>10</code>, which is hopefully the less surprising behavior.</p>
+<p>The context pop reference prefix <code>^^/</code> now correctly handles <code>{{#each}}</code> blocks such that <code>^^/ === ../../</code> from immediately within the block body. This is because <code>^^/</code> is supposed to jump explicit contexts and not just implicit contexts as provided by each iteration.</p>
+<h3 id="polyfills"><a class="toclink" href="#polyfills">Polyfills</a></h3>
+<p><code>polyfills.js</code> is no longer included in the build, as it was just an empty placeholder since the handful of polyfills that were in it were included in the main build.</p>
 <h2 id="migrating-from-08"><a class="toclink" href="#migrating-from-08">Migrating from 0.8</a></h2>
 <h3 id="removed-deprecations"><a class="toclink" href="#removed-deprecations">Removed deprecations</a></h3>
 <p>0.9 removes any of the remaining deprecations from 0.8, including:</p>
@@ -148,7 +166,7 @@
 </ul>
 <p>Part of removing directive deprecations allowed using the plain expression parser for attributes and directives, which means that directives that parse in an expression context are much more resilient to things like quote pileup with strings e.g. <code>as-target=""id as a string""</code>.</p>
 <p><strong>Note</strong>: this also means that directive values aren't processed as HTML before being parsed, so HTML entities are no longer automatically encoded within directive values.</p>
-<h3 id="template-format"><a class="toclink" href="#template-format">Template format</a></h3>
+<h3 id="template-format_1"><a class="toclink" href="#template-format_1">Template format</a></h3>
 <p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.9.</p>
 <h3 id="event-delegation"><a class="toclink" href="#event-delegation">Event delegation</a></h3>
 <p>Ractive will now automatically set up event delegation for elements that contain iterative sections. This installs a single DOM listener on the host element for each event type within the iterative section, and when an event fires from one of the iterative elements with a listener, the parent delegation target handles triggering listeners on the correct elements. This prevents having to set up large numbers of event listeners in iterative sections, but it can also surface inconsistencies in browser event implementations. If you need to disable event delegation for a special case, you can add a <code>no-delegation</code> attribute to the element containing the iterative section, pass <code>delegate: false</code> to your component or instance, or set <code>Ractive.defaults.delegate</code> to <code>false</code>.</p>
@@ -158,7 +176,7 @@
 <p>Yielding is no longer restricted to inline partials, and each partial may be yielded more than once. You will no longer get a warning if you try to yield an instance or dynamic partial or if you yield the same partial multiple times.</p>
 <h3 id="nointro-inheritance"><a class="toclink" href="#nointro-inheritance"><code>noIntro</code> inheritance</a></h3>
 <p>The <code>noIntro</code> setting of an instance that contains components will now apply to the components too, unless those components have their own <code>noIntro</code> setting.</p>
-<h3 id="polyfills"><a class="toclink" href="#polyfills">Polyfills</a></h3>
+<h3 id="polyfills_1"><a class="toclink" href="#polyfills_1">Polyfills</a></h3>
 <p>There is no longer a <code>legacy</code> build of Ractive.js available. Instead, a separate <code>polyfills</code> library is available that can be included before Ractive.js is loaded, or you can supply your own polyfills, shims, or shams.</p>
 <h3 id="node-registry"><a class="toclink" href="#node-registry">Node registry</a></h3>
 <p>Elements with an <code>id</code> attribute are no longer collected into a <code>nodes</code> map on the Ractive.js instance. If you require similar functionality, it can be achieved in a much more flexible way with a decorator.</p>
@@ -191,7 +209,7 @@
 <h3 id="multiple-inheritance"><a class="toclink" href="#multiple-inheritance">Multiple inheritance</a></h3>
 <p>Components can no longer inherit from multiple other components at the same level, meaning that <code>Ractive.extend(FirstComponent, SecondComponent)</code> is no longer possible. You can still set up an inheritance hierachy multiple levels deep with <code>const First = Ractive.extend({ ...options }); const Second = First.extend({ ...others });</code>.</p>
 <h2 id="migrating-from-07"><a class="toclink" href="#migrating-from-07">Migrating from 0.7</a></h2>
-<h3 id="template-format_1"><a class="toclink" href="#template-format_1">Template format</a></h3>
+<h3 id="template-format_2"><a class="toclink" href="#template-format_2">Template format</a></h3>
 <p>The template format produced by <code>Ractive.parse</code> has changed, making it incompatible with previous versions of Ractive.js and their template formats. You will need to re-parse any pre-parsed templates for use with 0.8.</p>
 <h3 id="ie8"><a class="toclink" href="#ie8">IE8</a></h3>
 <p>IE8 is no longer supported. If you still need to support IE8, well, we're very, very sorry...</p>
@@ -452,6 +470,10 @@
       <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#migrating-from-previous-versions">Migrating from previous versions</a>
       </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#migrating-from-09">Migrating from 0.9</a>
+        </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#migrating-from-08">Migrating from 0.8</a>
