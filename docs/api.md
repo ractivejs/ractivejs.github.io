@@ -3473,6 +3473,58 @@ Joins the given keys into a properly escaped keypath.
 Ractive.joinKeys( 'foo', 'bar.baz' ); // foo.bar\.baz
 ```
 
+## Ractive.macro()
+
+Creates a macro partial with the given handler and options. Macro partials sit somewhere between regular partials and components in power and heft. Many things that can't be achieved with regular parials, like adding styles to the managed CSS, easily managing template-local data, and mangling templates before render, can be with macros. Some of the things that can be achieved with components, like having namespaced events and a fully isolated data context, can't be with macros.
+
+Macros also have the ability to swap templates at any point in time, like a dynamic partial. Instead of responding to a change in a model though, there is a helper function, `setTemplate`, on the context handle passed to the macro init function.
+
+**Syntax**
+
+- `Ractive.macro(handler [, options])`
+
+**Arguments**
+
+- `handler ((context, ...attributes) => handle)`: The defining function for the macro.
+
+    The context that is passed into the handler is augmented with a few extra properties and methods.
+
+    **Properties**
+
+    - `attributes (Object<string, any>)`: The map of current attribute values, if any.
+    - `name`: The name with which this macro was created in the template.
+    - `partials`: A shallow copy of any partials associated with the macro, including `content`.
+    - `proxy`: The VDOM node that is managing the macro.
+    - `template`: A shallow copy of the template used to create the macro.
+
+    **Methods**
+
+    - `aliasLocal(name [, keypath])`: Creates an alias to the `@local` data associated with the proxy.
+        - `name (string)`: The name to use when creating the alias.
+        - `keypath (string)`: If supplied the child keypath of the `@local` data to use when creating the alias.
+    - `setTemplate(template)`: Sets the template to be rendered in the DOM. This can be called at any time to cause the template to be re-rendered.
+        - `template`: This can be any of the values that can be used with a partial. If the template is not parsed and the parser is not available, an error will be thrown.
+    
+    **Return**
+
+    The handler function can optionally return an object with local lifecycle hooks, much like a decorator:
+
+    - `render`: A function to be called when the macro is rendered.
+    - `update`: A function to be called when the attributes of the macro are updated.
+    - `invalidate`: A function to be called when an part of the template that is controlled by the macro will be updated.
+    - `teardown`: A function to be called when the macro is unrendered.
+
+- `options`: An optional map of options to use when creating the macro.
+    - `attributes (string[])`: A list of reserved attributes that will be passed to the handler function and optional `update` hook.
+    - `css (string|(data) => string)`: A CSS string or CSS function to set the managed CSS for the macro.
+    - `cssData (object)`: Initial CSS data to be passed to a CSS function.
+    - `cssId (string)`: An optional id to use when scoping CSS for the macro.
+    - `noCssTransform (boolean)`: If `true`, macro CSS will not be scoped.
+
+**Returns**
+
+- `(macro)`: A macro that can be installed in a `partials` registry.
+
 ## Ractive.parse()
 
 Parses the template into an abstract syntax tree that Ractive can work on.
