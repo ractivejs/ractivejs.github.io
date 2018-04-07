@@ -631,6 +631,10 @@
         </li>
       
         <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivemacro">Ractive.macro()</a>
+        </li>
+      
+        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveparse">Ractive.parse()</a>
         </li>
       
@@ -3989,6 +3993,62 @@ Ractive.isInstance(r); //true
 <pre><code class="js">Ractive.joinKeys( 'foo', 'bar.baz' ); // foo.bar\.baz
 </code></pre>
 
+<h2 id="ractivemacro"><a class="toclink" href="#ractivemacro">Ractive.macro()</a></h2>
+<p>Creates a macro partial with the given handler and options. Macro partials sit somewhere between regular partials and components in power and heft. Many things that can't be achieved with regular parials, like adding styles to the managed CSS, easily managing template-local data, and mangling templates before render, can be with macros. Some of the things that can be achieved with components, like having namespaced events and a fully isolated data context, can't be with macros.</p>
+<p>Macros also have the ability to swap templates at any point in time, like a dynamic partial. Instead of responding to a change in a model though, there is a helper function, <code>setTemplate</code>, on the context handle passed to the macro init function.</p>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><code>Ractive.macro(handler [, options])</code></li>
+</ul>
+<p><strong>Arguments</strong></p>
+<ul>
+<li>
+<p><code>handler ((context, ...attributes) =&gt; handle)</code>: The defining function for the macro.</p>
+<p>The context that is passed into the handler is augmented with a few extra properties and methods.</p>
+<p><strong>Properties</strong></p>
+<ul>
+<li><code>attributes (Object&lt;string, any&gt;)</code>: The map of current attribute values, if any.</li>
+<li><code>name</code>: The name with which this macro was created in the template.</li>
+<li><code>partials</code>: A shallow copy of any partials associated with the macro, including <code>content</code>.</li>
+<li><code>proxy</code>: The VDOM node that is managing the macro.</li>
+<li><code>template</code>: A shallow copy of the template used to create the macro.</li>
+</ul>
+<p><strong>Methods</strong></p>
+<ul>
+<li><code>aliasLocal(name [, keypath])</code>: Creates an alias to the <code>@local</code> data associated with the proxy.<ul>
+<li><code>name (string)</code>: The name to use when creating the alias.</li>
+<li><code>keypath (string)</code>: If supplied the child keypath of the <code>@local</code> data to use when creating the alias.</li>
+</ul>
+</li>
+<li><code>setTemplate(template)</code>: Sets the template to be rendered in the DOM. This can be called at any time to cause the template to be re-rendered.<ul>
+<li><code>template</code>: This can be any of the values that can be used with a partial. If the template is not parsed and the parser is not available, an error will be thrown.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Return</strong></p>
+<p>The handler function can optionally return an object with local lifecycle hooks, much like a decorator:</p>
+<ul>
+<li><code>render</code>: A function to be called when the macro is rendered.</li>
+<li><code>update</code>: A function to be called when the attributes of the macro are updated.</li>
+<li><code>invalidate</code>: A function to be called when an part of the template that is controlled by the macro will be updated.</li>
+<li><code>teardown</code>: A function to be called when the macro is unrendered.</li>
+</ul>
+</li>
+<li>
+<p><code>options</code>: An optional map of options to use when creating the macro.</p>
+<ul>
+<li><code>attributes (string[])</code>: A list of reserved attributes that will be passed to the handler function and optional <code>update</code> hook.</li>
+<li><code>css (string|(data) =&gt; string)</code>: A CSS string or CSS function to set the managed CSS for the macro.</li>
+<li><code>cssData (object)</code>: Initial CSS data to be passed to a CSS function.</li>
+<li><code>cssId (string)</code>: An optional id to use when scoping CSS for the macro.</li>
+<li><code>noCssTransform (boolean)</code>: If <code>true</code>, macro CSS will not be scoped.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<ul>
+<li><code>(macro)</code>: A macro that can be installed in a <code>partials</code> registry.</li>
+</ul>
 <h2 id="ractiveparse"><a class="toclink" href="#ractiveparse">Ractive.parse()</a></h2>
 <p>Parses the template into an abstract syntax tree that Ractive can work on.</p>
 <p><strong>Syntax</strong></p>
@@ -6775,6 +6835,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivejoinkeys">Ractive.joinKeys()</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#ractivemacro">Ractive.macro()</a>
         </li>
       
         <li class="pure-menu-item">
