@@ -1,15 +1,16 @@
 <div class="nav-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
     {% for nav_item in nav %}
-      <li class="pure-menu-item {% if nav_item.active %}pure-menu-selected{% endif %}">
-        <a class="pure-menu-link pure-menu-heading" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
-      </li>
-      {% for nav_item in nav_item.children %}
+      {% if nav_item.title != 'Legacy' %}
         <li class="pure-menu-item {% if nav_item.active %}pure-menu-selected{% endif %}">
-          <a class="pure-menu-link" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+          <a class="pure-menu-link pure-menu-heading" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
         </li>
-      {% endfor %}
-      </li>
+        {% for nav_item in nav_item.children %}
+          <li class="pure-menu-item {% if nav_item.active %}pure-menu-selected{% endif %}">
+            <a class="pure-menu-link" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
     {% endfor %}
     <li class="pure-menu-item">
       <a class="pure-menu-link pure-menu-heading" href="{{ config.extra.lib_url }}">GitHub</a>

@@ -9,8 +9,15 @@
 * [Google Groups](http://groups.google.com/forum/#!forum/ractive-js)
 
 ## Legacy documentation
+### 0.9
 
-Legacy documentation can be found at [https://ractive.js.org/v0.x](https://ractive.js.org/v0.x).
+- [API](/legacy/0.9/api/)
+- [Plugins](/legacy/0.9/plugins/)
+- [Concepts](/legacy/0.9/concepts/)
+
+### 0.8 and older
+
+Documentation for versions 0.8 and older can be found at [https://ractive.js.org/v0.x](https://ractive.js.org/v0.x).
 
 ## Builds
 
