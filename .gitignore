@@ -2,4 +2,5 @@ site/
 bin/
 include/
 lib/
+share/
 pip-selfcheck.json
