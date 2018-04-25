@@ -1196,15 +1196,15 @@ ractive.get( 'letters[0]' ) // undefined
 <h3 id="reference-resolution"><a class="toclink" href="#reference-resolution">Reference resolution</a></h3>
 <p>Ractive follows the following resolution algorithm to find the value of a reference:</p>
 <ol>
-<li>If the reference a special reference, resolve with that keypath.</li>
-<li>If the reference is explicit or matches a path in the current context exactly, resolve with that keypath.</li>
+<li>If the reference is a special reference (<code>/^@/</code>), resolve with the matching special model.</li>
+<li>If the reference is explicit (prefixed/relative) or matches a path in the current context exactly, resolve with the model relative to the current context.</li>
+<li>If the reference keypath only has one key, see if it matches a helper, and if so, resolve with that model. If not, match with the base key for the rest of the steps e.g. <code>foo</code> in <code>foo.bar.baz</code>.</li>
 <li>Grab the current virtual node from the template hierarchy.</li>
-<li>If the reference matches an alias, section indexes, or keys, resolve with that keypath.</li>
-<li>If the reference matches any mappings, resolve with that keypath.</li>
-<li>If the reference matches a path on the context, resolve with that keypath.</li>
-<li>Remove the innermost context from the stack. Repeat steps 3-7.</li>
-<li>If the reference is a valid keypath by itself, resolve with that keypath.</li>
-<li>If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.</li>
+<li>If the base matches an alias, section indexes, or keys, resolve with that model.</li>
+<li>If the base matches a path on the context, resolve with the model relative to the context.</li>
+<li>Remove the innermost context from the stack. If there are still contexts left in the stack, goto 4.</li>
+<li>If <code>resolveInstanceMembers</code> is true and the base matches an instance member, resolve with the path to the member.</li>
+<li>If the reference is a valid keypath by itself, resolve with that keypath in the starting context.</li>
 </ol>
 <h3 id="context-stack"><a class="toclink" href="#context-stack">Context stack</a></h3>
 <p>Whenever Ractive encounters section mustaches or similar constructs, it stores the context in a <em>context stack</em>. Ractive then resolves references relative to the top of the stack, and popping off contexts until the reference resolves to a keypath.</p>

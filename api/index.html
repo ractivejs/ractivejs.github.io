@@ -192,6 +192,10 @@
           <a class="pure-menu-link" href="#style-42">style-*</a>
         </li>
       
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#bind-42">bind-*</a>
+        </li>
+      
       </li>
     
       <li class="pure-menu-item">
@@ -2068,6 +2072,13 @@ const ractive = new Ractive({
 <li>Any value set on the bound data will always be rendered as HTML.</li>
 </ul>
 <h1 id="directives"><a class="toclink" href="#directives">Directives</a></h1>
+<p>There are two contexts in which directives are parsed: string and expression. In a string context, mustaches must be used to reference data. In an expression context, mustaches should not be used, as the expression context effectively the same as inside of mustaches. This means that <code>class-</code>, <code>on-</code>, <code>as-</code>, <code>-in</code>, <code>-out</code>, <code>-in-out</code>, and <code>bind-</code> directive values, being parsed in an expression context, should never contain mustaches. Other attributes and directives are parsed in a string context.</p>
+<p>One of the nice things about expression context is that, combined with Ractive's unquoted attribute value support, you can avoid quote plileup for string expressions using backticks. Some text editors don't really like backticks on attributes, though.</p>
+<pre><code class="html">&lt;div as-tracked=`id-${.id}`&gt;
+  The tracked decorator will be passed the string &quot;id-&quot; + .id as an argument.
+&lt;/div&gt;
+</code></pre>
+
 <h2 id="twoway"><a class="toclink" href="#twoway">twoway</a></h2>
 <p>The element-specific directive form of the <code>twoway</code> initialization option.</p>
 <pre><code class="html">&lt;!-- By default, two-way is enabled. Editing the input updates foo. --&gt;
@@ -2155,6 +2166,13 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;500
 
 <p><code>style-*</code> directive values are processed as strings. Mustaches can also be used to supply the values. When the values are updated, the appropriate style property on the element will update to the new value.</p>
 <pre><code class="html">&lt;div style-vertical-align=&quot;{{ vAlign }}&quot; style-textAlign=&quot;{{ tAlign }}&quot;&gt;...&lt;/div&gt;
+</code></pre>
+
+<h2 id="bind-42"><a class="toclink" href="#bind-42">bind-*</a></h2>
+<p><code>bind-*</code> directives are the same as regular attributes, except they are parsed in an expression context rather than a string context.</p>
+<pre><code class="html">&lt;input value=&quot;{{foo}}&quot; /&gt;
+is the same as
+&lt;input bind-value=&quot;foo&quot; /&gt;
 </code></pre>
 
 <h1 id="keypath-prefixes"><a class="toclink" href="#keypath-prefixes">Keypath prefixes</a></h1>
@@ -3453,6 +3471,7 @@ console.log( ractive.toHTML() )
 <h2 id="resolveinstancemembers"><a class="toclink" href="#resolveinstancemembers">resolveInstanceMembers</a></h2>
 <p><code>(boolean)</code></p>
 <p>Whether or not to include members of the Ractive instance at the end of the reference resolution process. Defaults to <code>false</code>.</p>
+<p>Prior to <code>0.10.0</code> defaults to <code>true</code>.</p>
 <pre><code class="handlebars">&lt;button on-click=&quot;toggle('show')&quot;&gt;Toggle&lt;/button&gt;
 </code></pre>
 
@@ -6406,6 +6425,10 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#style-42">style-*</a>
+        </li>
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="#bind-42">bind-*</a>
         </li>
       
       </li>
