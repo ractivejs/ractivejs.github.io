@@ -2769,6 +2769,8 @@ console.log( ractive.toHTML() )
 
 Whether or not to include members of the Ractive instance at the end of the reference resolution process. Defaults to `false`.
 
+Prior to `0.10.0` defaults to `true`.
+
 ```handlebars
 <button on-click="toggle('show')">Toggle</button>
 ```
