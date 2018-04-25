@@ -1077,6 +1077,16 @@ There are a few caveats when binding to an element with `contenteditable`:
 
 # Directives
 
+There are two contexts in which directives are parsed: string and expression. In a string context, mustaches must be used to reference data. In an expression context, mustaches should not be used, as the expression context effectively the same as inside of mustaches. This means that `class-`, `on-`, `as-`, `-in`, `-out`, `-in-out`, and `bind-` directive values, being parsed in an expression context, should never contain mustaches. Other attributes and directives are parsed in a string context.
+
+One of the nice things about expression context is that, combined with Ractive's unquoted attribute value support, you can avoid quote plileup for string expressions using backticks. Some text editors don't really like backticks on attributes, though.
+
+```html
+<div as-tracked=`id-${.id}`>
+  The tracked decorator will be passed the string "id-" + .id as an argument.
+</div>
+```
+
 ## twoway
 
 The element-specific directive form of the `twoway` initialization option.
@@ -1189,6 +1199,16 @@ Ractive({
 
 ```html
 <div style-vertical-align="{{ vAlign }}" style-textAlign="{{ tAlign }}">...</div>
+```
+
+## bind-\*
+
+`bind-*` directives are the same as regular attributes, except they are parsed in an expression context rather than a string context.
+
+```html
+<input value="{{foo}}" />
+is the same as
+<input bind-value="foo" />
 ```
 
 
