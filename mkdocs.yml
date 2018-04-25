@@ -47,3 +47,8 @@ pages:
   - Resources: resources.md
   - Concepts: concepts.md
   - Support: support.md
+  - Legacy:
+    - '0.9':
+      - API: legacy/0.9/api.md
+      - Plugins: legacy/0.9/plugins.md
+      - Concepts: legacy/0.9/concepts.md
