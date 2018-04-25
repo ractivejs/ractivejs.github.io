@@ -1,3 +1,5 @@
+template: main-legacy.html
+
 # Architecture
 
 There are three major sections in the Ractive source code: The parser which handles template parsing, the models which handle data management and the views which handle the virtual DOM. This document aims to give a breakdown of just what exactly each of these sections do.

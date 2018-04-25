@@ -1,3 +1,5 @@
+template: main-legacy.html
+
 # Adaptors
 
 In some cases you want to write your UI in Ractive but have a custom back-end manage the data. Adaptors allow you to teach Ractive how to talk to those custom data sources without having to change the way you write Ractive or having to write a lot of connector code up front.
