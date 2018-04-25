@@ -1276,15 +1276,15 @@ A reference is a string that refers to a piece of data. A keypath is an example 
 
 Ractive follows the following resolution algorithm to find the value of a reference:
 
-1. If the reference a special reference, resolve with that keypath.
-2. If the reference is explicit or matches a path in the current context exactly, resolve with that keypath.
-3. Grab the current virtual node from the template hierarchy.
-4. If the reference matches an alias, section indexes, or keys, resolve with that keypath.
-5. If the reference matches any mappings, resolve with that keypath.
-6. If the reference matches a path on the context, resolve with that keypath.
-7. Remove the innermost context from the stack. Repeat steps 3-7.
-8. If the reference is a valid keypath by itself, resolve with that keypath.
-9. If the reference is still unresolved, add it to the 'pending resolution' pile. Each time potentially matching keypaths are updated, resolution will be attempted for the unresolved reference.
+1. If the reference is a special reference (`/^@/`), resolve with the matching special model.
+2. If the reference is explicit (prefixed/relative) or matches a path in the current context exactly, resolve with the model relative to the current context.
+3. If the reference keypath only has one key, see if it matches a helper, and if so, resolve with that model. If not, match with the base key for the rest of the steps e.g. `foo` in `foo.bar.baz`.
+4. Grab the current virtual node from the template hierarchy.
+5. If the base matches an alias, section indexes, or keys, resolve with that model.
+6. If the base matches a path on the context, resolve with the model relative to the context.
+7. Remove the innermost context from the stack. If there are still contexts left in the stack, goto 4.
+8. If `resolveInstanceMembers` is true and the base matches an instance member, resolve with the path to the member.
+9. If the reference is a valid keypath by itself, resolve with that keypath in the starting context.
 
 ### Context stack
 
