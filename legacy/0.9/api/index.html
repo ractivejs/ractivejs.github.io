@@ -16,7 +16,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind:400,600,700">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/g/highlight.js@9.11.0(styles/github.min.css),pure@0.6.2(pure-min.css+grids-responsive-min.css)">
-  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="../../../theme.css">
 
   <link rel="stylesheet" href="/static/css/index.css">
 
@@ -37,12 +37,6 @@
         <div class="main__sidebar">
           <div class="toc pure-menu pure-menu-scrollable">
   <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#api">API</a>
-      </li>
-      
-      </li>
     
       <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#mustaches">Mustaches</a>
@@ -78,10 +72,6 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#with-sections">With sections</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#await-sections">Await sections</a>
         </li>
       
         <li class="pure-menu-item">
@@ -237,10 +227,6 @@
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#last">@last</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#keypath">@keypath</a>
         </li>
       
@@ -364,10 +350,6 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#events">events</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#interpolate">interpolate</a>
         </li>
       
         <li class="pure-menu-item">
@@ -507,10 +489,6 @@
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#use">use</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#warnaboutambiguity">warnAboutAmbiguity</a>
         </li>
       
@@ -530,10 +508,6 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivecontext">Ractive.Context</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#componentcss">[Component].css</a>
         </li>
       
         <li class="pure-menu-item">
@@ -595,10 +569,6 @@
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractiveaddcss">Ractive.addCSS()</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveescapekey">Ractive.escapeKey()</a>
         </li>
       
@@ -619,19 +589,11 @@
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractivehascss">Ractive.hasCSS()</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveisinstance">Ractive.isInstance()</a>
         </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivejoinkeys">Ractive.joinKeys()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractivemacro">Ractive.macro()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -652,10 +614,6 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveunescapekey">Ractive.unescapeKey()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractiveuse">Ractive.use()</a>
         </li>
       
       </li>
@@ -728,10 +686,6 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveattachchild">ractive.attachChild()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractivecompute">ractive.compute()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -896,10 +850,6 @@
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveupdatemodel">ractive.updateModel()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractiveuse_1">ractive.use()</a>
         </li>
       
       </li>
@@ -1130,43 +1080,7 @@
       </div>
       <div class="main__content-container pure-u-1 pure-u-md-3-4">
         <div class="main__content">
-          <h1 id="api"><a class="toclink" href="#api">API</a></h1>
-<p>This page contains <em>all</em> of the main API available in Ractive, including that provided by templates. This can be a little bit overwhelming, but it's also very searchable. If you're new to Ractive and not exactly sure what you're looking for, we recommend starting with <a href="../tutorials/hello-world">the tutorial</a> to get the basics and circling back here later. Here's a basic breakdown of the sections and what you can find in them:</p>
-<ul>
-<li>
-<p>Mustaches</p>
-<p>This section describes the main template constructs that are used in Ractive. Plain mustaches <code>{{like_this}}</code> are used to inject values into the DOM. <code>{{#if conditionals}}</code> are used to conditionally add or remove content. <code>{{#each iterations}}</code> are used to display content for every element in a list or object. <code>{{#with contexts}}</code> are used to scope data for a section of template.</p>
-</li>
-<li>
-<p>Data Binding, Directives, Special References</p>
-<p>These sections make up the remainder of the template constructs that are used in Ractive. Directives control things like how an element transitions in an out of the DOM, what event listeners are installed on an element, and how two-way bindings are handled. Data Binding describes the different form element bindings available and the special directives that are used to apply them. Special References describes all of the template context-based magic variables that are automatically supplied to your template by Ractive.</p>
-</li>
-<li>
-<p>Initialization Options</p>
-<p>These are the options you can pass into a Ractive constructor to control how the instance behaves. Some of them can also be passed to <code>extend</code> and <code>extendWith</code> to control how a Ractive component behaves. This is where you'll find how to specify your template, data, event listeners, and observers that define your app, as well as options to control other behavior.</p>
-</li>
-<li>
-<p>Static Properties</p>
-<p>These are properties available either solely on the <code>Ractive</code> constructor singleton or on component constructors that have been created by <code>extend</code> or augmented by <code>extendWith</code>. Global plugin registries and prototypes are found here. </p>
-</li>
-<li>
-<p>Static Methods</p>
-<p>This is a collection of helper functions that do things like parse a template, provide instance-free access to cross-instance state, create or augment Ractive components, and perform utility functions, like escaping keypaths.</p>
-</li>
-<li>
-<p>Instance Properties</p>
-<p>These are mostly instance-local plugin registries, but they also include things like references to parent and root instances for components.</p>
-</li>
-<li>
-<p>Instance Methods</p>
-<p>Along with the template and a few init options, these make up your primary interface with Ractive. You can interact with data (<code>get</code>, <code>set</code>, <code>toggle</code>, array methods), invalidate data (<code>update</code>), find child DOM nodes and components (<code>find</code>, <code>findComponent</code>, etc), handle event subscriptions (<code>on</code>, <code>off</code>, etc), manage rendering (<code>render</code>, <code>insert</code>, <code>detach</code>, <code>unrender</code>), and get a handle to a Context based on a selector or a DOM node (<code>getContext</code>).</p>
-</li>
-<li>
-<p>Context Object</p>
-<p>Context objects are a handle to a specific point in a template, usually based on a DOM node. They bridge the gap between the template and the DOM, so that you can interact with the template directly. Context objects contain analogs to all of the instance methods available on a Ractive instance, but these methods are scoped to the context with which they are associated. This allows you to do things like set relative paths, check to see if an element has an event directive, and interact with any bindings. Context objects are automatically provided as the first argument to any event listener. They can also be acquired from a template using the <code>@context</code> special reference and from the API using <code>getContext</code>.</p>
-</li>
-</ul>
-<h1 id="mustaches"><a class="toclink" href="#mustaches">Mustaches</a></h1>
+          <h1 id="mustaches"><a class="toclink" href="#mustaches">Mustaches</a></h1>
 <h2 id="variables"><a class="toclink" href="#variables">Variables</a></h2>
 <p><code>{{ }}</code>, <code>{{&amp; }}</code> and <code>{{{ }}}</code> render a reference. They are also used for binding when used on directives. <code>{{ }}</code> escapes the reference while <code>{{&amp; }}</code> and <code>{{{ }}}</code> do not.</p>
 <pre><code class="js">Ractive({
@@ -1300,14 +1214,14 @@
 </code></pre>
 
 <h2 id="each-sections"><a class="toclink" href="#each-sections">Each sections</a></h2>
-<p><code>{{#each }}</code> renders the block of markup for each item in the iterable. The context of the section is the value of the currently iterated item. <code>{{else}}</code> and <code>{{elseif}}</code> are supported and render if the iterable is empty. The iterable may be an array or an object, and if it is an object, the keys will be iterated with the context of each iteration being the value at the key associated with it.</p>
+<p><code>{{#each }}</code> renders the block of markup for each item in the iterable. The context of the section is the value of the currently iterated item. <code>{{else}}</code> and <code>{{elseif}}</code> are supported and render if the iterable is empty.</p>
 <pre><code class="js">Ractive({
   data: {
     people: [{name: 'Alice'},{name: 'Bob'},{name: 'Eve'}]
   },
   template: `
     {{#each people}}
-      Hi! I'm {{.name}}!
+      Hi! I'm {{name}}!
     {{else}}
       There's nobody here
     {{/each}}
@@ -1315,42 +1229,6 @@
 })
 </code></pre>
 
-<p>If you want to refer to the item in an iteration by name, you can optionally supply an alias for it.</p>
-<pre><code class="hbs">{{#each people as person}}Hi! I'm {{person.name}}!{{/each}}
-</code></pre>
-
-<p>If you would also like to refer to the current index or key for an iteration by something other than the special refs <code>@key</code> and <code>@index</code>, you can also provide an alias for each of those. When aliasing key and index, only the first key alias is required, and it will always be the same as the index alias for an array because the key and index are the same thing. For an object iteration, the index alias will be the 0-based index of the key in the keys of the object being iterated.</p>
-<pre><code class="hbs">{{#each people: index, key}}index and key are the same for an array{{/each}}
-&lt;!-- this works with a context alias as well --&gt;
-{{#each people as person: index, key}}...{{/each}}
-&lt;!-- the second alias is not required --&gt;
-{{#each people: i}}...{{/each}}
-&lt;!-- and it's only really useful when iterating an object --&gt;
-{{#each someObject: k, i}}k is the current key and i is the current index{{/each}}
-</code></pre>
-
-<p><code>@index</code> and <code>@key</code> aliases are useful for nested <code>{{#each}}</code> blocks so that you have a way to refer to the outer key or index in any given iteration. It's also sometimes useful to give a more meaningful name to a key or index.</p>
-<p><strong>From 0.10.0</strong></p>
-<p>In addition to a context alias, you can also include aliases for <code>@keypath</code>, <code>@rootpath</code>, <code>@index</code>, and <code>@key</code> instead of using the <code>: k, i</code> syntax. This tends to be slightly less confusing than trying to remember whether the first or second name is the key.</p>
-<pre><code class="hbs">{{#each people as person, i as @index, path as @keypath}}...{{/each}}
-&lt;!-- the context alias is not required --&gt;
-{{#each people, i as @index, path as @keypath}}...{{/each}}
-</code></pre>
-
-<p>There are also special aliases that can control the behavior of the <code>{{#each}}</code> block in special circumstances.</p>
-<p>First, it's not possible to have a computed array shuffle (a keyed update, which moves iterated elements around the DOM to match new array positions rather than simply updating contents in place) because there's no way to tell the computation when an index is moved. With a plain old model, an <code>{{#each}}</code> block will automatically know how to shuffle itself if you use an array method like <code>splice</code> or a <code>set</code> with the <code>shuffle</code> option set. By setting the <code>shuffle</code> alias to either <code>true</code> or a keypath string to use to return an identity for each iteration, you can tell an <code>{{#each}}</code> with a computed array how to shuffle itself when the array changes. <code>true</code> will cause the identity of each element to be used to determine its new index, and a keypath will cause the identity of the value at that keypath from each element to determine its new index.</p>
-<pre><code class="hbs">{{#each people, true as shuffle}}...{{/each}}
-{{#each people, 'profile.id' as shuffle}}...each person's profile id determines where they are in the list...{{/each}}
-</code></pre>
-
-<p>Second, computed contexts make two-way binding problematic, as updates don't propagate back to the source model automatically, or expensive, as using <code>syncComputedChildren</code> will invalidate everything involved with the computation any time the computed context is changed. The <code>source</code> alias of an <code>{{#each}}</code> block with a computed array can be set to have it map each of its iterations' contexts back to the plain model that is the basis of the computed array.</p>
-<pre><code class="hbs">{{#each filter(people, { name: 'joe' }), people as source}}
-  {{@keypath}} will be something like `people.0` rather than a computed
-  keypath based on `filter(people, { name: 'joe' }).0`
-{{/each}}
-</code></pre>
-
-<p>The <code>as</code> in aliases is also optional, so <code>{{#each people person, @index i}}</code> is equivalent to <code>{{#each people as person, @index as i}}</code>.</p>
 <h2 id="with-sections"><a class="toclink" href="#with-sections">With sections</a></h2>
 <p><code>{{#with }}</code> alters the current section's context by sticking a reference in front of the resolution order. This causes everything within the section to resolve to that reference's context and data hierarchy first before the original section's.</p>
 <pre><code class="js">Ractive({
@@ -1432,26 +1310,6 @@
     {{/with}}
   `
 })
-</code></pre>
-
-<p><strong>From 0.10.0</strong></p>
-<p>The <code>as</code> in aliases is also optional, so <code>{{#with foo qux, @global world}}</code> is equivalent to <code>{{#with foo as qux, @global as world}}</code>.</p>
-<h2 id="await-sections"><a class="toclink" href="#await-sections">Await sections</a></h2>
-<p><strong>From 0.10.0</strong></p>
-<p><code>{{#await}}</code> sections take a value, preferrably a <code>Promise</code>, and allow you to render a pending template, while waiting, a success template if resolution completes, an error template if resolution fails, and an alternate template if the value is <code>undefined</code>.</p>
-<pre><code class="hbs">{{#await value}}
-  This bit of template displays while value is unresolved.
-{{then val}}
-  This bit of template displays when value is resolved, and the resolved value is available as val.
-{{catch err}}
-  This bit of template displays if the resolution results in an error, and the error is available as err.
-{{else}}
-  This bit of template displays if the value === undefined.
-{{/await}}
-</code></pre>
-
-<p>All of the aliases (<code>val</code> and <code>err</code> in the example) are optional, as are each of the sections. There's also a shorthand if you don't want to use a pending template:</p>
-<pre><code class="hbs">{{#await value then val}}{{val}} has resolved{{/await}}
 </code></pre>
 
 <h2 id="in-template-partials"><a class="toclink" href="#in-template-partials">In-template partials</a></h2>
@@ -1562,7 +1420,6 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 <li><code>parseFloat</code></li>
 <li><code>parseInt</code></li>
 <li><code>undefined</code></li>
-<li><code>console</code></li>
 </ul>
 <h2 id="comments"><a class="toclink" href="#comments">Comments</a></h2>
 <p><code>{{! }}</code> defines a template comment. Comments are ignored by the parser and never make it to the AST.</p>
@@ -1853,24 +1710,6 @@ const ractive = Ractive({
     &lt;/Pager&gt;
   `,
 })
-</code></pre>
-
-<p><strong>From 0.10.0</strong></p>
-<p>You can also inject a context into a yield rather than aliases, in the same way that you can supply a context to a partial. When injecting a context, the container context will be accessible from the yielded template via the context parent prefix (<code>^^/</code>). The component context for the yield will still be the container.</p>
-<pre><code class="js">const Loopy = Ractive.extend({
-  template: `&lt;ul&gt;{{#each list}}&lt;li&gt;{{yield with .}}&lt;/li&gt;{{/each}}&lt;/ul&gt;`
-});
-
-const ractive = new Ractive({
-  components: { Loopy },
-  target: 'body',
-  data: {
-    things: [ 1, 2, 3 ],
-    clicks: 0,
-    label: ' thing'
-  },
-  template: `{{clicks}}&lt;Loopy list=&quot;{{things}}&quot;&gt;&lt;button on-click=&quot;@.add('clicks')&quot;&gt;{{.}}{{^^/label}}&lt;/button&gt;&lt;/Loopy&gt;`
-});
 </code></pre>
 
 <h1 id="data-binding"><a class="toclink" href="#data-binding">Data binding</a></h1>
@@ -2256,7 +2095,7 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;500
     {{#each bases}}
       {{#with ~/homebase}}
         &lt;div&gt;the home base bulding1 is {{.building1.name}}&lt;/div&gt;
-        &lt;div&gt;the current iteration base building1 is {{^^/building1.name}}&lt;/div&gt;
+        &lt;div&gt;the current iteration base building1 is {{^^/.building1.name}}&lt;/div&gt;
       {{/with}}
     {{/each}}
   `
@@ -2491,29 +2330,6 @@ Lazy: &lt;input type=&quot;text&quot; value=&quot;{{ bar }}&quot; lazy=&quot;500
 // User #2 says: Hi! I'm eve!
 </code></pre>
 
-<h2 id="last"><a class="toclink" href="#last"><code>@last</code></a></h2>
-<p>The index of the last iteration of the nearest iterative block. This is helpful for detecting the end of an object iteration.</p>
-<pre><code class="js">Ractive({
-  el: 'body',
-  data: {
-    users: {
-      bob: 'Hi! I am bob!',
-      alice: 'Hi! I am alice!',
-      eve: 'Hi! I am eve!'
-    }
-  },
-  template: `
-    {{#each users}}
-      &lt;div&gt;{{@key}}{{#if @last === @index}} is the last user{{/if}}&lt;/div&gt;
-    {{/each}}
-  `
-})
-
-// bob
-// alice
-// eve is the last user
-</code></pre>
-
 <h2 id="keypath"><a class="toclink" href="#keypath"><code>@keypath</code></a></h2>
 <p>The keypath to the current data context relative to the instance's root data context.</p>
 <div data-playground="N4IgFiBcoE5QdgVwDbIL4BoQBcogDwDOAxjAJYAO2ABITMQLwA6422FhkA9F4vBQGsA5gDpiAewC2XGAENi2MgDcApiwB8+LiXJV1ILITwAleYtUAKYE3hNsK5JGoByAEbiAJgE9nGG3Y9ZbFkna1tsOwAzcXFQ-wiE11kYOPC7dOwkgC9UjLzsSRVCQlkhFSdnMAdkcWoAd3EYZA9nePy0NoSOtOxuu0x4+0kKZCDy6gADTvwPZXUAaRUvCiCwUOBqAAEBJZXsMGo0NC1ZpXVO4GAAYmpo2qPOuxm5xeXV9a2dt-3D465T849OyXG5JGC-R4JZ5nV57NbUS6fXarX4nOaQ4HXajZCFAhJPAGw94IjbbZE-I5os4Y7CXLgPPF0hkZJl9bBTeBoACUAG4QGggA"></div>
@@ -2740,7 +2556,7 @@ Ractive({
 <h2 id="local"><a class="toclink" href="#local"><code>@local</code></a></h2>
 <p>Special context-local storage associated with the current context. This is intended more for library use with decorators and parser transforms.</p>
 <h2 id="style"><a class="toclink" href="#style"><code>@style</code></a></h2>
-<p><strong>From 0.9.4</strong></p>
+<p><strong>From</strong> <em>0.9.4</em></p>
 <p>The cssData associated with the current instance based on its constructor.</p>
 <h2 id="n"><a class="toclink" href="#n"><code>$n</code></a></h2>
 <p><code>$n</code> is a reference available when handing events using the expression syntax that points to a specific argument passed by the event. Argument positions are denoted by the <code>n</code> which is a one-indexed integer.</p>
@@ -2850,7 +2666,6 @@ const instance = Ractive({
 </code></pre>
 
 <h2 id="allowexpressions"><a class="toclink" href="#allowexpressions">allowExpressions</a></h2>
-<p><strong>From 0.10.0</strong></p>
 <p><code>(boolean)</code></p>
 <p>Indicates whether or not Ractive should process expressions. Defaults to <code>true</code>.</p>
 <p>Setting this to <code>false</code> effectively avoids the use of the <code>Function</code> constructor at the cost of not being able to use expressions such as those found in templates and computed properties.</p>
@@ -3058,7 +2873,7 @@ Ractive({
 })
 </code></pre>
 
-<p><strong>From 0.9.4</strong>, if <code>css</code> is a function, the function will be called with a handle to the component's style data and is expected to return a string of CSS.</p>
+<p><strong>From</strong> <em>0.9.4</em>, if <code>css</code> is a function, the function will be called with a handle to the component's style data and is expected to return a string of CSS.</p>
 <pre><code class="js">const Component = Ractive.extend({
   css(data) {
     // you can use Ractive.styleSet('colors.special', 'pink') or Component.styleSet('colors.special', 'pink')
@@ -3071,7 +2886,7 @@ Ractive({
 </code></pre>
 
 <h2 id="cssdata"><a class="toclink" href="#cssdata">cssData</a></h2>
-<p><strong>From 0.9.4</strong></p>
+<p><strong>From</strong> <em>0.9.4</em></p>
 <p><code>(object)</code></p>
 <p>Like <code>css</code>, this also only applies to components. This is the default data for a component's style computation, if it has one. It is inherited from parent components all the way back to Ractive, and any changes that are made at any point in the hierarchy are automatically propagated down from that point. This means that if a component uses <code>foo</code> in its style computation but does not define a value for it in its <code>cssData</code>, then calling <code>Ractive.styleSet('foo', ...)</code> will cause the component style to recompute.</p>
 <h2 id="cssid"><a class="toclink" href="#cssid">cssId</a></h2>
@@ -3205,17 +3020,6 @@ el: jQuery('#container')
 <p>A map of events where the key is the event name and value is an event definition.</p>
 <pre><code class="js">events: {
   MyEvent: EventDefinition
-}
-</code></pre>
-
-<h2 id="interpolate"><a class="toclink" href="#interpolate">interpolate</a></h2>
-<p><code>(Object&lt;string, boolean&gt;)</code></p>
-<p>A map of elements that controls whether or not interpolation is allowed within the element. If an element is present in the map, then nested tags are treated as text rather than elements, as in a <code>&lt;script&gt;</code> tag. If the value associated with the element is <code>false</code>, mustaches within the element are also treated as text rather than blocks or interpolators.</p>
-<pre><code class="js">interpolate: {
-  textarea: true,
-  script: true,
-  style: true,
-  template: true
 }
 </code></pre>
 
@@ -3427,10 +3231,9 @@ ractive.unrender()
 
 <p>During a <code>ractive.reset()</code>, function partials are re-evaluated. If the return value changes, the Ractive instance will be re-rendered.</p>
 <h2 id="preservewhitespace"><a class="toclink" href="#preservewhitespace">preserveWhitespace</a></h2>
-<p><code>(boolean|Object&lt;string, boolean&gt;)</code></p>
+<p><code>(boolean)</code></p>
 <p>Whether or not to preserve whitespace in templates when parsing. Defaults to <code>false</code>.</p>
 <p>Whitespace in <code>&lt;pre&gt;</code> elements is always preserved. The browser will still deal with whitespace in the normal fashion.</p>
-<p>If the value is a map, whitespace is not preserved by default, and the elements named in the map will have whitespace preserved based on the value of the boolean associated with their name.</p>
 <pre><code class="js">var ractive = Ractive({
   template: '&lt;p&gt;hello\n\n  \tworld   &lt;/p&gt;',
   preserveWhitespace: false //default
@@ -3592,23 +3395,6 @@ ractive.set( 'foo', 'fizz' )
 // input now displays &quot;fizz&quot;
 </code></pre>
 
-<h2 id="use"><a class="toclink" href="#use">use</a></h2>
-<p><code>([plugin])</code></p>
-<p>An array of plugins to install on the instance or component. This is more or less a shorthand for calling the <code>use</code> method on a component or instance.</p>
-<pre><code class="js">import neato from 'some/neato/plugin';
-import thingy from 'thingy/plugin';
-
-// install a plugin in a component
-const Component = Ractive.extend({
-  use: [neato]
-});
-
-// install a plugin in an instance
-const app = window.app = new Component({
-  use: [thingy]
-});
-</code></pre>
-
 <h2 id="warnaboutambiguity"><a class="toclink" href="#warnaboutambiguity">warnAboutAmbiguity</a></h2>
 <p><code>(boolean)</code></p>
 <p>Whether or not to warn about references that don't resolve to their immediate context. Defaults to <code>false</code>.</p>
@@ -3621,13 +3407,9 @@ const app = window.app = new Component({
 <p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>The registry of globally available component definitions.</p>
 <h2 id="ractivecontext"><a class="toclink" href="#ractivecontext">Ractive.Context</a></h2>
-<p><strong>From 0.9.4</strong></p>
+<p><strong>From</strong> <em>0.9.4</em></p>
 <p><code>(Object)</code></p>
 <p>The prototype for <code>Context</code> objects. This is provided so that you can extend context objects provided by Ractive with your own methods and properties.</p>
-<h2 id="componentcss"><a class="toclink" href="#componentcss">[Component].css</a></h2>
-<p><strong>From 0.10.0</strong></p>
-<p><code>(string|(CSSData) =&gt; string)</code></p>
-<p>The CSS string or function that is set on the constructor. Setting this will cause the CSS for the component in the Rative-managed <code>&lt;style&gt;</code> element to be updated.</p>
 <h2 id="ractivedebug"><a class="toclink" href="#ractivedebug">Ractive.DEBUG</a></h2>
 <p><code>(boolean)</code></p>
 <p>Tells Ractive if it's in debug mode or not. When set to <code>true</code>, non-fatal errors are logged. When set to <code>false</code>, non-fatal errors are suppressed. By default, this is set to <code>true</code>.</p>
@@ -3693,7 +3475,7 @@ Object.assign(Ractive.defaults.data,{people : [{id:4, name:'Fred'},{id:5, name:'
 <p><code>(Object&lt;string, Function&gt;)</code></p>
 <p>A key-value hash of interpolators use by <code>ractive.animate()</code> or non-CSS transitions.</p>
 <h2 id="componentparent"><a class="toclink" href="#componentparent">[Component].Parent</a></h2>
-<p><strong>From 0.9.1</strong></p>
+<p><strong>From</strong> <em>0.9.1</em></p>
 <p><code>(Ractive|Component constructor)</code></p>
 <p>The parent constructor of a component.</p>
 <pre><code class="js">const MyComponent = Ractive.extend()
@@ -3708,7 +3490,7 @@ MySpecialCompoennt.Parent === MyComponent; // true
 <p>The global registry of partial templates.</p>
 <p>Like templates, partials are parsed at the point of use. The parsed output is cached and utilized for future use.</p>
 <h2 id="componentractive"><a class="toclink" href="#componentractive">[Component].Ractive</a></h2>
-<p><strong>From 0.9.1</strong></p>
+<p><strong>From</strong> <em>0.9.1</em></p>
 <p><code>(Ractive)</code></p>
 <p>The root Ractive constructor that is the first ancestor of this component.</p>
 <pre><code class="js">const MyComponent = Ractive.extend()
@@ -3728,37 +3510,6 @@ MySpecialCompoennt.Ractive === Ractive; // true
 <p><code>(string)</code></p>
 <p>The version of the currently loaded Ractive.</p>
 <h1 id="static-methods"><a class="toclink" href="#static-methods">Static Methods</a></h1>
-<h2 id="ractiveaddcss"><a class="toclink" href="#ractiveaddcss">Ractive.addCSS()</a></h2>
-<p><strong>From 0.10.0</strong></p>
-<p>Add CSS to the Ractive-managed <code>&lt;style&gt;</code> tag. This is particularly useful for plugins that aren't based on a component or macro. If you try to add the same <code>id</code> more than once, an error will be thrown.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>Ractive.addCSS(id, css)</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>id (string)</code>: An identifier for the styles.</li>
-<li><code>css (string|(CSSData) =&gt; string)</code>: A string of CSS or a function that receives CSS data (see <code>Ractive.styleSet</code>) and returns a string of CSS.</li>
-</ul>
-<p><strong>Example</strong></p>
-<pre><code class="js">Ractive.addCSS(
-  'fancy-buttons',
-  `button {
-    border-radius: 0.2em;
-    outline: 3px red;
-    color: blue;
-    background-color: yellow;
-    animation: buttonblink 1s linear infinite;
-    box-shadow: 2px 2px 5px rgba(0, 255, 255, 0.5);
-  }
-  @keyframes buttonblink {
-    50% {
-      color: transparent;
-    }
-  }`
-);
-</code></pre>
-
 <h2 id="ractiveescapekey"><a class="toclink" href="#ractiveescapekey">Ractive.escapeKey()</a></h2>
 <p>Escapes the given key so that it can be concatenated with a keypath string.</p>
 <p><strong>Syntax</strong></p>
@@ -3931,23 +3682,8 @@ const css = Ractive.getCSS([ 'xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' ])
 const info = Ractive.getContext('#some-node')
 </code></pre>
 
-<h2 id="ractivehascss"><a class="toclink" href="#ractivehascss">Ractive.hasCSS()</a></h2>
-<p><strong>From 0.10.0</strong></p>
-<p>Determines whether or not CSS has been added with the given <code>id</code>.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>Ractive.hasCSS(id)</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>id (string)</code>: The id to check.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(boolean)</code>: <code>true</code> if there is already CSS installed with the given <code>id</code>.</li>
-</ul>
 <h2 id="ractiveisinstance"><a class="toclink" href="#ractiveisinstance">Ractive.isInstance()</a></h2>
-<p><strong>From 0.9.1</strong></p>
+<p><strong>From</strong> <em>0.9.1</em></p>
 <p>Determines whether or not the given object is an instance of the Ractive constructor. This is also extended to component constructors, where it will make sure that the given object is an instance of the particular constructor on which it is called.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -3993,62 +3729,6 @@ Ractive.isInstance(r); //true
 <pre><code class="js">Ractive.joinKeys( 'foo', 'bar.baz' ); // foo.bar\.baz
 </code></pre>
 
-<h2 id="ractivemacro"><a class="toclink" href="#ractivemacro">Ractive.macro()</a></h2>
-<p>Creates a macro partial with the given handler and options. Macro partials sit somewhere between regular partials and components in power and heft. Many things that can't be achieved with regular parials, like adding styles to the managed CSS, easily managing template-local data, and mangling templates before render, can be with macros. Some of the things that can be achieved with components, like having namespaced events and a fully isolated data context, can't be with macros.</p>
-<p>Macros also have the ability to swap templates at any point in time, like a dynamic partial. Instead of responding to a change in a model though, there is a helper function, <code>setTemplate</code>, on the context handle passed to the macro init function.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>Ractive.macro(handler [, options])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li>
-<p><code>handler ((context, ...attributes) =&gt; handle)</code>: The defining function for the macro.</p>
-<p>The context that is passed into the handler is augmented with a few extra properties and methods.</p>
-<p><strong>Properties</strong></p>
-<ul>
-<li><code>attributes (Object&lt;string, any&gt;)</code>: The map of current attribute values, if any.</li>
-<li><code>name</code>: The name with which this macro was created in the template.</li>
-<li><code>partials</code>: A shallow copy of any partials associated with the macro, including <code>content</code>.</li>
-<li><code>proxy</code>: The VDOM node that is managing the macro.</li>
-<li><code>template</code>: A shallow copy of the template used to create the macro.</li>
-</ul>
-<p><strong>Methods</strong></p>
-<ul>
-<li><code>aliasLocal(name [, keypath])</code>: Creates an alias to the <code>@local</code> data associated with the proxy.<ul>
-<li><code>name (string)</code>: The name to use when creating the alias.</li>
-<li><code>keypath (string)</code>: If supplied the child keypath of the <code>@local</code> data to use when creating the alias.</li>
-</ul>
-</li>
-<li><code>setTemplate(template)</code>: Sets the template to be rendered in the DOM. This can be called at any time to cause the template to be re-rendered.<ul>
-<li><code>template</code>: This can be any of the values that can be used with a partial. If the template is not parsed and the parser is not available, an error will be thrown.</li>
-</ul>
-</li>
-</ul>
-<p><strong>Return</strong></p>
-<p>The handler function can optionally return an object with local lifecycle hooks, much like a decorator:</p>
-<ul>
-<li><code>render</code>: A function to be called when the macro is rendered.</li>
-<li><code>update</code>: A function to be called when the attributes of the macro are updated.</li>
-<li><code>invalidate</code>: A function to be called when an part of the template that is controlled by the macro will be updated.</li>
-<li><code>teardown</code>: A function to be called when the macro is unrendered.</li>
-</ul>
-</li>
-<li>
-<p><code>options</code>: An optional map of options to use when creating the macro.</p>
-<ul>
-<li><code>attributes (string[])</code>: A list of reserved attributes that will be passed to the handler function and optional <code>update</code> hook.</li>
-<li><code>css (string|(data) =&gt; string)</code>: A CSS string or CSS function to set the managed CSS for the macro.</li>
-<li><code>cssData (object)</code>: Initial CSS data to be passed to a CSS function.</li>
-<li><code>cssId (string)</code>: An optional id to use when scoping CSS for the macro.</li>
-<li><code>noCssTransform (boolean)</code>: If <code>true</code>, macro CSS will not be scoped.</li>
-</ul>
-</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(macro)</code>: A macro that can be installed in a <code>partials</code> registry.</li>
-</ul>
 <h2 id="ractiveparse"><a class="toclink" href="#ractiveparse">Ractive.parse()</a></h2>
 <p>Parses the template into an abstract syntax tree that Ractive can work on.</p>
 <p><strong>Syntax</strong></p>
@@ -4064,9 +3744,9 @@ Ractive.isInstance(r); //true
 <li><code>[staticDelimiters] ([string])</code>: Start and end delimiters for static mustaches. Defaults to <code>['[[', ']]']</code>.</li>
 <li><code>[staticTripleDelimiters] ([string])</code>: Start and end delimiters for static triple mustaches. Defaults to <code>['[[[', ']]]']</code>.</li>
 <li><code>[contextLines] (integer)</code>: Additional lines above and below a line with a parse error to include in the error output. Defaults to <code>0</code>.</li>
-<li><code>[interpolate] (Object&lt;string, boolean&gt;)</code>: Map of elements that indicates whether or not to read mustaches within the element. Defaults to <code>{ script: false, textarea: true, template: false, style: false }</code>. Elements present within the map treat nested tags as text rather than elements.</li>
+<li><code>[interpolate] (Object&lt;string, boolean&gt;)</code>: Map of elements that indicates whether or not to read mustaches within the element. Defaults to <code>{ script: false, textarea: true, template: false, style: false }</code>.</li>
 <li><code>[csp] (boolean)</code>: When <code>true</code> includes pre-compiled expression functions in the template output so that <code>eval</code> is not needed at runtime. Defaults to <code>true</code>.</li>
-<li><code>[preserveWhitespace] (boolean|Object&lt;string, boolean&gt;)</code>: When <code>true</code>, preserves whitespace in templates. Whitespace inside the <code>&lt;pre&gt;</code> element is preserved regardless of the value of this option. Defaults to <code>false</code>. If the value is a map, whitespace is not preserved by default, and the elements named in the map will have whitespace preserved based on the value of the boolean associated with their name.</li>
+<li><code>[preserveWhitespace] (boolean)</code>: When <code>true</code>, preserves whitespace in templates. Whitespace inside the <code>&lt;pre&gt;</code> element is preserved regardless of the value of this option. Defaults to <code>false</code>.</li>
 <li><code>[stripComments] (boolean)</code>: When <code>false</code> will leave comments in the parsed template. Defaults to <code>true</code>.</li>
 <li><code>[sanitize] (boolean|Object)</code>: When <code>true</code>, strips inline event attributes and certain elements from the markup. Defaults to <code>false</code>.<ul>
 <li><code>[elements] (Array&lt;string&gt;)</code>: An array of element names to blacklist.</li>
@@ -4140,7 +3820,7 @@ Ractive.isInstance(r); //true
 </code></pre>
 
 <h2 id="ractivesharedset"><a class="toclink" href="#ractivesharedset">Ractive.sharedSet()</a></h2>
-<p><strong>From 0.9.4</strong></p>
+<p><strong>From</strong> <em>0.9.4</em></p>
 <p>Sets data in the <code>@shared</code> object without requiring access to a Ractive instance.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -4158,7 +3838,7 @@ Ractive.isInstance(r); //true
 </code></pre>
 
 <h2 id="ractivestyleset"><a class="toclink" href="#ractivestyleset">Ractive.styleSet()</a></h2>
-<p><strong>From 0.9.4</strong></p>
+<p><strong>From</strong> <em>0.9.4</em></p>
 <p>Sets data in the <code>@style</code> object of Ractive or the component constructor on which it is called. When an applied style that is affected by a change from <code>styleSet</code> updates, Ractive will update its manaaged style tag so that the changes show up in the browser immediately.</p>
 <p>This function is also available to components created with <code>Ractive.extend</code>. When called on a component constructor, <code>styleSet</code> will set the value in the component's <code>cssData</code>, and any extensions of the component will also be notified that the parent data changed.</p>
 <p><strong>Syntax</strong></p>
@@ -4197,21 +3877,6 @@ Ractive.isInstance(r); //true
 <pre><code class="js">Ractive.unescapeKey('foo\\.bar'); // foo.bar
 </code></pre>
 
-<h2 id="ractiveuse"><a class="toclink" href="#ractiveuse">Ractive.use()</a></h2>
-<p><strong>From 0.10.0</strong></p>
-<p>Install one or more plugins globally or in a component constructor. If called on a component constructor (the result of <code>extend</code>), the plugin will be called with the construtor as the <code>instance</code> argument and the constructor prototype as the <code>proto</code> argument, so anything added to the <code>instance</code> or <code>proto</code> will be available to all instances and sub-components of the component.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>Ractive.use(plugin[, ...plugin])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>plugin (plugin)</code>: A plugin function that receives <code>{ Ractive, instance: Ractive, proto: Ractive.defaults }</code> as an argument.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(this)</code>: The component on which the method was called.</li>
-</ul>
 <h1 id="instance-properties"><a class="toclink" href="#instance-properties">Instance Properties</a></h1>
 <h2 id="ractiveadaptors_1"><a class="toclink" href="#ractiveadaptors_1">ractive.adaptors</a></h2>
 <p><code>(Object&lt;string, Object&gt;)</code></p>
@@ -4418,27 +4083,6 @@ ractive.attachChild( child, options )
 <p>Children can be detached using <code>ractive.detachChild()</code>.</p>
 <p><strong>Examples</strong></p>
 <p><em>Example 1</em>: See the example for <a href="#anchors">Anchors</a></p>
-<h2 id="ractivecompute"><a class="toclink" href="#ractivecompute">ractive.compute()</a></h2>
-<p>Creates a new computation. This is the API equivalent of the <code>computed</code> init or extend option.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>ractive.compute( keypath, computation )</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>keypath ( string )</code>: The keypath at which the computation should be available. This may be more than one level deep and may include wildcards.</li>
-<li><code>computation ( string | function | object)</code>: The computation to be installed at the given keypath.<ul>
-<li><code>string</code>: The string that will be parsed and turned into a getter function.</li>
-<li><code>function</code>: A getter function to be used for the computation.</li>
-<li><code>object</code>: An object with a <code>get</code> and optionally a <code>set</code> to be used for the computation.</li>
-</ul>
-</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(Promise)</code>: A <code>Promise</code> that resolves with the child instance when any transitions are complete.</li>
-</ul>
-<p>If there are already bits of template or observers that depend on the target keypath, they will be transitioned to the new computed model.</p>
 <h2 id="ractivedetach"><a class="toclink" href="#ractivedetach">ractive.detach()</a></h2>
 <p>Detaches the instance from the DOM, returning a document fragment. You can reinsert it, possibly in a different place, with <code>ractive.insert()</code> (note that if you are reinserting it immediately you don't need to detach it first - it will happen automatically).</p>
 <p><strong>Syntax</strong></p>
@@ -4675,7 +4319,7 @@ setTimeout(() =&gt; {
 <p><strong>Arguments</strong></p>
 <ul>
 <li><code>name (string)</code>: The name of the event.</li>
-<li><code>[context] (context|object)</code>: A context object to use for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (<code>{}</code>) before the additional arguments. <strong>From 0.9.4</strong>, if you want to reuse a context exactly as it exists, it should have a <code>refire</code> property that is <code>=== true</code>.</li>
+<li><code>[context] (context|object)</code>: A context object to use for the event or an object with properties to assign to a new context object. If you need to pass arguments but don't need to provide context, pass an empty object (<code>{}</code>) before the additional arguments. <strong>From</strong> <em>0.9.4</em>, if you want to reuse a context exactly as it exists, it should have a <code>refire</code> property that is <code>=== true</code>.</li>
 <li><code>[arg] (any)</code>: The arguments that event handlers will be called with.</li>
 </ul>
 <p><strong>Returns</strong></p>
@@ -4826,7 +4470,7 @@ Ractive({
 <li><code>destination (string)</code>: The keypath to use as the destination - or where you'd like the data 'copied'.</li>
 <li><code>options (hash)</code>:</li>
 <li><code>instance</code> or <code>ractive</code>: The Ractive instance in which to find the source keyapth. This allows cross-instance linking much like mapped paths between components.</li>
-<li><code>keypath</code>: <strong>From 0.9.4</strong> - The keypath to register as the source of the link. This is an advanced option that allows you to specify how the link should shuffle. For instance <code>items.0.name</code> will never shuffle, but if the keypath is specified as <code>.name</code>, then it will shuffle when <code>items.0</code> shuffles.</li>
+<li><code>keypath</code>: <strong>from</strong> <em>0.9.4</em> - The keypath to register as the source of the link. This is an advanced option that allows you to specify how the link should shuffle. For instance <code>items.0.name</code> will never shuffle, but if the keypath is specified as <code>.name</code>, then it will shuffle when <code>items.0</code> shuffles.</li>
 </ul>
 <p><strong>Returns</strong></p>
 <ul>
@@ -5576,21 +5220,6 @@ ractive.updateModel()
 alert( ractive.get( 'name' ) ); // alerts 'Jim'
 </code></pre>
 
-<h2 id="ractiveuse_1"><a class="toclink" href="#ractiveuse_1">ractive.use()</a></h2>
-<p><strong>From 0.10.0</strong></p>
-<p>Install one or more plugins in a Ractive instance.</p>
-<p><strong>Syntax</strong></p>
-<ul>
-<li><code>ractive.use(plugin[, ...plugin])</code></li>
-</ul>
-<p><strong>Arguments</strong></p>
-<ul>
-<li><code>plugin (plugin)</code>: A plugin function that receives <code>{ Ractive, instance: ractive, proto: ractive }</code> as an argument.</li>
-</ul>
-<p><strong>Returns</strong></p>
-<ul>
-<li><code>(this)</code>: The instance on which the method was called.</li>
-</ul>
 <h1 id="context-object"><a class="toclink" href="#context-object">Context Object</a></h1>
 <p>The context object is the type of object you receive when calling getContext(). This object contains various properties and methods that allow you to interact with and obtain information about the Ractive instance, the node associated with it and the context surrounding it.</p>
 <p>The special <code>@context</code> reference is also a context object that is associated with the nearest VDOM item and element. It's frequently used with event directives to interact with the data associated with the immediate context.</p>
@@ -5650,7 +5279,7 @@ alert( ractive.get( 'name' ) ); // alerts 'Jim'
 </code></pre>
 
 <h2 id="contextgetparent"><a class="toclink" href="#contextgetparent">context.getParent()</a></h2>
-<p><strong>From 0.9.4</strong></p>
+<p><strong>From</strong> <em>0.9.4</em></p>
 <p>Gets the parent context of this context. This is finer grained than element access provided by <code>Ractive.getContext</code>, as it can target sections that exist nested between elements.</p>
 <p><strong>Syntax</strong></p>
 <ul>
@@ -6111,7 +5740,7 @@ export default Ractive.extend({
     <div class="main__footer">
       <div class="page-controls">
   
-  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/api.md" target="_blank">Edit this page</a>
+  <a class="page-controls__link" rel="edit" href="https://github.com/ractivejs/ractivejs.github.io/edit/dev/docs/legacy/0.9/api.md" target="_blank">Edit this page</a>
   
 </div>
 
@@ -6140,7 +5769,7 @@ export default Ractive.extend({
     
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link pure-menu-heading" href="..">Home</a>
+          <a class="pure-menu-link pure-menu-heading" href="../../..">Home</a>
         </li>
         
       
@@ -6151,94 +5780,94 @@ export default Ractive.extend({
         </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+            <a class="pure-menu-link" href="../../../tutorials/hello-world/">Hello, world!</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+            <a class="pure-menu-link" href="../../../tutorials/nested-properties/">Nested Properties</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+            <a class="pure-menu-link" href="../../../tutorials/expressions/">Expressions</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+            <a class="pure-menu-link" href="../../../tutorials/events/">Events</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+            <a class="pure-menu-link" href="../../../tutorials/conditional-sections/">Conditional Sections</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+            <a class="pure-menu-link" href="../../../tutorials/iterative-sections/">Iterative Sections</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+            <a class="pure-menu-link" href="../../../tutorials/two-way-binding/">Two-way Binding</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+            <a class="pure-menu-link" href="../../../tutorials/partials/">Partials</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+            <a class="pure-menu-link" href="../../../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+            <a class="pure-menu-link" href="../../../tutorials/components/">Components</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+            <a class="pure-menu-link" href="../../../tutorials/animation/">Animations</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+            <a class="pure-menu-link" href="../../../tutorials/svg/">SVG</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+            <a class="pure-menu-link" href="../../../tutorials/transitions/">Transitions</a>
           </li>
         
           <li class="pure-menu-item ">
-            <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+            <a class="pure-menu-link" href="../../../tutorials/decorators/">Decorators</a>
           </li>
         
       
     
       
-        <li class="pure-menu-item pure-menu-selected">
-          <a class="pure-menu-link pure-menu-heading" href="./">API</a>
+        <li class="pure-menu-item ">
+          <a class="pure-menu-link pure-menu-heading" href="../../../api/">API</a>
         </li>
         
       
     
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link pure-menu-heading" href="../plugins/">Plugins</a>
+          <a class="pure-menu-link pure-menu-heading" href="../../../plugins/">Plugins</a>
         </li>
         
       
     
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link pure-menu-heading" href="../resources/">Resources</a>
+          <a class="pure-menu-link pure-menu-heading" href="../../../resources/">Resources</a>
         </li>
         
       
     
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link pure-menu-heading" href="../concepts/">Concepts</a>
+          <a class="pure-menu-link pure-menu-heading" href="../../../concepts/">Concepts</a>
         </li>
         
       
     
       
         <li class="pure-menu-item ">
-          <a class="pure-menu-link pure-menu-heading" href="../support/">Support</a>
+          <a class="pure-menu-link pure-menu-heading" href="../../../support/">Support</a>
         </li>
         
       
@@ -6253,12 +5882,6 @@ export default Ractive.extend({
   
   <div class="toc-side pure-menu pure-menu-fixed pure-menu-scrollable">
   <ul class="pure-menu-list">
-    
-      <li class="pure-menu-item">
-        <a class="pure-menu-link pure-menu-heading" href="#api">API</a>
-      </li>
-      
-      </li>
     
       <li class="pure-menu-item">
         <a class="pure-menu-link pure-menu-heading" href="#mustaches">Mustaches</a>
@@ -6294,10 +5917,6 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#with-sections">With sections</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#await-sections">Await sections</a>
         </li>
       
         <li class="pure-menu-item">
@@ -6453,10 +6072,6 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#last">@last</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#keypath">@keypath</a>
         </li>
       
@@ -6580,10 +6195,6 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#events">events</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#interpolate">interpolate</a>
         </li>
       
         <li class="pure-menu-item">
@@ -6723,10 +6334,6 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#use">use</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#warnaboutambiguity">warnAboutAmbiguity</a>
         </li>
       
@@ -6746,10 +6353,6 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivecontext">Ractive.Context</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#componentcss">[Component].css</a>
         </li>
       
         <li class="pure-menu-item">
@@ -6811,10 +6414,6 @@ export default Ractive.extend({
       </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractiveaddcss">Ractive.addCSS()</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveescapekey">Ractive.escapeKey()</a>
         </li>
       
@@ -6835,19 +6434,11 @@ export default Ractive.extend({
         </li>
       
         <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractivehascss">Ractive.hasCSS()</a>
-        </li>
-      
-        <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveisinstance">Ractive.isInstance()</a>
         </li>
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractivejoinkeys">Ractive.joinKeys()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractivemacro">Ractive.macro()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -6868,10 +6459,6 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveunescapekey">Ractive.unescapeKey()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractiveuse">Ractive.use()</a>
         </li>
       
       </li>
@@ -6944,10 +6531,6 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveattachchild">ractive.attachChild()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractivecompute">ractive.compute()</a>
         </li>
       
         <li class="pure-menu-item">
@@ -7112,10 +6695,6 @@ export default Ractive.extend({
       
         <li class="pure-menu-item">
           <a class="pure-menu-link" href="#ractiveupdatemodel">ractive.updateModel()</a>
-        </li>
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="#ractiveuse_1">ractive.use()</a>
         </li>
       
       </li>
@@ -7350,7 +6929,7 @@ export default Ractive.extend({
         
           
             <li class="pure-menu-item pure-menu-item--home">
-              <a href="..">
+              <a href="../../..">
                 <img class="logo__image" src="/static/img/avatar.svg" alt="Ractive.js" style="width:40px" />
               </a>
             </li>
@@ -7364,59 +6943,59 @@ export default Ractive.extend({
               <ul class="pure-menu-children">
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/hello-world/">Hello, world!</a>
+                    <a class="pure-menu-link" href="../../../tutorials/hello-world/">Hello, world!</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/nested-properties/">Nested Properties</a>
+                    <a class="pure-menu-link" href="../../../tutorials/nested-properties/">Nested Properties</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/expressions/">Expressions</a>
+                    <a class="pure-menu-link" href="../../../tutorials/expressions/">Expressions</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/events/">Events</a>
+                    <a class="pure-menu-link" href="../../../tutorials/events/">Events</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/conditional-sections/">Conditional Sections</a>
+                    <a class="pure-menu-link" href="../../../tutorials/conditional-sections/">Conditional Sections</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/iterative-sections/">Iterative Sections</a>
+                    <a class="pure-menu-link" href="../../../tutorials/iterative-sections/">Iterative Sections</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/two-way-binding/">Two-way Binding</a>
+                    <a class="pure-menu-link" href="../../../tutorials/two-way-binding/">Two-way Binding</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/partials/">Partials</a>
+                    <a class="pure-menu-link" href="../../../tutorials/partials/">Partials</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
+                    <a class="pure-menu-link" href="../../../tutorials/triples-embedded-html/">Triples (Embedded HTML)</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/components/">Components</a>
+                    <a class="pure-menu-link" href="../../../tutorials/components/">Components</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/animation/">Animations</a>
+                    <a class="pure-menu-link" href="../../../tutorials/animation/">Animations</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/svg/">SVG</a>
+                    <a class="pure-menu-link" href="../../../tutorials/svg/">SVG</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/transitions/">Transitions</a>
+                    <a class="pure-menu-link" href="../../../tutorials/transitions/">Transitions</a>
                   </li>
                 
                   <li class="pure-menu-item ">
-                    <a class="pure-menu-link" href="../tutorials/decorators/">Decorators</a>
+                    <a class="pure-menu-link" href="../../../tutorials/decorators/">Decorators</a>
                   </li>
                 
               </ul>
@@ -7426,8 +7005,8 @@ export default Ractive.extend({
       
         
           
-            <li class="pure-menu-item pure-menu-selected">
-              <a class="pure-menu-link" href="./">API</a>
+            <li class="pure-menu-item ">
+              <a class="pure-menu-link" href="../../../api/">API</a>
             </li>
           
         
@@ -7435,7 +7014,7 @@ export default Ractive.extend({
         
           
             <li class="pure-menu-item ">
-              <a class="pure-menu-link" href="../plugins/">Plugins</a>
+              <a class="pure-menu-link" href="../../../plugins/">Plugins</a>
             </li>
           
         
@@ -7443,7 +7022,7 @@ export default Ractive.extend({
         
           
             <li class="pure-menu-item ">
-              <a class="pure-menu-link" href="../resources/">Resources</a>
+              <a class="pure-menu-link" href="../../../resources/">Resources</a>
             </li>
           
         
@@ -7451,7 +7030,7 @@ export default Ractive.extend({
         
           
             <li class="pure-menu-item ">
-              <a class="pure-menu-link" href="../concepts/">Concepts</a>
+              <a class="pure-menu-link" href="../../../concepts/">Concepts</a>
             </li>
           
         
@@ -7459,7 +7038,7 @@ export default Ractive.extend({
         
           
             <li class="pure-menu-item ">
-              <a class="pure-menu-link" href="../support/">Support</a>
+              <a class="pure-menu-link" href="../../../support/">Support</a>
             </li>
           
         
@@ -7486,9 +7065,9 @@ export default Ractive.extend({
 
   <script src="//cdn.jsdelivr.net/g/jquery@3.2.1,highlight.js@9.11.0"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <script src="../static/js/index.js"></script>
-  <script>var base_url = '..';</script>
-  <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+  <script src="../../../static/js/index.js"></script>
+  <script>var base_url = '../../..';</script>
+  <script data-main="../../../mkdocs/js/search.js" src="../../../mkdocs/js/require.js"></script>
 </body>
 
 </html>
