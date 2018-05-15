@@ -220,7 +220,7 @@ Add an `init` event handler that checks to see if there are no images and issues
 
 When we started out with our slideshow, we were rendering it directly to a target element rather than as a component in another Ractive.js instance. It turns out that having self-contained components like that is a pretty convenient pattern for managing complexity in a larger app. All of the related functionality for a feature or group of features can be grouped into one Ractive.js extension known as a _view_. Each individual view can then be loaded and/or rendered independently.
 
-In order do use views with a main instance controlling the overall app, you would have to have some sort of big `#if`/`else` block with each view included as a branch. You could also resort to some sort of partial generation scheme. There's an easier way though.
+In order to use views with a main instance controlling the overall app, you would have to have some sort of big `#if`/`else` block with each view included as a branch. You could also resort to some sort of partial generation scheme. There's an easier way though.
 
 Ractive.js will allow you to attach one independent instance to another using `attachChild`, optionally specifying a _target_. If you don't specify a target, then the child instance will not be rendered, but if you _do_ specify a target, then the instance will be rendered into the first available matching _anchor_. An anchor looks like a component or element, but its name always starts with a `#`. You may have as many anchors as you like, and they may each have the same or different names.
 
@@ -238,6 +238,6 @@ Go ahead and fill out the two provided views as you like, add anchors to the mai
 >
 > Child instances can be attached in `prepend`, `insertAt`, or `append` (the default) mode. Ractive.js will try to find a matching anchor for each child starting with the first. If there aren't enough anchors, some instances will not be rendered. Each time a child is attached or detached, Ractive.js will adjust any affected anchors so all instances that can be rendered are rendered.
 >
-> Each anchor has its own list of children associated with it, which is what the attachment modes are referreing to - `prepend` will insert a child at the front, `append` at the end, and `insertAt` at the specified index. The list of children for a particular anchor, say `<#main />`, os kept up to date in an observable way so that you can automatically generate anchors as components are attached using `{{#each @.children.byName.main}}<#main />{{/each}}`.
+> Each anchor has its own list of children associated with it, which is what the attachment modes are referreing to - `prepend` will insert a child at the front, `append` at the end, and `insertAt` at the specified index. The list of children for a particular anchor, say `<#main />`, is kept up to date in an observable way so that you can automatically generate anchors as components are attached using `{{#each @.children.byName.main}}<#main />{{/each}}`.
 >
 > An anchored attached child is effectively a component that the host instance doesn't control.
