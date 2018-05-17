@@ -49,6 +49,37 @@ pages:
   - Support: support.md
   - Legacy:
     - '0.9':
+      - Get Started: legacy/0.9/get-started.md
       - API: legacy/0.9/api.md
       - Plugins: legacy/0.9/plugins.md
       - Concepts: legacy/0.9/concepts.md
+    - '0.8':
+      - Get Started: legacy/0.8/get-started.md
+      - API: legacy/0.8/api.md
+      - Plugins: legacy/0.8/plugins.md
+      - Concepts: legacy/0.8/concepts.md
+    - '0.7':
+      - Get Started: legacy/0.7/get-started.md
+      - API: legacy/0.7/api.md
+      - Plugins: legacy/0.7/plugins.md
+      - Concepts: legacy/0.7/concepts.md
+    - '0.6':
+      - Get Started: legacy/0.6/get-started.md
+      - API: legacy/0.6/api.md
+      - Plugins: legacy/0.6/plugins.md
+      - Concepts: legacy/0.6/concepts.md
+    - '0.5':
+      - Get Started: legacy/0.5/get-started.md
+      - API: legacy/0.5/api.md
+      - Plugins: legacy/0.5/plugins.md
+      - Concepts: legacy/0.5/concepts.md
+    - '0.4':
+      - Get Started: legacy/0.4/get-started.md
+      - API: legacy/0.4/api.md
+      - Plugins: legacy/0.4/plugins.md
+      - Concepts: legacy/0.4/concepts.md
+    - '0.3':
+      - Get Started: legacy/0.3/get-started.md
+      - API: legacy/0.3/api.md
+      - Plugins: legacy/0.3/plugins.md
+      - Concepts: legacy/0.3/concepts.md

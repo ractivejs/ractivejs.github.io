@@ -8,16 +8,6 @@
 * [StackOverflow](http://stackoverflow.com/questions/tagged/ractivejs)
 * [Google Groups](http://groups.google.com/forum/#!forum/ractive-js)
 
-## Legacy documentation
-### 0.9
-
-- [API](/legacy/0.9/api/)
-- [Plugins](/legacy/0.9/plugins/)
-- [Concepts](/legacy/0.9/concepts/)
-
-### 0.8 and older
-
-Documentation for versions 0.8 and older can be found at [https://ractive.js.org/v0.x](https://ractive.js.org/v0.x).
 
 ## Builds
 
@@ -51,6 +41,58 @@ Ractive({
 })
 ```
 
+# Legacy documentation
+
+## 0.9
+
+- [Get Started](/legacy/0.9/get-started/)
+- [Get Started](/legacy/0.9/get-started/)
+- [API](/legacy/0.9/api/)
+- [Plugins](/legacy/0.9/plugins/)
+- [Concepts](/legacy/0.9/concepts/)
+
+## 0.8
+
+- [Get Started](/legacy/0.8/get-started/)
+- [API](/legacy/0.8/api/)
+- [Plugins](/legacy/0.8/plugins/)
+- [Concepts](/legacy/0.8/concepts/)
+
+## 0.7
+
+- [Get Started](/legacy/0.7/get-started/)
+- [API](/legacy/0.7/api/)
+- [Plugins](/legacy/0.7/plugins/)
+- [Concepts](/legacy/0.7/concepts/)
+
+## 0.6
+
+- [Get Started](/legacy/0.6/get-started/)
+- [API](/legacy/0.6/api/)
+- [Plugins](/legacy/0.6/plugins/)
+- [Concepts](/legacy/0.6/concepts/)
+
+## 0.5
+
+- [Get Started](/legacy/0.5/get-started/)
+- [API](/legacy/0.5/api/)
+- [Plugins](/legacy/0.5/plugins/)
+- [Concepts](/legacy/0.5/concepts/)
+
+## 0.4
+
+- [Get Started](/legacy/0.4/get-started/)
+- [API](/legacy/0.4/api/)
+- [Plugins](/legacy/0.4/plugins/)
+- [Concepts](/legacy/0.4/concepts/)
+
+## 0.3
+
+- [Get Started](/legacy/0.3/get-started/)
+- [API](/legacy/0.3/api/)
+- [Plugins](/legacy/0.3/plugins/)
+- [Concepts](/legacy/0.3/concepts/)
+
 # Migrating from previous versions
 
 These are notes to help you migrate from an older version of Ractive.js to a newer one, mostly centered on breaking changes between versions. If you'd like to find out more about new features, you can check out the [changelog](https://github.com/ractivejs/ractive/blob/dev/CHANGELOG.md).
@@ -82,6 +124,7 @@ The context pop reference prefix `^^/` now correctly handles `{{#each}}` blocks 
 ### Polyfills
 
 `polyfills.js` is no longer included in the build, as it was just an empty placeholder since the handful of polyfills that were in it were included in the main build.
+
 
 ## Migrating from 0.8
 
