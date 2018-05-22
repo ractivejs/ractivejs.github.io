@@ -1,3 +1,141 @@
+# Get started
+
+
+Welcome! These pages aim to provide all the information you need to master Ractive.
+
+If you see something wrong, out of date, or missing from this documentation, please check out our {{{createLink 'Known issues, FAQs, and Tips' 'known issues and FAQs'}}}, [raise an issue on GitHub](https://github.com/ractivejs/docs.ractivejs.org/issues) or - even better - submit a pull request. Your fellow Ractive users will thank you!
+
+## 15 second overview
+
+Using Ractive is very simple. An instance is created using `new Ractive({...})`
+with the desired options:
+
+```js
+var ractive = new Ractive({
+  target: 'container',
+  template: '<p>\{{greeting}}, \{{recipient}}!</p>',
+  data: { greeting: 'Hello', recipient: 'world' }
+});
+```
+
+While there are no _required_ options, the three shown above - __target__, __template__ and __data__ - are the most common. They specify __what data__ to bind to __what template__ and __where__ it should be placed in the __html document__.
+
+A good way to get up and running is with the [60 second setup](http://ractivejs.org/60-second-setup). After that, working your way through the [interactive tutorials](http://learn.ractivejs.org) will familiarise you with the various ways you can use Ractive.
+
+Checkout the {{{createLink 'Options' 'Configuration Options'}}} to learn more about
+all the available options.
+
+If you get stuck at any point, visit the {{{createLink 'Get support'}}} page to find help.
+
+
+# Get started with node.js
+
+Using Ractive.js with node is straightforward once [node.js is installed](http://nodejs.org/):
+```
+$ npm install ractive
+```
+
+## Using Ractive within a node app
+
+Here's a simple "hello world" example that covers the basics of getting started
+ with ractive and node:
+```sh
+$ mkdir mynodeapp
+$ cd mynodeapp
+$ npm install ractive
+$ touch test.js
+$ open test.js
+```
+
+In `test.js`:
+```js
+var Ractive = require('ractive');
+var ractive = new Ractive({
+    template: 'hello from \{{who}}'
+});
+ractive.set('who', 'node');
+console.log(ractive.toHTML());
+```
+
+Running the file using node:
+```sh
+$ node test.js
+hello from node
+```
+
+## Limitations of using Ractive in node
+
+There is no two-way binding in node as there is no DOM.
+
+Data manipulation _can_ be done in node. Use methods like
+{{{createLink 'ractive.set()'}}} to modify data, and {{{createLink 'ractive.toHTML()'}}}
+to output the current template state as HTML.
+
+### Precompiling templates with node
+
+Use {{{createLink 'ractive.parse()'}}} to precompile templates in node. Here is an
+example grunt task:
+
+```js
+var Ractive = require('ractive'),
+	path = require('path');
+
+module.exports = function(grunt){
+
+	var desc = 'Compile ractive.js templates';
+	grunt.registerMultiTask('compile', desc, make);
+
+	function make(){
+		this.files.forEach(function(file){
+			var templates = file.src.map(parse);
+			grunt.file.write(file.dest,
+				'var templates = {\n' + templates.join(',\n') + '\n}');
+		});
+	}
+
+	function parse(template){
+		var name = path.basename(template, '.mustache'),
+			html = grunt.file.read(template),
+			parsed = Ractive.parse(html);
+
+		return  '\t' + name + ': ' + JSON.stringify(parsed);
+	}
+
+};
+```
+
+If the above file was in folder `/tasks/`, it could be used like:
+
+```js
+module.exports = function(grunt) {
+
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    compile: {
+      ractive: {
+        src: 'templates/*.mustache',
+        dest: 'templates/templates.js'
+      }
+    }
+  });
+
+  grunt.loadTasks('./tasks');
+
+  grunt.registerTask('default', ['compile']);
+
+};
+```
+
+## Debugging on node
+
+Check out [node-inspector](https://github.com/node-inspector/node-inspector)
+for information on debugging node modules from the Chrome Web Inspector.
+```sh
+$ npm install -g node-inspector
+$ node-debug test.js
+```
+
+
 
 # Advanced Configuration
 

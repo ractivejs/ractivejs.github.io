@@ -46,7 +46,6 @@ Ractive({
 ## 0.9
 
 - [Get Started](/legacy/0.9/get-started/)
-- [Get Started](/legacy/0.9/get-started/)
 - [API](/legacy/0.9/api/)
 - [Plugins](/legacy/0.9/plugins/)
 - [Concepts](/legacy/0.9/concepts/)

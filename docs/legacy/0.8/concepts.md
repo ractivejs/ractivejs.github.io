@@ -1,5 +1,199 @@
 # Architecture
 
+## Expressions
+
+Expressions allow you to use logic within a template. At their simplest, that may just mean a basic arithmetic operation, such as converting to percentages, or making your {{{createLink 'mustaches' 'index references' 'index-references'}}} start at 1 rather than 0:
+
+```html
+<div class='bar-chart'>
+  \{{#bars:i}}
+    <div style='width: \{{ value * 100 }}%;'>\{{ i + 1 }}</div>
+  \{{/bars}}
+</div>
+```
+
+Or it could mean formatting a currency so that `1.79` renders as `£1.79p`:
+
+```html
+<p>Price: <strong>\{{ format( price ) }}</strong></p>
+```
+
+Or it could mean adding a class based on some condition:
+
+```html
+<a class='button \{{ active ? "on" : "off" }}'>switch</a>
+```
+
+Or it could mean filtering a list to exclude certain records:
+
+```html
+<ul>
+\{{# exclude( list, 'N/A' ) }}
+  <li>\{{author}}: \{{title}}</li>
+\{{/ end of filter }}
+</ul>
+```
+
+These are all examples casually plucked from the air - whether they would be useful or not in real life depends on what you're trying to do. The point is that you can include more of your view logic at the declarative layer - the template - where it's easier to *reason about*.
+
+#### Frequently Used Expressions
+
+If you use a particular expression frequently, you can save time by adding it Ractive's default data. This way you won't have to set up the expressions on each individual `ractive` instance.
+
+The example below adds expressions for some frequenlty used parts of [moment.js](http://momentjs.com/) to the default data:
+
+```js
+var helpers = Ractive.defaults.data;
+helpers.fromNow = function(timeString){
+	return moment(timeString).fromNow()
+}
+helpers.formatTime = function(timeString){
+	return moment(timeString).format("ddd, h:mmA");
+}
+helpers.humanizeTime = function(timeString){
+	return moment.duration(timeString).humanize();
+}
+```
+
+### Valid expressions
+
+These are, of course, JavaScript expressions. Almost any valid JavaScript expression can be used, with a few exceptions:
+
+* No assignment operators (i.e. `a = b`, `a += 1`, `a--` and so on)
+* No `new`, `delete`, or `void` operators
+* No function literals (i.e. anything that involves the `function` keyword)
+
+Aside from a subset of global objects (e.g. `Math`, `Array`, `parseInt`, `encodeURIComponent` - full list below), any references must be to properties (however deeply nested) of the Ractive instance's data, rather than arbitrary variables. Reference resolution follows the {{{createLink 'references' 'normal process'}}}.
+
+
+### Does this use `eval`?
+
+Yes and no. You've probably read that 'eval is evil', or some other such nonsense. The truth is that while it does get abused, and can theoretically introduce security risks when user input gets involved, there are some situations where it's both necessary and sensible.
+
+But repeatedly `eval`ing the same code is a performance disaster. Instead, we use the `Function` constructor, which is a form of `eval`, except that the code gets compiled once instead of every time it executes.
+
+
+### A note about efficiency
+
+Using the `Function` constructor instead of `eval` is just one way that Ractive optimises expressions. Consider a case like this:
+
+```html
+\{{a}} + \{{b}} = \{{ a + b }}
+\{{c}} + \{{d}} = \{{ c+d }}
+```
+
+At *parse time*, Ractive generates an [abstract syntax tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST) from these expressions, to verify that it's a valid expression and to extract any references that are used. It then 'stringifies' the AST, so that the expression can later be compiled into a function.
+
+As anyone who has seen minified JavaScript can attest, JavaScript cares not one fig what your variables are called. It also doesn't care about whitespace. So both of the expressions can be stringified the same way:
+
+```js
+"_0+_1"
+```
+
+When we *evaluate* `\{{ a + b }}` or `\{{ c+d }}`, we can therefore use the same function but with different arguments. Recognising this, the function only gets compiled once, after which it is cached. (The cache is shared between all Ractive instances on the page.) Further, the result of the evaluation is itself cached (until one or more of the dependencies change), so you can repeat expressions as often as you like without creating unnecessary work.
+
+All of this means that you could have an expression within a list section that was repeated 10,000 times, and the corresponding function would be created once *at most*, and only called when necessary.
+
+
+### The `this` reference
+
+Within an expression, you can use `this` to refer to the current *context*:
+
+```html
+<ul>
+  \{{#items}}
+    <!-- here, `this` means 'the current array member' -->
+    <li>\{{this.toUpperCase()}}</li>
+  \{{/items}}
+</ul>
+```
+
+In regular mustache, we have something called the *implicit iterator* - `\{{.}}` - which does the same thing. Ractive allows you to use `this` in place of `.` for purely aesthetic reasons.
+
+
+### Supported global objects
+
+* `Array`
+* `Date`
+* `JSON`
+* `Math`
+* `NaN`
+* `RegExp`
+* `decodeURI`
+* `decodeURIComponent`
+* `encodeURI`
+* `encodeURIComponent`
+* `isFinite`
+* `isNaN`
+* `null`
+* `parseFloat`
+* `parseInt`
+* `undefined`
+
+### Functions
+
+Any functions that you want to call, outside of the available globals above, must be properties of the Ractive instance's data as well. Functions can also depend on other references and will be re-evaulated when one of their dependencies is changed.
+
+Depedendencies are determined by capturing references in the viewmodel while the function is executing. Dependencies for functions are re-captured each time the function is executed.
+
+```html
+<p>\{{ formattedName() }}</p>
+```
+
+```js
+var ractive = new Ractive({
+  template: template,
+  el: output,
+  data: {
+    user: { firstName: 'John', lastName: 'Public' },
+    formattedName: function() {
+      return this.get('user.lastName') + ', ' + this.get('user.firstName');
+    }
+  }
+};
+```
+
+Result:
+```html
+<p>Public, John</p>
+```
+
+In this example, the function ```formattedName``` will depend on both ```user.firstName``` and ```user.lastName```, and updating either (or ```user```) will cause any expressions referencing ```formattedName``` to be re-evaluated as well.
+
+```js
+ractive.set('user.firstName', 'Jane')
+```
+
+Result:
+```html
+<p>Public, Jane</p>
+```
+
+### Functions on helper objects and third-party libraries
+
+You can also add helper objects to your data and call functions on those objects in expressions. For example, you could add a reference to [underscore.js](http://underscorejs.org/):
+
+```js
+var ractive = new Ractive({
+  template: template,
+  el: output,
+  data: {
+    items: [ 2, 10, 200, 3, 1, 4],
+    _: _
+  }
+};
+```
+
+And use that to sort an array in your template:
+
+```html
+\{{# _.sortBy(items) }}\{{.}}, \{{/}}
+
+<!-- Result: -->
+1, 2, 3, 4, 10, 200,
+```
+
+
 # Data Management
 
 ## Dependants
@@ -319,6 +513,77 @@ new Ractive({
 });
 ```
 
+## Magic mode
+
+Normally, you would update data using {{{createLink 'ractive.set()'}}}, {{{createLink 'ractive.animate()'}}}, or the {{{createLink 'array-modification' 'array mutator methods'}}}.
+
+If you're fortunate enough to be developing for modern browsers only, however, you have another option: magic mode. Magic mode uses ES5 accessors to allow you to do this:
+
+```js
+var model = { message: 'hello' };
+
+var ractive = new Ractive({
+  el: container,
+  template: 'message: \{{message}}',
+  magic: true,
+  data: model
+});
+
+// instead of doing `ractive.set( 'message', 'goodbye' )`...
+model.message = 'goodbye';
+```
+
+### ES what?
+
+ECMAScript 5 is the current version of the language more commonly known as JavaScript. Most ES5 features are widely supported in all current browsers.
+
+One feature in particular, `Object.defineProperty`, allows us to define *accessors*, which are functions that get called when you get or set the value of a property on an object. For those curious, [MDN has comprehensive docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
+
+(If you have to support IE8, or particularly old versions of Firefox or Opera, you may as well stop reading unfortunately. There's a [compatibility table here](http://kangax.github.io/es5-compat-table/#Object.defineProperty). Don't be fooled by the 'yes' under IE8 - it's a broken implementation. Shocking, I know. Attempting to use magic mode in one of these browsers will cause Ractive to throw an error.)
+
+Ractive, in magic mode, will *wrap* properties with accessors where necessary, saving you the work.
+
+
+### Why not to use it
+
+Aside from the compatibility issue, there is a performance implication to be aware of. Wrapping and unwrapping properties isn't completely free, and using accessors (instead of direct property access) has a slight cost as well.
+
+In the vast majority of cases this won't matter - we're talking fractions of milliseconds - but if you're *really* into performance, you might want to use the explicit `ractive.set()` approach. (Of course, you can still use the explicit methods when you're in magic mode.)
+
+Also, be aware that if you have a situation like this...
+
+```html
+<div style='color: \{{color}}; opacity: \{{opacity}};'>some content</div>
+```
+
+...then using `ractive.set({ color: 'red', opacity: 0.5 })` would only cause one DOM update, whereas `model.color = 'red'` followed by `model.opacity = 0.5` would cause two. Again, in most real-world situations that's not a problem.
+
+
+### Using magic mode with arrays
+
+
+Magic mode only works with properties that Ractive already knows about. Which means that if you do this...
+
+```html
+<ul>
+  \{{#items}}
+    <li>\{{.}}</li>
+  \{{/items}}
+</ul>
+```
+
+```js
+var items = [ 'a', 'b', 'c' ];
+
+var ractive = new Ractive({
+  el: container,
+  template: myTemplate,
+  magic: true,
+  data: { items: items }
+});
+```
+
+...you can't add items to the list by doing `items[3] = 'd'`, for example. Instead, do `items.push('d')`, so Ractive becomes aware of the `items[3]` property.
 
 # Event Management
 
@@ -476,6 +741,65 @@ However, there are some differences and limitations to component event directive
 <my-widget on-foo.*="bar"/>
 ```
 
+
+
+
+## Lifecycle events
+
+
+Every Ractive instance has a *lifecycle* - it is created, then rendered, and eventually may be changed and 'torn down'. You can subscribe to these *lifecycle events* using {{{createLink 'ractive.on()'}}}:
+
+
+```js
+ractive = new Ractive({
+  el: 'body',
+  template: myTemplate
+});
+
+ractive.on( 'teardown', function () {
+  alert( 'Bye!' );
+});
+```
+
+You can also add handlers as {{{createLink 'Options' 'initialisation options'}}}:
+
+```js
+ractive = new Ractive({
+  el: 'body',
+  template: myTemplate,
+  onteardown: function () {
+    alert( 'Bye!' );
+  }
+});
+```
+
+The full list of lifecycle events is as follows:
+
+| Name            | Event is fired...
+| --------------- | --------------
+| `construct`     | ...as soon as `new Ractive(...)` happens, before any setup work takes place
+| `config`        | ...once all configuration options have been processed
+| `init`          | ...when the instance is ready to be rendered
+| `render`        | ...each time the instance is rendered (normally only once)
+| `complete`      | ...after `render`, once any intro {{{createLink 'transitions'}}} have completed
+| `change`        | ...when data changes
+| `update`        | ...after `ractive.update()` is called
+| `unrender`      | ...each time the instance is unrendered
+| `teardown`      | ...each time the instance is destroyed (after `unrender`, if the teardown is responsible for triggering the unrender)
+| `insert`        | ...each time `ractive.insert()` is called
+| `detach`        | ...each time `ractive.detach()` is called (note: `ractive.insert()` calls `ractive.detach()`)
+
+<br>
+Most of the events do not have arguments, except for:
+
+* `construct` supplies the actual initialisation options provided to the instance constructor
+* `change` supplies a change object with each change keypath as a property and the new change value as the value of that property
+
+### Reserved event names
+
+Note: the built-in lifecycle events are **reserved**, which means you can't use their names as {{{createLink 'proxy events'}}}.
+
+
 # Rendering
 
 # Security
@@ -527,3 +851,158 @@ To facilitate quick updates to a single style property of an element, Ractive su
 To facilitate easily adding and removing a single class on an element, Ractive supports using `class-class-name` and `class-className` attributes. Unlike style attributes, no changes are made to the hyphenation of the attribute name, so `class-class-name` and `class-className` will target `class-name` and `className`, respectively. The truthiness of the value assigned to a `class-` attribute determines whether or not Ractive will add the class to the element. If the value is truthy, the class will be added. If the value becomes falsey, then the class will be removed. No other classes on the element will be affected by changes to a `class-` attribute.
 
 `class-` attributes, like `style-` attributes, not processed as expressions, so in order to supply the conditional to determine whether or not the class is set, you must use an interpolator e.g. `<div class-foo="\{{someBoolean}}" class-bar="\{{num + 33 > 42}}">...</div>`.
+
+## Keypaths
+
+The main way to interact with a Ractive instance is by setting *keypaths*. A keypath is a string representing the location of a piece of data:
+
+```js
+ractive = new Ractive({
+  el: myContainer,
+  template: myTemplate,
+  data: {
+    foo: {
+      bar: 'baz'
+    }
+  }
+});
+
+// Simple keypath
+ractive.get( 'foo' ); // returns { bar: 'baz' }
+
+// Compound keypath
+ractive.get( 'foo.bar' ); // returns 'baz'
+```
+
+### Upstream and downstream keypaths
+
+In the example above, we say that `'foo.bar'` is a *downstream keypath* of `'foo'`, while `'foo'` is an *upstream keypath* of `'foo.bar'`.
+
+### Array versus dot notation
+
+The `'foo.bar'` keypath is an example of *dot notation*. With arrays, you can use dot notation or *array notation*, which may feel more familiar (internally, it gets converted to dot notation):
+
+```js
+ractive = new Ractive({
+  el: myContainer,
+  template: myTemplate,
+  data: {
+    list: [ 'a', 'b', 'c' ]
+  }
+});
+
+// Array notation
+ractive.get( 'list[0]' ); // returns 'a'
+
+// Dot notation
+ractive.get( 'list.0' ); // also returns 'a'
+```
+
+### Missing properties
+
+Ordinarily in JavaScript, trying to access a child property of an object that didn't exist would cause an error:
+
+```js
+data = { numbers: [ 1, 2, 3 ]};
+data.letters[0]; // throws an error - cannot read property '0' of undefined
+```
+
+Within Ractive, this will simply return `undefined`:
+
+```js
+ractive = new Ractive({
+  el: myContainer,
+  template: myTemplate,
+  data: {
+    numbers: [ 1, 2, 3 ]
+  }
+});
+
+ractive.get( 'letters[0]' ); // returns undefined
+```
+
+### Escaping
+
+While not ideal, sometimes properties of objects have `.`s in name e.g. `foo['bar.baz']`. Note that while numbers are supported in array notation, strings are not. To access a keypath with a literal `.` in one of the keys, you can escape it with a `\` e.g. `foo.bar\.baz`. Any keys accessible in the template will be unescaped, so if you're trying to use them with simple string concatenation to access a keypath with a `.` in it, you'll need to make sure you escape it first.
+
+## Method calls
+
+*See also: {{{createLink 'proxy events'}}}*
+
+__Note:__ Unqualified event method calls are deprecated and have been replaced with event expressions that resolve the same way as every other expression in a Ractive template. This means that to call, for instance, `set('foo', 'bar')` in an event, you would now use `@this.set('foo', 'bar')`. Unfortunately, this adds a bit of boilerplate to common method calls, but it is also resolves the disparity between event directives and other template references, allows calling data methods from events, and allows executing multiple, possibly more complex, expressions when an event fires.
+
+As an alternative to {{{createLink 'proxy events'}}}, you can execute any expression(s) supported by Ractive in response to an {{{createLink 'event directives' 'event directive'}}}, right from your template:
+
+```html
+<p>foo is \{{foo}}</p>
+<button on-click='@this.toggle("foo")'>toggle foo</button>
+```
+
+In this case, because {{{createLink 'ractive.toggle()'}}} is a built-in method, clicking the button will toggle the value of `foo` between `true` and `false` ([demo](http://jsfiddle.net/rich_harris/xxg93vw8/)).
+
+This also works with custom methods:
+
+```js
+var ractive = new Ractive({
+  el: 'body',
+  template: '<button on-click="@this.klaxon()">sound the klaxon</button>',
+  audio: new Audio( 'klaxon.mp3' ),
+  klaxon: function () {
+    this.audio.play();
+  }
+});
+```
+
+You can pass as many arguments to the method as you like, including data references:
+
+```html
+\{{#each items :i}}
+  <button on-click='@this.select(this,i)'>select this item</button>
+\{{/each}}
+```
+
+Notice that mustaches are __not__ used with data reference in method calls, i.e. `\{{i}}` and will cause errors if they are. String literals need to be in quotes:
+
+```html
+<button on-click='@this.set("foo", true)'>make foo true</button>
+```
+
+You can also pass the `event` object, or properties thereof (`event.original` is the original DOM event) ([demo](http://jsfiddle.net/rich_harris/9ecvjjtm/)):
+
+```html
+<div
+  on-mousemove='@this.set({
+    x: event.original.clientX,
+    y: event.original.clientY
+  })'
+  on-mouseleave='@this.set({
+    x: "unknown",
+    y: "unknown"
+  })'
+>
+  <p>current mouse position: \{{x}} x \{{y}}</p>
+</div>
+```
+
+The `event` object is also available within body of the method call function as `this.event`. Note that methods on your Ractive instance that may handle your events are effectively part of your public API, and `this.event` will only be available during invocations triggered by an event.
+
+The `event` argument is also extended with contextual helper methods. See {{{createLink 'Ractive.getNodeInfo()' 'helpers' 'helpers'}}}.
+
+If you need to evaluate multiple expressions from an event directive, simply separate them with a `,`. For instance:
+
+```html
+\{{#each someList as item}}
+<div>
+  \{{item.display}}
+  <a href="#" on-click="event.pop('../'), @this.notifyUser('item removed!'), false">
+    Remove and Notify
+  </a>
+</div>
+\{{/each}}
+```
+
+Note that this is a list of independent expressions, and as long as one doesn't throw, they will all be evaluated.
+
+### Cancelling events
+
+As with proxy events, you can cancel a DOM event by returning `false` from your event handler. Ractive with then call `preventDefault()` and `stopPropagation()` on the original DOM event. You can also call any methods on the original event by having it passed to your handler or accessing it using `this.event.original`. With event expressions, you can force the cancellation regardless of the return from any methods you call by simply including `false` as the last expression in your list, as above in the 'Remove and Notify' example. You can also override cancellation in much the same way by using `true` instead of `false`.
