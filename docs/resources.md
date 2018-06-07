@@ -46,6 +46,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [CodeMirror](http://dagnelies.github.io/ractive-codemirror/)
 - [Bootstrap](http://dagnelies.github.io/ractive-bootstrap/)
 - [Datatable](https://github.com/JonDum/ractive-datatable)
+- [Foundation](http://ractive-foundation.github.io/ractive-foundation)
 - [Select](https://github.com/JonDum/ractive-select) - A `<select>` replacement component.
 - [Stepper](https://github.com/JonDum/ractive-stepper) - A numeric stepper component.
 - [Split](https://dagnelies.github.io/ractive-split)
@@ -148,6 +149,10 @@ By itself, neither Ractive nor tools know what to do with a component files. Loa
 TODO
 
 # Tools
+
+## Chrome Dev Tools Extensions
+
+- [Chrome - Ractive Dev Tool](https://chrome.google.com/webstore/detail/ractive-dev-tool/mobaekclikghnakiffjacknpimanblii)
 
 ## Ractive CLI
 
