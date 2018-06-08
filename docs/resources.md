@@ -150,22 +150,22 @@ TODO
 
 # Tools
 
-## Chrome Dev Tools Extensions
-
-- [Chrome - Ractive Dev Tool](https://chrome.google.com/webstore/detail/ractive-dev-tool/mobaekclikghnakiffjacknpimanblii)
-
 ## Ractive CLI
 
 As of version 0.9, Ractive now comes with a CLI tool that comes with a few handy commands. See `ractive help` for more details on available commands.
 
+## Chrome Dev Tools Extensions
+
+- [Ractive Dev Tool](https://chrome.google.com/webstore/detail/ractive-dev-tool/mobaekclikghnakiffjacknpimanblii) - View and edit Ractive.js components using Chrome Dev Tools..
+- [Ractive Data](https://chrome.google.com/webstore/detail/ractive-data/nnahmijfpolmcohlcllgndbilgneipec) - Adds Ractive context data to chrome dev tools.
+- [More Ractive Data](https://chrome.google.com/webstore/detail/more-ractive-data/ifbnmdpghgpcceednkpklhfkmjgipaih?hl=en-GB&gl=GB) - This extension provides detailed data about Ractive components.
+
 ## Ractive utilities
 
-Ractive provides a couple of modules to aid you in loader development:
-
-- [rcu](https://github.com/ractivejs/rcu) - An importable/embeddable library that provides utility APIs to help your loader parse the different portions of the component file.
-- [rcu-builders](https://github.com/ractivejs/rcu-builders) - A module that provides utility APIs to help your loader convert parsed component files into other module formats like ES, AMD and CJS.
+- [rcu](https://github.com/ractivejs/rcu) - Utility APIs for parsing component files.
+- [rcu-builders](https://github.com/ractivejs/rcu-builders) - Utility APIs to generate ES, AMD and CJS from parsed Ractive components.
 
 
 ## Yeoman
 
-[Jorge Colindres](http://colindres.me/) has created [generator-ractive](https://github.com/colindresj/generator-ractive), a Yeoman generator to quickly set up a Ractive application.
+- [generator-ractive](https://github.com/colindresj/generator-ractive) - A Yeoman generator to quickly set up a Ractive application.
