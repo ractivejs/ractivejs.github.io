@@ -45,6 +45,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [Ractive-Require](https://github.com/XavierBoubert/ractive-require)
 - [CodeMirror](http://dagnelies.github.io/ractive-codemirror/)
 - [Bootstrap](http://dagnelies.github.io/ractive-bootstrap/)
+- [Ralma](http://aldi.github.io/ralma/) - Ractive Components for Bulma CSS Framework.
 - [Datatable](https://github.com/JonDum/ractive-datatable)
 - [Foundation](http://ractive-foundation.github.io/ractive-foundation)
 - [Select](https://github.com/JonDum/ractive-select) - A `<select>` replacement component.
