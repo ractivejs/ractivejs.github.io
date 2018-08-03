@@ -1,160 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#f8f8f8" />
     <title>Ractive.js Playground</title>
-    <script src="./lib/polyfills.min.js"></script>
-    <script src="./lib/ractive.min.js"></script>
-    <script src="./lib/Tabs.js"></script>
-    <script src="./lib/Sheet.js"></script>
-    <script src="./lib/ace.min.js" data-ace-base="./lib"></script>
-    <script src="./lib/lz-string.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./index.css" />
-    <link rel="shortcut icon" href="./assets/favicon.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f8f8" />
+
+    <link rel="shortcut icon" href="./favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind:400,600,700" />
+
+    <script src="//cdn.jsdelivr.net/npm/ractive@0.10/ractive.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/lib/codemirror.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/dialog/dialog.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/search/searchcursor.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/search/search.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/selection/active-line.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/search/match-highlighter.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/scroll/annotatescrollbar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/search/matchesonscrollbar.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/fold/xml-fold.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/edit/closebrackets.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/edit/closetag.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/edit/matchbrackets.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/edit/matchtags.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/edit/trailingspace.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/mode/simple.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/mode/multiplex.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/lint/lint.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/lint/css-lint.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/lint/html-lint.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/addon/lint/javascript-lint.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/mode/xml/xml.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/mode/javascript/javascript.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/mode/handlebars/handlebars.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/mode/css/css.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/keymap/vim.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/keymap/emacs.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/codemirror@5/keymap/sublime.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jshint@2.9.5/dist/jshint.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/htmlhint@0.9.13/lib/htmlhint.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/csslint@1.0.5/dist/csslint.min.js"></script>
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/lib/codemirror.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/theme/eclipse.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/theme/idea.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/theme/material.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/theme/monokai.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/theme/rubyblue.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/theme/solarized.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/addon/search/matchesonscrollbar.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/codemirror@5/addon/dialog/dialog.min.css">
+
+    <style>
+      body {
+        overscroll-behavior: none;
+        font-family: Hind, sans-serif;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
-    <script type="text/html" id="tpl">
-      {{#partial settings}}
-        <div class="card">
-          <h3>Editor Settings</h3>
-          <div class="content">
-            <label><span>Key bindings</span><select value="{{settings.editor.keymode}}">
-              <option value="{{null}}">&lt;Default&gt;</option>
-              <option value="ace/keyboard/vim">VIM</option>
-              <option value="ace/keyboard/emacs">EMACS (RSI)</option>
-            </select></label>
-            <label><span>Theme</span><select value="{{settings.editor.theme}}">
-              <option value="{{null}}">&lt;Default&gt;</option>
-              <option value="chrome">Chrome</option>
-              <option value="github">GitHub</option>
-              <option value="monokai">Monokai</option>
-              <option value="solarized_dark">Solarized: Dark</option>
-              <option value="solarized_light">Solarized: Light</option>
-              <option value="terminal">Terminal</option>
-              <option value="xcode">Xcode</option>
-            </select></label>
-            <label class="check"><input type="checkbox" checked="{{settings.editor.wrap}}" /><span>Soft wrap</label>
-            <label class="check"><input type="checkbox" checked="{{settings.editor.highlightActive}}" /><span>Highlight active line</label>
-            <label class="check"><input type="checkbox" checked="{{settings.editor.margin}}" /><span>Show print margin</label>
-            <br/>
-            <label><span>Tab size</span><input type="number" value="{{settings.editor.tabSize}}" /></label>
-            <br/>
-            <label><span>Layout</span><select value="{{settings.layout}}">
-              <option bind-value="null">&lt;Auto&gt;</option>
-              <option value="mobile">Plain</option>
-              <option value="desktop">Split</option>
-            </select></label>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>External Scripts</h3>
-          <div class="content">
-            <div>
-              <label><span>Ractive.js</span><select value="{{unit.h.r}}">
-                <option value="{{null}}">&lt;None&gt;</option>
-                <option value="latest">Latest</option>
-                <option value="edge">Edge</option>
-                <option value="v0.10-dev">0.10</option>
-                <option value="0.9">0.9</option>
-                <option value="0.8">0.8</option>
-                <option value="0.7">0.7</option>
-                <option value="0.6">0.6</option>
-              </select></label>
-            </div>
-            <button on-click="@.push('unit.h.s', '')">+ Add Script</button>
-            <div>
-              {{#each unit.h.s}}
-                <div>
-                  <button class="circle" on-click="@.splice('unit.h.s', @index, 1, @.splice('unit.h.s', @index - 1, 1).result[0])" {{#if @index === 0}}disabled{{/if}}>&#11014;</button>
-                  <button class="circle" on-click="@.splice('unit.h.s', @index + 1, 1, @.splice('unit.h.s', @index, 1).result[0])" {{#if @index + 1 === ../length}}disabled{{/if}}>&#11015;</button>
-                  <input class="extra-script" value="{{.}}" />
-                  <button class="circle" on-click="@.splice('unit.h.s', @index, 1)">&#10005;</button>
-                </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Info</h3>
-          <div class="content">
-            <label class="full">Content{{#if compressed}} ({{compressed.length}}){{/if}}
-              <textarea twoway="false" on-change=['pasted-content', @node.value]>{{compressed}}</textarea>
-            </label>
-            <label class="full">URL{{#if url}} ({{url.length}}){{/if}}
-              <textarea readonly style-height="10em">{{url}}</textarea>
-            </label>
-            <label class="check"><input type="checkbox" title="Don't update the browser URL as changes are made. You can get an up-to-date URL from the box above when this option is enabled." checked="{{settings.skipUrlUpdate}}" /><span>Skip URL update</span></label>
-            <p>
-              Made with <a href="http://ace.c9.io/">Ace Editor</a>, <a href="http://github.com/pieroxy/lz-string">lz-string</a>, and <a href="http://ractive.js.org/">Ractive.js</a>.
-            </p>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Utils</h3>
-          <div class="content">
-            <div style="display: inline-block; width: 50%; box-sizing: border-box; padding: 0.5em;">
-              <label class="full">Encoded Text
-                <textarea style-height="10em" twoway="false" on-change=['encoded-content', @node.value]>{{utils.encoded}}</textarea>
-              </label>
-            </div><div style="display: inline-block; width: 50%; box-sizing: border-box; padding: 0.5em;">
-              <label class="full">Plain Text
-                <textarea style-height="10em" twoway="false" on-change=['plain-content', @node.value]>{{utils.plain}}</textarea>
-              </label>
-            </div>
-          </div>
-        </div>
-      {{/partial}}
-
-      <div class="panel" class-primary="!sheetPopped" class-shared="sheetPopped === 1" class-min="sheetPopped === 2">
-        {{#if ~/layout === 'desktop'}}
-          <div style="position: absolute; height: 100%; width: 50%">
-          <Tabs on-selected="sheetPopped === 2 ? @.set('sheetPopped', 1) : null">
-            <Tab title="HTML">
-              <div as-ace-editor={ syntax: "handlebars", bind: "~/unit.t", ...settings.editor } class="ace-editor" />
-            </Tab>
-          </Tabs>
-          </div>
-          <div style="position: absolute; height: 100%; left: 50%; width: 50%">
-          <Tabs>
-            <Tab title="Script">
-              <div as-ace-editor={ syntax: "javascript", bind: "~/unit.s", ...settings.editor } class="ace-editor" />
-            </Tab>
-            <Tab title="CSS">
-              <div as-ace-editor={ syntax: "css", bind: "~/unit.c", ...settings.editor } class="ace-editor" />
-            </Tab>
-            <Tab title="&#9881;" scroll>
-              {{>settings}}
-            </Tab>
-            <Action title="&#9654;" on-click="play" />
-          </Tabs>
-          </div>
-        {{else}}
-          <Tabs on-selected="sheetPopped === 2 ? @.set('sheetPopped', 1) : null">
-            <Tab title="HTML">
-              <div as-ace-editor={ syntax: "handlebars", bind: "~/unit.t", ...settings.editor } class="ace-editor" />
-            </Tab>
-            <Tab title="Script">
-              <div as-ace-editor={ syntax: "javascript", bind: "~/unit.s", ...settings.editor } class="ace-editor" />
-            </Tab>
-            <Tab title="CSS">
-              <div as-ace-editor={ syntax: "css", bind: "~/unit.c", ...settings.editor } class="ace-editor" />
-            </Tab>
-            <Tab title="&#9881;" scroll>
-              {{>settings}}
-            </Tab>
-            <Action title="&#9654;" on-click="play" />
-          </Tabs>
-        {{/if}}
-      </div>
-      <div class="panel" class-primary="sheetPopped === 2" class-shared="sheetPopped === 1">
-        <Sheet unit="{{compiled}}" popped="{{sheetPopped}}" bind-layout />
-      </div>
-    </script>
-    <div id="main"></div>
-    <script src="./index.js"></script>
+    <script src="./index.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/rollup@0.63/dist/rollup.browser.min.js"></script>
+    <script src="./rollup-plugin-commonjs.umd.min.js"></script>
   </body>
 </html>

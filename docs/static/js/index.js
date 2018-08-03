@@ -12,18 +12,22 @@ $(function () {
 
   var mobileToggles = $('input.menu-toggle')
 
-  function frameBuilder(){
+  function frameBuilder() {
     var promise = null;
 
-    return function(){
-      return promise || (promise = $.Deferred(function(deferred){
-        var frame = $('.playground-frame');
-
-        if ((frame[0].contentDocument || frame[0].contentWindow.document).readyState === 'complete') deferred.resolve(frame[0]);
+    return function() {
+      var frame = $('.playground-frame');
+      var init = false;
+      if (!frame.attr('src')) {
+        init = true;
+        frame.attr('src', '/playground/index.html?env=docs&hidemenu');
+      }
+      return promise || (promise = $.Deferred(function(deferred) {
+        if (!init && (frame[0].contentDocument || frame[0].contentWindow.document).readyState === 'complete') deferred.resolve(frame[0]);
         else {
           frame
-            .on('load', function(){ deferred.resolve(this); })
-            .on('error', function(error){ deferred.reject(error); });
+            .on('load', function() { deferred.resolve(this); })
+            .on('error', function(error) { deferred.reject(error); });
         }
       }).promise());
     }
@@ -92,17 +96,25 @@ $(function () {
 
     $('<button type="button" class="run-it">Run It</button>')
       .appendTo(pre)
-      .on('click', function(){
-        var promise = buildFrame().then(function(frame){
+      .on('click', function(event) {
+        buildFrame().then(function(frame) {
           frame.contentWindow.postMessage(data, '*');
+          var delay = isPlaygroundOpen ? 0 : 500;
           openPlayground();
+
+          if (delay) {
+            setTimeout(function() {
+              $("html, body")
+                .animate({ scrollTop: $(event.target).offset().top - (window.innerWidth > 767 ? 75 : 60) });
+            }, delay);
+          }
         })
       })
   });
 
   // Special case for data-tutorial since the data... is also the button.
-  $('[data-tutorial]').on('click', function(event){
-    buildFrame().then(function(frame){
+  $('[data-tutorial]').on('click', function(event) {
+    buildFrame().then(function(frame) {
       frame.contentWindow.postMessage(getDemoBlockData(event.target), '*');
       var delay = isPlaygroundOpen ? 0 : 500;
       openPlayground();
