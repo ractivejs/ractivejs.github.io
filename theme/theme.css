@@ -431,6 +431,8 @@ h3 code {
     display: block;
     position: sticky;
     top: 61px;
+    height: 100vh;
+    overflow: auto;
   }
   .main__content {
 	padding-left: 50px;
