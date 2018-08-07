@@ -1066,6 +1066,10 @@
 
     var media = {
       fn: function fn() {
+        var outer = r.relativeSize('100%');
+        if (media.last === outer) { return; }
+        else { media.last = outer; }
+        
         var sizes = {
           left:  !r.get('leftOver') && r.left && r.left.clientWidth || 0,
           right: !r.get('rightOver') && r.right && r.right.clientWidth || 0
@@ -1073,7 +1077,6 @@
         if (sizes.left) { sizes.left = r.relativeSize(sizes.left); }
         if (sizes.right) { sizes.right = r.relativeSize(sizes.right); }
 
-        var outer = r.relativeSize('100%');
         var primary = r.get('_rightPrimary') ? 'right' : 'left';
         var secondary = primary === 'right' ? 'left' : 'right';
         var medium = r.relativeSize(r.get('@style.break.medium') || '60rem', '1rem');
@@ -2185,7 +2188,7 @@
         script = script.replace(/\$CSS/g, list[0]);
         script = script.replace(/\$PARTIALS\['([-a-zA-Z0-9_\/]+)'\]/g, function (m, n) { return stringify({ v: list[2].v, t: list[2].p[n] || '' }, opts); }
         );
-        script = script.replace(/\$PARTIALS/g, stringify(list[1], opts));
+        script = script.replace(/\$PARTIALS/g, stringify(list[2].p || {}, opts));
 
         return reducePromiseFunctions(opts.scriptProcessors, script);
       });
