@@ -2367,7 +2367,7 @@
         if (id[0] === '/') {
           var name = id.slice(1);
           var files = app.get('unit.fs');
-          var file = files.find(function (f) { return f.name === name; });
+          var file = files.find(function (f) { return f.name === name || (!ext.test(name) && f.name === (name + ".js")); });
           if (file) { return file.content; }
         }
         if (id[0] !== '/' && id[0] !== '.' && id[0] !== '\0') { return getScript(app, id); }
@@ -2393,7 +2393,7 @@
     return rollup.rollup(opts).then(function (bundle) {
       outOpts.globals = Object.assign({}, { ractive: 'Ractive' });
       (app.get('unit.gs') || []).forEach(function (o) { return outOpts.globals[o.key] = o.value; });
-      
+
       return bundle.generate(outOpts).then(function (res) {
         return res.code;
       });
