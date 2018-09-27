@@ -2320,7 +2320,6 @@
   var cache = {};
 
   function getScript(app, id) {
-    if (id === 'ractive') { return Promise.resolve('export const Ractive = window.Ractive;\nexport default Ractive;\n'); }
     if (!app.get('other.cacheBust') && cache[id]) {
       if (cache[id] === 404) { return Promise.reject(("Module " + id + " not found")); }
       else { return cache[id]; }
@@ -2380,21 +2379,21 @@
   }
 
   var outOpts = {
-    output: {
-      format: 'iife',
-      globals: {}
-    }
+    format: 'iife',
+    globals: {}
   };
 
   function build$1(app, entry) {
     var opts = {
       input: entry,
-      plugins: [cdnResolve(app), RollupPlugin, RollupPluginCommonJS()]
+      plugins: [cdnResolve(app), RollupPlugin, RollupPluginCommonJS()],
+      external: (app.get('unit.gs') || []).map(function (o) { return o.key; }).concat(['ractive'])
     };
 
     return rollup.rollup(opts).then(function (bundle) {
-      outOpts.output.globals = Object.assign({}, { ractive: 'Ractive' });
-      (app.get('unit.gs') || []).forEach(function (o) { return outOpts.output.globals[o.key] = o.value; });
+      outOpts.globals = Object.assign({}, { ractive: 'Ractive' });
+      (app.get('unit.gs') || []).forEach(function (o) { return outOpts.globals[o.key] = o.value; });
+      
       return bundle.generate(outOpts).then(function (res) {
         return res.code;
       });
