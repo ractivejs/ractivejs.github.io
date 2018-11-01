@@ -2195,7 +2195,7 @@ A map of computed properties where the key is the name of the computed property 
 // Imagine a square...
 computed: {
   // Computed property expression
-  diagonal: '${side} * Math.sqrt(2)',
+  diagonal: 'side * Math.sqrt(2)',
 
   // A function
   perimeter () {
