@@ -3,11 +3,11 @@
 This page contains _all_ of the main API available in Ractive, including that provided by templates. This can be a little bit overwhelming, but it's also very searchable. If you're new to Ractive and not exactly sure what you're looking for, we recommend starting with [the tutorial](/tutorials/hello-world) to get the basics and circling back here later. Here's a basic breakdown of the sections and what you can find in them:
 
 * Mustaches
-    
+
     This section describes the main template constructs that are used in Ractive. Plain mustaches `{{like_this}}` are used to inject values into the DOM. `{{#if conditionals}}` are used to conditionally add or remove content. `{{#each iterations}}` are used to display content for every element in a list or object. `{{#with contexts}}` are used to scope data for a section of template.
 
 * Data Binding, Directives, Special References
-    
+
     These sections make up the remainder of the template constructs that are used in Ractive. Directives control things like how an element transitions in an out of the DOM, what event listeners are installed on an element, and how two-way bindings are handled. Data Binding describes the different form element bindings available and the special directives that are used to apply them. Special References describes all of the template context-based magic variables that are automatically supplied to your template by Ractive.
 
 * Initialization Options
@@ -16,7 +16,7 @@ This page contains _all_ of the main API available in Ractive, including that pr
 
 * Static Properties
 
-    These are properties available either solely on the `Ractive` constructor singleton or on component constructors that have been created by `extend` or augmented by `extendWith`. Global plugin registries and prototypes are found here. 
+    These are properties available either solely on the `Ractive` constructor singleton or on component constructors that have been created by `extend` or augmented by `extendWith`. Global plugin registries and prototypes are found here.
 
 * Static Methods
 
@@ -235,9 +235,9 @@ __From 0.10.0__
 In addition to a context alias, you can also include aliases for `@keypath`, `@rootpath`, `@index`, and `@key` instead of using the `: k, i` syntax. This tends to be slightly less confusing than trying to remember whether the first or second name is the key.
 
 ```hbs
-{{#each people as person, i as @index, path as @keypath}}...{{/each}}
+{{#each people as person, @index as i, @keypath as path}}...{{/each}}
 <!-- the context alias is not required -->
-{{#each people, i as @index, path as @keypath}}...{{/each}}
+{{#each people, @index as i, @keypath as path}}...{{/each}}
 ```
 
 There are also special aliases that can control the behavior of the `{{#each}}` block in special circumstances.
@@ -472,7 +472,6 @@ Ractive({
 ```
 
 Almost any valid JavaScript expression can be used, with a few exceptions:
-
 - No assignment operators (i.e. `a = b`, `a += 1`, `a--` and so on).
 - No `new`, `delete`, or `void` operators.
 - No function literals (i.e. anything that involves the `function` keyword).
@@ -3526,7 +3525,7 @@ Macros also have the ability to swap templates at any point in time, like a dyna
         - `keypath (string)`: If supplied the child keypath of the `@local` data to use when creating the alias.
     - `setTemplate(template)`: Sets the template to be rendered in the DOM. This can be called at any time to cause the template to be re-rendered.
         - `template`: This can be any of the values that can be used with a partial. If the template is not parsed and the parser is not available, an error will be thrown.
-    
+
     **Return**
 
     The handler function can optionally return an object with local lifecycle hooks, much like a decorator:
