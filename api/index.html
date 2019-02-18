@@ -1151,7 +1151,7 @@
 </li>
 <li>
 <p>Static Properties</p>
-<p>These are properties available either solely on the <code>Ractive</code> constructor singleton or on component constructors that have been created by <code>extend</code> or augmented by <code>extendWith</code>. Global plugin registries and prototypes are found here. </p>
+<p>These are properties available either solely on the <code>Ractive</code> constructor singleton or on component constructors that have been created by <code>extend</code> or augmented by <code>extendWith</code>. Global plugin registries and prototypes are found here.</p>
 </li>
 <li>
 <p>Static Methods</p>
@@ -1336,9 +1336,9 @@
 <p><code>@index</code> and <code>@key</code> aliases are useful for nested <code>{{#each}}</code> blocks so that you have a way to refer to the outer key or index in any given iteration. It's also sometimes useful to give a more meaningful name to a key or index.</p>
 <p><strong>From 0.10.0</strong></p>
 <p>In addition to a context alias, you can also include aliases for <code>@keypath</code>, <code>@rootpath</code>, <code>@index</code>, and <code>@key</code> instead of using the <code>: k, i</code> syntax. This tends to be slightly less confusing than trying to remember whether the first or second name is the key.</p>
-<pre><code class="hbs">{{#each people as person, i as @index, path as @keypath}}...{{/each}}
+<pre><code class="hbs">{{#each people as person, @index as i, @keypath as path}}...{{/each}}
 &lt;!-- the context alias is not required --&gt;
-{{#each people, i as @index, path as @keypath}}...{{/each}}
+{{#each people, @index as i, @keypath as path}}...{{/each}}
 </code></pre>
 
 <p>There are also special aliases that can control the behavior of the <code>{{#each}}</code> block in special circumstances.</p>
@@ -1542,12 +1542,10 @@ instance.set('admin', true) // rendering remains 'Hello, normal user'
 })
 </code></pre>
 
-<p>Almost any valid JavaScript expression can be used, with a few exceptions:</p>
-<ul>
-<li>No assignment operators (i.e. <code>a = b</code>, <code>a += 1</code>, <code>a--</code> and so on).</li>
-<li>No <code>new</code>, <code>delete</code>, or <code>void</code> operators.</li>
-<li>No function literals (i.e. anything that involves the <code>function</code> keyword).</li>
-</ul>
+<p>Almost any valid JavaScript expression can be used, with a few exceptions:
+- No assignment operators (i.e. <code>a = b</code>, <code>a += 1</code>, <code>a--</code> and so on).
+- No <code>new</code>, <code>delete</code>, or <code>void</code> operators.
+- No function literals (i.e. anything that involves the <code>function</code> keyword).</p>
 <p>Expressions support only a subset of globals:</p>
 <ul>
 <li><code>Array</code></li>
