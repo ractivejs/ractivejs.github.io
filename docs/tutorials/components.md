@@ -57,7 +57,7 @@ var Slideshow = Ractive.extend({
   },
 
   // default data
-  oninit: function () {
+  data: function () {
     // return the default data for the component here
   }
 });
