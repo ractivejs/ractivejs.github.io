@@ -2869,7 +2869,7 @@ const instance = Ractive({
 <p><strong>From 0.10.0</strong></p>
 <p><code>(boolean)</code></p>
 <p>Indicates whether or not Ractive should process expressions. Defaults to <code>true</code>.</p>
-<p>Setting this to <code>false</code> effectively avoids the use of the <code>Function</code> constructor at the cost of not being able to use expressions such as those found in templates and computed properties.</p>
+<p>Setting this to <code>false</code> will cause any template expressions to be replaced with a noop. This is useful if you don't trust the templates you are using in contexts like server-side rendering, as a content security policy or simply using the runtime-only version of Ractive that has no parser cover the browser environment pretty well.</p>
 <h2 id="append"><a class="toclink" href="#append">append</a></h2>
 <p><code>(boolean|string|HTMLElement|array-like)</code></p>
 <p>Controls how the instance is attached to <code>el</code>. Defaults to <code>false</code>.</p>
