@@ -1998,7 +1998,7 @@ __From 0.10.0__
 
 Indicates whether or not Ractive should process expressions. Defaults to `true`.
 
-Setting this to `false` effectively avoids the use of the `Function` constructor at the cost of not being able to use expressions such as those found in templates and computed properties.
+Setting this to `false` will cause any template expressions to be replaced with a noop. This is useful if you don't trust the templates you are using in contexts like server-side rendering, as a content security policy or simply using the runtime-only version of Ractive that has no parser cover the browser environment pretty well.
 
 ## append
 
