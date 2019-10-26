@@ -53,6 +53,7 @@ Encapsulate functionality behind the guise of a custom element.
 - [Split](https://dagnelies.github.io/ractive-split)
 - [ractive-modal](https://github.com/kouts/ractive-modal) - A modal popup component.
 - [ractive-materialish](https://github.com/evs-chris/ractive-materialish) - A collection of components and plugins for making desktop- and mobile-friendly frontend applications.
+- [ractive-droplist](https://github.com/kouts/ractive-droplist) - A searchable select list component.
 
 ## Decorators
 
@@ -63,6 +64,7 @@ Augment the DOM with more functionality.
 - [Select2](http://prezent.github.io/ractive-decorators-select2/) by [@sandermarechal](https://github.com/sandermarechal) ([@Prezent](https://github.com/Prezent))
 - [Sortable](http://ractivejs.github.io/Ractive-decorators-sortable/)
 - [Tooltip](http://github.com/JonDum/ractive-tooltip)
+- [ractive-decorators-popper](https://github.com/kouts/ractive-decorators-popper)
 
 ## Easings
 
@@ -97,6 +99,7 @@ Apply custom animation.
 - [Scale](https://github.com/1N50MN14/Ractive-transitions-scale) by [@1N50MN14](https://github.com/1N50MN14)
 - [Slide](http://ractivejs.github.io/ractive-transitions-slide)
 - [Typewriter](http://ractivejs.github.io/ractive-transitions-typewriter)
+- [ractive-transitions-css](https://github.com/kouts/ractive-transitions-css)
 
 
 # Libraries
