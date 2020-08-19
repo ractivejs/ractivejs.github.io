@@ -31,8 +31,8 @@ Then, add some data to it, by adding a data initialisation option to our code on
 
 ```js
 var ractive = Ractive({
-  target: output,
-  template: template,
+  target: '#target',
+  template: '#template',
   data: { greeting: 'Hello', name: 'world' }
 });
 ```
