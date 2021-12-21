@@ -3324,7 +3324,7 @@ Creates a "subclass" of the Ractive constructor or a subclass constructor using 
 
 **Arguments**
 
-- `constructor (Function)`: A class constructor - like an ES6 `class`, a plain JavaScript function with a prototpye, or another similarly constructed function (TypeScript, CoffeeScript, etc).
+- `constructor (Function)`: A class constructor - like an ES6 `class`, a plain JavaScript function with a prototype, or another similarly constructed function (TypeScript, CoffeeScript, etc).
 - `options (Object)`: An object with initialization options as properties. See initialization options for a list of possible options.
 
 **Returns**
