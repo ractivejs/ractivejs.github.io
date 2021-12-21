@@ -3669,7 +3669,7 @@ __Examples__
 Ractive.sharedSet( '_', lodash )
 ```
 
-## Ractive.styleSet()
+## <a name="styleset"></a>Ractive.styleSet()
 
 __From 0.9.4__
 
@@ -3696,6 +3696,11 @@ __Examples__
 
 ```js
 Ractive.styleSet( 'colors.fg', '#000' )
+```
+
+```js
+// To change a component cssData property
+Ractive.components.MyComponentName.styleSet( 'colors.fg', '#000' );
 ```
 
 ## Ractive.unescapeKey()
