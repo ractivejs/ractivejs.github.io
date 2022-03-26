@@ -1205,11 +1205,18 @@ Ractive({
 `bind-*` directives are the same as regular attributes, except they are parsed in an expression context rather than a string context.
 
 ```html
+<!-- These are equivalent -->
 <input value="{{foo}}" />
-is the same as
 <input bind-value="foo" />
 ```
 
+If the name matches the value, you can use a shorthand.
+
+```html
+<!-- These are equivalent -->
+<input bind-value="value" />
+<input bind-value />
+```
 
 # Keypath prefixes
 
