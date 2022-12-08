@@ -1,6 +1,6 @@
 appdirs==1.4.3
 backports-abc==0.5
-certifi==2017.4.17
+certifi==2022.12.7
 click==6.7
 Jinja2==2.9.6
 livereload==2.5.1
