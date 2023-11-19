@@ -30,9 +30,9 @@ That's not very exciting. Let's make our template more templatey – replace the
 Then, add some data to it, by adding a data initialisation option to our code on the script tab so that it looks like this:
 
 ```js
-var ractive = Ractive({
-  target: output,
-  template: template,
+var ractive = new Ractive({
+  target: '#target',
+  template: '#template',
   data: { greeting: 'Hello', name: 'world' }
 });
 ```
